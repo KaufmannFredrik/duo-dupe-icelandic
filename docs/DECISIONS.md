@@ -8,11 +8,11 @@ What was chosen, why, and what failed. Newest phase first. Evidence for every da
 
 - Cloned `https://github.com/KaufmannFredrik/duo-dupe-icelandic` into the working folder. The remote was **empty** (no commits, no files), so there was nothing to summarize or preserve. The project is scaffolded from scratch on `main`.
 - Added: `.gitignore`, `.nojekyll`, `LICENSE` (MIT, code only), `data/LICENSE.md` (data licensing split), `package.json` (ES modules, Node 20+, no dependencies yet), `scripts/probe-apis.mjs`, `docs/api-report.md`, this file, and a short `README.md`.
-- Nothing is pushed. Commits are local until the owner says otherwise.
+- Commits are pushed to `origin/main` after each phase (owner decision, see below).
 
 ### Tooling
 
-- **Node.js is not installed** on the development machine. Phase 0 ran on the official portable Node 26.13.0 LTS zip (SHA-256 checked against nodejs.org) from a temporary folder, without changing the system. Phase 1 needs a permanent Node 20+ install for Playwright and axe.
+- **Node.js is not installed** on the development machine. Phase 0 ran on the official portable Node 26.13.0 LTS zip (SHA-256 checked against nodejs.org) from a temporary folder, without changing the system. The owner then had Node.js LTS installed system-wide with winget for Phase 1 (Playwright and axe).
 - The `gh` CLI is not installed. Python 3.11.9 is available, which is enough for GreynirCorrect (needs 3.11+).
 - The probe uses only Node built-ins (`fetch`, `zlib`, `readline`). Tatoeba exports are bzip2, so the script calls the `bzip2` binary (ships with macOS, Linux and Git for Windows) instead of adding an npm dependency. A minimal zip reader handles the CLARIN frequency archive.
 - The repo lives inside OneDrive. `.cache/` (about 150 MB of downloads, gitignored) would still be synced by OneDrive; set `TOLVA_CACHE` to a folder outside OneDrive to avoid that.
@@ -31,7 +31,7 @@ What was chosen, why, and what failed. Newest phase first. Evidence for every da
    - The public **Tiro TTS instance is gone**: every path on `tts.tiro.is` (including `POST /v0/speech` and the preflight) returns 404. `speech.tiro.is` too. `api.grammatek.com` does not resolve.
    - **Tatoeba has no Icelandic audio at all** (0 of 13,390 sentences, cross-checked two ways).
    - Wiktionary has recordings for only 117 entries (3.7% of the top 300 lemmas); Lingua Libre on Commons has 375 Icelandic word recordings.
-   - New proposal: (1) human word recordings from Commons and Lingua Libre where they exist; (2) **static audio pre-generated at build time with Piper** and its four Icelandic voices (Búi, Salka, Steinn, Ugla), trained on Talrómur (CC BY 4.0); (3) browser `speechSynthesis` with an `is-IS` voice. Slow speed can be a second Piper render or `playbackRate` with `preservesPitch`; decide in Phase 4 against the 20 MB data budget. **Needs owner approval** (see questions).
+   - New proposal: (1) human word recordings from Commons and Lingua Libre where they exist; (2) **static audio pre-generated at build time with Piper** and its four Icelandic voices (Búi, Salka, Steinn, Ugla), trained on Talrómur (CC BY 4.0); (3) browser `speechSynthesis` with an `is-IS` voice. Slow speed can be a second Piper render or `playbackRate` with `preservesPitch`; decide in Phase 4 against the 20 MB data budget. Approved by the owner as "the best audio you can"; see owner decisions.
    - Word-level highlighting loses Tiro's speech marks. Options for Phase 4: Piper phoneme timings if exposed, browser `boundary` events, or proportional estimates.
 6. **Lemmatizer for stories: build-time DMII Core lookups.** Málvinnsla (`malvinnsla.arnastofnun.is`) has a broken HTTPS certificate, so a GitHub Pages site cannot call its HTTP endpoints (mixed content), and `POST /tag` returned HTTP 500 throughout. Each story token will be annotated at build time with `beygingarmynd/{form}`, with ambiguous tokens resolved by hand in the story file. Its hyphenation endpoint (Skiptir) does work and can pre-compute soft hyphens for long compounds.
 7. **Grammar lint: GreynirCorrect locally** (`pip install reynir-correct`, MIT) inside `validate-content`. `yfirlestur.is` redirects to Málfríður, so no hosted API.
@@ -40,7 +40,7 @@ What was chosen, why, and what failed. Newest phase first. Evidence for every da
 
 ### Brand facts
 
-- *tölva*: English Wiktionary says "A portmanteau word, coined by Sigurður Nordal in 1965 from tala ('number') + völva ('prophetess')". That is one source. The About page waits for a second one from the Árni Magnússon Institute, as the brief requires.
+- *tölva*: English Wiktionary says "A portmanteau word, coined by Sigurður Nordal in 1965 from tala ('number') + völva ('prophetess')". That is one source. The owner decided not to contact the Institute, so the About page cites Wiktionary by name.
 
 ### What failed (for the record)
 
@@ -55,9 +55,13 @@ What was chosen, why, and what failed. Newest phase first. Evidence for every da
 | Korp URL `spraakbanken3.it.gu.se/korp` in the malheildir bundle | Answers but has no Icelandic corpora; the real backend is port 1234 |
 | BÍN bulk files | Not scriptable (email form); licence text conflicts |
 
-### Open questions for the owner
+### Owner decisions (2026-11-03)
 
-1. **BÍN bulk licence conflict.** Proceed with the DMII Core API only (recommended), or request the bulk files and ask the Institute which terms apply?
-2. **Synthetic audio.** Is build-time Piper audio (Talrómur voices, CC BY 4.0) acceptable as the main sentence audio, with a native speaker spot-checking quality?
-3. **Node.js.** Install Node 20+ (for example `winget install OpenJS.NodeJS.LTS`) before Phase 1, or should the scripts keep using a portable copy?
-4. **Pushing.** Say when to push `main` to GitHub.
+1. **BÍN: DMII Core API only.** No bulk files and no contact with the Institute. This also means the About page cannot wait for an Institute source on the *tölva* etymology; it will cite Wiktionary and say so.
+2. **Audio: "get the best audio you can."** Human recordings first, then the best-sounding open TTS, rendered at build time. Phase 4 renders the same test sentences with every usable candidate into a comparison page so the owner can pick by ear (the build tooling cannot judge audio quality). Candidates found so far:
+   - Piper `is_IS` voices bui, salka, steinn, ugla (VITS, Talrómur, CC BY 4.0): the default.
+   - ESPnet Talrómur FastSpeech2 and Tacotron2 models (`espnet/GunnarThor_talromur_*`, `language-and-voice-lab/talromur_*`, CC BY 4.0): older architectures, likely lower quality.
+   - `facebook/mms-tts-isl`: CC BY-NC 4.0, non-commercial only. Excluded, because it would restrict reuse of `/data`.
+   - Commercial neural voices (Azure is-IS Guðrún and Gunnar) probably sound best but need an account and key held by the owner. Only if the owner opts in.
+3. **Node.js:** installed with `winget install OpenJS.NodeJS.LTS`.
+4. **Pushing:** allowed. Push `main` to `origin` after each phase commit.
