@@ -13,6 +13,8 @@ The files in **`/data` are not covered by the MIT license.** They are generated 
 | Wikimedia Commons and Lingua Libre | Word recordings (linked, not copied) | Per file, usually CC BY-SA 4.0 | Author and license for each file |
 | Talrómur corpus (Piper voices), if adopted in Phase 4 | Generated audio | CC BY 4.0 | hdl.handle.net/20.500.12537/104 |
 
+The Phase 1 demo file `data/demo/lexicon.json` contains DMII Core paradigms, Wiktionary data and Tatoeba sentences and follows the same terms; its sources and authors are listed inside it.
+
 ## What this means for the generated files
 
 - Any file that contains BÍN- or Wiktionary-derived data is distributed under **CC BY-SA 4.0**. Anyone may copy and adapt it, including commercially, if they give the attribution above and share their adaptations under the same license.

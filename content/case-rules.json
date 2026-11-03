@@ -1,0 +1,20 @@
+{
+  "reviewed": false,
+  "note": "Rules behind the 'why this case?' hints. Each rule needs native review before release.",
+  "rules": {
+    "til": {
+      "trigger": "til",
+      "kind": "preposition",
+      "case": "EF",
+      "en": "til (to) always takes the genitive.",
+      "nb": "til (til) styrer alltid genitiv."
+    },
+    "eiga": {
+      "trigger": "eiga",
+      "kind": "verb",
+      "case": "ÞF",
+      "en": "eiga (to own, to have) takes its object in the accusative.",
+      "nb": "eiga (å eie, å ha) tar objektet i akkusativ."
+    }
+  }
+}

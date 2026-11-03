@@ -1,0 +1,43 @@
+{
+  "reviewed": false,
+  "note": "Phase 1 demo path. Real units are generated from content/units/ in Phase 3.",
+  "units": [
+    {
+      "id": 1,
+      "title": { "en": "Hello", "nb": "Hei" },
+      "is": "Halló",
+      "goal": { "en": "Greet people and say your name.", "nb": "Hils på folk og si hva du heter." },
+      "lessons": [
+        { "title": { "en": "Greetings", "nb": "Hilsener" }, "state": "done" },
+        { "title": { "en": "Names", "nb": "Navn" }, "state": "done" },
+        { "title": { "en": "Thank you", "nb": "Takk" }, "state": "done" },
+        { "title": { "en": "Unit review", "nb": "Repetisjon" }, "state": "review" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": { "en": "At the café", "nb": "På kafeen" },
+      "is": "Kaffi",
+      "goal": { "en": "Order a drink and ask where things are.", "nb": "Bestill noe å drikke og spør hvor ting er." },
+      "lessons": [
+        { "title": { "en": "Coffee or tea", "nb": "Kaffe eller te" }, "state": "done" },
+        { "title": { "en": "Ordering", "nb": "Bestille" }, "state": "current" },
+        { "title": { "en": "Where is it?", "nb": "Hvor er det?" }, "state": "locked" },
+        { "title": { "en": "Paying", "nb": "Betale" }, "state": "locked" },
+        { "title": { "en": "Unit review", "nb": "Repetisjon" }, "state": "locked" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": { "en": "Family", "nb": "Familie" },
+      "is": "Fjölskylda",
+      "goal": { "en": "Talk about the people close to you.", "nb": "Snakk om folk som står deg nær." },
+      "lessons": [
+        { "title": { "en": "My family", "nb": "Familien min" }, "state": "locked" },
+        { "title": { "en": "Who is who?", "nb": "Hvem er hvem?" }, "state": "locked" },
+        { "title": { "en": "Ages", "nb": "Alder" }, "state": "locked" },
+        { "title": { "en": "Unit review", "nb": "Repetisjon" }, "state": "locked" }
+      ]
+    }
+  ]
+}

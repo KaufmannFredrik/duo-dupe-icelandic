@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" data-scan-page="default" data-scan="default">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/practice.js"></script>
+</head>
+<body data-shell data-page="practice" data-title-key="title.practice">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <div class="shell">
+    <nav class="app-nav" aria-label="Main" data-i18n-aria-label="nav.main" data-shell="nav"></nav>
+    <div class="shell__col">
+      <header class="hud" data-shell="hud"></header>
+      <main id="main" class="app-main" tabindex="-1">
+        <div class="page-head">
+          <h1 data-i18n="title.practice">Practice</h1>
+          <p data-i18n="practice.intro">Replay what you missed and train the forms that trip you up.</p>
+        </div>
+        <div class="grid-cards">
+          <a class="card" href="lesson.html">
+            <h2 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-review"></use></svg><span data-i18n="practice.mistakes">Mistakes</span></h2>
+            <p data-i18n="practice.mistakesText">Replays the items you got wrong until they stick.</p>
+          </a>
+          <a class="card card--magenta" href="declension.html">
+            <h2 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-table"></use></svg><span data-i18n="practice.cases">Case trainer</span></h2>
+            <p data-i18n="practice.casesText">Fill in declension tables, one ending at a time.</p>
+          </a>
+          <a class="card card--gold" href="lesson.html?step=3">
+            <h2 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-keyboard"></use></svg><span data-i18n="practice.letters">Special letters</span></h2>
+            <p data-i18n-html="practice.lettersText">Type <span lang="is">þ, ð, æ</span> and <span lang="is">ö</span> until they feel normal.</p>
+          </a>
+        </div>
+        <section class="card card--quiet stack" aria-labelledby="weak-title">
+          <div class="cluster"><h2 id="weak-title" data-i18n="practice.weak">Weak spots</h2><span class="tag tag--demo" data-i18n="demo.tag">Demo data</span></div>
+          <p data-i18n="practice.weakText">Accuracy by case, number and gender. Every cell shows its percentage, and the weakest ones are listed below.</p>
+          <div class="heatmap" data-heatmap></div>
+          <h3 data-i18n="practice.trainFirst">Train these first</h3>
+          <ul class="train-list" data-train></ul>
+        </section>
+      </main>
+      <footer class="app-footer" data-shell="footer"></footer>
+    </div>
+    <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
+  </div>
+</body>
+</html>

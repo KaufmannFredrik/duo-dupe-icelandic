@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en" data-scan-page="default" data-scan="default">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/styleguide.js"></script>
+</head>
+<body data-shell data-page="styleguide" data-title-key="title.styleguide">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <div class="shell">
+    <nav class="app-nav" aria-label="Main" data-i18n-aria-label="nav.main" data-shell="nav"></nav>
+    <div class="shell__col">
+      <header class="hud" data-shell="hud"></header>
+      <main id="main" class="app-main sg" tabindex="-1">
+        <div class="page-head">
+          <h1>Style guide</h1>
+          <p>Every component and state in the Retro-Futurism design system. Forced states (hover, focus) use helper classes so they show without interaction.</p>
+        </div>
+
+        <section aria-labelledby="sg-brand">
+          <h2 id="sg-brand">Brand</h2>
+          <p class="hero-title" style="font-size: 4rem; line-height: 1" data-brand="wordmark">TÖLVA</p>
+          <p class="sg__row"><span class="logo" style="font-size: 1.5rem; font-weight: 900; letter-spacing: 0.12em" data-brand="wordmark">TÖLVA</span><span data-brand="tagline">Learn Icelandic from the oracle in the machine.</span></p>
+        </section>
+
+        <section aria-labelledby="sg-colors">
+          <h2 id="sg-colors">Colors</h2>
+          <div class="sg__grid">
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-night)"></div>night #1A1A2E: page</div>
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-night-0)"></div>night-0 #10101C: deepest</div>
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-night-2)"></div>night-2 #232345: raised</div>
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-cyan)"></div>cyan #00FFFF: text, correct, NF</div>
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-chrome)"></div>chrome #C0C0C0: body copy</div>
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-muted)"></div>muted #9A9AC0: secondary text</div>
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-gold)"></div>gold #FFD700: XP, almost, focus, ÞGF</div>
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-magenta)"></div>magenta #FF10F0: titles, goal, EF</div>
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-pink-text)"></div>pink-text #FF3D8B: wrong text, ÞF</div>
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-pink)"></div>pink #FF006E: fills, never text</div>
+            <div class="sg__swatch"><div class="sg__chip" style="background: var(--rf-blue)"></div>blue #0080FF: borders and glows only</div>
+          </div>
+        </section>
+
+        <section aria-labelledby="sg-type">
+          <h2 id="sg-type">Typography</h2>
+          <h3>Heading level 3</h3>
+          <p class="measure">Body copy in chrome at 16 pixels with a line height of 1.6 and at most 65 characters per line. Learning content is larger:</p>
+          <p class="learn-text" lang="is">Þ þ Ð ð Æ æ Ö ö Á á É é Í í Ó ó Ú ú Ý ý: Við viljum fara til Íslands.</p>
+          <p class="label">Section label</p>
+          <p class="muted">Muted secondary text.</p>
+        </section>
+
+        <section aria-labelledby="sg-buttons">
+          <h2 id="sg-buttons">Buttons</h2>
+          <div class="sg__row">
+            <button type="button" class="button">Default</button>
+            <button type="button" class="button sg-hover">Hover</button>
+            <button type="button" class="button sg-focus">Focus visible</button>
+            <button type="button" class="button" disabled>Disabled</button>
+          </div>
+          <div class="sg__row">
+            <button type="button" class="button button-primary">Primary</button>
+            <button type="button" class="button button-primary sg-hover">Primary hover</button>
+            <button type="button" class="button button-primary" disabled>Primary disabled</button>
+            <button type="button" class="button button--sm">Small</button>
+          </div>
+          <div class="sg__row">
+            <button type="button" class="button button--correct">Continue (correct)</button>
+            <button type="button" class="button button--almost">Continue (almost)</button>
+            <button type="button" class="button button--wrong">Continue (not quite)</button>
+          </div>
+          <div class="sg__row">
+            <button type="button" class="icon-button" aria-label="Play"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-play"></use></svg></button>
+            <button type="button" class="icon-button icon-button--outline" aria-label="Play slowly"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-slow"></use></svg></button>
+            <button type="button" class="icon-button" aria-pressed="true" aria-label="Sound effects on"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-sound-on"></use></svg></button>
+            <button type="button" class="icon-button" disabled aria-label="Unavailable"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-mic"></use></svg></button>
+          </div>
+        </section>
+
+        <section aria-labelledby="sg-cards">
+          <h2 id="sg-cards">Cards</h2>
+          <div class="sg__grid">
+            <div class="card"><h3 class="card__title">Card</h3><p>Default neon card.</p></div>
+            <div class="card card--raised"><h3 class="card__title">Raised</h3><p>On night-2.</p></div>
+            <div class="card card--quiet"><h3 class="card__title">Quiet</h3><p>Blue border, no glow.</p></div>
+            <div class="card card--magenta"><h3 class="card__title">Magenta</h3><p>Section accent.</p></div>
+            <div class="card card--gold"><h3 class="card__title">Gold</h3><p>Rewards.</p></div>
+            <div class="card card--pink"><h3 class="card__title">Pink</h3><p>Warnings.</p></div>
+          </div>
+        </section>
+
+        <section aria-labelledby="sg-chips">
+          <h2 id="sg-chips">Word bank chips</h2>
+          <div class="sg__row">
+            <button type="button" class="chip" lang="is">heiti</button>
+            <button type="button" class="chip sg-hover" lang="is">ég</button>
+            <button type="button" class="chip is-selected" lang="is">Halló</button>
+            <button type="button" class="chip is-used" disabled lang="is">Nancy</button>
+          </div>
+        </section>
+
+        <section aria-labelledby="sg-forms">
+          <h2 id="sg-forms">Form controls</h2>
+          <div class="sg__grid">
+            <div class="field"><label class="field__label" for="sg-input">Text input</label><input id="sg-input" class="input" lang="is" placeholder="Type here"><span class="field__hint">With the special-character row below.</span></div>
+            <div class="field"><label class="field__label" for="sg-invalid">Invalid</label><input id="sg-invalid" class="input" aria-invalid="true" value="godan daginn"></div>
+            <div class="field"><label class="field__label" for="sg-disabled">Disabled</label><input id="sg-disabled" class="input" disabled value="Disabled"></div>
+            <div class="field"><label class="field__label" for="sg-select">Select</label><select id="sg-select" class="select"><option>English</option><option>Norsk bokmål</option></select></div>
+          </div>
+          <div data-sg-charrow></div>
+          <div class="sg__row">
+            <fieldset class="segmented"><legend class="visually-hidden">Number</legend>
+              <label><input type="radio" name="sg-num" checked><span>Singular</span></label>
+              <label><input type="radio" name="sg-num"><span>Plural</span></label>
+            </fieldset>
+            <label class="switch"><span>Switch off</span><input type="checkbox"><span class="switch__track" aria-hidden="true"></span></label>
+            <label class="switch"><span>Switch on</span><input type="checkbox" checked><span class="switch__track" aria-hidden="true"></span></label>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Example tabs">
+            <button type="button" class="tab" role="tab" aria-selected="true">Forms</button>
+            <button type="button" class="tab" role="tab" aria-selected="false">Examples</button>
+            <button type="button" class="tab" role="tab" aria-selected="false">Etymology</button>
+          </div>
+        </section>
+
+        <section aria-labelledby="sg-progress">
+          <h2 id="sg-progress">Progress, stats and goal</h2>
+          <div class="progress" style="max-width: 24rem"><span class="progress__seg" data-state="done"></span><span class="progress__seg" data-state="done"></span><span class="progress__seg" data-state="current"></span><span class="progress__seg"></span><span class="progress__seg"></span></div>
+          <div class="sg__row">
+            <span class="stat"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-streak"></use></svg><span>3</span><span class="stat__label">day streak</span></span>
+            <span class="stat"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-xp"></use></svg><span>120</span><span class="stat__label">XP</span></span>
+            <span class="stat stat--cold"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-streak"></use></svg><span>0</span><span class="stat__label">streak lost</span></span>
+          </div>
+          <div class="sg__row" data-sg-rings></div>
+        </section>
+
+        <section aria-labelledby="sg-tags">
+          <h2 id="sg-tags">Tags</h2>
+          <div class="sg__row" data-sg-cases></div>
+          <div class="sg__row"><span class="tag tag--gender">masculine</span><span class="tag tag--gender">feminine</span><span class="tag tag--gender">neuter</span><span class="tag tag--pos">noun</span><span class="tag tag--demo">Demo data</span></div>
+        </section>
+
+        <section aria-labelledby="sg-exercise">
+          <h2 id="sg-exercise">Exercise states</h2>
+          <div class="options" style="max-width: 32rem">
+            <button type="button" class="option" aria-pressed="false"><span lang="en">Default</span></button>
+            <button type="button" class="option" aria-pressed="true"><span lang="en">Selected</span></button>
+            <button type="button" class="option" data-state="correct" disabled><span lang="en">Correct</span><svg class="icon option__mark" aria-hidden="true"><use href="assets/icons.svg#i-check"></use></svg><span class="visually-hidden">Correct</span></button>
+            <button type="button" class="option" data-state="almost" disabled><span lang="en">Almost</span><svg class="icon option__mark" aria-hidden="true"><use href="assets/icons.svg#i-almost"></use></svg><span class="visually-hidden">Almost</span></button>
+            <button type="button" class="option" data-state="wrong" disabled><span lang="en">Not quite</span><svg class="icon option__mark" aria-hidden="true"><use href="assets/icons.svg#i-wrong"></use></svg><span class="visually-hidden">Not quite</span></button>
+          </div>
+          <div class="sg__row">
+            <span class="state-label state-label--correct"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-check"></use></svg>Correct</span>
+            <span class="state-label state-label--almost"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-almost"></use></svg>Almost</span>
+            <span class="state-label state-label--wrong"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-wrong"></use></svg>Not quite</span>
+          </div>
+        </section>
+
+        <section aria-labelledby="sg-sheet">
+          <h2 id="sg-sheet">Feedback sheet</h2>
+          <div class="sheet is-open" data-state="correct"><div class="sheet__inner"><div class="sheet__head"><svg class="sheet__icon" aria-hidden="true"><use href="assets/icons.svg#i-check"></use></svg><p class="sheet__title">Correct</p></div><p class="sheet__answer" lang="is">Hvað heitir þú?</p><div class="sheet__actions"><button type="button" class="button button--correct">Continue</button></div></div></div>
+          <div class="sheet is-open" data-state="almost"><div class="sheet__inner"><div class="sheet__head"><svg class="sheet__icon" aria-hidden="true"><use href="assets/icons.svg#i-almost"></use></svg><p class="sheet__title">Almost</p></div><p class="sheet__answer" lang="is">Góðan daginn!</p><p class="sheet__why">Watch the special letters: ð is not d.</p><div class="sheet__actions"><button type="button" class="button button--almost">Continue</button></div></div></div>
+          <div class="sheet is-open" data-state="wrong"><div class="sheet__inner"><div class="sheet__head"><svg class="sheet__icon" aria-hidden="true"><use href="assets/icons.svg#i-wrong"></use></svg><p class="sheet__title">Not quite</p></div><p class="sheet__answer" lang="is">Við viljum fara til Íslands.</p><p class="sheet__why"><span lang="is">til</span> always takes the genitive.</p><div class="sheet__actions"><button type="button" class="button button--wrong">Continue</button></div></div></div>
+        </section>
+
+        <section aria-labelledby="sg-overlay">
+          <h2 id="sg-overlay">Toast, modal and tooltip</h2>
+          <div class="sg__row">
+            <button type="button" class="button" data-sg-toast>Show a toast</button>
+            <button type="button" class="button" data-sg-open-modal>Open a modal</button>
+            <span class="has-tooltip"><button type="button" class="button" aria-describedby="sg-tip">Tooltip</button><span class="tooltip" role="tooltip" id="sg-tip">Shown on hover and keyboard focus.</span></span>
+          </div>
+          <div class="toast" style="animation: none; max-width: 28rem">A toast message, polite and short.</div>
+          <dialog class="modal" data-sg-modal aria-labelledby="sg-modal-title">
+            <h2 class="modal__title" id="sg-modal-title">A modal dialog</h2>
+            <p>Native dialog: it traps focus and closes with Escape.</p>
+            <div class="modal__actions"><button type="button" class="button button-primary" data-close autofocus>Close</button></div>
+          </dialog>
+        </section>
+
+        <section aria-labelledby="sg-table">
+          <h2 id="sg-table">Table and heatmap</h2>
+          <table class="table"><thead><tr><th scope="col">Case</th><th scope="col">Singular</th><th scope="col">Plural</th></tr></thead>
+            <tbody><tr><th scope="row">NF</th><td lang="is">hestur</td><td lang="is">hestar</td></tr><tr><th scope="row">ÞF</th><td lang="is">hest</td><td lang="is">hesta</td></tr></tbody></table>
+          <div class="sg__row">
+            <span class="heat" data-level="strong" style="min-width: 6rem">92%<small>strong</small></span>
+            <span class="heat" data-level="ok" style="min-width: 6rem">74%<small>okay</small></span>
+            <span class="heat" data-level="weak" style="min-width: 6rem">41%<small>weak</small></span>
+            <span class="heat" data-level="none" style="min-width: 6rem">-<small>no data</small></span>
+          </div>
+        </section>
+
+        <section aria-labelledby="sg-nodes">
+          <h2 id="sg-nodes">Unit nodes</h2>
+          <div class="sg__row" style="gap: var(--space-6); padding-top: var(--space-6)">
+            <a class="node node--done" href="#sg-nodes" aria-label="Done"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-check"></use></svg></a>
+            <a class="node node--current" href="#sg-nodes" aria-label="Start: current lesson"><span class="node__start" aria-hidden="true">Start</span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-star"></use></svg></a>
+            <a class="node node--review" href="#sg-nodes" aria-label="Review"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-review"></use></svg></a>
+            <span class="node node--locked" role="img" aria-label="Locked"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-lock"></use></svg></span>
+          </div>
+        </section>
+
+        <section aria-labelledby="sg-reading">
+          <h2 id="sg-reading">Reading</h2>
+          <p class="learn-text" lang="is">Ég á <button type="button" class="word" aria-expanded="false">bókina</button>. Þetta er <button type="button" class="word" aria-expanded="true">hestur</button>.</p>
+          <p class="example"><span lang="is">Þetta er hestur.</span><small lang="en">This is a horse.</small></p>
+        </section>
+
+        <section aria-labelledby="sg-tala">
+          <h2 id="sg-tala">Mascot: Tala</h2>
+          <div class="sg__grid" data-sg-tala></div>
+        </section>
+
+        <section aria-labelledby="sg-icons">
+          <h2 id="sg-icons">Icons</h2>
+          <div class="sg__row sg-icons">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-learn"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-practice"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-stories"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-dictionary"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-profile"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-streak"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-xp"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-goal"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-sound-on"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-sound-off"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-check"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-almost"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-wrong"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-play"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-slow"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-lock"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-star"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-review"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-guide"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-settings"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-keyboard"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-info"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-trophy"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-heart"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-download"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-upload"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-table"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-mic"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-globe"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-external"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-calm"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-search"></use></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-sound-wave"></use></svg>
+          </div>
+        </section>
+      </main>
+      <footer class="app-footer" data-shell="footer"></footer>
+    </div>
+    <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
+  </div>
+</body>
+</html>

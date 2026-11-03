@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" data-scan-page="low" data-scan="low">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/credits.js"></script>
+</head>
+<body data-shell data-page="credits" data-title-key="title.credits">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <div class="shell">
+    <nav class="app-nav" aria-label="Main" data-i18n-aria-label="nav.main" data-shell="nav"></nav>
+    <div class="shell__col">
+      <header class="hud" data-shell="hud"></header>
+      <main id="main" class="app-main" tabindex="-1">
+        <div class="page-head">
+          <h1 data-i18n="title.credits">Credits and licenses</h1>
+          <p data-i18n="credits.intro">TÖLVA is built on open data made by others. Thank you.</p>
+        </div>
+        <div class="credits">
+          <section class="card card--quiet stack" aria-labelledby="c-bin">
+            <h2 id="c-bin">BÍN: Database of Icelandic Morphology</h2>
+            <p lang="is">Beygingarlýsing íslensks nútímamáls. Stofnun Árna Magnússonar í íslenskum fræðum. Höfundur og ritstjóri Kristín Bjarnadóttir.</p>
+            <p>Every inflected form in TÖLVA comes from the DMII Core (BÍN-kjarninn) of the Árni Magnússon Institute for Icelandic Studies, <a href="https://bin.arnastofnun.is">bin.arnastofnun.is</a>. License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Paradigms are shown exactly as published, without changes.</p>
+          </section>
+          <section class="card card--quiet stack" aria-labelledby="c-wikt">
+            <h2 id="c-wikt">Wiktionary</h2>
+            <p>Glosses, IPA, etymology and links to recordings come from <a href="https://en.wiktionary.org">Wiktionary</a> by its contributors, extracted by <a href="https://kaikki.org">kaikki.org</a> (wiktextract). License: CC BY-SA 4.0. Recordings are hosted on Wikimedia Commons, and each file has its own author and license.</p>
+          </section>
+          <section class="card card--quiet stack" aria-labelledby="c-tatoeba">
+            <h2 id="c-tatoeba">Tatoeba</h2>
+            <p>Example sentences and translations come from <a href="https://tatoeba.org">Tatoeba</a>. License: <a href="https://creativecommons.org/licenses/by/2.0/fr/">CC BY 2.0 FR</a>. Sentences shown in the app:</p>
+            <ul data-sentence-credits></ul>
+          </section>
+          <section class="card card--quiet stack" aria-labelledby="c-clarin">
+            <h2 id="c-clarin">CLARIN-IS frequency lists</h2>
+            <p>The order of the course vocabulary (from Phase 2) follows "Frequency lists for Icelandic 23.06", <a href="https://hdl.handle.net/20.500.12537/314">hdl.handle.net/20.500.12537/314</a>. License: CC BY 4.0.</p>
+          </section>
+          <section class="card card--quiet stack" aria-labelledby="c-project">
+            <h2 id="c-project">This project</h2>
+            <p>Code: MIT license. Generated data in <code>/data</code>: CC BY-SA 4.0 with the attributions above (see <code>data/LICENSE.md</code>). The mascot Tala, the icons and the design are original work for TÖLVA. Fonts: system fonts only, no font services.</p>
+            <p>The name: <span lang="is">tölva</span> (computer) was coined by Sigurður Nordal in 1965 from <span lang="is">tala</span> (number) and <span lang="is">völva</span> (seeress), according to Wiktionary.</p>
+          </section>
+        </div>
+      </main>
+      <footer class="app-footer" data-shell="footer"></footer>
+    </div>
+    <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
+  </div>
+</body>
+</html>

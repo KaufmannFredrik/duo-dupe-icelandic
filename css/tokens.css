@@ -1,0 +1,65 @@
+/* TÖLVA design tokens.
+   Block 1 is the Retro-Futurism reference palette, unchanged. Block 2 adds tokens on top.
+   scripts/check-contrast.mjs reads this file and fails if a text pair drops below WCAG AA. */
+
+:root {
+  --rf-blue: #0080FF;     /* glows and borders only */
+  --rf-pink: #FF006E;     /* fills and glows; text uses --rf-pink-text */
+  --rf-pink-text: #FF3D8B;
+  --rf-cyan: #00FFFF;
+  --rf-night: #1A1A2E;
+  --rf-chrome: #C0C0C0;   /* body copy */
+  --rf-gold: #FFD700;
+  --rf-magenta: #FF10F0;  /* section titles */
+}
+
+:root {
+  --rf-night-0: #10101C;   /* deepest background, behind panels */
+  --rf-night-2: #232345;   /* raised surface (cards, sheets) */
+  --rf-muted: #9A9AC0;     /* secondary text: 6.3:1 on night, 5.6:1 on night-2 */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+  --radius: 0;             /* square, pixel feel; 2px allowed for inputs */
+  --z-nav: 20; --z-sheet: 60; --z-modal: 80; --z-scan: 100;
+  /* semantic colors (never rely on color alone: always pair with an icon and a text label) */
+  --color-correct: var(--rf-cyan);
+  --color-almost: var(--rf-gold);
+  --color-wrong: var(--rf-pink-text);       /* text */
+  --color-wrong-fill: var(--rf-pink);       /* fill and glow */
+  --color-xp: var(--rf-gold);
+  --color-goal: var(--rf-magenta);
+  /* grammatical case colors, used consistently in tables, tags and hints */
+  --case-nom: var(--rf-cyan);               /* nf  nominative */
+  --case-acc: var(--rf-pink-text);          /* þf  accusative */
+  --case-dat: var(--rf-gold);               /* þgf dative */
+  --case-gen: var(--rf-magenta);            /* ef  genitive */
+
+  /* Additions beyond the brief */
+  --font-mono: "Courier New", ui-monospace, monospace;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-learn: 1.125rem;   /* Icelandic and Norwegian learning content: 18px phone, 20px desktop */
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --measure: 65ch;
+  --border: 2px;
+  --radius-input: 2px;
+  --touch: 48px;
+  --nav-rail: 72px;
+  --nav-wide: 240px;
+  --side-width: 300px;
+  --tabbar-height: 64px;
+  --hud-height: 56px;
+  --duration-fast: 150ms;
+  --duration-sheet: 220ms;
+  --glow-cyan: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(0, 128, 255, 0.25);
+  --glow-cyan-sm: 0 0 10px rgba(0, 255, 255, 0.45);
+  --glow-pink: 0 0 24px rgba(255, 0, 110, 0.45);
+  --glow-gold: 0 0 20px rgba(255, 215, 0, 0.35);
+  --glow-magenta: 0 0 20px rgba(255, 16, 240, 0.35);
+  --fill-selected: rgba(0, 255, 255, 0.15);
+}
+
+@media (min-width: 1200px) {
+  :root { --text-learn: 1.25rem; }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "TÖLVA",
+  "wordmark": "TÖLVA",
+  "pronunciation": "TÖL-va",
+  "meaning": {
+    "en": "Icelandic for computer, from tala (number) and völva (seeress): the oracle in the machine.",
+    "nb": "Islandsk for datamaskin, av tala (tall) og völva (volve, spåkone): orakelet i maskinen."
+  },
+  "meaningSource": "Wiktionary, entry tölva: coined by Sigurður Nordal in 1965 from tala and völva.",
+  "tagline": {
+    "en": "Learn Icelandic from the oracle in the machine.",
+    "nb": "Lær islandsk av orakelet i maskinen."
+  },
+  "mascot": {
+    "name": "TALA",
+    "displayName": "Tala",
+    "meaning": {
+      "en": "tala means both speech and number.",
+      "nb": "tala betyr både tale og tall."
+    }
+  },
+  "alternateNames": ["BYLGJA", "ÍSLINGÓ"],
+  "themeColor": "#1A1A2E",
+  "repository": "https://github.com/KaufmannFredrik/duo-dupe-icelandic"
+}

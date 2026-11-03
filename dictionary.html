@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" data-scan-page="low" data-scan="low">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/dictionary.js"></script>
+</head>
+<body data-shell data-page="dictionary" data-title-key="title.dictionary">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <div class="shell">
+    <nav class="app-nav" aria-label="Main" data-i18n-aria-label="nav.main" data-shell="nav"></nav>
+    <div class="shell__col">
+      <header class="hud" data-shell="hud"></header>
+      <main id="main" class="app-main" tabindex="-1">
+        <div class="page-head">
+          <h1 data-i18n="title.dictionary">Dictionary</h1>
+          <p data-i18n-html="dict.intro">Search a word or any of its forms. The demo knows <span lang="is">hestur</span>, <span lang="is">bók</span> and <span lang="is">Ísland</span>.</p>
+        </div>
+        <div class="dict">
+          <div class="stack">
+            <form class="search" role="search" data-search>
+              <label class="visually-hidden" for="q" data-i18n="dict.searchLabel">Search the dictionary</label>
+              <input id="q" class="input" type="search" name="q" lang="is" placeholder="Search a word or a form" data-i18n-placeholder="dict.placeholder" autocomplete="off" autocapitalize="off" spellcheck="false">
+              <button class="button button--sm" type="submit" aria-label="Search" data-i18n-aria-label="dict.search"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-search"></use></svg></button>
+            </form>
+            <ul class="results" role="list" aria-label="Results" data-i18n-aria-label="dict.results" data-results></ul>
+          </div>
+          <article class="card entry" data-entry></article>
+        </div>
+      </main>
+      <footer class="app-footer" data-shell="footer"></footer>
+    </div>
+    <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
+  </div>
+</body>
+</html>

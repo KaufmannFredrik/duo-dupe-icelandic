@@ -13,17 +13,14 @@
 
 import { createReadStream, createWriteStream, existsSync } from 'node:fs';
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
-import { spawn, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createInterface } from 'node:readline';
 import { Readable, Transform } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { createInflateRaw } from 'node:zlib';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { CACHE, ROOT, bunzipBuffer, bunzipLines } from './lib/bulk.mjs';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const CACHE = path.resolve(process.env.TOLVA_CACHE ?? path.join(ROOT, '.cache'));
 const REPORT = path.join(ROOT, 'docs', 'api-report.md');
 const COVERAGE_FILE = path.join(CACHE, 'coverage.json');
 
@@ -509,33 +506,6 @@ async function download(url, rel) {
   manifest[rel] = { url, file: rel, bytes, sha256: hash.digest('hex'), retrieved: new Date().toISOString(), lastModified: res.headers.get('last-modified') };
   await writeFile(path.join(CACHE, 'manifest.json'), JSON.stringify(manifest, null, 2));
   return manifest[rel];
-}
-
-let bzip2Path;
-function bzip2() {
-  if (bzip2Path) return bzip2Path;
-  const candidates = ['bzip2'];
-  if (process.platform === 'win32') {
-    for (const dir of ['usr\\bin', 'ucrt64\\bin', 'mingw64\\bin']) candidates.push(`C:\\Program Files\\Git\\${dir}\\bzip2.exe`);
-  }
-  bzip2Path = candidates.find((c) => !spawnSync(c, ['--help'], { stdio: 'ignore' }).error);
-  if (!bzip2Path) throw new Error('bzip2 not found. It ships with macOS, Linux and Git for Windows; run this from a shell where `bzip2` works.');
-  return bzip2Path;
-}
-
-function bunzipLines(file) {
-  const child = spawn(bzip2(), ['-dc', file], { stdio: ['ignore', 'pipe', 'inherit'] });
-  return createInterface({ input: child.stdout, crlfDelay: Infinity });
-}
-
-function bunzipBuffer(file) {
-  return new Promise((resolve, reject) => {
-    const child = spawn(bzip2(), ['-dc', file], { stdio: ['ignore', 'pipe', 'inherit'] });
-    const chunks = [];
-    child.stdout.on('data', (c) => chunks.push(c));
-    child.on('error', reject);
-    child.on('close', (code) => (code === 0 ? resolve(Buffer.concat(chunks)) : reject(new Error(`bzip2 exited with ${code} for ${file}`))));
-  });
 }
 
 function* tarEntries(buf) {

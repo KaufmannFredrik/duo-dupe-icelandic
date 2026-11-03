@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-scan-page="low" data-scan="low">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/settings.js"></script>
+</head>
+<body data-shell data-page="settings" data-title-key="title.settings">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <div class="shell">
+    <nav class="app-nav" aria-label="Main" data-i18n-aria-label="nav.main" data-shell="nav"></nav>
+    <div class="shell__col">
+      <header class="hud" data-shell="hud"></header>
+      <main id="main" class="app-main" tabindex="-1">
+        <div class="page-head">
+          <h1 data-i18n="title.settings">Settings</h1>
+          <p data-i18n="settings.intro">Changes apply right away and are saved on this device.</p>
+        </div>
+        <form class="settings" data-settings>
+          <fieldset>
+            <legend data-i18n="settings.display">Display</legend>
+            <fieldset class="setting">
+              <legend class="setting__label" data-i18n="settings.calm">Calm mode</legend>
+              <p class="setting__help" data-i18n="settings.calmHelp">Removes scanlines, glitch, pulsing and large glows. Auto follows your device's reduced motion and contrast settings.</p>
+              <div class="segmented">
+                <label><input type="radio" name="calm" value="auto"><span data-i18n="settings.auto">Auto</span></label>
+                <label><input type="radio" name="calm" value="on"><span data-i18n="settings.on">On</span></label>
+                <label><input type="radio" name="calm" value="off"><span data-i18n="settings.off">Off</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="setting">
+              <legend class="setting__label" data-i18n="settings.scan">Scanlines</legend>
+              <p class="setting__help" data-i18n="settings.scanHelp">The CRT effect. Reading screens always use the low setting unless you turn it off.</p>
+              <div class="segmented">
+                <label><input type="radio" name="scan" value="default"><span data-i18n="settings.scanDefault">Page default</span></label>
+                <label><input type="radio" name="scan" value="low"><span data-i18n="settings.scanLow">Low</span></label>
+                <label><input type="radio" name="scan" value="off"><span data-i18n="settings.off">Off</span></label>
+              </div>
+            </fieldset>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="settings.sound">Sound and voice</legend>
+            <div class="setting">
+              <label class="switch"><span class="setting__label" data-i18n="settings.sfx">Sound effects</span><input type="checkbox" name="sound" aria-describedby="sfx-help"><span class="switch__track" aria-hidden="true"></span></label>
+              <p class="setting__help" id="sfx-help" data-i18n="settings.sfxHelp">Short 8-bit chimes for answers. Off by default.</p>
+            </div>
+            <div class="setting">
+              <label class="setting__label" for="voice" data-i18n="settings.voice">Icelandic voice</label>
+              <div class="cluster voice-row"><select class="select" id="voice" name="voice" aria-describedby="voice-help"></select>
+                <button type="button" class="button button--sm" data-test-voice><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-play"></use></svg><span data-i18n="settings.test">Test</span></button></div>
+              <p class="setting__help" id="voice-help" data-i18n="settings.voiceHelp">Voices come from your browser and device. Recorded and generated audio arrives in Phase 4.</p>
+            </div>
+            <div class="setting">
+              <label class="setting__label" for="rate" data-i18n="settings.rate">Speech speed</label>
+              <div class="cluster"><input id="rate" name="rate" type="range" min="0.6" max="1.2" step="0.1"><output for="rate" data-rate-out>1.0x</output></div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="settings.learning">Learning</legend>
+            <fieldset class="setting">
+              <legend class="setting__label" data-i18n="settings.strict">Answer checking</legend>
+              <p class="setting__help" data-i18n="settings.strictHelp">Easy accepts missing accents as almost right. Strict counts them as wrong, because accents change words.</p>
+              <div class="segmented">
+                <label><input type="radio" name="strict" value="easy"><span data-i18n="settings.easy">Easy</span></label>
+                <label><input type="radio" name="strict" value="strict"><span data-i18n="settings.strictOn">Strict</span></label>
+              </div>
+            </fieldset>
+            <div class="setting">
+              <label class="switch"><span class="setting__label" data-i18n="settings.hearts">Hearts</span><input type="checkbox" name="hearts" aria-describedby="hearts-help"><span class="switch__track" aria-hidden="true"></span></label>
+              <p class="setting__help" id="hearts-help" data-i18n="settings.heartsHelp">Lose a heart for each mistake. Off by default.</p>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="settings.language">Language</legend>
+            <div class="setting">
+              <label class="setting__label" for="uiLang" data-i18n="settings.uiLang">App language</label>
+              <select class="select" id="uiLang" name="uiLang">
+                <option value="auto" data-i18n="settings.auto">Auto</option>
+                <option value="en" lang="en">English</option>
+                <option value="nb" lang="nb">Norsk bokmål</option>
+              </select>
+            </div>
+            <div class="setting">
+              <label class="setting__label" for="glossLang" data-i18n="settings.glossLang">Translations and glosses</label>
+              <select class="select" id="glossLang" name="glossLang" aria-describedby="gloss-help">
+                <option value="auto" data-i18n="settings.sameAsApp">Same as the app</option>
+                <option value="en" lang="en">English</option>
+                <option value="nb" lang="nb">Norsk bokmål</option>
+              </select>
+              <p class="setting__help" id="gloss-help" data-i18n="settings.glossHelp">Norwegian glosses appear where the data has them; otherwise English is shown.</p>
+            </div>
+          </fieldset>
+        </form>
+      </main>
+      <footer class="app-footer" data-shell="footer"></footer>
+    </div>
+    <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
+  </div>
+</body>
+</html>

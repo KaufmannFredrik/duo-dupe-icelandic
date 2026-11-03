@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" data-scan-page="default" data-scan="default">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <meta name="description" content="A free, grammar-first course in Icelandic: cases, sounds and a bridge from Norwegian.">
+  <title>TÖLVA: Learn Icelandic from the oracle in the machine.</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/landing.js"></script>
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <header class="landing-header">
+    <a class="logo" href="index.html" data-brand="wordmark">TÖLVA</a>
+    <nav aria-label="Site" data-i18n-aria-label="nav.site">
+      <a class="button button--sm" href="learn.html"><span data-i18n="landing.open">Open the app</span></a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="hero-title" data-brand="wordmark">TÖLVA</h1>
+      <p class="hero__say" data-i18n-html="landing.say">"TÖL-va": Icelandic for computer, from <span lang="is">tala</span> (number) and <span lang="is">völva</span> (seeress).</p>
+      <p class="hero__tagline" data-brand="tagline">Learn Icelandic from the oracle in the machine.</p>
+      <div class="hero__actions">
+        <a class="button button-primary" href="learn.html"><span data-i18n="landing.start">Start learning</span></a>
+        <a class="button" href="lesson.html?mode=placement"><span data-i18n="landing.placement">Take the placement test</span></a>
+      </div>
+      <div class="horizon" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="horizon__floor"><div class="grid-floor"></div></div>
+        <div class="horizon__line"></div>
+        <div data-tala></div>
+      </div>
+    </section>
+
+    <section class="pitch" aria-labelledby="pitch-title">
+      <h2 id="pitch-title" data-i18n="landing.pitchTitle">Built for what makes Icelandic hard</h2>
+      <div class="pitch__grid">
+        <article class="card">
+          <h3><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-table"></use></svg><span data-i18n="landing.casesTitle">Four cases, made visible</span></h3>
+          <p data-i18n="landing.casesText">Every form comes from the Database of Icelandic Morphology. Endings are color-coded by case and always labeled, and every hint says why a case is used.</p>
+          <p class="example"><span lang="is">Við viljum fara til <strong>Íslands</strong>.</span><small data-i18n-html="landing.casesExample"><span lang="is">til</span> takes the genitive: EF</small></p>
+        </article>
+        <article class="card card--magenta">
+          <h3><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-sound-wave"></use></svg><span data-i18n="landing.soundsTitle">Sounds you can hear</span></h3>
+          <p data-i18n-html="landing.soundsText"><span lang="is">hv</span> sounds like kv, <span lang="is">ll</span> like tl, and vowels can be long or short. Every item gets audio with a slow option, plus IPA where it exists.</p>
+          <p class="example"><span lang="is">Ísland</span> <span>[ˈistlant]</span><small data-i18n-html="landing.soundsExample"><span lang="is">sl</span> is said with a t in between: stl.</small></p>
+        </article>
+        <article class="card card--gold">
+          <h3><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-globe"></use></svg><span data-i18n="landing.bridgeTitle">A bridge from Norwegian</span></h3>
+          <p data-i18n="landing.bridgeText">Use the app in English or Norwegian Bokmål, read glosses in either, and spot the cognates and false friends you already know.</p>
+          <p class="example"><span lang="is">hestur</span> · <span lang="nb">hest</span><small data-i18n="landing.bridgeExample">horse, in Icelandic and Norwegian</small></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <a href="credits.html" data-i18n="footer.credits">Credits and licenses</a>
+    <a href="styleguide.html" data-i18n="footer.styleguide">Style guide</a>
+    <a href="https://github.com/KaufmannFredrik/duo-dupe-icelandic" rel="noopener" data-i18n="footer.source">Source code</a>
+    <span data-i18n="footer.license">Code MIT · Data CC BY-SA 4.0</span>
+  </footer>
+</body>
+</html>

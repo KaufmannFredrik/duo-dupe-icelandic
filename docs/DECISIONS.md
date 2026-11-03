@@ -2,6 +2,48 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Phase 1: design system and responsive shell (2026-11-03)
+
+### What was built
+
+- Design system: `css/tokens.css` and `css/base.css` start with the Retro-Futurism reference CSS exactly as given, then add the section 5.3 tokens and the extensions. `css/components.css` holds every component and state from 5.7; `css/layout.css` holds the shell, the lesson focus mode and the screen layouts.
+- Screens: landing, Learn path, demo lesson (six exercise types, three feedback states, quit dialog, completion screen), declension table with practice mode, Stories sample reader with tap-a-word, Dictionary, Practice hub with the weak-spots heatmap, Profile, Settings, Credits, and `styleguide.html`.
+- Mascot Tala (`js/tala.js`): a CRT-monitor head with a pixel face, an antenna staff with a glowing tip and a magenta scarf, with five expressions (neutral, happy, wrong, sleepy, thinking). Faces are 16 x 11 ASCII grids in the code, so they are easy to edit. Static copies are in `assets/tala/`.
+- One icon sprite (`assets/icons.svg`, 35 line icons, `currentColor`).
+- UI in English and Norwegian Bokmål (`js/i18n/en.json`, `nb.json`, 246 keys). `scripts/check-i18n.mjs` fails if a key is missing in either language.
+- Settings that already work: Calm mode (auto, on, off), scanlines (page default, low, off), sound effects (8-bit chimes from the Web Audio API, off by default), browser Icelandic voice and speed, strict or easy checking, app language, gloss language.
+
+### Decisions
+
+- **Real data in the demo, no invented Icelandic.** `scripts/build-demo-data.mjs` builds `data/demo/lexicon.json` from the DMII Core API (paradigms of *hestur*, *bók* and *Ísland*, copied verbatim), the cached Wiktionary extract (glosses, IPA, etymology, one human recording) and Tatoeba (14 sentences with author credits). Every sentence in the lesson, stories and dictionary comes from Tatoeba, and every form from BÍN. Distractors in "fill in the form" are the other forms of the same lemma. Hand-written claims (two case rules, three unit-title words, pronunciation notes) are listed in `content/NEEDS-NATIVE-REVIEW.md` and flagged `reviewed: false`.
+- **One shell module.** Navigation, HUD, sidebar and footer are rendered by `js/shell.js` into empty landmarks in each page, so there is one source for them. The pages need JavaScript anyway.
+- **Lesson on phones has no frame.** The "monitor frame" starts at 900 px; on phones the lesson fills the screen, as in the section 5.5 sketch.
+- **Narrow declension tables** (under 640 px of table width) show the case abbreviation tag (NF, ÞF, ÞGF, EF) in its color, with a legend underneath spelling out the names. The full names stay in the accessibility tree. The same applies to the dictionary's mini table under 400 px.
+- **Answer checking** (`js/normalize.js`, unit-tested): NFC, case, punctuation and space normalization; missing acute accents are ALMOST in easy mode and wrong in strict mode; ASCII stand-ins for þ, ð, æ and ö are ALMOST in early units. The ALMOST hint names the exact letters the learner missed (for example "ð ≠ d").
+- **IPA** uses the reference font stack too; the browser takes the few IPA symbols Courier New lacks (such as ʏ) from a fallback font.
+- **Placeholders, labeled as such:** the placement test opens the demo lesson; Guidebook buttons show a "Phase 3" message; streak, XP and heatmap numbers are demo data and carry a "Demo data" tag; export and import are disabled until Phase 5; audio uses the browser's Icelandic voice when there is one and otherwise explains that audio arrives in Phase 4.
+- **Screenshots are not committed.** A full set is about 13 MB per run; `npm run qa` regenerates them into `screenshots/` (gitignored).
+
+### QA results
+
+- `scripts/check-contrast.mjs`: all 26 token pairs pass WCAG AA (ratios match the brief's table), and no CSS uses blue or pink as a text color.
+- `scripts/visual-qa.mjs`: 24 screens and states at 390x844, 768x1024 and 1440x900; axe (WCAG 2.0, 2.1 and 2.2 A and AA): 0 violations; no horizontal scroll at 320 px on 14 pages; no JavaScript errors.
+- `node --test`: 8 of 8 pass.
+
+### Fixed during QA
+
+Overflow at 320 px from one-column CSS grids sizing to unbreakable content (now `minmax(0, 1fr)`), the lesson's action buttons, the declension table, and the voice selector; the horizon geometry (a 10rem floor at `rotateX(60deg)` projects to about 63 px, so the line, the sun and Tala's feet now sit there); a word panel dimmed below AA contrast; a node whose visible "Start" label was missing from its accessible name.
+
+### Not verified
+
+- Font rendering of þ ð æ ö and the accented vowels was checked in Chromium on Windows only. Courier New ships with macOS and iOS; Android has no Courier New and falls back to its monospace font, which covers these letters but should be checked on a device.
+- No browser Icelandic voice was available in the test browser, so speech playback is untested.
+- The scanline overlay is not part of axe's contrast calculation; it darkens text slightly. Reading screens use the low setting, and Calm mode removes it.
+
+### Tooling note
+
+The winget install of Node.js was still waiting for the Windows administrator prompt at the end of Phase 1, so Phase 1 also ran on the portable Node 26.13.0. Playwright and axe are dev dependencies in `package.json`.
+
 ## Phase 0: repository and probe (2026-11-03)
 
 ### Repository state
@@ -12,7 +54,7 @@ What was chosen, why, and what failed. Newest phase first. Evidence for every da
 
 ### Tooling
 
-- **Node.js is not installed** on the development machine. Phase 0 ran on the official portable Node 26.13.0 LTS zip (SHA-256 checked against nodejs.org) from a temporary folder, without changing the system. The owner then had Node.js LTS installed system-wide with winget for Phase 1 (Playwright and axe).
+- **Node.js is not installed** on the development machine. Phase 0 ran on the official portable Node 26.13.0 LTS zip (SHA-256 checked against nodejs.org) from a temporary folder, without changing the system. A system-wide Node.js LTS install with winget was started afterwards (see the Phase 1 tooling note).
 - The `gh` CLI is not installed. Python 3.11.9 is available, which is enough for GreynirCorrect (needs 3.11+).
 - The probe uses only Node built-ins (`fetch`, `zlib`, `readline`). Tatoeba exports are bzip2, so the script calls the `bzip2` binary (ships with macOS, Linux and Git for Windows) instead of adding an npm dependency. A minimal zip reader handles the CLARIN frequency archive.
 - The repo lives inside OneDrive. `.cache/` (about 150 MB of downloads, gitignored) would still be synced by OneDrive; set `TOLVA_CACHE` to a folder outside OneDrive to avoid that.

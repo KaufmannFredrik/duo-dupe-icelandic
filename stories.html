@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-scan-page="low" data-scan="low">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/stories.js"></script>
+</head>
+<body data-shell data-page="stories" data-title-key="title.stories">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <div class="shell">
+    <nav class="app-nav" aria-label="Main" data-i18n-aria-label="nav.main" data-shell="nav"></nav>
+    <div class="shell__col">
+      <header class="hud" data-shell="hud"></header>
+      <main id="main" class="app-main" tabindex="-1">
+        <div class="page-head">
+          <h1 data-i18n="title.stories">Stories</h1>
+          <p data-i18n="stories.intro">Short readings where every word is explained. Tap a word to see what it is doing in the sentence.</p>
+        </div>
+        <section class="card card--quiet stack" aria-labelledby="sample-title">
+          <div class="cluster"><h2 id="sample-title" data-i18n="stories.sample">Sample reading</h2><span class="tag tag--demo" data-i18n="demo.tag">Demo data</span></div>
+          <label class="switch reader__switch"><span data-i18n="stories.translations">Show translations</span><input type="checkbox" data-show-translations><span class="switch__track" aria-hidden="true"></span></label>
+          <div class="reader">
+            <div class="reader__text" data-reader-text></div>
+            <div class="sheet word-panel" id="word-panel" role="region" aria-label="Word details" data-i18n-aria-label="stories.panel" aria-live="polite" data-word-panel></div>
+          </div>
+          <p class="credit" data-reader-credits></p>
+        </section>
+        <section class="stack" aria-labelledby="coming-title">
+          <h2 id="coming-title" data-i18n="stories.coming">Coming in Phase 4</h2>
+          <div class="grid-cards">
+            <div class="card card--quiet stack"><span class="tag tag--pos">A1</span><h3 data-i18n="stories.s1">Dialogue: meeting someone</h3><p class="muted cluster"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons.svg#i-lock"></use></svg><span data-i18n="stories.locked">Locked</span></p></div>
+            <div class="card card--quiet stack"><span class="tag tag--pos">A1</span><h3 data-i18n="stories.s2">Dialogue: at the café</h3><p class="muted cluster"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons.svg#i-lock"></use></svg><span data-i18n="stories.locked">Locked</span></p></div>
+            <div class="card card--quiet stack"><span class="tag tag--pos">A2</span><h3 data-i18n="stories.s3">Story: a day in Reykjavík</h3><p class="muted cluster"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons.svg#i-lock"></use></svg><span data-i18n="stories.locked">Locked</span></p></div>
+          </div>
+        </section>
+      </main>
+      <footer class="app-footer" data-shell="footer"></footer>
+    </div>
+    <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
+  </div>
+</body>
+</html>

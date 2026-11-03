@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-scan-page="low" data-scan="low">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/lesson.js"></script>
+</head>
+<body class="lesson-page" data-page="lesson" data-title-key="title.lesson">
+  <a class="skip-link" href="#main" data-i18n="a11y.skipExercise">Skip to the exercise</a>
+  <div class="lesson-wrap">
+    <div class="lesson card monitor">
+      <header class="lesson__top">
+        <button type="button" class="icon-button" data-action="quit" aria-label="Quit lesson" data-i18n-aria-label="lesson.quit">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg>
+        </button>
+        <div class="progress" role="progressbar" aria-label="Lesson progress" data-i18n-aria-label="lesson.progressLabel" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" data-progress></div>
+        <button type="button" class="icon-button" data-sound-toggle aria-pressed="false" aria-label="Turn sound effects on">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-sound-off"></use></svg>
+        </button>
+      </header>
+      <main id="main" class="lesson__body" tabindex="-1">
+        <h1 class="visually-hidden"><span data-i18n="title.lesson">Lesson</span>: <span data-lesson-title></span></h1>
+        <div class="lesson__exercise" data-exercise></div>
+      </main>
+      <footer class="lesson__actions">
+        <button type="button" class="button" data-action="skip"><span data-i18n="lesson.skip">Skip</span></button>
+        <button type="button" class="button button-primary" data-action="check" disabled>
+          <span data-i18n="lesson.check">Check</span>
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"></use></svg>
+        </button>
+      </footer>
+      <section class="sheet" data-sheet aria-labelledby="sheet-title"></section>
+    </div>
+    <p class="lesson__hints">
+      <span><kbd>Enter</kbd> <span data-i18n="hints.check">check or continue</span></span>
+      <span><kbd>1</kbd> to <kbd>4</kbd> <span data-i18n="hints.pick">pick</span></span>
+      <span><kbd>P</kbd> <span data-i18n="hints.play">play</span></span>
+      <span><kbd>S</kbd> <span data-i18n="hints.slow">slow</span></span>
+      <span><kbd>Esc</kbd> <span data-i18n="hints.quit">quit</span></span>
+    </p>
+  </div>
+
+  <dialog class="modal" data-quit-dialog aria-labelledby="quit-title">
+    <h2 class="modal__title" id="quit-title" data-i18n="lesson.quitTitle">Quit this lesson?</h2>
+    <p data-i18n="lesson.quitText">Your answers in this lesson will not be saved.</p>
+    <div class="modal__actions">
+      <button type="button" class="button button-primary" data-keep autofocus><span data-i18n="lesson.keep">Keep learning</span></button>
+      <a class="button" href="learn.html"><span data-i18n="lesson.quitConfirm">Quit</span></a>
+    </div>
+  </dialog>
+
+  <div class="visually-hidden" aria-live="polite" data-live></div>
+  <div class="toast-region" role="status" aria-live="polite" data-toasts></div>
+</body>
+</html>
