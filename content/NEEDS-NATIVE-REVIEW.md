@@ -4,11 +4,19 @@ Every piece of Icelandic content or language claim that was written for TÖLVA (
 
 Sentences shown in exercises come from Tatoeba and are not listed. Inflected forms come from the DMII Core and are not listed.
 
+## Core vocabulary (`content/vocab/core.json`)
+
+The choice of 325 words and their grouping into themes. Every word is confirmed in the DMII Core (or, for seven indeclinable numerals, the full BÍN), and its Wiktionary gloss matches the intended meaning; the selection itself is not reviewed.
+
 ## Rules (`content/case-rules.json`)
 
 | Id | Claim | Status |
 |---|---|---|
-| `til` | *til* always takes the genitive. | not reviewed |
+| `til`, `án` | *til* (to) and *án* (without) always take the genitive. | not reviewed |
+| `frá`, `hjá`, `úr`, `af` | *frá*, *hjá*, *úr* and *af* always take the dative. | not reviewed |
+| `um` | *um* always takes the accusative. | not reviewed |
+| `í-staður`, `á-staður` | *í* and *á* take the dative for a location. | not reviewed |
+| `í-hreyfing`, `á-hreyfing` | *í* and *á* take the accusative for movement. | not reviewed |
 | `eiga` | *eiga* (to own, to have) takes its object in the accusative. | not reviewed |
 
 ## Unit titles (`content/demo/path.json`)

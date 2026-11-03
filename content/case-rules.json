@@ -1,20 +1,18 @@
 {
   "reviewed": false,
-  "note": "Rules behind the 'why this case?' hints. Each rule needs native review before release.",
+  "note": "Rules behind the 'why this case?' hints. A rule applies when its trigger word comes right before the noun phrase (prepositions) or governs the object (verbs). Each rule needs native review before release.",
   "rules": {
-    "til": {
-      "trigger": "til",
-      "kind": "preposition",
-      "case": "EF",
-      "en": "til (to) always takes the genitive.",
-      "nb": "til (til) styrer alltid genitiv."
-    },
-    "eiga": {
-      "trigger": "eiga",
-      "kind": "verb",
-      "case": "ÞF",
-      "en": "eiga (to own, to have) takes its object in the accusative.",
-      "nb": "eiga (å eie, å ha) tar objektet i akkusativ."
-    }
+    "til": { "trigger": "til", "kind": "preposition", "case": "EF", "en": "til (to) always takes the genitive.", "nb": "til (til) styrer alltid genitiv." },
+    "án": { "trigger": "án", "kind": "preposition", "case": "EF", "en": "án (without) always takes the genitive.", "nb": "án (uten) styrer alltid genitiv." },
+    "frá": { "trigger": "frá", "kind": "preposition", "case": "ÞGF", "en": "frá (from) always takes the dative.", "nb": "frá (fra) styrer alltid dativ." },
+    "hjá": { "trigger": "hjá", "kind": "preposition", "case": "ÞGF", "en": "hjá (at, with someone) always takes the dative.", "nb": "hjá (hos) styrer alltid dativ." },
+    "úr": { "trigger": "úr", "kind": "preposition", "case": "ÞGF", "en": "úr (out of) always takes the dative.", "nb": "úr (ut av) styrer alltid dativ." },
+    "af": { "trigger": "af", "kind": "preposition", "case": "ÞGF", "en": "af (of, from) always takes the dative.", "nb": "af (av) styrer alltid dativ." },
+    "um": { "trigger": "um", "kind": "preposition", "case": "ÞF", "en": "um (about, around) always takes the accusative.", "nb": "um (om) styrer alltid akkusativ." },
+    "í-staður": { "trigger": "í", "kind": "preposition", "case": "ÞGF", "en": "í (in) takes the dative for a location: where something is.", "nb": "í (i) styrer dativ ved sted: hvor noe er." },
+    "í-hreyfing": { "trigger": "í", "kind": "preposition", "case": "ÞF", "en": "í (into) takes the accusative for movement: where something goes.", "nb": "í (inn i) styrer akkusativ ved bevegelse: hvor noe går." },
+    "á-staður": { "trigger": "á", "kind": "preposition", "case": "ÞGF", "en": "á (on, at) takes the dative for a location.", "nb": "á (på) styrer dativ ved sted." },
+    "á-hreyfing": { "trigger": "á", "kind": "preposition", "case": "ÞF", "en": "á (onto, to) takes the accusative for movement.", "nb": "á (på, til) styrer akkusativ ved bevegelse." },
+    "eiga": { "trigger": "eiga", "kind": "verb", "case": "ÞF", "en": "eiga (to own, to have) takes its object in the accusative.", "nb": "eiga (å eie, å ha) tar objektet i akkusativ." }
   }
 }

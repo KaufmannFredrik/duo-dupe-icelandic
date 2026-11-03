@@ -2,6 +2,32 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Phase 2: data pipeline (2026-11-03)
+
+### What was built
+
+- `content/vocab/core.json`: 325 words in nine themes (Hello, At the café, Family, Getting around, Time, Shopping, Weather and nature, Study and work, Grammar words). Each entry names the lemma, its DMII Core word class and the intended English meaning, plus an optional hint where the DMII Core has two words with the same lemma (a gender, or a form the paradigm must contain).
+- `scripts/build-data.mjs` writes `data/lexicon.json` (index: glosses in English and Norwegian, IPA, etymology, frequency rank, sentence ids, recording count), `data/forms/<theme>.json` (DMII Core paradigms, unchanged), `data/sentences.json` (Tatoeba sentences with authors and translations), `data/audio.json` (Commons recordings with speaker and license), `data/SOURCES.json` and `docs/data-report.md`. Total 1.05 MB, 194 KB gzipped.
+- `scripts/validate-content.mjs` checks every Icelandic token in the content against the DMII Core (generated paradigms first, then a cached API lookup), accepts clitic forms such as *geturðu*, and allows proper nouns only from `content/allowlist.json`. Hand-written sentences go through GreynirCorrect. A deliberately wrong word makes it fail.
+- GreynirCorrect runs locally in `.venv` (`reynir-correct` plus the Icegrams model, about 1.7 GB in the user profile) through `scripts/lint-icelandic.py`, with results cached by sentence text.
+
+### Coverage (from docs/data-report.md)
+
+All 325 words confirmed (318 in the DMII Core, 7 indeclinable numerals in the full BÍN); Wiktionary gloss matches the intended meaning for all with a gloss; Norwegian Bokmål gloss 89%; IPA 97%; human recording 47% (154 words); one or more example sentences 97%, three or more 91%.
+
+### Decisions
+
+- **Theme lists are written by hand and checked by data.** Frequency alone (the Gigaword Corpus is news-heavy: *milljarður*, *ráðherra*) does not make a beginner course. The pipeline checks each word in the DMII Core and against its Wiktionary gloss, and orders words inside a theme by corpus frequency.
+- **Tatoeba sentences are linted.** GreynirCorrect flagged 852 of 10,602 candidate sentences (for example *föðurs* for *föður*, missing accents, *bakvið* for *bak við*, *á morgnanna* for *á morgnana*); flagged sentences are never used. Parse failures (E001), exclamation marks (E007) and unknown foreign words (U001) do not exclude a sentence. Some correct sentences are excluded too; there are enough left.
+- **Norwegian glosses** come from English Wiktionary translation tables: when an English entry's translation sense lists the Icelandic lemma, the Bokmål words of the same sense are used.
+- **Indeclinable numerals** (*fimm* to *tuttugu*) are not numerals in the DMII Core (*fimm*, *sex*, *sjö* exist only as nouns; *níu*, *tíu*, *tuttugu* not at all). They are confirmed in the full BÍN through the Ylhýra API and stored as single-form words, with no invented paradigm.
+- **The DMII Core API answers `{"0": ""}` when nothing matches.** Both the pipeline and the validator treat that as "not found"; an earlier version counted it as found, which a negative test caught.
+- **Recordings are linked, not copied:** 156 Commons and Lingua Libre files, each with speaker and license (mostly CC BY 4.0 and CC BY-SA 4.0).
+
+### Gaps
+
+Ten words have no usable Tatoeba sentence (for example *kaffihús*, *króna*, *foss*); their exercises use word-level types. *seint* has no Wiktionary entry. Corpus sentences from Korp could fill gaps later, after a per-subcorpus license check.
+
 ## Phase 1: design system and responsive shell (2026-11-03)
 
 ### What was built
@@ -107,3 +133,6 @@ The winget install of Node.js was still waiting for the Windows administrator pr
    - Commercial neural voices (Azure is-IS Guðrún and Gunnar) probably sound best but need an account and key held by the owner. Only if the owner opts in.
 3. **Node.js:** installed with `winget install OpenJS.NodeJS.LTS`.
 4. **Pushing:** allowed. Push `main` to `origin` after each phase commit.
+5. **AI conversation practice (Phase 7): skipped.** No LLM features, so no API keys anywhere.
+6. **GitHub Pages: not yet.** No workflow file; publishing waits for the owner.
+7. **Working mode:** keep building phase after phase without stopping for review, and only ask when something truly needs the owner.

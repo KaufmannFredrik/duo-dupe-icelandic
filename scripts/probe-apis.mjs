@@ -11,15 +11,11 @@
 // TOLVA_CACHE=/some/dir moves the download cache, for example out of a synced folder.
 // Reading Tatoeba exports needs a `bzip2` binary (macOS and Linux ship one; Git for Windows too).
 
-import { createReadStream, createWriteStream, existsSync } from 'node:fs';
-import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
-import { createHash } from 'node:crypto';
+import { createReadStream, existsSync } from 'node:fs';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createInterface } from 'node:readline';
-import { Readable, Transform } from 'node:stream';
-import { pipeline } from 'node:stream/promises';
-import { createInflateRaw } from 'node:zlib';
 import path from 'node:path';
-import { CACHE, ROOT, bunzipBuffer, bunzipLines } from './lib/bulk.mjs';
+import { CACHE, ROOT, bunzipBuffer, bunzipLines, download, openZip } from './lib/bulk.mjs';
 
 const REPORT = path.join(ROOT, 'docs', 'api-report.md');
 const COVERAGE_FILE = path.join(CACHE, 'coverage.json');
@@ -476,38 +472,6 @@ const BULK = [
   { key: 'freq', rel: 'clarin/Frequency_lists.zip', url: FREQ_ZIP },
 ];
 
-async function loadManifest() {
-  try {
-    return JSON.parse(await readFile(path.join(CACHE, 'manifest.json'), 'utf8'));
-  } catch {
-    return {};
-  }
-}
-
-async function download(url, rel) {
-  const dest = path.join(CACHE, rel);
-  const manifest = await loadManifest();
-  if (!REFRESH && existsSync(dest) && manifest[rel]?.sha256) return manifest[rel];
-  await mkdir(path.dirname(dest), { recursive: true });
-  log(`downloading ${url}`);
-  const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30 * 60_000) });
-  if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
-  const hash = createHash('sha256');
-  let bytes = 0;
-  const tap = new Transform({
-    transform(chunk, _enc, cb) {
-      hash.update(chunk);
-      bytes += chunk.length;
-      cb(null, chunk);
-    },
-  });
-  await pipeline(Readable.fromWeb(res.body), tap, createWriteStream(`${dest}.part`));
-  await rename(`${dest}.part`, dest);
-  manifest[rel] = { url, file: rel, bytes, sha256: hash.digest('hex'), retrieved: new Date().toISOString(), lastModified: res.headers.get('last-modified') };
-  await writeFile(path.join(CACHE, 'manifest.json'), JSON.stringify(manifest, null, 2));
-  return manifest[rel];
-}
-
 function* tarEntries(buf) {
   const field = (start, len) => buf.toString('utf8', start, start + len).replace(/\0[\s\S]*$/, '');
   for (let p = 0; p + 512 <= buf.length; ) {
@@ -518,41 +482,6 @@ function* tarEntries(buf) {
     yield { name: prefix ? `${prefix}/${name}` : name, data: buf.subarray(p + 512, p + 512 + size) };
     p += 512 + Math.ceil(size / 512) * 512;
   }
-}
-
-async function openZip(file) {
-  const buf = await readFile(file);
-  let eocd = -1;
-  for (let i = buf.length - 22; i >= Math.max(0, buf.length - 65_557); i--) {
-    if (buf.readUInt32LE(i) === 0x06054b50) {
-      eocd = i;
-      break;
-    }
-  }
-  if (eocd < 0) throw new Error(`${file} is not a zip file`);
-  const entries = [];
-  let p = buf.readUInt32LE(eocd + 16);
-  for (let i = 0, n = buf.readUInt16LE(eocd + 10); i < n; i++) {
-    if (buf.readUInt32LE(p) !== 0x02014b50) throw new Error(`${file}: corrupt central directory`);
-    const nameLen = buf.readUInt16LE(p + 28);
-    entries.push({
-      name: buf.toString('utf8', p + 46, p + 46 + nameLen),
-      method: buf.readUInt16LE(p + 10),
-      csize: buf.readUInt32LE(p + 20),
-      size: buf.readUInt32LE(p + 24),
-      offset: buf.readUInt32LE(p + 42),
-    });
-    p += 46 + nameLen + buf.readUInt16LE(p + 30) + buf.readUInt16LE(p + 32);
-  }
-  const stream = (e) => {
-    if (e.csize === 0xffffffff || e.offset === 0xffffffff) throw new Error('zip64 archives are not supported');
-    const start = e.offset + 30 + buf.readUInt16LE(e.offset + 26) + buf.readUInt16LE(e.offset + 28);
-    const data = Readable.from([buf.subarray(start, start + e.csize)]);
-    if (e.method === 0) return data;
-    if (e.method === 8) return data.pipe(createInflateRaw());
-    throw new Error(`unsupported zip compression method ${e.method}`);
-  };
-  return { entries, stream };
 }
 
 async function wiktionaryCoverage(file) {
@@ -714,7 +643,7 @@ async function measureCoverage() {
   const files = {};
   const manifest = [];
   for (const b of BULK) {
-    manifest.push(await download(b.url, b.rel));
+    manifest.push(await download(b.url, b.rel, { refresh: REFRESH }));
     files[b.key] = path.join(CACHE, b.rel);
   }
   log('measuring Wiktionary coverage');

@@ -1,0 +1,201 @@
+{
+  "generated": "2026-11-03T20:21:40.476Z",
+  "generator": "scripts/build-data.mjs",
+  "licenseNote": "Files that contain DMII Core or Wiktionary data are CC BY-SA 4.0; see data/LICENSE.md.",
+  "files": {
+    "data/lexicon.json": {
+      "bytes": 158740,
+      "gzip": 47202,
+      "sources": [
+        "dmii-core",
+        "wiktionary",
+        "wiktionary-en",
+        "clarin-freq"
+      ]
+    },
+    "data/sentences.json": {
+      "bytes": 350679,
+      "gzip": 78077,
+      "sources": [
+        "tatoeba"
+      ]
+    },
+    "data/audio.json": {
+      "bytes": 90400,
+      "gzip": 5315,
+      "sources": [
+        "commons"
+      ]
+    },
+    "data/forms/hello.json": {
+      "bytes": 51698,
+      "gzip": 6871,
+      "sources": [
+        "dmii-core"
+      ]
+    },
+    "data/forms/cafe.json": {
+      "bytes": 63218,
+      "gzip": 8626,
+      "sources": [
+        "dmii-core"
+      ]
+    },
+    "data/forms/family.json": {
+      "bytes": 38502,
+      "gzip": 5854,
+      "sources": [
+        "dmii-core"
+      ]
+    },
+    "data/forms/around.json": {
+      "bytes": 41250,
+      "gzip": 6175,
+      "sources": [
+        "dmii-core"
+      ]
+    },
+    "data/forms/time.json": {
+      "bytes": 28618,
+      "gzip": 4433,
+      "sources": [
+        "dmii-core"
+      ]
+    },
+    "data/forms/shopping.json": {
+      "bytes": 76553,
+      "gzip": 9115,
+      "sources": [
+        "dmii-core"
+      ]
+    },
+    "data/forms/weather.json": {
+      "bytes": 26196,
+      "gzip": 3790,
+      "sources": [
+        "dmii-core"
+      ]
+    },
+    "data/forms/study.json": {
+      "bytes": 58053,
+      "gzip": 7093,
+      "sources": [
+        "dmii-core"
+      ]
+    },
+    "data/forms/core.json": {
+      "bytes": 60572,
+      "gzip": 7853,
+      "sources": [
+        "dmii-core"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "dmii-core",
+      "name": "The DMII Core (BÍN-kjarninn), Database of Icelandic Morphology",
+      "attribution": "Beygingarlýsing íslensks nútímamáls. Stofnun Árna Magnússonar í íslenskum fræðum. Höfundur og ritstjóri Kristín Bjarnadóttir.",
+      "url": "https://bin.arnastofnun.is/api/",
+      "license": "CC BY-SA 4.0; may be published on the web unmodified with credit",
+      "retrieved": "2026-11-03T20:21:40.476Z",
+      "items": 325,
+      "requestsThisRun": 1,
+      "changes": "None. Each paradigm is the API response object for the word, unchanged. Files group the objects by theme."
+    },
+    {
+      "id": "wiktionary",
+      "name": "Wiktionary (Icelandic entries), extracted by kaikki.org (wiktextract)",
+      "url": "https://kaikki.org/dictionary/Icelandic/kaikki.org-dictionary-Icelandic.jsonl",
+      "file": "kaikki/kaikki.org-dictionary-Icelandic.jsonl",
+      "bytes": 72484459,
+      "sha256": "709541c6054b3d0b6d369b4756c42da50e95c82829f405e2946c88e580ad9152",
+      "retrieved": "2026-11-03T17:53:17.644Z",
+      "license": "CC BY-SA 4.0 and GFDL",
+      "changes": "Selected fields: up to four glosses, up to two IPA transcriptions, etymology text."
+    },
+    {
+      "id": "wiktionary-en",
+      "name": "Wiktionary (English entries, translation tables), via kaikki.org per-word pages",
+      "url": "https://kaikki.org/dictionary/English/meaning/",
+      "license": "CC BY-SA 4.0 and GFDL",
+      "retrieved": "2026-11-03T20:21:40.476Z",
+      "changes": "Norwegian Bokmål translations taken from the same translation sense that lists the Icelandic lemma."
+    },
+    {
+      "id": "clarin-freq",
+      "name": "Frequency lists for Icelandic 23.06 (giga_simple_freq.tsv)",
+      "handle": "http://hdl.handle.net/20.500.12537/314",
+      "url": "https://repository.clarin.is/repository/xmlui/bitstream/handle/20.500.12537/314/Frequency_lists.zip?sequence=1&isAllowed=y",
+      "file": "clarin/Frequency_lists.zip",
+      "bytes": 68936611,
+      "sha256": "4407e11877cd2ef9e7ea7423f57b942e0c14f9d94ab501f17050a6bba34914d9",
+      "retrieved": "2026-11-03T17:54:31.562Z",
+      "license": "CC BY 4.0",
+      "changes": "Only the rank and count of course lemmas are kept."
+    },
+    {
+      "id": "tatoeba",
+      "name": "Tatoeba sentences and translations",
+      "files": [
+        {
+          "url": "https://downloads.tatoeba.org/exports/per_language/isl/isl_sentences_detailed.tsv.bz2",
+          "file": "tatoeba/isl_sentences_detailed.tsv.bz2",
+          "bytes": 254198,
+          "sha256": "aeb0e4cd9eaa647b2fdf580e7b0fad2de8a42fa419396903f230e71b1b489ad9",
+          "retrieved": "2026-11-03T17:53:18.166Z"
+        },
+        {
+          "url": "https://downloads.tatoeba.org/exports/per_language/isl/isl-eng_links.tsv.bz2",
+          "file": "tatoeba/isl-eng_links.tsv.bz2",
+          "bytes": 62487,
+          "sha256": "5448935a5a12069ea86fbd0d68b0791e0f1008ddd7a6bb248e84a6584d8887d6",
+          "retrieved": "2026-11-03T17:53:18.258Z"
+        },
+        {
+          "url": "https://downloads.tatoeba.org/exports/per_language/isl/isl-nob_links.tsv.bz2",
+          "file": "tatoeba/isl-nob_links.tsv.bz2",
+          "bytes": 888,
+          "sha256": "39f186accc8175f8adb64d205a6699f29827c25718340bc423e65fcce4cefa07",
+          "retrieved": "2026-11-03T17:53:18.390Z"
+        },
+        {
+          "url": "https://downloads.tatoeba.org/exports/per_language/eng/eng_sentences.tsv.bz2",
+          "file": "tatoeba/eng_sentences.tsv.bz2",
+          "bytes": 24923592,
+          "sha256": "07f33d399f0a55b917202abbd901f23c39c54a6dd562252985ce8c7e168db6ef",
+          "retrieved": "2026-11-03T18:29:11.486Z"
+        },
+        {
+          "url": "https://downloads.tatoeba.org/exports/per_language/nob/nob_sentences.tsv.bz2",
+          "file": "tatoeba/nob_sentences.tsv.bz2",
+          "bytes": 242987,
+          "sha256": "f6eb05fd57873c614da16f0a8e6a36bbf11b4cdf905daecca31b16ab63e90325",
+          "retrieved": "2026-11-03T20:08:44.248Z"
+        }
+      ],
+      "license": "CC BY 2.0 FR",
+      "changes": "Sentences selected per lemma; text unchanged; author kept for each sentence."
+    },
+    {
+      "id": "bin-ylhyra",
+      "name": "Ylhýra inflection API (wrapper over the full BÍN)",
+      "url": "https://ylhyra.is/api/inflection",
+      "license": "Data CC BY-SA 4.0 (BÍN); software MIT",
+      "retrieved": "2026-11-03T20:21:40.476Z",
+      "changes": "Used only to confirm that indeclinable numerals exist in BÍN; no data copied except the BÍN id."
+    },
+    {
+      "id": "commons",
+      "name": "Wikimedia Commons and Lingua Libre recordings",
+      "url": "https://commons.wikimedia.org/",
+      "license": "Per file; see data/audio.json",
+      "retrieved": "2026-11-03T20:21:40.476Z",
+      "changes": "Links only; no audio files are copied."
+    }
+  ],
+  "vocabulary": {
+    "file": "content/vocab/core.json",
+    "entries": 325
+  }
+}

@@ -11,10 +11,12 @@
   "scripts": {
     "serve": "node scripts/serve.mjs 8080",
     "test": "node --test tests/",
-    "check": "node scripts/check-contrast.mjs && node scripts/check-i18n.mjs && node --test tests/",
+    "check": "node scripts/check-contrast.mjs && node scripts/check-i18n.mjs && node scripts/validate-content.mjs && node --test tests/",
     "qa": "node scripts/visual-qa.mjs",
     "probe": "node scripts/probe-apis.mjs",
     "probe:coverage": "node scripts/probe-apis.mjs --coverage",
+    "build:data": "node scripts/build-data.mjs",
+    "validate": "node scripts/validate-content.mjs",
     "build:demo": "node scripts/build-demo-data.mjs",
     "build:tala": "node scripts/build-tala.mjs"
   },

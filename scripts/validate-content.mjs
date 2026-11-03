@@ -1,0 +1,239 @@
+#!/usr/bin/env node
+// Content validation. Fails (exit 1) when:
+//  - a vocabulary lemma is missing from the DMII Core data in data/,
+//  - an Icelandic token in any content file is not a DMII Core word form (checked against the
+//    generated paradigms, then the DMII Core API with a cache), unless it is a clitic form such
+//    as "geturðu" (getur + þú) or a proper noun on the allowlist (content/allowlist.json),
+//  - a referenced sentence, lemma or form does not exist,
+//  - a hand-written sentence ("source": "authored") has a GreynirCorrect error.
+// Unreviewed content ("reviewed": false) is counted and listed, not failed.
+//
+//   node scripts/validate-content.mjs
+
+import { existsSync } from 'node:fs';
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { CACHE, ROOT } from './lib/bulk.mjs';
+import { blocking, lintTexts, pythonPath, SETUP_HELP } from './lib/lint.mjs';
+
+const UA = 'TOLVA-validate/0.1 (+https://github.com/KaufmannFredrik/duo-dupe-icelandic)';
+const readJson = async (rel) => JSON.parse(await readFile(path.join(ROOT, rel), 'utf8'));
+const low = (s) => s.toLocaleLowerCase('is');
+const errors = [];
+const warnings = [];
+const unreviewed = [];
+const err = (where, msg) => errors.push(`${where}: ${msg}`);
+
+// --- Word-form knowledge -------------------------------------------------------------------------------
+
+const lexicon = await readJson('data/lexicon.json');
+const sentences = (await readJson('data/sentences.json')).sentences;
+const demo = existsSync(path.join(ROOT, 'data/demo/lexicon.json')) ? await readJson('data/demo/lexicon.json') : null;
+const allowlist = await readJson('content/allowlist.json');
+const names = new Set(allowlist.names.map(low));
+
+const forms = new Map(); // lowercase form -> Set of lemma ids
+const addForm = (form, id) => {
+  if (!form) return;
+  const k = low(form);
+  if (!forms.has(k)) forms.set(k, new Set());
+  forms.get(k).add(id);
+};
+const paradigms = new Map(); // lemma id -> [{g, b}]
+for (const file of await readdir(path.join(ROOT, 'data/forms'))) {
+  const shard = await readJson(`data/forms/${file}`);
+  for (const [id, entry] of Object.entries(shard.lemmas)) {
+    const bmyndir = (entry.bmyndir ?? []).filter((f) => f.b);
+    paradigms.set(id, entry.indeclinable ? [{ g: 'indeclinable', b: entry.ord }] : bmyndir);
+    addForm(entry.ord, id);
+    for (const f of bmyndir) addForm(f.b, id);
+  }
+}
+if (demo) {
+  for (const [lemma, e] of Object.entries(demo.lemmas)) {
+    paradigms.set(`demo:${lemma}`, e.bin.entry.bmyndir);
+    for (const f of e.bin.entry.bmyndir) addForm(f.b, `demo:${lemma}`);
+  }
+}
+
+// DMII Core lookups for tokens outside the course data, cached on disk.
+let lastRequest = 0;
+const apiCache = path.join(CACHE, 'bin', 'form');
+async function inDmiiCore(token) {
+  const file = path.join(apiCache, `${token}.json`);
+  if (existsSync(file)) return JSON.parse(await readFile(file, 'utf8')).found;
+  const wait = lastRequest + 150 - Date.now();
+  if (wait > 0) await new Promise((r) => setTimeout(r, wait));
+  lastRequest = Date.now();
+  const res = await fetch(`https://bin.arnastofnun.is/api/beygingarmynd/${encodeURIComponent(token)}`, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(20_000) });
+  if (!res.ok && res.status !== 404) throw new Error(`DMII Core API: HTTP ${res.status} for ${token}`);
+  const body = res.ok ? await res.json() : [];
+  // The API answers {"0": ""} when nothing matches.
+  const found = Array.isArray(body) ? body.length > 0 : Boolean(body?.ord);
+  await mkdir(apiCache, { recursive: true });
+  await writeFile(file, JSON.stringify({ found, words: (Array.isArray(body) ? body : [body]).filter((x) => x?.ord).map((x) => `${x.ord} ${x.ofl}`) }));
+  return found;
+}
+
+async function knownWord(token) {
+  if (forms.has(token)) return 'course';
+  if (names.has(token)) return 'allowlist';
+  if (await inDmiiCore(token)) return 'dmii';
+  // Clitic second-person pronoun: geturðu = getur þú, viltu = vilt þú, ertu = ert þú.
+  for (const base of [token.slice(0, -2), token.slice(0, -1)]) {
+    if (/(ðu|du|tu|u)$/.test(token) && base.length > 1 && (forms.has(base) || (await inDmiiCore(base)))) return 'clitic';
+  }
+  return null;
+}
+
+const tokensOf = (text) => [...text.matchAll(/\p{L}+/gu)].map((m) => low(m[0]));
+
+async function checkText(where, text) {
+  for (const token of tokensOf(text)) {
+    if (!(await knownWord(token))) err(where, `"${token}" is not a DMII Core word form (in: ${text})`);
+  }
+}
+
+function sentenceText(id) {
+  return sentences[id]?.is ?? demo?.sentences[id]?.is ?? null;
+}
+
+// --- Content files -----------------------------------------------------------------------------------------
+
+async function checkVocab() {
+  const vocab = await readJson('content/vocab/core.json');
+  if (vocab.reviewed === false) unreviewed.push('content/vocab/core.json (word selection)');
+  for (const theme of vocab.themes) {
+    for (const [lemma, ofl] of theme.words) {
+      const id = `${lemma}_${ofl}`;
+      if (!lexicon.lemmas[id]?.verified) err('content/vocab/core.json', `${id} is not in the DMII Core (or, for indeclinable numerals, the full BÍN)`);
+    }
+  }
+}
+
+function checkFormOf(where, form, lemmaKey) {
+  const p = paradigms.get(lemmaKey);
+  if (!p) return err(where, `unknown lemma ${lemmaKey}`);
+  if (!p.some((f) => f.b === form)) err(where, `"${form}" is not a form of ${lemmaKey}`);
+}
+
+async function checkDemoLesson() {
+  const rel = 'content/demo/lesson.json';
+  const lesson = await readJson(rel);
+  if (lesson.reviewed === false) unreviewed.push(rel);
+  for (const [i, ex] of lesson.exercises.entries()) {
+    const where = `${rel} exercise ${i + 1} (${ex.type})`;
+    const ids = [ex.sentence, ...(ex.options ?? []), ...(ex.pairs ?? [])].filter(Boolean);
+    for (const id of ids) {
+      const text = sentenceText(id);
+      if (!text) err(where, `sentence ${id} not found`);
+      else await checkText(where, text);
+    }
+    for (const d of ex.distractors ?? []) await checkText(where, d);
+    if (ex.target) {
+      checkFormOf(where, ex.target, `demo:${ex.lemma}`);
+      if (!tokensOf(sentenceText(ex.sentence) ?? '').includes(low(ex.target))) err(where, `target "${ex.target}" is not in sentence ${ex.sentence}`);
+    }
+  }
+}
+
+async function checkUnits() {
+  const dir = path.join(ROOT, 'content/units');
+  if (!existsSync(dir)) return;
+  for (const file of (await readdir(dir)).filter((f) => f.endsWith('.json'))) {
+    const rel = `content/units/${file}`;
+    const unit = await readJson(rel);
+    if (unit.reviewed === false) unreviewed.push(rel);
+    if (unit.is) await checkText(`${rel} title`, unit.is);
+    for (const lesson of unit.lessons ?? []) {
+      for (const id of lesson.focus ?? []) if (!lexicon.lemmas[id]) err(`${rel} ${lesson.id}`, `unknown lemma ${id}`);
+      for (const [i, ex] of (lesson.exercises ?? []).entries()) {
+        const where = `${rel} ${lesson.id} exercise ${i + 1}`;
+        for (const id of [ex.sentence, ...(ex.options ?? []), ...(ex.pairs ?? [])].filter(Boolean)) {
+          const text = sentenceText(id);
+          if (!text) err(where, `sentence ${id} not found`);
+          else await checkText(where, text);
+        }
+        if (ex.target && ex.lemma) checkFormOf(where, ex.target, ex.lemma);
+        for (const d of ex.distractors ?? []) await checkText(where, d);
+      }
+    }
+    for (const note of unit.guide?.examples ?? []) {
+      const text = sentenceText(note);
+      if (!text) err(`${rel} guide`, `sentence ${note} not found`);
+    }
+  }
+}
+
+async function checkStories() {
+  const dir = path.join(ROOT, 'content/stories');
+  if (!existsSync(dir)) return;
+  for (const file of (await readdir(dir)).filter((f) => f.endsWith('.json'))) {
+    const rel = `content/stories/${file}`;
+    const story = await readJson(rel);
+    if (story.reviewed === false) unreviewed.push(rel);
+    for (const [i, line] of (story.lines ?? []).entries()) {
+      const text = line.sentence ? sentenceText(line.sentence) : line.is;
+      if (!text) err(`${rel} line ${i + 1}`, `sentence ${line.sentence} not found`);
+      else await checkText(`${rel} line ${i + 1}`, text);
+    }
+  }
+}
+
+async function checkSmallFiles() {
+  const pathJson = await readJson('content/demo/path.json');
+  if (pathJson.reviewed === false) unreviewed.push('content/demo/path.json');
+  for (const u of pathJson.units) await checkText(`content/demo/path.json unit ${u.id}`, u.is);
+  const rules = await readJson('content/case-rules.json');
+  if (rules.reviewed === false) unreviewed.push('content/case-rules.json');
+  for (const [id, r] of Object.entries(rules.rules)) await checkText(`content/case-rules.json ${id}`, r.trigger);
+}
+
+// Hand-written Icelandic sentences anywhere in content/ must pass GreynirCorrect.
+async function checkAuthored() {
+  const authored = [];
+  const walk = (value, where) => {
+    if (Array.isArray(value)) value.forEach((v, i) => walk(v, `${where}[${i}]`));
+    else if (value && typeof value === 'object') {
+      if (value.source === 'authored' && typeof value.is === 'string') authored.push({ where, text: value.is });
+      for (const [k, v] of Object.entries(value)) walk(v, `${where}.${k}`);
+    }
+  };
+  const files = [];
+  const collect = async (dir) => {
+    for (const e of await readdir(path.join(ROOT, dir), { withFileTypes: true })) {
+      const rel = `${dir}/${e.name}`;
+      if (e.isDirectory()) await collect(rel);
+      else if (e.name.endsWith('.json')) files.push(rel);
+    }
+  };
+  await collect('content');
+  for (const f of files) walk(await readJson(f), f);
+  if (!authored.length) return 0;
+  if (!pythonPath()) {
+    err('content', `${authored.length} hand-written sentences need GreynirCorrect. ${SETUP_HELP}`);
+    return authored.length;
+  }
+  const results = await lintTexts(authored.map((a) => a.text));
+  for (const a of authored) {
+    for (const issue of blocking(results.get(a.text) ?? [])) err(a.where, `GreynirCorrect ${issue.code}: ${issue.text} (in: ${a.text})`);
+  }
+  return authored.length;
+}
+
+await checkVocab();
+await checkDemoLesson();
+await checkUnits();
+await checkStories();
+await checkSmallFiles();
+const authoredCount = await checkAuthored();
+
+console.log(`Checked the vocabulary (${Object.keys(lexicon.lemmas).length} lemmas), lessons, units, stories, rules and ${authoredCount} hand-written sentences.`);
+if (unreviewed.length) console.log(`Not yet reviewed by a native speaker (${unreviewed.length}): ${unreviewed.join(', ')}. See content/NEEDS-NATIVE-REVIEW.md.`);
+for (const w of warnings) console.log(`warning: ${w}`);
+if (errors.length) {
+  console.log(`\n${errors.length} problem(s):`);
+  for (const e of errors) console.log(`  ${e}`);
+  process.exit(1);
+}
+console.log('Content is valid.');

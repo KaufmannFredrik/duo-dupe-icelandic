@@ -28,7 +28,8 @@ for await (const f of jsFiles('js')) {
   const src = await read(f);
   for (const m of src.matchAll(/\bt\('([^']+)'/g)) used.add(m[1]);
   for (const m of src.matchAll(/\bt\(`([^`]+)`/g)) dynamic.push(`${f}: ${m[1]}`);
-  for (const m of src.matchAll(/\bkey: '([^']+)'/g)) used.add(m[1]);
+  // Keys inside data objects, such as { key: 'nav.learn' } or { label: 'number.sg' }: dotted names only.
+  for (const m of src.matchAll(/\b(?:key|label): '([a-z]+\.[^']+)'/g)) used.add(m[1]);
 }
 
 const problems = [];

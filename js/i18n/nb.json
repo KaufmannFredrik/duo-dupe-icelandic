@@ -241,5 +241,9 @@
   "sg.toastText": "En kort og høflig melding.",
   "form.sg": "entall",
   "form.pl": "flertall",
-  "form.numberDef": "{number}, {def}"
+  "form.numberDef": "{number}, {def}",
+  "number.both": "Entall og flertall",
+  "person.1": "1. person",
+  "person.2": "2. person",
+  "person.3": "3. person"
 }

@@ -241,5 +241,9 @@
   "sg.toastText": "A toast message, polite and short.",
   "form.sg": "singular",
   "form.pl": "plural",
-  "form.numberDef": "{number}, {def}"
+  "form.numberDef": "{number}, {def}",
+  "number.both": "Singular and plural",
+  "person.1": "1st person",
+  "person.2": "2nd person",
+  "person.3": "3rd person"
 }

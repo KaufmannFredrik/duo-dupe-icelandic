@@ -22,3 +22,5 @@ The Phase 1 demo file `data/demo/lexicon.json` contains DMII Core paradigms, Wik
 - Changes made to the source data are described in `data/SOURCES.json`, as CC BY-SA 4.0 section 3(a)(1)(B) requires. DMII Core paradigms are not changed; only their JSON layout is made more compact.
 
 This summary is a good-faith reading of the licenses, not legal advice. The license texts are at https://creativecommons.org/licenses/.
+
+Seven indeclinable numerals were confirmed in the full BÍN through the Ylhýra API (ylhyra.is); only their BÍN ids are stored.
