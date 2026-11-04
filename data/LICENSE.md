@@ -20,6 +20,10 @@ The files in **`/data` are not covered by the MIT license.** They are generated 
 - The voices were trained on Talrómur (CC BY 4.0), so the audio is offered under **CC BY 4.0** with the credit above. Audio of a Tatoeba sentence also carries that sentence's CC BY 2.0 FR attribution (author and id in `data/sentences.json`).
 - Piper itself is GPL-3.0. It runs only on the build machine (`scripts/build-audio.py`) and is not distributed with the site; its output is not covered by its license.
 
+## Sentence tags (`data/tags.json`)
+
+- For each word of each sentence in `data/sentences.json`, the course word it is in that sentence, as read by the Greynir parser (reynir, MIT, Miðeind) on the build machine (`scripts/build-tags.mjs`). The tags are derived from the Tatoeba sentences and carry their CC BY 2.0 FR attribution (author and id in `data/sentences.json`). The parser is not distributed with the site.
+
 ## What this means for the generated files
 
 - Any file that contains BÍN- or Wiktionary-derived data is distributed under **CC BY-SA 4.0**. Anyone may copy and adapt it, including commercially, if they give the attribution above and share their adaptations under the same license.

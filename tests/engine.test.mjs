@@ -14,11 +14,20 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key) }) };
 }
 
-test('course: ten units in order, units 1 and 2 hand-made, the rest automatic', () => {
+test('course: ten units in order, units 1 to 3 hand-made, the rest automatic', () => {
   assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
   assert.equal(d.course.units[0].auto, false);
-  assert.equal(d.course.units[2].auto, true);
+  assert.equal(d.course.units[2].auto, false);
+  assert.equal(d.course.units[3].auto, true);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
+});
+
+test('course: a hand-made unit teaches every word of its theme exactly once', () => {
+  for (const u of d.course.units.filter((x) => !x.auto)) {
+    const taught = u.lessons.filter((l) => !l.review).flatMap((l) => l.focus);
+    assert.equal(new Set(taught).size, taught.length, `${u.id}: a word is taught twice`);
+    assert.deepEqual([...taught].sort(), [...u.lemmas].sort(), `${u.id}: lessons and theme words differ`);
+  }
 });
 
 test('course: every focus word exists in the lexicon', () => {
@@ -40,12 +49,27 @@ test('course: lesson states follow progress', () => {
   assert.equal(nextLesson(d.course, { lessons: {}, skippedUnits: ['hello'] }).lesson.key, 'cafe/1');
 });
 
+test('generator: homographs are told apart by the sentence tags', () => {
+  const sid = (text) => Object.keys(d.sentences).find((k) => d.sentences[k].is === text);
+  const cases = [
+    ['Það var afar heitur dagur.', 'afi_no', 'heitur_lo'], // afar = "very"
+    ['Hann elskaði hana einu sinni.', 'sinn_fn', 'elska_so'], // einu sinni = "once"
+    ['Hann elskaði hana einu sinni.', 'einn_to', 'hún_pfn'],
+    ['Hann sér hundinn hennar.', 'sig_afn', 'sjá_so'], // sér = "sees"
+  ];
+  for (const [text, not, yes] of cases) {
+    assert.ok(sid(text), `"${text}" is in the data`);
+    assert.equal(d.generator.hasLemma(sid(text), not), false, `"${text}" has no ${not}`);
+    assert.equal(d.generator.hasLemma(sid(text), yes), true, `"${text}" has ${yes}`);
+  }
+});
+
 test('generator: the same seed gives the same lesson', () => {
   const l = lessonsOf('hello')[1];
   assert.deepEqual(generate('hello', l).specs, generate('hello', l).specs);
 });
 
-for (const unitId of ['hello', 'cafe', 'newwords']) {
+for (const unitId of ['hello', 'cafe', 'family', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);
@@ -65,7 +89,11 @@ for (const unitId of ['hello', 'cafe', 'newwords']) {
           const present = new Set(tokens(d.sentences[s.sentence].is).map((t) => t.low));
           for (const x of s.distractors) assert.ok(!present.has(x.toLocaleLowerCase('is')), `distractor "${x}" is in the sentence`);
         }
+        if (s.sentence && s.lemma) assert.ok(d.generator.hasLemma(s.sentence, s.lemma), `${s.type}: "${d.sentences[s.sentence].is}" does not contain ${s.lemma}`);
         if (s.type === 'ending' || s.type === 'case') {
+          const tags = d.tagsOf(s.sentence);
+          const at = tokens(d.sentences[s.sentence].is).findIndex((t) => t.raw === s.target);
+          if (tags) assert.equal(tags[at], s.lemma, `"${s.target}" in "${d.sentences[s.sentence].is}" is tagged ${tags[at]}, not ${s.lemma}`);
           const bm = d.paradigm(s.lemma);
           assert.ok(analysesIn(bm, s.target).length, `"${s.target}" is a form of ${s.lemma}`);
           assert.ok(tokens(d.sentences[s.sentence].is).some((t) => t.raw === s.target), 'target is in the sentence');

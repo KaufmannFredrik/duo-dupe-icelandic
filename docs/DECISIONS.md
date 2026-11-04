@@ -2,6 +2,50 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Hand-made units: unit 3, Family (2026-11-04)
+
+After the planned phases, the preview units are being made by hand, one at a time, like units 1 and 2.
+
+### Unit 3, *Fjölskylda*
+
+- Seven lessons and a review: My family, Brothers and sisters, Grandparents and relatives, Men and women, Friends and pets, Having and living, Age and counting. *minn* and *þinn* are taught in lessons 1 and 2, because most family sentences use them (*bróðir minn*, *systir þín*); *eiga*, *búa*, *sinn* and *sig* come together in lesson 6.
+- Guidebook, five sections, every form taken from the DMII Core paradigms and every example from Tatoeba:
+  - **Family words in -ir.** *faðir*, *móðir*, *bróðir*, *systir*, *dóttir*: every singular case but the nominative ends in -ur; four change their vowel in the plural (*feður*, *mæður*, *bræður*, *dætur*), *systir* does not (*systur*). Checked against the five paradigms. The Norwegian text compares *bror, brødre* and *datter, døtre*.
+  - **Possessives after the noun.** *pabbi minn*, *mamma mín*, *barnið mitt*; most nouns take the article first (*kötturinn minn*), family words usually do not (*bróðir minn*), where Norwegian says *broren min*. *hans* and *hennar* do not inflect. The Tatoeba data agrees: *Hann er bróðir minn*, *Hún er systir mín*, *Þetta er kötturinn minn*, *Þetta er húsið hennar*.
+  - **sinn and sig.** Reflexive possession as in Norwegian *sin, si, sitt*: *Hún hringdi í dóttur sína* against *Hann sér hundinn hennar*.
+  - **eiga and búa.** *Ég á dóttur*; the present of *eiga* is irregular (*á, átt, á, eigum*); the object is accusative. *búa*: *bý, býrð, býr*.
+  - **Age.** *Hún er átta ára* (*ára*, genitive plural of *ár*), and *gamall* or *gömul* agreeing with the person.
+- The guidebook prose and the lesson grouping are listed in `content/NEEDS-NATIVE-REVIEW.md`.
+- A new test checks that a hand-made unit teaches every word of its theme exactly once, so no word is dropped when units are regrouped. The smoke test now plays every lesson of every hand-made unit, read from the unit files.
+
+### Sentence tags: telling homographs apart
+
+Looking at the generated unit 3 lessons showed exercises that taught the wrong word. The generator found a word in a sentence by spelling, and only course words were known, so:
+
+- *afar* in *Það var afar heitur dagur* ("very") was treated as the plural of *afi* and asked as a case question;
+- *sinni* in *einu sinni* ("once") was treated as a form of the possessive *sinn*;
+- *sér* in *Hann sér hundinn hennar* ("sees") was used to practice the reflexive *sig*.
+
+The fix is a build step, not a word list:
+
+- `scripts/tag-icelandic.py` runs the Greynir parser (`reynir`, MIT, Miðeind; already installed with GreynirCorrect) on every sentence. `scripts/build-tags.mjs` (`npm run build:tags`, cached in `.cache/greynir/tags.jsonl`) lines the parser's tokens up with the app's words and writes `data/tags.json` (55 KB, 18 KB gzipped): for each word of each sentence, the course word it is there, -1 for another word or a name, or null when undetermined.
+- A word counts as a course word only when the parser's word class and lemma agree with it. A few differences are conventions and are accepted (`scripts/lib/tags.mjs`, tested in `tests/tags.test.mjs`): the parser's lemma is itself a DMII Core form of the word (*þér* for *þú*, *hvað* for *hver*), past participles used as adjectives (*farinn*), adverbs that are the neuter of an adjective (*seint*), prepositions used as adverbs (*til*, *um*), interjections (*já*, *bless*), compass directions and sides as nouns (*norður*, *vinstri*), and *einn* or *annar* as numeral, pronoun or adjective. Multiword idioms (*einu sinni*, *á morgun*, *undir eins*) are left undetermined; amounts and times (*klukkan sjö*, *fimm hundruð*) keep their words.
+- Result: 1,764 sentences, 96.8% parsed; of 8,756 words, 7,445 are course words, 1,134 other words or names, and 177 undetermined. 221 words that spelling would have given to a course word are another word in their sentence, for example *mun* ("will", from *munu*, not *muna* "remember") 20 times, *myndir* ("pictures"), *ferð* ("a trip", not *fara*), *fundinn* ("the meeting"), *tala* in *Aldur er bara tala* ("a number", not "to speak"), *þegar* ("already").
+- The generator uses the tags (`tagsOf` in `js/data.js`): a sentence contains a word only where it is tagged so; a learner knows a word only when its tag is a word they have met; case targets, word-bank distractors and verb-rule hints use the tagged word. Sentences without tags keep the spelling rule. The mix of exercise types barely changes (over all units: 182 instead of 186 ending exercises, 51 instead of 47 case exercises).
+- The parser is sometimes wrong (*á* in *Slökktu á útvarpinu* as the noun "river"). Such an error only removes a sentence from use; it cannot create a wrong exercise.
+- The story reader's word panel uses the tags too: a tapped word shows the word it is in that sentence, and a word that is no course word there (*meira* in *Mætti ég fá meira kaffi?*, the adjective, not the adverb *mjög*) shows "no details" instead of a lookalike.
+- `npm run check` fails when `data/tags.json` does not match `data/sentences.json`; after `npm run build:data`, run `npm run build:tags`.
+
+### Fixed
+
+- At 320 px the Learn path scrolled sideways when a long lesson title ("Grandparents and relatives") sat on a node shifted far to the side. A label's maximum width now shrinks with its node's offset, so it wraps instead.
+
+### Tests
+
+- `node --test`: 68 tests (new: the tag rules, three homograph regressions, every case target tagged as its word, every exercise sentence containing its word, each hand-made unit covering its theme).
+- `npm run smoke`: all 22 lessons of units 1 to 3, the drills, offline, speaking and stories.
+- `npm run qa`: 0 axe violations, no page errors; the 320 px overflow above was found here and fixed.
+
 ## Phase 7: new words, old roots (2026-11-04)
 
 - **Unit 10, *Nýyrði***: twelve modern words that Icelandic built from its own parts instead of borrowing: *sjónvarp*, *útvarp*, *flugvél*, *farsími*, *tölvupóstur*, *forrit*, *tækni*, *rafmagn*, *þota*, *veira*, *hátalari*, *reikistjarna*. All twelve are in the DMII Core and their Wiktionary glosses match; the data now has 337 words.

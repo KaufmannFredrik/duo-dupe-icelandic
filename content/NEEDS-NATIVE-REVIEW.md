@@ -33,6 +33,12 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
   - *vilja* is irregular in the singular: *ég vil*, *þú vilt*, *hann vill*.
   - Most verbs take an accusative object.
   - *einn* to *fjórir* inflect: *tvær dætur*, *tvo ketti*, *tvö börn*; from five on numbers do not change.
+- Unit 3, *Fjölskylda* (family): the lesson groupings, and the guidebook notes (every Icelandic fragment is checked against the DMII Core; the forms in the tables are DMII Core paradigms):
+  - *faðir*, *móðir*, *bróðir*, *systir*, *dóttir* end in -ur in every singular case but the nominative; four change their vowel in the plural (*feður*, *mæður*, *bræður*, *dætur*), *systir* keeps it (*systur*). The comparison with English *man, men* and Norwegian *bror, brødre*, *datter, døtre*.
+  - *minn* and *þinn* follow the noun and agree with it: *pabbi minn*, *mamma mín*, *barnið mitt*. Most nouns take the article first (*kötturinn minn*), but family words usually do not (*bróðir minn*). *hans* and *hennar* do not inflect: *húsið hans*, *húsið hennar*.
+  - *sinn* refers back to the subject of its own sentence, as Norwegian *sin, si, sitt* does: *Hún hringdi í dóttur sína*; *hans* and *hennar* are someone else's: *Hann sér hundinn hennar*. *sig* is the reflexive pronoun: *Hann meiddi sig* ("he hurt himself").
+  - Family, pets and things one has are said with *eiga*: *Ég á dóttur*; *ég á*, *þú átt*, *hún á*, *við eigum*; the object is accusative (*þrjá bræður*, *tvær systur*). Where someone lives is said with *búa*: *ég bý*, *þú býrð*, *hún býr*.
+  - The numbers from five to twenty do not inflect. Age: *Hún er átta ára*, with *ára* the genitive plural of *ár*; *gamall* (a man or a masculine noun) or *gömul* (a woman) may follow.
 - Case trainer note "When is each case used?" (summary of the main uses of the four cases).
 - Unit 10, *Nýyrði* (new words): the choice of twelve modern words, and the unit title. The guidebook retells Wiktionary's etymologies (sources quoted in `docs/DECISIONS.md`); the retelling and the glosses of the parts need review:
   - *útvarp* = *út* + *varp*; *sjónvarp* made on the same model with *sjón*; *flugvél* = *flug* + *vél*.
@@ -61,6 +67,10 @@ The sentences are unchanged Tatoeba sentences. Not reviewed: which sentences wer
 | *hala* / *halla* | *ll* sounds roughly like "tl". | not reviewed |
 
 The English and Norwegian descriptions of the three contrasts are not reviewed either.
+
+## Sentence tags (`data/tags.json`)
+
+Which course word each word of a sentence is, as the Greynir parser reads it (`scripts/build-tags.mjs`). The parser is not always right; a native speaker could check the 221 cases where the tags say a form is another word than its spelling suggests (listed by `npm run build:tags`), and the rules in `scripts/lib/tags.mjs` that treat some differences as the same word (participles, prepositions used as adverbs, *einn* as numeral or pronoun).
 
 ## Generated audio (`data/audio/`)
 

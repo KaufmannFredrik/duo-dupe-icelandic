@@ -27,7 +27,8 @@ function node(unit, lesson, i) {
     state === 'locked'
       ? `<span class="node node--locked" role="img" aria-label="${esc(label)}">${inner}</span>`
       : `<a class="node node--${state}" href="${href}" aria-label="${esc(label)}">${state === 'current' ? `<span class="node__start" aria-hidden="true">${t('learn.start')}</span>` : ''}${inner}</a>`;
-  return `<li class="path__item" style="--x: ${OFFSETS[i % OFFSETS.length]}">${el}<span class="path__label" aria-hidden="true">${esc(title)}</span></li>`;
+  const x = OFFSETS[i % OFFSETS.length];
+  return `<li class="path__item" style="--x: ${x}; --ax: ${Math.abs(x)}">${el}<span class="path__label" aria-hidden="true">${esc(title)}</span></li>`;
 }
 
 const placementLink = Object.keys(progress.lessons).length === 0 && !progress.skippedUnits.length

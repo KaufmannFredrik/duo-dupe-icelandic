@@ -17,6 +17,8 @@ const CASE_CLASSES = new Set(['no', 'lo', 'pfn', 'fn', 'to']);
  * @param {Map<string, Set<string>>} data.formIndex  lowercase form -> lemma ids
  * @param {object} data.sentences      data/sentences.json "sentences"
  * @param {string[]} data.pool         data/sentences.json "pool"
+ * @param {(sid: string) => (string|-1|null)[]|undefined} [data.tagsOf]  per word of a sentence, the
+ *   course word it is there (data/tags.json): a lemma id, -1 for another word, null if undetermined
  * @param {object} data.audio          data/audio.json "recordings"
  * @param {object} data.rules          content/case-rules.json "rules"
  * @param {Set<string>} [data.names]   lowercase names allowed in sentences
@@ -30,14 +32,33 @@ export function createGenerator(data) {
     return tokenCache.get(sid);
   };
 
-  // A token is fine for a learner when it is a form of an allowed word or a name.
-  const knownToken = (tok, allowed) => {
-    const ids = formIndex.get(tok.low);
-    if (ids && [...ids].some((id) => allowed.has(id))) return true;
+  const tagsOf = data.tagsOf ?? (() => undefined);
+  const tagCache = new Map();
+  const tags = (sid) => {
+    if (!tagCache.has(sid)) {
+      const t = tagsOf(sid);
+      tagCache.set(sid, t?.length === toks(sid).length ? t : null);
+    }
+    return tagCache.get(sid);
+  };
+  // The course words the i-th word of a sentence can be: the parser's choice when it made one
+  // (so "afar" in "afar heitur" is not a form of afi), otherwise every course word spelled so.
+  const idsAt = (sid, i) => {
+    const tag = tags(sid)?.[i];
+    if (typeof tag === 'string') return [tag];
+    if (tag === -1) return [];
+    return [...(formIndex.get(toks(sid)[i].low) ?? [])];
+  };
+
+  // A word is fine for a learner when it is an allowed course word or a name.
+  const knownToken = (sid, i, allowed) => {
+    const tok = toks(sid)[i];
+    if (idsAt(sid, i).some((id) => allowed.has(id))) return true;
     return names.has(tok.low) || (tok.index > 0 && tok.raw[0] !== tok.low[0]);
   };
-  const sentenceOk = (sid, allowed) => sentences[sid]?.en.length > 0 && toks(sid).every((t) => knownToken(t, allowed));
-  const hasLemma = (sid, id) => toks(sid).some((t) => formIndex.get(t.low)?.has(id));
+  const sentenceOk = (sid, allowed) => sentences[sid]?.en.length > 0 && toks(sid).every((_, i) => knownToken(sid, i, allowed));
+  // A tagged sentence contains a word only where the parser says so; an untagged one by spelling.
+  const hasLemma = (sid, id) => (tags(sid) ? tags(sid).includes(id) : toks(sid).some((t) => formIndex.get(t.low)?.has(id)));
   const byLength = (ids) => ids.toSorted((a, b) => toks(a).length - toks(b).length || sentences[a].is.length - sentences[b].is.length);
 
   const everyWord = new Set(Object.keys(lexicon.lemmas));
@@ -78,8 +99,8 @@ export function createGenerator(data) {
     const present = new Set(toks(sid).map((t) => t.low));
     // Distractors: other forms of words in the sentence, the mistakes a learner would really make.
     const distractors = [];
-    for (const t of shuffle(toks(sid), r)) {
-      const ids = [...(formIndex.get(t.low) ?? [])].filter((x) => allowed.has(x));
+    for (const i of shuffle([...toks(sid).keys()], r)) {
+      const ids = idsAt(sid, i).filter((x) => allowed.has(x));
       for (const lemmaId of ids) {
         const common = [...new Set(paradigm(lemmaId).filter((f) => isCommonTag(f.g)).map((f) => f.b))];
         const alt = shuffle(common.filter((f) => !present.has(f.toLocaleLowerCase('is'))), r)[0];
@@ -129,13 +150,14 @@ export function createGenerator(data) {
     return pairs.length >= 3 ? { type: 'match', pairs, key: null } : null;
   }
 
-  // A case target: a token that belongs only to this lemma, whose analyses agree on number,
-  // definiteness and gender, and whose comparable forms differ by case.
+  // A case target: a token that is this lemma in the sentence (tagged so, or when untagged the
+  // only course word spelled so), whose analyses agree on number, definiteness and gender, and
+  // whose comparable forms differ by case.
   function caseTarget(id, sid, { unique = false } = {}) {
     const bm = paradigm(id);
-    for (const tok of toks(sid)) {
-      const ids = formIndex.get(tok.low);
-      if (!ids || ids.size !== 1 || !ids.has(id)) continue;
+    for (const [i, tok] of toks(sid).entries()) {
+      const ids = idsAt(sid, i);
+      if (ids.length !== 1 || ids[0] !== id) continue;
       const an = analysesIn(bm, tok.raw).filter((a) => a.parsed.case && a.parsed.variant === 1);
       if (!an.length) continue;
       const p = an[0].parsed;
@@ -153,9 +175,10 @@ export function createGenerator(data) {
   function ruleFor(sid, tok, caseId) {
     const before = toks(sid).filter((t) => t.index < tok.index);
     const prev = before.at(-1)?.low;
+    const verbBefore = (lemma) => before.some((_, i) => idsAt(sid, i).some((x) => lexicon.lemmas[x]?.lemma === lemma && lexicon.lemmas[x].ofl === 'so'));
     for (const [rid, rule] of Object.entries(rules)) {
       if (rule.kind === 'preposition' && rule.trigger === prev && rule.case === caseId) return rid;
-      if (rule.kind === 'verb' && rule.case === caseId && before.some((t) => [...(formIndex.get(t.low) ?? [])].some((x) => lexicon.lemmas[x]?.lemma === rule.trigger && lexicon.lemmas[x].ofl === 'so'))) return rid;
+      if (rule.kind === 'verb' && rule.case === caseId && verbBefore(rule.trigger)) return rid;
     }
     return null;
   }
@@ -280,5 +303,5 @@ export function createGenerator(data) {
     return steps;
   }
 
-  return { lesson, review, placement, sentenceOk, caseTarget, toks };
+  return { lesson, review, placement, sentenceOk, caseTarget, toks, hasLemma };
 }

@@ -4,7 +4,7 @@ Learn Icelandic from the oracle in the machine.
 
 TÖLVA is a free, static, grammar-first website for learning Icelandic: a unit path, many exercise types, case and ending practice, audio, spaced repetition, and Norwegian Bokmål as a first-class base language next to English. It is plain HTML, CSS and JavaScript modules with no build step, so it can be served from GitHub Pages.
 
-**Status:** Phase 7, the last planned phase. Units 1 and 2 are complete and playable; units 3 to 10 are generated previews, and unit 10 (new words, old roots) has a guidebook on how Icelandic builds words for modern things. Every word and sentence has audio (human recordings where they exist, otherwise a generated voice), there are five stories and a minimal-pairs drill, and XP, streaks with streak freezes, a daily goal, badges, optional hearts, progress export and import, and offline use (installable web app) all work. Speaking practice with the browser's speech recognition is available as an experimental, opt-in setting. The Norwegian bridge (`bridge.html`) links 169 course words to their Bokmål relatives, 156 of them through a shared Old Norse word named by both Bokmålsordboka and Wiktionary. See [docs/DECISIONS.md](docs/DECISIONS.md) for what was decided and why, and [docs/api-report.md](docs/api-report.md) for the data-source probe.
+**Status:** All planned phases are built, and the preview units are now being made by hand. Units 1 to 3 are complete, with hand-grouped lessons and a guidebook; units 4 to 10 are generated previews, and unit 10 (new words, old roots) has a guidebook on how Icelandic builds words for modern things. Every word and sentence has audio (human recordings where they exist, otherwise a generated voice), there are five stories and a minimal-pairs drill, every sentence is tagged with the Greynir parser so that exercises never mistake one word for another with the same spelling, and XP, streaks with streak freezes, a daily goal, badges, optional hearts, progress export and import, and offline use (installable web app) all work. Speaking practice with the browser's speech recognition is available as an experimental, opt-in setting. The Norwegian bridge (`bridge.html`) links 169 course words to their Bokmål relatives, 156 of them through a shared Old Norse word named by both Bokmålsordboka and Wiktionary. See [docs/DECISIONS.md](docs/DECISIONS.md) for what was decided and why, and [docs/api-report.md](docs/api-report.md) for the data-source probe.
 
 ## Run it
 
@@ -31,15 +31,16 @@ Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=
 | Command | What it does |
 |---|---|
 | `npm test` | Unit tests (`node --test`): grading, spaced repetition, the course model, and the exercise generator against the real data. |
-| `npm run smoke` | Playwright plays every lesson of units 1 and 2 and the sounds and letters drills, checks that progress and XP are saved, that export, reset and import round-trip, that hearts end a lesson, that the site loads offline, plays a speaking round with a stand-in recognizer, and opens a story (word panel, line audio). |
+| `npm run smoke` | Playwright plays every lesson of the hand-made units and the sounds and letters drills, checks that progress and XP are saved, that export, reset and import round-trip, that hearts end a lesson, that the site loads offline, plays a speaking round with a stand-in recognizer, and opens a story (word panel, line audio). |
 | `npm run validate` | Checks every Icelandic word in the content against the DMII Core, and hand-written sentences with GreynirCorrect. |
 | `npm run build:data` | Rebuilds `/data` (needs `npm run probe:coverage` first for the bulk files, and GreynirCorrect in `.venv`). |
-| `npm run check` | Contrast check, UI string check (English and Norwegian), content validation, unit tests. |
+| `npm run check` | Contrast check, UI string check (English and Norwegian), content validation, sentence tags up to date, service worker up to date, unit tests. |
 | `npm run qa` | Playwright visual QA: screenshots of every screen and state at 390x844, 768x1024 and 1440x900 into `screenshots/`, axe accessibility checks, and a no-horizontal-scroll test at 320 px. |
 | `npm run probe` | Probes every external API and dataset and rewrites `docs/api-report.md`. |
 | `npm run probe:coverage` | Also downloads the bulk datasets into `.cache/` (about 150 MB) and measures coverage. |
 | `npm run build:audio` | Generates the MP3 files for every course word, minimal-pair word and sentence with the Piper voice Steinn (`scripts/build-audio.py`; existing files are kept, unused ones removed). `--samples` rebuilds the four-voice comparison set. |
 | `npm run build:bridge` | Rebuilds `data/bridge.json`, the Norwegian relatives, from Bokmålsordboka (ord.uib.no, cached in `.cache/ordbokene/`) and the Wiktionary etymologies in `data/lexicon.json`. |
+| `npm run build:tags` | Rewrites `data/tags.json`: which course word each word of each sentence is, from the Greynir parser (`scripts/tag-icelandic.py`, in `.venv`; cached in `.cache/greynir/`). Run it after `npm run build:data`. |
 | `npm run build:sw` | Rewrites `sw.js` (the service worker) with the list of files to precache and a version hashed from their contents. Run it after changing any page, script, style or data file; `npm run check` fails while `sw.js` is out of date. |
 | `npm run build:icons` | Renders the app icons in `assets/icons/` from the mascot, with Playwright. |
 | `npm run build:tala` | Writes the mascot SVG files in `assets/tala/` from `js/tala.js`. |
@@ -61,7 +62,7 @@ js/               app.js (bootstrap), shell.js, i18n.js + i18n/{en,nb}.json, sto
 assets/           icons.svg (sprite), tala/ (mascot SVGs), icons/ (app icons)
 content/          brand.json, vocab/, units/, stories/, case-rules.json, minimal-pairs.json, allowlist.json,
                   NEEDS-NATIVE-REVIEW.md
-data/             generated data (CC BY-SA 4.0; see data/LICENSE.md); audio/ (generated voice, CC BY 4.0)
+data/             generated data (CC BY-SA 4.0; see data/LICENSE.md); tags.json (sentence word tags); audio/ (generated voice, CC BY 4.0)
 scripts/          probe, data builders, checks, dev server, visual QA
 tests/            node --test unit tests, smoke.mjs (Playwright)
 docs/             api-report.md, DECISIONS.md

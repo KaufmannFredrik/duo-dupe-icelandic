@@ -3,10 +3,65 @@
   "order": 3,
   "theme": "family",
   "reviewed": false,
-  "title": {
-    "en": "Family",
-    "nb": "Familie"
-  },
+  "title": { "en": "Family", "nb": "Familie" },
   "is": "Fjölskylda",
-  "lessons": "auto"
+  "goal": { "en": "Talk about your family and friends, say what is yours, and count to ten.", "nb": "Snakk om familie og venner, si hva som er ditt, og tell til ti." },
+  "lessons": [
+    { "id": "1", "title": { "en": "My family", "nb": "Familien min" }, "focus": ["fjölskylda_no", "mamma_no", "pabbi_no", "móðir_no", "faðir_no", "minn_fn"] },
+    { "id": "2", "title": { "en": "Brothers and sisters", "nb": "Søsken" }, "focus": ["bróðir_no", "systir_no", "sonur_no", "dóttir_no", "barn_no", "þinn_fn"] },
+    { "id": "3", "title": { "en": "Grandparents and relatives", "nb": "Besteforeldre og slektninger" }, "focus": ["amma_no", "afi_no", "frændi_no", "frænka_no", "fólk_no"] },
+    { "id": "4", "title": { "en": "Men and women", "nb": "Menn og kvinner" }, "focus": ["maður_no", "kona_no", "eiginmaður_no", "eiginkona_no", "strákur_no", "stelpa_no"] },
+    { "id": "5", "title": { "en": "Friends and pets", "nb": "Venner og kjæledyr" }, "focus": ["vinur_no", "vinkona_no", "hundur_no", "köttur_no", "þekkja_so", "elska_so"] },
+    { "id": "6", "title": { "en": "Having and living", "nb": "Å ha og å bo" }, "focus": ["eiga_so", "búa_so", "sinn_fn", "sig_afn", "foreldri_no"] },
+    { "id": "7", "title": { "en": "Age and counting", "nb": "Alder og telling" }, "focus": ["aldur_no", "ungur_lo", "sex_to", "sjö_to", "átta_to", "níu_to", "tíu_to", "tuttugu_to"] },
+    { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": { "en": "Family words in -ir", "nb": "Familieord på -ir" },
+        "text": {
+          "en": "Five family words end in -ir: {is:faðir}, {is:móðir}, {is:bróðir}, {is:systir} and {is:dóttir}. In the singular, every case except the nominative ends in -ur: {is:föður}, {is:móður}, {is:bróður}, {is:systur}, {is:dóttur}. In the plural, four of them change their vowel, the same kind of change as in English man, men: {is:feður}, {is:mæður}, {is:bræður}, {is:dætur}. Only {is:systir} keeps it: {is:systur}.",
+          "nb": "Fem familieord ender på -ir: {is:faðir}, {is:móðir}, {is:bróðir}, {is:systir} og {is:dóttir}. I entall ender alle kasus unntatt nominativ på -ur: {is:föður}, {is:móður}, {is:bróður}, {is:systur}, {is:dóttur}. I flertall skifter fire av dem vokal, akkurat som norsk bror, brødre og datter, døtre: {is:feður}, {is:mæður}, {is:bræður}, {is:dætur}. Bare {is:systir} beholder vokalen: {is:systur}."
+        },
+        "examples": ["543802", "3982190", "10880095"],
+        "tables": ["bróðir_no", "systir_no"]
+      },
+      {
+        "title": { "en": "My and your come after the noun", "nb": "Min og din står etter substantivet" },
+        "text": {
+          "en": "{is:minn} (my) and {is:þinn} (your) follow the noun and agree with it in gender, number and case: {is:pabbi minn}, {is:mamma mín}, {is:barnið mitt}. Most nouns take the article ending first, as in {is:kötturinn minn} (my cat), but family words usually stay bare: {is:bróðir minn} (my brother). For his and her, Icelandic uses {is:hans} and {is:hennar}, which never change: {is:húsið hans}, {is:húsið hennar}.",
+          "nb": "{is:minn} (min) og {is:þinn} (din) står etter substantivet og bøyes etter det i kjønn, tall og kasus: {is:pabbi minn}, {is:mamma mín}, {is:barnið mitt}. Som på norsk får de fleste substantiv bestemt form først: {is:kötturinn minn} (katten min). Men familieord står som regel uten endelse, der norsk sier broren min: {is:bróðir minn}. For hans og hennes bruker islandsk {is:hans} og {is:hennar}, som aldri bøyes: {is:húsið hans}, {is:húsið hennar}."
+        },
+        "examples": ["1320754", "469342", "473554", "813360"],
+        "tables": ["minn_fn"]
+      },
+      {
+        "title": { "en": "Their own: sinn and sig", "nb": "Sin egen: sinn og sig" },
+        "text": {
+          "en": "When his, her or their points back to the subject of the same sentence, Icelandic uses {is:sinn}, {is:sín}, {is:sitt}: in {is:Hún hringdi í dóttur sína} she calls her own daughter. {is:hans} and {is:hennar} are for someone else's, as in {is:Hann sér hundinn hennar} (he sees her dog). English cannot make this difference, but Norwegian makes it the same way with sin, si, sitt. The reflexive pronoun {is:sig} (Norwegian seg) also points back to the subject: {is:Hann meiddi sig} (he hurt himself).",
+          "nb": "Når hans, hennes eller deres viser tilbake til subjektet i samme setning, bruker islandsk {is:sinn}, {is:sín}, {is:sitt}, akkurat som norsk sin, si, sitt: {is:Hún hringdi í dóttur sína} (hun ringte datteren sin). {is:hans} og {is:hennar} gjelder noen andres: {is:Hann sér hundinn hennar} (han ser hunden hennes). Det refleksive pronomenet {is:sig} tilsvarer norsk seg: {is:Hann meiddi sig} (han skadet seg)."
+        },
+        "examples": ["4514933", "888066", "10609509"],
+        "tables": ["sinn_fn", "sig_afn"]
+      },
+      {
+        "title": { "en": "Having family: eiga, and living: búa", "nb": "Å ha familie: eiga, og å bo: búa" },
+        "text": {
+          "en": "For family, pets and things you have, Icelandic uses {is:eiga} (to own): {is:Ég á dóttur} (I have a daughter). {is:eiga} is irregular: {is:ég á}, {is:þú átt}, {is:hún á}, {is:við eigum}. What you have is the object, so it is in the accusative: {is:þrjá bræður}, {is:tvær systur}. Where someone lives is said with {is:búa}: {is:ég bý}, {is:þú býrð}, {is:hún býr}.",
+          "nb": "For familie, dyr og ting man har, bruker islandsk {is:eiga} (å eie): {is:Ég á dóttur} (jeg har en datter). {is:eiga} er uregelrett: {is:ég á}, {is:þú átt}, {is:hún á}, {is:við eigum}. Det man har er objektet og står i akkusativ: {is:þrjá bræður}, {is:tvær systur}. Hvor noen bor, sier man med {is:búa} (å bo): {is:ég bý}, {is:þú býrð}, {is:hún býr}."
+        },
+        "examples": ["386161", "451925", "1979493"],
+        "tables": ["eiga_so"]
+      },
+      {
+        "title": { "en": "How old? Numbers and ára", "nb": "Hvor gammel? Tall og ára" },
+        "text": {
+          "en": "The numbers from five to twenty never change: {is:sex}, {is:sjö}, {is:átta}, {is:níu}, {is:tíu}, {is:tuttugu}. Age is said with {is:ára}, \"of years\", the genitive plural of {is:ár} (year): {is:Hún er átta ára}. You can add {is:gamall} (old), which agrees with whoever is old: {is:gamall} for a man or a masculine noun, {is:gömul} for a woman.",
+          "nb": "Tallene fra fem til tjue bøyes aldri: {is:sex}, {is:sjö}, {is:átta}, {is:níu}, {is:tíu}, {is:tuttugu}. Alder sier man med {is:ára}, \"av år\", genitiv flertall av {is:ár}: {is:Hún er átta ára}. Man kan legge til {is:gamall} (gammel), som bøyes etter den som er gammel: {is:gamall} om en mann eller et hankjønnsord, {is:gömul} om en kvinne."
+        },
+        "examples": ["10633141", "10633143", "475096"]
+      }
+    ]
+  }
 }

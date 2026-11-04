@@ -6,7 +6,7 @@ import { loadJSON, ready } from '../app.js';
 import { loadCourse } from '../course.js';
 import { loadProgress } from '../progress.js';
 import { pick, t } from '../i18n.js';
-import { analyze, gloss, lemma, loadAll, recordings, sentence, translation } from '../data.js';
+import { analyze, gloss, lemma, loadAll, recordings, sentence, tagsOf, translation } from '../data.js';
 import { play, stop, ttsCredit } from '../audio.js';
 import { icon } from '../shell.js';
 import { caseTag, classLabel, describe, genderLabel } from '../ui/forms.js';
@@ -119,8 +119,10 @@ async function playAll() {
   allButton.setAttribute('aria-pressed', 'false');
 }
 
-function panelHTML(word) {
-  const found = analyze(word);
+// tag: the course word this is in its sentence (data/tags.json), -1 for another word, else undefined.
+function panelHTML(word, tag) {
+  const all = analyze(word);
+  const found = typeof tag === 'string' && all.some((a) => a.id === tag) ? all.filter((a) => a.id === tag) : tag === -1 ? [] : all;
   const close = `<button type="button" class="icon-button word-panel__close" data-close aria-label="${t('stories.close')}">${icon('close')}</button>`;
   if (!found.length) return `<div class="sheet__inner"><div class="sheet__head"><h2 class="sheet__title" lang="is">${esc(word)}</h2>${close}</div><p>${t('stories.noData')}</p></div>`;
   const byLemma = new Map();
@@ -149,7 +151,8 @@ function openWord(btn) {
   activeWord?.setAttribute('aria-expanded', 'false');
   activeWord = btn;
   btn.setAttribute('aria-expanded', 'true');
-  panel.innerHTML = panelHTML(btn.textContent);
+  const sid = story.lines[Number(btn.closest('[data-line]').dataset.line)].sentence;
+  panel.innerHTML = panelHTML(btn.textContent, tagsOf(sid)?.[Number(btn.dataset.w)] ?? undefined);
   panel.classList.add('is-open');
   if (!desktop.matches) panel.querySelector('[data-close]').focus();
 }

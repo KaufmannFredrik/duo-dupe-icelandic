@@ -3,10 +3,11 @@
 // exercise correctly, then checks that progress was saved (lesson 1 done, lesson 2 current, XP in
 // the HUD), that progress survives export, reset and import, that hearts end a lesson, and that
 // the site loads offline once the service worker is installed.
-// With --all it also plays every lesson of units 1 and 2, the sounds and letters drills, and
+// With --all it also plays every lesson of the hand-made units, the sounds and letters drills, and
 // checks the story reader (word panel, line audio from the generated voice) at desktop size.
 //   node tests/smoke.mjs [--all]
 
+import { readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { startServer } from '../scripts/serve.mjs';
 import { answer } from './helpers/answer.mjs';
@@ -176,7 +177,12 @@ if (process.argv.includes('--all')) {
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   const seen = new Map();
-  const lessons = [...['1', '2', '3', '4', '5', 'review'].map((l) => ['hello', l]), ...['1', '2', '3', '4', '5', '6', '7', 'review'].map((l) => ['cafe', l])];
+  // Every lesson of every hand-made unit (units whose lessons are listed, not "auto").
+  const unitFiles = JSON.parse(readFileSync(new URL('../content/units/index.json', import.meta.url), 'utf8')).units;
+  const lessons = unitFiles
+    .map((f) => JSON.parse(readFileSync(new URL(`../content/units/${f}`, import.meta.url), 'utf8')))
+    .filter((u) => Array.isArray(u.lessons))
+    .flatMap((u) => u.lessons.map((l) => [u.id, l.id]));
   for (const [unit, lesson] of lessons) {
     try {
       const types = await playLesson(page, `lesson.html?unit=${unit}&lesson=${lesson}`);

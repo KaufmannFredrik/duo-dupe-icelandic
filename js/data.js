@@ -1,6 +1,7 @@
 // Runtime access to the generated course data in /data: the lexicon index, DMII Core paradigms
-// (one file per theme), Tatoeba sentences and Commons recordings. Loads lazily and builds the
-// form index used by exercises, the dictionary and the stories reader.
+// (one file per theme), Tatoeba sentences with their word tags (data/tags.json) and Commons
+// recordings. Loads lazily and builds the form index used by exercises, the dictionary and the
+// stories reader.
 
 import { loadJSON } from './app.js';
 import { getSettings } from './store.js';
@@ -10,6 +11,7 @@ import { createGenerator } from './engine/generate.js';
 
 let lexicon;
 let sentencesFile;
+let tagsFile;
 let audioFile;
 let rules;
 let names;
@@ -28,17 +30,19 @@ export async function loadForms(themes) {
   await Promise.all(want.filter((t) => !shards.has(t)).map(async (t) => shards.set(t, (await loadJSON(`data/forms/${t}.json`)).lemmas)));
 }
 
-/** Everything exercises need: lexicon, all paradigms, sentences, recordings, rules, names. */
+/** Everything exercises need: lexicon, all paradigms, sentences and their tags, recordings, rules, names. */
 export async function loadAll() {
   await loadLexicon();
-  const [s, a, r, allow] = await Promise.all([
+  const [s, tg, a, r, allow] = await Promise.all([
     sentencesFile ?? loadJSON('data/sentences.json'),
+    tagsFile ?? loadJSON('data/tags.json'),
     audioFile ?? loadJSON('data/audio.json'),
     rules ?? loadJSON('content/case-rules.json').then((x) => x.rules),
     names ?? loadJSON('content/allowlist.json').then((x) => new Set(x.names.map((n) => n.toLocaleLowerCase('is')))),
     loadForms(),
   ]);
   sentencesFile = s;
+  tagsFile = tg;
   audioFile = a;
   rules = r;
   names = allow;
@@ -49,6 +53,15 @@ export async function loadAll() {
 export const lemma = (id) => lexicon?.lemmas[id];
 export const entry = (id) => shards.get(lexicon.lemmas[id]?.theme)?.[id] ?? null;
 export const sentence = (sid) => sentencesFile?.sentences[sid];
+
+/**
+ * Which course word each word (p{L}+ token) of a sentence is there, from the Greynir parse:
+ * a lemma id, -1 for another word or a name, null when undetermined; undefined without tags.
+ */
+export function tagsOf(sid) {
+  const t = tagsFile?.sentences[sid];
+  return t?.map((x) => (x === null || x === -1 ? x : tagsFile.lemmas[x]));
+}
 export const recordings = (id) => audioFile?.recordings[id] ?? [];
 export const caseRules = () => rules;
 
@@ -84,7 +97,7 @@ export function analyze(form) {
 }
 
 export function getGenerator() {
-  generator ??= createGenerator({ lexicon, paradigm, formIndex: index, sentences: sentencesFile.sentences, pool: sentencesFile.pool, audio: audioFile.recordings, rules, names });
+  generator ??= createGenerator({ lexicon, paradigm, formIndex: index, sentences: sentencesFile.sentences, pool: sentencesFile.pool, tagsOf, audio: audioFile.recordings, rules, names });
   return generator;
 }
 
