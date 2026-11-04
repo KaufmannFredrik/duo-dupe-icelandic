@@ -6,6 +6,7 @@ import { t } from '../i18n.js';
 import { getSettings, setSetting } from '../store.js';
 import { icelandicVoices, play } from '../audio.js';
 import { audioCacheStatus, cacheAllAudio, offlineState } from '../offline.js';
+import { speechSupport } from '../speech.js';
 
 await ready;
 const form = document.querySelector('[data-settings]');
@@ -21,6 +22,19 @@ radio('strict', s.strict ? 'strict' : 'easy');
 radio('goal', s.goal);
 form.elements.sound.checked = s.sound;
 form.elements.hearts.checked = s.hearts;
+form.elements.speaking.checked = s.speaking;
+// Speech support is only checked once speaking is on: the check asks the browser about its
+// recognizers, which is nobody's business until the learner opts in.
+async function showSpeechState(on) {
+  const el = form.querySelector('[data-speaking-state]');
+  if (!on) {
+    el.textContent = '';
+    return;
+  }
+  const support = await speechSupport();
+  el.textContent = t({ local: 'settings.speakingLocal', service: 'settings.speakingService', none: 'settings.speakingNone' }[support]);
+}
+showSpeechState(s.speaking);
 form.elements.uiLang.value = s.uiLang ?? 'auto';
 form.elements.glossLang.value = s.glossLang ?? 'auto';
 form.elements.rate.value = String(s.rate);
@@ -55,6 +69,10 @@ form.addEventListener('change', (e) => {
     case 'sound':
     case 'hearts':
       setSetting(el.name, el.checked);
+      break;
+    case 'speaking':
+      setSetting('speaking', el.checked);
+      showSpeechState(el.checked);
       break;
     case 'uiLang':
       setSetting('uiLang', el.value === 'auto' ? null : el.value);

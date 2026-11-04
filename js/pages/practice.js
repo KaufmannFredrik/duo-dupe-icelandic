@@ -8,9 +8,13 @@ import { attempts, cards, mistakes } from '../progress.js';
 import { dueCards } from '../srs.js';
 import { loadLexicon } from '../data.js';
 import { caseTag } from '../ui/forms.js';
+import { getSettings } from '../store.js';
+import { speechSupport } from '../speech.js';
 import { MIN_ANSWERS, heatCells, heatLevel as level } from '../stats.js';
 
 await ready;
+// The speaking card appears only when it is turned on in Settings and the browser can recognize speech.
+if (getSettings().speaking) speechSupport().then((support) => (document.querySelector('[data-speak-card]').hidden = support === 'none'));
 const [lexicon, all, list, mistakeList] = await Promise.all([loadLexicon(), attempts(), cards(), mistakes()]);
 
 const count = (sel, n) => {

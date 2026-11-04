@@ -42,6 +42,11 @@ export async function answer(page, mode = 'correct') {
         await page.click(`[data-side="gloss"][data-id="${id}"]`);
       }
       break;
+    case 'speak':
+      // Needs tests/helpers/fake-speech.mjs installed; it hears the sentence.
+      await page.click('[data-mic]');
+      await page.waitForFunction(() => !document.querySelector('[data-action="check"]').disabled);
+      break;
     case 'table': {
       const forms = await page.evaluate((id) => window.__tolva.paradigm(id), spec.lemma);
       for (const tag of spec.blanks) await page.fill(`.decl__input[data-tag="${tag}"]`, forms.find((f) => f.g === tag).b);

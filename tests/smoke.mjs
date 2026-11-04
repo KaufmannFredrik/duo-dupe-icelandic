@@ -10,6 +10,7 @@
 import { chromium } from 'playwright';
 import { startServer } from '../scripts/serve.mjs';
 import { answer } from './helpers/answer.mjs';
+import { fakeSpeech } from './helpers/fake-speech.mjs';
 
 const VIEWPORTS = {
   phone: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
@@ -113,6 +114,32 @@ for (const [name, options] of Object.entries(VIEWPORTS)) {
   } catch (e) {
     failed = true;
     console.log(`FAIL hearts: ${e.message}`);
+  }
+  await context.close();
+}
+
+// Speaking (experimental): with a stand-in recognizer, a round can be completed, and a poor
+// match asks "Did we understand you?" before anything is graded.
+{
+  const context = await browser.newContext({ ...VIEWPORTS.phone, ...isolated });
+  await context.addInitScript(() => localStorage.setItem('tolva.settings.v1', JSON.stringify({ speaking: true })));
+  await context.addInitScript(fakeSpeech);
+  const page = await context.newPage();
+  try {
+    await page.goto(`${url}practice.html`);
+    await page.locator('[data-speak-card]:not([hidden])').waitFor({ timeout: 5000 });
+    await page.goto(`${url}lesson.html?mode=speak&qa`);
+    await page.waitForFunction(() => window.__tolva?.spec());
+    await page.evaluate(() => (window.__heard = 'eitthvað allt annað'));
+    await page.click('[data-mic]');
+    await page.locator('[data-confirm]:not([hidden])').waitFor({ timeout: 5000 });
+    if (!(await page.isDisabled('[data-action="check"]'))) throw new Error('a poor match can be checked before the learner confirms');
+    await page.evaluate(() => delete window.__heard);
+    const types = await playLesson(page, 'lesson.html?mode=speak');
+    console.log(`PASS speaking: confirm step, then ${types.length} sentences`);
+  } catch (e) {
+    failed = true;
+    console.log(`FAIL speaking: ${e.message}`);
   }
   await context.close();
 }

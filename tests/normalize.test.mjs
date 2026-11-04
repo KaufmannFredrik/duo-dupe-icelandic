@@ -48,3 +48,16 @@ test('grade: other words are wrong, empty input is wrong', () => {
   assert.equal(grade('gott kvöld', ['Góðan daginn!']).result, 'wrong');
   assert.equal(grade('   ', ['Góðan daginn!']).result, 'wrong');
 });
+
+test('matchWords: in-order word overlap, ignoring case and punctuation', async () => {
+  const { matchWords, bestMatch } = await import('../js/normalize.js');
+  assert.deepEqual(matchWords('ég heiti Jack', 'Ég heiti Jack.'), { score: 1, marks: [true, true, true] });
+  const m = matchWords('ég heiti', 'Ég heiti Jack.');
+  assert.equal(m.score, 2 / 3);
+  assert.deepEqual(m.marks, [true, true, false]);
+  assert.equal(matchWords('jack heiti ég', 'Ég heiti Jack.').score, 1 / 3, 'order matters');
+  assert.equal(matchWords('', 'Takk!').score, 0);
+  const b = bestMatch(['eg heiti jakk', 'ég heiti Jack'], 'Ég heiti Jack.');
+  assert.equal(b.heard, 'ég heiti Jack');
+  assert.equal(b.score, 1);
+});

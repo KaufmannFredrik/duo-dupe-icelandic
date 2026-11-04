@@ -632,3 +632,17 @@ html[data-calm="on"] .word.is-speaking { text-shadow: none; }
 .hearts[data-low="true"] .icon { animation: heart-pulse 1s ease-in-out infinite; }
 @keyframes heart-pulse { 50% { transform: scale(1.15); } }
 html[data-calm="on"] .hearts .icon { animation: none; }
+
+/* Speaking practice -------------------------------------------------------------------------- */
+
+.speak { display: grid; gap: var(--space-4); justify-items: start; }
+.speak__mic { min-height: 56px; }
+.speak__mic[aria-pressed="true"] { border-color: var(--rf-pink); color: var(--rf-pink-text); box-shadow: var(--glow-pink); }
+.speak__mic[aria-pressed="true"] .icon { animation: heart-pulse 1s ease-in-out infinite; }
+html[data-calm="on"] .speak__mic .icon { animation: none; }
+.speak__heard { min-height: 1.5em; font-size: var(--text-learn); }
+.speak__heard q { color: #FFFFFF; }
+.speak__target { color: #FFFFFF; }
+.speak__word[data-heard="true"] { border-bottom: 2px solid var(--color-correct); }
+.speak__word[data-heard="false"] { border-bottom: 2px dashed var(--color-almost); color: var(--color-almost); }
+.speak__confirm { display: grid; gap: var(--space-3); width: 100%; }

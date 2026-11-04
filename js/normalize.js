@@ -60,3 +60,38 @@ export function missingLetters(input, answer) {
 
 /** Splits a sentence into lowercase word tokens, dropping punctuation. */
 export const words = (s) => normalize(s).split(' ').filter(Boolean);
+
+/**
+ * How much of a target sentence a speech transcript contains, word by word, in order (longest
+ * common subsequence of normalized words). Numbers written as digits never match, because the
+ * course teaches the words. Used by the speaking practice.
+ * @returns {{ score: number, marks: boolean[] }} marks[i]: target word i was heard
+ */
+export function matchWords(heard, target) {
+  const a = words(heard);
+  const b = words(target);
+  const dp = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+  for (let i = a.length - 1; i >= 0; i--) {
+    for (let j = b.length - 1; j >= 0; j--) dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  }
+  const marks = new Array(b.length).fill(false);
+  for (let i = 0, j = 0; i < a.length && j < b.length; ) {
+    if (a[i] === b[j]) {
+      marks[j] = true;
+      i++;
+      j++;
+    } else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+    else j++;
+  }
+  return { score: b.length ? dp[0][0] / b.length : 0, marks };
+}
+
+/** The best of several transcripts for a target. */
+export function bestMatch(transcripts, target) {
+  let best = { heard: transcripts[0] ?? '', score: 0, marks: words(target).map(() => false) };
+  for (const heard of transcripts) {
+    const m = matchWords(heard, target);
+    if (m.score > best.score) best = { heard, ...m };
+  }
+  return best;
+}

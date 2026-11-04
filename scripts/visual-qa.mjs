@@ -13,6 +13,7 @@ import { ROOT } from './lib/bulk.mjs';
 import { startServer } from './serve.mjs';
 import { loadData } from '../tests/helpers/data.mjs';
 import { answer } from '../tests/helpers/answer.mjs';
+import { fakeSpeech } from '../tests/helpers/fake-speech.mjs';
 import { allowedFor } from '../js/engine/course-model.js';
 import { hashSeed } from '../js/engine/rng.js';
 
@@ -131,6 +132,9 @@ const SHOTS = [
   { name: 'practice', url: 'practice.html', full: true },
   { name: 'profile', url: 'profile.html', full: true },
   { name: 'settings', url: 'settings.html', full: true, sw: true },
+  { name: 'speak', url: 'lesson.html?mode=speak&qa', speak: true },
+  { name: 'speak-confirm', url: 'lesson.html?mode=speak&qa', speak: true, act: async (p) => { await p.evaluate(() => (window.__heard = 'ég er')); await p.click('[data-mic]'); await p.locator('[data-confirm]:not([hidden])').waitFor(); } },
+  { name: 'feedback-speak', url: 'lesson.html?mode=speak&qa', speak: true, act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'credits', url: 'credits.html', full: true },
   { name: 'styleguide', url: 'styleguide.html', full: true },
   { name: 'landing-calm', url: 'index.html', calm: true },
@@ -159,6 +163,10 @@ for (const [vpName, options] of Object.entries(VIEWPORTS)) {
     if (only && !only.includes(shot.name)) continue;
     const context = await browser.newContext({ ...options, reducedMotion: shot.calm ? 'reduce' : 'no-preference', serviceWorkers: shot.sw ? 'allow' : 'block' });
     if (shot.hearts) await context.addInitScript(() => localStorage.setItem('tolva.settings.v1', JSON.stringify({ hearts: true })));
+    if (shot.speak) {
+      await context.addInitScript(() => localStorage.setItem('tolva.settings.v1', JSON.stringify({ speaking: true })));
+      await context.addInitScript(fakeSpeech);
+    }
     const page = await context.newPage();
     page.on('pageerror', (e) => report.errors.push(`${vpName}/${shot.name}: ${e.message}`));
     page.on('console', (m) => m.type() === 'error' && report.errors.push(`${vpName}/${shot.name}: console: ${m.text()}`));
@@ -184,7 +192,7 @@ for (const [vpName, options] of Object.entries(VIEWPORTS)) {
 }
 
 // No horizontal scroll down to 320 px.
-const narrow = await browser.newContext({ viewport: { width: 320, height: 640 }, isMobile: true, hasTouch: true });
+const narrow = await browser.newContext({ viewport: { width: 320, height: 640 }, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
 for (const url of OVERFLOW_PAGES) {
   const page = await narrow.newPage();
   await page.goto(base + url);

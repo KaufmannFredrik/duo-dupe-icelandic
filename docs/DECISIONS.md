@@ -2,6 +2,32 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Phase 6: speaking (2026-11-04)
+
+### Is there a usable recognizer?
+
+- No free Icelandic speech recognizer can run inside a static site. Open Icelandic ASR models exist (for example the Language and Voice Lab's wav2vec2 and Whisper fine-tunes on Hugging Face), but they are hundreds of megabytes and need a server or a heavy WebAssembly runtime, against the static, under-20 MB design.
+- The browser's Web Speech API accepts `lang = "is-IS"`. Chrome and Edge recognize through their makers' online services; Safari's support for Icelandic is unknown. Newer Chrome can also report and use on-device recognition (`SpeechRecognition.available` with `processLocally`). In Chromium 156 the on-device answer for `is-IS` is "unavailable" and the online answer "available".
+- Decision: build speaking practice on the Web Speech API, **experimental and off by default**. Settings says plainly that the voice may be sent to the browser maker's service, and the on-device recognizer is used whenever the browser offers it.
+
+### What was built
+
+- `js/speech.js`: support check (on-device, online service, or none) and a one-shot listener with up to five alternatives and interim text.
+- Speaking practice (`lesson.html?mode=speak`, a Practice card shown only when the setting is on and the browser has a recognizer): eight short sentences (two to six words) made of words the learner has met, each with audio and translation. The learner taps the microphone and speaks; the best alternative is matched to the sentence word by word, in order (`matchWords` in `js/normalize.js`), and the sentence shows which words were heard.
+- **"Did we understand you?"** Recognizers mishear learners, so a match below 80% is never graded until the learner either confirms "Yes, that is what I said" or tries again. Grading: 80% or more correct, 50% or more almost, otherwise wrong. Speaking gives XP but creates no spaced-repetition cards, because a recognizer error should not schedule a word.
+- Recognizer errors (microphone blocked, no connection, language not supported) show a plain message instead of failing silently.
+
+### Decisions and fixes
+
+- `SpeechRecognition.available({ processLocally: true })` crashes the renderer of headless Chromium 156 (headed Chrome answers it). The support check therefore runs only after the learner turns speaking on, never on a plain visit, and the tests replace the recognizer with `tests/helpers/fake-speech.mjs`.
+- Speaking is a practice mode, not part of regular lessons, so a learner who cannot or will not speak loses nothing.
+
+### Tests
+
+- `node --test`: 45 tests (new: word matching for transcripts).
+- `npm run smoke`: with the stand-in recognizer, a poor match shows the confirm step and keeps Check disabled; then a full speaking round completes.
+- `npm run qa`: shots of the speaking exercise, the confirm step and the result. 0 axe violations, no horizontal scroll at 320 px, no page errors.
+
 ## Phase 5: motivation, offline and polish (2026-11-04)
 
 ### What was built

@@ -4,7 +4,7 @@ Learn Icelandic from the oracle in the machine.
 
 TÖLVA is a free, static, grammar-first website for learning Icelandic: a unit path, many exercise types, case and ending practice, audio, spaced repetition, and Norwegian Bokmål as a first-class base language next to English. It is plain HTML, CSS and JavaScript modules with no build step, so it can be served from GitHub Pages.
 
-**Status:** Phase 5. Units 1 and 2 are complete and playable; units 3 to 9 are generated previews. Every word and sentence has audio (human recordings where they exist, otherwise a generated voice), there are five stories and a minimal-pairs drill, and XP, streaks with streak freezes, a daily goal, badges, optional hearts, progress export and import, and offline use (installable web app) all work. Speaking practice (Phase 6) and the Norwegian bridge (Phase 7) come next. See [docs/DECISIONS.md](docs/DECISIONS.md) for what was decided and why, and [docs/api-report.md](docs/api-report.md) for the data-source probe.
+**Status:** Phase 6. Units 1 and 2 are complete and playable; units 3 to 9 are generated previews. Every word and sentence has audio (human recordings where they exist, otherwise a generated voice), there are five stories and a minimal-pairs drill, and XP, streaks with streak freezes, a daily goal, badges, optional hearts, progress export and import, and offline use (installable web app) all work. Speaking practice with the browser's speech recognition is available as an experimental, opt-in setting. The Norwegian bridge (Phase 7) comes next. See [docs/DECISIONS.md](docs/DECISIONS.md) for what was decided and why, and [docs/api-report.md](docs/api-report.md) for the data-source probe.
 
 ## Run it
 
@@ -16,7 +16,7 @@ npm run serve            # node scripts/serve.mjs 8080, then open http://localho
 python3 -m http.server 8080
 ```
 
-Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=2`, or `?mode=review`, `mistakes`, `letters`, `sounds` or `placement`), `guide.html?unit=hello`, `practice.html`, `declension.html?lemma=kaffi` (case trainer), `stories.html` (`?story=cafe` opens the reader), `dictionary.html`, `profile.html`, `settings.html`, `voices.html`, `credits.html`, `styleguide.html`.
+Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=2`, or `?mode=review`, `mistakes`, `letters`, `sounds`, `speak` or `placement`), `guide.html?unit=hello`, `practice.html`, `declension.html?lemma=kaffi` (case trainer), `stories.html` (`?story=cafe` opens the reader), `dictionary.html`, `profile.html`, `settings.html`, `voices.html`, `credits.html`, `styleguide.html`.
 
 ## Requirements for the scripts
 
@@ -31,7 +31,7 @@ Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=
 | Command | What it does |
 |---|---|
 | `npm test` | Unit tests (`node --test`): grading, spaced repetition, the course model, and the exercise generator against the real data. |
-| `npm run smoke` | Playwright plays every lesson of units 1 and 2 and the sounds and letters drills, checks that progress and XP are saved, that export, reset and import round-trip, that hearts end a lesson, that the site loads offline, and opens a story (word panel, line audio). |
+| `npm run smoke` | Playwright plays every lesson of units 1 and 2 and the sounds and letters drills, checks that progress and XP are saved, that export, reset and import round-trip, that hearts end a lesson, that the site loads offline, plays a speaking round with a stand-in recognizer, and opens a story (word panel, line audio). |
 | `npm run validate` | Checks every Icelandic word in the content against the DMII Core, and hand-written sentences with GreynirCorrect. |
 | `npm run build:data` | Rebuilds `/data` (needs `npm run probe:coverage` first for the bulk files, and GreynirCorrect in `.venv`). |
 | `npm run check` | Contrast check, UI string check (English and Norwegian), content validation, unit tests. |

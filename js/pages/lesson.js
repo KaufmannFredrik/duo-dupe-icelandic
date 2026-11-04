@@ -4,12 +4,14 @@
 //   mistakes    replays exercises answered wrong
 //   letters     typing drill for words with þ, ð, æ, ö and accents
 //   sounds      minimal pairs: hear one word of a pair, pick which it was
+//   speak       say short sentences you have met (experimental; Settings turns it on)
 //   placement   adaptive test: one step per unit, stops at the first unit with a miss
 // Every answer is recorded per item (word meaning or single form) for spaced repetition.
 
 import { loadJSON, ready } from '../app.js';
 import { pick, t } from '../i18n.js';
 import { caseRules, getGenerator, gloss, glossLang, lemma, loadAll, paradigm, recordings, sentence, translation } from '../data.js';
+import { speechSupport } from '../speech.js';
 import { allowedFor, findLesson, loadCourse, nextLesson } from '../course.js';
 import { cards, completeLesson, loadProgress, mistakes, recordAttempt, skipUnits } from '../progress.js';
 import { dueCards } from '../srs.js';
@@ -82,6 +84,18 @@ async function soundsPlan() {
   return { key: 'practice/sounds', title: t('practice.sounds'), specs, contrasts: mp.contrasts };
 }
 
+// Speaking: short sentences made of words the learner has met, shortest first.
+async function speakPlan() {
+  const title = t('practice.speak');
+  if (!getSettings().speaking || (await speechSupport()) === 'none') return { key: 'practice/speak', title, specs: [], empty: t('practice.speakOff') };
+  const { pool } = await loadAll();
+  const fits = (allowed) => pool.filter((sid) => gen.toks(sid).length >= 2 && gen.toks(sid).length <= 6 && gen.sentenceOk(sid, allowed));
+  let ids = fits(learnedSoFar);
+  if (ids.length < 6) ids = fits(allowedFor(course, course.units[0].id, course.units[0].lessons.length - 1));
+  const picked = shuffle(ids, rng(Date.now() % 1e9)).slice(0, 8);
+  return { key: 'practice/speak', title, specs: picked.map((sid) => ({ type: 'speak', sentence: sid, key: null })) };
+}
+
 function placementPlan() {
   const steps = gen.placement({ units: course.units, seed: Date.now() % 1e9 });
   return { key: 'placement', title: t('placement.title'), specs: steps.flatMap((s) => s.items.map((item) => ({ ...item, step: s.unit }))), steps, placement: true };
@@ -92,6 +106,7 @@ const plan =
   : mode === 'mistakes' ? await mistakesPlan()
   : mode === 'letters' ? lettersPlan()
   : mode === 'sounds' ? await soundsPlan()
+  : mode === 'speak' ? await speakPlan()
   : mode === 'placement' ? placementPlan()
   : lessonPlan();
 $('[data-lesson-title]').textContent = plan.title;

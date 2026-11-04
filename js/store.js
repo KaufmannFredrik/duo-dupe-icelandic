@@ -10,6 +10,7 @@ export const DEFAULT_SETTINGS = {
   strict: false, // strict answer checking: missing accents count as wrong
   hearts: false, // lose a heart per mistake; out of hearts ends the lesson
   goal: 20, // daily goal in XP
+  speaking: false, // experimental speaking practice with the browser's speech recognition
   uiLang: null, // null: detect from the browser
   glossLang: null, // null: same as uiLang
   voice: '', // voiceURI of a browser is-IS voice
