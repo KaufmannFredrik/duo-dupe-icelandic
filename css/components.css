@@ -646,3 +646,6 @@ html[data-calm="on"] .speak__mic .icon { animation: none; }
 .speak__word[data-heard="true"] { border-bottom: 2px solid var(--color-correct); }
 .speak__word[data-heard="false"] { border-bottom: 2px dashed var(--color-almost); color: var(--color-almost); }
 .speak__confirm { display: grid; gap: var(--space-3); width: 100%; }
+
+/* A chip that only labels (no action) */
+.chip--static { min-height: 0; padding: var(--space-1) var(--space-3); border-style: dashed; font-size: var(--text-sm); cursor: default; }

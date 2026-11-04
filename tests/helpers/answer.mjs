@@ -25,7 +25,8 @@ export async function answer(page, mode = 'correct') {
     case 'case':
       await page.click(`.option[data-value="${spec.cases[0]}"]`);
       break;
-    case 'typeword': {
+    case 'typeword':
+    case 'bridge': {
       const w = await word(spec.lemma);
       await page.fill('#answer', mode === 'almost' ? fold(w) : w);
       break;

@@ -4,7 +4,7 @@ Learn Icelandic from the oracle in the machine.
 
 TÖLVA is a free, static, grammar-first website for learning Icelandic: a unit path, many exercise types, case and ending practice, audio, spaced repetition, and Norwegian Bokmål as a first-class base language next to English. It is plain HTML, CSS and JavaScript modules with no build step, so it can be served from GitHub Pages.
 
-**Status:** Phase 6. Units 1 and 2 are complete and playable; units 3 to 9 are generated previews. Every word and sentence has audio (human recordings where they exist, otherwise a generated voice), there are five stories and a minimal-pairs drill, and XP, streaks with streak freezes, a daily goal, badges, optional hearts, progress export and import, and offline use (installable web app) all work. Speaking practice with the browser's speech recognition is available as an experimental, opt-in setting. The Norwegian bridge (Phase 7) comes next. See [docs/DECISIONS.md](docs/DECISIONS.md) for what was decided and why, and [docs/api-report.md](docs/api-report.md) for the data-source probe.
+**Status:** Phase 6. Units 1 and 2 are complete and playable; units 3 to 9 are generated previews. Every word and sentence has audio (human recordings where they exist, otherwise a generated voice), there are five stories and a minimal-pairs drill, and XP, streaks with streak freezes, a daily goal, badges, optional hearts, progress export and import, and offline use (installable web app) all work. Speaking practice with the browser's speech recognition is available as an experimental, opt-in setting. The Norwegian bridge (`bridge.html`) links 169 course words to their Bokmål relatives, 156 of them through a shared Old Norse word named by both Bokmålsordboka and Wiktionary. See [docs/DECISIONS.md](docs/DECISIONS.md) for what was decided and why, and [docs/api-report.md](docs/api-report.md) for the data-source probe.
 
 ## Run it
 
@@ -16,7 +16,7 @@ npm run serve            # node scripts/serve.mjs 8080, then open http://localho
 python3 -m http.server 8080
 ```
 
-Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=2`, or `?mode=review`, `mistakes`, `letters`, `sounds`, `speak` or `placement`), `guide.html?unit=hello`, `practice.html`, `declension.html?lemma=kaffi` (case trainer), `stories.html` (`?story=cafe` opens the reader), `dictionary.html`, `profile.html`, `settings.html`, `voices.html`, `credits.html`, `styleguide.html`.
+Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=2`, or `?mode=review`, `mistakes`, `letters`, `sounds`, `speak`, `bridge` or `placement`), `guide.html?unit=hello`, `practice.html`, `declension.html?lemma=kaffi` (case trainer), `stories.html` (`?story=cafe` opens the reader), `dictionary.html`, `profile.html`, `settings.html`, `voices.html`, `bridge.html`, `credits.html`, `styleguide.html`.
 
 ## Requirements for the scripts
 
@@ -39,6 +39,7 @@ Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=
 | `npm run probe` | Probes every external API and dataset and rewrites `docs/api-report.md`. |
 | `npm run probe:coverage` | Also downloads the bulk datasets into `.cache/` (about 150 MB) and measures coverage. |
 | `npm run build:audio` | Generates the MP3 files for every course word, minimal-pair word and sentence with the Piper voice Steinn (`scripts/build-audio.py`; existing files are kept, unused ones removed). `--samples` rebuilds the four-voice comparison set. |
+| `npm run build:bridge` | Rebuilds `data/bridge.json`, the Norwegian relatives, from Bokmålsordboka (ord.uib.no, cached in `.cache/ordbokene/`) and the Wiktionary etymologies in `data/lexicon.json`. |
 | `npm run build:sw` | Rewrites `sw.js` (the service worker) with the list of files to precache and a version hashed from their contents. Run it after changing any page, script, style or data file; `npm run check` fails while `sw.js` is out of date. |
 | `npm run build:icons` | Renders the app icons in `assets/icons/` from the mascot, with Playwright. |
 | `npm run build:tala` | Writes the mascot SVG files in `assets/tala/` from `js/tala.js`. |

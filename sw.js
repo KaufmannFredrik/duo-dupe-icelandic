@@ -3,7 +3,7 @@
 // their contents. Generated audio goes into a separate cache when played (or all at once from
 // Settings) and survives updates, because each file name is a hash of its text.
 
-const VERSION = 'efb2477f4808';
+const VERSION = '1d4a3f0254d2';
 const CORE = `tolva-core-${VERSION}`;
 const AUDIO = 'tolva-audio-v1';
 const PRECACHE = [
@@ -23,6 +23,7 @@ const PRECACHE = [
   "assets/tala/tala-thinking.svg",
   "assets/tala/tala-wrong-head.svg",
   "assets/tala/tala-wrong.svg",
+  "bridge.html",
   "content/allowlist.json",
   "content/brand.json",
   "content/case-rules.json",
@@ -52,6 +53,7 @@ const PRECACHE = [
   "data/SOURCES.json",
   "data/audio.json",
   "data/audio/tts-steinn.json",
+  "data/bridge.json",
   "data/forms/around.json",
   "data/forms/cafe.json",
   "data/forms/core.json",
@@ -69,12 +71,15 @@ const PRECACHE = [
   "index.html",
   "js/app.js",
   "js/audio.js",
+  "js/bridge-rules.js",
+  "js/bridge.js",
   "js/course.js",
   "js/data.js",
   "js/db.js",
   "js/engine/course-model.js",
   "js/engine/generate.js",
   "js/engine/rng.js",
+  "js/exercises/bridge.js",
   "js/exercises/case.js",
   "js/exercises/choice.js",
   "js/exercises/common.js",
@@ -94,6 +99,7 @@ const PRECACHE = [
   "js/i18n/nb.json",
   "js/normalize.js",
   "js/offline.js",
+  "js/pages/bridge.js",
   "js/pages/credits.js",
   "js/pages/declension.js",
   "js/pages/dictionary.js",

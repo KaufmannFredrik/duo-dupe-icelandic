@@ -11,6 +11,7 @@ The files in **`/data` are not covered by the MIT license.** They are generated 
 | Tatoeba | Example sentences and translations | CC BY 2.0 FR | Sentence id and author for each sentence |
 | CLARIN-IS, Frequency lists for Icelandic 23.06 | Vocabulary order | CC BY 4.0 | hdl.handle.net/20.500.12537/314 |
 | Wikimedia Commons and Lingua Libre | Word recordings (linked, not copied) | Per file, usually CC BY-SA 4.0 | Author and license for each file |
+| Bokmålsordboka, Universitetet i Bergen og Språkrådet, ordbøkene.no | Norwegian relatives in `data/bridge.json` (Bokmål lemma, article id, Old Norse etymon) | CC BY 4.0 | "Bokmålsordboka, Universitetet i Bergen og Språkrådet, ordbøkene.no, CC-BY 4.0" |
 | Talrómur corpus, through the Piper voices (rhasspy/piper-voices, is_IS medium) | Generated audio in `data/audio/` | CC BY 4.0 | "Talrómur, Reykjavík University", hdl.handle.net/20.500.12537/104 |
 
 ## Generated audio (`data/audio/`)

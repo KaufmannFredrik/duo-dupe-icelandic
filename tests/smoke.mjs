@@ -187,7 +187,7 @@ if (process.argv.includes('--all')) {
       console.log(`FAIL ${unit}/${lesson}: ${e.message}`);
     }
   }
-  for (const href of ['lesson.html?mode=sounds', 'lesson.html?mode=letters']) {
+  for (const href of ['lesson.html?mode=sounds', 'lesson.html?mode=letters', 'lesson.html?mode=bridge']) {
     try {
       const types = await playLesson(page, href);
       for (const t of types) seen.set(t, (seen.get(t) ?? 0) + 1);

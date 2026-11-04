@@ -122,6 +122,11 @@ const SHOTS = [
   { name: 'sounds', url: 'lesson.html?mode=sounds&qa' },
   { name: 'feedback-pair', url: 'lesson.html?mode=sounds&qa', act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'voices', url: 'voices.html', full: true },
+  { name: 'bridge', url: 'bridge.html', full: true },
+  { name: 'bridge-filtered', url: 'bridge.html', act: async (p) => p.click('[data-rule="ending-ur"]') },
+  { name: 'ex-bridge', url: 'lesson.html?mode=bridge&qa' },
+  { name: 'feedback-bridge', url: 'lesson.html?mode=bridge&qa', act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
+  { name: 'dictionary-bridge', url: 'dictionary.html?q=bók', full: true },
   { name: 'profile-progress', url: 'profile.html', full: true, act: importProgress },
   { name: 'learn-progress', url: 'learn.html', act: async (p) => { await importProgress(p); await p.goto(`${base}learn.html`); await settle(p); } },
   { name: 'lesson-complete', url: 'lesson.html?unit=hello&lesson=1&qa', act: playThrough },
@@ -142,7 +147,7 @@ const SHOTS = [
 const OVERFLOW_PAGES = [
   'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=cafe', ...firstOf.values(), 'lesson.html?mode=placement',
   'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
-  'stories.html', 'stories.html?story=hello', 'stories.html?story=cafe', 'lesson.html?mode=sounds', 'voices.html', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
+  'stories.html', 'stories.html?story=hello', 'stories.html?story=cafe', 'lesson.html?mode=sounds', 'voices.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
 ];
 
 async function settle(page) {

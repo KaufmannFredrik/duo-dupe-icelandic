@@ -20,6 +20,7 @@
     "validate": "node scripts/validate-content.mjs",
     "build:tala": "node scripts/build-tala.mjs",
     "build:icons": "node scripts/build-icons.mjs",
+    "build:bridge": "node scripts/build-bridge.mjs",
     "build:sw": "node scripts/build-sw.mjs",
     "smoke": "node tests/smoke.mjs --all"
   },

@@ -19,7 +19,7 @@ const NAV = [
   { page: 'profile', href: 'profile.html', icon: 'profile', key: 'nav.profile' },
 ];
 // Screens reached from a tab highlight that tab.
-const PARENT = { declension: 'practice', settings: 'profile', credits: 'profile', styleguide: 'profile' };
+const PARENT = { declension: 'practice', bridge: 'practice', settings: 'profile', credits: 'profile', styleguide: 'profile' };
 
 export function goalRing(done, goal, cls = '') {
   const r = 18;

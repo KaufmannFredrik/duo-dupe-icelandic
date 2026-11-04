@@ -5,6 +5,7 @@
 //   letters     typing drill for words with þ, ð, æ, ö and accents
 //   sounds      minimal pairs: hear one word of a pair, pick which it was
 //   speak       say short sentences you have met (experimental; Settings turns it on)
+//   bridge      see a Norwegian relative, type the Icelandic word
 //   placement   adaptive test: one step per unit, stops at the first unit with a miss
 // Every answer is recorded per item (word meaning or single form) for spaced repetition.
 
@@ -12,6 +13,7 @@ import { loadJSON, ready } from '../app.js';
 import { pick, t } from '../i18n.js';
 import { caseRules, getGenerator, gloss, glossLang, lemma, loadAll, paradigm, recordings, sentence, translation } from '../data.js';
 import { speechSupport } from '../speech.js';
+import { loadBridge } from '../bridge.js';
 import { allowedFor, findLesson, loadCourse, nextLesson } from '../course.js';
 import { cards, completeLesson, loadProgress, mistakes, recordAttempt, skipUnits } from '../progress.js';
 import { dueCards } from '../srs.js';
@@ -96,6 +98,18 @@ async function speakPlan() {
   return { key: 'practice/speak', title, specs: picked.map((sid) => ({ type: 'speak', sentence: sid, key: null })) };
 }
 
+// Norwegian bridge: sourced pairs (shared Old Norse word or shared loan) that the spelling
+// patterns explain, words met so far first.
+async function bridgePlan() {
+  const { pairs } = await loadBridge();
+  const sourced = Object.entries(pairs).filter(([, p]) => p.evidence !== 'form' && p.rules?.length);
+  const r = rng(Date.now() % 1e9);
+  const met = shuffle(sourced.filter(([id]) => learnedSoFar.has(id)), r);
+  const rest = shuffle(sourced.filter(([id]) => !learnedSoFar.has(id)), r).sort((a, b) => (lemma(a[0]).freq?.rank ?? 1e9) - (lemma(b[0]).freq?.rank ?? 1e9));
+  const picked = [...met, ...rest].slice(0, 10);
+  return { key: 'practice/bridge', title: t('title.bridge'), specs: shuffle(picked, r).map(([id, pair]) => ({ type: 'bridge', lemma: id, pair, key: `${id}|meaning` })) };
+}
+
 function placementPlan() {
   const steps = gen.placement({ units: course.units, seed: Date.now() % 1e9 });
   return { key: 'placement', title: t('placement.title'), specs: steps.flatMap((s) => s.items.map((item) => ({ ...item, step: s.unit }))), steps, placement: true };
@@ -107,6 +121,7 @@ const plan =
   : mode === 'letters' ? lettersPlan()
   : mode === 'sounds' ? await soundsPlan()
   : mode === 'speak' ? await speakPlan()
+  : mode === 'bridge' ? await bridgePlan()
   : mode === 'placement' ? placementPlan()
   : lessonPlan();
 $('[data-lesson-title]').textContent = plan.title;

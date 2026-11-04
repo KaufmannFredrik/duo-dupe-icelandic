@@ -10,9 +10,10 @@ import { icon } from '../shell.js';
 import { charRow } from '../ui/charrow.js';
 import { classLabel, describe, genderLabel } from '../ui/forms.js';
 import { renderTable } from '../ui/table.js';
+import { evidenceHTML, loadBridge, ordbokeneUrl, relative, rulesHTML } from '../bridge.js';
 
 await ready;
-await loadAll();
+await Promise.all([loadAll(), loadBridge()]);
 const lexicon = await loadLexicon();
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const form = document.querySelector('[data-search]');
@@ -64,6 +65,9 @@ function renderEntry(wid) {
     <section aria-labelledby="dict-meaning"><h3 class="label" id="dict-meaning">${t('dict.meaning')}</h3>
       <ol lang="en">${l.en.map((g) => `<li>${esc(g)}</li>`).join('')}</ol>
       ${l.nb.length ? `<p>${t('dict.norwegian')}: <span lang="nb">${l.nb.map(esc).join(', ')}</span></p>` : ''}</section>
+    ${relative(wid) ? `<section aria-labelledby="dict-bridge"><h3 class="label" id="dict-bridge">${t('bridge.relative')}</h3>
+      <p><span lang="nb" class="learn-text">${esc(relative(wid).nb)}</span>: ${evidenceHTML(relative(wid))}</p>
+      <div class="cluster bridge-rules">${rulesHTML(relative(wid))}<a class="bridge-pair__link" href="${ordbokeneUrl(relative(wid))}" rel="noopener">${t('bridge.ordbokene')}${icon('external', 'icon icon--sm')}</a></div></section>` : ''}
     <section aria-labelledby="dict-forms"><h3 class="label" id="dict-forms">${t('dict.forms')}</h3>
       ${renderTable(wid, { compact: true }) || `<p class="muted">${t('dict.noForms')}</p>`}
       <p><a class="button button--sm" href="declension.html?lemma=${encodeURIComponent(l.lemma)}">${icon('table')}<span>${t('dict.fullTable')}</span></a></p></section>

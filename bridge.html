@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" data-scan-page="low" data-scan="low">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/bridge.js"></script>
+</head>
+<body data-shell data-page="bridge" data-title-key="title.bridge">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <div class="shell">
+    <nav class="app-nav" aria-label="Main" data-i18n-aria-label="nav.main" data-shell="nav"></nav>
+    <div class="shell__col">
+      <header class="hud" data-shell="hud"></header>
+      <main id="main" class="app-main" tabindex="-1">
+        <div class="page-head">
+          <h1 data-i18n="title.bridge">Norwegian bridge</h1>
+          <p data-i18n="bridge.intro">Icelandic and Norwegian both grew out of Old Norse. Many words still match once you know a few spelling patterns.</p>
+          <p><a class="button button-primary" href="lesson.html?mode=bridge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-practice"></use></svg><span data-i18n="bridge.practice">Practice with Norwegian</span></a></p>
+        </div>
+        <section class="stack" aria-labelledby="rules-title">
+          <h2 id="rules-title" data-i18n="bridge.patterns">Patterns</h2>
+          <p class="muted" data-i18n="bridge.patternsText">Pick a pattern to see its words. Pick it again to see all.</p>
+          <div class="bridge-rule-list" role="group" aria-labelledby="rules-title" data-rules></div>
+        </section>
+        <section class="stack" aria-labelledby="pairs-title">
+          <h2 id="pairs-title" data-i18n="bridge.pairs">Word pairs</h2>
+          <p class="muted" aria-live="polite" data-pair-count></p>
+          <ul class="bridge-list" role="list" data-pairs></ul>
+        </section>
+        <p class="credit" data-i18n="bridge.credit">Norwegian words and their Old Norse origins: Bokmålsordboka, Universitetet i Bergen og Språkrådet, ordbøkene.no, CC BY 4.0. Icelandic origins: Wiktionary, CC BY-SA 4.0. The pairs are matched by a script and still need review by a native speaker.</p>
+      </main>
+      <footer class="app-footer" data-shell="footer"></footer>
+    </div>
+    <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
+  </div>
+</body>
+</html>

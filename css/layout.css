@@ -577,3 +577,17 @@ input[type="range"] { width: min(20rem, 100%); accent-color: var(--rf-cyan); }
 .badge-tile__name { font-weight: 700; }
 .badge-tile__text { color: var(--rf-chrome); }
 .badge-tile[data-earned="false"] .badge-tile__text { color: var(--rf-muted); }
+
+/* Norwegian bridge --------------------------------------------------------------------------- */
+
+.bridge-rule-list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.bridge-rule-list .chip { gap: var(--space-2); flex-wrap: wrap; text-align: left; }
+.bridge-example { font-size: var(--text-sm); }
+.bridge-list { display: grid; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+.bridge-pair { display: grid; gap: var(--space-2); padding: var(--space-4); border: var(--border) solid var(--rf-blue); background: var(--rf-night-2); }
+.bridge-pair__words { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); color: #FFFFFF; }
+.bridge-pair__why { color: var(--rf-chrome); }
+.bridge-rules { gap: var(--space-2); align-items: center; }
+.bridge-pair__link { display: inline-flex; align-items: center; gap: var(--space-1); min-height: var(--touch); color: var(--rf-chrome); font-size: var(--text-sm); }
+.bridge-prompt .prompt-card__text { font-size: var(--text-xl); }
+.chip[aria-pressed="true"] .bridge-example { color: var(--rf-chrome); }

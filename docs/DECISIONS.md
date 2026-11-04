@@ -2,6 +2,28 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Phase 7: Norwegian bridge (2026-11-04)
+
+### Licence
+
+Checked on the University of Bergen's licence page for the dictionaries: "Bokmålsordboka og Nynorskordboka er gjevne ut under Creative Commons Namngjeving 4.0 Internasjonal (CC-BY 4.0)", and "Lisensen gjeld òg for data som vert henta gjennom API-et". Required credit: "Bokmålsordboka/Nynorskordboka, Universitetet i Bergen og Språkrådet, ordbøkene.no, CC-BY 4.0". It is shown on the bridge page and in Credits, and listed in `data/LICENSE.md`. (Store norske leksikon still lists an older CC BY-NC-SA 3.0; the owners' own page is authoritative.)
+
+### What was built
+
+- `scripts/build-bridge.mjs` writes `data/bridge.json` (24 KB). For each course word it looks up its Bokmål glosses from Wiktionary and two spellings made by the correspondence rules in Bokmålsordboka (1,396 requests, cached, 150 ms apart). Evidence, strongest first:
+  - **old-norse** (156 words): Bokmålsordboka's etymology and Wiktionary's etymology of the Icelandic word name the same Old Norse word (compared with and without length marks, because conventions differ: *hón*, *hon*). Only these link to a specific Bokmålsordboka article.
+  - **loan** (5): both languages borrowed the word, and Wiktionary names the source (*kaffi*, *kaffe*: Italian *caffè*).
+  - **form** (8): a Bokmål gloss with the same meaning whose spelling the rules explain, without a shared origin in the sources. Labeled "a shared origin is not confirmed".
+- The Bokmål article must have a compatible word class, so a homograph from the same Old Norse word is not taken (*sá* "that" is not paired with *så* "to sow").
+- `js/bridge-rules.js`: 19 spelling correspondences (þ to t, ð to d or nothing, á to å or a, accent loss, ö to ø or o, au to ø, the endings -ur and -r dropping, -i and -a becoming -e, consonant doubling). `explain()` finds the smallest set of rules that turns the Icelandic word into the Bokmål one: 79 pairs are explained by the rules and 13 are spelled the same; the other 77 (for example *vatn* and *vann*) are shown as "other changes".
+- `bridge.html`: the patterns with counts and an example each (pick one to filter), and every pair with its evidence, its patterns and a link to Bokmålsordboka. Linked from Practice and from each dictionary entry ("Norwegian relative").
+- `lesson.html?mode=bridge`: see the Bokmål word and its meaning, type the Icelandic word; the feedback names the shared origin and the patterns. Only sourced pairs that the patterns explain are practiced, words met so far first. Answers count for the word's meaning card in spaced repetition.
+
+### Tests
+
+- `node --test`: 49 tests (new: rule explanations, and that every pair in `data/bridge.json` belongs to a course word and carries its evidence).
+- `npm run smoke`: a full bridge practice round. `npm run qa`: the bridge page, a filtered pattern, the exercise, its feedback and a dictionary entry with its relative; 0 axe violations, no horizontal scroll at 320 px.
+
 ## Phase 6: speaking (2026-11-04)
 
 ### Is there a usable recognizer?

@@ -61,6 +61,14 @@ The English and Norwegian descriptions of the three contrasts are not reviewed e
 
 Every word and sentence without a human recording is spoken by the Piper voice Steinn. A native speaker should listen for wrong pronunciations, starting with the minimal pairs and the stories. Known: *Ísland* is said [ˈisland], without the t that the *sl* cluster should get. Word highlighting in the reader uses estimated timings.
 
+## Norwegian bridge (`data/bridge.json`, `js/bridge-rules.js`)
+
+The pairs are matched by `scripts/build-bridge.mjs`, not by a person. 156 pairs are sourced: Bokmålsordboka and Wiktionary name the same Old Norse word. 5 are shared loans (Wiktionary names the source language) and 8 only look alike with the same meaning. To review:
+
+- Pairs where the two words share an Old Norse origin but have drifted apart in meaning or use (for example *að* and *at*, *ef* and *om*).
+- The 8 look-alike pairs (*kaka* and *kake*, *súpa* and *suppe*, *salat*, *frænka* and *frenke*, *jakki* and *jakke*, *kosta* and *koste*, *læra* and *lære*, *norskur* and *norsk*).
+- The spelling patterns in `js/bridge-rules.js` and their English and Norwegian names (`bridge.rule.*` in `js/i18n/`). They describe spelling, not historical sound laws, and some are only tendencies.
+
 ## Pronunciation and language notes (landing page, `js/i18n/*.json`)
 
 | Key | Claim | Status |
