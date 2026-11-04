@@ -6,6 +6,8 @@
   <meta name="theme-color" content="#1A1A2E">
   <title>TÖLVA</title>
   <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -65,6 +67,16 @@
           </fieldset>
           <fieldset>
             <legend data-i18n="settings.learning">Learning</legend>
+            <fieldset class="setting" id="goal">
+              <legend class="setting__label" data-i18n="settings.goal">Daily goal</legend>
+              <p class="setting__help" data-i18n="settings.goalHelp">XP to earn each day. A lesson gives up to 120 XP; the case trainer gives 2 XP per correct form.</p>
+              <div class="segmented">
+                <label><input type="radio" name="goal" value="10"><span>10 XP</span></label>
+                <label><input type="radio" name="goal" value="20"><span>20 XP</span></label>
+                <label><input type="radio" name="goal" value="50"><span>50 XP</span></label>
+                <label><input type="radio" name="goal" value="100"><span>100 XP</span></label>
+              </div>
+            </fieldset>
             <fieldset class="setting">
               <legend class="setting__label" data-i18n="settings.strict">Answer checking</legend>
               <p class="setting__help" data-i18n="settings.strictHelp">Easy accepts missing accents as almost right. Strict counts them as wrong, because accents change words.</p>
@@ -76,6 +88,14 @@
             <div class="setting">
               <label class="switch"><span class="setting__label" data-i18n="settings.hearts">Hearts</span><input type="checkbox" name="hearts" aria-describedby="hearts-help"><span class="switch__track" aria-hidden="true"></span></label>
               <p class="setting__help" id="hearts-help" data-i18n="settings.heartsHelp">Lose a heart for each mistake. Off by default.</p>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="settings.offline">Offline use</legend>
+            <div class="setting">
+              <p class="setting__help" data-offline-state data-i18n="settings.offlineChecking">Checking offline support...</p>
+              <div class="cluster"><button type="button" class="button" data-cache-audio disabled><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-download"></use></svg><span data-i18n="settings.cacheAudio">Download all audio</span></button></div>
+              <p class="setting__help" role="status" data-cache-status></p>
             </div>
           </fieldset>
           <fieldset>

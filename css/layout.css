@@ -398,9 +398,9 @@
 .setting { display: grid; gap: var(--space-2); }
 .setting__label { color: #FFFFFF; font-weight: 700; }
 .setting__help { color: var(--rf-muted); font-size: var(--text-sm); }
-.stats-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr)); }
+.stats-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr)); }
 .big-number { color: var(--rf-gold); font-size: 2.5rem; font-weight: 700; line-height: 1.1; }
-.badges { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); }
+.badges { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); }
 .badge-tile { display: grid; justify-items: center; gap: var(--space-2); padding: var(--space-4); border: var(--border) solid var(--rf-blue); text-align: center; color: var(--rf-chrome); font-size: var(--text-sm); }
 .badge-tile[data-earned="true"] { border-color: var(--rf-gold); color: #FFFFFF; box-shadow: var(--glow-gold); }
 .badge-tile[data-earned="true"] .icon { color: var(--rf-gold); }
@@ -562,3 +562,18 @@ input[type="range"] { width: min(20rem, 100%); accent-color: var(--rf-cyan); }
   .decl[data-kind="verb"] tbody th { font-size: 0.8rem; }
 }
 .decl__input { box-shadow: inset 0 0 0 1px var(--rf-muted); }
+
+/* Phase 5: completion news, streak calendar, badges ----------------------------------------- */
+
+.complete__news { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.complete__news li { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); color: var(--rf-gold); }
+.side-freeze { font-size: var(--text-sm); }
+.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--space-2); max-width: 28rem; margin: 0; padding: 0; list-style: none; }
+.week__day { display: grid; justify-items: center; gap: var(--space-1); font-size: var(--text-sm); color: var(--rf-muted); }
+.week__mark { display: grid; place-items: center; width: 100%; aspect-ratio: 1; max-width: 2.75rem; border: var(--border) solid var(--rf-blue); }
+.week__day[data-state="active"] .week__mark { border-color: var(--rf-gold); color: var(--rf-gold); }
+.week__day[data-state="goal"] .week__mark { border-color: var(--rf-gold); background: var(--rf-gold); color: #000000; }
+.week__day[data-state="frozen"] .week__mark { border-color: var(--rf-cyan); border-style: dashed; color: var(--rf-cyan); }
+.badge-tile__name { font-weight: 700; }
+.badge-tile__text { color: var(--rf-chrome); }
+.badge-tile[data-earned="false"] .badge-tile__text { color: var(--rf-muted); }

@@ -1,5 +1,5 @@
 // Settings in localStorage. Every access is wrapped: storage can be disabled, full or blocked.
-// Progress, SRS and the API cache move to IndexedDB in Phase 3.
+// Progress and spaced repetition live in IndexedDB (js/db.js, js/progress.js).
 
 const SETTINGS_KEY = 'tolva.settings.v1';
 
@@ -8,7 +8,8 @@ export const DEFAULT_SETTINGS = {
   scan: 'default', // default (page decides) | low | off
   sound: false, // sound effects; off by default
   strict: false, // strict answer checking: missing accents count as wrong
-  hearts: false,
+  hearts: false, // lose a heart per mistake; out of hearts ends the lesson
+  goal: 20, // daily goal in XP
   uiLang: null, // null: detect from the browser
   glossLang: null, // null: same as uiLang
   voice: '', // voiceURI of a browser is-IS voice
@@ -23,18 +24,26 @@ export function getSettings() {
   }
 }
 
-export function setSetting(key, value) {
-  const settings = { ...getSettings(), [key]: value };
+function save(settings) {
   try {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
   } catch {
     // Not persisted, but the change still applies to this page.
   }
+}
+
+export function setSetting(key, value) {
+  const settings = { ...getSettings(), [key]: value };
+  save(settings);
   window.dispatchEvent(new CustomEvent('tolva:settings', { detail: { key, value, settings } }));
   return settings;
 }
 
-// Demo progress for the Phase 1 screens. Phase 5 replaces this with real stats from IndexedDB.
-export function getProgress() {
-  return { demo: true, streak: 3, xp: 120, goal: 30, today: 20, lessonsDone: 7, accuracy: 0.86 };
+/** Replaces all settings (progress import). Unknown keys are dropped. */
+export function replaceSettings(values) {
+  const settings = { ...DEFAULT_SETTINGS };
+  for (const key of Object.keys(DEFAULT_SETTINGS)) if (key in values) settings[key] = values[key];
+  save(settings);
+  window.dispatchEvent(new CustomEvent('tolva:settings', { detail: { settings } }));
+  return settings;
 }

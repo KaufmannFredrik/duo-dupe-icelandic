@@ -8,7 +8,8 @@ import { caseRules, gloss, lemma, loadAll, loadLexicon, recordings } from '../da
 import { tableKind, parseTag } from '../grammar.js';
 import { grade } from '../normalize.js';
 import { getSettings } from '../store.js';
-import { recordAttempt } from '../progress.js';
+import { addXP, recordAttempt } from '../progress.js';
+import { celebrate } from '../ui/celebrate.js';
 import { play } from '../audio.js';
 import { sfx } from '../sfx.js';
 import { icon } from '../shell.js';
@@ -120,6 +121,7 @@ root.addEventListener('click', async (e) => {
   if (!e.target.closest('[data-check-table]')) return;
   const inputs = [...root.querySelectorAll('.decl__input')];
   let right = 0;
+  let xp = 0;
   for (const input of inputs) {
     const answers = input.dataset.answers.split('|');
     const g = grade(input.value, answers, { strict: getSettings().strict });
@@ -130,9 +132,11 @@ root.addEventListener('click', async (e) => {
     const mark = g.result === 'correct' ? 'check' : g.result === 'almost' ? 'almost' : 'wrong';
     input.insertAdjacentHTML('afterend', `<span class="decl__mark decl__mark--${g.result}">${icon(mark, 'icon icon--sm')}<span>${g.result === 'correct' ? t('feedback.correct') : `<span lang="is">${esc(answers[0])}</span>`}</span></span>`);
     if (g.result !== 'wrong') right++;
+    xp += g.result === 'correct' ? 2 : g.result === 'almost' ? 1 : 0;
     const p = parseTag(input.dataset.tag);
     await recordAttempt({ key: `${id}|${input.dataset.tag}`, result: g.result, meta: { case: p.case, number: p.number, gender: p.gender ?? lemma(id).kyn } });
   }
-  root.querySelector('[data-score]').textContent = t('decl.score', { right, total: inputs.length });
+  root.querySelector('[data-score]').textContent = `${t('decl.score', { right, total: inputs.length })}${xp ? ` +${xp} XP` : ''}`;
   sfx(right === inputs.length ? 'correct' : 'almost');
+  celebrate(await addXP(xp));
 });

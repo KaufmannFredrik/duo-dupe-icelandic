@@ -6,6 +6,8 @@
   <meta name="theme-color" content="#1A1A2E">
   <title>TÖLVA</title>
   <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -22,12 +24,15 @@
         <div class="page-head">
           <h1 data-i18n="title.profile">Profile</h1>
           <p data-i18n="profile.intro">Your progress is stored on this device only. There are no accounts.</p>
-          <p><span class="tag tag--demo" data-i18n="demo.tag">Demo data</span></p>
         </div>
         <div class="stats-grid" data-stats></div>
         <section class="card card--quiet stack" aria-labelledby="goal-title">
           <h2 id="goal-title" data-i18n="side.goal">Daily goal</h2>
           <div class="goal-row" data-goal></div>
+          <h3 class="label" id="week-title" data-i18n="profile.week">Last seven days</h3>
+          <ol class="week" role="list" aria-labelledby="week-title" data-week></ol>
+          <p class="muted" data-freezes></p>
+          <p><a href="settings.html#goal" data-i18n="profile.changeGoal">Change your daily goal</a></p>
         </section>
         <section class="stack" aria-labelledby="badges-title">
           <h2 id="badges-title" data-i18n="profile.badges">Badges</h2>
@@ -35,17 +40,26 @@
         </section>
         <section class="card card--quiet stack" aria-labelledby="data-title">
           <h2 id="data-title" data-i18n="profile.data">Your data</h2>
-          <p data-i18n="profile.dataText">Export all progress as a file, or import it on another device. This arrives in Phase 5.</p>
+          <p data-i18n="profile.dataText">Export all progress as a file, or import it on another device.</p>
           <div class="cluster">
-            <button class="button" type="button" disabled><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-download"></use></svg><span data-i18n="profile.export">Export progress</span></button>
-            <button class="button" type="button" disabled><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-upload"></use></svg><span data-i18n="profile.import">Import progress</span></button>
-            <a class="button button-primary" href="settings.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-settings"></use></svg><span data-i18n="nav.settings">Settings</span></a>
+            <button class="button" type="button" data-export><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-download"></use></svg><span data-i18n="profile.export">Export progress</span></button>
+            <label class="button file-button"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-upload"></use></svg><span data-i18n="profile.import">Import progress</span><input type="file" accept="application/json,.json" class="file-button__input" data-import></label>
+            <button class="button button--danger" type="button" data-reset><span data-i18n="profile.reset">Delete all progress</span></button>
           </div>
+          <p role="status" data-data-status></p>
         </section>
       </main>
       <footer class="app-footer" data-shell="footer"></footer>
     </div>
     <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
   </div>
+  <dialog class="modal" data-confirm aria-labelledby="confirm-title">
+    <h2 class="modal__title" id="confirm-title" data-confirm-title></h2>
+    <p data-confirm-text></p>
+    <div class="modal__actions">
+      <button type="button" class="button" data-cancel autofocus><span data-i18n="profile.cancel">Cancel</span></button>
+      <button type="button" class="button button-primary" data-ok></button>
+    </div>
+  </dialog>
 </body>
 </html>

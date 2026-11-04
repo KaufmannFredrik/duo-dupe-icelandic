@@ -21,6 +21,7 @@ import { play } from '../audio.js';
 import { sfx } from '../sfx.js';
 import { icon } from '../shell.js';
 import { talaSVG } from '../tala.js';
+import { celebrationLines } from '../ui/celebrate.js';
 
 await ready;
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -102,6 +103,20 @@ let index = Math.max(0, Math.min(specs.length - 1, (Number(params.get('step')) |
 let current;
 const results = [];
 
+// Hearts (Settings, off by default): five per lesson, one lost per wrong answer. Not in placement.
+const HEARTS = 5;
+let hearts = getSettings().hearts && !plan.placement && specs.length ? HEARTS : null;
+const heartsEl = document.createElement('span');
+heartsEl.className = 'hearts';
+function renderHearts() {
+  heartsEl.innerHTML = `${icon('heart')}<span aria-hidden="true">${hearts}</span><span class="visually-hidden">${t('lesson.hearts', { n: hearts })}</span>`;
+  heartsEl.dataset.low = String(hearts <= 1);
+}
+if (hearts !== null) {
+  renderHearts();
+  $('.lesson__top [data-sound-toggle]').before(heartsEl);
+}
+
 const data = { lemma, sentence, translation, gloss, paradigm, recordings, caseRules };
 const ctxFor = (i) => ({
   data,
@@ -172,6 +187,10 @@ async function doCheck(skipped = false) {
   const r = skipped ? { result: 'wrong', ...current.reveal() } : current.check();
   results.push(r.result);
   sfx(r.result);
+  if (hearts !== null && r.result === 'wrong') {
+    hearts--;
+    renderHearts();
+  }
   openSheet(r, skipped);
   if (plan.placement) return;
   const records = r.records ?? (spec.key ? [{ key: spec.key, result: r.result, meta: spec.meta }] : []);
@@ -190,6 +209,7 @@ function placementStop() {
 function next() {
   closeSheet();
   index++;
+  if (hearts === 0) return outOfHearts();
   if (index >= specs.length || (plan.placement && placementStop())) complete();
   else show(index);
 }
@@ -203,16 +223,33 @@ async function complete() {
   renderProgress();
   actions.hidden = true;
   if (plan.placement) return completePlacement();
-  const { xp, score } = await completeLesson(plan.key, results);
+  const done = await completeLesson(plan.key, results);
+  const { xp, score } = done;
+  const news = celebrationLines(done);
   const nextUp = nextLesson(course, await loadProgress());
   const nextHref = `lesson.html?unit=${nextUp.unit.id}&lesson=${nextUp.lesson.id}`;
   stage.innerHTML = `<div class="complete">${burst()}
       ${talaSVG('happy', { label: t('mascot.happy'), className: 'tala tala--lg' })}
       <h2 class="complete__title">${t('lesson.complete')}</h2>
       <div class="cluster complete__stats"><span class="stat">${icon('xp')}<span>+${xp} XP</span></span><span class="stat">${icon('check')}<span>${t('lesson.accuracy', { pct: Math.round(score * 100) })}</span></span></div>
+      ${news.length ? `<ul class="complete__news" role="list">${news.map(([ic, text]) => `<li>${icon(ic)}<span>${esc(text)}</span></li>`).join('')}</ul>` : ''}
       <div class="cluster complete__actions"><a class="button button-primary" href="${mode === 'lesson' ? nextHref : 'practice.html'}">${t('lesson.continue')}</a><a class="button" href="learn.html">${t('nav.learn')}</a></div></div>`;
   sfx('complete');
   live.textContent = t('lesson.complete');
+  stage.querySelector('.button-primary').focus();
+}
+
+function outOfHearts() {
+  actions.hidden = true;
+  const again = new URL(location.href);
+  again.searchParams.delete('step');
+  stage.innerHTML = `<div class="complete">
+      ${talaSVG('wrong', { label: t('mascot.wrong'), className: 'tala tala--lg' })}
+      <h2 class="complete__title">${t('lesson.noHearts')}</h2>
+      <p>${t('lesson.noHeartsText')}</p>
+      <div class="cluster complete__actions"><a class="button button-primary" href="${esc(again.href)}">${t('lesson.again')}</a>
+        <a class="button" href="lesson.html?mode=mistakes">${t('practice.mistakes')}</a></div></div>`;
+  live.textContent = t('lesson.noHearts');
   stage.querySelector('.button-primary').focus();
 }
 

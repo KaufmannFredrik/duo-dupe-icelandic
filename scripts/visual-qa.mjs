@@ -46,6 +46,55 @@ const wrongOption = async (p) => {
   const spec = await p.evaluate(() => window.__tolva.spec());
   await p.locator(`.option:not([data-value="${spec.lemma}"])`).first().click();
 };
+// A realistic progress export dated around today, imported through the profile page.
+function progressFixture() {
+  const day = (n) => {
+    const d = new Date(Date.now() - n * 864e5);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  };
+  const days = { [day(6)]: 40, [day(5)]: 120, [day(3)]: 30, [day(2)]: 60, [day(0)]: 12 };
+  const attempts = [];
+  const cases = [['NF', 0.95], ['ÞF', 0.8], ['ÞGF', 0.6], ['EF', 0.4]];
+  let id = 0;
+  for (const [c, rate] of cases) {
+    for (const number of ['sg', 'pl']) {
+      for (let i = 0; i < 10; i++) attempts.push({ id: ++id, key: `kaffi_no|${c}`, case: c, number, gender: 'hk', result: i < rate * 10 - (number === 'pl' ? 1 : 0) ? 'correct' : 'wrong', at: Date.now() });
+    }
+  }
+  return {
+    app: 'tolva',
+    version: 1,
+    exported: new Date().toISOString(),
+    progress: {
+      xp: 262, days, frozen: [day(1)], freezes: 1, best: 4, skippedUnits: [], placement: null,
+      lessons: { 'hello/1': { done: true, best: 1, times: 1 }, 'hello/2': { done: true, best: 0.83, times: 2 } },
+      badges: { first: day(6), perfect: day(6), streak3: day(2) },
+    },
+    cards: [], mistakes: [], attempts,
+  };
+}
+const FIXTURE = path.join(OUT, 'progress-fixture.json');
+
+async function importProgress(p) {
+  await p.goto(`${base}profile.html`);
+  await settle(p);
+  await p.setInputFiles('[data-import]', FIXTURE);
+  await p.click('[data-confirm] [data-ok]');
+  await p.waitForFunction(() => Number(document.querySelector('.hud .stat--xp span').textContent) > 0);
+  await p.evaluate(() => document.activeElement?.blur());
+}
+
+async function playThrough(p) {
+  for (let i = 0; i < 30; i++) {
+    await p.waitForFunction(() => document.querySelector('.complete__title') || (window.__tolva.spec() && !document.querySelector('[data-sheet].is-open')));
+    if (await p.locator('.complete__title').count()) break;
+    await answer(p);
+    await p.click('[data-action="check"]');
+    await p.click('[data-action="continue"]');
+  }
+  await p.locator('.complete__title').waitFor();
+}
+
 const SHOTS = [
   { name: 'landing', url: 'index.html', full: true },
   { name: 'learn', url: 'learn.html', full: true },
@@ -72,11 +121,16 @@ const SHOTS = [
   { name: 'sounds', url: 'lesson.html?mode=sounds&qa' },
   { name: 'feedback-pair', url: 'lesson.html?mode=sounds&qa', act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'voices', url: 'voices.html', full: true },
+  { name: 'profile-progress', url: 'profile.html', full: true, act: importProgress },
+  { name: 'learn-progress', url: 'learn.html', act: async (p) => { await importProgress(p); await p.goto(`${base}learn.html`); await settle(p); } },
+  { name: 'lesson-complete', url: 'lesson.html?unit=hello&lesson=1&qa', act: playThrough },
+  { name: 'lesson-hearts', url: 'lesson.html?unit=hello&lesson=1&qa', hearts: true },
+  { name: 'out-of-hearts', url: 'lesson.html?unit=hello&lesson=1&qa', hearts: true, act: async (p) => { for (let i = 0; i < 5; i++) { await p.click('[data-action="skip"]'); await p.click('[data-action="continue"]'); } } },
   { name: 'dictionary', url: 'dictionary.html', full: true },
   { name: 'dictionary-form', url: 'dictionary.html?q=bjórinn', full: true },
   { name: 'practice', url: 'practice.html', full: true },
   { name: 'profile', url: 'profile.html', full: true },
-  { name: 'settings', url: 'settings.html', full: true },
+  { name: 'settings', url: 'settings.html', full: true, sw: true },
   { name: 'credits', url: 'credits.html', full: true },
   { name: 'styleguide', url: 'styleguide.html', full: true },
   { name: 'landing-calm', url: 'index.html', calm: true },
@@ -94,6 +148,8 @@ async function settle(page) {
 }
 
 const { server, url: base } = await startServer();
+await mkdir(OUT, { recursive: true });
+await writeFile(FIXTURE, JSON.stringify(progressFixture()));
 const browser = await chromium.launch();
 const report = { axe: [], overflow: [], errors: [] };
 
@@ -101,7 +157,8 @@ for (const [vpName, options] of Object.entries(VIEWPORTS)) {
   await mkdir(path.join(OUT, vpName), { recursive: true });
   for (const shot of SHOTS) {
     if (only && !only.includes(shot.name)) continue;
-    const context = await browser.newContext({ ...options, reducedMotion: shot.calm ? 'reduce' : 'no-preference' });
+    const context = await browser.newContext({ ...options, reducedMotion: shot.calm ? 'reduce' : 'no-preference', serviceWorkers: shot.sw ? 'allow' : 'block' });
+    if (shot.hearts) await context.addInitScript(() => localStorage.setItem('tolva.settings.v1', JSON.stringify({ hearts: true })));
     const page = await context.newPage();
     page.on('pageerror', (e) => report.errors.push(`${vpName}/${shot.name}: ${e.message}`));
     page.on('console', (m) => m.type() === 'error' && report.errors.push(`${vpName}/${shot.name}: console: ${m.text()}`));

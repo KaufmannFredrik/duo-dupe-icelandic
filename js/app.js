@@ -4,6 +4,8 @@
 import { getSettings, setSetting } from './store.js';
 import { applyI18n, detectLang, initI18n, pick, t } from './i18n.js';
 import { renderShell } from './shell.js';
+import { settle } from './progress.js';
+import { registerWorker } from './offline.js';
 import { sfx } from './sfx.js';
 
 const html = document.documentElement;
@@ -49,6 +51,7 @@ function bindSoundToggles() {
     sfx('tap');
   });
   window.addEventListener('tolva:settings', update);
+  window.addEventListener('tolva:shell', update);
   update();
 }
 
@@ -64,11 +67,17 @@ async function init() {
   } catch (e) {
     console.warn('content/brand.json not loaded; using built-in brand strings.', e);
   }
-  if (document.body.dataset.shell !== undefined) renderShell(document.body.dataset.page);
+  try {
+    await settle();
+  } catch (e) {
+    console.warn('Streak freezes not settled.', e);
+  }
+  if (document.body.dataset.shell !== undefined) await renderShell(document.body.dataset.page);
   applyI18n();
   applyBrand();
   bindSoundToggles();
   html.classList.add('is-ready');
+  registerWorker();
 }
 
 export const ready = init();

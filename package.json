@@ -11,7 +11,7 @@
   "scripts": {
     "serve": "node scripts/serve.mjs 8080",
     "test": "node --test tests/",
-    "check": "node scripts/check-contrast.mjs && node scripts/check-i18n.mjs && node scripts/validate-content.mjs && node --test tests/",
+    "check": "node scripts/check-contrast.mjs && node scripts/check-i18n.mjs && node scripts/validate-content.mjs && node scripts/build-sw.mjs --check && node --test tests/",
     "qa": "node scripts/visual-qa.mjs",
     "probe": "node scripts/probe-apis.mjs",
     "probe:coverage": "node scripts/probe-apis.mjs --coverage",
@@ -19,6 +19,8 @@
     "build:audio": "node -e \"process.exit(require('child_process').spawnSync(process.platform === 'win32' ? '.venv/Scripts/python' : '.venv/bin/python', ['-I', 'scripts/build-audio.py', ...process.argv.slice(1)], { stdio: 'inherit' }).status)\" --",
     "validate": "node scripts/validate-content.mjs",
     "build:tala": "node scripts/build-tala.mjs",
+    "build:icons": "node scripts/build-icons.mjs",
+    "build:sw": "node scripts/build-sw.mjs",
     "smoke": "node tests/smoke.mjs --all"
   },
   "devDependencies": {

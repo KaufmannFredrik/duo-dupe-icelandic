@@ -284,6 +284,7 @@ textarea.input { min-height: 7rem; resize: vertical; line-height: 1.5; }
   box-shadow: var(--glow-cyan);
   animation: toast-in var(--duration-sheet) ease-out;
 }
+.toast--action { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); pointer-events: auto; }
 @keyframes toast-in { from { opacity: 0; transform: translateY(8px); } }
 
 /* Bottom sheet (feedback) ------------------------------------------------------------------- */
@@ -617,3 +618,17 @@ html[data-calm="on"] .word.is-speaking { text-shadow: none; }
 .unit-banner__title { color: #FFFFFF; font-size: var(--text-lg); text-shadow: none; }
 .unit-banner__eyebrow { display: block; color: var(--rf-magenta); font-size: var(--text-sm); letter-spacing: 0.12em; text-transform: uppercase; }
 .unit-banner__is { color: var(--rf-chrome); }
+
+/* Danger and file buttons ------------------------------------------------------------------- */
+
+.button--danger { border-color: var(--rf-pink); color: var(--rf-pink-text); }
+.file-button { position: relative; cursor: pointer; }
+.file-button__input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.file-button:focus-within { outline: 3px solid var(--rf-gold); outline-offset: 3px; }
+
+/* Hearts in the lesson header ---------------------------------------------------------------- */
+
+.hearts { display: inline-flex; align-items: center; gap: var(--space-1); flex: none; color: var(--rf-pink-text); font-weight: 700; }
+.hearts[data-low="true"] .icon { animation: heart-pulse 1s ease-in-out infinite; }
+@keyframes heart-pulse { 50% { transform: scale(1.15); } }
+html[data-calm="on"] .hearts .icon { animation: none; }

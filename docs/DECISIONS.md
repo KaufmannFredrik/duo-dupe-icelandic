@@ -2,6 +2,43 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Phase 5: motivation, offline and polish (2026-11-04)
+
+### What was built
+
+- **XP, streak and daily goal from real progress.** The HUD, the desktop sidebar and the profile read IndexedDB; the Phase 1 demo values are gone. A lesson gives 10 XP per correct answer and 5 per almost-right one; the case trainer gives 2 XP per correct cell. The daily goal (10, 20, 50 or 100 XP, default 20) is set in Settings.
+- **Streak with freezes** (`js/stats.js`, pure and unit-tested). A day counts when it has any XP, in the learner's local calendar. One freeze is earned for every seven days of streak, at most two held. On page load, freezes cover the missed days only if there are enough of them for the whole gap; otherwise the streak ends and the freezes are kept. Frozen days keep the streak alive without adding to it.
+- **Badges**: first lesson, 3- and 7-day streaks, a perfect lesson, a finished unit, 100 correct forms, a round of sound practice and 1000 XP. Lesson completion and the case trainer announce the daily goal, a longer streak, a new freeze and new badges.
+- **Weak spots**: the sidebar mini heatmap now shows the learner's own accuracy by case and number (a cell needs three answers); the practice page and the sidebar share one implementation.
+- **Hearts** (Settings, off by default): five per lesson, one lost per wrong or skipped answer; at zero the lesson ends with a retry and a link to the mistakes. Answers given before that are still saved for spaced repetition.
+- **Export, import and reset** on the profile page: one JSON file with settings, progress, spaced-repetition cards, mistakes and the attempt log (`app: "tolva"`, `version: 1`). Import checks the file and asks before replacing anything; reset asks too.
+- **Offline and installable.** `sw.js` precaches every page, script, style, icon, content file and data file (1.9 MB, 119 files) under a version hashed from their contents, and deletes old versions on activation. When a new version is waiting, the page offers a reload. Generated audio goes into a separate cache as it is played, and Settings can download all of it (11.2 MB); byte-range requests from audio elements are answered from the cache. Human recordings stay on Wikimedia Commons and are not cached; offline, the player falls back to the generated file. `manifest.webmanifest` (theme and background #1A1A2E, start at the learn path) with 192 and 512 px icons, a maskable icon and an Apple touch icon rendered from Tala's head.
+
+### Decisions
+
+- `sw.js` is generated, and `npm run check` fails when it is stale, so a deploy can never ship old cached files under a new site.
+- Cache-first for the site, because the cache version changes with the content. The audio cache is not versioned: its file names are hashes of the text, so a file never changes meaning.
+- Practice rounds (review, mistakes, letters, sounds) give XP but do not count as lessons for "lessons done".
+- Streak days use the local date. Progress saved before this phase used UTC dates; the difference is at most one day at the edges.
+
+### Performance (local server, cold cache, no service worker)
+
+| Page | Files | Raw | Gzip |
+|---|---|---|---|
+| Landing | 23 | 156 KB | 47 KB |
+| Learn path | 39 | 348 KB | 107 KB |
+| Lesson | 68 | 1.3 MB | 270 KB |
+| Story reader | 60 | 1.5 MB | 327 KB |
+| Dictionary | 44 | 1.2 MB | 251 KB |
+
+GitHub Pages serves gzip. Most of the lesson and story weight is the lexicon, sentence and paradigm data, which the service worker keeps after the first visit.
+
+### Tests
+
+- `node --test`: 44 tests, new: day arithmetic across months and daylight saving, streaks with and without freezes, freeze settlement (enough, too few, idempotent), the seven-day calendar, badges, and heatmap cells.
+- `npm run smoke`: XP in the HUD after a lesson, export then reset then import, hearts ending a lesson, and offline loading of the learn path, a story, a lesson, the dictionary and the case trainer through the service worker.
+- `npm run qa`: new shots for the profile and sidebar with progress, the completion screen with news, hearts and the out-of-hearts screen, and Settings with the offline section. 0 axe violations, no horizontal scroll at 320 px, no page errors.
+
 ## Phase 4: audio and reading (2026-11-04)
 
 ### What was built

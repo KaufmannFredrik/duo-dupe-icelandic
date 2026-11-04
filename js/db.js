@@ -67,6 +67,14 @@ export async function put(store, value, key) {
   return key ?? value[keyPath];
 }
 
+/** Many values in one transaction (stores with a key path). */
+export async function putMany(store, values) {
+  if (!values.length) return;
+  const db = await open();
+  if (db) return run(db, store, 'readwrite', (s) => values.forEach((v) => s.put(v)));
+  for (const v of values) await put(store, v);
+}
+
 export async function del(store, key) {
   const db = await open();
   if (db) return run(db, store, 'readwrite', (s) => s.delete(key));

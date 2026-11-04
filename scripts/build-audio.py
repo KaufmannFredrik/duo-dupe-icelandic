@@ -164,9 +164,9 @@ def build(voice_id, force=False, limit=None):
         'credit': f'Synthetic voice {VOICES[voice_id]}: Piper, trained on Talrómur (Reykjavík University, CC BY 4.0, hdl.handle.net/20.500.12537/104).',
         'note': 'Word timings (w) are estimates from phoneme counts. Sentence audio speaks Tatoeba sentences (CC BY 2.0 FR); their authors are listed in data/sentences.json.',
         'source': provenance(voice_id),
+        'bytes': 0,
         'texts': texts,
     }
-    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
     removed = 0
     if not limit:
         used = {e['f'] for e in texts.values()}
@@ -175,6 +175,8 @@ def build(voice_id, force=False, limit=None):
                 f.unlink()
                 removed += 1
     size = sum(p.stat().st_size for p in (OUT / 'tts' / voice_id).rglob('*.mp3'))
+    manifest['bytes'] = size
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
     print(f'{voice_id}: {len(texts)} texts, {done} generated now, {removed} unused files removed, {size / 1e6:.1f} MB of audio')
 
 

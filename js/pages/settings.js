@@ -5,6 +5,7 @@ import { ready } from '../app.js';
 import { t } from '../i18n.js';
 import { getSettings, setSetting } from '../store.js';
 import { icelandicVoices, play } from '../audio.js';
+import { audioCacheStatus, cacheAllAudio, offlineState } from '../offline.js';
 
 await ready;
 const form = document.querySelector('[data-settings]');
@@ -17,6 +18,7 @@ const radio = (name, value) => {
 radio('calm', s.calm);
 radio('scan', s.scan);
 radio('strict', s.strict ? 'strict' : 'easy');
+radio('goal', s.goal);
 form.elements.sound.checked = s.sound;
 form.elements.hearts.checked = s.hearts;
 form.elements.uiLang.value = s.uiLang ?? 'auto';
@@ -47,6 +49,9 @@ form.addEventListener('change', (e) => {
     case 'strict':
       setSetting('strict', el.value === 'strict');
       break;
+    case 'goal':
+      setSetting('goal', Number(el.value));
+      break;
     case 'sound':
     case 'hearts':
       setSetting(el.name, el.checked);
@@ -69,3 +74,35 @@ form.elements.rate.addEventListener('input', (e) => {
   setSetting('rate', Number(e.target.value));
 });
 form.querySelector('[data-test-voice]').addEventListener('click', () => play({ text: 'Góðan daginn!', browser: true }));
+
+// Offline use: the service worker state, and downloading all generated audio.
+const offlineEl = form.querySelector('[data-offline-state]');
+const cacheBtn = form.querySelector('[data-cache-audio]');
+const cacheStatus = form.querySelector('[data-cache-status]');
+const mb = (n) => (n / 1e6).toFixed(1);
+
+async function showOffline() {
+  const state = await offlineState();
+  offlineEl.textContent = t({ ready: 'settings.offlineReady', installing: 'settings.offlineInstalling', unsupported: 'settings.offlineUnsupported' }[state]);
+  if (state === 'unsupported') return;
+  const s = await audioCacheStatus();
+  const total = s.manifest.bytes ?? 0;
+  cacheStatus.textContent = t('settings.audioCached', { n: s.cached, total: s.total });
+  cacheBtn.disabled = s.cached >= s.total;
+  cacheBtn.querySelector('span').textContent = total ? t('settings.cacheAudioSize', { mb: mb(total) }) : t('settings.cacheAudio');
+}
+
+cacheBtn.addEventListener('click', async () => {
+  cacheBtn.disabled = true;
+  try {
+    await cacheAllAudio((done, total) => {
+      cacheStatus.textContent = t('settings.audioCached', { n: done, total });
+    });
+    cacheStatus.textContent = t('settings.audioDone');
+  } catch {
+    cacheStatus.textContent = t('settings.audioFailed');
+    cacheBtn.disabled = false;
+  }
+});
+showOffline();
+navigator.serviceWorker?.addEventListener('controllerchange', showOffline);

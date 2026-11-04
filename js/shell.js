@@ -1,10 +1,13 @@
 // The app shell shared by the main screens: navigation (tab bar, icon rail or labeled nav,
 // depending on width), the top HUD, the desktop sidebar and the footer. Pages provide empty
-// landmarks marked data-shell="nav|hud|side|footer"; this module fills them.
+// landmarks marked data-shell="nav|hud|side|footer"; this module fills them. Streak, XP, the
+// daily goal and the mini heatmap come from the learner's own progress and update live.
 
 import { talaSVG } from './tala.js';
-import { getProgress } from './store.js';
 import { t } from './i18n.js';
+import { CASES, CASE_CLASS } from './grammar.js';
+import { attempts, dailyGoal, loadProgress } from './progress.js';
+import { MIN_ANSWERS, heatCells, heatLevel, summarize } from './stats.js';
 
 export const icon = (name, cls = 'icon') => `<svg class="${cls}" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-${name}"></use></svg>`;
 
@@ -32,6 +35,8 @@ function stat(kind, value, labelKey) {
   return `<span class="stat stat--${kind}">${icon(kind === 'streak' ? 'streak' : 'xp')}<span>${value}</span><span class="visually-hidden">${t(labelKey)}</span></span>`;
 }
 
+const goalText = (p) => (p.today >= p.goal ? t('side.goalDone') : t('side.goalText', { left: p.goal - p.today }));
+
 function navHTML(current) {
   const active = PARENT[current] ?? current;
   const items = NAV.map(
@@ -46,25 +51,29 @@ function hudHTML(p) {
     <button class="icon-button" type="button" data-sound-toggle aria-pressed="false" aria-label="${t('sound.turnOn')}">${icon('sound-off')}</button></div>`;
 }
 
-function sideHTML(p) {
-  const cell = (pct) => `<span class="heat" data-level="${pct >= 85 ? 'strong' : pct >= 65 ? 'ok' : 'weak'}">${pct}%</span>`;
-  const rows = [
-    ['nf', 'NF', 96, 88],
-    ['thf', 'ÞF', 84, 70],
-    ['thgf', 'ÞGF', 71, 52],
-    ['ef', 'EF', 63, 45],
-  ]
-    .map(([cls, abbr, sg, pl]) => `<span class="tag tag--${cls}"><span class="tag__abbr">${abbr}</span></span>${cell(sg)}${cell(pl)}`)
-    .join('');
+function miniHeat(cells) {
+  const cell = (c, n) => {
+    const x = cells.get(`${c}|${n}`);
+    if (!x || x.total < MIN_ANSWERS) return `<span class="heat" data-level="none">-<span class="visually-hidden">${t('heat.none')}</span></span>`;
+    const pct = Math.round((100 * x.right) / x.total);
+    return `<span class="heat" data-level="${heatLevel(pct)}">${pct}%</span>`;
+  };
+  const rows = CASES.map((c) => `<span class="tag tag--${CASE_CLASS[c]}"><span class="tag__abbr">${c}</span></span>${cell(c, 'sg')}${cell(c, 'pl')}`).join('');
+  return `<div class="mini-heat"><span></span><span class="muted">${t('number.sg')}</span><span class="muted">${t('number.pl')}</span>${rows}</div>`;
+}
+
+function sideHTML(p, cells) {
+  const any = [...cells.values()].some((x) => x.total >= MIN_ANSWERS);
   return `<div class="side-stats card card--quiet side-panel">
       <div>${stat('streak', p.streak, 'hud.streak')}<div class="stat__label">${t('side.streak')}</div></div>
       <div>${stat('xp', p.xp, 'hud.xp')}<div class="stat__label">${t('side.xp')}</div></div>
       <button class="icon-button" type="button" data-sound-toggle aria-pressed="false" aria-label="${t('sound.turnOn')}">${icon('sound-off')}</button>
     </div>
     <section class="card card--quiet side-panel" aria-labelledby="side-goal"><h2 id="side-goal">${t('side.goal')}</h2>
-      <div class="goal-row">${goalRing(p.today, p.goal, 'goal-ring--lg')}<p>${t('side.goalText', { left: p.goal - p.today })}</p></div></section>
-    <section class="card card--quiet side-panel" aria-labelledby="side-weak"><h2 id="side-weak">${t('side.weak')} <span class="tag tag--demo">${t('demo.tag')}</span></h2>
-      <div class="mini-heat"><span></span><span class="muted">${t('number.sg')}</span><span class="muted">${t('number.pl')}</span>${rows}</div>
+      <div class="goal-row">${goalRing(p.today, p.goal, 'goal-ring--lg')}<p>${goalText(p)}</p></div>
+      ${p.freezes ? `<p class="muted side-freeze">${t('side.freezes', { n: p.freezes })}</p>` : ''}</section>
+    <section class="card card--quiet side-panel" aria-labelledby="side-weak"><h2 id="side-weak">${t('side.weak')}</h2>
+      ${any ? miniHeat(cells) : `<p class="muted">${t('side.weakEmpty')}</p>`}
 
       <a class="button button--sm button--block side-action" href="practice.html">${t('side.train')}</a></section>
     <section class="card card--magenta side-panel tip" aria-labelledby="side-tip">${talaSVG('thinking', { className: 'tala tala--sm' })}
@@ -76,14 +85,30 @@ function footerHTML() {
     <a href="https://github.com/KaufmannFredrik/duo-dupe-icelandic" rel="noopener">${t('footer.source')}</a><span>${t('footer.license')}</span>`;
 }
 
-export function renderShell(page) {
-  const p = getProgress();
-  const fill = (name, markup) => {
-    const el = document.querySelector(`[data-shell="${name}"]`);
-    if (el) el.innerHTML = markup;
-  };
-  fill('nav', navHTML(page));
+function fill(name, markup) {
+  const el = document.querySelector(`[data-shell="${name}"]`);
+  if (el) el.innerHTML = markup;
+}
+
+async function stats() {
+  const [progress, log] = await Promise.all([loadProgress(), attempts()]);
+  const p = { ...summarize(progress, []), goal: dailyGoal() };
+  return { p, cells: heatCells(log, (a) => `${a.case}|${a.number}`) };
+}
+
+async function renderStats() {
+  const { p, cells } = await stats();
   fill('hud', hudHTML(p));
-  fill('side', sideHTML(p));
+  if (document.querySelector('[data-shell="side"]')) fill('side', sideHTML(p, cells));
+  window.dispatchEvent(new CustomEvent('tolva:shell'));
+}
+
+export async function renderShell(page) {
+  fill('nav', navHTML(page));
   fill('footer', footerHTML());
+  await renderStats();
+  window.addEventListener('tolva:progress', renderStats);
+  window.addEventListener('tolva:settings', (e) => {
+    if (e.detail?.key === 'goal' || !e.detail?.key) renderStats();
+  });
 }
