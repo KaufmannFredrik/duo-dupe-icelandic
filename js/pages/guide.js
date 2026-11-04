@@ -44,7 +44,7 @@ if (!unit.guide) {
         }
       </section>`,
     )
-    .join('') + `<p class="credit">${t('guide.credit')}</p>`;
+    .join('') + (unit.guide.source ? `<p class="credit">${esc(pick(unit.guide.source))}</p>` : '') + `<p class="credit">${t('guide.credit')}</p>`;
 }
 
 const first = unit.lessons.find((l) => !l.review);

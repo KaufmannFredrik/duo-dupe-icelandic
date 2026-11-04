@@ -1,0 +1,74 @@
+{
+  "id": "newwords",
+  "order": 10,
+  "theme": "newwords",
+  "reviewed": false,
+  "title": {
+    "en": "New words, old roots",
+    "nb": "Nye ord, gamle røtter"
+  },
+  "is": "Nýyrði",
+  "goal": {
+    "en": "Learn words for modern things and see how Icelandic builds them from its own parts.",
+    "nb": "Lær ord for moderne ting og se hvordan islandsk bygger dem av egne deler."
+  },
+  "lessons": "auto",
+  "guide": {
+    "source": {
+      "en": "The word histories below come from Wiktionary (CC BY-SA 4.0).",
+      "nb": "Ordhistoriene nedenfor kommer fra Wiktionary (CC BY-SA 4.0)."
+    },
+    "sections": [
+      {
+        "title": {
+          "en": "Building from old parts",
+          "nb": "Bygget av gamle deler"
+        },
+        "text": {
+          "en": "Where other languages borrow a word for a new thing, Icelandic usually builds one. {is:útvarp} (radio) is {is:út} (out) plus {is:varp} (casting), and {is:sjónvarp} (television) was made on the same model with {is:sjón} (sight). {is:flugvél} (airplane) is {is:flug} (flight) plus {is:vél} (machine).",
+          "nb": "Der andre språk låner et ord for en ny ting, bygger islandsk som regel et eget. {is:útvarp} (radio) er {is:út} (ut) pluss {is:varp} (kast), og {is:sjónvarp} (fjernsyn) ble laget etter samme mønster med {is:sjón} (syn). {is:flugvél} (fly) er {is:flug} (flyging) pluss {is:vél} (maskin)."
+        },
+        "tables": [
+          "sjónvarp_no",
+          "flugvél_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Words with an author",
+          "nb": "Ord med opphavsperson"
+        },
+        "text": {
+          "en": "Some new words have a known coiner. {is:tölva} (computer) was coined by Sigurður Nordal in 1965 from {is:tala} (number) and {is:völva} (prophetess). {is:tækni} (technology) was coined by Björn Bjarnason in 1912 from {is:tæki} (tool). {is:veira} (virus) is said to come from Vilmundur Jónsson in 1955, chosen to sound like the English word. {is:reikistjarna} (planet) is attributed to the poet Jónas Hallgrímsson: a wandering star, like the Greek word it translates.",
+          "nb": "Noen nye ord har en kjent opphavsperson. {is:tölva} (datamaskin) ble laget av Sigurður Nordal i 1965 av {is:tala} (tall) og {is:völva} (spåkone). {is:tækni} (teknikk) ble laget av Björn Bjarnason i 1912 av {is:tæki} (redskap). {is:veira} (virus) skal komme fra Vilmundur Jónsson i 1955, valgt fordi det ligner det engelske ordet. {is:reikistjarna} (planet) tilskrives dikteren Jónas Hallgrímsson: en vandrende stjerne, som det greske ordet det oversetter."
+        },
+        "tables": [
+          "tölva_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Translated piece by piece",
+          "nb": "Oversatt bit for bit"
+        },
+        "text": {
+          "en": "Other words copy a foreign word part by part. {is:hátalari} (loudspeaker) is \"loud talker\". {is:rafmagn} (electricity) is {is:raf} (amber) plus {is:magn} (power), because the international word comes from the Greek for amber. {is:forrit} (program) puts a prefix meaning \"before\" in front of {is:rit} (writing), like the Greek parts of \"program\".",
+          "nb": "Andre ord kopierer et fremmedord del for del. {is:hátalari} (høyttaler) er \"høy taler\". {is:rafmagn} (elektrisitet) er {is:raf} (rav) pluss {is:magn} (kraft), fordi det internasjonale ordet kommer av gresk for rav. {is:forrit} (program) setter et forledd som betyr \"før\" foran {is:rit} (skrift), som de greske delene i \"program\"."
+        }
+      },
+      {
+        "title": {
+          "en": "Old words, new jobs",
+          "nb": "Gamle ord, nye oppgaver"
+        },
+        "text": {
+          "en": "{is:sími} (telephone) is based on an old word for a cord, and {is:þota} (jet) comes from {is:þjóta} (to rush). Put them together and you get new words again: {is:farsími} (mobile phone) and {is:tölvupóstur} (e-mail, \"computer mail\").",
+          "nb": "{is:sími} (telefon) bygger på et gammelt ord for snor, og {is:þota} (jetfly) kommer av {is:þjóta} (å suse). Sett dem sammen, så får du nye ord igjen: {is:farsími} (mobiltelefon) og {is:tölvupóstur} (e-post, \"datapost\")."
+        },
+        "tables": [
+          "sími_no"
+        ]
+      }
+    ]
+  }
+}

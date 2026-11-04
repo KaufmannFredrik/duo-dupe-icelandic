@@ -2,6 +2,19 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Phase 7: new words, old roots (2026-11-04)
+
+- **Unit 10, *Nýyrði***: twelve modern words that Icelandic built from its own parts instead of borrowing: *sjónvarp*, *útvarp*, *flugvél*, *farsími*, *tölvupóstur*, *forrit*, *tækni*, *rafmagn*, *þota*, *veira*, *hátalari*, *reikistjarna*. All twelve are in the DMII Core and their Wiktionary glosses match; the data now has 337 words.
+- **Sources**: every claim in the guidebook retells a Wiktionary etymology (the guidebook says so, CC BY-SA 4.0). For example *tölva*: "A portmanteau word, coined by Sigurður Nordal in 1965 from tala ("number") + völva ("prophetess")"; *tækni*: "Coined by Dr. Björn Bjarnason from Viðfjörður in 1912"; *veira*: "Said to be coined by Director General of public health Vilmundur Jónsson in 1955"; *reikistjarna*: "Coined by Jónas Hallgrímsson, from reika ("to wander") + stjarna ("star")"; *rafmagn*: "From raf ("amber") + magn ("power"), calquing the internationalism electricity". Where Wiktionary hedges ("said to be"), the guidebook hedges too. Every Icelandic fragment is checked against the DMII Core by `validate-content`, and the unit is listed in `content/NEEDS-NATIVE-REVIEW.md`.
+- Three of the words (*rafmagn*, *þota*, *hátalari*) have no Tatoeba sentence; their lessons use word exercises. The generator test now covers unit 10 too.
+- None of the twelve has a Bokmål relative in the bridge, as expected for native coinages (Norwegian uses *fjernsyn*, *fly*, *datamaskin*).
+- Audio for the new words and sentences was generated (2,109 texts, 11.5 MB); `/data` is 13.0 MB in all.
+- Long forms such as *flugvélarinnar* overflowed a compact table at 320 px. Table cells may now wrap, and a line-break opportunity is placed where a form extends the indefinite form of the same row (*flugvélar* + *innar*), which is where the suffixed article starts.
+
+### Phase 7 items not built
+
+- **AI conversation practice**: skipped by the owner's decision (no LLM features, no keys).
+
 ## Phase 7: Norwegian bridge (2026-11-04)
 
 ### Licence

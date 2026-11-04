@@ -34,6 +34,11 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
   - Most verbs take an accusative object.
   - *einn* to *fjórir* inflect: *tvær dætur*, *tvo ketti*, *tvö börn*; from five on numbers do not change.
 - Case trainer note "When is each case used?" (summary of the main uses of the four cases).
+- Unit 10, *Nýyrði* (new words): the choice of twelve modern words, and the unit title. The guidebook retells Wiktionary's etymologies (sources quoted in `docs/DECISIONS.md`); the retelling and the glosses of the parts need review:
+  - *útvarp* = *út* + *varp*; *sjónvarp* made on the same model with *sjón*; *flugvél* = *flug* + *vél*.
+  - *tölva*: Sigurður Nordal, 1965, from *tala* + *völva*. *tækni*: Björn Bjarnason, 1912, from *tæki*. *veira*: said to be Vilmundur Jónsson, 1955. *reikistjarna*: attributed to Jónas Hallgrímsson, from *reika* + *stjarna*.
+  - *hátalari* as "loud talker"; *rafmagn* = *raf* (amber) + *magn*; *forrit* = a prefix meaning "before" + *rit*.
+  - *sími* based on an old word for a cord; *þota* from *þjóta*; *farsími* and *tölvupóstur* as compounds.
 
 ## Stories (`content/stories/`)
 

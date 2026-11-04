@@ -9,6 +9,13 @@ import { caseTag } from './forms.js';
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
+// A line-break opportunity where a form extends another form of the same row and number, which
+// is where the suffixed article starts (sjónvarps|ins), so long forms wrap at a meaningful place.
+function breakable(form, siblings) {
+  const base = siblings.filter((o) => o && o !== form && form.startsWith(o)).sort((a, b) => b.length - a.length)[0];
+  return base ? `${esc(base)}<wbr>${esc(form.slice(base.length))}` : esc(form);
+}
+
 export function tableFor(id, options = {}) {
   const l = lemma(id);
   return buildTable({ ofl: l.ofl, ord: l.lemma, bmyndir: paradigm(id) }, options);
@@ -41,7 +48,8 @@ export function renderTable(id, { compact = false, blanks = new Set(), tense, st
             return `<td class="${cls}"><input class="decl__input" lang="is" data-tag="${cell.tag}" data-answers="${esc(cell.forms.join('|'))}" aria-label="${esc(`${t(row.label)}, ${t(col.label)}`)}" autocomplete="off" autocapitalize="off" spellcheck="false"></td>`;
           }
           const [first, ...rest] = cell.forms;
-          return `<td class="${cls}"><button type="button" class="decl__cell" data-play="${esc(first)}"><span><span lang="is">${esc(first)}</span>${rest.length ? `<span class="decl__alt" lang="is">${rest.map(esc).join(', ')}</span>` : ''}</span>${icon('sound-wave')}</button></td>`;
+          const siblings = cols.filter((c) => c.group === col.group).map((c) => row.cells[all.findIndex((x) => x.key === c.key)]?.forms[0]);
+          return `<td class="${cls}"><button type="button" class="decl__cell" data-play="${esc(first)}"><span><span lang="is">${breakable(first, siblings)}</span>${rest.length ? `<span class="decl__alt" lang="is">${rest.map(esc).join(', ')}</span>` : ''}</span>${icon('sound-wave')}</button></td>`;
         })
         .join('');
       return `<tr><th scope="row">${row.caseId ? caseTag(row.caseId) : esc(t(row.label))}</th>${cells}</tr>`;

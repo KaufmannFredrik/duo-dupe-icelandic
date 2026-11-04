@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-04T13:43:28.559Z",
+ "generated": "2026-11-04T13:57:28.665Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [

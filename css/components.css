@@ -564,7 +564,7 @@ html[data-calm="on"] .word.is-speaking { text-shadow: none; }
 /* Declension table -------------------------------------------------------------------------- */
 
 .decl { width: 100%; table-layout: fixed; color: #FFFFFF; }
-.decl th, .decl td { padding: 0; border: 1px solid var(--rf-blue); }
+.decl th, .decl td { padding: 0; border: 1px solid var(--rf-blue); overflow-wrap: anywhere; } /* long forms (flugvélarinnar) wrap instead of overflowing a narrow column */
 .decl thead th { padding: var(--space-2) var(--space-3); color: var(--rf-cyan); font-size: var(--text-sm); letter-spacing: 0.06em; text-align: left; text-transform: uppercase; }
 .decl thead .decl__group { text-align: center; color: var(--rf-magenta); }
 /* table-layout: fixed takes column widths from the first row, so the corner cell sets the case column. */
