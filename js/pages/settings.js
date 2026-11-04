@@ -68,4 +68,4 @@ form.elements.rate.addEventListener('input', (e) => {
   rateOut.textContent = `${Number(e.target.value).toFixed(1)}x`;
   setSetting('rate', Number(e.target.value));
 });
-form.querySelector('[data-test-voice]').addEventListener('click', () => play({ text: 'Góðan daginn!' }));
+form.querySelector('[data-test-voice]').addEventListener('click', () => play({ text: 'Góðan daginn!', browser: true }));

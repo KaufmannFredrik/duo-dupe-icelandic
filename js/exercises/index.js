@@ -9,8 +9,9 @@ import * as match from './match.js';
 import * as ending from './ending.js';
 import * as caseEx from './case.js';
 import * as table from './table.js';
+import * as pair from './pair.js';
 
-export const EXERCISES = { choice, meaning, listen, wordbank, typeword, match, ending, case: caseEx, table };
+export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, match, ending, case: caseEx, table, pair };
 
 export function buildExercise(spec, ctx) {
   const mod = EXERCISES[spec.type];

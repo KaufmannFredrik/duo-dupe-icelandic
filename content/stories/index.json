@@ -1,0 +1,9 @@
+{
+  "stories": [
+    "hello.json",
+    "cafe.json",
+    "family.json",
+    "weather.json",
+    "around.json"
+  ]
+}

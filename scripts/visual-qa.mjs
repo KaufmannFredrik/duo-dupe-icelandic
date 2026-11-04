@@ -54,7 +54,7 @@ const SHOTS = [
   ...[...firstOf].map(([type, url]) => ({ name: `ex-${type}`, url })),
   { name: 'ex-choice-selected', url: firstOf.get('choice'), act: async (p) => p.locator('.option').first().click() },
   { name: 'feedback-correct', url: firstOf.get('choice'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
-  { name: 'feedback-almost', url: specialTypeword, act: async (p) => { await answer(p, 'almost'); await p.click('[data-action="check"]'); } },
+  { name: 'feedback-almost', url: specialTypeword ?? 'lesson.html?mode=letters&qa', act: async (p) => { await answer(p, 'almost'); await p.click('[data-action="check"]'); } },
   { name: 'feedback-wrong', url: firstOf.get('meaning'), act: async (p) => { await wrongOption(p); await p.click('[data-action="check"]'); } },
   { name: 'feedback-case', url: firstOf.get('case'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'lesson-quit', url: firstOf.get('choice'), act: async (p) => p.keyboard.press('Escape') },
@@ -65,7 +65,13 @@ const SHOTS = [
   { name: 'declension-adjective', url: 'declension.html?lemma=góður', full: true },
   { name: 'declension-practice', url: 'declension.html?lemma=bjór', full: true, act: async (p) => { await p.check('input[name="level"][value="2"]', { force: true }); await p.fill('.decl__input >> nth=0', 'bjórinn'); await p.click('[data-check-table]'); } },
   { name: 'stories', url: 'stories.html', full: true },
-  { name: 'stories-word', url: 'stories.html', act: async (p) => p.click('.word:text-is("te")') },
+  { name: 'stories-reader', url: 'stories.html?story=hello', full: true },
+  { name: 'stories-word', url: 'stories.html?story=cafe', act: async (p) => p.click('.word:text-is("te")') },
+  { name: 'stories-speaking', url: 'stories.html?story=cafe', act: async (p) => p.evaluate(() => { document.querySelector('.reader__line').classList.add('is-current'); document.querySelectorAll('.word')[2].classList.add('is-speaking'); }) },
+  { name: 'stories-translations', url: 'stories.html?story=family', act: async (p) => p.check('[data-show-translations]', { force: true }) },
+  { name: 'sounds', url: 'lesson.html?mode=sounds&qa' },
+  { name: 'feedback-pair', url: 'lesson.html?mode=sounds&qa', act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
+  { name: 'voices', url: 'voices.html', full: true },
   { name: 'dictionary', url: 'dictionary.html', full: true },
   { name: 'dictionary-form', url: 'dictionary.html?q=bjórinn', full: true },
   { name: 'practice', url: 'practice.html', full: true },
@@ -78,7 +84,7 @@ const SHOTS = [
 const OVERFLOW_PAGES = [
   'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=cafe', ...firstOf.values(), 'lesson.html?mode=placement',
   'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
-  'stories.html', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
+  'stories.html', 'stories.html?story=hello', 'stories.html?story=cafe', 'lesson.html?mode=sounds', 'voices.html', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
 ];
 
 async function settle(page) {
@@ -100,7 +106,13 @@ for (const [vpName, options] of Object.entries(VIEWPORTS)) {
     page.on('pageerror', (e) => report.errors.push(`${vpName}/${shot.name}: ${e.message}`));
     page.on('console', (m) => m.type() === 'error' && report.errors.push(`${vpName}/${shot.name}: console: ${m.text()}`));
     await page.goto(base + shot.url);
-    await settle(page);
+    try {
+      await settle(page);
+    } catch (e) {
+      report.errors.push(`${vpName}/${shot.name}: page never became ready (${e.message.split('\n')[0]})`);
+      await context.close();
+      continue;
+    }
     if (shot.act) {
       await shot.act(page);
       await page.waitForTimeout(400);

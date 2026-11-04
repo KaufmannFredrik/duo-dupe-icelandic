@@ -1,0 +1,86 @@
+{
+ "sentences": [
+  {
+   "id": "451938",
+   "is": "Hvað heitir þú?",
+   "en": "What is your name?",
+   "author": "Swift"
+  },
+  {
+   "id": "4171415",
+   "is": "Vilt þú te eða kaffi?",
+   "en": "Do you want tea or coffee?",
+   "author": "lifind"
+  },
+  {
+   "id": "707638",
+   "is": "Þú drekkur te.",
+   "en": "You drink tea.",
+   "author": "Swift"
+  },
+  {
+   "id": "3838979",
+   "is": "Góðan daginn!",
+   "en": "Good morning!",
+   "author": "arnarsmata"
+  },
+  {
+   "id": "669468",
+   "is": "Ég á tvær dætur.",
+   "en": "I have two daughters.",
+   "author": "Swift"
+  },
+  {
+   "id": "788039",
+   "is": "Barnið er að drekka mjólk.",
+   "en": "The child is drinking some milk.",
+   "author": "Pharamp"
+  }
+ ],
+ "voices": {
+  "steinn": {
+   "name": "Steinn (male)",
+   "files": [
+    "samples/steinn-451938.mp3",
+    "samples/steinn-4171415.mp3",
+    "samples/steinn-707638.mp3",
+    "samples/steinn-3838979.mp3",
+    "samples/steinn-669468.mp3",
+    "samples/steinn-788039.mp3"
+   ]
+  },
+  "salka": {
+   "name": "Salka (female)",
+   "files": [
+    "samples/salka-451938.mp3",
+    "samples/salka-4171415.mp3",
+    "samples/salka-707638.mp3",
+    "samples/salka-3838979.mp3",
+    "samples/salka-669468.mp3",
+    "samples/salka-788039.mp3"
+   ]
+  },
+  "bui": {
+   "name": "Búi (male)",
+   "files": [
+    "samples/bui-451938.mp3",
+    "samples/bui-4171415.mp3",
+    "samples/bui-707638.mp3",
+    "samples/bui-3838979.mp3",
+    "samples/bui-669468.mp3",
+    "samples/bui-788039.mp3"
+   ]
+  },
+  "ugla": {
+   "name": "Ugla (female)",
+   "files": [
+    "samples/ugla-451938.mp3",
+    "samples/ugla-4171415.mp3",
+    "samples/ugla-707638.mp3",
+    "samples/ugla-3838979.mp3",
+    "samples/ugla-669468.mp3",
+    "samples/ugla-788039.mp3"
+   ]
+  }
+ }
+}

@@ -1,8 +1,7 @@
 // Listen to a human recording and pick the word you heard.
 
 import { t } from '../i18n.js';
-import { icon } from '../shell.js';
-import { esc, heading, optionsGroup } from './common.js';
+import { esc, heading, listenCard, optionsGroup } from './common.js';
 
 export function build(spec, ctx) {
   const rec = spec.recording;
@@ -12,14 +11,7 @@ export function build(spec, ctx) {
   const credit = `${t('audio.recordedBy', { name: esc(rec.speaker ?? '?') })}, <a href="${esc(rec.page)}" rel="noopener">${esc(rec.license)}</a>`;
   return {
     html:
-      heading('ex.listen') +
-      `<div class="card prompt-card listen-card">
-        <div class="prompt-card__audio">
-          <button type="button" class="button button-primary" data-play="${esc(word)}" data-url="${esc(url)}">${icon('sound-on')}<span>${t('audio.play')}</span></button>
-          <button type="button" class="button button--sm" data-play="${esc(word)}" data-url="${esc(url)}" data-slow>${icon('slow')}<span>${t('audio.slow')}</span></button>
-        </div>
-        <p class="credit">${credit}</p></div>` +
-      opts.html,
+      heading('ex.listen') + listenCard({ text: word, url, credit }) + opts.html,
     mount: opts.mount,
     pickByNumber: opts.pickByNumber,
     ready: () => opts.selected() !== null,

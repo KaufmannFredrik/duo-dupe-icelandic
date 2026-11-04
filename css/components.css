@@ -409,6 +409,7 @@ kbd, .kbd {
 .tag--gender { color: var(--rf-chrome); border-style: dashed; }
 .tag--pos { color: var(--rf-muted); }
 .tag--demo { color: var(--rf-gold); }
+.tag--ok { color: var(--color-correct); }
 
 /* Heatmap cell ------------------------------------------------------------------------------ */
 
@@ -555,6 +556,9 @@ kbd, .kbd {
   cursor: pointer;
 }
 .word[aria-expanded="true"] { background: var(--fill-selected); border-bottom-color: var(--rf-cyan); }
+/* The word being spoken: a solid underline and a glow, never color alone. */
+.word.is-speaking { border-bottom: 2px solid var(--rf-gold); color: var(--rf-gold); text-shadow: 0 0 8px rgba(255, 215, 0, 0.5); }
+html[data-calm="on"] .word.is-speaking { text-shadow: none; }
 
 /* Declension table -------------------------------------------------------------------------- */
 

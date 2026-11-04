@@ -2,6 +2,31 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Phase 4: audio and reading (2026-11-04)
+
+### What was built
+
+- **Audio chain** (`js/audio.js`): a human recording from Wikimedia Commons or Lingua Libre when the word has one (47% of words), otherwise a pre-generated file from the voice Steinn, otherwise the device's own Icelandic voice. Every course word, minimal-pair word and all 1,733 sentences have a generated file, so the device voice is only a last resort. Slow playback is 0.75x with the pitch kept; the speech-speed setting applies on top.
+- **Generated voice**: `scripts/build-audio.py` renders the files offline with Piper 1.8.0 (GPL-3.0, build tool only) and the `is_IS` medium voices, which were trained on Talrómur (Reykjavík University, CC BY 4.0). MP3 at 24 kbps mono: 2,066 files, 11.2 MB. All of `/data` is now 12.7 MB, under the 20 MB budget. The manifest `data/audio/tts-steinn.json` maps exact text to file and records the model URL, size and SHA-256, the tool versions and the date.
+- **Voice choice**: the four Piper voices (Búi, Salka, Steinn, Ugla) render the same six sentences on `voices.html` (linked from Settings) so the owner can choose by ear. Steinn is the provisional default. Shipping all four would cost about 45 MB, so the app ships one. To switch: `npm run build:audio -- --voice salka`, then set `TTS_VOICE` in `js/audio.js`. The ESPnet Talrómur models were not rendered: they need a separate toolchain and use older architectures.
+- **Word highlighting**: the reader highlights the word being spoken. Piper gives no alignments, so each sentence's duration is split over its words by phoneme count; the browser voice uses its boundary events instead. Close, not exact.
+- **Listening exercises**: "Build the sentence you hear" (dictation: audio only, word bank), plus the existing listen-and-pick exercise with human recordings. Dictation is in the lesson cycle for every unit.
+- **Minimal pairs** (`lesson.html?mode=sounds`, Practice > Sounds): six pairs that differ in vowel length (*man*/*mann*, *vin*/*vinn*, *sin*/*sinn*), preaspiration (*tak*/*takk*, *hatur*/*hattur*) and *ll* (*hala*/*halla*). Every word is a DMII Core form, and the voice's phoneme strings were checked to differ within each pair. Sounds practice gives XP but does not create spaced-repetition cards.
+- **Stories** (`stories.html`): five readings (two dialogues) made only of unchanged Tatoeba sentences, each listed after the unit it fits. The reader plays one line or the whole story with line and word highlighting, shows speaker labels, toggles translations, and opens a word panel on tap (dictionary form, meaning, every possible analysis of the form, audio, links to the dictionary and the full table). Each story credits its sentences by id and author.
+
+### Decisions and fixes
+
+- Human recordings keep priority over the generated voice even though they cover fewer words: Piper gets some rules wrong, for example *Ísland* comes out as [ˈisland] without the t in *sl*.
+- `play()` now always calls `onEnd` exactly once, also when the audio is stopped or replaced, so "Play all" can be stopped and a tapped line cancels it.
+- The voice test in Settings uses the device voice (`play({ browser: true })`), because that is what the setting chooses.
+- `validate-content` also checks the stories index, story ids, units and speakers, every minimal-pair word against the DMII Core, and that every word and sentence has a generated audio file that exists.
+
+### Tests
+
+- `node --test`: 35 tests pass.
+- `npm run smoke`: all 14 lessons of units 1 and 2 (now with dictation), the sounds and letters drills, and the story reader (word panel opens, line audio loads from the generated set).
+- `npm run qa`: new shots for the story list, reader, word panel, highlighting, translations, sounds, minimal-pair feedback and voices page. 0 axe violations, no horizontal scroll at 320 px, no page errors.
+
 ## Phase 3: engine and grammar core (2026-11-04)
 
 ### What was built

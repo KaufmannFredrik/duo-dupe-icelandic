@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" data-scan-page="low" data-scan="low">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/voices.js"></script>
+</head>
+<body data-shell data-page="settings" data-title-key="title.voices">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <div class="shell">
+    <nav class="app-nav" aria-label="Main" data-i18n-aria-label="nav.main" data-shell="nav"></nav>
+    <div class="shell__col">
+      <header class="hud" data-shell="hud"></header>
+      <main id="main" class="app-main" tabindex="-1">
+        <p><a class="back-link" href="settings.html"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons.svg#i-arrow-left"></use></svg><span data-i18n="title.settings">Settings</span></a></p>
+        <div class="page-head">
+          <h1 data-i18n="title.voices">Voices</h1>
+          <p data-i18n="voices.intro">TÖLVA ships one generated Icelandic voice to keep the download small. These samples let you hear the four free Piper voices side by side.</p>
+        </div>
+        <div class="grid-cards" data-voices></div>
+        <p class="credit" data-i18n="voices.license">All four voices were trained on the Talrómur corpus (Reykjavík University, CC BY 4.0). The audio files were made ahead of time with Piper, so nothing is sent anywhere when you press play.</p>
+      </main>
+      <footer class="app-footer" data-shell="footer"></footer>
+    </div>
+    <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "id": "hello",
+  "reviewed": false,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; their selection and order need native review.",
+  "title": {
+    "en": "Meeting someone",
+    "nb": "Å møte noen"
+  },
+  "level": "A1",
+  "after": "hello",
+  "dialogue": true,
+  "lines": [
+    {
+      "sentence": "473495",
+      "speaker": "A"
+    },
+    {
+      "sentence": "3838997",
+      "speaker": "B"
+    },
+    {
+      "sentence": "451938",
+      "speaker": "A"
+    },
+    {
+      "sentence": "395870",
+      "speaker": "B"
+    },
+    {
+      "sentence": "384719",
+      "speaker": "A"
+    },
+    {
+      "sentence": "1364320",
+      "speaker": "B"
+    },
+    {
+      "sentence": "11158378",
+      "speaker": "A"
+    },
+    {
+      "sentence": "397461",
+      "speaker": "B"
+    },
+    {
+      "sentence": "3838984",
+      "speaker": "A"
+    }
+  ]
+}

@@ -3,10 +3,11 @@
 //   review      due spaced-repetition cards
 //   mistakes    replays exercises answered wrong
 //   letters     typing drill for words with þ, ð, æ, ö and accents
+//   sounds      minimal pairs: hear one word of a pair, pick which it was
 //   placement   adaptive test: one step per unit, stops at the first unit with a miss
 // Every answer is recorded per item (word meaning or single form) for spaced repetition.
 
-import { ready } from '../app.js';
+import { loadJSON, ready } from '../app.js';
 import { pick, t } from '../i18n.js';
 import { caseRules, getGenerator, gloss, glossLang, lemma, loadAll, paradigm, recordings, sentence, translation } from '../data.js';
 import { allowedFor, findLesson, loadCourse, nextLesson } from '../course.js';
@@ -73,12 +74,25 @@ function lettersPlan() {
   return { key: 'practice/letters', title: t('practice.letters'), specs: ids.map((id) => ({ type: 'typeword', lemma: id, key: `${id}|meaning` })) };
 }
 
+async function soundsPlan() {
+  const mp = await loadJSON('content/minimal-pairs.json');
+  const r = rng(Date.now() % 1e9);
+  const specs = shuffle(mp.pairs.flatMap((p) => p.words.map((w) => ({ type: 'pair', words: p.words, answer: w, contrast: p.contrast, key: null }))), r).slice(0, 12);
+  return { key: 'practice/sounds', title: t('practice.sounds'), specs, contrasts: mp.contrasts };
+}
+
 function placementPlan() {
   const steps = gen.placement({ units: course.units, seed: Date.now() % 1e9 });
   return { key: 'placement', title: t('placement.title'), specs: steps.flatMap((s) => s.items.map((item) => ({ ...item, step: s.unit }))), steps, placement: true };
 }
 
-const plan = mode === 'review' ? await reviewPlan() : mode === 'mistakes' ? await mistakesPlan() : mode === 'letters' ? lettersPlan() : mode === 'placement' ? placementPlan() : lessonPlan();
+const plan =
+  mode === 'review' ? await reviewPlan()
+  : mode === 'mistakes' ? await mistakesPlan()
+  : mode === 'letters' ? lettersPlan()
+  : mode === 'sounds' ? await soundsPlan()
+  : mode === 'placement' ? placementPlan()
+  : lessonPlan();
 $('[data-lesson-title]').textContent = plan.title;
 
 // --- Player ---------------------------------------------------------------------------------------
@@ -95,6 +109,7 @@ const ctxFor = (i) => ({
   strict: getSettings().strict,
   seed: hashSeed(`${plan.key}:${i}`),
   finePointer,
+  contrasts: plan.contrasts,
   changed: () => {
     checkBtn.disabled = !current.ready();
   },

@@ -23,22 +23,20 @@
           <h1 data-i18n="title.stories">Stories</h1>
           <p data-i18n="stories.intro">Short readings where every word is explained. Tap a word to see what it is doing in the sentence.</p>
         </div>
-        <section class="card card--quiet stack" aria-labelledby="sample-title">
-          <div class="cluster"><h2 id="sample-title" data-i18n="stories.sample">Sample reading</h2><span class="tag tag--demo" data-i18n="demo.tag">Demo data</span></div>
-          <label class="switch reader__switch"><span data-i18n="stories.translations">Show translations</span><input type="checkbox" data-show-translations><span class="switch__track" aria-hidden="true"></span></label>
+        <div class="grid-cards story-list" data-story-list></div>
+        <section class="card card--quiet stack story" aria-labelledby="story-title" data-reader>
+          <p><a class="back-link" href="stories.html"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons.svg#i-arrow-left"></use></svg><span data-i18n="stories.all">All stories</span></a></p>
+          <h2 id="story-title" data-story-title></h2>
+          <div class="cluster story__controls">
+            <button type="button" class="button button-primary" data-play-all aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-play"></use></svg><span data-i18n="stories.playAll">Play all</span></button>
+            <label class="switch reader__switch"><span data-i18n="stories.translations">Show translations</span><input type="checkbox" data-show-translations><span class="switch__track" aria-hidden="true"></span></label>
+          </div>
           <div class="reader">
             <div class="reader__text" data-reader-text></div>
             <div class="sheet word-panel" id="word-panel" role="region" aria-label="Word details" data-i18n-aria-label="stories.panel" aria-live="polite" data-word-panel></div>
           </div>
           <p class="credit" data-reader-credits></p>
-        </section>
-        <section class="stack" aria-labelledby="coming-title">
-          <h2 id="coming-title" data-i18n="stories.coming">Coming in Phase 4</h2>
-          <div class="grid-cards">
-            <div class="card card--quiet stack"><span class="tag tag--pos">A1</span><h3 data-i18n="stories.s1">Dialogue: meeting someone</h3><p class="muted cluster"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons.svg#i-lock"></use></svg><span data-i18n="stories.locked">Locked</span></p></div>
-            <div class="card card--quiet stack"><span class="tag tag--pos">A1</span><h3 data-i18n="stories.s2">Dialogue: at the café</h3><p class="muted cluster"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons.svg#i-lock"></use></svg><span data-i18n="stories.locked">Locked</span></p></div>
-            <div class="card card--quiet stack"><span class="tag tag--pos">A2</span><h3 data-i18n="stories.s3">Story: a day in Reykjavík</h3><p class="muted cluster"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons.svg#i-lock"></use></svg><span data-i18n="stories.locked">Locked</span></p></div>
-          </div>
+          <p class="credit" data-voice-credit></p>
         </section>
       </main>
       <footer class="app-footer" data-shell="footer"></footer>

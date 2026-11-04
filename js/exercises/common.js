@@ -21,6 +21,16 @@ export function promptCard({ text, html, lang = 'is', audio = null }) {
   return `<div class="card prompt-card">${buttons}<p class="prompt-card__text" lang="${lang}">${html ?? esc(text)}</p></div>`;
 }
 
+/** Audio-only prompt: a large play button and a slow one, plus an optional credit line. */
+export function listenCard({ text, url = null, credit = '' }) {
+  const attrs = `data-play="${esc(text)}"${url ? ` data-url="${esc(url)}"` : ''}`;
+  return `<div class="card prompt-card listen-card">
+      <div class="prompt-card__audio">
+        <button type="button" class="button button-primary" ${attrs}>${icon('sound-on')}<span>${t('audio.play')}</span></button>
+        <button type="button" class="button button--sm" ${attrs} data-slow>${icon('slow')}<span>${t('audio.slow')}</span></button>
+      </div>${credit ? `<p class="credit">${credit}</p>` : ''}</div>`;
+}
+
 export const markIcon = (state) =>
   `<svg class="icon option__mark" aria-hidden="true"><use href="assets/icons.svg#i-${state === 'correct' ? 'check' : state === 'almost' ? 'almost' : 'wrong'}"></use></svg>`;
 

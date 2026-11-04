@@ -4,7 +4,7 @@ Learn Icelandic from the oracle in the machine.
 
 TÖLVA is a free, static, grammar-first website for learning Icelandic: a unit path, many exercise types, case and ending practice, audio, spaced repetition, and Norwegian Bokmål as a first-class base language next to English. It is plain HTML, CSS and JavaScript modules with no build step, so it can be served from GitHub Pages.
 
-**Status:** Phase 3. Units 1 and 2 are complete and playable; units 3 to 9 are generated previews. Audio and stories (Phase 4) and streaks, offline use and progress export (Phase 5) come next. See [docs/DECISIONS.md](docs/DECISIONS.md) for what was decided and why, and [docs/api-report.md](docs/api-report.md) for the data-source probe.
+**Status:** Phase 4. Units 1 and 2 are complete and playable; units 3 to 9 are generated previews. Every word and sentence has audio (human recordings where they exist, otherwise a generated voice), and there are five stories and a minimal-pairs drill. Streaks, offline use and progress export (Phase 5) come next. See [docs/DECISIONS.md](docs/DECISIONS.md) for what was decided and why, and [docs/api-report.md](docs/api-report.md) for the data-source probe.
 
 ## Run it
 
@@ -16,7 +16,7 @@ npm run serve            # node scripts/serve.mjs 8080, then open http://localho
 python3 -m http.server 8080
 ```
 
-Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=2`, or `?mode=review`, `mistakes`, `letters` or `placement`), `guide.html?unit=hello`, `practice.html`, `declension.html?lemma=kaffi` (case trainer), `stories.html`, `dictionary.html`, `profile.html`, `settings.html`, `credits.html`, `styleguide.html`.
+Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=2`, or `?mode=review`, `mistakes`, `letters`, `sounds` or `placement`), `guide.html?unit=hello`, `practice.html`, `declension.html?lemma=kaffi` (case trainer), `stories.html` (`?story=cafe` opens the reader), `dictionary.html`, `profile.html`, `settings.html`, `voices.html`, `credits.html`, `styleguide.html`.
 
 ## Requirements for the scripts
 
@@ -24,19 +24,21 @@ Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=
 - `npm install` once, then `npx playwright install chromium` for the visual QA.
 - `bzip2` on the PATH to read Tatoeba exports (included with macOS, Linux and Git for Windows; on Windows, run the scripts from Git Bash).
 - Python 3.11 or newer for GreynirCorrect: `python -m venv .venv`, then `.venv/Scripts/pip install reynir-correct` (macOS/Linux: `.venv/bin/pip`) and `.venv/Scripts/python -m icegrams.download` (about 200 MB, stored in your user profile).
+- For the audio only: `.venv/Scripts/pip install piper-tts lameenc`. The voice models (about 75 MB each) download into `.cache/piper/` on first use.
 
 ## Commands
 
 | Command | What it does |
 |---|---|
 | `npm test` | Unit tests (`node --test`): grading, spaced repetition, the course model, and the exercise generator against the real data. |
-| `npm run smoke` | Playwright plays every lesson of units 1 and 2 and checks that progress is saved. |
+| `npm run smoke` | Playwright plays every lesson of units 1 and 2 and the sounds and letters drills, checks that progress is saved, and opens a story (word panel, line audio). |
 | `npm run validate` | Checks every Icelandic word in the content against the DMII Core, and hand-written sentences with GreynirCorrect. |
 | `npm run build:data` | Rebuilds `/data` (needs `npm run probe:coverage` first for the bulk files, and GreynirCorrect in `.venv`). |
 | `npm run check` | Contrast check, UI string check (English and Norwegian), content validation, unit tests. |
 | `npm run qa` | Playwright visual QA: screenshots of every screen and state at 390x844, 768x1024 and 1440x900 into `screenshots/`, axe accessibility checks, and a no-horizontal-scroll test at 320 px. |
 | `npm run probe` | Probes every external API and dataset and rewrites `docs/api-report.md`. |
 | `npm run probe:coverage` | Also downloads the bulk datasets into `.cache/` (about 150 MB) and measures coverage. |
+| `npm run build:audio` | Generates the MP3 files for every course word, minimal-pair word and sentence with the Piper voice Steinn (`scripts/build-audio.py`; existing files are kept, unused ones removed). `--samples` rebuilds the four-voice comparison set. |
 | `npm run build:tala` | Writes the mascot SVG files in `assets/tala/` from `js/tala.js`. |
 
 To keep the download cache outside the repository (for example when the repo is in a synced folder), set `TOLVA_CACHE`, for example `TOLVA_CACHE=~/tolva-cache npm run probe:coverage`.
@@ -46,13 +48,15 @@ To keep the download cache outside the repository (for example when the repo is 
 ```
 *.html            one file per screen; all paths are relative (GitHub Pages serves a sub-path)
 css/              tokens.css, base.css (reference design, then extensions), components.css, layout.css
-js/               app.js (bootstrap), shell.js, i18n.js + i18n/{en,nb}.json, store.js, lexicon.js,
-                  normalize.js, audio.js, sfx.js, tala.js (mascot), ui/, pages/ (one module per screen)
+js/               app.js (bootstrap), shell.js, i18n.js + i18n/{en,nb}.json, store.js, data.js, grammar.js,
+                  course.js, progress.js, srs.js, db.js, normalize.js, audio.js, sfx.js, tala.js (mascot),
+                  engine/ (course model, lesson generator), exercises/ (one module per type), ui/, pages/
 assets/           icons.svg (sprite), tala/ (mascot SVGs)
-content/          brand.json, case-rules.json, demo/ (Phase 1 lesson and path), NEEDS-NATIVE-REVIEW.md
-data/             generated data (CC BY-SA 4.0; see data/LICENSE.md); demo/lexicon.json for Phase 1
+content/          brand.json, vocab/, units/, stories/, case-rules.json, minimal-pairs.json, allowlist.json,
+                  NEEDS-NATIVE-REVIEW.md
+data/             generated data (CC BY-SA 4.0; see data/LICENSE.md); audio/ (generated voice, CC BY 4.0)
 scripts/          probe, data builders, checks, dev server, visual QA
-tests/            node --test unit tests
+tests/            node --test unit tests, smoke.mjs (Playwright)
 docs/             api-report.md, DECISIONS.md
 ```
 

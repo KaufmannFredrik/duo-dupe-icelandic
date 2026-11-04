@@ -52,10 +52,11 @@
               <p class="setting__help" id="sfx-help" data-i18n="settings.sfxHelp">Short 8-bit chimes for answers. Off by default.</p>
             </div>
             <div class="setting">
-              <label class="setting__label" for="voice" data-i18n="settings.voice">Icelandic voice</label>
+              <label class="setting__label" for="voice" data-i18n="settings.voice">Device voice (fallback)</label>
               <div class="cluster voice-row"><select class="select" id="voice" name="voice" aria-describedby="voice-help"></select>
                 <button type="button" class="button button--sm" data-test-voice><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-play"></use></svg><span data-i18n="settings.test">Test</span></button></div>
-              <p class="setting__help" id="voice-help" data-i18n="settings.voiceHelp">Voices come from your browser and device. Recorded and generated audio arrives in Phase 4.</p>
+              <p class="setting__help" id="voice-help" data-i18n="settings.voiceHelp">Audio comes from recordings by people first, then from the generated voice Steinn. Your device voice is used only for text without a file.</p>
+              <p><a href="voices.html" data-i18n="settings.voices">Compare the generated voices</a></p>
             </div>
             <div class="setting">
               <label class="setting__label" for="rate" data-i18n="settings.rate">Speech speed</label>

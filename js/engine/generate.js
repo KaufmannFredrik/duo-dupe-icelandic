@@ -92,6 +92,11 @@ export function createGenerator(data) {
     return { type: 'wordbank', lemma: id, sentence: sid, distractors, key: `${id}|meaning` };
   }
 
+  function dictation(id, allowed, used, r) {
+    const spec = wordbank(id, allowed, used, r);
+    return spec && toks(spec.sentence).length <= 6 ? { ...spec, type: 'dictation' } : null;
+  }
+
   function typeword(id) {
     return { type: 'typeword', lemma: id, key: `${id}|meaning` };
   }
@@ -180,8 +185,8 @@ export function createGenerator(data) {
 
   // Words with case (nouns, adjectives, pronouns, numerals) rotate through case work early;
   // other words through meaning and sentence work.
-  const CASE_CYCLE = ['ending', 'case', 'listen', 'meaning', 'choice', 'ending', 'wordbank', 'case', 'typeword'];
-  const WORD_CYCLE = ['listen', 'meaning', 'choice', 'wordbank', 'typeword', 'choice'];
+  const CASE_CYCLE = ['ending', 'case', 'listen', 'meaning', 'choice', 'ending', 'dictation', 'case', 'typeword', 'wordbank'];
+  const WORD_CYCLE = ['listen', 'meaning', 'choice', 'dictation', 'wordbank', 'typeword', 'choice'];
   const cycleFor = (id) => (CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? CASE_CYCLE : WORD_CYCLE);
 
   /**
@@ -215,6 +220,7 @@ export function createGenerator(data) {
           const spec =
             type === 'choice' ? choice(id, allow, used, r)
             : type === 'wordbank' ? wordbank(id, allow, used, r)
+            : type === 'dictation' ? dictation(id, allow, used, r)
             : type === 'meaning' ? meaning(id, allow, r)
             : type === 'listen' ? listen(id, allow, r)
             : type === 'typeword' ? typeword(id)

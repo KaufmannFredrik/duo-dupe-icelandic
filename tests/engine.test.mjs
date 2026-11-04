@@ -55,13 +55,13 @@ for (const unitId of ['hello', 'cafe']) {
       const everyWord = new Set(Object.keys(d.lexicon.lemmas));
       for (const s of specs) {
         // Sentence building uses only words met so far; reading exercises may use any course word.
-        const known = knownIn(s.type === 'wordbank' ? allowed : everyWord);
+        const known = knownIn(s.type === 'wordbank' || s.type === 'dictation' ? allowed : everyWord);
         for (const sid of [s.sentence, ...(s.type === 'choice' ? s.options : [])].filter(Boolean)) {
           assert.ok(d.sentences[sid], `sentence ${sid} exists`);
           for (const t of tokens(d.sentences[sid].is)) assert.ok(known(t), `${lesson.key} ${s.type}: "${t.raw}" in "${d.sentences[sid].is}" is not a known word`);
         }
         if (s.type === 'choice') assert.equal(new Set(s.options.map((x) => d.sentences[x].en[0])).size, s.options.length, 'distinct translations');
-        if (s.type === 'wordbank') {
+        if (s.type === 'wordbank' || s.type === 'dictation') {
           const present = new Set(tokens(d.sentences[s.sentence].is).map((t) => t.low));
           for (const x of s.distractors) assert.ok(!present.has(x.toLocaleLowerCase('is')), `distractor "${x}" is in the sentence`);
         }

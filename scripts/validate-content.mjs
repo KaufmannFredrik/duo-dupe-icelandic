@@ -146,16 +146,55 @@ async function checkUnits() {
 async function checkStories() {
   const dir = path.join(ROOT, 'content/stories');
   if (!existsSync(dir)) return;
-  for (const file of (await readdir(dir)).filter((f) => f.endsWith('.json'))) {
+  const files = (await readdir(dir)).filter((f) => f.endsWith('.json') && f !== 'index.json');
+  const listed = (await readJson('content/stories/index.json')).stories;
+  for (const f of listed) if (!files.includes(f)) err('content/stories/index.json', `missing story file ${f}`);
+  for (const f of files) if (!listed.includes(f)) err('content/stories/index.json', `${f} is not listed`);
+  const unitIds = new Set();
+  for (const f of (await readJson('content/units/index.json')).units) unitIds.add((await readJson(`content/units/${f}`)).id);
+  const ids = new Set();
+  for (const file of files) {
     const rel = `content/stories/${file}`;
     const story = await readJson(rel);
     if (story.reviewed === false) unreviewed.push(rel);
+    if (!story.id || ids.has(story.id)) err(rel, `missing or duplicate id ${story.id}`);
+    ids.add(story.id);
+    if (!story.title?.en || !story.title?.nb) err(rel, 'title needs en and nb');
+    if (story.after && !unitIds.has(story.after)) err(rel, `unknown unit ${story.after}`);
+    if (!story.dialogue && story.lines?.some((l) => l.speaker)) err(rel, 'speakers are only for dialogues');
     for (const [i, line] of (story.lines ?? []).entries()) {
       const text = line.sentence ? sentenceText(line.sentence) : line.is;
       if (!text) err(`${rel} line ${i + 1}`, `sentence ${line.sentence} not found`);
       else await checkText(`${rel} line ${i + 1}`, text);
     }
   }
+}
+
+// Minimal pairs: every word must be a DMII Core form, and every pair must name a described contrast.
+async function checkMinimalPairs() {
+  const rel = 'content/minimal-pairs.json';
+  if (!existsSync(path.join(ROOT, rel))) return;
+  const mp = await readJson(rel);
+  if (mp.reviewed === false) unreviewed.push(rel);
+  for (const [i, pair] of mp.pairs.entries()) {
+    if (pair.words?.length !== 2) err(`${rel} pair ${i + 1}`, 'a pair needs two words');
+    if (!mp.contrasts[pair.contrast]?.en || !mp.contrasts[pair.contrast]?.nb) err(`${rel} pair ${i + 1}`, `contrast ${pair.contrast} needs en and nb text`);
+    for (const w of pair.words ?? []) if (!(await inDmiiCore(w))) err(`${rel} pair ${i + 1}`, `${w} is not a DMII Core form`);
+  }
+}
+
+// Audio coverage: texts the app plays without a recording should have a generated file.
+async function checkAudio() {
+  const rel = 'data/audio/tts-steinn.json';
+  if (!existsSync(path.join(ROOT, rel))) return warnings.push(`${rel} is missing; run .venv python scripts/build-audio.py`);
+  const { texts } = await readJson(rel);
+  const missing = [];
+  for (const l of Object.values(lexicon.lemmas)) if (!texts[l.lemma]) missing.push(l.lemma);
+  const mp = existsSync(path.join(ROOT, 'content/minimal-pairs.json')) ? await readJson('content/minimal-pairs.json') : { pairs: [] };
+  for (const w of mp.pairs.flatMap((p) => p.words)) if (!texts[w]) missing.push(w);
+  for (const s of Object.values(sentences)) if (!texts[s.is]) missing.push(s.is);
+  for (const [text, e] of Object.entries(texts)) if (!existsSync(path.join(ROOT, 'data/audio', e.f))) err(rel, `missing file ${e.f} for "${text}"`);
+  if (missing.length) warnings.push(`${missing.length} texts have no generated audio (first: ${missing.slice(0, 5).join(', ')}); run scripts/build-audio.py`);
 }
 
 async function checkSmallFiles() {
@@ -201,6 +240,8 @@ async function checkAuthored() {
 await checkVocab();
 await checkUnits();
 await checkStories();
+await checkMinimalPairs();
+await checkAudio();
 await checkSmallFiles();
 const authoredCount = await checkAuthored();
 

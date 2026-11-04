@@ -11,9 +11,13 @@ The files in **`/data` are not covered by the MIT license.** They are generated 
 | Tatoeba | Example sentences and translations | CC BY 2.0 FR | Sentence id and author for each sentence |
 | CLARIN-IS, Frequency lists for Icelandic 23.06 | Vocabulary order | CC BY 4.0 | hdl.handle.net/20.500.12537/314 |
 | Wikimedia Commons and Lingua Libre | Word recordings (linked, not copied) | Per file, usually CC BY-SA 4.0 | Author and license for each file |
-| Talrómur corpus (Piper voices), if adopted in Phase 4 | Generated audio | CC BY 4.0 | hdl.handle.net/20.500.12537/104 |
+| Talrómur corpus, through the Piper voices (rhasspy/piper-voices, is_IS medium) | Generated audio in `data/audio/` | CC BY 4.0 | "Talrómur, Reykjavík University", hdl.handle.net/20.500.12537/104 |
 
-The Phase 1 demo file `data/demo/lexicon.json` contains DMII Core paradigms, Wiktionary data and Tatoeba sentences and follows the same terms; its sources and authors are listed inside it.
+## Generated audio (`data/audio/`)
+
+- `data/audio/tts/steinn/` holds MP3 files spoken by the Piper voice Steinn; `data/audio/tts-steinn.json` maps each text to its file and records the voice model's URL, size and SHA-256, the tool versions and the generation date. `data/audio/samples/` holds a few sentences in all four voices for the comparison page.
+- The voices were trained on Talrómur (CC BY 4.0), so the audio is offered under **CC BY 4.0** with the credit above. Audio of a Tatoeba sentence also carries that sentence's CC BY 2.0 FR attribution (author and id in `data/sentences.json`).
+- Piper itself is GPL-3.0. It runs only on the build machine (`scripts/build-audio.py`) and is not distributed with the site; its output is not covered by its license.
 
 ## What this means for the generated files
 

@@ -35,6 +35,32 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
   - *einn* to *fjórir* inflect: *tvær dætur*, *tvo ketti*, *tvö börn*; from five on numbers do not change.
 - Case trainer note "When is each case used?" (summary of the main uses of the four cases).
 
+## Stories (`content/stories/`)
+
+The sentences are unchanged Tatoeba sentences. Not reviewed: which sentences were chosen, their order, whether they read naturally together, and the speaker labels (A, B) in the two dialogues.
+
+| Story | Lines |
+|---|---|
+| `hello` Meeting someone | A: *Hæ, hvernig gengur?* B: *Ég er góður.* A: *Hvað heitir þú?* B: *Ég heiti Jack.* A: *Hvaðan ertu?* B: *Ég er frá Ástralíu.* A: *Velkominn!* B: *Takk!* A: *Bless!* |
+| `cafe` At the café | *Vilt þú te eða kaffi? Tvo bjóra, takk. Hann er að borða epli. Strákurinn er að borða brauð. Barnið er að drekka mjólk. Mætti ég fá meira kaffi? Takk, það er allt. Takk fyrir matinn.* |
+| `family` My family | *Hann er bróðir minn. Hún er systir mín. Systir mín er í vinnu. Móðir mín var dansari. Barnið er sofandi. Hún elskar börn. Hvar er bróðir þinn?* |
+| `weather` What is the weather like? | *Veðrið er svo gott! Hvar er sólin? Sólin braust í gegnum skýin. Það er kalt. Er þér ekki kalt? Mér er kalt. Það snjóar. Ég elska snjó.* |
+| `around` Taking the bus | *Hvar er bíllinn minn? Áttu bíl? Taktu strætó. Hér kemur strætó. Ég fer með strætó í skólann. Hann kom með strætó.* |
+
+## Minimal pairs (`content/minimal-pairs.json`)
+
+| Pair | Contrast | Status |
+|---|---|---|
+| *man* / *mann*, *vin* / *vinn*, *sin* / *sinn* | Vowel length: long vowel before one consonant, short before a double one. | not reviewed |
+| *tak* / *takk*, *hatur* / *hattur* | Preaspiration before double *kk* and *tt*. | not reviewed |
+| *hala* / *halla* | *ll* sounds roughly like "tl". | not reviewed |
+
+The English and Norwegian descriptions of the three contrasts are not reviewed either.
+
+## Generated audio (`data/audio/`)
+
+Every word and sentence without a human recording is spoken by the Piper voice Steinn. A native speaker should listen for wrong pronunciations, starting with the minimal pairs and the stories. Known: *Ísland* is said [ˈisland], without the t that the *sl* cluster should get. Word highlighting in the reader uses estimated timings.
+
 ## Pronunciation and language notes (landing page, `js/i18n/*.json`)
 
 | Key | Claim | Status |

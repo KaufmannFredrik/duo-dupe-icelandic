@@ -1,0 +1,35 @@
+{
+  "id": "family",
+  "reviewed": false,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; their selection and order need native review.",
+  "title": {
+    "en": "My family",
+    "nb": "Familien min"
+  },
+  "level": "A1",
+  "after": "family",
+  "dialogue": false,
+  "lines": [
+    {
+      "sentence": "1320754"
+    },
+    {
+      "sentence": "469342"
+    },
+    {
+      "sentence": "1339299"
+    },
+    {
+      "sentence": "747346"
+    },
+    {
+      "sentence": "4020767"
+    },
+    {
+      "sentence": "512677"
+    },
+    {
+      "sentence": "873786"
+    }
+  ]
+}

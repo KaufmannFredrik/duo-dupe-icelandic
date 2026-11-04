@@ -1,0 +1,26 @@
+{
+  "reviewed": false,
+  "note": "Word pairs that differ in one sound. Every word is a DMII Core form; the synthetic voice was checked to produce a different phoneme string for the two words of each pair. The descriptions and the audio need native review.",
+  "contrasts": {
+    "length": {
+      "en": "Long or short? A vowel is long before a single consonant and short before a double one: man has a long a, mann a short a and a long n.",
+      "nb": "Lang eller kort? En vokal er lang foran én konsonant og kort foran dobbel konsonant: man har lang a, mann kort a og lang n."
+    },
+    "preaspiration": {
+      "en": "Breath before the stop: in takk and hattur a puff of air (an h sound) comes before the k or t.",
+      "nb": "Pust før lukkelyden: i takk og hattur kommer et pust (en h-lyd) foran k eller t."
+    },
+    "ll": {
+      "en": "Double l sounds like tl: halla sounds roughly like \"hatla\".",
+      "nb": "Dobbel l uttales omtrent som tl: halla høres ut som «hatla»."
+    }
+  },
+  "pairs": [
+    { "words": ["man", "mann"], "contrast": "length" },
+    { "words": ["vin", "vinn"], "contrast": "length" },
+    { "words": ["sin", "sinn"], "contrast": "length" },
+    { "words": ["tak", "takk"], "contrast": "preaspiration" },
+    { "words": ["hatur", "hattur"], "contrast": "preaspiration" },
+    { "words": ["hala", "halla"], "contrast": "ll" }
+  ]
+}

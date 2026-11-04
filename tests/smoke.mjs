@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Playwright smoke test: completes the first lesson at phone and desktop sizes by answering every
 // exercise correctly, then checks that progress was saved (lesson 1 done, lesson 2 current).
-// With --all it also plays every lesson of units 1 and 2 at desktop size.
+// With --all it also plays every lesson of units 1 and 2, the sounds and letters drills, and
+// checks the story reader (word panel, line audio from the generated voice) at desktop size.
 //   node tests/smoke.mjs [--all]
 
 import { chromium } from 'playwright';
@@ -18,7 +19,7 @@ const browser = await chromium.launch();
 let failed = false;
 
 async function playLesson(page, href) {
-  await page.goto(`${url}${href}&qa`);
+  await page.goto(`${url}${href}${href.includes('?') ? '&' : '?'}qa`);
   await page.waitForFunction(() => window.__tolva);
   const types = [];
   for (let i = 0; i < 30; i++) {
@@ -72,6 +73,32 @@ if (process.argv.includes('--all')) {
       failed = true;
       console.log(`FAIL ${unit}/${lesson}: ${e.message}`);
     }
+  }
+  for (const href of ['lesson.html?mode=sounds', 'lesson.html?mode=letters']) {
+    try {
+      const types = await playLesson(page, href);
+      for (const t of types) seen.set(t, (seen.get(t) ?? 0) + 1);
+      console.log(`PASS ${href}: ${types.length} exercises`);
+    } catch (e) {
+      failed = true;
+      console.log(`FAIL ${href}: ${e.message}`);
+    }
+  }
+  try {
+    await page.goto(`${url}stories.html`);
+    await page.locator('.story-card').first().waitFor({ timeout: 5000 });
+    const cards = await page.locator('.story-card').count();
+    if (cards < 5) throw new Error(`only ${cards} stories listed`);
+    await page.goto(`${url}stories.html?story=cafe`);
+    await page.locator('.word').first().click();
+    await page.locator('.word-panel .word-panel__lemma').first().waitFor({ timeout: 5000 });
+    const audio = page.waitForResponse((r) => r.url().includes('/data/audio/tts/') && r.ok(), { timeout: 5000 });
+    await page.click('[data-play-line="0"]');
+    await audio;
+    console.log(`PASS stories: ${cards} listed, word panel opens, line audio loads`);
+  } catch (e) {
+    failed = true;
+    console.log(`FAIL stories: ${e.message}`);
   }
   if (errors.length) {
     failed = true;

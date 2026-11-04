@@ -1,0 +1,38 @@
+{
+  "id": "cafe",
+  "reviewed": false,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; their selection and order need native review.",
+  "title": {
+    "en": "At the café",
+    "nb": "På kafeen"
+  },
+  "level": "A1",
+  "after": "cafe",
+  "dialogue": false,
+  "lines": [
+    {
+      "sentence": "4171415"
+    },
+    {
+      "sentence": "795469"
+    },
+    {
+      "sentence": "1353533"
+    },
+    {
+      "sentence": "881347"
+    },
+    {
+      "sentence": "788039"
+    },
+    {
+      "sentence": "499384"
+    },
+    {
+      "sentence": "665907"
+    },
+    {
+      "sentence": "917595"
+    }
+  ]
+}

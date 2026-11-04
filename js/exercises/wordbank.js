@@ -1,9 +1,10 @@
 // Build the Icelandic sentence from word chips. Drag-free: tap a chip to place it, tap again to remove.
+// As "dictation" the prompt is audio only: build the sentence you hear.
 
 import { t } from '../i18n.js';
 import { normalize } from '../normalize.js';
 import { sfx } from '../sfx.js';
-import { esc, heading, promptCard, wordsOf } from './common.js';
+import { esc, heading, listenCard, promptCard, wordsOf } from './common.js';
 import { rng, shuffle } from '../engine/rng.js';
 
 export function build(spec, ctx) {
@@ -15,8 +16,8 @@ export function build(spec, ctx) {
   let root;
   return {
     html:
-      heading('ex.wordbank') +
-      promptCard({ text: tr.text, lang: tr.lang }) +
+      heading(spec.type === 'dictation' ? 'ex.dictation' : 'ex.wordbank') +
+      (spec.type === 'dictation' ? listenCard({ text: s.is }) : promptCard({ text: tr.text, lang: tr.lang })) +
       `<div class="answer-line" data-answer role="group" aria-label="${t('ex.yourAnswer')}"></div>
        <div class="bank" data-bank role="group" aria-label="${t('ex.wordBank')}">${bank.map((b) => `<button type="button" class="chip" lang="is" data-k="${b.k}">${esc(b.w)}</button>`).join('')}</div>`,
     mount(r) {
@@ -53,6 +54,10 @@ export function build(spec, ctx) {
       const built = placed.map(word).join(' ');
       return { result: normalize(built) === normalize(s.is) ? 'correct' : 'wrong', ...this.reveal() };
     },
-    reveal: () => ({ answerHTML: `<span lang="is">${esc(s.is)}</span>`, audio: s.is, sentence: spec.sentence }),
+    reveal: () => ({
+      answerHTML: `<span lang="is">${esc(s.is)}</span>${spec.type === 'dictation' ? `<br><span lang="${tr.lang}" class="muted">${esc(tr.text)}</span>` : ''}`,
+      audio: s.is,
+      sentence: spec.sentence,
+    }),
   };
 }

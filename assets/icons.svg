@@ -65,6 +65,9 @@
     <symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
       <path d="M3 6h9M18 6h3M3 12h3M12 12h9M3 18h11M20 18h1"/><rect x="12" y="4" width="4" height="4"/><rect x="6" y="10" width="4" height="4"/><rect x="14" y="16" width="4" height="4"/>
     </symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
     <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
       <path d="M4 12h15M13 6l6 6-6 6"/>
     </symbol>

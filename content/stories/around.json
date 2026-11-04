@@ -1,0 +1,32 @@
+{
+  "id": "around",
+  "reviewed": false,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; their selection and order need native review.",
+  "title": {
+    "en": "Taking the bus",
+    "nb": "Med bussen"
+  },
+  "level": "A1",
+  "after": "around",
+  "dialogue": false,
+  "lines": [
+    {
+      "sentence": "4010180"
+    },
+    {
+      "sentence": "1322917"
+    },
+    {
+      "sentence": "1315565"
+    },
+    {
+      "sentence": "1323756"
+    },
+    {
+      "sentence": "465350"
+    },
+    {
+      "sentence": "1316648"
+    }
+  ]
+}

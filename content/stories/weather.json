@@ -1,0 +1,38 @@
+{
+  "id": "weather",
+  "reviewed": false,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; their selection and order need native review.",
+  "title": {
+    "en": "What is the weather like?",
+    "nb": "Hvordan er været?"
+  },
+  "level": "A1",
+  "after": "weather",
+  "dialogue": false,
+  "lines": [
+    {
+      "sentence": "537223"
+    },
+    {
+      "sentence": "3997921"
+    },
+    {
+      "sentence": "382324"
+    },
+    {
+      "sentence": "428523"
+    },
+    {
+      "sentence": "624506"
+    },
+    {
+      "sentence": "624507"
+    },
+    {
+      "sentence": "451960"
+    },
+    {
+      "sentence": "742273"
+    }
+  ]
+}

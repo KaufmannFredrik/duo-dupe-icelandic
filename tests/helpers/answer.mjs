@@ -10,6 +10,9 @@ export async function answer(page, mode = 'correct') {
     case 'choice':
       await page.click(`.option[data-value="${spec.sentence}"]`);
       break;
+    case 'pair':
+      await page.click(`.option[data-value="${spec.answer}"]`);
+      break;
     case 'meaning':
     case 'listen':
       await page.click(`.option[data-value="${spec.lemma}"]`);
@@ -27,7 +30,8 @@ export async function answer(page, mode = 'correct') {
       await page.fill('#answer', mode === 'almost' ? fold(w) : w);
       break;
     }
-    case 'wordbank': {
+    case 'wordbank':
+    case 'dictation': {
       const text = await page.evaluate((sid) => window.__tolva.sentence(sid).is, spec.sentence);
       for (const w of text.match(/\p{L}+/gu)) await page.locator('[data-bank] .chip:not(:disabled)', { hasText: new RegExp(`^${w}$`) }).first().click();
       break;

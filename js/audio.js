@@ -1,11 +1,23 @@
-// Icelandic audio, only ever on request. Order: a recorded file when one exists, then the
-// browser's is-IS voice. Phase 4 adds pre-generated files between the two.
+// Icelandic audio, only ever on request. Order:
+//   1. a human recording (Wikimedia Commons, Lingua Libre), when the caller has one;
+//   2. a pre-generated file from the synthetic voice (data/audio/tts-<voice>.json, built by
+//      scripts/build-audio.py), looked up by the exact text;
+//   3. the browser's own Icelandic voice, if the device has one.
+// Slow playback is 0.75x with the pitch kept. onWord(i) reports the word being spoken
+// (estimated timings for files, boundary events for the browser voice); -1 when done.
+// onEnd runs once per play: when the audio ends, fails, or is stopped by stop() or the next play.
 
 import { getSettings } from './store.js';
 import { t } from './i18n.js';
 import { toast } from './ui/toast.js';
 
+export const TTS_VOICE = 'steinn';
+
 let voices = [];
+let manifest;
+let current = null;
+let raf = 0;
+let finish = null;
 const synth = 'speechSynthesis' in window ? window.speechSynthesis : null;
 
 function loadVoices() {
@@ -20,39 +32,128 @@ export function icelandicVoices() {
   return voices.filter((v) => /^is([-_]|$)/i.test(v.lang ?? ''));
 }
 
-function playFile(url, slow) {
-  const audio = new Audio(url);
+function loadManifest() {
+  manifest ??= fetch(new URL(`../data/audio/tts-${TTS_VOICE}.json`, import.meta.url))
+    .then((r) => (r.ok ? r.json() : { texts: {} }))
+    .catch(() => ({ texts: {} }));
+  return manifest;
+}
+
+/** The synthetic-voice file for a text: { f, d, w? } or null. */
+export async function ttsEntry(text) {
+  return (await loadManifest()).texts[text] ?? null;
+}
+
+export async function ttsCredit() {
+  return (await loadManifest()).credit ?? '';
+}
+
+export function stop() {
+  cancelAnimationFrame(raf);
+  if (current) {
+    current.pause();
+    current = null;
+  }
+  synth?.cancel();
+  finish?.();
+}
+
+// Wraps onWord/onEnd so the end callbacks run exactly once.
+function ender(onWord, onEnd) {
+  let done = false;
+  const end = () => {
+    if (done) return;
+    done = true;
+    if (finish === end) finish = null;
+    onWord?.(-1);
+    onEnd?.();
+  };
+  finish = end;
+  return end;
+}
+
+function playFile(src, { rate, timings, onWord }) {
+  const audio = new Audio(src);
   audio.preservesPitch = true;
-  audio.playbackRate = slow ? 0.75 : 1;
-  return audio.play();
+  audio.playbackRate = rate;
+  current = audio;
+  let last = -2;
+  const tick = () => {
+    if (current !== audio) return;
+    const i = timings ? timings.findIndex(([s, e]) => audio.currentTime >= s && audio.currentTime < e) : -1;
+    if (i !== last) {
+      last = i;
+      onWord?.(i);
+    }
+    raf = requestAnimationFrame(tick);
+  };
+  const end = finish;
+  audio.addEventListener('ended', () => {
+    cancelAnimationFrame(raf);
+    if (current === audio) current = null;
+    end?.();
+  }, { once: true });
+  return audio.play().then(() => {
+    if (onWord && timings) raf = requestAnimationFrame(tick);
+  });
+}
+
+// Index of the word that starts at or contains a character offset.
+function wordAt(text, charIndex) {
+  let i = -1;
+  for (const m of text.matchAll(/\p{L}+/gu)) {
+    if (m.index > charIndex) break;
+    i++;
+  }
+  return Math.max(i, 0);
 }
 
 /**
- * @param {{ text: string, url?: string, slow?: boolean, quiet?: boolean }} item
- *   quiet: do not show the "no voice" message (for audio that only accompanies a tap)
- * @returns {Promise<'file'|'tts'|'none'>}
+ * @param {{ text: string, url?: string, slow?: boolean, quiet?: boolean,
+ *   onWord?: (i: number) => void, onEnd?: () => void }} item
+ *   url: a human recording; quiet: no "no voice" message (for audio that only accompanies a tap);
+ *   browser: skip the files and use the device voice (the voice test in Settings)
+ * @returns {Promise<'recording'|'tts'|'browser'|'none'>}
  */
-export async function play({ text, url, slow = false, quiet = false }) {
-  if (url) {
+export async function play({ text, url, slow = false, quiet = false, browser = false, onWord, onEnd }) {
+  stop();
+  const end = ender(onWord, onEnd);
+  const rate = (slow ? 0.75 : 1) * (Number(getSettings().rate) || 1);
+  if (url && !browser) {
     try {
-      await playFile(url, slow);
-      return 'file';
+      await playFile(url, { rate, onWord });
+      return 'recording';
     } catch {
-      // Fall through to speech synthesis.
+      // Fall through to the synthetic voice.
     }
   }
-  const { voice, rate } = getSettings();
+  const entry = text && !browser ? await ttsEntry(text) : null;
+  if (finish !== end) return 'none'; // stopped or replaced while the manifest loaded
+  if (entry) {
+    try {
+      await playFile(new URL(`../data/audio/${entry.f}`, import.meta.url).href, { rate, timings: entry.w, onWord });
+      return 'tts';
+    } catch {
+      // Fall through to the browser voice.
+    }
+  }
+  const { voice } = getSettings();
   const options = icelandicVoices();
   const chosen = options.find((v) => v.voiceURI === voice) ?? options[0];
-  if (!synth || !chosen) {
+  if (!synth || !chosen || !text) {
     if (!quiet) toast(t('audio.none'));
+    end();
     return 'none';
   }
   const u = new SpeechSynthesisUtterance(text);
   u.voice = chosen;
   u.lang = chosen.lang;
-  u.rate = (slow ? 0.65 : 1) * (Number(rate) || 1);
-  synth.cancel();
+  u.rate = (slow ? 0.65 : 1) * (Number(getSettings().rate) || 1);
+  u.onboundary = (e) => {
+    if (e.name === 'word') onWord?.(wordAt(text, e.charIndex));
+  };
+  u.onend = end;
+  u.onerror = end;
   synth.speak(u);
-  return 'tts';
+  return 'browser';
 }
