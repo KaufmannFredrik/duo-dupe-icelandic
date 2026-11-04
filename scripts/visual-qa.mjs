@@ -11,6 +11,10 @@ import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import { ROOT } from './lib/bulk.mjs';
 import { startServer } from './serve.mjs';
+import { loadData } from '../tests/helpers/data.mjs';
+import { answer } from '../tests/helpers/answer.mjs';
+import { allowedFor } from '../js/engine/course-model.js';
+import { hashSeed } from '../js/engine/rng.js';
 
 const OUT = path.join(ROOT, 'screenshots');
 const only = process.argv.find((a) => a.startsWith('--only='))?.slice(7).split(',');
@@ -21,27 +25,49 @@ const VIEWPORTS = {
   desktop: { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 },
 };
 
+// Lessons are generated, so find where each exercise type first appears (fresh progress uses
+// the seed "<lesson key>#0", as in the browser).
+const data = loadData();
+const firstOf = new Map();
+let specialTypeword = null;
+for (const unit of data.course.units.slice(0, 2)) {
+  for (const lesson of unit.lessons) {
+    const specs = data.generator.lesson({ focus: lesson.focus, allowed: allowedFor(data.course, unit.id, lesson.index), seed: hashSeed(`${lesson.key}#0`) });
+    specs.forEach((spec, i) => {
+      const href = `lesson.html?unit=${unit.id}&lesson=${lesson.id}&step=${i + 1}&qa`;
+      if (!firstOf.has(spec.type)) firstOf.set(spec.type, href);
+      if (!specialTypeword && spec.type === 'typeword' && /[þðæö]/.test(data.lexicon.lemmas[spec.lemma].lemma)) specialTypeword = href;
+    });
+  }
+}
+
 // Each shot: page URL, optional actions to reach a state, full-page or viewport capture.
-const lessonAt = (step) => `lesson.html?step=${step}`;
+const wrongOption = async (p) => {
+  const spec = await p.evaluate(() => window.__tolva.spec());
+  await p.locator(`.option:not([data-value="${spec.lemma}"])`).first().click();
+};
 const SHOTS = [
   { name: 'landing', url: 'index.html', full: true },
   { name: 'learn', url: 'learn.html', full: true },
-  { name: 'lesson-1-choice', url: lessonAt(1) },
-  { name: 'lesson-1-selected', url: lessonAt(1), act: async (p) => p.click('.option >> nth=1') },
-  { name: 'feedback-correct', url: lessonAt(1), act: async (p) => { await p.click('.option:has-text("What is your name?")'); await p.click('[data-action="check"]'); } },
-  { name: 'lesson-2-wordbank', url: lessonAt(2), act: async (p) => { await p.click('[data-bank] .chip:text-is("Halló")'); await p.click('[data-bank] .chip:text-is("ég")'); } },
-  { name: 'lesson-3-type', url: lessonAt(3), act: async (p) => p.fill('#answer', 'Godan dag') },
-  { name: 'feedback-almost', url: lessonAt(3), act: async (p) => { await p.fill('#answer', 'Gódan daginn'); await p.click('[data-action="check"]'); } },
-  { name: 'lesson-4-ending', url: lessonAt(4) },
-  { name: 'feedback-wrong', url: lessonAt(4), act: async (p) => { await p.click('.option:has-text("Íslandi")'); await p.click('[data-action="check"]'); } },
-  { name: 'lesson-5-case', url: lessonAt(5) },
-  { name: 'lesson-6-match', url: lessonAt(6), act: async (p) => { await p.click('[data-side="is"]:has-text("Takk!")'); await p.click('[data-side="en"]:has-text("Thank you!")'); } },
-  { name: 'lesson-quit', url: lessonAt(1), act: async (p) => p.keyboard.press('Escape') },
-  { name: 'declension', url: 'declension.html', full: true },
-  { name: 'declension-practice', url: 'declension.html', full: true, act: async (p) => { await p.check('[data-practice]', { force: true }); await p.fill('.decl__input >> nth=0', 'hesturinn'); await p.click('[data-check-table]'); } },
+  { name: 'guide-hello', url: 'guide.html?unit=hello', full: true },
+  { name: 'guide-cafe', url: 'guide.html?unit=cafe', full: true },
+  ...[...firstOf].map(([type, url]) => ({ name: `ex-${type}`, url })),
+  { name: 'ex-choice-selected', url: firstOf.get('choice'), act: async (p) => p.locator('.option').first().click() },
+  { name: 'feedback-correct', url: firstOf.get('choice'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
+  { name: 'feedback-almost', url: specialTypeword, act: async (p) => { await answer(p, 'almost'); await p.click('[data-action="check"]'); } },
+  { name: 'feedback-wrong', url: firstOf.get('meaning'), act: async (p) => { await wrongOption(p); await p.click('[data-action="check"]'); } },
+  { name: 'feedback-case', url: firstOf.get('case'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
+  { name: 'lesson-quit', url: firstOf.get('choice'), act: async (p) => p.keyboard.press('Escape') },
+  { name: 'placement', url: 'lesson.html?mode=placement' },
+  { name: 'review-empty', url: 'lesson.html?mode=review' },
+  { name: 'declension', url: 'declension.html?lemma=kaffi', full: true },
+  { name: 'declension-verb', url: 'declension.html?lemma=vera', full: true },
+  { name: 'declension-adjective', url: 'declension.html?lemma=góður', full: true },
+  { name: 'declension-practice', url: 'declension.html?lemma=bjór', full: true, act: async (p) => { await p.check('input[name="level"][value="2"]', { force: true }); await p.fill('.decl__input >> nth=0', 'bjórinn'); await p.click('[data-check-table]'); } },
   { name: 'stories', url: 'stories.html', full: true },
-  { name: 'stories-word', url: 'stories.html', act: async (p) => p.click('.word:text-is("hestur")') },
+  { name: 'stories-word', url: 'stories.html', act: async (p) => p.click('.word:text-is("te")') },
   { name: 'dictionary', url: 'dictionary.html', full: true },
+  { name: 'dictionary-form', url: 'dictionary.html?q=bjórinn', full: true },
   { name: 'practice', url: 'practice.html', full: true },
   { name: 'profile', url: 'profile.html', full: true },
   { name: 'settings', url: 'settings.html', full: true },
@@ -49,7 +75,11 @@ const SHOTS = [
   { name: 'styleguide', url: 'styleguide.html', full: true },
   { name: 'landing-calm', url: 'index.html', calm: true },
 ];
-const OVERFLOW_PAGES = ['index.html', 'learn.html', ...[1, 2, 3, 4, 5, 6].map(lessonAt), 'declension.html', 'stories.html', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html'];
+const OVERFLOW_PAGES = [
+  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=cafe', ...firstOf.values(), 'lesson.html?mode=placement',
+  'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
+  'stories.html', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
+];
 
 async function settle(page) {
   await page.waitForFunction(() => document.documentElement.classList.contains('is-ready'), null, { timeout: 15_000 });

@@ -1,0 +1,12 @@
+{
+  "id": "family",
+  "order": 3,
+  "theme": "family",
+  "reviewed": false,
+  "title": {
+    "en": "Family",
+    "nb": "Familie"
+  },
+  "is": "Fjölskylda",
+  "lessons": "auto"
+}

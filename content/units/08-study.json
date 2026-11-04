@@ -1,0 +1,12 @@
+{
+  "id": "study",
+  "order": 8,
+  "theme": "study",
+  "reviewed": false,
+  "title": {
+    "en": "Study and work",
+    "nb": "Studier og arbeid"
+  },
+  "is": "Vinna",
+  "lessons": "auto"
+}

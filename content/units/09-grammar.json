@@ -1,0 +1,12 @@
+{
+  "id": "grammar",
+  "order": 9,
+  "theme": "core",
+  "reviewed": false,
+  "title": {
+    "en": "Grammar words",
+    "nb": "Grammatiske ord"
+  },
+  "is": "Orð",
+  "lessons": "auto"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "around",
+  "order": 4,
+  "theme": "around",
+  "reviewed": false,
+  "title": {
+    "en": "Getting around",
+    "nb": "Komme seg rundt"
+  },
+  "is": "Gata",
+  "lessons": "auto"
+}

@@ -28,7 +28,6 @@ const err = (where, msg) => errors.push(`${where}: ${msg}`);
 
 const lexicon = await readJson('data/lexicon.json');
 const sentences = (await readJson('data/sentences.json')).sentences;
-const demo = existsSync(path.join(ROOT, 'data/demo/lexicon.json')) ? await readJson('data/demo/lexicon.json') : null;
 const allowlist = await readJson('content/allowlist.json');
 const names = new Set(allowlist.names.map(low));
 
@@ -49,13 +48,6 @@ for (const file of await readdir(path.join(ROOT, 'data/forms'))) {
     for (const f of bmyndir) addForm(f.b, id);
   }
 }
-if (demo) {
-  for (const [lemma, e] of Object.entries(demo.lemmas)) {
-    paradigms.set(`demo:${lemma}`, e.bin.entry.bmyndir);
-    for (const f of e.bin.entry.bmyndir) addForm(f.b, `demo:${lemma}`);
-  }
-}
-
 // DMII Core lookups for tokens outside the course data, cached on disk.
 let lastRequest = 0;
 const apiCache = path.join(CACHE, 'bin', 'form');
@@ -95,7 +87,7 @@ async function checkText(where, text) {
 }
 
 function sentenceText(id) {
-  return sentences[id]?.is ?? demo?.sentences[id]?.is ?? null;
+  return sentences[id]?.is ?? null;
 }
 
 // --- Content files -----------------------------------------------------------------------------------------
@@ -117,30 +109,10 @@ function checkFormOf(where, form, lemmaKey) {
   if (!p.some((f) => f.b === form)) err(where, `"${form}" is not a form of ${lemmaKey}`);
 }
 
-async function checkDemoLesson() {
-  const rel = 'content/demo/lesson.json';
-  const lesson = await readJson(rel);
-  if (lesson.reviewed === false) unreviewed.push(rel);
-  for (const [i, ex] of lesson.exercises.entries()) {
-    const where = `${rel} exercise ${i + 1} (${ex.type})`;
-    const ids = [ex.sentence, ...(ex.options ?? []), ...(ex.pairs ?? [])].filter(Boolean);
-    for (const id of ids) {
-      const text = sentenceText(id);
-      if (!text) err(where, `sentence ${id} not found`);
-      else await checkText(where, text);
-    }
-    for (const d of ex.distractors ?? []) await checkText(where, d);
-    if (ex.target) {
-      checkFormOf(where, ex.target, `demo:${ex.lemma}`);
-      if (!tokensOf(sentenceText(ex.sentence) ?? '').includes(low(ex.target))) err(where, `target "${ex.target}" is not in sentence ${ex.sentence}`);
-    }
-  }
-}
-
 async function checkUnits() {
   const dir = path.join(ROOT, 'content/units');
   if (!existsSync(dir)) return;
-  for (const file of (await readdir(dir)).filter((f) => f.endsWith('.json'))) {
+  for (const file of (await readdir(dir)).filter((f) => f.endsWith('.json') && f !== 'index.json')) {
     const rel = `content/units/${file}`;
     const unit = await readJson(rel);
     if (unit.reviewed === false) unreviewed.push(rel);
@@ -158,9 +130,15 @@ async function checkUnits() {
         for (const d of ex.distractors ?? []) await checkText(where, d);
       }
     }
-    for (const note of unit.guide?.examples ?? []) {
-      const text = sentenceText(note);
-      if (!text) err(`${rel} guide`, `sentence ${note} not found`);
+    if (unit.lessons !== 'auto' && !Array.isArray(unit.lessons)) err(rel, 'lessons must be a list or "auto"');
+    for (const [i, sec] of (unit.guide?.sections ?? []).entries()) {
+      const where = `${rel} guide section ${i + 1}`;
+      // Icelandic inside guidebook prose is written {is:...}.
+      for (const text of Object.values(sec.text ?? {})) {
+        for (const m of text.matchAll(/\{is:([^}]+)\}/g)) await checkText(where, m[1]);
+      }
+      for (const sid of sec.examples ?? []) if (!sentenceText(sid)) err(where, `sentence ${sid} not found`);
+      for (const id of sec.tables ?? []) if (!lexicon.lemmas[id]) err(where, `unknown lemma ${id}`);
     }
   }
 }
@@ -181,9 +159,8 @@ async function checkStories() {
 }
 
 async function checkSmallFiles() {
-  const pathJson = await readJson('content/demo/path.json');
-  if (pathJson.reviewed === false) unreviewed.push('content/demo/path.json');
-  for (const u of pathJson.units) await checkText(`content/demo/path.json unit ${u.id}`, u.is);
+  const index = await readJson('content/units/index.json');
+  for (const f of index.units) if (!existsSync(path.join(ROOT, 'content/units', f))) err('content/units/index.json', `missing unit file ${f}`);
   const rules = await readJson('content/case-rules.json');
   if (rules.reviewed === false) unreviewed.push('content/case-rules.json');
   for (const [id, r] of Object.entries(rules.rules)) await checkText(`content/case-rules.json ${id}`, r.trigger);
@@ -222,7 +199,6 @@ async function checkAuthored() {
 }
 
 await checkVocab();
-await checkDemoLesson();
 await checkUnits();
 await checkStories();
 await checkSmallFiles();

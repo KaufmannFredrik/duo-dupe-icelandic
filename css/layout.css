@@ -520,3 +520,33 @@ input[type="range"] { width: min(20rem, 100%); accent-color: var(--rf-cyan); }
 .app-side .tip p { color: var(--rf-chrome); }
 .side-panel h2 .tag { margin-left: var(--space-2); font-size: 0.6875rem; letter-spacing: 0.04em; text-shadow: none; vertical-align: middle; }
 .voice-row .select { flex: 1 1 14rem; width: auto; min-width: 0; max-width: 100%; }
+
+/* Phase 3: practice counts, case trainer controls, guidebook, placement, listening */
+.count { display: inline-grid; place-items: center; min-width: 1.75rem; height: 1.75rem; padding: 0 var(--space-2); border: var(--border) solid var(--rf-gold); color: var(--rf-gold); font-size: var(--text-sm); }
+.decl-controls { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: end; }
+.decl-controls .field { flex: 1 1 14rem; }
+.segmented__legend { float: left; width: 100%; margin-bottom: var(--space-2); color: var(--rf-cyan); font-weight: 700; font-size: var(--text-sm); letter-spacing: 0.08em; text-transform: uppercase; }
+.decl__alt { display: block; color: var(--rf-muted); font-size: var(--text-sm); }
+.case-uses summary { min-height: var(--touch); display: flex; align-items: center; color: var(--rf-cyan); font-weight: 700; cursor: pointer; }
+.case-uses dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-3) var(--space-4); align-items: baseline; margin: var(--space-3) 0; }
+.case-uses dd { margin: 0; color: var(--rf-chrome); }
+.guide { display: grid; gap: var(--space-5); }
+.guide-section h2 { letter-spacing: 0.06em; }
+.guide-table { display: grid; gap: var(--space-2); }
+.is-inline { color: #FFFFFF; font-weight: 700; }
+.placement-hint { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-6); color: var(--rf-chrome); }
+.listen-card { justify-items: center; text-align: center; }
+.listen-card .prompt-card__audio { justify-content: center; flex-wrap: wrap; }
+.result__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.result__form { color: var(--rf-chrome); font-size: var(--text-sm); }
+.credit-list { color: var(--rf-chrome); font-size: var(--text-sm); }
+.example { display: grid; gap: var(--space-1); }
+.example .icon-button { width: 40px; height: 40px; justify-self: start; }
+.word-panel__lemma + .word-panel__lemma { padding-top: var(--space-3); border-top: 1px solid var(--rf-blue); }
+
+/* Verb tables label rows with persons, which need more room than case tags. */
+@container (max-width: 639px) {
+  .decl[data-kind="verb"] .decl__corner { width: 6.25rem; }
+  .decl[data-kind="verb"] tbody th { font-size: 0.8rem; }
+}
+.decl__input { box-shadow: inset 0 0 0 1px var(--rf-muted); }

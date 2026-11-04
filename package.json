@@ -17,8 +17,8 @@
     "probe:coverage": "node scripts/probe-apis.mjs --coverage",
     "build:data": "node scripts/build-data.mjs",
     "validate": "node scripts/validate-content.mjs",
-    "build:demo": "node scripts/build-demo-data.mjs",
-    "build:tala": "node scripts/build-tala.mjs"
+    "build:tala": "node scripts/build-tala.mjs",
+    "smoke": "node tests/smoke.mjs --all"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",

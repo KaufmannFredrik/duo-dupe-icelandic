@@ -1,0 +1,12 @@
+{
+  "id": "time",
+  "order": 5,
+  "theme": "time",
+  "reviewed": false,
+  "title": {
+    "en": "Time",
+    "nb": "Tid"
+  },
+  "is": "Tími",
+  "lessons": "auto"
+}

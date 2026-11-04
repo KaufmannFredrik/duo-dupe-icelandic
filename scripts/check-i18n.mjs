@@ -23,10 +23,13 @@ async function* jsFiles(dir) {
     else if (e.name.endsWith('.js')) yield rel;
   }
 }
+const namespaces = new Set(Object.keys(en).map((k) => k.split('.')[0]));
 const dynamic = [];
 for await (const f of jsFiles('js')) {
   const src = await read(f);
   for (const m of src.matchAll(/\bt\('([^']+)'/g)) used.add(m[1]);
+  // Keys handed to helpers or kept in data: any quoted 'namespace.key' with a known namespace.
+  for (const m of src.matchAll(/'([a-z]+)\.([a-zA-Z0-9.+]+)'/g)) if (namespaces.has(m[1]) && !/^(html|js|mjs|json|css|svg|md|png)$/.test(m[2])) used.add(`${m[1]}.${m[2]}`);
   for (const m of src.matchAll(/\bt\(`([^`]+)`/g)) dynamic.push(`${f}: ${m[1]}`);
   // Keys inside data objects, such as { key: 'nav.learn' } or { label: 'number.sg' }: dotted names only.
   for (const m of src.matchAll(/\b(?:key|label): '([a-z]+\.[^']+)'/g)) used.add(m[1]);

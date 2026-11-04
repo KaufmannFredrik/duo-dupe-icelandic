@@ -1,0 +1,12 @@
+{
+  "id": "shopping",
+  "order": 6,
+  "theme": "shopping",
+  "reviewed": false,
+  "title": {
+    "en": "Shopping",
+    "nb": "Handle"
+  },
+  "is": "Búð",
+  "lessons": "auto"
+}

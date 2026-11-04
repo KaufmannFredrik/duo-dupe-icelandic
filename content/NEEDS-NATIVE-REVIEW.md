@@ -19,9 +19,21 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
 | `í-hreyfing`, `á-hreyfing` | *í* and *á* take the accusative for movement. | not reviewed |
 | `eiga` | *eiga* (to own, to have) takes its object in the accusative. | not reviewed |
 
-## Unit titles (`content/demo/path.json`)
+## Units (`content/units/`)
 
-Single words, each confirmed to exist in BÍN: *Halló* (interjection), *Kaffi* (neuter noun), *Fjölskylda* (feminine noun). Not reviewed for suitability as titles.
+- Unit titles are single course words, each confirmed in the DMII Core: *Halló*, *Kaffi*, *Fjölskylda*, *Gata*, *Tími*, *Búð*, *Veður*, *Vinna*, *Orð*. Not reviewed for suitability as titles.
+- Lesson groupings in units 1 and 2 (which words are taught together).
+- Guidebook notes in units 1 and 2 (English and Norwegian prose; every Icelandic fragment is checked against the DMII Core by `validate-content`):
+  - *Ég heiti*, *Hvað heitir þú?*: Icelandic says "I am called".
+  - Greetings are in the accusative: *Góðan daginn* is the accusative of *góður dagur*.
+  - An adjective after *vera* agrees with the speaker: *Ég er þyrst* (woman), *Ég er þyrstur* (man).
+  - *ekki* comes right after the verb: *Ég skil ekki*.
+  - *ég* becomes *mig*, *mér*, *mín*; *við* is part of the same word.
+  - Every noun has a gender; the article is an ending: *bjórinn*, *mjólkin*, *kaffið*.
+  - *vilja* is irregular in the singular: *ég vil*, *þú vilt*, *hann vill*.
+  - Most verbs take an accusative object.
+  - *einn* to *fjórir* inflect: *tvær dætur*, *tvo ketti*, *tvö börn*; from five on numbers do not change.
+- Case trainer note "When is each case used?" (summary of the main uses of the four cases).
 
 ## Pronunciation and language notes (landing page, `js/i18n/*.json`)
 

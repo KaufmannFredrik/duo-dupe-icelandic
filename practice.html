@@ -24,24 +24,32 @@
           <p data-i18n="practice.intro">Replay what you missed and train the forms that trip you up.</p>
         </div>
         <div class="grid-cards">
-          <a class="card" href="lesson.html">
-            <h2 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-review"></use></svg><span data-i18n="practice.mistakes">Mistakes</span></h2>
+          <a class="card" href="lesson.html?mode=mistakes">
+            <h2 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-review"></use></svg><span data-i18n="practice.mistakes">Mistakes</span><span class="count" data-count="mistakes">0</span></h2>
             <p data-i18n="practice.mistakesText">Replays the items you got wrong until they stick.</p>
+          </a>
+          <a class="card card--gold" href="lesson.html?mode=review">
+            <h2 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-goal"></use></svg><span data-i18n="practice.review">Review</span><span class="count" data-count="review">0</span></h2>
+            <p data-i18n="practice.reviewText">Words and forms that are due again, by spaced repetition.</p>
           </a>
           <a class="card card--magenta" href="declension.html">
             <h2 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-table"></use></svg><span data-i18n="practice.cases">Case trainer</span></h2>
             <p data-i18n="practice.casesText">Fill in declension tables, one ending at a time.</p>
           </a>
-          <a class="card card--gold" href="lesson.html?step=3">
+          <a class="card" href="lesson.html?mode=letters">
             <h2 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-keyboard"></use></svg><span data-i18n="practice.letters">Special letters</span></h2>
             <p data-i18n-html="practice.lettersText">Type <span lang="is">þ, ð, æ</span> and <span lang="is">ö</span> until they feel normal.</p>
           </a>
+          <a class="card card--quiet" href="lesson.html?mode=placement">
+            <h2 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-trophy"></use></svg><span data-i18n="placement.title">Placement test</span></h2>
+            <p data-i18n="placement.text">Already know some Icelandic? Find the right unit to start.</p>
+          </a>
         </div>
         <section class="card card--quiet stack" aria-labelledby="weak-title">
-          <div class="cluster"><h2 id="weak-title" data-i18n="practice.weak">Weak spots</h2><span class="tag tag--demo" data-i18n="demo.tag">Demo data</span></div>
+          <h2 id="weak-title" data-i18n="practice.weak">Weak spots</h2>
           <p data-i18n="practice.weakText">Accuracy by case, number and gender. Every cell shows its percentage, and the weakest ones are listed below.</p>
+          <p class="muted" data-heat-empty data-i18n="practice.weakEmpty">No answers yet. The map fills in as you practice cases; a cell needs three answers.</p>
           <div class="heatmap" data-heatmap></div>
-          <h3 data-i18n="practice.trainFirst">Train these first</h3>
           <ul class="train-list" data-train></ul>
         </section>
       </main>

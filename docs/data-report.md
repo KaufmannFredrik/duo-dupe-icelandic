@@ -1,6 +1,6 @@
 # Data report
 
-Generated 2026-11-03T20:21:40.476Z by `node scripts/build-data.mjs` from `content/vocab/core.json`. This file is generated.
+Generated 2026-11-04T11:44:16.119Z by `node scripts/build-data.mjs` from `content/vocab/core.json`. This file is generated.
 
 ## Coverage of the core vocabulary
 
@@ -39,7 +39,7 @@ GreynirCorrect checked 10602 Tatoeba sentences (with an English translation, at 
 
 | File | Bytes | Gzipped |
 |---|---|---|
-| `data/lexicon.json` | 158,740 | 47,202 |
+| `data/lexicon.json` | 158,937 | 47,299 |
 | `data/sentences.json` | 350,679 | 78,077 |
 | `data/audio.json` | 90,400 | 5,315 |
 | `data/forms/hello.json` | 51,698 | 6,871 |
@@ -51,7 +51,7 @@ GreynirCorrect checked 10602 Tatoeba sentences (with an English translation, at 
 | `data/forms/weather.json` | 26,196 | 3,790 |
 | `data/forms/study.json` | 58,053 | 7,093 |
 | `data/forms/core.json` | 60,572 | 7,853 |
-| Total | 1,044,479 | 190,404 |
+| Total | 1,044,676 | 190,501 |
 
 ## Entries to check (11)
 

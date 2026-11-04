@@ -2,6 +2,33 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Phase 3: engine and grammar core (2026-11-04)
+
+### What was built
+
+- **Course**: nine units in `content/units/` (order in `index.json`). Units 1 (Hello) and 2 (At the café) are complete, with hand-grouped lessons and a guidebook (`guide.html`) whose tables are built from DMII Core paradigms and whose examples are Tatoeba sentences. Units 3 to 9 split their theme words into lessons of six automatically and are marked "Preview". Grammar words may appear in sentences from the start.
+- **Exercise engine**: `js/engine/generate.js` (pure, tested in Node) turns a lesson's focus words into twelve exercises. One module per type in `js/exercises/`: choice (read a sentence, pick the translation), meaning, listen (human recordings with credit), word bank, type the word, match pairs, fill in the form, which case, and table cells. Sentences come only from the GreynirCorrect-checked Tatoeba pool; forms only from DMII Core paradigms.
+- **Grammar-first choices**: "fill in the form" offers only other forms of the same word with the same number and definiteness, so every wrong option is wrong because of its case. "Which case?" is asked only for forms that belong to exactly one case. Hints name the rule when a preposition from `content/case-rules.json` triggers the case (for example *án kaffis*: "án always takes the genitive"). Across the nine units about a third of the exercises are grammar exercises.
+- **Sentence choice**: sentences use only words the learner has met (earlier units, this unit so far, grammar words). Reading exercises (choice, fill in the form, which case) fall back to any course word when there is no such sentence; the translation is shown with them. Sentence building stays strict.
+- **Form-level spaced repetition**: `js/srs.js` (Leitner boxes: 1, 2, 4, 8, 16, 32 and 64 days; a miss comes back in ten minutes) over IndexedDB (`js/db.js`, with an in-memory fallback). A card is a word's meaning (`kaffi_no|meaning`) or one form (`bjór_no|ÞFETgr`), so review targets the exact form that is weak.
+- **Practice**: replay mistakes, review due cards, the special-letters drill, the placement test (adaptive: one or two questions per unit, stops at the first unit with a miss, offers to mark earlier units as done), and the case trainer: the full table of any course noun, adjective, pronoun, numeral or verb (present and past), with three practice levels that hide a third, two thirds or all cells. Every checked cell counts for spaced repetition.
+- **Weak spots heatmap**: computed from the learner's own answers (case by number by gender; a cell needs three answers). The sidebar mini heatmap and the HUD's streak and XP are still demo values until Phase 5.
+- **Dictionary and stories** use the real data: search any of the 325 words by any form; the dictionary shows recordings with credit, IPA, English and Norwegian glosses, a table, examples and etymology. The stories page is a sample reading until Phase 4.
+- The Phase 1 demo lesson, demo path, demo data and its build script were removed.
+
+### Tests
+
+- `node --test`: 35 tests: answer grading, the SRS scheduler, the course model and lesson states, and, against the real data, that every exercise in every lesson of units 1 and 2 uses only known words, real forms of the right word, distinct options and unambiguous case targets.
+- `npm run smoke`: Playwright plays the first lesson at phone and desktop size, answering everything correctly, and checks that progress is saved and the next lesson unlocks; then it plays all 14 lessons of units 1 and 2 (168 exercises, all nine types) and fails on any answer not graded correct.
+- `npm run qa`: 0 axe violations, no horizontal scroll at 320 px, no page errors.
+
+### Decisions and fixes
+
+- Wiktionary sometimes lists another sense first (*bjór*: "beaver" before "beer"). Glosses that match the intended meaning are now sorted first.
+- Lessons are deterministic per attempt (seed: lesson key plus attempt number): a repeated lesson changes, but screenshots and tests are stable.
+- A `?qa` URL flag exposes the current exercise to tests; it changes nothing for learners.
+- Node.js LTS is now installed system-wide (`C:\Program Files\nodejs`).
+
 ## Phase 2: data pipeline (2026-11-03)
 
 ### What was built
@@ -9,7 +36,7 @@ What was chosen, why, and what failed. Newest phase first. Evidence for every da
 - `content/vocab/core.json`: 325 words in nine themes (Hello, At the café, Family, Getting around, Time, Shopping, Weather and nature, Study and work, Grammar words). Each entry names the lemma, its DMII Core word class and the intended English meaning, plus an optional hint where the DMII Core has two words with the same lemma (a gender, or a form the paradigm must contain).
 - `scripts/build-data.mjs` writes `data/lexicon.json` (index: glosses in English and Norwegian, IPA, etymology, frequency rank, sentence ids, recording count), `data/forms/<theme>.json` (DMII Core paradigms, unchanged), `data/sentences.json` (Tatoeba sentences with authors and translations), `data/audio.json` (Commons recordings with speaker and license), `data/SOURCES.json` and `docs/data-report.md`. Total 1.05 MB, 194 KB gzipped.
 - `scripts/validate-content.mjs` checks every Icelandic token in the content against the DMII Core (generated paradigms first, then a cached API lookup), accepts clitic forms such as *geturðu*, and allows proper nouns only from `content/allowlist.json`. Hand-written sentences go through GreynirCorrect. A deliberately wrong word makes it fail.
-- GreynirCorrect runs locally in `.venv` (`reynir-correct` plus the Icegrams model, about 1.7 GB in the user profile) through `scripts/lint-icelandic.py`, with results cached by sentence text.
+- GreynirCorrect runs locally in `.venv` (`reynir-correct` plus the Icegrams model, about 200 MB in the user profile) through `scripts/lint-icelandic.py`, with results cached by sentence text.
 
 ### Coverage (from docs/data-report.md)
 

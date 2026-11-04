@@ -1,0 +1,12 @@
+{
+  "id": "weather",
+  "order": 7,
+  "theme": "weather",
+  "reviewed": false,
+  "title": {
+    "en": "Weather and nature",
+    "nb": "Vær og natur"
+  },
+  "is": "Veður",
+  "lessons": "auto"
+}

@@ -208,8 +208,10 @@ function wiktFor(list, { ofl, meaning }) {
   const all = list ?? [];
   const byPos = all.filter((w) => POS[ofl]?.includes(w.pos));
   const use = byPos.length ? byPos : all;
-  const glosses = [...new Set(use.flatMap((w) => w.glosses))];
-  const meaningOk = glosses.some((g) => fold(g).includes(fold(meaning)));
+  const matches = (g) => fold(g).includes(fold(meaning));
+  // Glosses that carry the intended meaning first, so exercises show it (bjór: "beer", not "beaver").
+  const glosses = [...new Set(use.flatMap((w) => w.glosses))].sort((a, b) => Number(matches(b)) - Number(matches(a)));
+  const meaningOk = glosses.some(matches);
   return {
     glosses,
     ipa: [...new Set(use.flatMap((w) => w.ipa))],

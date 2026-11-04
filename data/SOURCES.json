@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-03T20:21:40.476Z",
+  "generated": "2026-11-04T11:44:16.119Z",
   "generator": "scripts/build-data.mjs",
   "licenseNote": "Files that contain DMII Core or Wiktionary data are CC BY-SA 4.0; see data/LICENSE.md.",
   "files": {
     "data/lexicon.json": {
-      "bytes": 158740,
-      "gzip": 47202,
+      "bytes": 158937,
+      "gzip": 47299,
       "sources": [
         "dmii-core",
         "wiktionary",
@@ -98,9 +98,9 @@
       "attribution": "Beygingarlýsing íslensks nútímamáls. Stofnun Árna Magnússonar í íslenskum fræðum. Höfundur og ritstjóri Kristín Bjarnadóttir.",
       "url": "https://bin.arnastofnun.is/api/",
       "license": "CC BY-SA 4.0; may be published on the web unmodified with credit",
-      "retrieved": "2026-11-03T20:21:40.476Z",
+      "retrieved": "2026-11-04T11:44:16.119Z",
       "items": 325,
-      "requestsThisRun": 1,
+      "requestsThisRun": 0,
       "changes": "None. Each paradigm is the API response object for the word, unchanged. Files group the objects by theme."
     },
     {
@@ -119,7 +119,7 @@
       "name": "Wiktionary (English entries, translation tables), via kaikki.org per-word pages",
       "url": "https://kaikki.org/dictionary/English/meaning/",
       "license": "CC BY-SA 4.0 and GFDL",
-      "retrieved": "2026-11-03T20:21:40.476Z",
+      "retrieved": "2026-11-04T11:44:16.119Z",
       "changes": "Norwegian Bokmål translations taken from the same translation sense that lists the Icelandic lemma."
     },
     {
@@ -182,7 +182,7 @@
       "name": "Ylhýra inflection API (wrapper over the full BÍN)",
       "url": "https://ylhyra.is/api/inflection",
       "license": "Data CC BY-SA 4.0 (BÍN); software MIT",
-      "retrieved": "2026-11-03T20:21:40.476Z",
+      "retrieved": "2026-11-04T11:44:16.119Z",
       "changes": "Used only to confirm that indeclinable numerals exist in BÍN; no data copied except the BÍN id."
     },
     {
@@ -190,7 +190,7 @@
       "name": "Wikimedia Commons and Lingua Libre recordings",
       "url": "https://commons.wikimedia.org/",
       "license": "Per file; see data/audio.json",
-      "retrieved": "2026-11-03T20:21:40.476Z",
+      "retrieved": "2026-11-04T11:44:16.119Z",
       "changes": "Links only; no audio files are copied."
     }
   ],

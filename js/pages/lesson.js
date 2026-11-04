@@ -1,309 +1,126 @@
-// Phase 1 demo lesson: six exercise types on real data (Tatoeba sentences, DMII Core forms),
-// the three feedback states, keyboard shortcuts and the quit dialog. Phase 3 grows this into
-// the full engine with units, scoring and spaced repetition.
+// The lesson player. Modes (URL ?mode=):
+//   (none)      a course lesson: ?unit=hello&lesson=2, or the next open lesson
+//   review      due spaced-repetition cards
+//   mistakes    replays exercises answered wrong
+//   letters     typing drill for words with þ, ð, æ, ö and accents
+//   placement   adaptive test: one step per unit, stops at the first unit with a miss
+// Every answer is recorded per item (word meaning or single form) for spaced repetition.
 
-import { loadJSON, ready } from '../app.js';
+import { ready } from '../app.js';
 import { pick, t } from '../i18n.js';
-import { CASES, analyses, caseTag, describeForm, distinctForms, loadLexicon, sentence } from '../lexicon.js';
-import { grade, missingLetters, normalize } from '../normalize.js';
+import { caseRules, getGenerator, gloss, glossLang, lemma, loadAll, paradigm, recordings, sentence, translation } from '../data.js';
+import { allowedFor, findLesson, loadCourse, nextLesson } from '../course.js';
+import { cards, completeLesson, loadProgress, mistakes, recordAttempt, skipUnits } from '../progress.js';
+import { dueCards } from '../srs.js';
 import { getSettings } from '../store.js';
+import { buildExercise } from '../exercises/index.js';
+import { esc } from '../exercises/common.js';
+import { hashSeed, rng, shuffle } from '../engine/rng.js';
 import { play } from '../audio.js';
 import { sfx } from '../sfx.js';
-import { charRow } from '../ui/charrow.js';
 import { icon } from '../shell.js';
 import { talaSVG } from '../tala.js';
 
 await ready;
-const [, lesson, caseRules] = await Promise.all([loadLexicon(), loadJSON('content/demo/lesson.json'), loadJSON('content/case-rules.json')]);
-
 const $ = (sel, root = document) => root.querySelector(sel);
 const stage = $('[data-exercise]');
 const main = $('#main');
-const progress = $('[data-progress]');
+const progressBar = $('[data-progress]');
 const actions = $('.lesson__actions');
 const checkBtn = $('[data-action="check"]');
 const skipBtn = $('[data-action="skip"]');
 const sheet = $('[data-sheet]');
 const live = $('[data-live]');
 const quitDialog = $('[data-quit-dialog]');
+const finePointer = window.matchMedia('(pointer: fine)').matches;
 
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
-const isText = (id) => sentence(id).is;
-const enText = (id) => sentence(id).en[0].text;
-const fine = window.matchMedia('(pointer: fine)').matches;
-
-// Deterministic shuffle, so every run (and every screenshot) shows the same order.
-function shuffle(items, seed) {
-  const a = [...items];
-  let s = seed;
-  for (let i = a.length - 1; i > 0; i--) {
-    s = (s * 9301 + 49297) % 233280;
-    const j = Math.floor((s / 233280) * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-const heading = (key) => `<h2 class="label" id="ex-label">${t(key)}</h2>`;
-
-function promptCard({ text, html, lang = 'is', audio = true }) {
-  const buttons = audio
-    ? `<div class="prompt-card__audio">
-        <button type="button" class="button button--sm" data-play="${esc(text)}">${icon('play')}<span>${t('audio.play')}</span></button>
-        <button type="button" class="button button--sm" data-play="${esc(text)}" data-slow>${icon('slow')}<span>${t('audio.slow')}</span></button></div>`
-    : '';
-  return `<div class="card prompt-card">${buttons}<p class="prompt-card__text" lang="${lang}">${html ?? esc(text)}</p></div>`;
-}
-
-const markIcon = (state) => `<svg class="icon option__mark" aria-hidden="true"><use href="assets/icons.svg#i-${state === 'correct' ? 'check' : state === 'almost' ? 'almost' : 'wrong'}"></use></svg>`;
-
-// Single-select options shared by choice, ending and case exercises.
-function optionsGroup(values, render, changed) {
-  let selected = null;
-  const html = `<div class="options" role="group" aria-labelledby="ex-label">${values
-    .map((v, n) => `<button type="button" class="option" data-value="${esc(v)}" aria-pressed="false"><span class="option__key kbd" aria-hidden="true">${n + 1}</span>${render(v)}</button>`)
-    .join('')}</div>`;
-  const buttons = () => [...stage.querySelectorAll('.option')];
-  const choose = (btn) => {
-    if (!btn || btn.disabled) return;
-    selected = btn.dataset.value;
-    for (const b of buttons()) b.setAttribute('aria-pressed', String(b === btn));
-    sfx('tap');
-    changed();
-  };
-  return {
-    html,
-    mount: () => buttons().forEach((b) => b.addEventListener('click', () => choose(b))),
-    pickByNumber: (n) => choose(buttons()[n - 1]),
-    selected: () => selected,
-    resolve(isRight) {
-      for (const b of buttons()) {
-        b.disabled = true;
-        const right = isRight(b.dataset.value);
-        const state = right ? 'correct' : b.dataset.value === selected ? 'wrong' : null;
-        if (state) {
-          b.dataset.state = state;
-          b.insertAdjacentHTML('beforeend', `${markIcon(state)}<span class="visually-hidden">${t(`feedback.${state}`)}</span>`);
-        }
-      }
-    },
-  };
-}
-
-const builders = {
-  choice(ex, i, changed) {
-    const opts = optionsGroup(shuffle(ex.options, i + 1), (id) => `<span lang="en">${esc(enText(id))}</span>`, changed);
-    return {
-      html: heading('ex.choice') + promptCard({ text: isText(ex.sentence) }) + opts.html,
-      mount: opts.mount,
-      pickByNumber: opts.pickByNumber,
-      ready: () => opts.selected() !== null,
-      check() {
-        opts.resolve((v) => v === ex.sentence);
-        return { result: opts.selected() === ex.sentence ? 'correct' : 'wrong', ...this.reveal() };
-      },
-      reveal: () => ({ answerHTML: `<span lang="en">${esc(enText(ex.sentence))}</span>`, audio: isText(ex.sentence) }),
-    };
-  },
-
-  wordbank(ex, i, changed) {
-    const target = isText(ex.sentence);
-    const tokens = target.replace(/[.,!?;:]/g, '').split(/\s+/).filter(Boolean);
-    const bank = shuffle([...tokens, ...ex.distractors].map((w, k) => ({ w, k: String(k) })), i + 7);
-    const placed = [];
-    const word = (k) => bank.find((b) => b.k === k).w;
-    return {
-      html:
-        heading('ex.wordbank') +
-        promptCard({ text: enText(ex.sentence), lang: 'en', audio: false }) +
-        `<div class="answer-line" data-answer role="group" aria-label="${t('ex.yourAnswer')}"></div>
-         <div class="bank" data-bank role="group" aria-label="${t('ex.wordBank')}">${bank.map((b) => `<button type="button" class="chip" lang="is" data-k="${b.k}">${esc(b.w)}</button>`).join('')}</div>`,
-      mount() {
-        const line = $('[data-answer]', stage);
-        const bankEl = $('[data-bank]', stage);
-        bankEl.addEventListener('click', (e) => {
-          const chip = e.target.closest('.chip');
-          if (!chip || chip.disabled) return;
-          placed.push(chip.dataset.k);
-          chip.disabled = true;
-          chip.classList.add('is-used');
-          line.insertAdjacentHTML('beforeend', `<button type="button" class="chip" lang="is" data-k="${chip.dataset.k}">${esc(word(chip.dataset.k))}</button>`);
-          sfx('tap');
-          ([...bankEl.querySelectorAll('.chip:not(:disabled)')].find((c) => c.compareDocumentPosition(chip) & Node.DOCUMENT_POSITION_PRECEDING) ?? bankEl.querySelector('.chip:not(:disabled)') ?? checkBtn).focus();
-          changed();
-        });
-        line.addEventListener('click', (e) => {
-          const chip = e.target.closest('.chip');
-          if (!chip || chip.disabled) return;
-          placed.splice(placed.indexOf(chip.dataset.k), 1);
-          chip.remove();
-          const original = bankEl.querySelector(`[data-k="${chip.dataset.k}"]`);
-          original.disabled = false;
-          original.classList.remove('is-used');
-          original.focus();
-          changed();
-        });
-      },
-      ready: () => placed.length > 0,
-      check() {
-        for (const c of stage.querySelectorAll('.chip')) c.disabled = true;
-        const built = placed.map(word).join(' ');
-        return { result: normalize(built) === normalize(target) ? 'correct' : 'wrong', ...this.reveal() };
-      },
-      reveal: () => ({ answerHTML: `<span lang="is">${esc(target)}</span>`, audio: target }),
-    };
-  },
-
-  type(ex, i, changed) {
-    const target = isText(ex.sentence);
-    let input;
-    return {
-      html:
-        heading('ex.type') +
-        promptCard({ text: enText(ex.sentence), lang: 'en', audio: false }) +
-        `<div class="field"><label class="field__label" for="answer">${t('ex.yourAnswer')}</label>
-         <input id="answer" class="input" type="text" lang="is" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done"></div>
-         <div data-charrow></div>`,
-      mount() {
-        input = $('#answer', stage);
-        $('[data-charrow]', stage).replaceWith(charRow(input));
-        input.addEventListener('input', changed);
-        if (fine) input.focus();
-      },
-      ready: () => input.value.trim().length > 0,
-      check() {
-        const g = grade(input.value, [target], { strict: getSettings().strict });
-        input.readOnly = true;
-        input.dataset.state = g.result;
-        if (g.result === 'wrong') input.setAttribute('aria-invalid', 'true');
-        const pairs = missingLetters(input.value, target).map(([c, plain]) => `<span lang="is">${c}</span> ≠ ${plain}`).join(', ');
-        const why = g.reason ? `<p>${t(`feedback.reason.${g.reason}`, { pairs })}</p>` : '';
-        return { result: g.result, why, ...this.reveal() };
-      },
-      reveal: () => ({ answerHTML: `<span lang="is">${esc(target)}</span>`, audio: target }),
-    };
-  },
-
-  ending(ex, i, changed) {
-    const text = isText(ex.sentence);
-    const blank = `<span class="blank"><span class="visually-hidden">${t('ex.blank')}</span><span aria-hidden="true">      </span></span>`;
-    const opts = optionsGroup(shuffle(distinctForms(ex.lemma), i + 3), (f) => `<span lang="is">${esc(f)}</span>`, changed);
-    const marked = esc(text).replace(esc(ex.target), `<mark class="target">${esc(ex.target)}</mark>`);
-    return {
-      html: heading('ex.ending') + promptCard({ text, html: esc(text).replace(esc(ex.target), blank), audio: false }) + `<p class="muted" lang="en">${esc(enText(ex.sentence))}</p>` + opts.html,
-      mount: opts.mount,
-      pickByNumber: opts.pickByNumber,
-      ready: () => opts.selected() !== null,
-      check() {
-        opts.resolve((v) => v === ex.target);
-        return { result: opts.selected() === ex.target ? 'correct' : 'wrong', ...this.reveal() };
-      },
-      reveal: () => ({ answerHTML: `<span lang="is">${marked}</span>`, audio: text, why: whyFor(ex) }),
-    };
-  },
-
-  case(ex, i, changed) {
-    const text = isText(ex.sentence);
-    const found = analyses(ex.target).filter((a) => a.lemma === ex.lemma && a.parsed);
-    const right = new Set(found.map((a) => a.parsed.case));
-    const marked = esc(text).replace(esc(ex.target), `<mark class="target">${esc(ex.target)}</mark>`);
-    const opts = optionsGroup(CASES.map((c) => c.id), (id) => caseTag(id), changed);
-    return {
-      html: heading('ex.case') + promptCard({ text, html: marked }) + `<p class="muted" lang="en">${esc(enText(ex.sentence))}</p>` + opts.html,
-      mount: opts.mount,
-      pickByNumber: opts.pickByNumber,
-      ready: () => opts.selected() !== null,
-      check() {
-        opts.resolve((v) => right.has(v));
-        return { result: right.has(opts.selected()) ? 'correct' : 'wrong', ...this.reveal() };
-      },
-      reveal: () => ({ answerHTML: `<span lang="is">${marked}</span> ${[...right].map((c) => caseTag(c)).join(' ')}`, audio: text, why: whyFor(ex) }),
-    };
-  },
-
-  match(ex, i, changed) {
-    const left = shuffle(ex.pairs, i + 11);
-    const right = shuffle(ex.pairs, i + 5);
-    let pending = { is: null, en: null };
-    let matched = 0;
-    let mistakes = 0;
-    const btn = (side, id) => `<button type="button" class="option" data-side="${side}" data-id="${id}" aria-pressed="false"><span lang="${side}">${esc(side === 'is' ? isText(id) : enText(id))}</span></button>`;
-    return {
-      html: `${heading('ex.match')}<div class="match">
-        <div class="match__col" role="group" aria-label="${t('ex.matchIcelandic')}">${left.map((id) => btn('is', id)).join('')}</div>
-        <div class="match__col" role="group" aria-label="${t('ex.matchEnglish')}">${right.map((id) => btn('en', id)).join('')}</div></div>`,
-      mount() {
-        stage.querySelector('.match').addEventListener('click', (e) => {
-          const b = e.target.closest('.option');
-          if (!b || b.disabled) return;
-          const side = b.dataset.side;
-          stage.querySelectorAll(`[data-side="${side}"]`).forEach((x) => x.setAttribute('aria-pressed', 'false'));
-          b.setAttribute('aria-pressed', 'true');
-          pending[side] = b;
-          if (side === 'is') play({ text: isText(b.dataset.id), quiet: true });
-          if (!pending.is || !pending.en) return;
-          const pair = [pending.is, pending.en];
-          pending = { is: null, en: null };
-          if (pair[0].dataset.id === pair[1].dataset.id) {
-            matched++;
-            sfx('correct');
-            for (const x of pair) {
-              x.disabled = true;
-              x.dataset.state = 'correct';
-              x.setAttribute('aria-pressed', 'false');
-              x.insertAdjacentHTML('beforeend', `${markIcon('correct')}<span class="visually-hidden">${t('ex.matched')}</span>`);
-            }
-            changed();
-          } else {
-            mistakes++;
-            sfx('wrong');
-            for (const x of pair) x.dataset.state = 'wrong';
-            setTimeout(() => pair.forEach((x) => { delete x.dataset.state; x.setAttribute('aria-pressed', 'false'); }), 700);
-          }
-        });
-      },
-      ready: () => matched === ex.pairs.length,
-      check() {
-        return { result: mistakes === 0 ? 'correct' : 'almost', why: mistakes ? `<p>${t('ex.matchMistakes', { n: mistakes })}</p>` : '', ...this.reveal() };
-      },
-      reveal: () => ({ answerHTML: ex.pairs.map((id) => `<span lang="is">${esc(isText(id))}</span> = <span lang="en">${esc(enText(id))}</span>`).join('<br>'), audio: null }),
-    };
-  },
-};
-
-function whyFor(ex) {
-  const rule = caseRules.rules[ex.rule];
-  const a = analyses(ex.target).find((x) => x.lemma === ex.lemma && x.parsed);
-  const form = a ? `<p><span lang="is">${esc(ex.target)}</span>: ${esc(describeForm(a.parsed))} (<span lang="is">${esc(ex.lemma)}</span>).</p>` : '';
-  return `${rule ? `<p>${esc(pick(rule))}</p>` : ''}${form}`;
-}
-
-// --- Flow --------------------------------------------------------------------------------------
-
-const exercises = lesson.exercises;
+await loadAll();
+const course = await loadCourse();
+const progress = await loadProgress();
+const gen = getGenerator();
 const params = new URLSearchParams(location.search);
-let index = Math.max(0, Math.min(exercises.length - 1, (Number(params.get('step')) || 1) - 1));
+const mode = params.get('mode') ?? 'lesson';
+const position = nextLesson(course, progress);
+const learnedSoFar = allowedFor(course, position.unit.id, position.lesson.index);
+
+// --- Plans: what to practice ----------------------------------------------------------------------
+
+function lessonPlan() {
+  const found = params.get('unit') ? findLesson(course, params.get('unit'), params.get('lesson') ?? '1') : position;
+  const { unit, lesson } = found.lesson ? found : position;
+  const times = progress.lessons[lesson.key]?.times ?? 0;
+  const allowed = allowedFor(course, unit.id, lesson.index);
+  return {
+    key: lesson.key,
+    title: `${pick(unit.title)}: ${lesson.title ? pick(lesson.title) : lesson.review ? t('learn.review') : t('learn.lessonN', { n: lesson.index + 1 })}`,
+    specs: gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`) }),
+  };
+}
+
+async function reviewPlan() {
+  const due = dueCards(await cards(), Date.now(), 24);
+  return { key: 'practice/review', title: t('practice.review'), specs: gen.review({ cards: due, allowed: learnedSoFar, seed: Date.now() % 1e9, count: 12 }), empty: t('practice.reviewEmpty') };
+}
+
+async function mistakesPlan() {
+  const list = (await mistakes()).sort((a, b) => b.at - a.at).slice(0, 12);
+  return { key: 'practice/mistakes', title: t('practice.mistakes'), specs: list.map((m) => m.spec), empty: t('practice.mistakesEmpty') };
+}
+
+function lettersPlan() {
+  const r = rng(Date.now() % 1e9);
+  const ids = shuffle([...learnedSoFar].filter((id) => /[þðæöáéíóúý]/i.test(lemma(id)?.lemma ?? '')), r).slice(0, 10);
+  return { key: 'practice/letters', title: t('practice.letters'), specs: ids.map((id) => ({ type: 'typeword', lemma: id, key: `${id}|meaning` })) };
+}
+
+function placementPlan() {
+  const steps = gen.placement({ units: course.units, seed: Date.now() % 1e9 });
+  return { key: 'placement', title: t('placement.title'), specs: steps.flatMap((s) => s.items.map((item) => ({ ...item, step: s.unit }))), steps, placement: true };
+}
+
+const plan = mode === 'review' ? await reviewPlan() : mode === 'mistakes' ? await mistakesPlan() : mode === 'letters' ? lettersPlan() : mode === 'placement' ? placementPlan() : lessonPlan();
+$('[data-lesson-title]').textContent = plan.title;
+
+// --- Player ---------------------------------------------------------------------------------------
+
+const specs = plan.specs;
+let index = Math.max(0, Math.min(specs.length - 1, (Number(params.get('step')) || 1) - 1));
 let current;
 const results = [];
 
+const data = { lemma, sentence, translation, gloss, paradigm, recordings, caseRules };
+const ctxFor = (i) => ({
+  data,
+  lang: glossLang(),
+  strict: getSettings().strict,
+  seed: hashSeed(`${plan.key}:${i}`),
+  finePointer,
+  changed: () => {
+    checkBtn.disabled = !current.ready();
+  },
+});
+
 function renderProgress() {
-  progress.innerHTML = exercises.map((_, n) => `<span class="progress__seg" data-state="${n < index ? 'done' : n === index ? 'current' : 'todo'}"></span>`).join('');
-  progress.setAttribute('aria-valuemax', String(exercises.length));
-  progress.setAttribute('aria-valuenow', String(index));
-  progress.setAttribute('aria-valuetext', t('lesson.progress', { n: Math.min(index + 1, exercises.length), total: exercises.length }));
+  progressBar.innerHTML = specs.map((_, n) => `<span class="progress__seg" data-state="${n < index ? 'done' : n === index ? 'current' : 'todo'}"></span>`).join('');
+  progressBar.setAttribute('aria-valuemax', String(specs.length));
+  progressBar.setAttribute('aria-valuenow', String(index));
+  progressBar.setAttribute('aria-valuetext', t('lesson.progress', { n: Math.min(index + 1, specs.length), total: specs.length }));
 }
 
 function show(n, { focus = true } = {}) {
-  const ex = exercises[n];
-  current = builders[ex.type](ex, n, () => {
-    checkBtn.disabled = !current.ready();
-  });
+  current = buildExercise(specs[n], ctxFor(n));
+  stage.dataset.type = specs[n].type;
   stage.innerHTML = current.html;
-  current.mount();
+  current.mount(stage);
   checkBtn.disabled = true;
   actions.hidden = false;
   renderProgress();
   if (focus && !stage.contains(document.activeElement)) main.focus({ preventScroll: true });
+}
+
+function credit(sid) {
+  const s = sentence(sid);
+  return s ? `<p class="credit">${t('credit.sentence', { id: sid, author: esc(s.author ?? t('credit.unknownAuthor')) }).replace(`#${sid}`, `<a href="https://tatoeba.org/en/sentences/show/${sid}" rel="noopener">#${sid}</a>`)}</p>` : '';
 }
 
 function openSheet(r, skipped) {
@@ -311,12 +128,14 @@ function openSheet(r, skipped) {
   const title = skipped ? t('feedback.skipped') : t(`feedback.${state}`);
   const iconName = state === 'correct' ? 'check' : state === 'almost' ? 'almost' : 'wrong';
   sheet.dataset.state = state;
+  const playAttrs = r.audio ? `data-play="${esc(r.audio)}"${r.audioUrl ? ` data-url="${esc(r.audioUrl)}"` : ''}` : '';
   sheet.innerHTML = `<div class="sheet__inner">
       <div class="sheet__head"><svg class="sheet__icon" aria-hidden="true"><use href="assets/icons.svg#i-${iconName}"></use></svg><h2 class="sheet__title" id="sheet-title">${title}</h2></div>
       <div><p class="label">${t('feedback.answer')}</p><p class="sheet__answer">${r.answerHTML}</p></div>
       ${r.why ? `<div class="sheet__why">${r.why}</div>` : ''}
+      ${r.sentence ? credit(r.sentence) : ''}
       <div class="sheet__actions">
-        ${r.audio ? `<button type="button" class="icon-button icon-button--outline" data-play="${esc(r.audio)}" aria-label="${t('audio.playAnswer')}">${icon('play')}</button>` : ''}
+        ${r.audio ? `<button type="button" class="icon-button icon-button--outline" ${playAttrs} aria-label="${t('audio.playAnswer')}">${icon('play')}</button>` : ''}
         <button type="button" class="button button--${state}" data-action="continue">${t('lesson.continue')} ${icon('arrow-right')}</button>
       </div></div>`;
   sheet.classList.add('is-open');
@@ -332,37 +151,75 @@ function closeSheet() {
   actions.inert = false;
 }
 
-function doCheck(skipped = false) {
+async function doCheck(skipped = false) {
   if (!skipped && checkBtn.disabled) return;
+  const spec = specs[index];
   const r = skipped ? { result: 'wrong', ...current.reveal() } : current.check();
   results.push(r.result);
   sfx(r.result);
   openSheet(r, skipped);
+  if (plan.placement) return;
+  const records = r.records ?? (spec.key ? [{ key: spec.key, result: r.result, meta: spec.meta }] : []);
+  for (const rec of records) await recordAttempt({ ...rec, spec: rec.result === 'wrong' ? spec : undefined });
+}
+
+// Placement: after each unit's questions, continue only if all were right.
+function placementStop() {
+  const spec = specs[index - 1];
+  const next = specs[index];
+  if (!spec || !next || spec.step === next.step) return false;
+  const stepResults = specs.map((s, i) => [s, results[i]]).filter(([s, res]) => s.step === spec.step && res !== undefined);
+  return stepResults.some(([, res]) => res !== 'correct');
 }
 
 function next() {
   closeSheet();
   index++;
-  if (index >= exercises.length) complete();
+  if (index >= specs.length || (plan.placement && placementStop())) complete();
   else show(index);
 }
 
-function complete() {
-  const correct = results.filter((r) => r === 'correct').length;
-  const almost = results.filter((r) => r === 'almost').length;
-  const xp = correct * 10 + almost * 5;
+function burst() {
+  return `<div class="complete__burst" aria-hidden="true">${'<span></span>'.repeat(12)}</div>`;
+}
+
+async function complete() {
+  index = specs.length;
   renderProgress();
   actions.hidden = true;
-  stage.innerHTML = `<div class="complete">
-      <div class="complete__burst" aria-hidden="true">${'<span></span>'.repeat(12)}</div>
+  if (plan.placement) return completePlacement();
+  const { xp, score } = await completeLesson(plan.key, results);
+  const nextUp = nextLesson(course, await loadProgress());
+  const nextHref = `lesson.html?unit=${nextUp.unit.id}&lesson=${nextUp.lesson.id}`;
+  stage.innerHTML = `<div class="complete">${burst()}
       ${talaSVG('happy', { label: t('mascot.happy'), className: 'tala tala--lg' })}
       <h2 class="complete__title">${t('lesson.complete')}</h2>
-      <div class="cluster complete__stats"><span class="stat">${icon('xp')}<span>+${xp} XP</span></span><span class="stat">${icon('check')}<span>${t('lesson.accuracy', { pct: Math.round((100 * (correct + almost)) / results.length) })}</span></span></div>
-      <p class="muted">${t('demo.lesson')}</p>
-      <div class="cluster complete__actions"><a class="button button-primary" href="learn.html">${t('lesson.continue')}</a><a class="button" href="lesson.html">${t('lesson.again')}</a></div></div>`;
+      <div class="cluster complete__stats"><span class="stat">${icon('xp')}<span>+${xp} XP</span></span><span class="stat">${icon('check')}<span>${t('lesson.accuracy', { pct: Math.round(score * 100) })}</span></span></div>
+      <div class="cluster complete__actions"><a class="button button-primary" href="${mode === 'lesson' ? nextHref : 'practice.html'}">${t('lesson.continue')}</a><a class="button" href="learn.html">${t('nav.learn')}</a></div></div>`;
   sfx('complete');
   live.textContent = t('lesson.complete');
   stage.querySelector('.button-primary').focus();
+}
+
+async function completePlacement() {
+  // The learner starts at the first unit whose step was not all correct.
+  const answered = specs.slice(0, results.length);
+  const failed = answered.find((s, i) => results[i] !== 'correct')?.step;
+  const startIndex = failed ? course.units.findIndex((u) => u.id === failed) : course.units.length - 1;
+  const start = course.units[Math.max(0, startIndex)];
+  const skip = course.units.slice(0, Math.max(0, startIndex)).map((u) => u.id);
+  stage.innerHTML = `<div class="complete">
+      ${talaSVG(skip.length ? 'happy' : 'thinking', { label: t(skip.length ? 'mascot.happy' : 'mascot.thinking'), className: 'tala tala--lg' })}
+      <h2 class="complete__title">${t('placement.done')}</h2>
+      <p>${t('placement.result', { unit: esc(pick(start.title)), n: start.order })}</p>
+      <div class="cluster complete__actions">
+        ${skip.length ? `<button type="button" class="button button-primary" data-apply>${t('placement.apply', { n: start.order })}</button>` : ''}
+        <a class="button${skip.length ? '' : ' button-primary'}" href="learn.html">${t('placement.fromStart')}</a></div></div>`;
+  stage.querySelector('[data-apply]')?.addEventListener('click', async () => {
+    await skipUnits(skip, { at: Date.now(), start: start.id });
+    location.href = 'learn.html';
+  });
+  stage.querySelector('.button').focus();
 }
 
 function openQuit() {
@@ -379,7 +236,7 @@ quitDialog.querySelector('[data-keep]').addEventListener('click', () => quitDial
 
 document.addEventListener('click', (e) => {
   const b = e.target.closest('[data-play]');
-  if (b) play({ text: b.dataset.play, slow: 'slow' in b.dataset });
+  if (b) play({ text: b.dataset.play, url: b.dataset.url, slow: 'slow' in b.dataset });
 });
 
 document.addEventListener('keydown', (e) => {
@@ -389,22 +246,32 @@ document.addEventListener('keydown', (e) => {
     openQuit();
     return;
   }
-  const onControl = e.target.closest('button, a, select');
   if (e.key === 'Enter') {
-    if (onControl) return; // native activation handles focused buttons and links
+    if (e.target.closest('button, a, select')) return;
     e.preventDefault();
     if (sheet.classList.contains('is-open')) next();
-    else doCheck();
+    else if (index < specs.length) doCheck();
     return;
   }
   if (e.target.matches('input, textarea')) return;
   if (/^[1-9]$/.test(e.key) && !sheet.classList.contains('is-open')) current?.pickByNumber?.(Number(e.key));
-  if (e.key === 'p' || e.key === 'P' || e.key === 's' || e.key === 'S') {
+  const k = e.key.toLowerCase();
+  if (k === 'p' || k === 's') {
     const scope = sheet.classList.contains('is-open') ? sheet : stage;
-    const b = scope.querySelector(e.key.toLowerCase() === 's' ? '[data-play][data-slow]' : '[data-play]:not([data-slow])') ?? scope.querySelector('[data-play]');
-    if (b) play({ text: b.dataset.play, slow: e.key.toLowerCase() === 's' });
+    const b = scope.querySelector(k === 's' ? '[data-play][data-slow]' : '[data-play]:not([data-slow])') ?? scope.querySelector('[data-play]');
+    if (b) play({ text: b.dataset.play, url: b.dataset.url, slow: k === 's' });
   }
 });
 
-$('[data-lesson-title]').textContent = pick(lesson.title);
-show(index, { focus: false });
+// Test hook for the Playwright smoke test and screenshots (only with ?qa in the URL).
+if (params.has('qa')) window.__tolva = { spec: () => specs[index], index: () => index, lemma, sentence, paradigm };
+
+if (!specs.length) {
+  actions.hidden = true;
+  stage.innerHTML = `<div class="complete">${talaSVG('sleepy', { label: t('mascot.sleepy'), className: 'tala tala--lg' })}
+    <h2 class="complete__title">${t('practice.nothing')}</h2><p>${esc(plan.empty ?? '')}</p>
+    <a class="button button-primary" href="learn.html">${t('nav.learn')}</a></div>`;
+  progressBar.innerHTML = '';
+} else {
+  show(index, { focus: false });
+}

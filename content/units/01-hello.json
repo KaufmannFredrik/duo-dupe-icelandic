@@ -1,0 +1,64 @@
+{
+  "id": "hello",
+  "order": 1,
+  "theme": "hello",
+  "reviewed": false,
+  "title": { "en": "Hello", "nb": "Hei" },
+  "is": "Halló",
+  "goal": { "en": "Greet people, say your name and ask theirs.", "nb": "Hils på folk, si hva du heter og spør hva de heter." },
+  "lessons": [
+    { "id": "1", "title": { "en": "Hi and bye", "nb": "Hei og ha det" }, "focus": ["halló_uh", "hæ_uh", "bless_uh", "takk_uh", "já_uh", "nei_uh", "velkominn_lo"] },
+    { "id": "2", "title": { "en": "Names", "nb": "Navn" }, "focus": ["heita_so", "nafn_no", "ég_pfn", "þú_pfn", "hann_pfn", "hún_pfn", "það_pfn"] },
+    { "id": "3", "title": { "en": "Good day", "nb": "God dag" }, "focus": ["góður_lo", "dagur_no", "kvöld_no", "nótt_no", "morgunn_no", "vera_so"] },
+    { "id": "4", "title": { "en": "Talking", "nb": "Å snakke" }, "focus": ["tala_so", "skilja_so", "segja_so", "spyrja_so", "svara_so", "ekki_ao"] },
+    { "id": "5", "title": { "en": "Coming and going", "nb": "Komme og gå" }, "focus": ["koma_so", "fara_so", "hitta_so", "hvaðan_ao", "hvernig_ao", "og_st", "en_st"] },
+    { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": { "en": "Saying your name", "nb": "Si hva du heter" },
+        "text": {
+          "en": "Icelandic says \"I am called\": {is:Ég heiti} Anna. To ask someone's name, ask what they are called: {is:Hvað heitir þú?} The verb {is:heita} changes with the person, as the table shows.",
+          "nb": "På islandsk sier man «jeg heter», som på norsk: {is:Ég heiti} Anna. For å spørre: {is:Hvað heitir þú?} Verbet {is:heita} bøyes etter person, se tabellen."
+        },
+        "examples": ["395870", "451938", "3997461"],
+        "tables": ["heita_so"]
+      },
+      {
+        "title": { "en": "Greetings and the accusative", "nb": "Hilsener og akkusativ" },
+        "text": {
+          "en": "A greeting wishes someone a good day, so its words are in the accusative (ÞF), the case of the thing you give or wish: {is:Góðan daginn} is the accusative of {is:góður dagur}. You will meet the four cases one at a time.",
+          "nb": "En hilsen ønsker noen en god dag, så ordene står i akkusativ (ÞF), kasuset for det man gir eller ønsker: {is:Góðan daginn} er akkusativ av {is:góður dagur}. Du møter de fire kasusene ett om gangen."
+        },
+        "examples": ["3838979", "3838980", "466085"],
+        "tables": ["dagur_no"]
+      },
+      {
+        "title": { "en": "I am, you are: vera", "nb": "Jeg er, du er: vera" },
+        "text": {
+          "en": "{is:vera} (to be) is irregular, as in English. An adjective after it agrees with the person: a woman says {is:Ég er þyrst}, a man says {is:Ég er þyrstur}.",
+          "nb": "{is:vera} (å være) er uregelrett. Et adjektiv etter det bøyes etter personen: en kvinne sier {is:Ég er þyrst}, en mann sier {is:Ég er þyrstur}."
+        },
+        "examples": ["695106", "3838997", "478618"],
+        "tables": ["vera_so"]
+      },
+      {
+        "title": { "en": "Saying no: ekki", "nb": "Å si nei: ekki" },
+        "text": {
+          "en": "{is:ekki} (not) comes right after the verb: {is:Ég skil ekki} (I don't understand).",
+          "nb": "{is:ekki} (ikke) kommer rett etter verbet: {is:Ég skil ekki} (jeg forstår ikke)."
+        },
+        "examples": ["514670", "10358169"]
+      },
+      {
+        "title": { "en": "Pronouns", "nb": "Pronomen" },
+        "text": {
+          "en": "Pronouns change with case too: {is:ég} becomes {is:mig}, {is:mér} and {is:mín}. The plural {is:við} (we) is part of the same word.",
+          "nb": "Pronomen bøyes også etter kasus: {is:ég} blir {is:mig}, {is:mér} og {is:mín}. Flertallet {is:við} (vi) hører til samme ord."
+        },
+        "tables": ["ég_pfn", "þú_pfn"]
+      }
+    ]
+  }
+}

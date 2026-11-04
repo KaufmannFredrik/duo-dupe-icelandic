@@ -1,0 +1,5 @@
+{
+  "note": "Course order. Units with \"lessons\": \"auto\" split their theme's words into lessons of six, most frequent first, followed by a review lesson. Words of the themes in alwaysAllowed may appear in any sentence.",
+  "units": ["01-hello.json", "02-cafe.json", "03-family.json", "04-around.json", "05-time.json", "06-shopping.json", "07-weather.json", "08-study.json", "09-grammar.json"],
+  "alwaysAllowed": ["core"]
+}

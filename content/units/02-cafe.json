@@ -1,0 +1,58 @@
+{
+  "id": "cafe",
+  "order": 2,
+  "theme": "cafe",
+  "reviewed": false,
+  "title": { "en": "At the café", "nb": "På kafeen" },
+  "is": "Kaffi",
+  "goal": { "en": "Order food and drink, and count to five.", "nb": "Bestill mat og drikke, og tell til fem." },
+  "lessons": [
+    { "id": "1", "title": { "en": "Drinks", "nb": "Drikke" }, "focus": ["kaffi_no", "te_no", "vatn_no", "mjólk_no", "bjór_no", "vín_no", "safi_no", "drekka_so"] },
+    { "id": "2", "title": { "en": "Food", "nb": "Mat" }, "focus": ["matur_no", "brauð_no", "smjör_no", "ostur_no", "kaka_no", "súpa_no", "borða_so"] },
+    { "id": "3", "title": { "en": "Fish and more", "nb": "Fisk og mer" }, "focus": ["fiskur_no", "kjöt_no", "epli_no", "salat_no", "sykur_no", "egg_no"] },
+    { "id": "4", "title": { "en": "Meals", "nb": "Måltider" }, "focus": ["morgunmatur_no", "hádegismatur_no", "kvöldmatur_no", "svangur_lo", "þyrstur_lo"] },
+    { "id": "5", "title": { "en": "At the table", "nb": "Ved bordet" }, "focus": ["bolli_no", "glas_no", "diskur_no", "skeið_no", "gaffall_no", "hnífur_no", "borð_no", "stóll_no"] },
+    { "id": "6", "title": { "en": "Ordering", "nb": "Bestille" }, "focus": ["vilja_so", "panta_so", "borga_so", "reikningur_no", "þjónn_no", "matseðill_no", "kaffihús_no", "veitingastaður_no"] },
+    { "id": "7", "title": { "en": "Hot, cold and counting", "nb": "Varmt, kaldt og telling" }, "focus": ["heitur_lo", "kaldur_lo", "sætur_lo", "einn_to", "tveir_to", "þrír_to", "fjórir_to", "fimm_to"] },
+    { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": { "en": "Three genders, and 'the' as an ending", "nb": "Tre kjønn, og bestemt form som endelse" },
+        "text": {
+          "en": "Every noun is masculine, feminine or neuter, and the gender decides its endings: {is:bjór} is masculine, {is:mjólk} feminine and {is:kaffi} neuter. As in Norwegian, the article is an ending: {is:bjórinn}, {is:mjólkin}, {is:kaffið}.",
+          "nb": "Hvert substantiv er hankjønn, hunkjønn eller intetkjønn, og kjønnet bestemmer endelsene: {is:bjór} er hankjønn, {is:mjólk} hunkjønn og {is:kaffi} intetkjønn. Som på norsk er artikkelen en endelse: {is:bjórinn}, {is:mjólkin}, {is:kaffið}."
+        },
+        "tables": ["bjór_no", "mjólk_no", "kaffi_no"]
+      },
+      {
+        "title": { "en": "Wanting: vilja", "nb": "Å ville: vilja" },
+        "text": {
+          "en": "{is:vilja} (to want) is irregular in the singular: {is:ég vil}, {is:þú vilt}, {is:hann vill}.",
+          "nb": "{is:vilja} (å ville) er uregelrett i entall: {is:ég vil}, {is:þú vilt}, {is:hann vill}."
+        },
+        "examples": ["7319621", "1364326"],
+        "tables": ["vilja_so"]
+      },
+      {
+        "title": { "en": "Objects take the accusative", "nb": "Objekter står i akkusativ" },
+        "text": {
+          "en": "What you drink, eat or want is the object, and the object of most verbs is in the accusative (ÞF). For many nouns the accusative looks like the dictionary form, as in {is:Þú drekkur te}.",
+          "nb": "Det du drikker, spiser eller vil ha er objektet, og objektet til de fleste verb står i akkusativ (ÞF). For mange substantiv ser akkusativ ut som grunnformen, som i {is:Þú drekkur te}."
+        },
+        "examples": ["707638", "4000838", "788039"],
+        "tables": ["drekka_so"]
+      },
+      {
+        "title": { "en": "One to four have gender and case", "nb": "En til fire har kjønn og kasus" },
+        "text": {
+          "en": "The numbers {is:einn}, {is:tveir}, {is:þrír} and {is:fjórir} change with the noun they count: {is:tvær dætur}, {is:tvo ketti}, {is:tvö börn}. From five on they never change.",
+          "nb": "Tallene {is:einn}, {is:tveir}, {is:þrír} og {is:fjórir} bøyes etter substantivet de teller: {is:tvær dætur}, {is:tvo ketti}, {is:tvö börn}. Fra fem og oppover bøyes de ikke."
+        },
+        "examples": ["669468", "1322936", "494483"],
+        "tables": ["tveir_to"]
+      }
+    ]
+  }
+}
