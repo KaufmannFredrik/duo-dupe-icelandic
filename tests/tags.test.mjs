@@ -49,10 +49,10 @@ test('tags: conventions that name the same word are accepted', () => {
   const withoutForm = new Map([...forms, ['farinn', new Set(['fara_so'])]].filter(([k]) => k !== 'þér'));
   withoutForm.set('þér', new Set(['sjá_so']));
   assert.equal(resolve('þér', { t: 'þér', l: 'þér', c: 'pfn' }, withoutForm, lexicon), -1, 'a lemma that is not a form of the word');
-  assert.equal(r('til', { t: 'til', l: 'til', c: 'ao' }), 'til_fs');
+  assert.equal(r('til', { t: 'til', l: 'til', c: 'ao' }), '~til_fs', 'a preposition as a particle is loose');
   assert.equal(r('seint', { t: 'seint', l: 'seinn', c: 'lo' }), 'seint_ao');
   assert.equal(r('já', { t: 'já', l: 'já', c: 'no' }), 'já_uh');
-  assert.equal(r('einn', { t: 'einn', l: 'einn', c: 'fn' }), 'einn_to');
+  assert.equal(r('einn', { t: 'einn', l: 'einn', c: 'fn' }), '~einn_to', 'einn as a pronoun (alone) is loose');
 });
 
 test('tags: idioms are undetermined, amounts and times keep their words', () => {

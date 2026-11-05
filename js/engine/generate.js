@@ -18,7 +18,8 @@ const CASE_CLASSES = new Set(['no', 'lo', 'pfn', 'fn', 'to']);
  * @param {object} data.sentences      data/sentences.json "sentences"
  * @param {string[]} data.pool         data/sentences.json "pool"
  * @param {(sid: string) => (string|-1|null)[]|undefined} [data.tagsOf]  per word of a sentence, the
- *   course word it is there (data/tags.json): a lemma id, -1 for another word, null if undetermined
+ *   course word it is there (data/tags.json): a lemma id, "~" + id when used loosely, -1 for
+ *   another word, null if undetermined
  * @param {object} data.audio          data/audio.json "recordings"
  * @param {object} data.rules          content/case-rules.json "rules"
  * @param {Set<string>} [data.names]   lowercase names allowed in sentences
@@ -43,9 +44,11 @@ export function createGenerator(data) {
   };
   // The course words the i-th word of a sentence can be: the parser's choice when it made one
   // (so "afar" in "afar heitur" is not a form of afi), otherwise every course word spelled so.
-  const idsAt = (sid, i) => {
+  // loose: include a word used loosely ("til" in "Við erum öll til"), which the learner knows but
+  // which is not taught from that sentence.
+  const idsAt = (sid, i, { loose = false } = {}) => {
     const tag = tags(sid)?.[i];
-    if (typeof tag === 'string') return [tag];
+    if (typeof tag === 'string') return tag[0] !== '~' ? [tag] : loose ? [tag.slice(1)] : [];
     if (tag === -1) return [];
     return [...(formIndex.get(toks(sid)[i].low) ?? [])];
   };
@@ -53,7 +56,7 @@ export function createGenerator(data) {
   // A word is fine for a learner when it is an allowed course word or a name.
   const knownToken = (sid, i, allowed) => {
     const tok = toks(sid)[i];
-    if (idsAt(sid, i).some((id) => allowed.has(id))) return true;
+    if (idsAt(sid, i, { loose: true }).some((id) => allowed.has(id))) return true;
     return names.has(tok.low) || (tok.index > 0 && tok.raw[0] !== tok.low[0]);
   };
   const sentenceOk = (sid, allowed) => sentences[sid]?.en.length > 0 && toks(sid).every((_, i) => knownToken(sid, i, allowed));
@@ -100,7 +103,7 @@ export function createGenerator(data) {
     // Distractors: other forms of words in the sentence, the mistakes a learner would really make.
     const distractors = [];
     for (const i of shuffle([...toks(sid).keys()], r)) {
-      const ids = idsAt(sid, i).filter((x) => allowed.has(x));
+      const ids = idsAt(sid, i, { loose: true }).filter((x) => allowed.has(x));
       for (const lemmaId of ids) {
         const common = [...new Set(paradigm(lemmaId).filter((f) => isCommonTag(f.g)).map((f) => f.b))];
         const alt = shuffle(common.filter((f) => !present.has(f.toLocaleLowerCase('is'))), r)[0];

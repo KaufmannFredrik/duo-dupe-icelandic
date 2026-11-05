@@ -1,0 +1,9 @@
+{
+  "note": "Tatoeba sentences that are correct Icelandic but unsuitable for a course. They are never shown: not in exercises, examples, the dictionary or stories. Checked by scripts/validate-content.mjs.",
+  "sentences": {
+    "10718176": "\"I love little girls\": reads as a sexual remark about children.",
+    "10691643": "\"War is fun.\"",
+    "10613347": "\"Nazis are marching in the streets.\"",
+    "383725": "\"There were two murders this month.\""
+  }
+}

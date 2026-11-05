@@ -5,7 +5,8 @@
 //    generated paradigms, then the DMII Core API with a cache), unless it is a clitic form such
 //    as "geturðu" (getur + þú) or a proper noun on the allowlist (content/allowlist.json),
 //  - a referenced sentence, lemma or form does not exist,
-//  - a hand-written sentence ("source": "authored") has a GreynirCorrect error.
+//  - a hand-written sentence ("source": "authored") has a GreynirCorrect error,
+//  - an excluded sentence (content/sentence-exclude.json) is used in a guidebook or a story.
 // Unreviewed content ("reviewed": false) is counted and listed, not failed.
 //
 //   node scripts/validate-content.mjs
@@ -30,6 +31,8 @@ const lexicon = await readJson('data/lexicon.json');
 const sentences = (await readJson('data/sentences.json')).sentences;
 const allowlist = await readJson('content/allowlist.json');
 const names = new Set(allowlist.names.map(low));
+const excluded = (await readJson('content/sentence-exclude.json')).sentences;
+for (const sid of Object.keys(excluded)) if (!sentences[sid]) warnings.push(`content/sentence-exclude.json: sentence ${sid} is not in data/sentences.json`);
 
 const forms = new Map(); // lowercase form -> Set of lemma ids
 const addForm = (form, id) => {
@@ -137,7 +140,10 @@ async function checkUnits() {
       for (const text of Object.values(sec.text ?? {})) {
         for (const m of text.matchAll(/\{is:([^}]+)\}/g)) await checkText(where, m[1]);
       }
-      for (const sid of sec.examples ?? []) if (!sentenceText(sid)) err(where, `sentence ${sid} not found`);
+      for (const sid of sec.examples ?? []) {
+        if (!sentenceText(sid)) err(where, `sentence ${sid} not found`);
+        if (excluded[sid]) err(where, `sentence ${sid} is excluded: ${excluded[sid]}`);
+      }
       for (const id of sec.tables ?? []) if (!lexicon.lemmas[id]) err(where, `unknown lemma ${id}`);
     }
   }
@@ -164,6 +170,7 @@ async function checkStories() {
     if (!story.dialogue && story.lines?.some((l) => l.speaker)) err(rel, 'speakers are only for dialogues');
     for (const [i, line] of (story.lines ?? []).entries()) {
       const text = line.sentence ? sentenceText(line.sentence) : line.is;
+      if (line.sentence && excluded[line.sentence]) err(`${rel} line ${i + 1}`, `sentence ${line.sentence} is excluded`);
       if (!text) err(`${rel} line ${i + 1}`, `sentence ${line.sentence} not found`);
       else await checkText(`${rel} line ${i + 1}`, text);
     }

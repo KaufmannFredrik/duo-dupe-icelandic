@@ -9,6 +9,8 @@
 //
 // Each sentence gets one entry per word (the \p{L}+ tokens the app uses):
 //   a number  index into "lemmas": the word is that course word here,
+//   -2 - i    course word i used loosely (a preposition as a particle, "til" in "búa til"):
+//             known to the learner, but its sentence is not used to teach that word,
 //   -1        the word is some other word (not in the course), or a name,
 //   null      undetermined: the parser could not analyze the sentence and the form is ambiguous.
 //
@@ -110,7 +112,7 @@ async function main() {
   const tagged = await tagTexts(ids.map((sid) => sentences[sid].is));
   const lemmaIds = Object.keys(lexicon.lemmas);
   const index = new Map(lemmaIds.map((id, i) => [id, i]));
-  const stats = { sentences: ids.length, parsed: 0, words: 0, course: 0, other: 0, undetermined: 0 };
+  const stats = { sentences: ids.length, parsed: 0, words: 0, course: 0, loose: 0, other: 0, undetermined: 0 };
   const changed = new Map(); // "form: spelling says X, parser says Y" -> count
   const out = {};
   for (const sid of ids) {
@@ -131,8 +133,10 @@ async function main() {
           const k = `${low(w)}: ${spelling.join('/')} -> ${tok?.l ? `${tok.l} ${tok.c}` : 'other'}`;
           changed.set(k, (changed.get(k) ?? 0) + 1);
         }
-      } else stats.course++;
-      return res === null || res === -1 ? res : index.get(res);
+      } else if (res.startsWith('~')) stats.loose++;
+      else stats.course++;
+      if (res === null || res === -1) return res;
+      return res.startsWith('~') ? -2 - index.get(res.slice(1)) : index.get(res);
     });
   }
 
@@ -143,16 +147,16 @@ async function main() {
     generator: 'scripts/build-tags.mjs',
     tool: `${reynir}; ${TAGGER}`,
     license: 'Derived from the Tatoeba sentences in data/sentences.json (CC BY 2.0 FR).',
-    note: 'Per sentence, one entry per word (\\p{L}+ token): index into lemmas when the word is that course word in this sentence, -1 for another word or a name, null when undetermined.',
+    note: 'Per sentence, one entry per word (\\p{L}+ token): index into lemmas when the word is that course word in this sentence; -2 - index when it is that word used loosely (a preposition as a particle); -1 for another word or a name; null when undetermined.',
     lemmas: lemmaIds,
     sentences: out,
   };
   await writeFile(OUT, `${JSON.stringify(file)}\n`);
   const pct = (n, d) => `${((100 * n) / d).toFixed(1)}%`;
-  console.log(`Wrote data/tags.json: ${stats.sentences} sentences, ${pct(stats.parsed, stats.sentences)} parsed; ${stats.words} words: ${stats.course} course words, ${stats.other} other words or names, ${stats.undetermined} undetermined.`);
+  console.log(`Wrote data/tags.json: ${stats.sentences} sentences, ${pct(stats.parsed, stats.sentences)} parsed; ${stats.words} words: ${stats.course} course words, ${stats.loose} used loosely, ${stats.other} other words or names, ${stats.undetermined} undetermined.`);
   const list = [...changed].sort((a, b) => b[1] - a[1]);
   console.log(`Forms that spelling would give to a course word but the parser gives to another word (${list.reduce((s, [, n]) => s + n, 0)} words, ${list.length} kinds):`);
   for (const [k, n] of list.slice(0, Number(process.env.TAGS_SHOW ?? 40))) console.log(`  ${n}x ${k}`);
 }
 
-if (import.meta.url === `file:///${process.argv[1].replaceAll('\\', '/')}` || process.argv[1]?.endsWith('build-tags.mjs')) await main();
+await main();

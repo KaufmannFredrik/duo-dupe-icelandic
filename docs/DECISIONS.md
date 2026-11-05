@@ -2,6 +2,34 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Hand-made units: unit 4, Getting around (2026-11-05)
+
+### Unit 4, *Gata*
+
+- Eight lessons of six words and a review: In town, Places, Getting there, To and from, Where?, Left and right, Sights, North and south. *í* and *á* come in lesson 1, because almost every sentence about a place needs them.
+- Guidebook, four sections:
+  - **Where or where to: í and á.** Dative for a place, accusative for a direction: *í bílnum* and *í bílinn* (the DMII Core forms ÞGFETgr and ÞFETgr of *bíll*). Which preposition a place takes is learned with the word: *í skóla*, *í búð*, *í banka*, but *á sjúkrahúsi*, *á hóteli*, *á safni*; Tatoeba has *Hann vinnur í banka*, *Við gistum á hóteli við vatnið*, *Það er mjög áhugavert að fara á safn*, *Við ættum að senda Jordan á sjúkrahús*.
+  - **til, frá, úr.** *til* with the genitive (*til Íslands*, *til flugvallarins*), *frá* and *úr* with the dative, *hjá* with the dative (*Ég mun búa hjá frænda mínum í mánuð*), and the pairs *í* and *úr*, *á* and *af*, *til* and *frá*.
+  - **hvar, hvert, hvaðan**, with *hér* and *þar* for places and *hingað* and *þangað* for directions; the Norwegian text compares *hit* and *dit*.
+  - **Directions in the imperative.** Stem plus the clitic *þú*: *farðu*, *beygðu*, *bíddu*, *taktu*, *gakktu* (all GM-BH-ET forms in the DMII Core), then *til hægri*, *til vinstri*, *beint* and the compass points (*keyrðum norður*).
+
+### Loose words
+
+- Unit 4 showed a gap in the sentence tags: prepositions used as adverbs or particles were accepted as the preposition, so *Við erum öll til* ("we're all ready") was chosen to teach *til* ("to").
+- The tags now mark such words as **loose** (`scripts/lib/tags.mjs`): a preposition as an adverb or particle (*búa til*, *vera til*), *að* as a preposition, and *einn* or *annar* as a pronoun or adjective (*Hann býr einn*, "he lives alone"). A loose word counts as known, so its sentence can still be read, but the sentence is never used to teach that word. 104 words are loose; *til* is now taught with *Velkomin til San Francisco*.
+- In `data/tags.json` a loose word is stored as -2 minus its lemma index; `tagsOf` returns it as `"~"` plus the lemma id. The story panel shows a loose word as that word.
+
+### Excluded sentences
+
+- Reviewing generated lessons turned up a Tatoeba sentence that must not appear in a course: *Ég elska litlar stelpur* ("I love little girls"). A scan of every sentence's English translation for sensitive words found three more that are unsuitable for beginners: "War is fun.", "Nazis are marching in the streets.", "There were two murders this month."
+- `content/sentence-exclude.json` lists them with a reason. `js/data.js` removes them from the exercise pool and from `sentence()`, so they appear nowhere: not in exercises, examples, the dictionary or stories. `validate-content` fails if a guidebook or story uses one, and the generator test checks that no exercise does.
+- Sentences about beer and wine stay: they belong to the café unit's vocabulary (*bjór*, *vín*).
+
+### Tests
+
+- `node --test`: 77 tests (new: unit 4's lessons, loose words in the rule tests, *Við erum öll til* as a regression, no excluded sentence in any exercise).
+- `npm run qa` caught a bug in this change before it shipped: the exclusion list was read into the wrong slot of `Promise.all` in `loadAll`, which broke every page that loads all the data.
+
 ## Hand-made units: unit 3, Family (2026-11-04)
 
 After the planned phases, the preview units are being made by hand, one at a time, like units 1 and 2.

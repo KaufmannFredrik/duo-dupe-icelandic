@@ -39,6 +39,11 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
   - *sinn* refers back to the subject of its own sentence, as Norwegian *sin, si, sitt* does: *Hún hringdi í dóttur sína*; *hans* and *hennar* are someone else's: *Hann sér hundinn hennar*. *sig* is the reflexive pronoun: *Hann meiddi sig* ("he hurt himself").
   - Family, pets and things one has are said with *eiga*: *Ég á dóttur*; *ég á*, *þú átt*, *hún á*, *við eigum*; the object is accusative (*þrjá bræður*, *tvær systur*). Where someone lives is said with *búa*: *ég bý*, *þú býrð*, *hún býr*.
   - The numbers from five to twenty do not inflect. Age: *Hún er átta ára*, with *ára* the genitive plural of *ár*; *gamall* (a man or a masculine noun) or *gömul* (a woman) may follow.
+- Unit 4, *Gata* (getting around): the lesson groupings, and the guidebook notes:
+  - *í* and *á* take the dative for a place and the accusative for a direction: *í bílnum* (in the car), *í bílinn* (into the car). The choice of preposition is learned with the word: *í skóla*, *í búð*, *í banka*, but *á sjúkrahúsi*, *á hóteli*, *á safni*.
+  - *til* takes the genitive (*til Íslands*, *til flugvallarins*); *frá*, *úr* and *hjá* take the dative (*frá Íslandi*, *úr bílnum*, *hjá frænda mínum*). The pairs *í* and *úr*, *á* and *af*, *til* and *frá*.
+  - *hvar* asks for a place, *hvert* for a direction, *hvaðan* for a starting point; *hér* and *þar* answer *hvar*, *hingað* and *þangað* are for directions.
+  - The imperative is the stem with *þú* attached as -ðu, -du or -tu: *farðu*, *beygðu*, *bíddu*, *taktu*; *gakktu* from *ganga*. *til hægri*, *til vinstri*, *beint*; compass points can stand alone after a verb: *keyra norður*.
 - Case trainer note "When is each case used?" (summary of the main uses of the four cases).
 - Unit 10, *Nýyrði* (new words): the choice of twelve modern words, and the unit title. The guidebook retells Wiktionary's etymologies (sources quoted in `docs/DECISIONS.md`); the retelling and the glosses of the parts need review:
   - *útvarp* = *út* + *varp*; *sjónvarp* made on the same model with *sjón*; *flugvél* = *flug* + *vél*.

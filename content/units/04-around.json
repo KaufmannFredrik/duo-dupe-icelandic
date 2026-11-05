@@ -3,10 +3,56 @@
   "order": 4,
   "theme": "around",
   "reviewed": false,
-  "title": {
-    "en": "Getting around",
-    "nb": "Komme seg rundt"
-  },
+  "title": { "en": "Getting around", "nb": "Komme seg rundt" },
   "is": "Gata",
-  "lessons": "auto"
+  "goal": { "en": "Find your way: say where things are, where you are going and where you come from.", "nb": "Finn veien: si hvor ting er, hvor du skal og hvor du kommer fra." },
+  "lessons": [
+    { "id": "1", "title": { "en": "In town", "nb": "I byen" }, "focus": ["bær_no", "borg_no", "gata_no", "hús_no", "í_fs", "á_fs"] },
+    { "id": "2", "title": { "en": "Places", "nb": "Steder" }, "focus": ["búð_no", "banki_no", "skóli_no", "sjúkrahús_no", "hótel_no", "staður_no"] },
+    { "id": "3", "title": { "en": "Getting there", "nb": "Ta seg fram" }, "focus": ["bíll_no", "strætó_no", "hjól_no", "bátur_no", "flugvöllur_no", "keyra_so"] },
+    { "id": "4", "title": { "en": "To and from", "nb": "Til og fra" }, "focus": ["til_fs", "frá_fs", "úr_fs", "hjá_fs", "við_fs", "land_no"] },
+    { "id": "5", "title": { "en": "Where?", "nb": "Hvor?" }, "focus": ["hvar_ao", "hér_ao", "þar_ao", "heimili_no", "finna_so", "leita_so"] },
+    { "id": "6", "title": { "en": "Left and right", "nb": "Venstre og høyre" }, "focus": ["hægri_lo", "vinstri_lo", "beint_ao", "beygja_so", "ganga_so", "vegur_no"] },
+    { "id": "7", "title": { "en": "Sights", "nb": "Severdigheter" }, "focus": ["kirkja_no", "safn_no", "sundlaug_no", "garður_no", "kort_no", "bíða_so"] },
+    { "id": "8", "title": { "en": "North and south", "nb": "Nord og sør" }, "focus": ["norður_ao", "suður_ao", "austur_ao", "vestur_ao", "yfir_fs", "undir_fs"] },
+    { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": { "en": "Where or where to: í and á", "nb": "Hvor eller hvorhen: í og á" },
+        "text": {
+          "en": "{is:í} (in) and {is:á} (on, at) take the dative for where something is and the accusative for where something goes: {is:í bílnum} (in the car), but {is:í bílinn} (into the car). English and Norwegian use the same words for both; Icelandic shows the difference in the ending. Which of the two prepositions a place takes is learned with the word: {is:í skóla}, {is:í búð}, {is:í banka}, but {is:á sjúkrahúsi}, {is:á hóteli}, {is:á safni}.",
+          "nb": "{is:í} (i) og {is:á} (på) styrer dativ for hvor noe er, og akkusativ for hvor noe går: {is:í bílnum} (i bilen), men {is:í bílinn} (inn i bilen). Norsk sier i bilen i begge tilfeller; islandsk viser forskjellen i endelsen. Hvilken av de to preposisjonene et sted tar, lærer man sammen med ordet: {is:í skóla}, {is:í búð}, {is:í banka}, men {is:á sjúkrahúsi}, {is:á hóteli}, {is:á safni}."
+        },
+        "examples": ["12360426", "4022326", "388967", "651852"],
+        "tables": ["bíll_no"]
+      },
+      {
+        "title": { "en": "To, from and out of: til, frá, úr", "nb": "Til, fra og ut av: til, frá, úr" },
+        "text": {
+          "en": "{is:til} (to) takes the genitive: {is:til Íslands}, {is:til flugvallarins}. {is:frá} (from) and {is:úr} (out of) take the dative: {is:frá Íslandi}, {is:úr bílnum}. The prepositions come in pairs: you go {is:í} a place and come {is:úr} it, go {is:á} it and come {is:af} it, go {is:til} it and come {is:frá} it. {is:hjá} (at someone's place) takes the dative too: {is:hjá frænda mínum}.",
+          "nb": "{is:til} (til) styrer genitiv: {is:til Íslands}, {is:til flugvallarins}. {is:frá} (fra) og {is:úr} (ut av) styrer dativ: {is:frá Íslandi}, {is:úr bílnum}. Preposisjonene kommer i par: man går {is:í} et sted og kommer {is:úr} det, går {is:á} det og kommer {is:af} det, går {is:til} det og kommer {is:frá} det. {is:hjá} (hos) styrer også dativ: {is:hjá frænda mínum}."
+        },
+        "examples": ["738963", "427985", "1364320", "516285"],
+        "tables": ["flugvöllur_no"]
+      },
+      {
+        "title": { "en": "Three words for where: hvar, hvert, hvaðan", "nb": "Tre ord for hvor: hvar, hvert, hvaðan" },
+        "text": {
+          "en": "Like the prepositions, the question words tell a place from a direction: {is:hvar} (where) asks for a place, {is:hvert} (where to) for a direction and {is:hvaðan} (where from) for a starting point. {is:hér} (here) and {is:þar} (there) answer {is:hvar}; for a direction Icelandic has other words, {is:hingað} (to here) and {is:þangað} (to there).",
+          "nb": "Som preposisjonene skiller spørreordene mellom sted og retning: {is:hvar} (hvor) spør etter et sted, {is:hvert} (hvor ... hen) etter en retning og {is:hvaðan} (hvorfra) etter et utgangspunkt. {is:hér} (her) og {is:þar} (der) svarer på {is:hvar}; for retning har islandsk egne ord, {is:hingað} (hit) og {is:þangað} (dit), akkurat som norsk."
+        },
+        "examples": ["4172215", "465367", "10963640"]
+      },
+      {
+        "title": { "en": "Giving directions: the imperative", "nb": "Veibeskrivelse: imperativ" },
+        "text": {
+          "en": "Directions are given in the imperative: the verb's stem with {is:þú} attached as -ðu, -du or -tu. {is:farðu} (go), {is:beygðu} (turn), {is:bíddu} (wait), {is:taktu} (take); {is:ganga} has its own stem, {is:gakktu} (walk). Then the way: {is:til hægri} (to the right), {is:til vinstri} (to the left), {is:beint} (straight), and the compass points {is:norður}, {is:suður}, {is:austur} and {is:vestur}, which can stand alone after a verb: {is:keyra norður} (drive north).",
+          "nb": "Veibeskrivelser gis i imperativ: verbets stamme med {is:þú} hengt på som -ðu, -du eller -tu. {is:farðu} (dra), {is:beygðu} (sving), {is:bíddu} (vent), {is:taktu} (ta); {is:ganga} har sin egen stamme, {is:gakktu} (gå). Så kommer veien: {is:til hægri} (til høyre), {is:til vinstri} (til venstre), {is:beint} (rett), og himmelretningene {is:norður}, {is:suður}, {is:austur} og {is:vestur}, som kan stå alene etter et verb: {is:keyra norður} (kjøre nordover)."
+        },
+        "examples": ["1316630", "1317135", "668625"]
+      }
+    ]
+  }
 }

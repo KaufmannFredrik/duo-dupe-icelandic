@@ -12,6 +12,8 @@ import { createGenerator } from './engine/generate.js';
 let lexicon;
 let sentencesFile;
 let tagsFile;
+// Sentences never shown (content/sentence-exclude.json).
+let excluded = new Set();
 let audioFile;
 let rules;
 let names;
@@ -33,15 +35,17 @@ export async function loadForms(themes) {
 /** Everything exercises need: lexicon, all paradigms, sentences and their tags, recordings, rules, names. */
 export async function loadAll() {
   await loadLexicon();
-  const [s, tg, a, r, allow] = await Promise.all([
+  const [s, tg, ex, a, r, allow] = await Promise.all([
     sentencesFile ?? loadJSON('data/sentences.json'),
     tagsFile ?? loadJSON('data/tags.json'),
+    loadJSON('content/sentence-exclude.json'),
     audioFile ?? loadJSON('data/audio.json'),
     rules ?? loadJSON('content/case-rules.json').then((x) => x.rules),
     names ?? loadJSON('content/allowlist.json').then((x) => new Set(x.names.map((n) => n.toLocaleLowerCase('is')))),
     loadForms(),
   ]);
-  sentencesFile = s;
+  excluded = new Set(Object.keys(ex.sentences));
+  sentencesFile = s.pool.some((sid) => excluded.has(sid)) ? { ...s, pool: s.pool.filter((sid) => !excluded.has(sid)) } : s;
   tagsFile = tg;
   audioFile = a;
   rules = r;
@@ -52,15 +56,16 @@ export async function loadAll() {
 
 export const lemma = (id) => lexicon?.lemmas[id];
 export const entry = (id) => shards.get(lexicon.lemmas[id]?.theme)?.[id] ?? null;
-export const sentence = (sid) => sentencesFile?.sentences[sid];
+export const sentence = (sid) => (excluded.has(sid) ? undefined : sentencesFile?.sentences[sid]);
 
 /**
  * Which course word each word (p{L}+ token) of a sentence is there, from the Greynir parse:
- * a lemma id, -1 for another word or a name, null when undetermined; undefined without tags.
+ * a lemma id, "~" + id for that word used loosely (a preposition as a particle), -1 for another
+ * word or a name, null when undetermined; undefined without tags.
  */
 export function tagsOf(sid) {
   const t = tagsFile?.sentences[sid];
-  return t?.map((x) => (x === null || x === -1 ? x : tagsFile.lemmas[x]));
+  return t?.map((x) => (x === null || x === -1 ? x : x <= -2 ? `~${tagsFile.lemmas[-2 - x]}` : tagsFile.lemmas[x]));
 }
 export const recordings = (id) => audioFile?.recordings[id] ?? [];
 export const caseRules = () => rules;

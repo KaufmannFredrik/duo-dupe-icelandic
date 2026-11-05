@@ -152,7 +152,8 @@ function openWord(btn) {
   activeWord = btn;
   btn.setAttribute('aria-expanded', 'true');
   const sid = story.lines[Number(btn.closest('[data-line]').dataset.line)].sentence;
-  panel.innerHTML = panelHTML(btn.textContent, tagsOf(sid)?.[Number(btn.dataset.w)] ?? undefined);
+  const tag = tagsOf(sid)?.[Number(btn.dataset.w)];
+  panel.innerHTML = panelHTML(btn.textContent, typeof tag === 'string' ? tag.replace(/^~/, '') : (tag ?? undefined));
   panel.classList.add('is-open');
   if (!desktop.matches) panel.querySelector('[data-close]').focus();
 }

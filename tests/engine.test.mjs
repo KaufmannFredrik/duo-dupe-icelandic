@@ -14,11 +14,11 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key) }) };
 }
 
-test('course: ten units in order, units 1 to 3 hand-made, the rest automatic', () => {
+test('course: ten units in order, units 1 to 4 hand-made, the rest automatic', () => {
   assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
   assert.equal(d.course.units[0].auto, false);
-  assert.equal(d.course.units[2].auto, false);
-  assert.equal(d.course.units[3].auto, true);
+  assert.equal(d.course.units[3].auto, false);
+  assert.equal(d.course.units[4].auto, true);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
 });
 
@@ -56,6 +56,7 @@ test('generator: homographs are told apart by the sentence tags', () => {
     ['Hann elskaði hana einu sinni.', 'sinn_fn', 'elska_so'], // einu sinni = "once"
     ['Hann elskaði hana einu sinni.', 'einn_to', 'hún_pfn'],
     ['Hann sér hundinn hennar.', 'sig_afn', 'sjá_so'], // sér = "sees"
+    ['Við erum öll til.', 'til_fs', 'vera_so'], // til = "ready", a loose use: known, not taught
   ];
   for (const [text, not, yes] of cases) {
     assert.ok(sid(text), `"${text}" is in the data`);
@@ -69,7 +70,7 @@ test('generator: the same seed gives the same lesson', () => {
   assert.deepEqual(generate('hello', l).specs, generate('hello', l).specs);
 });
 
-for (const unitId of ['hello', 'cafe', 'family', 'newwords']) {
+for (const unitId of ['hello', 'cafe', 'family', 'around', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);
@@ -82,6 +83,7 @@ for (const unitId of ['hello', 'cafe', 'family', 'newwords']) {
         const known = knownIn(s.type === 'wordbank' || s.type === 'dictation' ? allowed : everyWord);
         for (const sid of [s.sentence, ...(s.type === 'choice' ? s.options : [])].filter(Boolean)) {
           assert.ok(d.sentences[sid], `sentence ${sid} exists`);
+          assert.ok(!d.excluded.has(sid), `sentence ${sid} is excluded`);
           for (const t of tokens(d.sentences[sid].is)) assert.ok(known(t), `${lesson.key} ${s.type}: "${t.raw}" in "${d.sentences[sid].is}" is not a known word`);
         }
         if (s.type === 'choice') assert.equal(new Set(s.options.map((x) => d.sentences[x].en[0])).size, s.options.length, 'distinct translations');

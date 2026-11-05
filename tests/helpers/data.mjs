@@ -26,8 +26,10 @@ export function loadData() {
     }
   }
   const s = json('data/sentences.json');
+  const excluded = new Set(Object.keys(json('content/sentence-exclude.json').sentences));
+  s.pool = s.pool.filter((sid) => !excluded.has(sid));
   const tags = json('data/tags.json');
-  const tagsOf = (sid) => tags.sentences[sid]?.map((x) => (x === null || x === -1 ? x : tags.lemmas[x]));
+  const tagsOf = (sid) => tags.sentences[sid]?.map((x) => (x === null || x === -1 ? x : x <= -2 ? `~${tags.lemmas[-2 - x]}` : tags.lemmas[x]));
   const audio = json('data/audio.json').recordings;
   const rules = json('content/case-rules.json').rules;
   const names = new Set(json('content/allowlist.json').names.map((n) => n.toLocaleLowerCase('is')));
@@ -35,5 +37,5 @@ export function loadData() {
   const units = index.units.map((f) => json(`content/units/${f}`));
   const course = courseModel({ index, units, lexicon });
   const generator = createGenerator({ lexicon, paradigm, formIndex, sentences: s.sentences, pool: s.pool, tagsOf, audio, rules, names });
-  return { lexicon, paradigm, formIndex, sentences: s.sentences, pool: s.pool, tagsOf, audio, rules, names, course, generator };
+  return { lexicon, paradigm, formIndex, sentences: s.sentences, pool: s.pool, excluded, tagsOf, audio, rules, names, course, generator };
 }

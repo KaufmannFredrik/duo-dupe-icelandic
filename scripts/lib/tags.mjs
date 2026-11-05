@@ -40,12 +40,15 @@ export function align(appWords, parserTokens) {
  *  - the parser's lemma is itself a DMII Core form of the word (þér for þú, hvað for hver),
  *  - a past participle used as an adjective (farinn, lokaður) belongs to its verb,
  *  - an adverb that is the neuter of an adjective (seint, beint),
- *  - prepositions used as adverbs or particles (til, um, við), and að as a preposition,
- *  - interjections in any class (já, bless), compass directions and sides as nouns (norður, vinstri),
- *  - einn and annar as numeral, pronoun or adjective.
+ *  - interjections in any class (já, bless), compass directions and sides as nouns (norður, vinstri).
+ * Others are the same word used in another way, and are "loose": prepositions as adverbs or
+ * particles ("Við erum öll til", we are all ready; "búa til", to make), að as a preposition, and
+ * einn or annar as pronoun or adjective ("Hann býr einn", he lives alone). A loose word counts as
+ * known to the learner, but its sentence is not used to teach that word.
  * Different words with the same spelling stay apart: mun (munu "will", not muna), myndir
  * (mynd), ferð (a trip, not fara), dýr (an animal, not "expensive"), þegar ("already").
  */
+/** @returns {boolean|'loose'} */
 export function sameWord(id, word, tok, forms, lexicon) {
   const L = lexicon.lemmas[id];
   const cls = CLASS[tok.c];
@@ -53,12 +56,12 @@ export function sameWord(id, word, tok, forms, lexicon) {
   if (low(tok.l) === low(L.lemma)) {
     if (cls === L.ofl) return true;
     if (L.ofl === 'uh') return true;
-    if (L.ofl === 'fs' && (cls === 'ao' || cls === 'st')) return true;
-    if (L.lemma === 'að' && (cls === 'fs' || cls === 'ao')) return true;
+    if (L.ofl === 'fs' && (cls === 'ao' || cls === 'st')) return 'loose';
+    if (L.lemma === 'að' && (cls === 'fs' || cls === 'ao')) return 'loose';
     if (L.ofl === 'ao' && cls === 'no') return true;
     if (SIDES.has(L.lemma) && cls === 'no') return true;
     const pronounLike = new Set(['fn', 'to', 'lo']);
-    return pronounLike.has(L.ofl) && pronounLike.has(cls);
+    return pronounLike.has(L.ofl) && pronounLike.has(cls) ? 'loose' : false;
   }
   if (cls === L.ofl && lemmaIsForm) return true;
   if (L.ofl === 'so' && cls === 'lo' && lemmaIsForm) return true;
@@ -69,7 +72,7 @@ export function sameWord(id, word, tok, forms, lexicon) {
 /**
  * Which course word `word` is, given the parser's token for it.
  * @param {Map<string, Set<string>>} forms lowercase form -> course lemma ids
- * @returns {string|-1|null} a lemma id, -1 for another word, null when undetermined
+ * @returns {string|-1|null} a lemma id ("~" + id when loose), -1 for another word, null when undetermined
  */
 export function resolve(word, tok, forms, lexicon) {
   const candidates = [...(forms.get(low(word)) ?? [])];
@@ -82,14 +85,15 @@ export function resolve(word, tok, forms, lexicon) {
     }
     const exact = candidates.filter((id) => low(lexicon.lemmas[id].lemma) === low(tok.l) && lexicon.lemmas[id].ofl === CLASS[tok.c]);
     if (exact.length) return exact.length === 1 ? exact[0] : null;
-    const m = candidates.filter((id) => sameWord(id, word, tok, forms, lexicon));
-    return m.length === 1 ? m[0] : m.length ? null : -1;
+    const m = candidates.map((id) => [id, sameWord(id, word, tok, forms, lexicon)]).filter(([, s]) => s);
+    if (m.length !== 1) return m.length ? null : -1;
+    return m[0][1] === 'loose' ? `~${m[0][0]}` : m[0][0];
   }
   // Not parsed: decided only when every BÍN meaning of the form is the same course word.
   const ids = new Set();
   let other = false;
   for (const [stofn, cls] of tok.m ?? []) {
-    const m = candidates.filter((id) => sameWord(id, word, { l: stofn, c: cls }, forms, lexicon));
+    const m = candidates.filter((id) => sameWord(id, word, { l: stofn, c: cls }, forms, lexicon) === true);
     if (m.length) m.forEach((id) => ids.add(id));
     else other = true;
   }
