@@ -144,7 +144,11 @@ async function checkUnits() {
         if (!sentenceText(sid)) err(where, `sentence ${sid} not found`);
         if (excluded[sid]) err(where, `sentence ${sid} is excluded: ${excluded[sid]}`);
       }
-      for (const id of sec.tables ?? []) if (!lexicon.lemmas[id]) err(where, `unknown lemma ${id}`);
+      for (const tb of sec.tables ?? []) {
+        const id = typeof tb === 'string' ? tb : tb.lemma;
+        if (!lexicon.lemmas[id]) err(where, `unknown lemma ${id}`);
+        if (typeof tb === 'object' && !['NT', 'ÞT'].includes(tb.tense)) err(where, `table ${id}: tense must be NT or ÞT`);
+      }
     }
   }
 }

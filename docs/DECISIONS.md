@@ -2,6 +2,26 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Hand-made units: unit 8, Study and work (2026-11-23)
+
+### Unit 8, *Vinna*
+
+- Five lessons and a review: At school, Languages, Questions and answers, Easy or difficult?, At work (27 words). This theme has many sentences (*bók* 27, *kennari*, *hjálpa* and *vinna* 15 each); only the language words *íslenska*, *norska*, *íslenskur* and *norskur* have none, so lesson 2 is mostly word exercises around *enska* and *tungumál*.
+- *vinna* the noun and *vinna* the verb are taught in the same lesson; the sentence tags keep them apart.
+- **New rules `hjálpa` and `loka`:** both verbs take a dative object (*hjálpa* "[with dative]" in Wiktionary; *Lokaðu dyrunum*, *Lokaðu bókinni* in Tatoeba). A verb rule applies only when no preposition before the word explains its case.
+- Guidebook, four sections, every form from the DMII Core and every example from Tatoeba:
+  - **tala íslensku.** Languages are feminine nouns in -a with a small letter; accusative after *tala* (*Hann talar ensku*, *Hún talar góða ensku*); *á ensku*; the adjectives *íslenskur*, *norskur*.
+  - **Four ways to know.** *vita* a fact, *þekkja* a person, *kunna* a skill (Wiktionary: "to know (by heart), know a skill"; "can: to know how to"), *geta* with the supine (Wiktionary's usage note: "Geta requires the supine (sagnbót) form of an accompanying verb, rather than the bare infinitive"); *veit* and *kann* (DMII Core).
+  - **Objects in the dative.** *hjálpa*, *svara*, *loka* against *opna*: *Lokaðu dyrunum*, *Opnaðu dyrnar* (Tatoeba).
+  - **The past.** *skrifaði*, *hlustaði*, *hugsaði*, *lærði*, *keypti*, and the strong *las*, *vann*, *sá* (DMII Core); *vinna* is both "work" and "win" (Wiktionary; *Þú vannst!*).
+- A guidebook table can now show a verb in the past: `"tables": [{ "lemma": "vinna_so", "tense": "ÞT" }]` (a plain lemma id still shows the present). The section on the past shows *vann, vannst, vann, unnum, unnuð, unnu*.
+- The guidebook prose and the lesson grouping are listed in `content/NEEDS-NATIVE-REVIEW.md`.
+
+### Tests
+
+- `node --test`: 105 tests (new: the six lessons of unit 8, and *Lokaðu bókinni* among the hint regressions).
+- `npm run smoke`: every lesson of units 1 to 8. `npm run qa`: the unit 8 guidebook at three sizes.
+
 ## Hand-made units: unit 7, Weather and nature (2026-11-23)
 
 ### Unit 7, *Veður*

@@ -14,11 +14,11 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key) }) };
 }
 
-test('course: ten units in order, units 1 to 7 hand-made, the rest automatic', () => {
+test('course: ten units in order, units 1 to 8 hand-made, the rest automatic', () => {
   assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
   assert.equal(d.course.units[0].auto, false);
-  assert.equal(d.course.units[6].auto, false);
-  assert.equal(d.course.units[7].auto, true);
+  assert.equal(d.course.units[7].auto, false);
+  assert.equal(d.course.units[8].auto, true);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
 });
 
@@ -81,6 +81,7 @@ test('generator: a case and its rule come from the sentence, not from the first 
   assert.deepEqual(why('Ég fer ekki í skólann á sunnudögum.', 'sunnudagur_no'), { tag: 'ÞGFFT', rule: 'á-tími-þgf' });
   assert.deepEqual(why('Ég fer með þér á flugvöllinn.', 'flugvöllur_no'), { tag: 'ÞFETgr', rule: 'á-hreyfing' });
   assert.deepEqual(why('Horfðu á þetta fjall.', 'fjall_no'), { tag: 'ÞFET', rule: 'á-horfa' }); // horfa á: look at
+  assert.equal(why('Lokaðu bókinni.', 'bók_no')?.rule, 'loka'); // loka takes the dative
   assert.deepEqual(why('Ég kom til Japans fyrir tveimur árum.', 'ár_no'), { tag: 'ÞGFFT', rule: 'fyrir-síðan' }); // the phrase is "tveimur árum"
   assert.equal(why('Við verðum að bíða eftir honum.', 'hann_pfn')?.rule, 'eftir');
   assert.equal(why('Hún tekur alltaf af borðinu eftir matinn.', 'matur_no')?.rule, 'eftir-tími');
@@ -94,7 +95,7 @@ test('generator: the same seed gives the same lesson', () => {
   assert.deepEqual(generate('hello', l).specs, generate('hello', l).specs);
 });
 
-for (const unitId of ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'newwords']) {
+for (const unitId of ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);

@@ -22,12 +22,19 @@ document.querySelector('[data-guide-title]').textContent = `${t('learn.unit', { 
 if (!unit.guide) {
   root.innerHTML = `<p class="muted">${t('guide.none')}</p>`;
 } else {
+  // A table is a lemma id, or { lemma, tense } for a verb in another tense than the present.
+  const tableHTML = (tb) => {
+    const { lemma: id, tense } = typeof tb === 'string' ? { lemma: tb } : tb;
+    if (!entry(id)) return '';
+    const label = tense === 'ÞT' ? ` <span class="muted">(${t('tense.past')})</span>` : '';
+    return `<div class="guide-table"><h3 class="label"><span lang="is">${esc(lemma(id).lemma)}</span>${label}</h3>${renderTable(id, { compact: true, tense })}</div>`;
+  };
   root.innerHTML = unit.guide.sections
     .map(
       (sec, i) => `<section class="card card--quiet stack guide-section" aria-labelledby="g-${i}">
         <h2 id="g-${i}">${esc(pick(sec.title))}</h2>
         <p class="measure">${prose(pick(sec.text))}</p>
-        ${(sec.tables ?? []).map((id) => (entry(id) ? `<div class="guide-table"><h3 class="label"><span lang="is">${esc(lemma(id).lemma)}</span></h3>${renderTable(id, { compact: true })}</div>` : '')).join('')}
+        ${(sec.tables ?? []).map(tableHTML).join('')}
         ${
           sec.examples?.length
             ? `<ul class="examples">${sec.examples

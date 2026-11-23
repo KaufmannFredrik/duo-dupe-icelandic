@@ -3,10 +3,53 @@
   "order": 8,
   "theme": "study",
   "reviewed": false,
-  "title": {
-    "en": "Study and work",
-    "nb": "Studier og arbeid"
-  },
+  "title": { "en": "Study and work", "nb": "Studier og arbeid" },
   "is": "Vinna",
-  "lessons": "auto"
+  "goal": { "en": "Talk about school, work and languages, say what you know and can do, and tell what happened.", "nb": "Snakk om skole, jobb og språk, si hva du vet og kan, og fortell hva som skjedde." },
+  "lessons": [
+    { "id": "1", "title": { "en": "At school", "nb": "På skolen" }, "focus": ["kennari_no", "nemandi_no", "bók_no", "læra_so", "lesa_so", "skrifa_so"] },
+    { "id": "2", "title": { "en": "Languages", "nb": "Språk" }, "focus": ["tungumál_no", "íslenska_no", "enska_no", "norska_no", "íslenskur_lo", "norskur_lo"] },
+    { "id": "3", "title": { "en": "Questions and answers", "nb": "Spørsmål og svar" }, "focus": ["spurning_no", "svar_no", "orð_no", "hlusta_so", "muna_so"] },
+    { "id": "4", "title": { "en": "Easy or difficult?", "nb": "Lett eller vanskelig?" }, "focus": ["erfiður_lo", "auðveldur_lo", "skemmtilegur_lo", "kunna_so", "hugsa_so"] },
+    { "id": "5", "title": { "en": "At work", "nb": "På jobben" }, "focus": ["vinna_no", "vinna_so", "hjálpa_so", "tölva_no", "sími_no"] },
+    { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": { "en": "Speaking Icelandic: tala íslensku", "nb": "Å snakke islandsk: tala íslensku" },
+        "text": {
+          "en": "Languages are feminine nouns in -a, written with a small letter: {is:íslenska}, {is:enska}, {is:norska}. After {is:tala} (speak) they are in the accusative: {is:Hann talar ensku}, {is:Hún talar góða ensku}. \"In English\" is {is:á ensku}: {is:Þessi bók er skrifuð á ensku}. The adjectives are {is:íslenskur} and {is:norskur}, also with a small letter: {is:íslensk bók} (an Icelandic book).",
+          "nb": "Språk er hunkjønnsord på -a og skrives med liten forbokstav, som på norsk: {is:íslenska}, {is:enska}, {is:norska}. Etter {is:tala} (snakke) står de i akkusativ: {is:Hann talar ensku}, {is:Hún talar góða ensku}. «På engelsk» er {is:á ensku}, som norsk på engelsk: {is:Þessi bók er skrifuð á ensku}. Adjektivene er {is:íslenskur} og {is:norskur}, også med liten forbokstav: {is:íslensk bók} (en islandsk bok)."
+        },
+        "examples": ["1322938", "383713", "389897", "1329168", "427946"],
+        "tables": ["íslenska_no"]
+      },
+      {
+        "title": { "en": "Four ways to know", "nb": "Fire måter å vite på" },
+        "text": {
+          "en": "{is:vita} is to know a fact: {is:Ég veit það ekki} (I don't know). {is:þekkja} is to know a person: {is:Hann þekkir okkur mjög vel}. {is:kunna} is to know a skill, with {is:að}: {is:Hún kann að keyra bíl} (she can drive). {is:geta} is to be able, and it is followed by the supine, the verb form in -ið or -að, not by the infinitive: {is:Hann getur lesið og skrifað}, {is:Ég get ekki unnið núna}. Norwegian has the same split in vite, kjenne and kunne. {is:vita} and {is:kunna} are irregular in the present: {is:ég veit}, {is:ég kann}.",
+          "nb": "{is:vita} er å vite et faktum: {is:Ég veit það ekki} (jeg vet ikke). {is:þekkja} er å kjenne en person: {is:Hann þekkir okkur mjög vel}. {is:kunna} er å kunne noe, med {is:að}: {is:Hún kann að keyra bíl} (hun kan kjøre bil). {is:geta} er å være i stand til, og etter det kommer supinum, verbformen på -ið eller -að, ikke infinitiv: {is:Hann getur lesið og skrifað}, {is:Ég get ekki unnið núna}. Norsk deler opp på samme måte med vite, kjenne og kunne. {is:vita} og {is:kunna} er uregelmessige i presens: {is:ég veit} (jeg vet), {is:ég kann} (jeg kan)."
+        },
+        "examples": ["494507", "477924", "1339301", "1356572", "665912"]
+      },
+      {
+        "title": { "en": "Help, answer, close: objects in the dative", "nb": "Hjelpe, svare, lukke: objekt i dativ" },
+        "text": {
+          "en": "Most verbs take their object in the accusative, but some take the dative, and this is learned with the verb: {is:hjálpa} (help): {is:Það var fallegt af þér að hjálpa mér}; {is:svara} (answer): {is:Svaraðu spurningunni}; {is:loka} (close): {is:Lokaðu dyrunum}. Its opposite {is:opna} (open) takes the accusative: {is:Opnaðu dyrnar}.",
+          "nb": "De fleste verb tar objektet i akkusativ, men noen tar dativ, og det lærer man sammen med verbet: {is:hjálpa} (hjelpe): {is:Það var fallegt af þér að hjálpa mér}; {is:svara} (svare): {is:Svaraðu spurningunni}; {is:loka} (lukke): {is:Lokaðu dyrunum}. Det motsatte, {is:opna} (åpne), tar akkusativ: {is:Opnaðu dyrnar}."
+        },
+        "examples": ["496252", "763491", "828852", "828861", "10882623"]
+      },
+      {
+        "title": { "en": "What happened: the past", "nb": "Det som skjedde: fortid" },
+        "text": {
+          "en": "Many verbs make the past with -aði: {is:skrifa}, {is:skrifaði}; {is:hlusta}, {is:hlustaði}; {is:hugsa}, {is:hugsaði}. Others add -ði, -di or -ti: {is:læra}, {is:lærði}; {is:kaupa}, {is:keypti}. The strong verbs change their vowel instead: {is:lesa}, {is:las}; {is:vinna}, {is:vann}; {is:sjá}, {is:sá}. {is:vinna} means both \"work\" and \"win\": {is:Þú vannst!} (you won!).",
+          "nb": "Mange verb lager fortid med -aði: {is:skrifa}, {is:skrifaði}; {is:hlusta}, {is:hlustaði}; {is:hugsa}, {is:hugsaði}. Andre legger til -ði, -di eller -ti: {is:læra}, {is:lærði} (lærte); {is:kaupa}, {is:keypti} (kjøpte). De sterke verbene skifter vokal i stedet: {is:lesa}, {is:las}; {is:vinna}, {is:vann}; {is:sjá}, {is:sá} (se, så). {is:vinna} betyr både «arbeide» og «vinne»: {is:Þú vannst!} (du vant!)."
+        },
+        "examples": ["10613946", "10629590", "1329168", "12360408", "4022079"],
+        "tables": [{ "lemma": "vinna_so", "tense": "ÞT" }]
+      }
+    ]
+  }
 }

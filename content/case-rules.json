@@ -28,6 +28,8 @@
     "eftir": { "trigger": "eftir", "kind": "preposition", "case": "ÞGF", "en": "eftir takes the dative after verbs such as bíða (wait for) and muna (remember), and for order: á eftir laugardegi (after Saturday).", "nb": "eftir styrer dativ etter verb som bíða (vente på) og muna (huske), og om rekkefølge: á eftir laugardegi (etter lørdag)." },
     "fyrir-síðan": { "trigger": "fyrir", "kind": "preposition", "case": "ÞGF", "nouns": ["time", "tími"], "en": "fyrir takes the dative when it means ago: fyrir tveimur árum (two years ago).", "nb": "fyrir styrer dativ når det betyr for ... siden: fyrir tveimur árum (for to år siden)." },
     "fyrir": { "trigger": "fyrir", "kind": "preposition", "case": "ÞF", "en": "fyrir takes the accusative when it means for or before: fyrir mig (for me), fyrir kvöldmatinn (before dinner).", "nb": "fyrir styrer akkusativ når det betyr for eller før: fyrir mig (for meg), fyrir kvöldmatinn (før middag)." },
-    "eiga": { "trigger": "eiga", "kind": "verb", "case": "ÞF", "en": "eiga (to own, to have) takes its object in the accusative.", "nb": "eiga (å eie, å ha) tar objektet i akkusativ." }
+    "eiga": { "trigger": "eiga", "kind": "verb", "case": "ÞF", "en": "eiga (to own, to have) takes its object in the accusative.", "nb": "eiga (å eie, å ha) tar objektet i akkusativ." },
+    "hjálpa": { "trigger": "hjálpa", "kind": "verb", "case": "ÞGF", "en": "hjálpa (to help) takes its object in the dative: hjálpa mér (help me).", "nb": "hjálpa (å hjelpe) tar objektet i dativ: hjálpa mér (hjelpe meg)." },
+    "loka": { "trigger": "loka", "kind": "verb", "case": "ÞGF", "en": "loka (to close) takes its object in the dative: Lokaðu dyrunum (close the door).", "nb": "loka (å lukke) tar objektet i dativ: Lokaðu dyrunum (lukk døra)." }
   }
 }

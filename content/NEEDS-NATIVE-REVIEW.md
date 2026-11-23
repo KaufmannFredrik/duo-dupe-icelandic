@@ -22,6 +22,7 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
 | `í-tími-þgf`, `á-tími-þgf` | *í* and *á* take the dative in some time expressions: *í hverri viku*, *í síðasta mánuði*; *á sunnudögum*, *á hverjum degi*. | not reviewed |
 | `eftir-tími`, `eftir` | *eftir* takes the accusative when it means after or in a time (*eftir matinn*, *eftir klukkutíma*), and the dative after verbs such as *bíða* and *muna* and for order (*á eftir laugardegi*). | not reviewed |
 | `fyrir-síðan`, `fyrir` | *fyrir* takes the dative when it means ago (*fyrir tveimur árum*), and the accusative when it means for or before (*fyrir mig*, *fyrir kvöldmatinn*). | not reviewed |
+| `hjálpa`, `loka` | *hjálpa* (help) and *loka* (close) take their object in the dative. | not reviewed |
 | `á-horfa` | *horfa á* (look at, watch) takes the accusative: *horfa á sjónvarpið*. | not reviewed |
 | `nounGroups` | Which nouns make a time expression for these rules; *tími* counts for *um*, *eftir* and *fyrir* but not for *í* (*í tíma* is usually a class). | not reviewed |
 
@@ -74,6 +75,11 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
   - *úti*/*út*, *inni*/*inn*, *heima*/*heim* tell a place from a direction, like Norwegian *ute*/*ut*.
   - *sjá* is irregular (*sé, sérð, sér, sá*); *horfa á* takes the accusative; *heyra* takes a thing in the accusative and *heyra í* a person in the dative.
   - *eldfjall* = *eldur* + *fjall*, *norðurljós* = *norður* + *ljós*.
+- Unit 8, *Vinna* (study and work): the lesson groupings, and the guidebook notes:
+  - Languages are feminine nouns in -a with a small letter, in the accusative after *tala*; *á ensku*.
+  - *vita* a fact, *þekkja* a person, *kunna* a skill; *geta* takes the supine.
+  - *hjálpa*, *svara* and *loka* take a dative object; *opna* the accusative.
+  - The past in -aði, -ði, -di, -ti, and the strong verbs with a new vowel; *vinna* is "work" and "win".
 - Case trainer note "When is each case used?" (summary of the main uses of the four cases).
 - Unit 10, *Nýyrði* (new words): the choice of twelve modern words, and the unit title. The guidebook retells Wiktionary's etymologies (sources quoted in `docs/DECISIONS.md`); the retelling and the glosses of the parts need review:
   - *útvarp* = *út* + *varp*; *sjónvarp* made on the same model with *sjón*; *flugvél* = *flug* + *vél*.
