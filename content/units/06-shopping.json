@@ -2,7 +2,7 @@
   "id": "shopping",
   "order": 6,
   "theme": "shopping",
-  "reviewed": false,
+  "reviewed": true,
   "title": { "en": "Shopping", "nb": "Handle" },
   "is": "Búð",
   "goal": { "en": "Buy and sell, ask what things cost, and describe clothes by color, size and age.", "nb": "Kjøp og selg, spør hva ting koster, og beskriv klær med farge, størrelse og alder." },

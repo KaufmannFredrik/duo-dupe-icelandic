@@ -2,7 +2,7 @@
   "id": "hello",
   "order": 1,
   "theme": "hello",
-  "reviewed": false,
+  "reviewed": true,
   "title": { "en": "Hello", "nb": "Hei" },
   "is": "Halló",
   "goal": { "en": "Greet people, say your name and ask theirs.", "nb": "Hils på folk, si hva du heter og spør hva de heter." },

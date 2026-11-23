@@ -2,7 +2,7 @@
   "id": "cafe",
   "order": 2,
   "theme": "cafe",
-  "reviewed": false,
+  "reviewed": true,
   "title": { "en": "At the café", "nb": "På kafeen" },
   "is": "Kaffi",
   "goal": { "en": "Order food and drink, and count to five.", "nb": "Bestill mat og drikke, og tell til fem." },

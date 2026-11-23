@@ -2,7 +2,7 @@
   "id": "study",
   "order": 8,
   "theme": "study",
-  "reviewed": false,
+  "reviewed": true,
   "title": { "en": "Study and work", "nb": "Studier og arbeid" },
   "is": "Vinna",
   "goal": { "en": "Talk about school, work and languages, say what you know and can do, and tell what happened.", "nb": "Snakk om skole, jobb og språk, si hva du vet og kan, og fortell hva som skjedde." },

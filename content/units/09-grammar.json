@@ -2,7 +2,7 @@
   "id": "grammar",
   "order": 9,
   "theme": "core",
-  "reviewed": false,
+  "reviewed": true,
   "title": { "en": "Grammar words", "nb": "Grammatiske ord" },
   "is": "Orð",
   "goal": { "en": "Use the small words that hold sentences together: must and may, this and that, who and which, all and none, that and if.", "nb": "Bruk de små ordene som holder setningene sammen: må og får, denne og den, hvem og hvilken, alle og ingen, at og hvis." },

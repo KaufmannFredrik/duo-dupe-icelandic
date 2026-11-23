@@ -2,7 +2,7 @@
   "id": "family",
   "order": 3,
   "theme": "family",
-  "reviewed": false,
+  "reviewed": true,
   "title": { "en": "Family", "nb": "Familie" },
   "is": "Fjölskylda",
   "goal": { "en": "Talk about your family and friends, say what is yours, and count to ten.", "nb": "Snakk om familie og venner, si hva som er ditt, og tell til ti." },
@@ -30,8 +30,8 @@
       {
         "title": { "en": "My and your come after the noun", "nb": "Min og din står etter substantivet" },
         "text": {
-          "en": "{is:minn} (my) and {is:þinn} (your) follow the noun and agree with it in gender, number and case: {is:pabbi minn}, {is:mamma mín}, {is:barnið mitt}. Most nouns take the article ending first, as in {is:kötturinn minn} (my cat), but family words usually stay bare: {is:bróðir minn} (my brother). For his and her, Icelandic uses {is:hans} and {is:hennar}, which never change: {is:húsið hans}, {is:húsið hennar}.",
-          "nb": "{is:minn} (min) og {is:þinn} (din) står etter substantivet og bøyes etter det i kjønn, tall og kasus: {is:pabbi minn}, {is:mamma mín}, {is:barnið mitt}. Som på norsk får de fleste substantiv bestemt form først: {is:kötturinn minn} (katten min). Men familieord står som regel uten endelse, der norsk sier broren min: {is:bróðir minn}. For hans og hennes bruker islandsk {is:hans} og {is:hennar}, som aldri bøyes: {is:húsið hans}, {is:húsið hennar}."
+          "en": "{is:minn} (my) and {is:þinn} (your) follow the noun and agree with it in gender, number and case: {is:pabbi minn}, {is:mamma mín}, {is:barnið mitt}. Most nouns take the article ending first, as in {is:kötturinn minn} (my cat), but family words usually stay bare: {is:bróðir minn} (my brother). Husband and wife are the exception: {is:maðurinn minn} (my husband), {is:konan mín} (my wife). For his and her, Icelandic uses {is:hans} and {is:hennar}, which never change: {is:húsið hans}, {is:húsið hennar}.",
+          "nb": "{is:minn} (min) og {is:þinn} (din) står etter substantivet og bøyes etter det i kjønn, tall og kasus: {is:pabbi minn}, {is:mamma mín}, {is:barnið mitt}. Som på norsk får de fleste substantiv bestemt form først: {is:kötturinn minn} (katten min). Men familieord står som regel uten endelse, der norsk sier broren min: {is:bróðir minn}. Mann og kone er unntaket: {is:maðurinn minn} (mannen min), {is:konan mín} (kona mi). For hans og hennes bruker islandsk {is:hans} og {is:hennar}, som aldri bøyes: {is:húsið hans}, {is:húsið hennar}."
         },
         "examples": ["1320754", "469342", "473554", "813360"],
         "tables": ["minn_fn"]

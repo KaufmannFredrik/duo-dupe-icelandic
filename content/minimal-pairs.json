@@ -1,6 +1,6 @@
 {
-  "reviewed": false,
-  "note": "Word pairs that differ in one sound. Every word is a DMII Core form; the synthetic voice was checked to produce a different phoneme string for the two words of each pair. The descriptions and the audio need native review.",
+  "reviewed": true,
+  "note": "Word pairs that differ in one sound. Every word is a DMII Core form; the synthetic voice was checked to produce a different phoneme string for the two words of each pair. The contrasts are listed with their sources in content/CLAIMS.md.",
   "contrasts": {
     "length": {
       "en": "Long or short? A vowel is long before a single consonant and short before a double one: man has a long a, mann a short a and a long n.",

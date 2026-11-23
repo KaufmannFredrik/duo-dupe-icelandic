@@ -2,7 +2,7 @@
   "id": "around",
   "order": 4,
   "theme": "around",
-  "reviewed": false,
+  "reviewed": true,
   "title": { "en": "Getting around", "nb": "Komme seg rundt" },
   "is": "Gata",
   "goal": { "en": "Find your way: say where things are, where you are going and where you come from.", "nb": "Finn veien: si hvor ting er, hvor du skal og hvor du kommer fra." },

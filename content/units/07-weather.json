@@ -2,7 +2,7 @@
   "id": "weather",
   "order": 7,
   "theme": "weather",
-  "reviewed": false,
+  "reviewed": true,
   "title": { "en": "Weather and nature", "nb": "Vær og natur" },
   "is": "Veður",
   "goal": { "en": "Talk about the weather, say whether you are cold, and name the sights of Icelandic nature.", "nb": "Snakk om været, si om du fryser, og nevn severdighetene i islandsk natur." },

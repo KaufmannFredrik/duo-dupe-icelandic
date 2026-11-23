@@ -1,7 +1,7 @@
 {
   "id": "shopping",
-  "reviewed": false,
-  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; their selection and order need native review.",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
   "title": {
     "en": "A new dress",
     "nb": "En ny kjole"

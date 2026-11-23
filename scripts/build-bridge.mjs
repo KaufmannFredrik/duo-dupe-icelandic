@@ -11,7 +11,7 @@
 //              shared Old Norse etymon in the sources. Shown as "looks alike".
 // Only old-norse pairs link to a specific article; the others link to a dictionary search,
 // because a look-alike can have several homographs.
-// Every pair is marked for native review. Requests are cached in .cache/ordbokene/ and spaced.
+// Requests are cached in .cache/ordbokene/ and spaced.
 //   node scripts/build-bridge.mjs
 
 import { mkdir, readFile, writeFile } from 'node:fs/promises';

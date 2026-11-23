@@ -7,7 +7,8 @@
 //  - a referenced sentence, lemma or form does not exist,
 //  - a hand-written sentence ("source": "authored") has a GreynirCorrect error,
 //  - an excluded sentence (content/sentence-exclude.json) is used in a guidebook or a story.
-// Unreviewed content ("reviewed": false) is counted and listed, not failed.
+// Content not yet checked against sources ("reviewed": false) is counted and listed, not failed;
+// content/CLAIMS.md lists every hand-written claim with its source.
 //
 //   node scripts/validate-content.mjs
 
@@ -262,7 +263,7 @@ await checkSmallFiles();
 const authoredCount = await checkAuthored();
 
 console.log(`Checked the vocabulary (${Object.keys(lexicon.lemmas).length} lemmas), lessons, units, stories, rules and ${authoredCount} hand-written sentences.`);
-if (unreviewed.length) console.log(`Not yet reviewed by a native speaker (${unreviewed.length}): ${unreviewed.join(', ')}. See content/NEEDS-NATIVE-REVIEW.md.`);
+if (unreviewed.length) console.log(`Not yet checked against sources (${unreviewed.length}): ${unreviewed.join(', ')}. See content/CLAIMS.md.`);
 for (const w of warnings) console.log(`warning: ${w}`);
 if (errors.length) {
   console.log(`\n${errors.length} problem(s):`);

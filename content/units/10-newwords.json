@@ -2,7 +2,7 @@
   "id": "newwords",
   "order": 10,
   "theme": "newwords",
-  "reviewed": false,
+  "reviewed": true,
   "title": {
     "en": "New words, old roots",
     "nb": "Nye ord, gamle røtter"
@@ -66,8 +66,8 @@
           "nb": "Gamle ord, nye oppgaver"
         },
         "text": {
-          "en": "{is:sími} (telephone) is based on an old word for a cord, and {is:þota} (jet) comes from {is:þjóta} (to rush). Put them together and you get new words again: {is:farsími} (mobile phone) and {is:tölvupóstur} (e-mail, \"computer mail\").",
-          "nb": "{is:sími} (telefon) bygger på et gammelt ord for snor, og {is:þota} (jetfly) kommer av {is:þjóta} (å suse). Sett dem sammen, så får du nye ord igjen: {is:farsími} (mobiltelefon) og {is:tölvupóstur} (e-post, \"datapost\")."
+          "en": "{is:sími} (telephone) is based on {is:síma}, a word for a cord, and {is:þota} (jet) comes from {is:þjóta} (to rush). Put them together and you get new words again: {is:farsími} (mobile phone) and {is:tölvupóstur} (e-mail, \"computer mail\").",
+          "nb": "{is:sími} (telefon) bygger på {is:síma}, et ord for snor, og {is:þota} (jetfly) kommer av {is:þjóta} (å suse). Sett dem sammen, så får du nye ord igjen: {is:farsími} (mobiltelefon) og {is:tölvupóstur} (e-post, \"datapost\")."
         },
         "tables": [
           "sími_no"

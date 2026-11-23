@@ -2,7 +2,7 @@
   "id": "time",
   "order": 5,
   "theme": "time",
-  "reviewed": false,
+  "reviewed": true,
   "title": { "en": "Time", "nb": "Tid" },
   "is": "Tími",
   "goal": { "en": "Tell the time, name the days and the seasons, and say when, how long and how often.", "nb": "Si hva klokka er, nevn dagene og årstidene, og si når, hvor lenge og hvor ofte." },

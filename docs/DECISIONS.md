@@ -2,6 +2,29 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Claims checked against sources (2026-11-23)
+
+By the owner's decision nobody is asked to review the course, so every hand-written language claim was checked against published sources instead. `content/NEEDS-NATIVE-REVIEW.md` is now `content/CLAIMS.md`: each claim with its source (Wiktionary, the DMII Core, Tatoeba, Íslensk málnefnd's *Ritreglur*, Wikipedia, elon.io, islenzka.net, academic papers on weather verbs and word order, Bokmålsordboka) and a status: sourced, attested (only Tatoeba sentences or DMII Core forms show it) or corrected.
+
+### How
+
+- The claims were sorted into five batches (prepositions and case rules, time, grammar, pronunciation and etymology, and the rest), and the source pages were read for every claim; the URLs are in `content/CLAIMS.md`. The *Ritreglur* PDF was read in full after text extraction.
+- Nothing was contradicted outright. Some claims had no grammar source and rest on the corpus (for example *heyra í þér* with the dative, the person in the dative after *kaupa* and *selja*); they are marked "attested".
+
+### Corrected
+
+- **fyrir**: Wiktionary also gives the dative for some "for" senses, so the rule now says *fyrir* mostly takes the accusative for "for" and "before".
+- **Possessives** (unit 3): husband and wife take the article (*maðurinn minn*, *konan mín*), unlike other family words (elon.io, Transparent); the guidebook now says so.
+- **má and må** (unit 9): both words have both senses (Wiktionary *mega*; Bokmålsordboka *måtte*), so the note says Norwegian *må* usually means must and Icelandic *má* usually may.
+- **sími** (unit 10): Wiktionary says it is based on *síma* ("cord"), not on "an old word".
+- **Ísland** (landing page): Wiktionary gives both [ˈistlant] and [ˈiːs.lant], so *sl* "is often said" with a t.
+- The old review list's example of accents changing a word, *ar* and *ár*, was wrong (*ar* is not an Icelandic word); `content/CLAIMS.md` uses *dýr* and *dyr*.
+- Notes that asked for native review (case rules, minimal pairs, stories, the bridge credit, the validator's message) now point to the sources.
+
+### Content flags
+
+- `"reviewed": true` now means that every hand-written claim in the file is in `content/CLAIMS.md` with its source; all units, stories, the case rules, the minimal pairs and the vocabulary are marked so. `npm run validate` lists any file still marked `false`.
+
 ## Hand-made units: unit 10 lessons, and four stories (2026-11-23)
 
 - **Unit 10, *Nýyrði*:** its twelve words are now grouped by hand into two lessons and a review, Sound and screens (*sjónvarp*, *útvarp*, *farsími*, *tölvupóstur*, *forrit*, *hátalari*) and From planes to planets (*flugvél*, *þota*, *tækni*, *rafmagn*, *veira*, *reikistjarna*), following the guidebook. Only *sjónvarp*, *flugvél*, *forrit* and *farsími* have sentences a learner can read, so both lessons are mostly word exercises; no grouping does better. All ten units now have hand-made lessons.
