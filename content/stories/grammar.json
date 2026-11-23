@@ -9,6 +9,7 @@
   "level": "A1",
   "after": "grammar",
   "dialogue": true,
+  "cast": { "A": "amma", "B": "elias" },
   "lines": [
     {
       "sentence": "827621",

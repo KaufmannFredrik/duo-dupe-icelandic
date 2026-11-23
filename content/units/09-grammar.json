@@ -6,6 +6,7 @@
   "title": { "en": "Grammar words", "nb": "Grammatiske ord" },
   "is": "Orð",
   "goal": { "en": "Use the small words that hold sentences together: must and may, this and that, who and which, all and none, that and if.", "nb": "Bruk de små ordene som holder setningene sammen: må og får, denne og den, hvem og hvilken, alle og ingen, at og hvis." },
+  "host": { "character": "elias", "says": "494510" },
   "lessons": [
     { "id": "1", "title": { "en": "Have and do", "nb": "Ha og gjøre" }, "focus": ["hafa_so", "gera_so", "verða_so", "geta_so", "fá_so", "taka_so"] },
     { "id": "2", "title": { "en": "Know and need", "nb": "Vite og trenge" }, "focus": ["vita_so", "gefa_so", "þurfa_so", "mega_so", "líka_so"] },

@@ -1,15 +1,18 @@
 // Stories: short readings made of real Tatoeba sentences (content/stories/). The list shows every
 // reading; ?story=<id> opens the reader: play a line or the whole reading with word-by-word
-// highlighting, tap any word for its dictionary form, meaning, case and number.
+// highlighting, tap any word for its dictionary form, meaning, case and number. A dialogue may
+// give its speakers to cast members ("cast": { "A": "katla" }); their pictures mark their lines.
 
 import { loadJSON, ready } from '../app.js';
-import { loadCourse } from '../course.js';
+import { loadCourse, unitDone } from '../course.js';
 import { loadProgress } from '../progress.js';
 import { pick, t } from '../i18n.js';
 import { analyze, casesOf, gloss, lemma, loadAll, recordings, sentence, tagsOf, translation } from '../data.js';
 import { play, stop, ttsCredit } from '../audio.js';
 import { icon } from '../shell.js';
 import { caseTag, classLabel, describe, genderLabel } from '../ui/forms.js';
+import { character } from '../characters.js';
+import { characterImg } from '../ui/character.js';
 
 await ready;
 await loadAll();
@@ -25,11 +28,13 @@ const desktop = window.matchMedia('(min-width: 900px)');
 let activeWord = null;
 
 // A story is "ready" once the unit it follows is done (or skipped by the placement test).
-function unitDone(id) {
-  const unit = course.units.find((u) => u.id === id);
-  if (!unit) return false;
-  return progress.skippedUnits?.includes(id) || unit.lessons.filter((l) => !l.review).every((l) => progress.lessons[l.key]?.done);
+function storyReady(s) {
+  const unit = course.units.find((u) => u.id === s.after);
+  return Boolean(unit && unitDone(unit, progress));
 }
+
+// The cast members of a dialogue, in the order they first speak.
+const castOf = (s) => [...new Set(s.lines.map((l) => s.cast?.[l.speaker]).filter(Boolean))].map(character).filter(Boolean);
 
 if (!story) {
   readerEl.hidden = true;
@@ -37,10 +42,12 @@ if (!story) {
     .map((s) => {
       const first = sentence(s.lines[0].sentence);
       const unit = course.units.find((u) => u.id === s.after);
-      const ready = unitDone(s.after);
+      const ready = storyReady(s);
+      const cast = castOf(s);
       return `<a class="card card--quiet story-card${ready ? ' story-card--ready' : ''}" href="stories.html?story=${s.id}">
         <span class="cluster"><span class="tag tag--pos">${esc(s.level)}</span><span class="tag tag--pos">${t(s.dialogue ? 'stories.dialogue' : 'stories.reading')}</span>${ready ? `<span class="tag tag--ok">${t('stories.ready')}</span>` : ''}</span>
         <h2 class="card__title">${esc(pick(s.title))}</h2>
+        ${cast.length ? `<span class="story-card__cast">${cast.map((c) => characterImg(c.id, { size: 40, still: true, label: '' })).join('')}</span>` : ''}
         <p lang="is" class="learn-text">${esc(first?.is ?? '')}</p>
         <p class="muted">${t('stories.lines', { n: s.lines.length })}${unit ? ` · ${t('stories.after', { unit: esc(pick(unit.title)) })}` : ''}</p></a>`;
     })
@@ -55,16 +62,21 @@ if (!story) {
 }
 
 function renderReader() {
+  const cast = castOf(story);
+  const castEl = document.querySelector('[data-story-cast]');
+  castEl.hidden = !cast.length;
+  castEl.innerHTML = cast.map((c) => `<li>${characterImg(c.id, { size: 64, label: '' })}<span><strong>${esc(c.name)}</strong><br><span class="muted">${esc(pick(c.kind))}</span></span></li>`).join('');
   const text = document.querySelector('[data-reader-text]');
   text.innerHTML = story.lines
     .map((line, n) => {
       const s = sentence(line.sentence);
       const tr = translation(line.sentence);
+      const who = character(story.cast?.[line.speaker]);
       let w = -1;
       const tokens = s.is.split(/(\p{L}+)/u).map((part) => (/^\p{L}+$/u.test(part) ? `<button type="button" class="word" data-w="${++w}" aria-expanded="false" aria-controls="word-panel">${esc(part)}</button>` : esc(part)));
       return `<div class="reader__line" data-line="${n}"${line.speaker ? ` data-speaker="${esc(line.speaker)}"` : ''}>
         <button type="button" class="icon-button" data-play-line="${n}" aria-label="${t('audio.playSentence')}">${icon('play')}</button>
-        ${line.speaker ? `<span class="speaker" aria-label="${t('stories.speaker', { s: line.speaker })}">${esc(line.speaker)}</span>` : ''}
+        ${who ? `<span class="speaker speaker--char">${characterImg(who.id, { size: 40, still: true, label: who.name })}</span>` : line.speaker ? `<span class="speaker" aria-label="${t('stories.speaker', { s: line.speaker })}">${esc(line.speaker)}</span>` : ''}
         <p><span lang="is">${tokens.join('')}</span><span class="reader__en muted" lang="${tr.lang}" hidden><br>${esc(tr.text)}</span></p></div>`;
     })
     .join('');

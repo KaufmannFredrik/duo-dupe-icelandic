@@ -9,6 +9,7 @@
   "level": "A1",
   "after": "hello",
   "dialogue": true,
+  "cast": { "A": "lundi" },
   "lines": [
     {
       "sentence": "473495",

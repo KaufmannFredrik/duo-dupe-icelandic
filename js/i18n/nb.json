@@ -449,5 +449,19 @@
   "learn.voiceTitle": "Velg en stemme",
   "learn.voiceText": "Ord og setninger uten opptak av et menneske leses av en generert stemme. Hør på de fire og velg den du liker.",
   "learn.voiceLegend": "Stemme",
-  "learn.voiceSaved": "Lagret: {name}. Du kan endre det når som helst i Innstillinger."
+  "learn.voiceSaved": "Lagret: {name}. Du kan endre det når som helst i Innstillinger.",
+  "learn.hostUnmet": "Noen nye venter på deg i denne enheten.",
+  "learn.hostCredit": "Det vertene sier: setninger fra Tatoeba (CC BY 2.0 FR): {list}.",
+  "lesson.combo": "{n} riktige på rad! +{xp} XP",
+  "lesson.comboTotal": "Kombobonus: +{xp} XP",
+  "cast.cheer": "{name} jubler",
+  "cast.sorry": "{name} ser lei seg ut",
+  "friends.title": "Venner",
+  "friends.intro": "Hver enhet har en vert. Fullfør den første enheten en figur er vert for, så blir dere venner.",
+  "friends.host": "Vert for {unit}",
+  "friends.unknown": "Ikke venn ennå",
+  "friends.finish": "Fullfør enhet {n} for å bli venner",
+  "friends.new": "{name} er vennen din nå.",
+  "friends.see": "Se vennene dine",
+  "stories.cast": "I denne historien"
 }

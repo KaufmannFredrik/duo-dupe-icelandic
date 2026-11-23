@@ -9,6 +9,7 @@
   "level": "A1",
   "after": "shopping",
   "dialogue": true,
+  "cast": { "A": "katla", "B": "torfi" },
   "lines": [
     {
       "sentence": "10625122",

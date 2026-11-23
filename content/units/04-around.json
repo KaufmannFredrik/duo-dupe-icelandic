@@ -6,6 +6,7 @@
   "title": { "en": "Getting around", "nb": "Komme seg rundt" },
   "is": "Gata",
   "goal": { "en": "Find your way: say where things are, where you are going and where you come from.", "nb": "Finn veien: si hvor ting er, hvor du skal og hvor du kommer fra." },
+  "host": { "character": "elias", "says": "873698" },
   "lessons": [
     { "id": "1", "title": { "en": "In town", "nb": "I byen" }, "focus": ["bær_no", "borg_no", "gata_no", "hús_no", "í_fs", "á_fs"] },
     { "id": "2", "title": { "en": "Places", "nb": "Steder" }, "focus": ["búð_no", "banki_no", "skóli_no", "sjúkrahús_no", "hótel_no", "staður_no"] },

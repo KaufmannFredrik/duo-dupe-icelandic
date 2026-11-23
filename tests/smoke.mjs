@@ -2,10 +2,12 @@
 // Playwright smoke test: completes the first lesson at phone and desktop sizes by answering every
 // exercise correctly, then checks that progress was saved (lesson 1 done, lesson 2 current, XP in
 // the HUD), that progress survives export, reset and import, that hearts end a lesson, that a
-// first visit asks for a generated voice and then uses it, and that the site loads offline once
-// the service worker is installed.
+// first visit asks for a generated voice and then uses it (also for the unit host's greeting), that
+// five right answers in a row give a combo bonus, that the unit's host closes the lesson, and that
+// the site loads offline once the service worker is installed.
 // With --all it also plays every lesson of the hand-made units, the sounds and letters drills, and
-// checks the story reader (word panel, line audio from the generated voice) at desktop size.
+// checks the story reader (word panel, line audio from the generated voice, the cast of a dialogue)
+// and that finishing every unit makes all seven characters friends, at desktop size.
 // With --unit=<id>[,<id>] it only plays every lesson of those units (a quick check while making one).
 //   node tests/smoke.mjs [--all] [--unit=time]
 
@@ -24,10 +26,12 @@ const { server, url } = await startServer();
 const browser = await chromium.launch();
 let failed = false;
 
+// Returns the exercise types played; types.combos counts the combo lines in the feedback sheet.
 async function playLesson(page, href) {
   await page.goto(`${url}${href}${href.includes('?') ? '&' : '?'}qa`);
   await page.waitForFunction(() => window.__tolva);
   const types = [];
+  types.combos = 0;
   for (let i = 0; i < 30; i++) {
     await page.waitForFunction(() => document.querySelector('.complete__title') || (window.__tolva.spec() && !document.querySelector('[data-sheet].is-open')));
     if (await page.locator('.complete__title').count()) break;
@@ -36,6 +40,7 @@ async function playLesson(page, href) {
     await page.click('[data-action="check"]');
     const state = await page.getAttribute('[data-sheet]', 'data-state');
     if (state !== 'correct') throw new Error(`${href} exercise ${i + 1} (${spec.type}) graded ${state}`);
+    types.combos += await page.locator('[data-sheet] .sheet__combo').count();
     await page.click('[data-action="continue"]');
   }
   await page.locator('.complete__title').waitFor({ timeout: 5000 });
@@ -91,15 +96,18 @@ for (const [name, options] of Object.entries(VIEWPORTS)) {
   page.on('pageerror', (e) => errors.push(e.message));
   try {
     const types = await playLesson(page, 'lesson.html?unit=hello&lesson=1');
+    const combos = Math.floor(types.length / 5);
+    if (types.combos !== combos) throw new Error(`${types.combos} combo lines in ${types.length} right answers, expected ${combos}`);
+    if (!(await page.locator('.complete img.char--lg[alt^="Lundi"]').count())) throw new Error('the unit host (Lundi) does not close the lesson');
     await page.goto(`${url}learn.html`);
     await page.locator('.node--current').first().waitFor();
     const done = await page.locator('a.node--done[href*="unit=hello&lesson=1"]').count();
     const current = await page.locator('a.node--current[href*="unit=hello&lesson=2"]').count();
     if (!done || !current) throw new Error('progress not saved: lesson 1 should be done and lesson 2 current');
     const xp = await hudXP(page);
-    if (xp !== 120) throw new Error(`HUD shows ${xp} XP after a perfect lesson, expected 120`);
+    if (xp !== 10 * types.length + 5 * combos) throw new Error(`HUD shows ${xp} XP after a perfect lesson, expected ${10 * types.length + 5 * combos}`);
     if (errors.length) throw new Error(`page errors: ${errors.join('; ')}`);
-    console.log(`PASS ${name}: completed ${types.length} exercises (${[...new Set(types)].join(', ')}), progress saved, ${xp} XP`);
+    console.log(`PASS ${name}: completed ${types.length} exercises (${[...new Set(types)].join(', ')}), ${combos} combos, progress saved, ${xp} XP`);
   } catch (e) {
     failed = true;
     console.log(`FAIL ${name}: ${e.message}`);
@@ -109,12 +117,14 @@ for (const [name, options] of Object.entries(VIEWPORTS)) {
 
 // Export, reset, import: the XP and lesson state come back.
 {
+  let xp = 0;
   const context = await browser.newContext({ ...VIEWPORTS.desktop, ...isolated, acceptDownloads: true });
   const page = await context.newPage();
   try {
     await playLesson(page, 'lesson.html?unit=hello&lesson=1');
     await page.goto(`${url}profile.html`);
     await page.locator('.badge-tile[data-earned="true"]').first().waitFor();
+    xp = await hudXP(page);
     const [download] = await Promise.all([page.waitForEvent('download'), page.click('[data-export]')]);
     const file = await download.path();
     await page.click('[data-reset]');
@@ -123,7 +133,7 @@ for (const [name, options] of Object.entries(VIEWPORTS)) {
     if ((await hudXP(page)) !== 0) throw new Error('reset did not clear XP');
     await page.setInputFiles('[data-import]', file);
     await page.click('[data-confirm] [data-ok]');
-    await page.waitForFunction(() => Number(document.querySelector('.hud .stat--xp span').textContent) === 120, null, { timeout: 5000 });
+    await page.waitForFunction((want) => Number(document.querySelector('.hud .stat--xp span').textContent) === want, xp, { timeout: 5000 });
     await page.goto(`${url}learn.html`);
     await page.locator('.node--current').first().waitFor();
     if (!(await page.locator('a.node--done[href*="unit=hello&lesson=1"]').count())) throw new Error('lesson 1 not done after import');
@@ -201,11 +211,14 @@ for (const [name, options] of Object.entries(VIEWPORTS)) {
     await page.reload();
     await page.locator('.path').first().waitFor({ timeout: 5000 });
     if (await page.locator('.voice-intro').count()) throw new Error('the voice card is still shown after choosing');
+    const greeting = page.waitForResponse((r) => r.url().includes('/data/audio/tts/ugla/') && r.ok(), { timeout: 5000 });
+    await page.click('.host [data-play]');
+    await greeting;
     await page.goto(`${url}stories.html?story=cafe`);
     const audio = page.waitForResponse((r) => r.url().includes('/data/audio/tts/ugla/') && r.ok(), { timeout: 5000 });
     await page.click('[data-play-line="0"]');
     await audio;
-    console.log('PASS voice: chosen on the first visit, kept, and used for generated audio');
+    console.log('PASS voice: chosen on the first visit, kept, and used for generated audio and the host greeting');
   } catch (e) {
     failed = true;
     console.log(`FAIL voice: ${e.message}`);
@@ -245,15 +258,27 @@ if (process.argv.includes('--all')) {
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   const seen = new Map();
+  let friendLines = 0;
   for (const [unit, lesson] of handMadeLessons()) {
     try {
       const types = await playLesson(page, `lesson.html?unit=${unit}&lesson=${lesson}`);
+      friendLines += await page.locator('.complete__friend').count();
       for (const t of types) seen.set(t, (seen.get(t) ?? 0) + 1);
       console.log(`PASS ${unit}/${lesson}: ${types.length} exercises`);
     } catch (e) {
       failed = true;
       console.log(`FAIL ${unit}/${lesson}: ${e.message}`);
     }
+  }
+  try {
+    await page.goto(`${url}profile.html`);
+    await page.locator('.friend-tile').first().waitFor({ timeout: 5000 });
+    const made = await page.locator('.friend-tile[data-friend="true"]').count();
+    if (friendLines !== 7 || made !== 7) throw new Error(`${friendLines} "new friend" lines and ${made} friends on the profile, expected 7 and 7`);
+    console.log('PASS friends: each of the seven characters became a friend once');
+  } catch (e) {
+    failed = true;
+    console.log(`FAIL friends: ${e.message}`);
   }
   for (const href of ['lesson.html?mode=sounds', 'lesson.html?mode=letters', 'lesson.html?mode=bridge']) {
     try {
@@ -276,7 +301,12 @@ if (process.argv.includes('--all')) {
     const audio = page.waitForResponse((r) => r.url().includes('/data/audio/tts/') && r.ok(), { timeout: 5000 });
     await page.click('[data-play-line="0"]');
     await audio;
-    console.log(`PASS stories: ${cards} listed, word panel opens, line audio loads`);
+    await page.goto(`${url}stories.html?story=shopping`);
+    await page.locator('.story__cast li').first().waitFor({ timeout: 5000 });
+    const castNames = await page.locator('.story__cast strong').allTextContents();
+    const speakers = await page.locator('.speaker--char img').count();
+    if (castNames.join() !== 'Katla,Torfi' || speakers < 6) throw new Error(`shopping cast ${castNames.join()} with ${speakers} pictured lines`);
+    console.log(`PASS stories: ${cards} listed, word panel opens, line audio loads, dialogue cast shown`);
   } catch (e) {
     failed = true;
     console.log(`FAIL stories: ${e.message}`);

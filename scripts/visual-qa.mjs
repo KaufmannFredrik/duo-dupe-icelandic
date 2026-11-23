@@ -68,7 +68,8 @@ function progressFixture() {
     exported: new Date().toISOString(),
     progress: {
       xp: 262, days, frozen: [day(1)], freezes: 1, best: 4, skippedUnits: [], placement: null,
-      lessons: { 'hello/1': { done: true, best: 1, times: 1 }, 'hello/2': { done: true, best: 0.83, times: 2 } },
+      // Unit 1 finished (Lundi is a friend), unit 2 not started.
+      lessons: Object.fromEntries([1, 2, 3, 4, 5].map((n) => [`hello/${n}`, { done: true, best: n === 2 ? 0.83 : 1, times: n === 2 ? 2 : 1 }])),
       badges: { first: day(6), perfect: day(6), streak3: day(2) },
     },
     cards: [], mistakes: [], attempts,
@@ -83,6 +84,24 @@ async function importProgress(p) {
   await p.click('[data-confirm] [data-ok]');
   await p.waitForFunction(() => Number(document.querySelector('.hud .stat--xp span').textContent) > 0);
   await p.evaluate(() => document.activeElement?.blur());
+}
+
+// Marks lessons done straight in IndexedDB, through the app's own db module.
+async function seedLessons(p, keys) {
+  await p.evaluate(async (list) => {
+    const { put } = await import(new URL('js/db.js', location.href).href);
+    await put('kv', { lessons: Object.fromEntries(list.map((k) => [k, { done: true, at: Date.now(), best: 1, times: 1 }])) }, 'progress');
+  }, keys);
+}
+
+// Answers n exercises right; the sheet of the last one stays open.
+async function answerRight(p, n) {
+  for (let i = 0; i < n; i++) {
+    if (i) await p.click('[data-action="continue"]');
+    await p.waitForFunction(() => window.__tolva.spec() && !document.querySelector('[data-sheet].is-open'));
+    await answer(p);
+    await p.click('[data-action="check"]');
+  }
 }
 
 async function playThrough(p) {
@@ -139,6 +158,8 @@ const SHOTS = [
   { name: 'profile-progress', url: 'profile.html', full: true, act: importProgress },
   { name: 'learn-progress', url: 'learn.html', act: async (p) => { await importProgress(p); await p.goto(`${base}learn.html`); await settle(p); } },
   { name: 'lesson-complete', url: 'lesson.html?unit=hello&lesson=1&qa', act: playThrough },
+  { name: 'feedback-combo', url: 'lesson.html?unit=hello&lesson=1&qa', act: async (p) => answerRight(p, 5) },
+  { name: 'lesson-friend', url: 'lesson.html?unit=hello&lesson=5&qa', act: async (p) => { await seedLessons(p, ['hello/1', 'hello/2', 'hello/3', 'hello/4']); await playThrough(p); } },
   { name: 'lesson-hearts', url: 'lesson.html?unit=hello&lesson=1&qa', hearts: true },
   { name: 'out-of-hearts', url: 'lesson.html?unit=hello&lesson=1&qa', hearts: true, act: async (p) => { for (let i = 0; i < 5; i++) { await p.click('[data-action="skip"]'); await p.click('[data-action="continue"]'); } } },
   { name: 'dictionary', url: 'dictionary.html', full: true },

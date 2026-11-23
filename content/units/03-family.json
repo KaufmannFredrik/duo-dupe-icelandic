@@ -6,6 +6,7 @@
   "title": { "en": "Family", "nb": "Familie" },
   "is": "Fjölskylda",
   "goal": { "en": "Talk about your family and friends, say what is yours, and count to ten.", "nb": "Snakk om familie og venner, si hva som er ditt, og tell til ti." },
+  "host": { "character": "amma", "says": "1351305" },
   "lessons": [
     { "id": "1", "title": { "en": "My family", "nb": "Familien min" }, "focus": ["fjölskylda_no", "mamma_no", "pabbi_no", "móðir_no", "faðir_no", "minn_fn"] },
     { "id": "2", "title": { "en": "Brothers and sisters", "nb": "Søsken" }, "focus": ["bróðir_no", "systir_no", "sonur_no", "dóttir_no", "barn_no", "þinn_fn"] },

@@ -6,6 +6,7 @@
   "title": { "en": "Weather and nature", "nb": "Vær og natur" },
   "is": "Veður",
   "goal": { "en": "Talk about the weather, say whether you are cold, and name the sights of Icelandic nature.", "nb": "Snakk om været, si om du fryser, og nevn severdighetene i islandsk natur." },
+  "host": { "character": "jonas", "says": "451960" },
   "lessons": [
     { "id": "1", "title": { "en": "Rain and snow", "nb": "Regn og snø" }, "focus": ["veður_no", "rigning_no", "rigna_so", "snjór_no", "snjóa_so"] },
     { "id": "2", "title": { "en": "Outside and inside", "nb": "Ute og inne" }, "focus": ["vindur_no", "sól_no", "ský_no", "úti_ao", "inni_ao", "mjög_ao"] },

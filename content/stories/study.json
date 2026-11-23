@@ -9,6 +9,7 @@
   "level": "A1",
   "after": "study",
   "dialogue": true,
+  "cast": { "A": "katla", "B": "elias" },
   "lines": [
     {
       "sentence": "647426",

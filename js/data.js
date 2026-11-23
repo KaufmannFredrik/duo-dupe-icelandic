@@ -32,6 +32,14 @@ export async function loadForms(themes) {
   await Promise.all(want.filter((t) => !shards.has(t)).map(async (t) => shards.set(t, (await loadJSON(`data/forms/${t}.json`)).lemmas)));
 }
 
+/** Only the sentences, for sentence() and translation() on pages that need no word data. */
+export async function loadSentences() {
+  if (sentencesFile) return;
+  const [s, ex] = await Promise.all([loadJSON('data/sentences.json'), loadJSON('content/sentence-exclude.json')]);
+  excluded = new Set(Object.keys(ex.sentences));
+  sentencesFile ??= s;
+}
+
 /** Everything exercises need: lexicon, all paradigms, sentences and their tags, recordings, rules, names. */
 export async function loadAll() {
   await loadLexicon();

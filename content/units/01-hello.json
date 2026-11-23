@@ -6,6 +6,7 @@
   "title": { "en": "Hello", "nb": "Hei" },
   "is": "Halló",
   "goal": { "en": "Greet people, say your name and ask theirs.", "nb": "Hils på folk, si hva du heter og spør hva de heter." },
+  "host": { "character": "lundi", "says": "473495" },
   "lessons": [
     { "id": "1", "title": { "en": "Hi and bye", "nb": "Hei og ha det" }, "focus": ["halló_uh", "hæ_uh", "bless_uh", "takk_uh", "já_uh", "nei_uh", "velkominn_lo"] },
     { "id": "2", "title": { "en": "Names", "nb": "Navn" }, "focus": ["heita_so", "nafn_no", "ég_pfn", "þú_pfn", "hann_pfn", "hún_pfn", "það_pfn"] },

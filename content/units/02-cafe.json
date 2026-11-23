@@ -6,6 +6,7 @@
   "title": { "en": "At the café", "nb": "På kafeen" },
   "is": "Kaffi",
   "goal": { "en": "Order food and drink, and count to five.", "nb": "Bestill mat og drikke, og tell til fem." },
+  "host": { "character": "torfi", "says": "4171415" },
   "lessons": [
     { "id": "1", "title": { "en": "Drinks", "nb": "Drikke" }, "focus": ["kaffi_no", "te_no", "vatn_no", "mjólk_no", "bjór_no", "vín_no", "safi_no", "drekka_so"] },
     { "id": "2", "title": { "en": "Food", "nb": "Mat" }, "focus": ["matur_no", "brauð_no", "smjör_no", "ostur_no", "kaka_no", "súpa_no", "borða_so"] },

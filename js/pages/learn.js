@@ -1,6 +1,8 @@
 // Learn path: every unit as a winding road of lesson nodes. States come from progress:
 // done, current (pulsing, "Start"), review (gold, after the unit's lessons) and locked.
-// Until the learner has chosen a generated voice, a card at the top asks them to.
+// Until the learner has chosen a generated voice, a card at the top asks them to. Each unit's host
+// (js/characters.js) greets the learner under its banner with a Tatoeba sentence; the host of a
+// unit that is still locked shows as a silhouette.
 
 import { ready } from '../app.js';
 import { pick, t } from '../i18n.js';
@@ -8,11 +10,14 @@ import { loadCourse, lessonStates } from '../course.js';
 import { loadProgress } from '../progress.js';
 import { icon } from '../shell.js';
 import { getSettings } from '../store.js';
-import { TTS_VOICES } from '../audio.js';
+import { TTS_VOICES, play, ttsCredit } from '../audio.js';
 import { voicePicker } from '../ui/voice-picker.js';
+import { loadSentences, sentence, translation } from '../data.js';
+import { hostOf } from '../characters.js';
+import { characterImg } from '../ui/character.js';
 
 await ready;
-const [course, progress] = await Promise.all([loadCourse(), loadProgress()]);
+const [course, progress] = await Promise.all([loadCourse(), loadProgress(), loadSentences()]);
 const states = lessonStates(course, progress);
 const root = document.querySelector('[data-path]');
 
@@ -34,6 +39,27 @@ function node(unit, lesson, i) {
   const x = OFFSETS[i % OFFSETS.length];
   return `<li class="path__item" style="--x: ${x}; --ax: ${Math.abs(x)}">${el}<span class="path__label" aria-hidden="true">${esc(title)}</span></li>`;
 }
+
+// The host under a unit's banner. Only the host of the unit in progress moves; the others are still.
+const unitOpen = (u) => u.lessons.some((l) => states.get(l.key) !== 'locked');
+function hostHTML(u) {
+  const host = hostOf(u);
+  if (!host) return '';
+  if (!unitOpen(u)) {
+    return `<div class="host host--unmet">${characterImg(host.id, { size: 64, still: true, label: '', className: 'host__pic' })}<p class="host__bubble">${t('learn.hostUnmet')}</p></div>`;
+  }
+  const s = sentence(u.host.says);
+  const tr = translation(u.host.says);
+  const moving = u.lessons.some((l) => states.get(l.key) === 'current');
+  return `<div class="host">${characterImg(host.id, { size: 72, still: !moving, label: '', className: 'host__pic' })}
+      <div class="host__bubble"><p class="host__name">${esc(host.name)} <span class="host__kind">${esc(pick(host.kind))}</span></p>
+        ${s ? `<p class="host__says"><button type="button" class="icon-button" data-play="${esc(s.is)}" aria-label="${t('audio.playSentence')}">${icon('play')}</button><span lang="is" class="learn-text">${esc(s.is)}</span></p>
+        <p class="muted" lang="${tr.lang}">${esc(tr.text)}</p>` : ''}</div></div>`;
+}
+const greetings = course.units.filter((u) => hostOf(u) && unitOpen(u) && sentence(u.host.says)).map((u) => u.host.says);
+const greetingCredit = greetings.length
+  ? `<p class="credit learn-credit">${t('learn.hostCredit', { list: greetings.map((sid) => `<a href="https://tatoeba.org/en/sentences/show/${sid}" rel="noopener">#${sid}</a> (${esc(sentence(sid).author ?? t('credit.unknownAuthor'))})`).join(', ') })} <span data-voice-credit></span></p>`
+  : '';
 
 const placementLink = Object.keys(progress.lessons).length === 0 && !progress.skippedUnits.length
   ? `<p class="card card--gold placement-hint"><span>${t('learn.placementHint')}</span> <a class="button button--sm" href="lesson.html?mode=placement">${t('landing.placement')}</a></p>`
@@ -60,11 +86,19 @@ root.innerHTML =
           ${u.goal ? `<p class="muted">${esc(pick(u.goal))}</p>` : ''}</div>
         ${u.guide ? `<a class="button button--sm" href="guide.html?unit=${u.id}">${icon('guide')}<span>${t('learn.guidebook')}</span></a>` : ''}
       </div>
+      ${hostHTML(u)}
       <div class="path-wrap"><svg class="path__road" aria-hidden="true" focusable="false"></svg>
         <ol class="path" role="list">${u.lessons.map((l, i) => node(u, l, i)).join('')}</ol></div>
     </section>`,
     )
-    .join('');
+    .join('') +
+  greetingCredit;
+
+root.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-play]');
+  if (b) play({ text: b.dataset.play });
+});
+if (greetingCredit) ttsCredit().then((c) => (root.querySelector('[data-voice-credit]').textContent = c));
 
 const pickerEl = root.querySelector('[data-voice-picker]');
 if (pickerEl) {

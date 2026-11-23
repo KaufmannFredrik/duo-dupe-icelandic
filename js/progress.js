@@ -65,9 +65,15 @@ async function awardBadges(p) {
   return won;
 }
 
-export async function completeLesson(lessonKey, results) {
+/**
+ * Marks a lesson done and adds its XP: per answer, plus bonus (combos in the lesson).
+ * @param {string} lessonKey
+ * @param {('correct'|'almost'|'wrong')[]} results
+ * @param {{ bonus?: number }} [extra]
+ */
+export async function completeLesson(lessonKey, results, { bonus = 0 } = {}) {
   const p = await loadProgress();
-  const xp = results.reduce((sum, r) => sum + XP[r], 0);
+  const xp = results.reduce((sum, r) => sum + XP[r], 0) + bonus;
   const prev = p.lessons[lessonKey];
   const score = results.length ? results.filter((r) => r !== 'wrong').length / results.length : 0;
   p.lessons[lessonKey] = { done: true, at: Date.now(), best: Math.max(score, prev?.best ?? 0), times: (prev?.times ?? 0) + 1 };

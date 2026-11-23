@@ -2,6 +2,35 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## The cast in the app: hosts, story speakers, combos and friends (2026-11-23)
+
+After the owner approved the cast, it was wired into the app, with gentle game mechanics around it.
+
+### Hosts
+
+- Each unit file names a host and what they say: `"host": { "character": "lundi", "says": "473495" }`. The greeting is a short Tatoeba sentence that fits the unit (Lundi: *Hæ, hvernig gengur?*; Torfi at the café: *Vilt þú te eða kaffi?*; Amma Sigga: *Áttu fjölskyldu?*), so it is real Icelandic with a real translation and generated audio already exists for it. `npm run validate` checks that the character exists and the sentence is there and not excluded.
+- Learn shows the host under the unit banner with a speech bubble: name, what they are, the greeting with a play button and its translation. Only the host of the unit in progress moves; the others are still pictures, so a long page does not run ten animations. The host of a locked unit is a silhouette ("Someone new is waiting for you in this unit"), which gives a reason to unlock it. One credit line at the bottom names the greeting sentences and the voice.
+- The lesson's closing screen shows the host cheering, and the out-of-hearts screen shows them sorry. Practice rounds, which belong to no unit, keep Tala.
+- Units scrolled into view now leave room for the sticky banner (`scroll-margin-top`), so the host is not hidden under it.
+
+### Story speakers
+
+- A dialogue story maps its letter speakers to the cast: `"cast": { "A": "katla", "B": "torfi" }`. The reader introduces the cast under the title and puts the speaker's picture at each line; the story list shows the cast on the card. A speaker with no cast member keeps the letter (in the hello dialogue B introduces himself as Jack, so only A is Lundi).
+
+### Combos
+
+- Every fifth right answer in a row adds 5 XP: the feedback sheet says so with the host (or Tala) cheering, and the closing screen lists the combo bonus. A perfect 12-exercise lesson now gives 130 XP instead of 120. *Almost* and wrong answers end the run. The placement test has no combos. The bonus is passed to `completeLesson`, so it counts toward the daily goal and the streak like any XP.
+
+### Friends
+
+- Finishing the first unit a character hosts (or skipping it with the placement test) makes them a friend. Torfi and Katla host two units each; only the first counts. The closing screen of the lesson that does it says so, and Profile has a Friends section: friends with their picture, what they are and the unit they host; the others as silhouettes with the unit that befriends them.
+- `friends()` and `befriendedBy()` in `js/characters.js` are pure functions with unit tests; `unitDone()` moved into the course model so stories and friends share it.
+
+### Rejected
+
+- A toast for combos: it would cover the feedback sheet on phones. The combo line sits inside the sheet instead.
+- Showing every host's greeting before the unit opens: the silhouettes keep something to discover.
+
 ## The cast: seven characters (2026-11-23)
 
 The owner asked for lifelike Icelandic characters in the app's theme, people as well as talking things, and reviewed them on a cast sheet before they were wired in.
@@ -20,7 +49,7 @@ The owner asked for lifelike Icelandic characters in the app's theme, people as 
 ### How they are made
 
 - `scripts/characters/*.mjs` draw each character in code, like `js/tala.js`, so changes stay small: shared parts (rim lights, a human face by expression, the motion rules, a seeded random generator for beard strands, grass and curls) are in `scripts/characters/lib.mjs`. The approved *happy* faces of Amma, Jónas and Katla are kept exactly as drawn; the other expressions come from the shared face.
-- `npm run build:characters` writes `assets/characters/<id>-<expression>.svg` and the still copies: 56 files, 830 KB, precached by the service worker. The cast (names, labels) is `js/characters.js`; the style guide shows every character in every expression, so the QA checks them all.
+- `npm run build:characters` writes `assets/characters/<id>-<expression>.svg` and the still copies: 56 files, 830 KB, precached by the service worker. The cast (names, labels) is `js/characters.js`; who hosts which unit is in the unit files; the style guide shows every character in every expression, so the QA checks them all.
 
 ## Claims checked against sources (2026-11-23)
 

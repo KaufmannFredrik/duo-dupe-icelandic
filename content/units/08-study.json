@@ -6,6 +6,7 @@
   "title": { "en": "Study and work", "nb": "Studier og arbeid" },
   "is": "Vinna",
   "goal": { "en": "Talk about school, work and languages, say what you know and can do, and tell what happened.", "nb": "Snakk om skole, jobb og språk, si hva du vet og kan, og fortell hva som skjedde." },
+  "host": { "character": "katla", "says": "10557419" },
   "lessons": [
     { "id": "1", "title": { "en": "At school", "nb": "På skolen" }, "focus": ["kennari_no", "nemandi_no", "bók_no", "læra_so", "lesa_so", "skrifa_so"] },
     { "id": "2", "title": { "en": "Languages", "nb": "Språk" }, "focus": ["tungumál_no", "íslenska_no", "enska_no", "norska_no", "íslenskur_lo", "norskur_lo"] },

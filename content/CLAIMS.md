@@ -171,7 +171,18 @@ Unit titles are single course words, each in the DMII Core. Which words are taug
 
 ## Stories (`content/stories/`)
 
-The sentences are unchanged Tatoeba sentences, each readable after the unit the story follows (only words from that unit and earlier ones). Their choice, order and speaker labels are design choices, not claims.
+The sentences are unchanged Tatoeba sentences, each readable after the unit the story follows (only words from that unit and earlier ones). Their choice, order and speaker labels are design choices, not claims. Which cast member speaks a dialogue (`"cast"`) is a design choice too; so is each unit host's greeting (`"host"` in the unit files), an unchanged Tatoeba sentence shown with its Tatoeba translation.
+
+## The cast (`js/characters.js`, `scripts/characters/`)
+
+| Claim | Source | Status |
+|---|---|---|
+| *lundi* (m.) is the (Atlantic) puffin, the name of the puffin character | W: lundi ("puffin, Atlantic puffin") | sourced |
+| *amma* is grandmother (Amma Sigga) | W: amma; the course gloss of amma_no | sourced |
+| *Torfi* is an Icelandic male given name, and *torf* (n.) is sod, turf, the material of the turf house | W: Torfi ("a male given name", from Old Norse *Torfi*); W: torf ("sod, turf") | sourced. That the name suits a turf house is our pun: Wiktionary does not derive the name from *torf* |
+| Amma's sweater is a *lopapeysa*, knitted from unspun Icelandic wool, with a round yoke | W: lopapeysa ("a knitted sweater made from unspun Icelandic wool", from *lopi* + *peysa*) | sourced |
+| Jónas wears a *húfa*, a soft brimless cap | W: húfa; the course gloss of húfa_no | sourced |
+| Hekla is a volcano in Iceland | [WP: Hekla](https://en.wikipedia.org/wiki/Hekla) | sourced |
 
 ## Minimal pairs (`content/minimal-pairs.json`)
 

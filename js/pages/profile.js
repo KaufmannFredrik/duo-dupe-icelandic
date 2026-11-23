@@ -1,21 +1,26 @@
-// Profile: streak, XP and accuracy, the daily goal with the last seven days, badges, and
-// export, import and reset of all progress. Everything stays on this device.
+// Profile: streak, XP and accuracy, the daily goal with the last seven days, badges, friends (the
+// cast members whose first unit is finished), and export, import and reset of all progress.
+// Everything stays on this device.
 
 import { ready } from '../app.js';
-import { t } from '../i18n.js';
+import { pick, t } from '../i18n.js';
 import { attempts, checkImport, dailyGoal, exportAll, importAll, loadProgress, resetAll } from '../progress.js';
 import { BADGES, dayKey, recentDays, summarize } from '../stats.js';
 import { goalRing, icon } from '../shell.js';
+import { loadCourse } from '../course.js';
+import { friends } from '../characters.js';
+import { characterImg } from '../ui/character.js';
 
 await ready;
 const $ = (sel) => document.querySelector(sel);
 const status = $('[data-data-status]');
 const dialog = $('[data-confirm]');
 const lang = () => document.documentElement.lang;
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const weekday = (key) => new Date(`${key}T12:00:00`).toLocaleDateString(lang(), { weekday: 'short' });
 
 async function render() {
-  const [p, log] = await Promise.all([loadProgress(), attempts()]);
+  const [p, log, course] = await Promise.all([loadProgress(), attempts(), loadCourse()]);
   const s = summarize(p, log);
   const goal = dailyGoal();
   $('[data-stats]').innerHTML = [
@@ -42,6 +47,16 @@ async function render() {
     return `<li class="badge-tile" data-earned="${Boolean(when)}">${icon(b.icon, 'icon icon--lg')}<span class="badge-tile__name">${t(`badge.${b.id}`)}</span>
       <span class="badge-tile__text">${t(`badge.${b.id}Text`)}</span><span class="${when ? '' : 'muted'}">${when ? t('badge.earnedOn', { date }) : t('badge.locked')}</span></li>`;
   }).join('');
+  // A friend not made yet shows as a silhouette, with the unit that makes them one.
+  $('[data-friends]').innerHTML = friends(course, p)
+    .map((c) =>
+      c.friend
+        ? `<li class="friend-tile" data-friend="true">${characterImg(c.id, { size: 96, label: '' })}<span class="friend-tile__name">${esc(c.name)}</span>
+        <span>${esc(pick(c.kind))}</span><span class="muted">${t('friends.host', { unit: esc(pick(c.unit.title)) })}</span></li>`
+        : `<li class="friend-tile" data-friend="false">${characterImg(c.id, { size: 96, still: true, label: '' })}<span class="friend-tile__name" aria-hidden="true">???</span><span class="visually-hidden">${t('friends.unknown')}</span>
+        <span class="muted">${c.unit ? t('friends.finish', { n: c.unit.order }) : ''}</span></li>`,
+    )
+    .join('');
 }
 
 function confirmDialog({ title, text, ok }) {

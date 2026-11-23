@@ -8,13 +8,15 @@
 //   bridge      see a Norwegian relative, type the Icelandic word
 //   placement   adaptive test: one step per unit, stops at the first unit with a miss
 // Every answer is recorded per item (word meaning or single form) for spaced repetition.
+// Every fifth right answer in a row earns a combo bonus. In a course lesson the unit's host cheers
+// it on and appears on the closing screens; elsewhere Tala does.
 
 import { loadJSON, ready } from '../app.js';
 import { pick, t } from '../i18n.js';
 import { caseRules, getGenerator, gloss, glossLang, lemma, loadAll, paradigm, recordings, sentence, translation } from '../data.js';
 import { speechSupport } from '../speech.js';
 import { loadBridge } from '../bridge.js';
-import { allowedFor, findLesson, loadCourse, nextLesson } from '../course.js';
+import { allowedFor, findLesson, loadCourse, nextLesson, unitDone } from '../course.js';
 import { cards, completeLesson, loadProgress, mistakes, recordAttempt, skipUnits } from '../progress.js';
 import { dueCards } from '../srs.js';
 import { getSettings } from '../store.js';
@@ -26,6 +28,8 @@ import { sfx } from '../sfx.js';
 import { icon } from '../shell.js';
 import { talaSVG } from '../tala.js';
 import { celebrationLines } from '../ui/celebrate.js';
+import { befriendedBy, hostOf } from '../characters.js';
+import { characterImg } from '../ui/character.js';
 
 await ready;
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -58,6 +62,7 @@ function lessonPlan() {
   const allowed = allowedFor(course, unit.id, lesson.index);
   return {
     key: lesson.key,
+    unit,
     title: `${pick(unit.title)}: ${lesson.title ? pick(lesson.title) : lesson.review ? t('learn.review') : t('learn.lessonN', { n: lesson.index + 1 })}`,
     specs: gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`) }),
   };
@@ -125,6 +130,14 @@ const plan =
   : mode === 'placement' ? placementPlan()
   : lessonPlan();
 $('[data-lesson-title]').textContent = plan.title;
+const host = hostOf(plan.unit);
+
+// A big picture for the closing screens: the unit's host, or Tala outside the course.
+const TALA_FOR = { cheer: 'happy', sorry: 'wrong' };
+function closingPicture(expr) {
+  if (host) return characterImg(host.id, { expr, size: 220, label: t(`cast.${expr}`, { name: host.name }), className: 'char--lg' });
+  return talaSVG(TALA_FOR[expr], { label: t(`mascot.${TALA_FOR[expr]}`), className: 'tala tala--lg' });
+}
 
 // --- Player ---------------------------------------------------------------------------------------
 
@@ -132,6 +145,12 @@ const specs = plan.specs;
 let index = Math.max(0, Math.min(specs.length - 1, (Number(params.get('step')) || 1) - 1));
 let current;
 const results = [];
+
+// Combo: every COMBO-th right answer in a row adds COMBO_XP (not in the placement test).
+const COMBO = 5;
+const COMBO_XP = 5;
+let run = 0;
+let bonus = 0;
 
 // Hearts (Settings, off by default): five per lesson, one lost per wrong answer. Not in placement.
 const HEARTS = 5;
@@ -183,14 +202,18 @@ function credit(sid) {
   return s ? `<p class="credit">${t('credit.sentence', { id: sid, author: esc(s.author ?? t('credit.unknownAuthor')) }).replace(`#${sid}`, `<a href="https://tatoeba.org/en/sentences/show/${sid}" rel="noopener">#${sid}</a>`)}</p>` : '';
 }
 
-function openSheet(r, skipped) {
+// combo: the length of the run of right answers when this one completes a combo, else 0.
+function openSheet(r, skipped, combo = 0) {
   const state = r.result;
   const title = skipped ? t('feedback.skipped') : t(`feedback.${state}`);
+  const comboText = combo ? t('lesson.combo', { n: combo, xp: COMBO_XP }) : '';
+  const cheer = host ? characterImg(host.id, { expr: 'cheer', size: 48, label: '' }) : talaSVG('happy', { className: 'tala tala--mini' });
   const iconName = state === 'correct' ? 'check' : state === 'almost' ? 'almost' : 'wrong';
   sheet.dataset.state = state;
   const playAttrs = r.audio ? `data-play="${esc(r.audio)}"${r.audioUrl ? ` data-url="${esc(r.audioUrl)}"` : ''}` : '';
   sheet.innerHTML = `<div class="sheet__inner">
       <div class="sheet__head"><svg class="sheet__icon" aria-hidden="true"><use href="assets/icons.svg#i-${iconName}"></use></svg><h2 class="sheet__title" id="sheet-title">${title}</h2></div>
+      ${combo ? `<p class="sheet__combo">${cheer}<span>${comboText}</span></p>` : ''}
       <div><p class="label">${t('feedback.answer')}</p><p class="sheet__answer">${r.answerHTML}</p></div>
       ${r.why ? `<div class="sheet__why">${r.why}</div>` : ''}
       ${r.sentence ? credit(r.sentence) : ''}
@@ -201,7 +224,7 @@ function openSheet(r, skipped) {
   sheet.classList.add('is-open');
   stage.inert = true;
   actions.inert = true;
-  live.textContent = `${title}. ${sheet.querySelector('.sheet__answer').textContent}`;
+  live.textContent = `${title}. ${comboText ? `${comboText} ` : ''}${sheet.querySelector('.sheet__answer').textContent}`;
   sheet.querySelector('[data-action="continue"]').focus();
 }
 
@@ -217,11 +240,14 @@ async function doCheck(skipped = false) {
   const r = skipped ? { result: 'wrong', ...current.reveal() } : current.check();
   results.push(r.result);
   sfx(r.result);
+  run = r.result === 'correct' ? run + 1 : 0;
+  const combo = !plan.placement && run > 0 && run % COMBO === 0 ? run : 0;
+  bonus += combo ? COMBO_XP : 0;
   if (hearts !== null && r.result === 'wrong') {
     hearts--;
     renderHearts();
   }
-  openSheet(r, skipped);
+  openSheet(r, skipped, combo);
   if (plan.placement) return;
   const records = r.records ?? (spec.key ? [{ key: spec.key, result: r.result, meta: spec.meta }] : []);
   for (const rec of records) await recordAttempt({ ...rec, spec: rec.result === 'wrong' ? spec : undefined });
@@ -253,16 +279,21 @@ async function complete() {
   renderProgress();
   actions.hidden = true;
   if (plan.placement) return completePlacement();
-  const done = await completeLesson(plan.key, results);
+  const done = await completeLesson(plan.key, results, { bonus });
   const { xp, score } = done;
   const news = celebrationLines(done);
-  const nextUp = nextLesson(course, await loadProgress());
+  if (bonus) news.unshift(['xp', t('lesson.comboTotal', { xp: bonus })]);
+  const after = await loadProgress();
+  // Finishing the first unit a character hosts makes them a friend (listed on the Profile).
+  const friend = plan.unit && !unitDone(plan.unit, progress) && unitDone(plan.unit, after) ? befriendedBy(course, plan.unit) : null;
+  const nextUp = nextLesson(course, after);
   const nextHref = `lesson.html?unit=${nextUp.unit.id}&lesson=${nextUp.lesson.id}`;
   stage.innerHTML = `<div class="complete">${burst()}
-      ${talaSVG('happy', { label: t('mascot.happy'), className: 'tala tala--lg' })}
+      ${closingPicture('cheer')}
       <h2 class="complete__title">${t('lesson.complete')}</h2>
       <div class="cluster complete__stats"><span class="stat">${icon('xp')}<span>+${xp} XP</span></span><span class="stat">${icon('check')}<span>${t('lesson.accuracy', { pct: Math.round(score * 100) })}</span></span></div>
       ${news.length ? `<ul class="complete__news" role="list">${news.map(([ic, text]) => `<li>${icon(ic)}<span>${esc(text)}</span></li>`).join('')}</ul>` : ''}
+      ${friend ? `<p class="complete__friend">${characterImg(friend.id, { size: 56, still: true, label: '' })}<span>${t('friends.new', { name: esc(friend.name) })} <a href="profile.html#friends-title">${t('friends.see')}</a></span></p>` : ''}
       <div class="cluster complete__actions"><a class="button button-primary" href="${mode === 'lesson' ? nextHref : 'practice.html'}">${t('lesson.continue')}</a><a class="button" href="learn.html">${t('nav.learn')}</a></div></div>`;
   sfx('complete');
   live.textContent = t('lesson.complete');
@@ -274,7 +305,7 @@ function outOfHearts() {
   const again = new URL(location.href);
   again.searchParams.delete('step');
   stage.innerHTML = `<div class="complete">
-      ${talaSVG('wrong', { label: t('mascot.wrong'), className: 'tala tala--lg' })}
+      ${closingPicture('sorry')}
       <h2 class="complete__title">${t('lesson.noHearts')}</h2>
       <p>${t('lesson.noHeartsText')}</p>
       <div class="cluster complete__actions"><a class="button button-primary" href="${esc(again.href)}">${t('lesson.again')}</a>

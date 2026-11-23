@@ -663,3 +663,9 @@ html[data-calm="on"] .speak__mic .icon { animation: none; }
 
 /* A cast member (js/ui/character.js): drawn on a transparent 240 x 240 square */
 .char { display: block; max-width: 100%; height: auto; }
+.char--lg { width: clamp(140px, 30vw, 220px); }
+
+/* Combo line in the feedback sheet: the host (or Tala) cheering. */
+.sheet__combo { display: flex; align-items: center; gap: var(--space-3); margin: 0; color: var(--rf-gold); font-weight: 700; }
+.sheet__combo .char,
+.sheet__combo .tala { flex: none; }

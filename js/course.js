@@ -15,4 +15,4 @@ export async function loadCourse() {
   return course;
 }
 
-export { lessonStates, allowedFor, findLesson, unitOf, nextLesson } from './engine/course-model.js';
+export { lessonStates, allowedFor, findLesson, unitOf, nextLesson, unitDone } from './engine/course-model.js';

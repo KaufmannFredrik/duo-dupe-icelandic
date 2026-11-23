@@ -6,6 +6,7 @@
   "title": { "en": "Shopping", "nb": "Handle" },
   "is": "Búð",
   "goal": { "en": "Buy and sell, ask what things cost, and describe clothes by color, size and age.", "nb": "Kjøp og selg, spør hva ting koster, og beskriv klær med farge, størrelse og alder." },
+  "host": { "character": "torfi", "says": "4007765" },
   "lessons": [
     { "id": "1", "title": { "en": "In the shop", "nb": "I butikken" }, "focus": ["kaupa_so", "selja_so", "peningur_no", "gjöf_no", "poki_no", "eða_st"] },
     { "id": "2", "title": { "en": "How much is it?", "nb": "Hva koster det?" }, "focus": ["kosta_so", "verð_no", "króna_no", "hundrað_to", "þúsund_to", "dýr_lo", "ódýr_lo"] },

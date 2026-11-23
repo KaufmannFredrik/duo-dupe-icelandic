@@ -449,5 +449,19 @@
   "learn.voiceTitle": "Choose a voice",
   "learn.voiceText": "Words and sentences without a recording by a person are spoken by a generated voice. Listen to the four and choose the one you like.",
   "learn.voiceLegend": "Voice",
-  "learn.voiceSaved": "Saved: {name}. You can change it any time in Settings."
+  "learn.voiceSaved": "Saved: {name}. You can change it any time in Settings.",
+  "learn.hostUnmet": "Someone new is waiting for you in this unit.",
+  "learn.hostCredit": "What the hosts say: sentences from Tatoeba (CC BY 2.0 FR): {list}.",
+  "lesson.combo": "{n} right in a row! +{xp} XP",
+  "lesson.comboTotal": "Combo bonus: +{xp} XP",
+  "cast.cheer": "{name}, cheering",
+  "cast.sorry": "{name}, looking sorry",
+  "friends.title": "Friends",
+  "friends.intro": "Each unit has a host. Finish the first unit a character hosts and they become your friend.",
+  "friends.host": "Host of {unit}",
+  "friends.unknown": "Not a friend yet",
+  "friends.finish": "Finish Unit {n} to make friends",
+  "friends.new": "{name} is your friend now.",
+  "friends.see": "See your friends",
+  "stories.cast": "In this story"
 }

@@ -76,6 +76,12 @@ export function lessonStates(course, progress) {
   return states;
 }
 
+/** A unit is finished when its lessons (not the review) are done, or the placement test skipped it. */
+export function unitDone(unit, progress) {
+  if (progress.skippedUnits?.includes(unit.id)) return true;
+  return unit.lessons.filter((l) => !l.review).every((l) => progress.lessons[l.key]?.done);
+}
+
 /** The lesson to start when the learner just presses Start. */
 export function nextLesson(course, progress) {
   const states = lessonStates(course, progress);

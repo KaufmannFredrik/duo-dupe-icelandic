@@ -6,6 +6,7 @@
   "title": { "en": "Time", "nb": "Tid" },
   "is": "Tími",
   "goal": { "en": "Tell the time, name the days and the seasons, and say when, how long and how often.", "nb": "Si hva klokka er, nevn dagene og årstidene, og si når, hvor lenge og hvor ofte." },
+  "host": { "character": "hekla", "says": "658122" },
   "lessons": [
     { "id": "1", "title": { "en": "What time is it?", "nb": "Hva er klokka?" }, "focus": ["klukka_no", "klukkutími_no", "mínúta_no", "tími_no", "hvenær_ao", "núna_ao"] },
     { "id": "2", "title": { "en": "Days of the week", "nb": "Ukedagene" }, "focus": ["mánudagur_no", "þriðjudagur_no", "miðvikudagur_no", "fimmtudagur_no", "föstudagur_no", "laugardagur_no", "sunnudagur_no"] },

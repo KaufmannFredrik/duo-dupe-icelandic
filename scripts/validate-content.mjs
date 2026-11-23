@@ -6,7 +6,9 @@
 //    as "geturðu" (getur + þú) or a proper noun on the allowlist (content/allowlist.json),
 //  - a referenced sentence, lemma or form does not exist,
 //  - a hand-written sentence ("source": "authored") has a GreynirCorrect error,
-//  - an excluded sentence (content/sentence-exclude.json) is used in a guidebook or a story.
+//  - an excluded sentence (content/sentence-exclude.json) is used in a guidebook or a story,
+//  - a unit's host or a story's cast names a character not in js/characters.js, or a host's
+//    greeting is missing or excluded.
 // Content not yet checked against sources ("reviewed": false) is counted and listed, not failed;
 // content/CLAIMS.md lists every hand-written claim with its source.
 //
@@ -17,6 +19,7 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { CACHE, ROOT } from './lib/bulk.mjs';
 import { blocking, lintTexts, pythonPath, SETUP_HELP } from './lib/lint.mjs';
+import { character } from '../js/characters.js';
 
 const UA = 'TOLVA-validate/0.1 (+https://github.com/KaufmannFredrik/duo-dupe-icelandic)';
 const readJson = async (rel) => JSON.parse(await readFile(path.join(ROOT, rel), 'utf8'));
@@ -135,6 +138,14 @@ async function checkUnits() {
       }
     }
     if (unit.lessons !== 'auto' && !Array.isArray(unit.lessons)) err(rel, 'lessons must be a list or "auto"');
+    if (unit.host) {
+      const { character: id, says } = unit.host;
+      if (!character(id)) err(rel, `unknown host ${id}`);
+      const text = sentenceText(says);
+      if (!text) err(rel, `host sentence ${says} not found`);
+      else if (excluded[says]) err(rel, `host sentence ${says} is excluded: ${excluded[says]}`);
+      else await checkText(`${rel} host`, text);
+    }
     for (const [i, sec] of (unit.guide?.sections ?? []).entries()) {
       const where = `${rel} guide section ${i + 1}`;
       // Icelandic inside guidebook prose is written {is:...}.
@@ -173,6 +184,10 @@ async function checkStories() {
     if (!story.title?.en || !story.title?.nb) err(rel, 'title needs en and nb');
     if (story.after && !unitIds.has(story.after)) err(rel, `unknown unit ${story.after}`);
     if (!story.dialogue && story.lines?.some((l) => l.speaker)) err(rel, 'speakers are only for dialogues');
+    for (const [speaker, id] of Object.entries(story.cast ?? {})) {
+      if (!character(id)) err(rel, `unknown cast member ${id}`);
+      if (!story.lines?.some((l) => l.speaker === speaker)) err(rel, `cast gives ${speaker} to ${id}, but ${speaker} has no lines`);
+    }
     for (const [i, line] of (story.lines ?? []).entries()) {
       const text = line.sentence ? sentenceText(line.sentence) : line.is;
       if (line.sentence && excluded[line.sentence]) err(`${rel} line ${i + 1}`, `sentence ${line.sentence} is excluded`);
