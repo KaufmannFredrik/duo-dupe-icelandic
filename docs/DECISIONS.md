@@ -2,6 +2,26 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Four voices to choose from (2026-11-23)
+
+### Owner decisions (2026-11-23)
+
+1. **Voices:** all four generated voices are offered, and the learner chooses one when they start.
+2. **Local only:** no GitHub Pages and no publishing workflow until the owner says the site goes public.
+3. **No outside review:** nobody is contacted. Questions about Icelandic are settled with online sources and dictionaries (BÍN, Wiktionary, Tatoeba and the like), cited where they are used. `content/NEEDS-NATIVE-REVIEW.md` stays as the list of hand-written claims.
+
+### What was built
+
+- All four Piper voices are rendered: `npm run build:audio -- --voice <id>` for `steinn`, `salka`, `bui` and `ugla`, 2,109 files each (every course word, minimal-pair word and sentence): Steinn 11.5 MB, Salka 12.3 MB, Búi 11.1 MB, Ugla 10.3 MB, so `data/audio` holds 45 MB of MP3 files instead of 11.5 MB. The brief's 20 MB budget for `/data` no longer holds; a learner still downloads only the voice they use, because generated audio is fetched when played, and "Download all audio" in Settings fetches only the chosen voice and removes the other voices' files from the cache.
+- First visit: the Learn page shows a "Choose a voice" card above the path, with the four voices, a sample to play for each (the first sentence of the comparison set) and a radio button. The choice is the `ttsVoice` setting; until then Steinn plays, as before. While the card waits, the page does not scroll down to the current lesson (on a phone that hid the card). Once a voice is chosen the card does not come back.
+- Settings has the same chooser (`js/ui/voice-picker.js`), with the voice in use marked, and the Voices page has a "Use this voice" button on each voice's card.
+- `js/audio.js`: `TTS_VOICES`, `ttsVoice()`, and one manifest per voice, loaded when first needed. The service worker precaches the four manifests (about 270 KB each); the MP3 files are cached when played, as before.
+- The setting is part of progress export and import, like the other settings.
+
+### Tests
+
+- `npm run smoke`: a first visit shows the card, a sample plays, choosing Ugla is kept after a reload, the card is gone, and story line audio then comes from Ugla's files.
+
 ## Hand-made units: unit 5, Time (2026-11-23)
 
 ### Unit 5, *Tími*

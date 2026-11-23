@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 // Playwright smoke test: completes the first lesson at phone and desktop sizes by answering every
 // exercise correctly, then checks that progress was saved (lesson 1 done, lesson 2 current, XP in
-// the HUD), that progress survives export, reset and import, that hearts end a lesson, and that
-// the site loads offline once the service worker is installed.
+// the HUD), that progress survives export, reset and import, that hearts end a lesson, that a
+// first visit asks for a generated voice and then uses it, and that the site loads offline once
+// the service worker is installed.
 // With --all it also plays every lesson of the hand-made units, the sounds and letters drills, and
 // checks the story reader (word panel, line audio from the generated voice) at desktop size.
 //   node tests/smoke.mjs [--all]
@@ -141,6 +142,34 @@ for (const [name, options] of Object.entries(VIEWPORTS)) {
   } catch (e) {
     failed = true;
     console.log(`FAIL speaking: ${e.message}`);
+  }
+  await context.close();
+}
+
+// Voice: a first visit to Learn asks for a generated voice; the choice is kept, the card does not
+// come back, and the generated audio then comes from that voice.
+{
+  const context = await browser.newContext({ ...VIEWPORTS.phone, ...isolated });
+  const page = await context.newPage();
+  try {
+    await page.goto(`${url}learn.html`);
+    await page.locator('.voice-intro').waitFor({ timeout: 5000 });
+    const sample = page.waitForResponse((r) => r.url().includes('/data/audio/samples/ugla-') && r.ok(), { timeout: 5000 });
+    await page.click('.voice-intro [data-sample="ugla"]');
+    await sample;
+    await page.check('.voice-intro input[value="ugla"]');
+    await page.locator('[data-voice-saved]:not(:empty)').waitFor({ timeout: 5000 });
+    await page.reload();
+    await page.locator('.path').first().waitFor({ timeout: 5000 });
+    if (await page.locator('.voice-intro').count()) throw new Error('the voice card is still shown after choosing');
+    await page.goto(`${url}stories.html?story=cafe`);
+    const audio = page.waitForResponse((r) => r.url().includes('/data/audio/tts/ugla/') && r.ok(), { timeout: 5000 });
+    await page.click('[data-play-line="0"]');
+    await audio;
+    console.log('PASS voice: chosen on the first visit, kept, and used for generated audio');
+  } catch (e) {
+    failed = true;
+    console.log(`FAIL voice: ${e.message}`);
   }
   await context.close();
 }

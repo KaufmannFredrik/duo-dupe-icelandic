@@ -13,6 +13,7 @@ export const DEFAULT_SETTINGS = {
   speaking: false, // experimental speaking practice with the browser's speech recognition
   uiLang: null, // null: detect from the browser
   glossLang: null, // null: same as uiLang
+  ttsVoice: null, // generated voice (js/audio.js TTS_VOICES); null until the learner chooses
   voice: '', // voiceURI of a browser is-IS voice
   rate: 1, // speech rate multiplier
 };

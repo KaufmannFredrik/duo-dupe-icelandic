@@ -649,3 +649,14 @@ html[data-calm="on"] .speak__mic .icon { animation: none; }
 
 /* A chip that only labels (no action) */
 .chip--static { min-height: 0; padding: var(--space-1) var(--space-3); border-style: dashed; font-size: var(--text-sm); cursor: default; }
+
+/* Generated-voice chooser (js/ui/voice-picker.js): four voices, a radio and a sample each */
+.voice-picker { display: grid; gap: var(--space-2); margin: 0; padding: 0; border: 0; min-width: 0; }
+.voice-picker legend { padding: 0; }
+.voice-picker__list { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); margin: 0; padding: 0; list-style: none; }
+.voice-option { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3); border: var(--border) solid var(--rf-blue); min-width: 0; }
+.voice-option:has(input:checked) { border-color: var(--rf-cyan); background: var(--fill-selected); box-shadow: inset 0 -3px 0 var(--rf-cyan); }
+.voice-option:has(input:focus-visible) { outline: 3px solid var(--rf-gold); outline-offset: 2px; }
+.voice-option__choice { display: flex; flex: 1 1 auto; flex-wrap: wrap; align-items: center; gap: var(--space-2); min-width: 0; min-height: 44px; cursor: pointer; }
+.voice-option__choice input { width: 1.25rem; height: 1.25rem; margin: 0; accent-color: var(--rf-cyan); }
+.voice-option__name { font-weight: 700; }

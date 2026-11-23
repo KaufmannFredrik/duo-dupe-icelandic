@@ -1,7 +1,7 @@
 // Icelandic audio, only ever on request. Order:
 //   1. a human recording (Wikimedia Commons, Lingua Libre), when the caller has one;
-//   2. a pre-generated file from the synthetic voice (data/audio/tts-<voice>.json, built by
-//      scripts/build-audio.py), looked up by the exact text;
+//   2. a pre-generated file from the synthetic voice the learner chose (data/audio/tts-<voice>.json,
+//      built by scripts/build-audio.py), looked up by the exact text;
 //   3. the browser's own Icelandic voice, if the device has one.
 // Slow playback is 0.75x with the pitch kept. onWord(i) reports the word being spoken
 // (estimated timings for files, boundary events for the browser voice); -1 when done.
@@ -11,10 +11,23 @@ import { getSettings } from './store.js';
 import { t } from './i18n.js';
 import { toast } from './ui/toast.js';
 
-export const TTS_VOICE = 'steinn';
+/** The generated voices: four Piper voices trained on Talrómur (scripts/build-audio.py). */
+export const TTS_VOICES = {
+  steinn: { name: 'Steinn', gender: 'male' },
+  salka: { name: 'Salka', gender: 'female' },
+  bui: { name: 'Búi', gender: 'male' },
+  ugla: { name: 'Ugla', gender: 'female' },
+};
+export const DEFAULT_TTS_VOICE = 'steinn';
+
+/** The generated voice in use: the learner's choice (Settings, ttsVoice), Steinn until they choose. */
+export function ttsVoice() {
+  const v = getSettings().ttsVoice;
+  return v && Object.hasOwn(TTS_VOICES, v) ? v : DEFAULT_TTS_VOICE;
+}
 
 let voices = [];
-let manifest;
+const manifests = new Map();
 let current = null;
 let raf = 0;
 let finish = null;
@@ -32,20 +45,23 @@ export function icelandicVoices() {
   return voices.filter((v) => /^is([-_]|$)/i.test(v.lang ?? ''));
 }
 
-function loadManifest() {
-  manifest ??= fetch(new URL(`../data/audio/tts-${TTS_VOICE}.json`, import.meta.url))
-    .then((r) => (r.ok ? r.json() : { texts: {} }))
-    .catch(() => ({ texts: {} }));
-  return manifest;
+/** The manifest of a generated voice (default: the one in use): { texts: { [text]: { f, d, w? } }, credit, bytes }. */
+export function ttsManifest(voice = ttsVoice()) {
+  if (!manifests.has(voice)) {
+    manifests.set(voice, fetch(new URL(`../data/audio/tts-${voice}.json`, import.meta.url))
+      .then((r) => (r.ok ? r.json() : { texts: {} }))
+      .catch(() => ({ texts: {} })));
+  }
+  return manifests.get(voice);
 }
 
 /** The synthetic-voice file for a text: { f, d, w? } or null. */
 export async function ttsEntry(text) {
-  return (await loadManifest()).texts[text] ?? null;
+  return (await ttsManifest()).texts[text] ?? null;
 }
 
 export async function ttsCredit() {
-  return (await loadManifest()).credit ?? '';
+  return (await ttsManifest()).credit ?? '';
 }
 
 export function stop() {

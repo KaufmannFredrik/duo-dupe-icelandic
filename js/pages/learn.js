@@ -1,11 +1,15 @@
 // Learn path: every unit as a winding road of lesson nodes. States come from progress:
 // done, current (pulsing, "Start"), review (gold, after the unit's lessons) and locked.
+// Until the learner has chosen a generated voice, a card at the top asks them to.
 
 import { ready } from '../app.js';
 import { pick, t } from '../i18n.js';
 import { loadCourse, lessonStates } from '../course.js';
 import { loadProgress } from '../progress.js';
 import { icon } from '../shell.js';
+import { getSettings } from '../store.js';
+import { TTS_VOICES } from '../audio.js';
+import { voicePicker } from '../ui/voice-picker.js';
 
 await ready;
 const [course, progress] = await Promise.all([loadCourse(), loadProgress()]);
@@ -35,7 +39,17 @@ const placementLink = Object.keys(progress.lessons).length === 0 && !progress.sk
   ? `<p class="card card--gold placement-hint"><span>${t('learn.placementHint')}</span> <a class="button button--sm" href="lesson.html?mode=placement">${t('landing.placement')}</a></p>`
   : '';
 
+const voiceCard = getSettings().ttsVoice
+  ? ''
+  : `<section class="card card--gold stack voice-intro" aria-labelledby="voice-intro-title">
+      <h2 class="card__title" id="voice-intro-title">${t('learn.voiceTitle')}</h2>
+      <p>${t('learn.voiceText')}</p>
+      <div data-voice-picker></div>
+      <p class="muted" role="status" data-voice-saved></p>
+    </section>`;
+
 root.innerHTML =
+  voiceCard +
   placementLink +
   course.units
     .map(
@@ -51,6 +65,16 @@ root.innerHTML =
     </section>`,
     )
     .join('');
+
+const pickerEl = root.querySelector('[data-voice-picker]');
+if (pickerEl) {
+  voicePicker(pickerEl, {
+    legend: t('learn.voiceLegend'),
+    onChoose: (v) => {
+      root.querySelector('[data-voice-saved]').textContent = t('learn.voiceSaved', { name: TTS_VOICES[v].name });
+    },
+  });
+}
 
 // The road: a smooth neon curve through the node centers, redrawn when the layout changes.
 function drawRoads() {
@@ -76,5 +100,5 @@ function drawRoads() {
 new ResizeObserver(drawRoads).observe(root);
 drawRoads();
 
-// Bring the current lesson into view.
-document.querySelector('.node--current')?.closest('.unit')?.scrollIntoView({ block: 'start' });
+// Bring the current lesson into view, unless the voice card at the top still waits for a choice.
+if (!pickerEl) document.querySelector('.node--current')?.closest('.unit')?.scrollIntoView({ block: 'start' });

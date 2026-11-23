@@ -7,6 +7,7 @@ import { getSettings, setSetting } from '../store.js';
 import { icelandicVoices, play } from '../audio.js';
 import { audioCacheStatus, cacheAllAudio, offlineState } from '../offline.js';
 import { speechSupport } from '../speech.js';
+import { voicePicker } from '../ui/voice-picker.js';
 
 await ready;
 const form = document.querySelector('[data-settings]');
@@ -92,6 +93,7 @@ form.elements.rate.addEventListener('input', (e) => {
   setSetting('rate', Number(e.target.value));
 });
 form.querySelector('[data-test-voice]').addEventListener('click', () => play({ text: 'Góðan daginn!', browser: true }));
+voicePicker(form.querySelector('[data-voice-picker]'), { legend: t('settings.ttsVoice'), help: t('settings.ttsVoiceHelp'), preselect: true, onChoose: () => showOffline() });
 
 // Offline use: the service worker state, and downloading all generated audio.
 const offlineEl = form.querySelector('[data-offline-state]');

@@ -53,12 +53,13 @@
               <label class="switch"><span class="setting__label" data-i18n="settings.sfx">Sound effects</span><input type="checkbox" name="sound" aria-describedby="sfx-help"><span class="switch__track" aria-hidden="true"></span></label>
               <p class="setting__help" id="sfx-help" data-i18n="settings.sfxHelp">Short 8-bit chimes for answers. Off by default.</p>
             </div>
+            <div class="setting" data-voice-picker></div>
+            <p class="setting"><a href="voices.html" data-i18n="settings.voices">Hear all four voices side by side</a></p>
             <div class="setting">
               <label class="setting__label" for="voice" data-i18n="settings.voice">Device voice (fallback)</label>
               <div class="cluster voice-row"><select class="select" id="voice" name="voice" aria-describedby="voice-help"></select>
                 <button type="button" class="button button--sm" data-test-voice><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-play"></use></svg><span data-i18n="settings.test">Test</span></button></div>
-              <p class="setting__help" id="voice-help" data-i18n="settings.voiceHelp">Audio comes from recordings by people first, then from the generated voice Steinn. Your device voice is used only for text without a file.</p>
-              <p><a href="voices.html" data-i18n="settings.voices">Compare the generated voices</a></p>
+              <p class="setting__help" id="voice-help" data-i18n="settings.voiceHelp">Audio comes from recordings by people first, then from the generated voice you chose. Your device voice is used only for text without a file.</p>
             </div>
             <div class="setting">
               <label class="setting__label" for="rate" data-i18n="settings.rate">Speech speed</label>

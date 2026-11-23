@@ -96,7 +96,7 @@ Which course word each word of a sentence is, as the Greynir parser reads it (`s
 
 ## Generated audio (`data/audio/`)
 
-Every word and sentence without a human recording is spoken by the Piper voice Steinn. A native speaker should listen for wrong pronunciations, starting with the minimal pairs and the stories. Known: *Ísland* is said [ˈisland], without the t that the *sl* cluster should get. Word highlighting in the reader uses estimated timings.
+Every word and sentence without a human recording is spoken by the Piper voice the learner chooses (Steinn, Salka, Búi or Ugla). Listen for wrong pronunciations, starting with the minimal pairs and the stories. Known: *Ísland* is said [ˈisland], without the t that the *sl* cluster should get. Word highlighting in the reader uses estimated timings.
 
 ## Norwegian bridge (`data/bridge.json`, `js/bridge-rules.js`)
 
