@@ -1,0 +1,42 @@
+{
+  "id": "study",
+  "reviewed": false,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; their selection and order need native review.",
+  "title": {
+    "en": "Homework",
+    "nb": "Lekser"
+  },
+  "level": "A1",
+  "after": "study",
+  "dialogue": true,
+  "lines": [
+    {
+      "sentence": "647426",
+      "speaker": "A"
+    },
+    {
+      "sentence": "870146",
+      "speaker": "B"
+    },
+    {
+      "sentence": "852826",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1315543",
+      "speaker": "A"
+    },
+    {
+      "sentence": "905130",
+      "speaker": "A"
+    },
+    {
+      "sentence": "397461",
+      "speaker": "B"
+    },
+    {
+      "sentence": "862102",
+      "speaker": "A"
+    }
+  ]
+}

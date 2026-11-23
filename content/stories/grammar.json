@@ -1,0 +1,34 @@
+{
+  "id": "grammar",
+  "reviewed": false,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; their selection and order need native review.",
+  "title": {
+    "en": "A rainy day",
+    "nb": "En regnværsdag"
+  },
+  "level": "A1",
+  "after": "grammar",
+  "dialogue": true,
+  "lines": [
+    {
+      "sentence": "827621",
+      "speaker": "A"
+    },
+    {
+      "sentence": "868030",
+      "speaker": "B"
+    },
+    {
+      "sentence": "698303",
+      "speaker": "A"
+    },
+    {
+      "sentence": "384167",
+      "speaker": "B"
+    },
+    {
+      "sentence": "389361",
+      "speaker": "A"
+    }
+  ]
+}

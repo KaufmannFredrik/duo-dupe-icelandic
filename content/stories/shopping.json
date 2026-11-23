@@ -1,0 +1,38 @@
+{
+  "id": "shopping",
+  "reviewed": false,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; their selection and order need native review.",
+  "title": {
+    "en": "A new dress",
+    "nb": "En ny kjole"
+  },
+  "level": "A1",
+  "after": "shopping",
+  "dialogue": true,
+  "lines": [
+    {
+      "sentence": "10625122",
+      "speaker": "A"
+    },
+    {
+      "sentence": "4171679",
+      "speaker": "B"
+    },
+    {
+      "sentence": "3795697",
+      "speaker": "B"
+    },
+    {
+      "sentence": "494507",
+      "speaker": "A"
+    },
+    {
+      "sentence": "698251",
+      "speaker": "B"
+    },
+    {
+      "sentence": "666901",
+      "speaker": "A"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "time",
+  "reviewed": false,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; their selection and order need native review.",
+  "title": {
+    "en": "A weekend",
+    "nb": "En helg"
+  },
+  "level": "A1",
+  "after": "time",
+  "dialogue": false,
+  "lines": [
+    {
+      "sentence": "383415"
+    },
+    {
+      "sentence": "673369"
+    },
+    {
+      "sentence": "1339295"
+    },
+    {
+      "sentence": "494337"
+    },
+    {
+      "sentence": "451909"
+    },
+    {
+      "sentence": "384101"
+    },
+    {
+      "sentence": "1329205"
+    }
+  ]
+}

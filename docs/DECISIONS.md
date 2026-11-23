@@ -2,6 +2,21 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Hand-made units: unit 10 lessons, and four stories (2026-11-23)
+
+- **Unit 10, *Nýyrði*:** its twelve words are now grouped by hand into two lessons and a review, Sound and screens (*sjónvarp*, *útvarp*, *farsími*, *tölvupóstur*, *forrit*, *hátalari*) and From planes to planets (*flugvél*, *þota*, *tækni*, *rafmagn*, *veira*, *reikistjarna*), following the guidebook. Only *sjónvarp*, *flugvél*, *forrit* and *farsími* have sentences a learner can read, so both lessons are mostly word exercises; no grouping does better. All ten units now have hand-made lessons.
+- **Four new stories**, one after each unit that had none. Every line is an unchanged Tatoeba sentence that uses only words known after that unit (checked with the generator's `sentenceOk`):
+  - *A weekend* (after unit 5): *Ég vaknaði klukkan sex í morgun*, *Það er laugardagur í dag*, *Á morgun er sunnudagur*, *Eigðu góða helgi*.
+  - *A new dress* (after unit 6, a dialogue): *Mamma mín keypti mér nýjan kjól*, *Hvað kostar það?*, *Ég er ekki með peninga á mér*, *Ég veit að peningar eru ekki allt*.
+  - *Homework* (after unit 8, a dialogue): *Þú þarft að svara spurningunum*, *Þetta er erfitt*, *Get ég hjálpað?*, *Þú verður að læra meira*.
+  - *A rainy day* (after unit 9, a dialogue): *Hvað er að gerast?*, *Það tók að rigna*, *Gefðu mér eitthvað að gera*, *Gerðu það sem þú vilt*.
+- The five earlier stories (Phase 4) were made before the units were regrouped, and some of their lines use words from later units (*eða*, *með*, *vinnu*) or words outside the course (*svo*, *hvernig*). The word panel and the translations cover them, so they stay as they are.
+
+### Tests
+
+- `node --test`: 112 tests; the course test now checks that every unit has hand-made lessons.
+- `npm run smoke`: every lesson of all ten units, and nine stories listed.
+
 ## Hand-made units: unit 9, Grammar words (2026-11-23)
 
 ### Unit 9, *Orð*

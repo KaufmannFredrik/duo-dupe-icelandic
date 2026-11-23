@@ -12,7 +12,11 @@
     "en": "Learn words for modern things and see how Icelandic builds them from its own parts.",
     "nb": "Lær ord for moderne ting og se hvordan islandsk bygger dem av egne deler."
   },
-  "lessons": "auto",
+  "lessons": [
+    { "id": "1", "title": { "en": "Sound and screens", "nb": "Lyd og skjerm" }, "focus": ["sjónvarp_no", "útvarp_no", "farsími_no", "tölvupóstur_no", "forrit_no", "hátalari_no"] },
+    { "id": "2", "title": { "en": "From planes to planets", "nb": "Fra fly til planeter" }, "focus": ["flugvél_no", "þota_no", "tækni_no", "rafmagn_no", "veira_no", "reikistjarna_no"] },
+    { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
+  ],
   "guide": {
     "source": {
       "en": "The word histories below come from Wiktionary (CC BY-SA 4.0).",

@@ -14,11 +14,9 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key) }) };
 }
 
-test('course: ten units in order, units 1 to 9 hand-made, the rest automatic', () => {
+test('course: ten units in order, all hand-made', () => {
   assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
-  assert.equal(d.course.units[0].auto, false);
-  assert.equal(d.course.units[8].auto, false);
-  assert.equal(d.course.units[9].auto, true);
+  for (const u of d.course.units) assert.equal(u.auto, false, `${u.id} has hand-made lessons`);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
 });
 

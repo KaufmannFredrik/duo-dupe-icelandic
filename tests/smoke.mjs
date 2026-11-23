@@ -269,7 +269,7 @@ if (process.argv.includes('--all')) {
     await page.goto(`${url}stories.html`);
     await page.locator('.story-card').first().waitFor({ timeout: 5000 });
     const cards = await page.locator('.story-card').count();
-    if (cards < 5) throw new Error(`only ${cards} stories listed`);
+    if (cards < 9) throw new Error(`only ${cards} stories listed`);
     await page.goto(`${url}stories.html?story=cafe`);
     await page.locator('.word').first().click();
     await page.locator('.word-panel .word-panel__lemma').first().waitFor({ timeout: 5000 });
