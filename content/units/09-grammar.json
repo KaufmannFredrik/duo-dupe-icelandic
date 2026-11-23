@@ -3,10 +3,70 @@
   "order": 9,
   "theme": "core",
   "reviewed": false,
-  "title": {
-    "en": "Grammar words",
-    "nb": "Grammatiske ord"
-  },
+  "title": { "en": "Grammar words", "nb": "Grammatiske ord" },
   "is": "Orð",
-  "lessons": "auto"
+  "goal": { "en": "Use the small words that hold sentences together: must and may, this and that, who and which, all and none, that and if.", "nb": "Bruk de små ordene som holder setningene sammen: må og får, denne og den, hvem og hvilken, alle og ingen, at og hvis." },
+  "lessons": [
+    { "id": "1", "title": { "en": "Have and do", "nb": "Ha og gjøre" }, "focus": ["hafa_so", "gera_so", "verða_so", "geta_so", "fá_so", "taka_so"] },
+    { "id": "2", "title": { "en": "Know and need", "nb": "Vite og trenge" }, "focus": ["vita_so", "gefa_so", "þurfa_so", "mega_so", "líka_so"] },
+    { "id": "3", "title": { "en": "Sit and stand", "nb": "Sitte og stå" }, "focus": ["sitja_so", "standa_so", "liggja_so", "opna_so", "loka_so", "hringja_so"] },
+    { "id": "4", "title": { "en": "This and that", "nb": "Denne og den" }, "focus": ["þessi_fn", "sá_fn", "hver_fn", "hvaða_fn", "annar_fn", "sem_st"] },
+    { "id": "5", "title": { "en": "All or nothing", "nb": "Alt eller ingenting" }, "focus": ["allur_fn", "enginn_fn", "einhver_fn", "að_st", "ef_st"] },
+    { "id": "6", "title": { "en": "Also and again", "nb": "Også og igjen" }, "focus": ["líka_ao", "vel_ao", "bara_ao", "aftur_ao", "heima_ao", "heim_ao"] },
+    { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": { "en": "Must and may: verða, þurfa, mega", "nb": "Må og får: verða, þurfa, mega" },
+        "text": {
+          "en": "\"Must\" is {is:verða að}, and \"need to\" is {is:þurfa að}: {is:Ég verð að fara núna}, {is:Ég þarf að fara núna} (I have to go now). {is:mega} means \"may, be allowed to\" and is followed by the infinitive without {is:að}: {is:Má ég fara með þér?} (may I come with you?), {is:Hann má koma}. A trap for Norwegian speakers: Norwegian må usually means must, but Icelandic {is:má} usually means may.",
+          "nb": "«Må» heter {is:verða að}, og «trenge å» heter {is:þurfa að}: {is:Ég verð að fara núna}, {is:Ég þarf að fara núna} (jeg må gå nå). {is:mega} betyr «få lov til» og følges av infinitiv uten {is:að}: {is:Má ég fara með þér?} (får jeg bli med deg?), {is:Hann má koma} (han får komme). En felle for nordmenn: norsk må betyr som regel «må», men islandsk {is:má} betyr som regel «får lov»."
+        },
+        "examples": ["1321351", "1353611", "473398", "1315570", "3795567"]
+      },
+      {
+        "title": { "en": "This and that: þessi, þetta, sá", "nb": "Denne og den: þessi, þetta, sá" },
+        "text": {
+          "en": "{is:þessi} (this) agrees with its noun: {is:þessi} (masculine and feminine), {is:þetta} (neuter), {is:þennan} (masculine accusative), {is:þessa bók} (this book, accusative). To point something out, the neuter {is:þetta} stands for anything, singular or plural: {is:Þetta er kötturinn minn} (this is my cat), {is:Þetta eru fallegar myndir}. {is:sá} (that one) is mostly heard before {is:sem}: {is:Hann er ekki sá sem hann var} (he is not the man he was).",
+          "nb": "{is:þessi} (denne) bøyes etter substantivet: {is:þessi} (hankjønn og hunkjønn), {is:þetta} (intetkjønn), {is:þennan} (hankjønn akkusativ), {is:þessa bók} (denne boka, akkusativ). Når man peker på noe, står intetkjønn {is:þetta} for alt, entall og flertall, som norsk dette: {is:Þetta er kötturinn minn} (dette er katten min), {is:Þetta eru fallegar myndir} (dette er fine bilder). {is:sá} (den) står mest foran {is:sem}: {is:Hann er ekki sá sem hann var} (han er ikke den han var)."
+        },
+        "examples": ["473554", "647412", "3799354", "387206", "466095"],
+        "tables": ["þessi_fn"]
+      },
+      {
+        "title": { "en": "Who and which: hver, hvaða", "nb": "Hvem og hvilken: hver, hvaða" },
+        "text": {
+          "en": "{is:hver} (who) inflects: {is:Hver er kennarinn þinn?}, {is:hvern} (whom), {is:hverjum} (to whom), {is:hvers} (whose): {is:Hvers er það?} (whose is it?). {is:Af hverju?} (why?) is word for word \"of what?\". {is:hvaða} (which, what kind of) never changes: {is:Hvaða tungumál talar þú?}.",
+          "nb": "{is:hver} (hvem) bøyes: {is:Hver er kennarinn þinn?}, {is:hvern} (hvem, akkusativ), {is:hverjum} (til hvem), {is:hvers} (hvem sin): {is:Hvers er það?} (hvem sin er det?). {is:Af hverju?} (hvorfor?) er ord for ord «av hva?». {is:hvaða} (hvilken, hva slags) bøyes aldri: {is:Hvaða tungumál talar þú?}."
+        },
+        "examples": ["544576", "873715", "835321", "427946"],
+        "tables": ["hver_fn"]
+      },
+      {
+        "title": { "en": "All, none, some", "nb": "Alle, ingen, noen" },
+        "text": {
+          "en": "{is:allur}, {is:enginn} and {is:einhver} agree like adjectives with what they stand for: {is:Halló allir!} (hello everyone; masculine plural), {is:Þið hafið öll staðið ykkur vel} (you've all done well; neuter plural, for a group of men and women), {is:Ég á engan pening} (I have no money; masculine accusative), {is:Enginn veit} (nobody knows), {is:Ég er með einhvern pening á mér}. {is:Allt eða ekkert} is \"all or nothing\".",
+          "nb": "{is:allur}, {is:enginn} og {is:einhver} bøyes som adjektiver etter det de står for: {is:Halló allir!} (hei alle sammen; hankjønn flertall), {is:Þið hafið öll staðið ykkur vel} (dere har alle gjort det bra; intetkjønn flertall, for en gruppe menn og kvinner), {is:Ég á engan pening} (jeg har ingen penger; hankjønn akkusativ), {is:Enginn veit} (ingen vet), {is:Ég er með einhvern pening á mér}. {is:Allt eða ekkert} er «alt eller ingenting»."
+        },
+        "examples": ["1490580", "664743", "653221", "451945", "513972", "734478"]
+      },
+      {
+        "title": { "en": "Joining sentences: að, sem, ef", "nb": "Å binde sammen setninger: að, sem, ef" },
+        "text": {
+          "en": "{is:að} does the work of English \"that\" and \"to\": {is:Ég veit að hún er falleg} (I know that she is beautiful), {is:Ég elska að lesa} (I love to read). {is:sem} (who, which, that) joins a clause to a noun: {is:Ég hugsaði um það sem þú sagðir} (I thought about what you said). {is:ef} is \"if\": {is:Hringdu í mig ef eitthvað gerist} (call me if something happens).",
+          "nb": "{is:að} gjør jobben til to norske ord, at og å: {is:Ég veit að hún er falleg} (jeg vet at hun er pen), {is:Ég elska að lesa} (jeg elsker å lese). {is:sem} er norsk som: {is:Ég hugsaði um það sem þú sagðir} (jeg tenkte på det som du sa). {is:ef} er «hvis»: {is:Hringdu í mig ef eitthvað gerist} (ring meg hvis noe skjer)."
+        },
+        "examples": ["389574", "10557419", "10629590", "860043", "11268482"]
+      },
+      {
+        "title": { "en": "Two words líka; aftur, bara", "nb": "To ord líka; aftur, bara" },
+        "text": {
+          "en": "{is:líka} is two words: the adverb \"also\" ({is:Ert þú líka að fara?}, are you going too?) and the verb \"like\", which takes the one who likes in the dative ({is:Mér líkar við Tom}). The exercises tell them apart by the sentence. {is:aftur} is \"again\" and \"back\": {is:Gerðu það aftur} (do it again), {is:Ég kem aftur klukkan sex} (I'll be back at six). {is:bara} is \"only, just\": {is:Ég heyri bara í þér}.",
+          "nb": "{is:líka} er to ord: adverbet «også» ({is:Ert þú líka að fara?}, skal du også dra?) og verbet «like», som setter den som liker i dativ ({is:Mér líkar við Tom}). Øvelsene skiller dem på setningen. {is:aftur} er «igjen» og «tilbake»: {is:Gerðu það aftur} (gjør det igjen), {is:Ég kem aftur klukkan sex} (jeg kommer tilbake klokka seks). {is:bara} er norsk bare: {is:Ég heyri bara í þér} (jeg hører bare deg)."
+        },
+        "examples": ["1323728", "7467838", "3799251", "1337071", "10999676"]
+      }
+    ]
+  }
 }

@@ -107,6 +107,7 @@ const SHOTS = [
   { name: 'guide-shopping', url: 'guide.html?unit=shopping', full: true },
   { name: 'guide-weather', url: 'guide.html?unit=weather', full: true },
   { name: 'guide-study', url: 'guide.html?unit=study', full: true },
+  { name: 'guide-grammar', url: 'guide.html?unit=grammar', full: true },
   { name: 'guide-newwords', url: 'guide.html?unit=newwords', full: true },
   ...[...firstOf].map(([type, url]) => ({ name: `ex-${type}`, url })),
   { name: 'ex-choice-selected', url: firstOf.get('choice'), act: async (p) => p.locator('.option').first().click() },
@@ -152,7 +153,7 @@ const SHOTS = [
   { name: 'landing-calm', url: 'index.html', calm: true },
 ];
 const OVERFLOW_PAGES = [
-  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=shopping', 'guide.html?unit=weather', 'guide.html?unit=study', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
+  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=shopping', 'guide.html?unit=weather', 'guide.html?unit=study', 'guide.html?unit=grammar', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
   'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
   'stories.html', 'stories.html?story=hello', 'stories.html?story=cafe', 'lesson.html?mode=sounds', 'voices.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
 ];
@@ -205,7 +206,9 @@ for (const [vpName, options] of Object.entries(VIEWPORTS)) {
 
 // No horizontal scroll down to 320 px.
 const narrow = await browser.newContext({ viewport: { width: 320, height: 640 }, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
-for (const url of OVERFLOW_PAGES) {
+// With --only, just the pages of the chosen shots.
+const onlyUrls = only && new Set(SHOTS.filter((s) => only.includes(s.name)).map((s) => s.url));
+for (const url of OVERFLOW_PAGES.filter((u) => !onlyUrls || onlyUrls.has(u))) {
   const page = await narrow.newPage();
   await page.goto(base + url);
   await settle(page);

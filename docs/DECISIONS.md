@@ -2,6 +2,26 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Hand-made units: unit 9, Grammar words (2026-11-23)
+
+### Unit 9, *Orð*
+
+- Six lessons and a review: Have and do, Know and need, Sit and stand, This and that, All or nothing, Also and again (34 words). These words have been allowed in every sentence since unit 1, so every lesson has plenty of sentence work (*að* alone has 144 readable sentences).
+- **Three more tag fixes** (`content/tag-fixes.json`), found by reading the generated lessons: *Sá* in *Sá einhver hvað gerðist?* is the past of *sjá*, not the pronoun *sá*; *þeir* in *Eru þeir bræður?* and *þau* in *Hvaða tungumál tala þau í Kóreu?* are the personal pronouns "they", not the demonstrative *sá*. The parser had read all three as *sá*, so lesson 4 taught them as "that".
+- Guidebook, six sections, every form from the DMII Core and every example from Tatoeba:
+  - **Must and may.** *verða að* and *þurfa að*; *mega* with the bare infinitive (*Má ég fara með þér?*, *Hann má koma*). Wiktionary lists "may, be allowed" and also "must" for *mega*, and Bokmålsordboka lists permission as well as necessity for *måtte*, so the note says that Norwegian *må* usually means must and Icelandic *má* usually means may.
+  - **þessi, þetta, sá.** *þessi*, *þetta*, *þennan*, *þessa* (DMII Core); *þetta* introducing a plural (*Þetta eru fallegar myndir*, Tatoeba); *sá sem*.
+  - **hver, hvaða.** *hver, hvern, hverjum, hvers* (DMII Core); *hvaða* has the same form in every slot of its DMII Core paradigm.
+  - **allur, enginn, einhver.** Agreement, and the neuter plural for a mixed group (Wikipedia: "the neuter for either an all neuter or a mixed-gender group"; *Þið hafið öll staðið ykkur vel*).
+  - **að, sem, ef.** *að* as both "that" and the infinitive marker (Wikipedia, Wiktionary), compared with Norwegian *at* and *å*.
+  - **The two líka.** The adverb and the verb with a dative subject (Wiktionary *líka*: "strict dative-nominative verb"); *aftur* "again" and "back"; *bara*.
+- **Faster checks while making a unit:** `node tests/smoke.mjs --unit=grammar` plays only that unit's lessons, and `node scripts/visual-qa.mjs --only=guide-grammar` checks only the named screens, including their 320 px overflow. The full `npm run smoke` and `npm run qa` still run before each commit.
+
+### Tests
+
+- `node --test`: 112 tests (new: the seven lessons of unit 9, and the *Sá* and *þeir* tag fixes among the homograph regressions).
+- `npm run smoke`: every lesson of units 1 to 9. `npm run qa`: the unit 9 guidebook at three sizes.
+
 ## Hand-made units: unit 8, Study and work (2026-11-23)
 
 ### Unit 8, *Vinna*

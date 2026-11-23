@@ -80,6 +80,14 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
   - *vita* a fact, *þekkja* a person, *kunna* a skill; *geta* takes the supine.
   - *hjálpa*, *svara* and *loka* take a dative object; *opna* the accusative.
   - The past in -aði, -ði, -di, -ti, and the strong verbs with a new vowel; *vinna* is "work" and "win".
+- Unit 9, *Orð* (grammar words): the lesson groupings, and the guidebook notes:
+  - *verða að* and *þurfa að* for must and need to; *mega* with the bare infinitive; Norwegian *må* usually means must, Icelandic *má* usually may.
+  - *þessi* agrees with its noun; *þetta* introduces singular and plural; *sá* mostly before *sem*.
+  - *hver* inflects, *hvaða* does not.
+  - *allur*, *enginn*, *einhver* agree like adjectives; a mixed group takes the neuter plural.
+  - *að* is both "that" and the infinitive marker; *sem* joins a clause to a noun; *ef* is "if".
+  - *líka* is the adverb "also" and the verb "like" (dative subject); *aftur* is "again" and "back".
+- Sentence tags: *Sá* in *Sá einhver hvað gerðist?* is *sjá*; *þeir* in *Eru þeir bræður?* and *þau* in *Hvaða tungumál tala þau í Kóreu?* are personal pronouns.
 - Case trainer note "When is each case used?" (summary of the main uses of the four cases).
 - Unit 10, *Nýyrði* (new words): the choice of twelve modern words, and the unit title. The guidebook retells Wiktionary's etymologies (sources quoted in `docs/DECISIONS.md`); the retelling and the glosses of the parts need review:
   - *útvarp* = *út* + *varp*; *sjónvarp* made on the same model with *sjón*; *flugvél* = *flug* + *vél*.

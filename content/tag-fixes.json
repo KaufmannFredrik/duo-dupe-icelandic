@@ -1,7 +1,10 @@
 {
   "note": "Hand-checked corrections of the Greynir parse, applied by scripts/build-tags.mjs: in the given sentence, the given word is the given course word. A fixed sentence keeps no parser cases in data/tags.json, because they come from the wrong parse.",
   "fixes": [
-    { "sentence": "3799208", "word": "sé", "lemma": "sjá_so", "reason": "Ég sé það (I can see that): the parser reads sé as the subjunctive of vera." },
-    { "sentence": "3772554", "word": "sé", "lemma": "sjá_so", "reason": "Ég sé það ekki (I don't see it): the parser reads sé as the subjunctive of vera." }
+    {"sentence": "3799208", "word": "sé", "lemma": "sjá_so", "reason": "Ég sé það (I can see that): the parser reads sé as the subjunctive of vera."},
+    {"sentence": "3772554", "word": "sé", "lemma": "sjá_so", "reason": "Ég sé það ekki (I don't see it): the parser reads sé as the subjunctive of vera."},
+    {"sentence": "3997410", "word": "Sá", "lemma": "sjá_so", "reason": "Sá einhver hvað gerðist? (did anybody see what happened?): the parser reads Sá as the pronoun sá."},
+    {"sentence": "3801939", "word": "þeir", "lemma": "hann_pfn", "reason": "Eru þeir bræður? (are they brothers?): þeir is the personal pronoun they, not the demonstrative sá."},
+    {"sentence": "10963603", "word": "þau", "lemma": "það_pfn", "reason": "Hvaða tungumál tala þau í Kóreu? (what languages do they speak in Korea?): þau is the personal pronoun they, not the demonstrative sá."}
   ]
 }

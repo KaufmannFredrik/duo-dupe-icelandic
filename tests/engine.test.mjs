@@ -14,11 +14,11 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key) }) };
 }
 
-test('course: ten units in order, units 1 to 8 hand-made, the rest automatic', () => {
+test('course: ten units in order, units 1 to 9 hand-made, the rest automatic', () => {
   assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
   assert.equal(d.course.units[0].auto, false);
-  assert.equal(d.course.units[7].auto, false);
-  assert.equal(d.course.units[8].auto, true);
+  assert.equal(d.course.units[8].auto, false);
+  assert.equal(d.course.units[9].auto, true);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
 });
 
@@ -58,6 +58,8 @@ test('generator: homographs are told apart by the sentence tags', () => {
     ['Hann sér hundinn hennar.', 'sig_afn', 'sjá_so'], // sér = "sees"
     ['Við erum öll til.', 'til_fs', 'vera_so'], // til = "ready", a loose use: known, not taught
     ['Ég sé það.', 'vera_so', 'sjá_so'], // the parser reads sé as vera; content/tag-fixes.json
+    ['Sá einhver hvað gerðist?', 'sá_fn', 'sjá_so'], // Sá = saw; content/tag-fixes.json
+    ['Eru þeir bræður?', 'sá_fn', 'hann_pfn'], // þeir = they; content/tag-fixes.json
   ];
   for (const [text, not, yes] of cases) {
     assert.ok(sid(text), `"${text}" is in the data`);
@@ -95,7 +97,7 @@ test('generator: the same seed gives the same lesson', () => {
   assert.deepEqual(generate('hello', l).specs, generate('hello', l).specs);
 });
 
-for (const unitId of ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'newwords']) {
+for (const unitId of ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);

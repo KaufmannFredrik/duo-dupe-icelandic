@@ -6,7 +6,8 @@
 // the service worker is installed.
 // With --all it also plays every lesson of the hand-made units, the sounds and letters drills, and
 // checks the story reader (word panel, line audio from the generated voice) at desktop size.
-//   node tests/smoke.mjs [--all]
+// With --unit=<id>[,<id>] it only plays every lesson of those units (a quick check while making one).
+//   node tests/smoke.mjs [--all] [--unit=time]
 
 import { readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
@@ -44,6 +45,44 @@ async function playLesson(page, href) {
 // The service worker is tested on its own below; elsewhere it would only add noise.
 const isolated = { serviceWorkers: 'block' };
 const hudXP = async (page) => Number(await page.locator('.hud .stat--xp span').first().textContent());
+
+// Every lesson of the hand-made units (units whose lessons are listed, not "auto"), as [unit, lesson].
+function handMadeLessons(only) {
+  const unitFiles = JSON.parse(readFileSync(new URL('../content/units/index.json', import.meta.url), 'utf8')).units;
+  return unitFiles
+    .map((f) => JSON.parse(readFileSync(new URL(`../content/units/${f}`, import.meta.url), 'utf8')))
+    .filter((u) => Array.isArray(u.lessons) && (!only || only.includes(u.id)))
+    .flatMap((u) => u.lessons.map((l) => [u.id, l.id]));
+}
+
+const onlyUnits = process.argv.find((a) => a.startsWith('--unit='))?.slice(7).split(',');
+if (onlyUnits) {
+  const context = await browser.newContext({ ...VIEWPORTS.desktop, ...isolated });
+  const page = await context.newPage();
+  const errors = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  const lessons = handMadeLessons(onlyUnits);
+  if (!lessons.length) {
+    failed = true;
+    console.log(`FAIL no hand-made lessons in ${onlyUnits.join(', ')}`);
+  }
+  for (const [unit, lesson] of lessons) {
+    try {
+      const types = await playLesson(page, `lesson.html?unit=${unit}&lesson=${lesson}`);
+      console.log(`PASS ${unit}/${lesson}: ${types.length} exercises`);
+    } catch (e) {
+      failed = true;
+      console.log(`FAIL ${unit}/${lesson}: ${e.message}`);
+    }
+  }
+  if (errors.length) {
+    failed = true;
+    console.log(`page errors: ${errors.join('; ')}`);
+  }
+  await browser.close();
+  server.close();
+  process.exit(failed ? 1 : 0);
+}
 
 for (const [name, options] of Object.entries(VIEWPORTS)) {
   const context = await browser.newContext({ ...options, ...isolated });
@@ -206,13 +245,7 @@ if (process.argv.includes('--all')) {
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   const seen = new Map();
-  // Every lesson of every hand-made unit (units whose lessons are listed, not "auto").
-  const unitFiles = JSON.parse(readFileSync(new URL('../content/units/index.json', import.meta.url), 'utf8')).units;
-  const lessons = unitFiles
-    .map((f) => JSON.parse(readFileSync(new URL(`../content/units/${f}`, import.meta.url), 'utf8')))
-    .filter((u) => Array.isArray(u.lessons))
-    .flatMap((u) => u.lessons.map((l) => [u.id, l.id]));
-  for (const [unit, lesson] of lessons) {
+  for (const [unit, lesson] of handMadeLessons()) {
     try {
       const types = await playLesson(page, `lesson.html?unit=${unit}&lesson=${lesson}`);
       for (const t of types) seen.set(t, (seen.get(t) ?? 0) + 1);
