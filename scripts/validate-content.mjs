@@ -212,6 +212,7 @@ async function checkSmallFiles() {
   for (const [id, r] of Object.entries(rules.rules)) {
     await checkText(`content/case-rules.json ${id}`, r.trigger);
     for (const g of r.nouns ?? []) if (!rules.nounGroups?.[g]) err(`content/case-rules.json ${id}`, `unknown noun group ${g}`);
+    for (const v of r.verbs ?? []) if (!lexicon.lemmas[`${v}_so`]) err(`content/case-rules.json ${id}`, `unknown verb ${v}`);
   }
   for (const [g, ids] of Object.entries(rules.nounGroups ?? {})) for (const id of ids) if (!lexicon.lemmas[id]) err(`content/case-rules.json nounGroups.${g}`, `unknown lemma ${id}`);
 }

@@ -2,6 +2,26 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Hand-made units: unit 7, Weather and nature (2026-11-23)
+
+### Unit 7, *Veður*
+
+- Four lessons and a review: Rain and snow, Outside and inside, Look and listen, Iceland's nature (21 words). Each grouping was run through the generator and its exercises read.
+- This theme has the fewest sentences: *veður*, *sjór*, *ský*, *jökull*, *foss*, *eldfjall* and *norðurljós* have none a learner can read (*Veðrið er svo gott!* needs *svo*, which is not a course word). The words with many sentences (*mjög*, *sjá*, *heyra*, *úti*) are placed with them, and *sjá* is put third in lesson 4 so that its first exercises read sentences (the generator starts each word at a point in its cycle that follows the word's place in the lesson).
+- **New rule `á-horfa`.** *Horfðu á þetta fjall* got the hint "á takes the accusative for movement"; the accusative comes from *horfa á* (look at, watch), as in *horfa á sjónvarpið*. Rules can now name verbs (`verbs` in `content/case-rules.json`): such a rule applies only after one of them, and rules with a condition are tried first.
+- Guidebook, five sections, every form from the DMII Core and every example from Tatoeba:
+  - **The empty *það*.** *Það rignir*, *Það snjóar*, *Það er kalt*, *Það er vindur í dag*; *það* holds only the first place and is left out when another word comes first: *Skyndilega rigndi* (Tatoeba), where Norwegian keeps *det*.
+  - **Dative for how one feels.** *Mér er kalt*, *Er þér alltaf kalt?* against *Það er kalt*; *líka* with the dative: *Okkur líkar ekki við rigningu*, *Líkar þér svartir kettir?* (Tatoeba).
+  - **Place and direction.** *úti* and *út*, *inni* and *inn*, *heima* and *heim*, compared with Norwegian *ute*/*ut*, *inne*/*inn*, *hjemme*/*hjem*: *Hún er úti núna*, *Við gátum ekki farið út sökum rigningarinnar*, *Ég verð heima í dag*, *Pabbi kom heim fyrir um tíu mínútum*, *það er kalt hérna inni*.
+  - **sjá, horfa, heyra.** *sé, sérð, sér, sá* (DMII Core), *Sjáumst*; *horfa á* with the accusative; *heyra* with a thing in the accusative (*Hann heyrði það*) and *heyra í* with a person in the dative (*Ég heyri í þér*).
+  - **Nature words.** *eldfjall* from *eldur* and *fjall*, *norðurljós* from *norður* and *ljós* (Wiktionary etymologies); the Norwegian relatives are the pairs in `data/bridge.json` with a shared Old Norse word in both Bokmålsordboka and Wiktionary (*vær*, *fjell*, *foss*, *jøkel*, *sky*, *sol*, *vind*).
+- The guidebook prose and the lesson grouping are listed in `content/NEEDS-NATIVE-REVIEW.md`.
+
+### Tests
+
+- `node --test`: 99 tests (new: the five lessons of unit 7, and *Horfðu á þetta fjall* among the hint regressions).
+- `npm run smoke`: every lesson of units 1 to 7. `npm run qa`: the unit 7 guidebook at three sizes.
+
 ## Hand-made units: unit 6, Shopping (2026-11-23)
 
 ### Unit 6, *Búð*

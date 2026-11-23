@@ -22,6 +22,7 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
 | `í-tími-þgf`, `á-tími-þgf` | *í* and *á* take the dative in some time expressions: *í hverri viku*, *í síðasta mánuði*; *á sunnudögum*, *á hverjum degi*. | not reviewed |
 | `eftir-tími`, `eftir` | *eftir* takes the accusative when it means after or in a time (*eftir matinn*, *eftir klukkutíma*), and the dative after verbs such as *bíða* and *muna* and for order (*á eftir laugardegi*). | not reviewed |
 | `fyrir-síðan`, `fyrir` | *fyrir* takes the dative when it means ago (*fyrir tveimur árum*), and the accusative when it means for or before (*fyrir mig*, *fyrir kvöldmatinn*). | not reviewed |
+| `á-horfa` | *horfa á* (look at, watch) takes the accusative: *horfa á sjónvarpið*. | not reviewed |
 | `nounGroups` | Which nouns make a time expression for these rules; *tími* counts for *um*, *eftir* and *fyrir* but not for *í* (*í tíma* is usually a class). | not reviewed |
 
 ## Sentence tags (`scripts/lib/tags.mjs`, `content/tag-fixes.json`)
@@ -67,6 +68,12 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
   - Comparison with -ri or -ari and -astur; *gamall*, *ungur*, *stór* and *lítill* change their stem, as their Norwegian relatives do. "Than" is *en*.
   - With *kaupa*, *selja* and *gefa*, the person is in the dative and the thing in the accusative. *hundrað* and *þúsund* count as neuter (*tvö þúsund*).
   - *með* takes the dative for company and the accusative for what one brings or has on oneself; *án* takes the genitive; *af* the dative; *Af hverju?* is literally "of what?".
+- Unit 7, *Veður* (weather and nature): the lesson groupings, and the guidebook notes:
+  - Weather verbs take an empty *það* (*Það rignir*, *Það er kalt*), which is left out when another word comes first (*Skyndilega rigndi*).
+  - How a person feels takes the dative: *Mér er kalt*, *Er þér alltaf kalt?*; *líka* puts the one who likes in the dative.
+  - *úti*/*út*, *inni*/*inn*, *heima*/*heim* tell a place from a direction, like Norwegian *ute*/*ut*.
+  - *sjá* is irregular (*sé, sérð, sér, sá*); *horfa á* takes the accusative; *heyra* takes a thing in the accusative and *heyra í* a person in the dative.
+  - *eldfjall* = *eldur* + *fjall*, *norðurljós* = *norður* + *ljós*.
 - Case trainer note "When is each case used?" (summary of the main uses of the four cases).
 - Unit 10, *Nýyrði* (new words): the choice of twelve modern words, and the unit title. The guidebook retells Wiktionary's etymologies (sources quoted in `docs/DECISIONS.md`); the retelling and the glosses of the parts need review:
   - *útvarp* = *út* + *varp*; *sjónvarp* made on the same model with *sjón*; *flugvél* = *flug* + *vél*.

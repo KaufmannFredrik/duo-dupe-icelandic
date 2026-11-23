@@ -208,8 +208,10 @@ export function createGenerator(data) {
   // its phrase, which must be that preposition there ("á" in "Ég á dóttur" is the verb eiga), or a
   // verb before it. The phrase starts after the words before it that the parser gives the same
   // case ("fyrir tveimur árum"). Rules with "nouns" are for time expressions and apply only when
-  // the word or the next one is one of those nouns ("á sunnudaginn"); they are tried first.
-  const ruleList = Object.entries(rules).sort(([, a], [, b]) => Number(!a.nouns) - Number(!b.nouns));
+  // the word or the next one is one of those nouns ("á sunnudaginn"); rules with "verbs" only after
+  // one of those verbs ("horfa á"). Rules with a condition are tried first.
+  const conditional = (r) => Boolean(r.nouns || r.verbs);
+  const ruleList = Object.entries(rules).sort(([, a], [, b]) => Number(conditional(b)) - Number(conditional(a)));
   function ruleFor(sid, i, caseId, id) {
     let start = i;
     while (start > 0 && caseAt(sid, start - 1) === caseId) start--;
@@ -219,6 +221,7 @@ export function createGenerator(data) {
     for (const [rid, rule] of ruleList) {
       if (rule.case !== caseId) continue;
       if (rule.nouns && !rule.nouns.some((n) => near.has(n))) continue;
+      if (rule.verbs && !rule.verbs.some(verbBefore)) continue;
       if (rule.kind === 'preposition' && prev?.lemma === rule.trigger && prev.ofl === 'fs') return rid;
       if (rule.kind === 'verb' && verbBefore(rule.trigger)) return rid;
     }

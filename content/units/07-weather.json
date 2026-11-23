@@ -3,10 +3,59 @@
   "order": 7,
   "theme": "weather",
   "reviewed": false,
-  "title": {
-    "en": "Weather and nature",
-    "nb": "Vær og natur"
-  },
+  "title": { "en": "Weather and nature", "nb": "Vær og natur" },
   "is": "Veður",
-  "lessons": "auto"
+  "goal": { "en": "Talk about the weather, say whether you are cold, and name the sights of Icelandic nature.", "nb": "Snakk om været, si om du fryser, og nevn severdighetene i islandsk natur." },
+  "lessons": [
+    { "id": "1", "title": { "en": "Rain and snow", "nb": "Regn og snø" }, "focus": ["veður_no", "rigning_no", "rigna_so", "snjór_no", "snjóa_so"] },
+    { "id": "2", "title": { "en": "Outside and inside", "nb": "Ute og inne" }, "focus": ["vindur_no", "sól_no", "ský_no", "úti_ao", "inni_ao", "mjög_ao"] },
+    { "id": "3", "title": { "en": "Look and listen", "nb": "Se og hør" }, "focus": ["heyra_so", "horfa_so", "kannski_ao", "fjall_no", "sjór_no"] },
+    { "id": "4", "title": { "en": "Iceland's nature", "nb": "Islands natur" }, "focus": ["jökull_no", "eldfjall_no", "sjá_so", "foss_no", "norðurljós_no"] },
+    { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": { "en": "It's raining: the empty það", "nb": "Det regner: det tomme það" },
+        "text": {
+          "en": "Weather verbs have no real subject, so Icelandic fills the place with {is:það}, as Norwegian does with det: {is:Það rignir} (it's raining), {is:Það snjóar} (it's snowing), {is:Það snjóaði í fjóra daga}. The same {is:það} comes with {is:vera}: {is:Það er kalt}, {is:Það er vindur í dag} (it's windy today). {is:það} only holds the first place: when another word comes first, it is left out, where Norwegian keeps det: {is:Skyndilega rigndi} (suddenly it rained).",
+          "nb": "Værverb har ikke noe egentlig subjekt, så islandsk fyller plassen med {is:það}, slik norsk gjør med det: {is:Það rignir} (det regner), {is:Það snjóar} (det snør), {is:Það snjóaði í fjóra daga}. Den samme {is:það} kommer med {is:vera}: {is:Það er kalt}, {is:Það er vindur í dag} (det er vind i dag). {is:það} holder bare førsteplassen: når et annet ord kommer først, faller det bort, der norsk beholder det: {is:Skyndilega rigndi} (plutselig regnet det)."
+        },
+        "examples": ["428521", "451960", "1312397", "428523", "2782049", "386152"],
+        "tables": ["veður_no"]
+      },
+      {
+        "title": { "en": "I'm cold: mér er kalt", "nb": "Jeg fryser: mér er kalt" },
+        "text": {
+          "en": "How a person feels is said with the person in the dative: {is:Mér er kalt} (I'm cold; word for word \"to me it is cold\"), {is:Er þér alltaf kalt?} (are you always cold?). Without a person it is the weather: {is:Það er kalt}. {is:líka} (like) also puts the one who likes in the dative: {is:Okkur líkar ekki við rigningu} (we don't like rain), {is:Líkar þér svartir kettir?} (do you like black cats?).",
+          "nb": "Hvordan en person har det, sies med personen i dativ: {is:Mér er kalt} (jeg fryser; ord for ord «meg er kaldt»), {is:Er þér alltaf kalt?} (fryser du alltid?). Uten en person er det været: {is:Það er kalt}. {is:líka} (like) setter også den som liker i dativ: {is:Okkur líkar ekki við rigningu} (vi liker ikke regn), {is:Líkar þér svartir kettir?} (liker du svarte katter?)."
+        },
+        "examples": ["624507", "5722476", "4000908", "543837"]
+      },
+      {
+        "title": { "en": "Out and in: úti, út, heima, heim", "nb": "Ute og ut: úti, út, heima, heim" },
+        "text": {
+          "en": "Like {is:hvar} and {is:hvert}, these words tell a place from a direction, the same way Norwegian ute and ut do: {is:úti} (outside) and {is:út} (out), {is:inni} (inside) and {is:inn} (in), {is:heima} (at home) and {is:heim} (home). {is:Hún er úti núna} (she is outside now), but {is:Við gátum ekki farið út} (we couldn't go out); {is:Ég verð heima í dag} (I'll stay home today), but {is:Pabbi kom heim} (Dad came home).",
+          "nb": "Som {is:hvar} og {is:hvert} skiller disse ordene mellom sted og retning, akkurat som norsk ute og ut: {is:úti} (ute) og {is:út} (ut), {is:inni} (inne) og {is:inn} (inn), {is:heima} (hjemme) og {is:heim} (hjem). {is:Hún er úti núna} (hun er ute nå), men {is:Við gátum ekki farið út} (vi kunne ikke gå ut); {is:Ég verð heima í dag} (jeg blir hjemme i dag), men {is:Pabbi kom heim} (pappa kom hjem)."
+        },
+        "examples": ["10979794", "793119", "698303", "386312", "11536996"]
+      },
+      {
+        "title": { "en": "See, look, hear", "nb": "Se, se på, høre" },
+        "text": {
+          "en": "{is:sjá} (see) is irregular: {is:ég sé}, {is:þú sérð}, {is:hún sér}, and in the past {is:sá}, as Norwegian se, så: {is:Ég sá Tom}. {is:Sjáumst} (see you) is word for word \"let's see each other\". {is:horfa} (look, watch) takes {is:á} and the accusative, as Norwegian se på: {is:Horfðu á mig} (look at me), {is:horfa á sjónvarpið} (watch TV). {is:heyra} (hear) takes a thing in the accusative ({is:Hann heyrði það}), but hearing a person is {is:heyra í} with the dative: {is:Ég heyri í þér} (I hear you).",
+          "nb": "{is:sjá} (se) er uregelmessig: {is:ég sé}, {is:þú sérð}, {is:hún sér}, og i fortid {is:sá}, som norsk se, så: {is:Ég sá Tom}. {is:Sjáumst} (vi ses) er ord for ord «la oss se hverandre». {is:horfa} (se på) tar {is:á} og akkusativ, som norsk se på: {is:Horfðu á mig} (se på meg), {is:horfa á sjónvarpið} (se på TV). {is:heyra} (høre) tar en ting i akkusativ ({is:Hann heyrði það}), men å høre en person er {is:heyra í} med dativ: {is:Ég heyri í þér} (jeg hører deg)."
+        },
+        "examples": ["7304888", "3838994", "1315562", "4000858", "488512"]
+      },
+      {
+        "title": { "en": "Fire mountains and north lights", "nb": "Ildfjell og nordlys" },
+        "text": {
+          "en": "Icelandic names its landscape with its own words: {is:eldfjall} (volcano) is {is:eldur} (fire) and {is:fjall} (mountain), and {is:norðurljós} (northern lights) is {is:norður} (north) and {is:ljós} (light). Many of these words have Norwegian relatives from the same Old Norse word, named in both Bokmålsordboka and Wiktionary: {is:veður} and vær, {is:fjall} and fjell, {is:foss} and foss, {is:jökull} and jøkel, {is:ský} and sky (a cloud), {is:sól} and sol, {is:vindur} and vind.",
+          "nb": "Islandsk gir landskapet egne ord: {is:eldfjall} (vulkan) er {is:eldur} (ild) og {is:fjall} (fjell), og {is:norðurljós} er {is:norður} og {is:ljós} (lys), akkurat som nordlys. Mange av ordene har norske slektninger fra det samme norrøne ordet, nevnt både i Bokmålsordboka og Wiktionary: {is:veður} og vær, {is:fjall} og fjell, {is:foss} og foss, {is:jökull} og jøkel, {is:ský} og sky, {is:sól} og sol, {is:vindur} og vind."
+        },
+        "tables": ["jökull_no"]
+      }
+    ]
+  }
 }
