@@ -6,6 +6,8 @@ import { t } from '../i18n.js';
 import { CASES } from '../grammar.js';
 import { caseTag } from '../ui/forms.js';
 import { EXPRESSIONS, talaSVG } from '../tala.js';
+import { CAST, EXPRESSIONS as CAST_EXPRESSIONS } from '../characters.js';
+import { characterImg } from '../ui/character.js';
 import { goalRing } from '../shell.js';
 import { toast } from '../ui/toast.js';
 import { charRow } from '../ui/charrow.js';
@@ -26,3 +28,8 @@ document.querySelector('[data-sg-open-modal]').addEventListener('click', () => d
 dialog.addEventListener('click', (e) => {
   if (e.target.closest('[data-close]')) dialog.close();
 });
+
+// The cast: every character in every expression.
+document.querySelector('[data-sg-cast]').innerHTML = CAST.map(
+  (c) => `<div class="sg__grid">${CAST_EXPRESSIONS.map((x) => `<figure class="sg__swatch">${characterImg(c.id, { expr: x, size: 96, label: `${c.name}, ${x}` })}<figcaption>${c.name}: ${x}</figcaption></figure>`).join('')}</div>`,
+).join('');

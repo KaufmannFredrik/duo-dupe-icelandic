@@ -19,6 +19,7 @@
     "build:audio": "node -e \"process.exit(require('child_process').spawnSync(process.platform === 'win32' ? '.venv/Scripts/python' : '.venv/bin/python', ['-I', 'scripts/build-audio.py', ...process.argv.slice(1)], { stdio: 'inherit' }).status)\" --",
     "validate": "node scripts/validate-content.mjs",
     "build:tala": "node scripts/build-tala.mjs",
+    "build:characters": "node scripts/build-characters.mjs",
     "build:icons": "node scripts/build-icons.mjs",
     "build:bridge": "node scripts/build-bridge.mjs",
     "build:tags": "node scripts/build-tags.mjs",

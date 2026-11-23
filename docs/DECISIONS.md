@@ -2,6 +2,26 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## The cast: seven characters (2026-11-23)
+
+The owner asked for lifelike Icelandic characters in the app's theme, people as well as talking things, and reviewed them on a cast sheet before they were wired in.
+
+### The characters
+
+- **Amma Sigga**, a grandmother in a *lopapeysa* whose round yoke is knitted in the app's neon colors; **Jónas**, a fisherman in a *húfa* and a yellow oilskin; **Katla**, a student with headphones and a gold *Þ* pin; **Elias**, a learner from Norway who has just moved to Reykjavík (added so that learners have someone like themselves in the cast; his scarf is Tala's); **Lundi**, a puffin drawn in profile with sand eels in its bill; **Hekla**, a talking volcano drawn as a synthwave wireframe mountain; **Torfi**, a talking turf house whose windows are its eyes and its door its mouth.
+- All are lit like the app: a cyan rim light from the left, magenta from the right, gold highlights, on transparent 240 x 240 squares, so they sit on any card. They are reviewed at 440, 96, 64, 48 and 28 px.
+- Each has four expressions: *happy*, *cheer* (eyes closed in delight, a big smile; Hekla erupts sparks, Torfi throws the door open), *thinking* (gaze up and aside, one brow raised; Lundi gets a question mark) and *sorry* (brows tilted up in the middle, eyes down, a soft frown; Torfi's door is almost shut).
+
+### Motion
+
+- Each file carries its animation as CSS inside the SVG, so it plays where the file is shown as an image: blinking (an eyelid in the skin's color drops for about 0.1 seconds every five or six seconds, each character at its own pace), breathing (the figure drifts by about a pixel), and one touch each: Amma's yarn ball wobbles, Katla's headphone lights pulse, Elias's scarf tail sways, Lundi's fish swing, Hekla's steam rises, her crater glows and her sparks twinkle, Torfi's windows flicker and his smoke rises.
+- The animations stop under `prefers-reduced-motion`. The build also writes a still copy of every file (`-still.svg`, no style, no eyelids) for Calm mode; `js/ui/character.js` picks it when the page is calm.
+
+### How they are made
+
+- `scripts/characters/*.mjs` draw each character in code, like `js/tala.js`, so changes stay small: shared parts (rim lights, a human face by expression, the motion rules, a seeded random generator for beard strands, grass and curls) are in `scripts/characters/lib.mjs`. The approved *happy* faces of Amma, Jónas and Katla are kept exactly as drawn; the other expressions come from the shared face.
+- `npm run build:characters` writes `assets/characters/<id>-<expression>.svg` and the still copies: 56 files, 830 KB, precached by the service worker. The cast (names, labels) is `js/characters.js`; the style guide shows every character in every expression, so the QA checks them all.
+
 ## Claims checked against sources (2026-11-23)
 
 By the owner's decision nobody is asked to review the course, so every hand-written language claim was checked against published sources instead. `content/NEEDS-NATIVE-REVIEW.md` is now `content/CLAIMS.md`: each claim with its source (Wiktionary, the DMII Core, Tatoeba, Íslensk málnefnd's *Ritreglur*, Wikipedia, elon.io, islenzka.net, academic papers on weather verbs and word order, Bokmålsordboka) and a status: sourced, attested (only Tatoeba sentences or DMII Core forms show it) or corrected.

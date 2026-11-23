@@ -1,0 +1,109 @@
+<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Katla">
+
+<defs>
+  <radialGradient id="ka-skin" cx="0.46" cy="0.42" r="0.62">
+    <stop offset="0" stop-color="#F6D2B8"/><stop offset="0.62" stop-color="#E2AB8E"/><stop offset="1" stop-color="#B57A6A"/>
+  </radialGradient>
+  <linearGradient id="ka-hair" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#2A1D5C"/><stop offset="0.35" stop-color="#6A1878"/><stop offset="0.7" stop-color="#B0128C"/><stop offset="1" stop-color="#FF5AD9"/>
+  </linearGradient>
+  <linearGradient id="ka-fringe" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0" stop-color="#2A1D5C"/><stop offset="1" stop-color="#B0128C"/>
+  </linearGradient>
+  <linearGradient id="ka-rimL" x1="0" x2="1"><stop offset="0" stop-color="#00FFFF" stop-opacity="0.9"/><stop offset="0.45" stop-color="#00FFFF" stop-opacity="0"/></linearGradient>
+  <linearGradient id="ka-rimR" x1="1" x2="0"><stop offset="0" stop-color="#FF10F0" stop-opacity="0.85"/><stop offset="0.45" stop-color="#FF10F0" stop-opacity="0"/></linearGradient>
+  <linearGradient id="ka-sideL" x1="0" x2="1"><stop offset="0" stop-color="#00FFFF" stop-opacity="0.45"/><stop offset="1" stop-color="#00FFFF" stop-opacity="0"/></linearGradient>
+  <linearGradient id="ka-sideR" x1="1" x2="0"><stop offset="0" stop-color="#FF10F0" stop-opacity="0.45"/><stop offset="1" stop-color="#FF10F0" stop-opacity="0"/></linearGradient>
+  <linearGradient id="ka-hood" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3D4290"/><stop offset="0.55" stop-color="#2C2F66"/><stop offset="1" stop-color="#1B1D47"/></linearGradient>
+  <linearGradient id="ka-band" x1="0" x2="1"><stop offset="0" stop-color="#E9ECF5"/><stop offset="0.5" stop-color="#C0C0C0"/><stop offset="1" stop-color="#7F82A6"/></linearGradient>
+  <radialGradient id="ka-cup" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#3C3F7E"/><stop offset="1" stop-color="#0A0A16"/></radialGradient>
+  <radialGradient id="ka-cheek" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FF006E" stop-opacity="0.3"/><stop offset="1" stop-color="#FF006E" stop-opacity="0"/></radialGradient>
+  <radialGradient id="ka-iris" cx="0.5" cy="0.4" r="0.6"><stop offset="0" stop-color="#7FF0D2"/><stop offset="0.6" stop-color="#1E9E86"/><stop offset="1" stop-color="#0D5A55"/></radialGradient>
+  <radialGradient id="ka-glow" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#00FFFF" stop-opacity="0.2"/><stop offset="0.6" stop-color="#FF10F0" stop-opacity="0.12"/><stop offset="1" stop-color="#FF10F0" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="ka-soft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1.6"/></filter>
+  <filter id="ka-led" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.4"/></filter>
+  <clipPath id="ka-face"><path d="M120 58C143 58 157 76 157 100C157 120 149 138 137 148C131 153 126 155 120 155C114 155 109 153 103 148C91 138 83 120 83 100C83 76 97 58 120 58Z"/></clipPath>
+  <clipPath id="ka-hairclip"><path d="M72 104C66 70 88 48 120 48C152 48 174 70 168 104C172 134 178 166 172 204C164 208 154 206 148 200C152 172 152 150 150 132L90 132C88 150 88 172 92 200C86 206 76 208 68 204C62 166 68 134 72 104Z"/></clipPath>
+  <clipPath id="ka-body"><path d="M24 240V218C26 194 54 180 92 174L120 180L148 174C186 180 214 194 216 218V240Z"/></clipPath>
+</defs>
+<circle cx="120" cy="112" r="104" fill="url(#ka-glow)"/>
+<g class="ka-breathe">
+
+<!-- long hair behind the shoulders -->
+<path d="M72 104C66 70 88 48 120 48C152 48 174 70 168 104C172 134 178 166 172 204C164 208 154 206 148 200C152 172 152 150 150 132L90 132C88 150 88 172 92 200C86 206 76 208 68 204C62 166 68 134 72 104Z" fill="url(#ka-hair)"/>
+<g clip-path="url(#ka-hairclip)"><path d="M80 96C76 130 78 160 74 190" stroke="#2A1D5C" stroke-width="1.2" fill="none" opacity="0.35"/><path d="M163.2 102C167.2 138 165.2 166 169.2 196" stroke="#FF8DE6" stroke-width="1.2" fill="none" opacity="0.45"/><path d="M73.6 108C69.6 146 71.6 172 67.6 202" stroke="#FF8DE6" stroke-width="1.2" fill="none" opacity="0.45"/><path d="M169.6 114C173.6 130 171.6 178 175.6 190" stroke="#2A1D5C" stroke-width="1.2" fill="none" opacity="0.35"/><path d="M67.2 120C63.2 138 65.2 160 61.2 196" stroke="#FF8DE6" stroke-width="1.2" fill="none" opacity="0.45"/><path d="M176 96C180 146 178 166 182 202" stroke="#FF8DE6" stroke-width="1.2" fill="none" opacity="0.45"/><path d="M60.8 102C56.8 130 58.8 172 54.8 190" stroke="#2A1D5C" stroke-width="1.2" fill="none" opacity="0.35"/><path d="M160 108C164 138 162 178 166 196" stroke="#FF8DE6" stroke-width="1.2" fill="none" opacity="0.45"/><path d="M76.8 114C72.8 146 74.8 160 70.8 202" stroke="#FF8DE6" stroke-width="1.2" fill="none" opacity="0.45"/><path d="M166.4 120C170.4 130 168.4 166 172.4 190" stroke="#2A1D5C" stroke-width="1.2" fill="none" opacity="0.35"/><path d="M70.4 96C66.4 138 68.4 172 64.4 196" stroke="#FF8DE6" stroke-width="1.2" fill="none" opacity="0.45"/><path d="M172.8 102C176.8 146 174.8 178 178.8 202" stroke="#FF8DE6" stroke-width="1.2" fill="none" opacity="0.45"/><path d="M64 108C60 130 62 160 58 190" stroke="#2A1D5C" stroke-width="1.2" fill="none" opacity="0.35"/><path d="M179.2 114C183.2 138 181.2 166 185.2 196" stroke="#FF8DE6" stroke-width="1.2" fill="none" opacity="0.45"/></g>
+
+<!-- neck -->
+<path d="M106 144C108 158 106 168 100 176L120 184L140 176C134 168 132 158 134 144Z" fill="#B57A6A"/>
+
+<!-- hoodie: body, the hood bunched behind the neck, drawstrings -->
+<path d="M24 240V218C26 194 54 180 92 174L120 180L148 174C186 180 214 194 216 218V240Z" fill="url(#ka-hood)"/>
+<path d="M84 176C88 166 104 162 120 166C136 162 152 166 156 176C150 186 136 190 120 190C104 190 90 186 84 176Z" fill="#3D4290"/>
+<path d="M92 178C100 184 140 184 148 178" stroke="#1B1D47" stroke-width="2" fill="none"/>
+<g clip-path="url(#ka-body)">
+  <rect x="24" y="160" width="34" height="80" fill="url(#ka-sideL)"/>
+  <rect x="182" y="160" width="34" height="80" fill="url(#ka-sideR)"/>
+  <path d="M60 240C62 222 66 208 72 198M180 240C178 222 174 208 168 198" stroke="#1B1D47" stroke-width="1.6" fill="none"/>
+</g>
+<path d="M110 186C110 200 108 214 106 226M130 186C130 200 132 214 134 226" stroke="#00FFFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+<rect x="103.5" y="224" width="5" height="9" rx="1.5" fill="#C0C0C0"/><rect x="131.5" y="224" width="5" height="9" rx="1.5" fill="#C0C0C0"/>
+<!-- long hair falling over the front of the shoulders -->
+<path d="M86 128C82 150 80 178 86 200C90 208 98 206 98 200C94 180 94 154 96 136Z" fill="url(#ka-hair)"/>
+<path d="M154 128C158 150 160 178 154 200C150 208 142 206 142 200C146 180 146 154 144 136Z" fill="url(#ka-hair)"/>
+<path d="M88 140C86 160 86 180 90 198" stroke="#00FFFF" stroke-width="1.6" fill="none" opacity="0.6" filter="url(#ka-soft)"/>
+<path d="M152 140C154 160 154 180 150 198" stroke="#FF9BE9" stroke-width="1.6" fill="none" opacity="0.6"/>
+<!-- the Þ pin -->
+<g transform="translate(168 210)">
+  <circle r="11" fill="#FFD700"/><circle r="11" fill="none" stroke="#B89A00" stroke-width="1.5"/>
+  <path d="M-3 -6V6M-3 -3.2H1.5C4 -3.2 5 -1.8 5 0C5 1.8 4 3.2 1.5 3.2H-3" stroke="#0A0A16" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+  <path d="M-7 -5C-5 -8 -2 -9 1 -9" stroke="#FFF6B0" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+</g>
+
+<!-- face -->
+<path d="M120 58C143 58 157 76 157 100C157 120 149 138 137 148C131 153 126 155 120 155C114 155 109 153 103 148C91 138 83 120 83 100C83 76 97 58 120 58Z" fill="url(#ka-skin)"/>
+<g clip-path="url(#ka-face)">
+  <path d="M120 58C143 58 157 76 157 100C157 120 149 138 137 148C131 153 126 155 120 155C114 155 109 153 103 148C91 138 83 120 83 100C83 76 97 58 120 58Z" fill="none" stroke="url(#ka-rimL)" stroke-width="7" filter="url(#ka-soft)"/>
+  <path d="M120 58C143 58 157 76 157 100C157 120 149 138 137 148C131 153 126 155 120 155C114 155 109 153 103 148C91 138 83 120 83 100C83 76 97 58 120 58Z" fill="none" stroke="url(#ka-rimR)" stroke-width="7" filter="url(#ka-soft)"/>
+  <ellipse cx="99" cy="120" rx="11" ry="7" fill="url(#ka-cheek)"/>
+  <ellipse cx="141" cy="120" rx="11" ry="7" fill="url(#ka-cheek)"/>
+  <path d="M90 130C96 144 108 152 120 153C132 152 144 144 150 130C146 148 134 158 120 158C106 158 94 148 90 130Z" fill="#B57A6A" opacity="0.4"/>
+</g>
+<circle cx="103.3" cy="114.4" r="0.5" fill="#A8604E" opacity="0.5"/><circle cx="101.6" cy="116.1" r="0.7" fill="#A8604E" opacity="0.4"/><circle cx="96.9" cy="111.8" r="0.6" fill="#A8604E" opacity="0.4"/><circle cx="135.2" cy="111.8" r="0.6" fill="#A8604E" opacity="0.5"/><circle cx="139.3" cy="116.2" r="0.6" fill="#A8604E" opacity="0.4"/><circle cx="126.3" cy="113.8" r="0.7" fill="#A8604E" opacity="0.5"/><circle cx="104.8" cy="121.4" r="0.7" fill="#A8604E" opacity="0.3"/><circle cx="149" cy="113.5" r="0.9" fill="#A8604E" opacity="0.3"/><circle cx="145.4" cy="121.4" r="0.6" fill="#A8604E" opacity="0.3"/><circle cx="148.8" cy="118.5" r="0.9" fill="#A8604E" opacity="0.5"/><circle cx="107.9" cy="118.4" r="0.5" fill="#A8604E" opacity="0.5"/><circle cx="134.4" cy="121.3" r="0.5" fill="#A8604E" opacity="0.5"/><circle cx="139.2" cy="118.6" r="0.7" fill="#A8604E" opacity="0.5"/><circle cx="91.7" cy="121.7" r="0.7" fill="#A8604E" opacity="0.5"/><circle cx="131.4" cy="111.7" r="0.5" fill="#A8604E" opacity="0.5"/><circle cx="105.6" cy="117.5" r="0.6" fill="#A8604E" opacity="0.4"/><circle cx="104.9" cy="112.9" r="0.7" fill="#A8604E" opacity="0.4"/><circle cx="128.4" cy="123.1" r="0.9" fill="#A8604E" opacity="0.5"/><circle cx="134.9" cy="121.1" r="0.8" fill="#A8604E" opacity="0.4"/><circle cx="101.2" cy="113.6" r="0.9" fill="#A8604E" opacity="0.4"/>
+
+<path d="M94 89Q103 84 112 87" stroke="#2A1D5C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+<path d="M146 86Q137 78 128 81" stroke="#2A1D5C" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+<path d="M94 101.4C98.8 95 108.3 95 113 101.4C108.3 104.6 98.8 104.6 94 101.4Z" fill="#FFFFFF"/>
+<clipPath id="ka-eye-1-thinking"><path d="M94 101.4C98.8 95 108.3 95 113 101.4C108.3 104.6 98.8 104.6 94 101.4Z"/></clipPath>
+<g clip-path="url(#ka-eye-1-thinking)"><circle cx="105.5" cy="99.4" r="4.4" fill="url(#ka-iris)"/><circle cx="105.5" cy="99.4" r="2.1" fill="#0A0A16"/><circle cx="106.7" cy="98.2" r="1.2" fill="#FFFFFF"/></g>
+<path d="M114 101.4C108.3 94.4 98.8 94.4 93 101.4" stroke="#0A0A16" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M93 101.4l-2.4 -3" stroke="#0A0A16" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M127 101.4C131.8 95 141.3 95 146 101.4C141.3 104.6 131.8 104.6 127 101.4Z" fill="#FFFFFF"/>
+<clipPath id="ka-eye1-thinking"><path d="M127 101.4C131.8 95 141.3 95 146 101.4C141.3 104.6 131.8 104.6 127 101.4Z"/></clipPath>
+<g clip-path="url(#ka-eye1-thinking)"><circle cx="138.5" cy="99.4" r="4.4" fill="url(#ka-iris)"/><circle cx="138.5" cy="99.4" r="2.1" fill="#0A0A16"/><circle cx="139.7" cy="98.2" r="1.2" fill="#FFFFFF"/></g>
+<path d="M126 101.4C131.8 94.4 141.3 94.4 147 101.4" stroke="#0A0A16" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M147 101.4l2.4 -3" stroke="#0A0A16" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+<!-- nose -->
+<path d="M119 104C118 112 115 117 115 120C115 123 118 124 120 124C122 124 125 123 125 120" stroke="#B57A6A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<path d="M122 106C123 111 124 115 124 118" stroke="#FFF4EA" stroke-width="1.5" fill="none" opacity="0.6" stroke-linecap="round"/>
+
+<path d="M116.9 136Q122.9 134.5 129.5 133" stroke="#74465A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M130.3 131.5q1.6 1.4 0.6 3.2" stroke="#B57A6A" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+
+<!-- side-swept fringe -->
+<path d="M84 98C80 74 96 56 120 56C144 56 160 72 158 96C150 82 140 74 126 72C116 80 100 86 88 98C86 98 85 98 84 98Z" fill="url(#ka-fringe)"/>
+<path d="M120 58C110 62 100 72 92 88M130 60C122 66 112 76 104 84M146 68C140 70 132 72 126 72" stroke="#FF6CDD" stroke-width="1.4" fill="none" opacity="0.55"/>
+<path d="M86 94C86 78 96 64 110 59" stroke="#00FFFF" stroke-width="1.6" fill="none" opacity="0.6" filter="url(#ka-soft)"/>
+
+<!-- headphones -->
+<path d="M74 104C70 64 92 40 120 40C148 40 170 64 166 104" stroke="url(#ka-band)" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M78 92C78 64 96 46 120 45" stroke="#FFFFFF" stroke-width="1.6" fill="none" opacity="0.6" stroke-linecap="round"/>
+<rect x="64" y="94" width="22" height="36" rx="10" fill="url(#ka-cup)" stroke="#00FFFF" stroke-width="2"/>
+<rect x="154" y="94" width="22" height="36" rx="10" fill="url(#ka-cup)" stroke="#FF10F0" stroke-width="2"/>
+<path d="M68 104C68 99 71 97 74 97" stroke="#FFFFFF" stroke-width="1.4" fill="none" opacity="0.5" stroke-linecap="round"/>
+<circle cx="75" cy="122" r="2.8" fill="#00FFFF" filter="url(#ka-led)" class="ka-led1"/><circle cx="75" cy="122" r="1.6" fill="#E8FFFF"/>
+<circle cx="165" cy="122" r="2.8" fill="#FF10F0" filter="url(#ka-led)" class="ka-led2"/><circle cx="165" cy="122" r="1.6" fill="#FFE0FC"/>
+</g>
+</svg>

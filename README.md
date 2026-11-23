@@ -59,7 +59,7 @@ js/               app.js (bootstrap), shell.js, i18n.js + i18n/{en,nb}.json, sto
                   course.js, progress.js, stats.js, srs.js, db.js, offline.js, normalize.js, audio.js,
                   sfx.js, tala.js (mascot),
                   engine/ (course model, lesson generator), exercises/ (one module per type), ui/, pages/
-assets/           icons.svg (sprite), tala/ (mascot SVGs), icons/ (app icons)
+assets/           icons.svg (sprite), tala/ (mascot SVGs), characters/ (the cast, built by npm run build:characters), icons/ (app icons)
 content/          brand.json, vocab/, units/, stories/, case-rules.json, minimal-pairs.json, allowlist.json,
                   sentence-exclude.json (Tatoeba sentences never shown), tag-fixes.json (hand corrections of the parser),
                   CLAIMS.md (every hand-written language claim and its source)
