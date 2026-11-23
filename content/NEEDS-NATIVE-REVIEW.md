@@ -18,6 +18,17 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
 | `í-staður`, `á-staður` | *í* and *á* take the dative for a location. | not reviewed |
 | `í-hreyfing`, `á-hreyfing` | *í* and *á* take the accusative for movement. | not reviewed |
 | `eiga` | *eiga* (to own, to have) takes its object in the accusative. | not reviewed |
+| `í-tími`, `á-tími`, `um-tími` | In time expressions *í*, *á* and *um* take the accusative: *í dag*, *í sumar*, *í viku*; *á sunnudaginn*, *á veturna*; *um helgar*, *um tíma*. | not reviewed |
+| `í-tími-þgf`, `á-tími-þgf` | *í* and *á* take the dative in some time expressions: *í hverri viku*, *í síðasta mánuði*; *á sunnudögum*, *á hverjum degi*. | not reviewed |
+| `eftir-tími`, `eftir` | *eftir* takes the accusative when it means after or in a time (*eftir matinn*, *eftir klukkutíma*), and the dative after verbs such as *bíða* and *muna* and for order (*á eftir laugardegi*). | not reviewed |
+| `fyrir-síðan`, `fyrir` | *fyrir* takes the dative when it means ago (*fyrir tveimur árum*), and the accusative when it means for or before (*fyrir mig*, *fyrir kvöldmatinn*). | not reviewed |
+| `nounGroups` | Which nouns make a time expression for these rules; *tími* counts for *um*, *eftir* and *fyrir* but not for *í* (*í tíma* is usually a class). | not reviewed |
+
+## Sentence tags (`scripts/lib/tags.mjs`, `content/tag-fixes.json`)
+
+- *sé* in *Ég sé það* and *Ég sé það ekki* is *sjá*, not the subjunctive of *vera* (the parser's reading).
+- The parser's dative for a meal after *í*, *eftir* or *fyrir* (*fisk í kvöldmat*, *eftir kvöldmat*) is not used; Tatoeba has the accusative after *eftir* and *fyrir* (*eftir matinn*, *fyrir kvöldmatinn*).
+- In a sentence without a verb (*Góða nótt*, *Bjór, takk*) the parser's case is not used.
 
 ## Units (`content/units/`)
 

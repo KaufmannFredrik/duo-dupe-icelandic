@@ -6,7 +6,7 @@ import { loadJSON, ready } from '../app.js';
 import { loadCourse } from '../course.js';
 import { loadProgress } from '../progress.js';
 import { pick, t } from '../i18n.js';
-import { analyze, gloss, lemma, loadAll, recordings, sentence, tagsOf, translation } from '../data.js';
+import { analyze, casesOf, gloss, lemma, loadAll, recordings, sentence, tagsOf, translation } from '../data.js';
 import { play, stop, ttsCredit } from '../audio.js';
 import { icon } from '../shell.js';
 import { caseTag, classLabel, describe, genderLabel } from '../ui/forms.js';
@@ -120,7 +120,8 @@ async function playAll() {
 }
 
 // tag: the course word this is in its sentence (data/tags.json), -1 for another word, else undefined.
-function panelHTML(word, tag) {
+// caseId: the case the parser gives it there; a form such as "kaffi" then shows that case only.
+function panelHTML(word, tag, caseId) {
   const all = analyze(word);
   const found = typeof tag === 'string' && all.some((a) => a.id === tag) ? all.filter((a) => a.id === tag) : tag === -1 ? [] : all;
   const close = `<button type="button" class="icon-button word-panel__close" data-close aria-label="${t('stories.close')}">${icon('close')}</button>`;
@@ -134,7 +135,8 @@ function panelHTML(word, tag) {
     .map(([id, an]) => {
       const l = lemma(id);
       const rec = recordings(id)[0];
-      const tags = [...new Set(an.map((a) => a.tag))].slice(0, 4);
+      const inCase = caseId ? an.filter((a) => a.parsed.case === caseId) : [];
+      const tags = [...new Set((inCase.length ? inCase : an).map((a) => a.tag))].slice(0, 4);
       return `<div class="stack word-panel__lemma">
         <p><span class="label">${t('stories.lemma')}</span><br><span lang="is" class="learn-text">${esc(l.lemma)}</span> ${l.kyn ? `<span class="tag tag--gender">${genderLabel(l.kyn)}</span>` : ''}<span class="tag tag--pos">${esc(classLabel(l.ofl))}</span></p>
         <p><span class="label">${t('stories.meaning')}</span><br>${esc(gloss(id))}</p>
@@ -152,8 +154,9 @@ function openWord(btn) {
   activeWord = btn;
   btn.setAttribute('aria-expanded', 'true');
   const sid = story.lines[Number(btn.closest('[data-line]').dataset.line)].sentence;
-  const tag = tagsOf(sid)?.[Number(btn.dataset.w)];
-  panel.innerHTML = panelHTML(btn.textContent, typeof tag === 'string' ? tag.replace(/^~/, '') : (tag ?? undefined));
+  const w = Number(btn.dataset.w);
+  const tag = tagsOf(sid)?.[w];
+  panel.innerHTML = panelHTML(btn.textContent, typeof tag === 'string' ? tag.replace(/^~/, '') : (tag ?? undefined), typeof tag === 'string' ? casesOf(sid)?.[w] : undefined);
   panel.classList.add('is-open');
   if (!desktop.matches) panel.querySelector('[data-close]').focus();
 }

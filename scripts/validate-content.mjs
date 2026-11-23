@@ -209,7 +209,11 @@ async function checkSmallFiles() {
   for (const f of index.units) if (!existsSync(path.join(ROOT, 'content/units', f))) err('content/units/index.json', `missing unit file ${f}`);
   const rules = await readJson('content/case-rules.json');
   if (rules.reviewed === false) unreviewed.push('content/case-rules.json');
-  for (const [id, r] of Object.entries(rules.rules)) await checkText(`content/case-rules.json ${id}`, r.trigger);
+  for (const [id, r] of Object.entries(rules.rules)) {
+    await checkText(`content/case-rules.json ${id}`, r.trigger);
+    for (const g of r.nouns ?? []) if (!rules.nounGroups?.[g]) err(`content/case-rules.json ${id}`, `unknown noun group ${g}`);
+  }
+  for (const [g, ids] of Object.entries(rules.nounGroups ?? {})) for (const id of ids) if (!lexicon.lemmas[id]) err(`content/case-rules.json nounGroups.${g}`, `unknown lemma ${id}`);
 }
 
 // Hand-written Icelandic sentences anywhere in content/ must pass GreynirCorrect.

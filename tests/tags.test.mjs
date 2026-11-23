@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { align, resolve } from '../scripts/lib/tags.mjs';
+import { align, caseOf, resolve, sentencesWithVerb } from '../scripts/lib/tags.mjs';
 
 // A tiny course: the forms and lemmas the rules are tested with.
 const lexicon = {
@@ -76,4 +76,23 @@ test('tags: parser tokens line up with the app words, also across multiword toke
   assert.equal(out[0], t1);
   assert.equal(out[3], t2);
   assert.equal(out[4], t2);
+});
+
+test('tags: the case is the one the parser gives one word in a sentence with a verb', () => {
+  const kaffi = { t: 'kaffi', l: 'kaffi', c: 'no', k: 'þf', s: 0 };
+  const verb = { t: 'drekka', l: 'drekka', c: 'so', s: 0 };
+  assert.equal(caseOf('kaffi', kaffi, verb, sentencesWithVerb([verb, kaffi])), 'ÞF');
+  assert.equal(caseOf('kaffi', { ...kaffi, k: undefined }, verb), null, 'no case');
+  assert.equal(caseOf('klukkan', { t: 'klukkan sjö', l: 'klukkan sjö', c: 'tími', k: 'nf', s: 0 }), null, 'a token of several words');
+  // "Góða nótt. Dreymi þig vel.": the first sentence has no verb, so its case is a guess.
+  const nott = { t: 'nótt', l: 'nótt', c: 'no', k: 'nf', s: 0 };
+  assert.equal(caseOf('nótt', nott, undefined, sentencesWithVerb([nott, { t: 'Dreymi', l: 'dreyma', c: 'so', s: 1 }])), null);
+});
+
+test('tags: a meal after í, eftir or fyrir is never kept as dative', () => {
+  const eftir = { t: 'eftir', l: 'eftir', c: 'fs', s: 0 };
+  const meal = (k) => ({ t: 'kvöldmat', l: 'kvöldmatur', c: 'no', k, s: 0 });
+  assert.equal(caseOf('kvöldmat', meal('þgf'), eftir), null);
+  assert.equal(caseOf('kvöldmat', meal('þf'), eftir), 'ÞF');
+  assert.equal(caseOf('kvöldmat', meal('þgf'), { t: 'með', l: 'með', c: 'fs', s: 0 }), 'ÞGF');
 });

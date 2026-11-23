@@ -1,6 +1,11 @@
 {
   "reviewed": false,
-  "note": "Rules behind the 'why this case?' hints. A rule applies when its trigger word comes right before the noun phrase (prepositions) or governs the object (verbs). Each rule needs native review before release.",
+  "note": "Rules behind the 'why this case?' hints. A rule applies when its trigger word comes right before the noun phrase (prepositions) or governs the object (verbs), and has the case of the word. A rule with nouns is for time expressions: it applies only when the word or the one after it is a noun of those groups (nounGroups), and it is tried before the rules without nouns. Each rule needs native review before release.",
+  "nounGroups": {
+    "time": ["dagur_no", "kvöld_no", "morgunn_no", "nótt_no", "vika_no", "mánuður_no", "ár_no", "klukkutími_no", "mínúta_no", "helgi_no", "mánudagur_no", "þriðjudagur_no", "miðvikudagur_no", "fimmtudagur_no", "föstudagur_no", "laugardagur_no", "sunnudagur_no", "sumar_no", "vetur_no", "vor_no", "haust_no"],
+    "tími": ["tími_no"],
+    "meals": ["matur_no", "morgunmatur_no", "hádegismatur_no", "kvöldmatur_no"]
+  },
   "rules": {
     "til": { "trigger": "til", "kind": "preposition", "case": "EF", "en": "til (to) always takes the genitive.", "nb": "til (til) styrer alltid genitiv." },
     "án": { "trigger": "án", "kind": "preposition", "case": "EF", "en": "án (without) always takes the genitive.", "nb": "án (uten) styrer alltid genitiv." },
@@ -9,10 +14,19 @@
     "úr": { "trigger": "úr", "kind": "preposition", "case": "ÞGF", "en": "úr (out of) always takes the dative.", "nb": "úr (ut av) styrer alltid dativ." },
     "af": { "trigger": "af", "kind": "preposition", "case": "ÞGF", "en": "af (of, from) always takes the dative.", "nb": "af (av) styrer alltid dativ." },
     "um": { "trigger": "um", "kind": "preposition", "case": "ÞF", "en": "um (about, around) always takes the accusative.", "nb": "um (om) styrer alltid akkusativ." },
+    "um-tími": { "trigger": "um", "kind": "preposition", "case": "ÞF", "nouns": ["time", "tími"], "en": "um takes the accusative in time expressions too: um helgar (at weekends), um tíma (for a while).", "nb": "um styrer akkusativ også i tidsuttrykk: um helgar (i helgene), um tíma (en stund)." },
     "í-staður": { "trigger": "í", "kind": "preposition", "case": "ÞGF", "en": "í (in) takes the dative for a location: where something is.", "nb": "í (i) styrer dativ ved sted: hvor noe er." },
     "í-hreyfing": { "trigger": "í", "kind": "preposition", "case": "ÞF", "en": "í (into) takes the accusative for movement: where something goes.", "nb": "í (inn i) styrer akkusativ ved bevegelse: hvor noe går." },
+    "í-tími": { "trigger": "í", "kind": "preposition", "case": "ÞF", "nouns": ["time"], "en": "In time expressions í takes the accusative: í dag (today), í sumar (this summer), í viku (for a week).", "nb": "I tidsuttrykk styrer í akkusativ: í dag (i dag), í sumar (i sommer), í viku (i en uke)." },
+    "í-tími-þgf": { "trigger": "í", "kind": "preposition", "case": "ÞGF", "nouns": ["time"], "en": "í takes the dative in some time expressions: í hverri viku (every week), í síðasta mánuði (last month).", "nb": "í styrer dativ i noen tidsuttrykk: í hverri viku (hver uke), í síðasta mánuði (forrige måned)." },
     "á-staður": { "trigger": "á", "kind": "preposition", "case": "ÞGF", "en": "á (on, at) takes the dative for a location.", "nb": "á (på) styrer dativ ved sted." },
     "á-hreyfing": { "trigger": "á", "kind": "preposition", "case": "ÞF", "en": "á (onto, to) takes the accusative for movement.", "nb": "á (på, til) styrer akkusativ ved bevegelse." },
+    "á-tími": { "trigger": "á", "kind": "preposition", "case": "ÞF", "nouns": ["time"], "en": "In time expressions á takes the accusative: á sunnudaginn (on Sunday), á veturna (in winter).", "nb": "I tidsuttrykk styrer á akkusativ: á sunnudaginn (på søndag), á veturna (om vinteren)." },
+    "á-tími-þgf": { "trigger": "á", "kind": "preposition", "case": "ÞGF", "nouns": ["time"], "en": "á takes the dative in some time expressions: á sunnudögum (on Sundays), á hverjum degi (every day).", "nb": "á styrer dativ i noen tidsuttrykk: á sunnudögum (på søndager), á hverjum degi (hver dag)." },
+    "eftir-tími": { "trigger": "eftir", "kind": "preposition", "case": "ÞF", "nouns": ["time", "tími", "meals"], "en": "eftir takes the accusative when it means after or in a time: eftir matinn (after the meal), eftir klukkutíma (in an hour).", "nb": "eftir styrer akkusativ når det betyr etter eller om en tid: eftir matinn (etter maten), eftir klukkutíma (om en time)." },
+    "eftir": { "trigger": "eftir", "kind": "preposition", "case": "ÞGF", "en": "eftir takes the dative after verbs such as bíða (wait for) and muna (remember), and for order: á eftir laugardegi (after Saturday).", "nb": "eftir styrer dativ etter verb som bíða (vente på) og muna (huske), og om rekkefølge: á eftir laugardegi (etter lørdag)." },
+    "fyrir-síðan": { "trigger": "fyrir", "kind": "preposition", "case": "ÞGF", "nouns": ["time", "tími"], "en": "fyrir takes the dative when it means ago: fyrir tveimur árum (two years ago).", "nb": "fyrir styrer dativ når det betyr for ... siden: fyrir tveimur árum (for to år siden)." },
+    "fyrir": { "trigger": "fyrir", "kind": "preposition", "case": "ÞF", "en": "fyrir takes the accusative when it means for or before: fyrir mig (for me), fyrir kvöldmatinn (before dinner).", "nb": "fyrir styrer akkusativ når det betyr for eller før: fyrir mig (for meg), fyrir kvöldmatinn (før middag)." },
     "eiga": { "trigger": "eiga", "kind": "verb", "case": "ÞF", "en": "eiga (to own, to have) takes its object in the accusative.", "nb": "eiga (å eie, å ha) tar objektet i akkusativ." }
   }
 }

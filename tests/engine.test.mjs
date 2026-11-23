@@ -57,12 +57,35 @@ test('generator: homographs are told apart by the sentence tags', () => {
     ['Hann elskaði hana einu sinni.', 'einn_to', 'hún_pfn'],
     ['Hann sér hundinn hennar.', 'sig_afn', 'sjá_so'], // sér = "sees"
     ['Við erum öll til.', 'til_fs', 'vera_so'], // til = "ready", a loose use: known, not taught
+    ['Ég sé það.', 'vera_so', 'sjá_so'], // the parser reads sé as vera; content/tag-fixes.json
   ];
   for (const [text, not, yes] of cases) {
     assert.ok(sid(text), `"${text}" is in the data`);
     assert.equal(d.generator.hasLemma(sid(text), not), false, `"${text}" has no ${not}`);
     assert.equal(d.generator.hasLemma(sid(text), yes), true, `"${text}" has ${yes}`);
   }
+});
+
+test('generator: a case and its rule come from the sentence, not from the first form of the paradigm', () => {
+  const sid = (text) => Object.keys(d.sentences).find((k) => d.sentences[k].is === text);
+  const why = (text, id) => {
+    assert.ok(sid(text), `"${text}" is in the data`);
+    const t = d.generator.caseTarget(id, sid(text));
+    return t && { tag: t.tag, rule: d.generator.ruleFor(sid(text), t.index, t.cases[0], id) };
+  };
+  assert.deepEqual(why('Er hann að drekka kaffi?', 'kaffi_no'), { tag: 'ÞFET', rule: null }); // kaffi: NF, ÞF or ÞGF
+  assert.deepEqual(why('Systir mín er í vinnu.', 'vinna_no'), { tag: 'ÞGFET', rule: 'í-staður' });
+  assert.deepEqual(why('Ég á dóttur.', 'dóttir_no'), { tag: 'ÞFET', rule: 'eiga' }); // á is the verb eiga here
+  assert.deepEqual(why('Ég var í viku hjá frænda mínum.', 'vika_no'), { tag: 'ÞFET', rule: 'í-tími' });
+  assert.deepEqual(why('Ég fer á sunnudaginn.', 'sunnudagur_no'), { tag: 'ÞFETgr', rule: 'á-tími' });
+  assert.deepEqual(why('Ég fer ekki í skólann á sunnudögum.', 'sunnudagur_no'), { tag: 'ÞGFFT', rule: 'á-tími-þgf' });
+  assert.deepEqual(why('Ég fer með þér á flugvöllinn.', 'flugvöllur_no'), { tag: 'ÞFETgr', rule: 'á-hreyfing' });
+  assert.deepEqual(why('Ég kom til Japans fyrir tveimur árum.', 'ár_no'), { tag: 'ÞGFFT', rule: 'fyrir-síðan' }); // the phrase is "tveimur árum"
+  assert.equal(why('Við verðum að bíða eftir honum.', 'hann_pfn')?.rule, 'eftir');
+  assert.equal(why('Hún tekur alltaf af borðinu eftir matinn.', 'matur_no')?.rule, 'eftir-tími');
+  assert.equal(why('Takk fyrir matinn.', 'matur_no')?.rule, 'fyrir');
+  // No verb: the case comes from a verb left out, so the form's three cases stay undecided.
+  assert.equal(why('Góða nótt.', 'nótt_no'), null);
 });
 
 test('generator: the same seed gives the same lesson', () => {
@@ -99,6 +122,23 @@ for (const unitId of ['hello', 'cafe', 'family', 'around', 'newwords']) {
           const bm = d.paradigm(s.lemma);
           assert.ok(analysesIn(bm, s.target).length, `"${s.target}" is a form of ${s.lemma}`);
           assert.ok(tokens(d.sentences[s.sentence].is).some((t) => t.raw === s.target), 'target is in the sentence');
+          // The case named is the parser's; without one, the form must have a single case.
+          const parsed = tags ? d.casesOf(s.sentence)?.[at] : undefined;
+          const formCases = new Set(analysesIn(bm, s.target).filter((a) => a.parsed.case && a.parsed.variant === 1).map((a) => a.parsed.case));
+          if (parsed) assert.equal(s.meta.case, parsed, `"${s.target}" in "${d.sentences[s.sentence].is}" is ${parsed}, not ${s.meta.case}`);
+          else assert.equal(formCases.size, 1, `"${s.target}" can be ${[...formCases]} and the parser did not decide`);
+          if (s.rule) {
+            const rule = d.rules[s.rule];
+            assert.equal(rule.case, s.meta.case, `rule ${s.rule} is for ${rule.case}`);
+            if (rule.kind === 'preposition') {
+              // The preposition comes right before the phrase: the words before the target in its case.
+              let start = at;
+              while (start > 0 && tags && d.casesOf(s.sentence)?.[start - 1] === s.meta.case) start--;
+              const prev = tokens(d.sentences[s.sentence].is)[start - 1];
+              const prevIds = typeof tags?.[start - 1] === 'string' ? [tags[start - 1]] : [...(d.formIndex.get(prev.low) ?? [])];
+              assert.deepEqual(prevIds, [`${rule.trigger}_fs`], `rule ${s.rule}: "${prev.raw}" before "${s.target}" is not the preposition`);
+            }
+          }
         }
         if (s.type === 'ending') {
           assert.ok(s.options.some((o) => o.toLocaleLowerCase('is') === s.target.toLocaleLowerCase('is')), 'answer among options');

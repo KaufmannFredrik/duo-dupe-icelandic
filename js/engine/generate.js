@@ -10,6 +10,12 @@ import { pick, rng, shuffle } from './rng.js';
 const tokenize = (text) => [...text.matchAll(/\p{L}+/gu)].map((m) => ({ raw: m[0], low: m[0].toLocaleLowerCase('is'), index: m.index }));
 const CASE_CLASSES = new Set(['no', 'lo', 'pfn', 'fn', 'to']);
 
+/** The rules of content/case-rules.json, with each rule's noun groups turned into lemma ids. */
+export function expandRules(file) {
+  const group = (g) => file.nounGroups?.[g] ?? [];
+  return Object.fromEntries(Object.entries(file.rules).map(([id, r]) => [id, r.nouns ? { ...r, nouns: r.nouns.flatMap(group) } : r]));
+}
+
 /**
  * @param {object} data
  * @param {object} data.lexicon        data/lexicon.json
@@ -20,8 +26,10 @@ const CASE_CLASSES = new Set(['no', 'lo', 'pfn', 'fn', 'to']);
  * @param {(sid: string) => (string|-1|null)[]|undefined} [data.tagsOf]  per word of a sentence, the
  *   course word it is there (data/tags.json): a lemma id, "~" + id when used loosely, -1 for
  *   another word, null if undetermined
+ * @param {(sid: string) => (string|null)[]|undefined} [data.casesOf]  per word of a sentence, the
+ *   case the parser gives it there (NF, ÞF, ÞGF, EF or null); undefined if not parsed
  * @param {object} data.audio          data/audio.json "recordings"
- * @param {object} data.rules          content/case-rules.json "rules"
+ * @param {object} data.rules          expandRules(content/case-rules.json)
  * @param {Set<string>} [data.names]   lowercase names allowed in sentences
  */
 export function createGenerator(data) {
@@ -51,6 +59,19 @@ export function createGenerator(data) {
     if (typeof tag === 'string') return tag[0] !== '~' ? [tag] : loose ? [tag.slice(1)] : [];
     if (tag === -1) return [];
     return [...(formIndex.get(toks(sid)[i].low) ?? [])];
+  };
+  // The course word the i-th word is, when that is certain (one candidate), else null.
+  const onlyAt = (sid, i) => {
+    if (i < 0 || i >= toks(sid).length) return null;
+    const ids = idsAt(sid, i);
+    return ids.length === 1 ? lexicon.lemmas[ids[0]] : null;
+  };
+  // The case the parser gives the i-th word in its sentence, or null.
+  const casesOf = data.casesOf ?? (() => undefined);
+  const caseAt = (sid, i) => {
+    if (!tags(sid)) return null;
+    const c = casesOf(sid);
+    return c?.length === toks(sid).length ? c[i] : null;
   };
 
   // A word is fine for a learner when it is an allowed course word or a name.
@@ -155,33 +176,51 @@ export function createGenerator(data) {
 
   // A case target: a token that is this lemma in the sentence (tagged so, or when untagged the
   // only course word spelled so), whose analyses agree on number, definiteness and gender, and
-  // whose comparable forms differ by case.
+  // whose comparable forms differ by case. Its case is the one the parser gives it there: "kaffi"
+  // can be three cases, and in "Er hann að drekka kaffi?" it is the accusative. A form that can
+  // be several cases is used only when the parser decided; unique: the form has one case only.
   function caseTarget(id, sid, { unique = false } = {}) {
     const bm = paradigm(id);
     for (const [i, tok] of toks(sid).entries()) {
       const ids = idsAt(sid, i);
       if (ids.length !== 1 || ids[0] !== id) continue;
-      const an = analysesIn(bm, tok.raw).filter((a) => a.parsed.case && a.parsed.variant === 1);
+      let an = analysesIn(bm, tok.raw).filter((a) => a.parsed.case && a.parsed.variant === 1);
+      if (!an.length) continue;
+      const p0 = an[0].parsed;
+      const same = (q) => q.number === p0.number && q.definite === p0.definite && q.gender === p0.gender && q.degree === p0.degree && q.strength === p0.strength;
+      if (!an.every((a) => same(a.parsed))) continue; // the parser chooses a case, never a number
+      const formCases = new Set(an.map((a) => a.parsed.case));
+      if (unique && formCases.size !== 1) continue;
+      const parsed = caseAt(sid, i);
+      if (parsed) an = an.filter((a) => a.parsed.case === parsed);
+      else if (formCases.size > 1) continue;
       if (!an.length) continue;
       const p = an[0].parsed;
-      const same = (q) => q.number === p.number && q.definite === p.definite && q.gender === p.gender && q.degree === p.degree && q.strength === p.strength;
-      if (!an.every((a) => same(a.parsed))) continue;
       const comparable = bm.filter((f) => f.b && /\d$/.test(f.g) === false).map((f) => ({ f, q: analysesIn([f], f.b)[0]?.parsed })).filter(({ q }) => q?.case && same(q));
       const options = [...new Set(comparable.map(({ f }) => f.b))];
       if (options.length < 2) continue;
-      if (unique && new Set(an.map((a) => a.parsed.case)).size !== 1) continue;
-      return { tok, tag: an[0].tag, parsed: p, cases: [...new Set(an.map((a) => a.parsed.case))], options };
+      return { tok, index: i, tag: an[0].tag, parsed: p, cases: [...new Set(an.map((a) => a.parsed.case))], options };
     }
     return null;
   }
 
-  function ruleFor(sid, tok, caseId) {
-    const before = toks(sid).filter((t) => t.index < tok.index);
-    const prev = before.at(-1)?.low;
-    const verbBefore = (lemma) => before.some((_, i) => idsAt(sid, i).some((x) => lexicon.lemmas[x]?.lemma === lemma && lexicon.lemmas[x].ofl === 'so'));
-    for (const [rid, rule] of Object.entries(rules)) {
-      if (rule.kind === 'preposition' && rule.trigger === prev && rule.case === caseId) return rid;
-      if (rule.kind === 'verb' && rule.case === caseId && verbBefore(rule.trigger)) return rid;
+  // The rule behind the case of the i-th word (lemma id) of a sentence: a preposition right before
+  // its phrase, which must be that preposition there ("á" in "Ég á dóttur" is the verb eiga), or a
+  // verb before it. The phrase starts after the words before it that the parser gives the same
+  // case ("fyrir tveimur árum"). Rules with "nouns" are for time expressions and apply only when
+  // the word or the next one is one of those nouns ("á sunnudaginn"); they are tried first.
+  const ruleList = Object.entries(rules).sort(([, a], [, b]) => Number(!a.nouns) - Number(!b.nouns));
+  function ruleFor(sid, i, caseId, id) {
+    let start = i;
+    while (start > 0 && caseAt(sid, start - 1) === caseId) start--;
+    const prev = onlyAt(sid, start - 1);
+    const near = new Set([id, ...(i + 1 < toks(sid).length ? idsAt(sid, i + 1) : [])]);
+    const verbBefore = (lemma) => toks(sid).some((_, j) => j < i && onlyAt(sid, j)?.lemma === lemma && onlyAt(sid, j).ofl === 'so');
+    for (const [rid, rule] of ruleList) {
+      if (rule.case !== caseId) continue;
+      if (rule.nouns && !rule.nouns.some((n) => near.has(n))) continue;
+      if (rule.kind === 'preposition' && prev?.lemma === rule.trigger && prev.ofl === 'fs') return rid;
+      if (rule.kind === 'verb' && verbBefore(rule.trigger)) return rid;
     }
     return null;
   }
@@ -192,7 +231,7 @@ export function createGenerator(data) {
       const t = caseTarget(id, sid, { unique: type === 'case' });
       if (!t) continue;
       used.add(sid);
-      const base = { lemma: id, sentence: sid, target: t.tok.raw, tag: t.tag, rule: ruleFor(sid, t.tok, t.cases[0]), key: `${id}|${t.tag}`, meta: { case: t.cases[0], number: t.parsed.number, gender: t.parsed.gender ?? lexicon.lemmas[id].kyn } };
+      const base = { lemma: id, sentence: sid, target: t.tok.raw, tag: t.tag, rule: ruleFor(sid, t.index, t.cases[0], id), key: `${id}|${t.tag}`, meta: { case: t.cases[0], number: t.parsed.number, gender: t.parsed.gender ?? lexicon.lemmas[id].kyn } };
       return type === 'case' ? { type: 'case', ...base, cases: t.cases } : { type: 'ending', ...base, options: shuffle(t.options, r) };
     }
     return null;
@@ -306,5 +345,5 @@ export function createGenerator(data) {
     return steps;
   }
 
-  return { lesson, review, placement, sentenceOk, caseTarget, toks, hasLemma };
+  return { lesson, review, placement, sentenceOk, caseTarget, ruleFor, toks, hasLemma };
 }

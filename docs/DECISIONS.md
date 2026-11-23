@@ -2,6 +2,38 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## The case of a word comes from the parser (2026-11-23)
+
+Planning unit 5 showed a wrong "why this case?" hint (*Ég var í viku hjá frænda mínum*: "í takes the accusative for movement"). A check of every case and ending exercise in every lesson found three causes.
+
+### What was wrong
+
+- **The first case in the paradigm.** A form such as *kaffi* can be three cases (NF, ÞF, ÞGF). An ending exercise named the first one, so *Er hann að drekka kaffi?* explained *kaffi* as nominative. 19 exercises named the wrong case: accusative objects called nominative (*te*, *kaffi*, *mjólk*, *kjötið*, *sykur*, *skeið*, *strætó*, *land*, *buxurnar*, *fjall*, *orðin* and others), and datives called accusative (*með súpu*, *Systir mín er í vinnu*). The same tag names the learner's form card in spaced repetition, so that practice was filed under the wrong form.
+- **Spelling instead of the word.** A preposition rule fired on the spelling of the word before: *á* in *Ég á dóttur*, *Hann á fjóra farsíma* and *Ég á bókina* is the verb *eiga*, but the hint said "á takes the accusative for movement".
+- **Time is not movement.** *í viku* (for a week), *í fjóra daga* and *á sunnudaginn* got the movement rule. In all, 8 hints were wrong.
+
+### What changed
+
+- `scripts/tag-icelandic.py` (tagger v3) also writes the case Greynir gives each noun, pronoun, adjective and numeral, and which sentence of a text each word is in. `data/tags.json` has a new `cases` map: one letter per word (n, a, d, g, or -). It grows from 18 to 26 KB gzipped.
+- Two readings are not kept:
+  - the case in a sentence without a verb (*Góða nótt.*, *Bjór, takk.*): the case comes from a verb that is left out, and the parser guesses the nominative. *Góða nótt* is the accusative: *góða* is the strong accusative or the weak nominative (DMII Core), and the strong nominative would be *góð nótt*;
+  - a dative for a meal after *í*, *eftir* or *fyrir* (*fisk í kvöldmat*, *eftir kvöldmat*): wherever the form shows the case, Tatoeba has the accusative there (*eftir matinn*, *fyrir kvöldmatinn*, *fyrir morgunmatinn*: 14 sentences, no dative).
+- `content/tag-fixes.json` corrects the parser by hand: *sé* in *Ég sé það* and *Ég sé það ekki* is *sjá* ("see"), not the subjunctive of *vera*. A fixed sentence keeps no cases. The two sentences had been used in unit 1 as if the learner knew every word.
+- The generator takes a form's case from the parser (`caseTarget` in `js/engine/generate.js`). A form that can be several cases is used only when the parser decided, and the parser never chooses the number (in *Góða nótt mamma* it reads *mamma* as a genitive plural). The case question still asks only about forms with one case.
+- A preposition rule applies only when the word before the phrase is that preposition according to the tags. The phrase includes the words before the target that the parser gives the same case (*fyrir tveimur árum*).
+- New rules, all with examples from Tatoeba. Time rules apply only when the word or the next one is a time noun (`nounGroups` in `content/case-rules.json`), and are tried first:
+  - *í*, *á* and *um* with the accusative: *í dag*, *í sumar*, *í viku*; *á sunnudaginn*, *á veturna*; *um helgar*, *um tíma*;
+  - *í* and *á* with the dative: *í hverri viku*, *í síðasta mánuði*; *á sunnudögum*, *á hverjum degi*;
+  - *eftir* with the accusative for a time (*eftir matinn*, *eftir klukkutíma*) and the dative otherwise (*bíða eftir honum*, *á eftir laugardegi*);
+  - *fyrir* with the dative for "ago" (*fyrir tveimur árum*) and the accusative otherwise (*fyrir mig*, *fyrir kvöldmatinn*).
+- *tími* is not a time noun for *í*: *í tíma* is usually a class (*Hann kemur ekki í tíma á morgun*), so the place and movement rules explain it.
+- The story reader's word panel shows the case a word has in its sentence, when the parser decided it.
+- Saved progress is not migrated: a form card filed under the wrong case keeps its history, and new practice goes to the right card.
+
+### Tests
+
+- `node --test`: 80 tests (new: the parser's case and the readings not kept, eleven hint regressions, the *sé* fix, and for every case and ending exercise in every lesson: the case named is the parser's or the form's only case, and a preposition rule has that preposition before the phrase).
+
 ## Hand-made units: unit 4, Getting around (2026-11-05)
 
 ### Unit 4, *Gata*

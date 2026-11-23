@@ -1,0 +1,7 @@
+{
+  "note": "Hand-checked corrections of the Greynir parse, applied by scripts/build-tags.mjs: in the given sentence, the given word is the given course word. A fixed sentence keeps no parser cases in data/tags.json, because they come from the wrong parse.",
+  "fixes": [
+    { "sentence": "3799208", "word": "sé", "lemma": "sjá_so", "reason": "Ég sé það (I can see that): the parser reads sé as the subjunctive of vera." },
+    { "sentence": "3772554", "word": "sé", "lemma": "sjá_so", "reason": "Ég sé það ekki (I don't see it): the parser reads sé as the subjunctive of vera." }
+  ]
+}

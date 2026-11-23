@@ -1,8 +1,10 @@
-"""Lemma and word class of every word in a sentence, from the Greynir parser (reynir, MIT, Miðeind).
+"""Lemma, word class and case of every word in a sentence, from the Greynir parser (reynir, MIT, Miðeind).
 
 Reads JSON lines {"id": ..., "text": ...} on stdin and writes JSON lines on stdout:
-    {"id": ..., "parsed": true,  "tokens": [{"t": "afar", "l": "afar", "c": "eo"}, ...]}
-when every sentence in the text parsed, otherwise
+    {"id": ..., "parsed": true,  "tokens": [{"t": "afar", "l": "afar", "c": "eo", "s": 0},
+                                            {"t": "kaffi", "l": "kaffi", "c": "no", "k": "þf", "s": 0}, ...]}
+when every sentence in the text parsed ("k" is the case the parser gives a noun, pronoun, adjective
+or numeral in that sentence: nf, þf, þgf or ef; "s" numbers the sentences of the text), otherwise
     {"id": ..., "parsed": false, "tokens": [{"t": "afar", "m": [["afi", "kk"], ["afar", "ao"]]}, ...]}
 where "m" lists every BÍN meaning of the word form (lemma, word class), without choosing one.
 scripts/build-tags.mjs turns this into data/tags.json.
@@ -27,12 +29,27 @@ def meanings(tok):
     return sorted(out)
 
 
+# Word classes whose case variant is the word's own case. A verb's case variant is the case of its
+# object, and a preposition's the case it governs, so those are left out.
+CASE_CLASSES = {"no", "pfn", "fn", "abfn", "lo", "to", "töl", "gr"}
+CASES = ("nf", "þf", "þgf", "ef")
+
+
+def terminal(t, s):
+    out = {"t": t.text, "l": t.lemma, "c": t.category, "s": s}
+    if t.category in CASE_CLASSES:
+        case = [v for v in t.variants if v in CASES]
+        if len(case) == 1:
+            out["k"] = case[0]
+    return out
+
+
 def tag(g, text):
     parsed_tokens, raw_tokens, all_parsed = [], [], True
-    for sent in g.submit(text):
+    for s, sent in enumerate(g.submit(text)):
         ok = sent.parse()
         if ok and sent.terminals:
-            parsed_tokens += [{"t": t.text, "l": t.lemma, "c": t.category} for t in sent.terminals]
+            parsed_tokens += [terminal(t, s) for t in sent.terminals]
         else:
             all_parsed = False
         raw_tokens += [{"t": tok.txt, "m": meanings(tok)} for tok in sent.tokens if tok.txt]

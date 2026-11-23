@@ -7,7 +7,7 @@ import { loadJSON } from './app.js';
 import { getSettings } from './store.js';
 import { getLang } from './i18n.js';
 import { analysesIn } from './grammar.js';
-import { createGenerator } from './engine/generate.js';
+import { createGenerator, expandRules } from './engine/generate.js';
 
 let lexicon;
 let sentencesFile;
@@ -40,7 +40,7 @@ export async function loadAll() {
     tagsFile ?? loadJSON('data/tags.json'),
     loadJSON('content/sentence-exclude.json'),
     audioFile ?? loadJSON('data/audio.json'),
-    rules ?? loadJSON('content/case-rules.json').then((x) => x.rules),
+    rules ?? loadJSON('content/case-rules.json').then(expandRules),
     names ?? loadJSON('content/allowlist.json').then((x) => new Set(x.names.map((n) => n.toLocaleLowerCase('is')))),
     loadForms(),
   ]);
@@ -66,6 +66,16 @@ export const sentence = (sid) => (excluded.has(sid) ? undefined : sentencesFile?
 export function tagsOf(sid) {
   const t = tagsFile?.sentences[sid];
   return t?.map((x) => (x === null || x === -1 ? x : x <= -2 ? `~${tagsFile.lemmas[-2 - x]}` : tagsFile.lemmas[x]));
+}
+
+const CASE_LETTER = { n: 'NF', a: 'ÞF', d: 'ÞGF', g: 'EF' };
+/**
+ * The case of each word (p{L}+ token) of a sentence as the parser gives it there: NF, ÞF, ÞGF,
+ * EF, or null for a word without one; undefined when the sentence was not parsed.
+ */
+export function casesOf(sid) {
+  const c = tagsFile?.cases?.[sid];
+  return c ? [...c].map((x) => CASE_LETTER[x] ?? null) : undefined;
 }
 export const recordings = (id) => audioFile?.recordings[id] ?? [];
 export const caseRules = () => rules;
@@ -102,7 +112,7 @@ export function analyze(form) {
 }
 
 export function getGenerator() {
-  generator ??= createGenerator({ lexicon, paradigm, formIndex: index, sentences: sentencesFile.sentences, pool: sentencesFile.pool, tagsOf, audio: audioFile.recordings, rules, names });
+  generator ??= createGenerator({ lexicon, paradigm, formIndex: index, sentences: sentencesFile.sentences, pool: sentencesFile.pool, tagsOf, casesOf, audio: audioFile.recordings, rules, names });
   return generator;
 }
 

@@ -69,6 +69,36 @@ export function sameWord(id, word, tok, forms, lexicon) {
   return false;
 }
 
+// The parser's case names (tag-icelandic.py "k") as DMII Core case tags, and the one-letter codes
+// data/tags.json stores them as: nominative, accusative, dative, genitive.
+const PARSER_CASE = { nf: 'NF', þf: 'ÞF', þgf: 'ÞGF', ef: 'EF' };
+export const CASE_CODE = { NF: 'n', ÞF: 'a', ÞGF: 'd', EF: 'g' };
+
+// Greynir reads an indefinite meal right after í, eftir or fyrir as dative ("fisk í kvöldmat",
+// "eftir kvöldmat"). Wherever the form shows the case, Tatoeba has the accusative there (eftir
+// matinn, fyrir kvöldmatinn, fyrir morgunmatinn: 14 sentences, no dative), so that reading is not kept.
+const MEALS = new Set(['matur', 'morgunmatur', 'hádegismatur', 'kvöldmatur']);
+const MEAL_PREPOSITIONS = new Set(['í', 'eftir', 'fyrir']);
+
+/** The sentences ("s" numbers) of a parsed text that have a verb. */
+export const sentencesWithVerb = (tokens) => new Set(tokens.filter((t) => t.c === 'so').map((t) => t.s));
+
+/**
+ * The case the parser gives `word` in its sentence (NF, ÞF, ÞGF or EF), or null: when the
+ * sentence was not parsed, the word has no case, its token covers several words ("klukkan sjö",
+ * an idiom), whose case says nothing about this word, or the reading is a known parser error.
+ * A sentence without a verb ("Góða nótt.", "Bjór, takk.") takes its case from a verb left out,
+ * so the parser's nominative there is a guess and is not kept.
+ * @param {object} [prev] the parser token of the word before
+ * @param {Set<number>} [withVerb] sentencesWithVerb() of the text
+ */
+export function caseOf(word, tok, prev, withVerb) {
+  if (!tok?.k || words(tok.t ?? '').length !== 1 || low(tok.t) !== low(word)) return null;
+  if (withVerb && !withVerb.has(tok.s)) return null;
+  if (tok.k === 'þgf' && MEALS.has(tok.l) && prev?.c === 'fs' && MEAL_PREPOSITIONS.has(low(prev.l ?? ''))) return null;
+  return PARSER_CASE[tok.k] ?? null;
+}
+
 /**
  * Which course word `word` is, given the parser's token for it.
  * @param {Map<string, Set<string>>} forms lowercase form -> course lemma ids

@@ -14,6 +14,14 @@
 //   -1        the word is some other word (not in the course), or a name,
 //   null      undetermined: the parser could not analyze the sentence and the form is ambiguous.
 //
+// "cases" gives, for sentences the parser analyzed and that have a verb, the case of each word
+// there, one letter per word: n (nominative), a (accusative), d (dative), g (genitive), or - for
+// none. A form such as "kaffi" can be three cases; in "Er hann að drekka kaffi?" it is the
+// accusative, and exercises that explain the case must say so.
+//
+// content/tag-fixes.json corrects the parser by hand where it is wrong ("sé" in "Ég sé það" is
+// sjá, not vera); a fixed sentence keeps no cases.
+//
 //   node scripts/build-tags.mjs            (needs .venv with reynir, see README)
 //   node scripts/build-tags.mjs --check    exit 1 if data/tags.json does not match data/sentences.json
 
@@ -25,11 +33,11 @@ import { createInterface } from 'node:readline';
 import path from 'node:path';
 import { CACHE, ROOT } from './lib/bulk.mjs';
 import { pythonPath, SETUP_HELP } from './lib/lint.mjs';
-import { align, resolve, words } from './lib/tags.mjs';
+import { CASE_CODE, align, caseOf, resolve, sentencesWithVerb, words } from './lib/tags.mjs';
 
 const OUT = path.join(ROOT, 'data', 'tags.json');
 const CACHE_FILE = path.join(CACHE, 'greynir', 'tags.jsonl');
-const TAGGER = 'tag-icelandic.py v1';
+const TAGGER = 'tag-icelandic.py v3';
 const readJson = async (rel) => JSON.parse(await readFile(path.join(ROOT, rel), 'utf8'));
 const low = (s) => s.toLocaleLowerCase('is');
 const key = (text) => createHash('sha1').update(`${TAGGER}\n${text}`).digest('hex');
@@ -97,9 +105,23 @@ async function main() {
   const { sentences } = await readJson('data/sentences.json');
   const ids = Object.keys(sentences);
 
+  const { fixes } = await readJson('content/tag-fixes.json');
+  // The word a fix names: its index in the sentence, which must be unambiguous.
+  const fixAt = (fix) => {
+    if (!sentences[fix.sentence]) throw new Error(`content/tag-fixes.json: sentence ${fix.sentence} is not in data/sentences.json`);
+    if (!lexicon.lemmas[fix.lemma]) throw new Error(`content/tag-fixes.json: unknown lemma ${fix.lemma}`);
+    const at = words(sentences[fix.sentence].is).flatMap((w, i) => (low(w) === low(fix.word) ? [i] : []));
+    if (at.length !== 1) throw new Error(`content/tag-fixes.json: "${fix.word}" occurs ${at.length} times in sentence ${fix.sentence}`);
+    return at[0];
+  };
+
   if (process.argv.includes('--check')) {
     const tags = existsSync(OUT) ? await readJson('data/tags.json') : null;
-    const stale = !tags ? ids : ids.filter((sid) => tags.sentences[sid]?.length !== words(sentences[sid].is).length);
+    const n = (sid) => words(sentences[sid].is).length;
+    const stale = !tags?.cases ? ids : ids.filter((sid) => tags.sentences[sid]?.length !== n(sid) || (sid in tags.cases && tags.cases[sid].length !== n(sid)));
+    for (const fix of tags?.cases ? fixes : []) {
+      if (tags.lemmas[tags.sentences[fix.sentence][fixAt(fix)]] !== fix.lemma || fix.sentence in tags.cases) stale.push(fix.sentence);
+    }
     if (stale.length) {
       console.log(`data/tags.json is out of date for ${stale.length} sentences (first: ${stale.slice(0, 3).join(', ')}). Run npm run build:tags.`);
       process.exit(1);
@@ -112,15 +134,22 @@ async function main() {
   const tagged = await tagTexts(ids.map((sid) => sentences[sid].is));
   const lemmaIds = Object.keys(lexicon.lemmas);
   const index = new Map(lemmaIds.map((id, i) => [id, i]));
-  const stats = { sentences: ids.length, parsed: 0, words: 0, course: 0, loose: 0, other: 0, undetermined: 0 };
+  const stats = { sentences: ids.length, parsed: 0, words: 0, course: 0, loose: 0, other: 0, undetermined: 0, withCase: 0 };
   const changed = new Map(); // "form: spelling says X, parser says Y" -> count
   const out = {};
+  const cases = {};
   for (const sid of ids) {
     const text = sentences[sid].is;
     const r = tagged(text);
     if (r.parsed) stats.parsed++;
     const appWords = words(text);
     const aligned = align(appWords, r.tokens);
+    const withVerb = sentencesWithVerb(r.tokens);
+    const c = appWords.map((w, i) => CASE_CODE[caseOf(w, aligned[i], aligned[i - 1], withVerb)] ?? '-').join('');
+    if (/[^-]/.test(c)) {
+      cases[sid] = c;
+      stats.withCase += c.replace(/-/g, '').length;
+    }
     out[sid] = appWords.map((w, i) => {
       const res = resolve(w, aligned[i], forms, lexicon);
       stats.words++;
@@ -139,21 +168,26 @@ async function main() {
       return res.startsWith('~') ? -2 - index.get(res.slice(1)) : index.get(res);
     });
   }
+  for (const fix of fixes) {
+    out[fix.sentence][fixAt(fix)] = index.get(fix.lemma);
+    delete cases[fix.sentence];
+  }
 
   const reynir = existsSync(CACHE_FILE) ? 'reynir (Greynir), see .venv' : 'reynir (Greynir)';
   const file = {
-    version: 1,
+    version: 2,
     generated: new Date().toISOString(),
     generator: 'scripts/build-tags.mjs',
     tool: `${reynir}; ${TAGGER}`,
     license: 'Derived from the Tatoeba sentences in data/sentences.json (CC BY 2.0 FR).',
-    note: 'Per sentence, one entry per word (\\p{L}+ token): index into lemmas when the word is that course word in this sentence; -2 - index when it is that word used loosely (a preposition as a particle); -1 for another word or a name; null when undetermined.',
+    note: 'sentences: per sentence, one entry per word (\\p{L}+ token): index into lemmas when the word is that course word in this sentence; -2 - index when it is that word used loosely (a preposition as a particle); -1 for another word or a name; null when undetermined. cases: for sentences the parser analyzed and that have a verb, one letter per word, the case the parser gives it there: n nominative, a accusative, d dative, g genitive, - none.',
     lemmas: lemmaIds,
     sentences: out,
+    cases,
   };
   await writeFile(OUT, `${JSON.stringify(file)}\n`);
   const pct = (n, d) => `${((100 * n) / d).toFixed(1)}%`;
-  console.log(`Wrote data/tags.json: ${stats.sentences} sentences, ${pct(stats.parsed, stats.sentences)} parsed; ${stats.words} words: ${stats.course} course words, ${stats.loose} used loosely, ${stats.other} other words or names, ${stats.undetermined} undetermined.`);
+  console.log(`Wrote data/tags.json: ${stats.sentences} sentences, ${pct(stats.parsed, stats.sentences)} parsed; ${stats.words} words: ${stats.course} course words, ${stats.loose} used loosely, ${stats.other} other words or names, ${stats.undetermined} undetermined; ${stats.withCase} words with a case.`);
   const list = [...changed].sort((a, b) => b[1] - a[1]);
   console.log(`Forms that spelling would give to a course word but the parser gives to another word (${list.reduce((s, [, n]) => s + n, 0)} words, ${list.length} kinds):`);
   for (const [k, n] of list.slice(0, Number(process.env.TAGS_SHOW ?? 40))) console.log(`  ${n}x ${k}`);

@@ -3,7 +3,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createGenerator } from '../../js/engine/generate.js';
+import { createGenerator, expandRules } from '../../js/engine/generate.js';
 import { courseModel } from '../../js/engine/course-model.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -30,12 +30,14 @@ export function loadData() {
   s.pool = s.pool.filter((sid) => !excluded.has(sid));
   const tags = json('data/tags.json');
   const tagsOf = (sid) => tags.sentences[sid]?.map((x) => (x === null || x === -1 ? x : x <= -2 ? `~${tags.lemmas[-2 - x]}` : tags.lemmas[x]));
+  const CASE_LETTER = { n: 'NF', a: 'ÞF', d: 'ÞGF', g: 'EF' };
+  const casesOf = (sid) => (tags.cases?.[sid] ? [...tags.cases[sid]].map((x) => CASE_LETTER[x] ?? null) : undefined);
   const audio = json('data/audio.json').recordings;
-  const rules = json('content/case-rules.json').rules;
+  const rules = expandRules(json('content/case-rules.json'));
   const names = new Set(json('content/allowlist.json').names.map((n) => n.toLocaleLowerCase('is')));
   const index = json('content/units/index.json');
   const units = index.units.map((f) => json(`content/units/${f}`));
   const course = courseModel({ index, units, lexicon });
-  const generator = createGenerator({ lexicon, paradigm, formIndex, sentences: s.sentences, pool: s.pool, tagsOf, audio, rules, names });
-  return { lexicon, paradigm, formIndex, sentences: s.sentences, pool: s.pool, excluded, tagsOf, audio, rules, names, course, generator };
+  const generator = createGenerator({ lexicon, paradigm, formIndex, sentences: s.sentences, pool: s.pool, tagsOf, casesOf, audio, rules, names });
+  return { lexicon, paradigm, formIndex, sentences: s.sentences, pool: s.pool, excluded, tagsOf, casesOf, audio, rules, names, course, generator };
 }
