@@ -2,6 +2,26 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Hand-made units: unit 6, Shopping (2026-11-23)
+
+### Unit 6, *Búð*
+
+- Six lessons and a review: In the shop, How much is it?, Old and new, Clothes, Colors, With and without. As for unit 5, every grouping was run through the generator and its exercises read.
+- The words with many sentences (*eða*, *gamall*, *fallegur*, *peningur*, *með*, *af*) are spread over the lessons. The price words have almost none: *verð*, *króna* and *þúsund* have no sentence a learner can read here, and *Það er of dýrt!* needs *of* ("too"), which is not a course word. So lesson 2 is mostly word exercises, with *Hvað kostar það?*. *dýr* in the data is mostly the noun "animal" (*Ég keypti bók um dýr*), which the sentence tags keep apart.
+- *með*, *án* and *af* come last, when *kaupa*, *nýr* and *kjóll* are known (*Mamma mín keypti mér nýjan kjól*).
+- Guidebook, five sections, every form from the DMII Core and every example from Tatoeba:
+  - **Colors agree with the noun.** *Bíllinn minn er rauður*, *Hún er hvít*, *Eplið er rautt*, plural *rauðir*; the neuter in -t as in Norwegian (*rautt*, *blátt*, *grænt*, *gult*, *hvítt*, *svart*: FSB-HK-NFET in the DMII Core), and the feminine *svört*.
+  - **Weak adjectives.** *gamli maðurinn*, *gamla bílinn*, *litli bróðir minn* (Tatoeba), against strong *nýjan bíl*, *grænn fiskur*; the Norwegian text compares *den gamle mannen*.
+  - **Comparison.** *fallegri*, *dýrari*, and the irregular *eldri, elstur*, *yngri, yngstur*, *stærri, stærstur*, *minni, minnstur* (MST and ESB forms in the DMII Core), the same words that are irregular in Norwegian; *Mamma er eldri en pabbi*.
+  - **Buying, selling, giving.** *Hvað kostar þetta?*; *keypti*, *seldi*; the person in the dative and the thing in the accusative (*Ég keypti henni nýjan bíl*, *Hún seldi honum bílinn sinn*, *Hann gaf mér pening*); *tvö þúsund bækur*, *fimm hundruð ára*.
+  - **með, án, af.** *með* with the dative for company (*með vinum sínum*) and the accusative for what one brings or has (*Farðu með mig til Tom*, *Ég er ekki með peninga á mér*); *án* with the genitive (*með eða án sykurs*); *af* with the dative (*flaska af víni*, *Af hverju?*).
+- The guidebook prose and the lesson grouping are listed in `content/NEEDS-NATIVE-REVIEW.md`.
+
+### Tests
+
+- `node --test`: 94 tests (new: the seven lessons of unit 6).
+- `npm run smoke`: every lesson of units 1 to 6. `npm run qa`: the unit 6 guidebook at three sizes.
+
 ## Four voices to choose from (2026-11-23)
 
 ### Owner decisions (2026-11-23)

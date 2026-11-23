@@ -61,6 +61,12 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
   - *í* with the accusative for a length of time (*í viku*, *í tíu mínútur*) and for this day or season (*í dag*, *í kvöld*, *í sumar*); *á* with a season in the plural for every year (*á veturna*, *á haustin*); *um* for a stretch of time (*um helgar*, *um tíma*); the dative with *hver*: *á hverjum degi*, *í hverri viku*.
   - *fyrir* with the dative means ago (*fyrir tveimur árum*), with the accusative for or before (*Takk fyrir matinn*, *fyrir kvöldmatinn*); *eftir* with the accusative means after or in (*eftir matinn*, *eftir klukkutíma*), with the dative it follows verbs such as *bíða*; *hvenær* asks, *þegar* joins two sentences.
   - Adverbs of frequency come right after the verb (*Hann borðar oft fisk*); *aldrei* takes the place of *ekki*; *snemma, fyrr, fyrst* and *seint, seinna, seinast*.
+- Unit 6, *Búð* (shopping): the lesson groupings, and the guidebook notes:
+  - An adjective agrees with its noun also after *vera*: *Bíllinn minn er rauður*, *Hún er hvít*, *Eplið er rautt*, *Bílarnir eru rauðir*; the neuter ends in -t as in Norwegian.
+  - With a definite noun the adjective is weak: *gamli maðurinn*, *gamla bílinn*, *litli bróðir minn*; with an indefinite noun strong: *nýjan bíl*, *grænn fiskur*.
+  - Comparison with -ri or -ari and -astur; *gamall*, *ungur*, *stór* and *lítill* change their stem, as their Norwegian relatives do. "Than" is *en*.
+  - With *kaupa*, *selja* and *gefa*, the person is in the dative and the thing in the accusative. *hundrað* and *þúsund* count as neuter (*tvö þúsund*).
+  - *með* takes the dative for company and the accusative for what one brings or has on oneself; *án* takes the genitive; *af* the dative; *Af hverju?* is literally "of what?".
 - Case trainer note "When is each case used?" (summary of the main uses of the four cases).
 - Unit 10, *Nýyrði* (new words): the choice of twelve modern words, and the unit title. The guidebook retells Wiktionary's etymologies (sources quoted in `docs/DECISIONS.md`); the retelling and the glosses of the parts need review:
   - *útvarp* = *út* + *varp*; *sjónvarp* made on the same model with *sjón*; *flugvél* = *flug* + *vél*.

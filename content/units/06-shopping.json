@@ -3,10 +3,63 @@
   "order": 6,
   "theme": "shopping",
   "reviewed": false,
-  "title": {
-    "en": "Shopping",
-    "nb": "Handle"
-  },
+  "title": { "en": "Shopping", "nb": "Handle" },
   "is": "Búð",
-  "lessons": "auto"
+  "goal": { "en": "Buy and sell, ask what things cost, and describe clothes by color, size and age.", "nb": "Kjøp og selg, spør hva ting koster, og beskriv klær med farge, størrelse og alder." },
+  "lessons": [
+    { "id": "1", "title": { "en": "In the shop", "nb": "I butikken" }, "focus": ["kaupa_so", "selja_so", "peningur_no", "gjöf_no", "poki_no", "eða_st"] },
+    { "id": "2", "title": { "en": "How much is it?", "nb": "Hva koster det?" }, "focus": ["kosta_so", "verð_no", "króna_no", "hundrað_to", "þúsund_to", "dýr_lo", "ódýr_lo"] },
+    { "id": "3", "title": { "en": "Old and new", "nb": "Gammelt og nytt" }, "focus": ["nýr_lo", "gamall_lo", "stór_lo", "lítill_lo", "fallegur_lo"] },
+    { "id": "4", "title": { "en": "Clothes", "nb": "Klær" }, "focus": ["föt_no", "skór_no", "buxur_no", "peysa_no", "jakki_no", "húfa_no"] },
+    { "id": "5", "title": { "en": "Colors", "nb": "Farger" }, "focus": ["rauður_lo", "blár_lo", "grænn_lo", "gulur_lo", "hvítur_lo", "svartur_lo"] },
+    { "id": "6", "title": { "en": "With and without", "nb": "Med og uten" }, "focus": ["með_fs", "án_fs", "af_fs", "kjóll_no", "stærð_no"] },
+    { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": { "en": "Colors agree with the noun", "nb": "Fargene bøyes etter substantivet" },
+        "text": {
+          "en": "An adjective takes the gender, number and case of its noun, also after {is:vera}: {is:Bíllinn minn er rauður} (masculine, -ur), {is:Hún er hvít} (feminine, no ending), {is:Eplið er rautt} (neuter, -t), {is:Bílarnir eru rauðir} (plural, -ir). The neuter -t is the same as in Norwegian: {is:rautt}, {is:blátt}, {is:grænt}, {is:gult}, {is:hvítt}, {is:svart}. {is:svartur} has its own feminine: {is:svört}.",
+          "nb": "Et adjektiv får kjønnet, tallet og kasuset til substantivet sitt, også etter {is:vera}: {is:Bíllinn minn er rauður} (hankjønn, -ur), {is:Hún er hvít} (hunkjønn, ingen endelse), {is:Eplið er rautt} (intetkjønn, -t), {is:Bílarnir eru rauðir} (flertall, -ir). Intetkjønn på -t er akkurat som på norsk: {is:rautt} (rødt), {is:blátt} (blått), {is:grænt} (grønt), {is:gult} (gult), {is:hvítt} (hvitt), {is:svart} (svart). {is:svartur} har en egen hunkjønnsform: {is:svört}."
+        },
+        "examples": ["4010182", "11977746", "8745004", "12360505", "475024"],
+        "tables": ["rauður_lo"]
+      },
+      {
+        "title": { "en": "The old man: weak adjectives", "nb": "Den gamle mannen: svake adjektiver" },
+        "text": {
+          "en": "When the noun is definite, the adjective takes its weak endings: {is:gamli maðurinn} (the old man), {is:gamla bílinn} (the old car, accusative), {is:litli bróðir minn} (my little brother). Norwegian does the same with -e: den gamle mannen. Before an indefinite noun the strong endings of the colors above are used: {is:nýjan bíl} (a new car, accusative), {is:grænn fiskur} (a green fish).",
+          "nb": "Når substantivet er bestemt, får adjektivet svake endelser: {is:gamli maðurinn} (den gamle mannen), {is:gamla bílinn} (den gamle bilen, akkusativ), {is:litli bróðir minn} (lillebroren min). Norsk gjør det samme med -e: den gamle mannen. Foran et ubestemt substantiv brukes de sterke endelsene fra fargene over: {is:nýjan bíl} (en ny bil, akkusativ), {is:grænn fiskur} (en grønn fisk)."
+        },
+        "examples": ["475098", "707623", "487120", "740802", "12340291"],
+        "tables": ["gamall_lo"]
+      },
+      {
+        "title": { "en": "Older, bigger, smaller", "nb": "Eldre, større, mindre" },
+        "text": {
+          "en": "Most adjectives compare with -ri or -ari and -astur: {is:fallegur}, {is:fallegri}, {is:fallegastur}; {is:dýr}, {is:dýrari}, {is:dýrastur}. A few common ones change their stem, the same ones as in Norwegian: {is:gamall}, {is:eldri}, {is:elstur} (gammel, eldre, eldst); {is:ungur}, {is:yngri}, {is:yngstur}; {is:stór}, {is:stærri}, {is:stærstur}; {is:lítill}, {is:minni}, {is:minnstur}. \"Than\" is {is:en}: {is:Mamma er eldri en pabbi}.",
+          "nb": "De fleste adjektiver gradbøyes med -ri eller -ari og -astur: {is:fallegur}, {is:fallegri}, {is:fallegastur}; {is:dýr}, {is:dýrari}, {is:dýrastur}. Noen vanlige skifter stamme, de samme som på norsk: {is:gamall}, {is:eldri}, {is:elstur} (gammel, eldre, eldst); {is:ungur}, {is:yngri}, {is:yngstur} (ung, yngre, yngst); {is:stór}, {is:stærri}, {is:stærstur} (stor, større, størst); {is:lítill}, {is:minni}, {is:minnstur} (liten, mindre, minst). «Enn» er {is:en}: {is:Mamma er eldri en pabbi}."
+        },
+        "examples": ["482418", "469212", "698400", "4020815", "1355157"]
+      },
+      {
+        "title": { "en": "Buying, selling, giving", "nb": "Kjøpe, selge, gi" },
+        "text": {
+          "en": "{is:Hvað kostar þetta?} asks the price. The currency is the {is:króna}, plural {is:krónur}. {is:kaupa} and {is:selja} change in the past, as in Norwegian kjøpte and solgte: {is:keypti}, {is:seldi}. With these verbs and {is:gefa}, the person is in the dative and the thing in the accusative: {is:Ég keypti henni nýjan bíl} (I bought her a new car), {is:Hún seldi honum bílinn sinn}, {is:Hann gaf mér pening}. {is:hundrað} and {is:þúsund} count as neuter: {is:tvö þúsund bækur}, and {is:hundrað} has the plural {is:hundruð}: {is:fimm hundruð ára}.",
+          "nb": "{is:Hvað kostar þetta?} spør etter prisen. Valutaen er {is:króna}, flertall {is:krónur}. {is:kaupa} og {is:selja} endres i fortid, som norsk kjøpte og solgte: {is:keypti}, {is:seldi}. Med disse verbene og {is:gefa} står personen i dativ og tingen i akkusativ: {is:Ég keypti henni nýjan bíl} (jeg kjøpte en ny bil til henne), {is:Hún seldi honum bílinn sinn}, {is:Hann gaf mér pening}. {is:hundrað} og {is:þúsund} regnes som intetkjønn: {is:tvö þúsund bækur}, og {is:hundrað} har flertallet {is:hundruð}: {is:fimm hundruð ára}."
+        },
+        "examples": ["4007765", "740802", "888066", "4007820", "827774"],
+        "tables": ["króna_no"]
+      },
+      {
+        "title": { "en": "With and without: með, án, af", "nb": "Med og uten: með, án, af" },
+        "text": {
+          "en": "{is:með} takes the dative for company: {is:Hún fór með vinum sínum} (she went with her friends). It takes the accusative for what you bring or have on you: {is:Farðu með mig til Tom} (take me to Tom), {is:Ég er ekki með peninga á mér} (I have no money on me). {is:án} (without) takes the genitive: {is:með eða án sykurs} (with or without sugar). {is:af} (of, off) takes the dative: {is:flaska af víni} (a bottle of wine), and {is:Af hverju?}, \"why?\", is word for word \"of what?\".",
+          "nb": "{is:með} styrer dativ om følge: {is:Hún fór með vinum sínum} (hun dro med vennene sine). Det styrer akkusativ om det man tar med seg eller har på seg: {is:Farðu með mig til Tom} (ta meg med til Tom), {is:Ég er ekki með peninga á mér} (jeg har ikke penger på meg). {is:án} (uten) styrer genitiv: {is:með eða án sykurs} (med eller uten sukker). {is:af} (av) styrer dativ: {is:flaska af víni} (en flaske vin), og {is:Af hverju?}, «hvorfor?», er ord for ord «av hva?»."
+        },
+        "examples": ["908519", "3799264", "698251", "666970", "835321", "482978"]
+      }
+    ]
+  }
 }
