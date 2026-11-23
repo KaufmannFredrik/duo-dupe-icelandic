@@ -2,6 +2,27 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Hand-made units: unit 5, Time (2026-11-23)
+
+### Unit 5, *Tími*
+
+- Six lessons and a review: What time is it?, Days of the week, Week and weekend, Always and never, Seasons and years, Before and after. The 35 words were grouped by running the generator over each grouping and reading every exercise it produced (a scratch evaluator, as for units 3 and 4).
+- All seven days are one lesson. Tatoeba has a sentence the learner can read for only three of them (*mánudagur*, *laugardagur*, *sunnudagur*), so the lesson is mostly word exercises (listening, meaning, a table), with *á sunnudaginn* for the case work. The seasons lesson is the same: *sumar*, *vetur* and *haust* have no sentence a learner of unit 5 can read, *vor* has *Vorið kom*.
+- *um* is taught with *helgi* (lesson 3), and *fyrir* and *eftir* last, when *ár*, *mínúta* and *klukkutími* are known (*fyrir tveimur árum*).
+- *snemma* and *seint* are taught partly through their comparatives: the DMII Core lists *fyrr*, *fyrst* and *seinna*, *seinast* as their forms, and Tatoeba has *Þú hefðir átt að koma fyrr* and *Ég tala við hana seinna*. The guidebook explains the comparison.
+- Guidebook, five sections, every form from the DMII Core and every example from Tatoeba:
+  - **What time is it?** *Hvað er klukkan?*, *Klukkan er fimm*, *Hún er tuttugu mínútur yfir þrjú*, *korter í þrjú* (the DMII Core spelling; Wiktionary has *kortér*), *hálf tíu* (half past nine), and *klukkan* that keeps its form after a preposition: *til klukkan fimm* (Tatoeba), where *til* otherwise takes the genitive. Sources: Wiktionary's phrase entry *klukkan* (*Ég kem klukkan þrjú*, *Klukkan er kortér yfir þrjú*), *kortér* (*klukkan er kortér í þrjú*, "a quarter to three") and *frekur* (*um hálf tíu*, "about half past nine").
+  - **The days of the week.** Written with a small letter; *þriðjudagur*, *miðvikudagur*, *fimmtudagur* and *föstudagur* are "third day", "mid-week day", "fifth day" and "fast day" (Wiktionary etymologies), *sunnudagur* and *mánudagur* the sun's and the moon's day. *á sunnudaginn* (one particular Sunday) and *á sunnudögum* (every Sunday); Tatoeba has both. *laugardagur* is not explained: Wiktionary gives only "From Old Norse laugardagr".
+  - **í, á and um in time expressions.** *í viku*, *í tíu mínútur*; *í dag*, *í kvöld*, *í sumar*; *á veturna*, *á haustin* (accusative plural with the article in the DMII Core); *um helgar*, *um tíma*; and the dative with *hver*: *á hverjum degi*, *í hverri viku*. All from Tatoeba.
+  - **fyrir, eftir, þegar.** *fyrir tveimur árum* against *Takk fyrir matinn* and *fyrir kvöldmatinn*; *eftir matinn*, *eftir klukkutíma* against *bíða eftir honum*; *hvenær* asks, *þegar* joins two sentences. The Norwegian text compares *takk for maten*.
+  - **Always, never, early, late.** Adverbs of frequency right after the verb, *aldrei* in the place of *ekki*, *snemma, fyrr, fyrst* and *seint, seinna, seinast*, and *Betra er seint en aldrei*.
+- The guidebook prose and the lesson grouping are listed in `content/NEEDS-NATIVE-REVIEW.md`.
+
+### Tests
+
+- `node --test`: 87 tests (new: the seven lessons of unit 5, with the checks of the case and its rule).
+- `npm run smoke`: every lesson of units 1 to 5. `npm run qa`: the unit 5 guidebook at three sizes, 0 axe violations, no horizontal scroll at 320 px.
+
 ## The case of a word comes from the parser (2026-11-23)
 
 Planning unit 5 showed a wrong "why this case?" hint (*Ég var í viku hjá frænda mínum*: "í takes the accusative for movement"). A check of every case and ending exercise in every lesson found three causes.

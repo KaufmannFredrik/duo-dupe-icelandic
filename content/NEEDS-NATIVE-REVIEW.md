@@ -55,6 +55,12 @@ The choice of 325 words and their grouping into themes. Every word is confirmed 
   - *til* takes the genitive (*til Íslands*, *til flugvallarins*); *frá*, *úr* and *hjá* take the dative (*frá Íslandi*, *úr bílnum*, *hjá frænda mínum*). The pairs *í* and *úr*, *á* and *af*, *til* and *frá*.
   - *hvar* asks for a place, *hvert* for a direction, *hvaðan* for a starting point; *hér* and *þar* answer *hvar*, *hingað* and *þangað* are for directions.
   - The imperative is the stem with *þú* attached as -ðu, -du or -tu: *farðu*, *beygðu*, *bíddu*, *taktu*; *gakktu* from *ganga*. *til hægri*, *til vinstri*, *beint*; compass points can stand alone after a verb: *keyra norður*.
+- Unit 5, *Tími* (time): the lesson groupings, and the guidebook notes:
+  - *Hvað er klukkan?*; the answer starts with *klukkan er* or *hún er*: *Hún er tuttugu mínútur yfir þrjú*; *yfir* is "past" and *í* is "to" (*korter í þrjú*); *hálf tíu* is half past nine; *klukkan* keeps its form after a preposition: *til klukkan fimm*.
+  - The days are written with a small letter; *þriðjudagur*, *miðvikudagur*, *fimmtudagur* and *föstudagur* are counted or described where English and Norwegian name gods; *sunnudagur* and *mánudagur* are the sun's and the moon's day. *á sunnudaginn* for one particular day, *á sunnudögum* for every week.
+  - *í* with the accusative for a length of time (*í viku*, *í tíu mínútur*) and for this day or season (*í dag*, *í kvöld*, *í sumar*); *á* with a season in the plural for every year (*á veturna*, *á haustin*); *um* for a stretch of time (*um helgar*, *um tíma*); the dative with *hver*: *á hverjum degi*, *í hverri viku*.
+  - *fyrir* with the dative means ago (*fyrir tveimur árum*), with the accusative for or before (*Takk fyrir matinn*, *fyrir kvöldmatinn*); *eftir* with the accusative means after or in (*eftir matinn*, *eftir klukkutíma*), with the dative it follows verbs such as *bíða*; *hvenær* asks, *þegar* joins two sentences.
+  - Adverbs of frequency come right after the verb (*Hann borðar oft fisk*); *aldrei* takes the place of *ekki*; *snemma, fyrr, fyrst* and *seint, seinna, seinast*.
 - Case trainer note "When is each case used?" (summary of the main uses of the four cases).
 - Unit 10, *Nýyrði* (new words): the choice of twelve modern words, and the unit title. The guidebook retells Wiktionary's etymologies (sources quoted in `docs/DECISIONS.md`); the retelling and the glosses of the parts need review:
   - *útvarp* = *út* + *varp*; *sjónvarp* made on the same model with *sjón*; *flugvél* = *flug* + *vél*.

@@ -3,10 +3,63 @@
   "order": 5,
   "theme": "time",
   "reviewed": false,
-  "title": {
-    "en": "Time",
-    "nb": "Tid"
-  },
+  "title": { "en": "Time", "nb": "Tid" },
   "is": "Tími",
-  "lessons": "auto"
+  "goal": { "en": "Tell the time, name the days and the seasons, and say when, how long and how often.", "nb": "Si hva klokka er, nevn dagene og årstidene, og si når, hvor lenge og hvor ofte." },
+  "lessons": [
+    { "id": "1", "title": { "en": "What time is it?", "nb": "Hva er klokka?" }, "focus": ["klukka_no", "klukkutími_no", "mínúta_no", "tími_no", "hvenær_ao", "núna_ao"] },
+    { "id": "2", "title": { "en": "Days of the week", "nb": "Ukedagene" }, "focus": ["mánudagur_no", "þriðjudagur_no", "miðvikudagur_no", "fimmtudagur_no", "föstudagur_no", "laugardagur_no", "sunnudagur_no"] },
+    { "id": "3", "title": { "en": "Week and weekend", "nb": "Uke og helg" }, "focus": ["vika_no", "helgi_no", "um_fs", "sofa_so", "vakna_so"] },
+    { "id": "4", "title": { "en": "Always and never", "nb": "Alltid og aldri" }, "focus": ["alltaf_ao", "oft_ao", "stundum_ao", "aldrei_ao", "snemma_ao", "seint_ao"] },
+    { "id": "5", "title": { "en": "Seasons and years", "nb": "Årstider og år" }, "focus": ["ár_no", "mánuður_no", "sumar_no", "vetur_no", "vor_no", "haust_no"] },
+    { "id": "6", "title": { "en": "Before and after", "nb": "Før og etter" }, "focus": ["fyrir_fs", "eftir_fs", "þegar_st", "byrja_so", "hætta_so"] },
+    { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": { "en": "What time is it?", "nb": "Hva er klokka?" },
+        "text": {
+          "en": "{is:Hvað er klukkan?} asks the time; word for word, \"what is the clock?\". The answer starts with {is:klukkan er} or {is:hún er}, because {is:klukka} is feminine: {is:Klukkan er fimm}, {is:Hún er tuttugu mínútur yfir þrjú} (twenty past three). {is:yfir} is \"past\" and {is:í} is \"to\": {is:korter í þrjú} (a quarter to three). The half hour counts toward the next hour: {is:hálf tíu} is half past nine. \"At five\" is {is:klukkan fimm}, and {is:klukkan} keeps this form even after a preposition that would change it: {is:til klukkan fimm} (until five).",
+          "nb": "{is:Hvað er klukkan?} spør etter tiden, akkurat som «Hva er klokka?». Svaret begynner med {is:klukkan er} eller {is:hún er}, fordi {is:klukka} er hunkjønn: {is:Klukkan er fimm}, {is:Hún er tuttugu mínútur yfir þrjú} (tjue over tre). {is:yfir} er «over» og {is:í} er «på»: {is:korter í þrjú} (kvart på tre). Halvtimen regnes mot neste time, som på norsk: {is:hálf tíu} er halv ti. «Klokka fem» er {is:klukkan fimm}, og {is:klukkan} beholder denne formen også etter en preposisjon som ellers ville endret den: {is:til klukkan fimm} (til klokka fem)."
+        },
+        "examples": ["658122", "675258", "385537", "508646"],
+        "tables": ["klukka_no"]
+      },
+      {
+        "title": { "en": "The days of the week", "nb": "Ukedagene" },
+        "text": {
+          "en": "The days are written with a small letter. Four of them are counted or described instead of named after gods as in English: {is:þriðjudagur} is \"third day\", {is:miðvikudagur} \"mid-week day\", {is:fimmtudagur} \"fifth day\" and {is:föstudagur} \"fast day\" (Wiktionary). {is:sunnudagur} and {is:mánudagur} are the sun's day and the moon's day, as in English. Every day ends in {is:dagur} and inflects like it. For one particular day, use {is:á} with the accusative and the article: {is:á sunnudaginn} (on Sunday); for every week, the dative plural: {is:á sunnudögum} (on Sundays).",
+          "nb": "Dagene skrives med liten forbokstav, som på norsk. Fire av dem er talt eller beskrevet i stedet for oppkalt etter guder slik norsk gjør (tirsdag, onsdag, torsdag, fredag): {is:þriðjudagur} er «tredje dag», {is:miðvikudagur} «midtukedag», {is:fimmtudagur} «femte dag» og {is:föstudagur} «fastedag» (Wiktionary). {is:sunnudagur} og {is:mánudagur} er solens og månens dag, som søndag og mandag. Alle dagene ender på {is:dagur} og bøyes som det. For én bestemt dag brukes {is:á} med akkusativ og artikkel: {is:á sunnudaginn} (på søndag); for hver uke dativ flertall: {is:á sunnudögum} (på søndager)."
+        },
+        "examples": ["384101", "451909", "494337", "385906"],
+        "tables": ["sunnudagur_no"]
+      },
+      {
+        "title": { "en": "For a week, at weekends: í, á and um", "nb": "I en uke, i helgene: í, á og um" },
+        "text": {
+          "en": "Time expressions use prepositions with the accusative. {is:í} gives a length of time: {is:í viku} (for a week), {is:í tíu mínútur} (for ten minutes). With {is:dagur}, {is:kvöld}, {is:sumar} and {is:vetur} it means this one: {is:í dag} (today), {is:í kvöld} (tonight), {is:í sumar} (this summer). {is:á} with a season in the plural means every year: {is:á veturna} (in winter), {is:á haustin} (in autumn). {is:um} gives a stretch of time: {is:um helgar} (at weekends), {is:um tíma} (for a while). With {is:hver} (every) the case is the dative: {is:á hverjum degi} (every day), {is:í hverri viku} (every week).",
+          "nb": "Tidsuttrykk bruker preposisjoner med akkusativ. {is:í} gir en varighet: {is:í viku} (i en uke), {is:í tíu mínútur} (i ti minutter). Med {is:dagur}, {is:kvöld}, {is:sumar} og {is:vetur} betyr det denne: {is:í dag} (i dag), {is:í kvöld} (i kveld), {is:í sumar} (i sommer). {is:á} med en årstid i flertall betyr hvert år: {is:á veturna} (om vinteren), {is:á haustin} (om høsten). {is:um} gir et tidsrom: {is:um helgar} (i helgene), {is:um tíma} (en stund). Med {is:hver} (hver) blir kasus dativ: {is:á hverjum degi} (hver dag), {is:í hverri viku} (hver uke)."
+        },
+        "examples": ["450768", "4171710", "450323", "670260", "385016", "482665"],
+        "tables": ["vetur_no"]
+      },
+      {
+        "title": { "en": "Ago, after and when: fyrir, eftir, þegar", "nb": "For ... siden, etter og når: fyrir, eftir, þegar" },
+        "text": {
+          "en": "{is:fyrir} with the dative means ago: {is:fyrir tveimur árum} (two years ago). With the accusative it means for or before: {is:Takk fyrir matinn} (thanks for the meal), {is:fyrir kvöldmatinn} (before dinner). {is:eftir} with the accusative means after or in: {is:eftir matinn} (after the meal), {is:eftir klukkutíma} (in an hour). With the dative it follows verbs such as {is:bíða} (wait): {is:bíða eftir honum} (wait for him). For \"when\" Icelandic has two words: {is:hvenær} asks ({is:Hvenær byrjar það?}), and {is:þegar} joins two sentences ({is:Hann verður farinn þegar þú kemur aftur}).",
+          "nb": "{is:fyrir} med dativ betyr «for ... siden»: {is:fyrir tveimur árum} (for to år siden). Med akkusativ betyr det «for» eller «før»: {is:Takk fyrir matinn} (takk for maten), {is:fyrir kvöldmatinn} (før middag). {is:eftir} med akkusativ betyr «etter» eller «om»: {is:eftir matinn} (etter maten), {is:eftir klukkutíma} (om en time). Med dativ står det etter verb som {is:bíða} (vente): {is:bíða eftir honum} (vente på ham). For «når» har islandsk to ord: {is:hvenær} spør ({is:Hvenær byrjar það?}), og {is:þegar} binder sammen to setninger ({is:Hann verður farinn þegar þú kemur aftur}); norsk kan bruke «når» i begge."
+        },
+        "examples": ["383473", "917595", "3995044", "384082", "1329173", "545639"]
+      },
+      {
+        "title": { "en": "Always, never, early, late", "nb": "Alltid, aldri, tidlig, sent" },
+        "text": {
+          "en": "Words for how often come right after the verb, as in Norwegian: {is:Hann borðar oft fisk} (he often eats fish), {is:Hann er alltaf hjá mér} (he is always with me), {is:Hann kemur stundum} (he sometimes comes). {is:aldrei} (never) takes the place of {is:ekki}: {is:Ég vinn aldrei um helgar}. {is:snemma} (early) and {is:seint} (late) compare like adjectives: {is:snemma}, {is:fyrr}, {is:fyrst} (early, earlier, first) and {is:seint}, {is:seinna}, {is:seinast} (late, later, last). {is:Betra er seint en aldrei} is \"better late than never\".",
+          "nb": "Ord for hvor ofte står rett etter verbet, som på norsk: {is:Hann borðar oft fisk} (han spiser ofte fisk), {is:Hann er alltaf hjá mér} (han er alltid hos meg), {is:Hann kemur stundum} (han kommer av og til). {is:aldrei} (aldri) står der {is:ekki} ellers står: {is:Ég vinn aldrei um helgar}. {is:snemma} (tidlig) og {is:seint} (sent) gradbøyes som adjektiver: {is:snemma}, {is:fyrr}, {is:fyrst} (tidlig, tidligere, først) og {is:seint}, {is:seinna}, {is:seinast} (sent, senere, sist). {is:Betra er seint en aldrei} er «bedre sent enn aldri»."
+        },
+        "examples": ["470238", "1351410", "386008", "5003451", "502946", "4020611"]
+      }
+    ]
+  }
 }
