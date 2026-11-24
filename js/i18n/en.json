@@ -465,5 +465,19 @@
   "friends.see": "See your friends",
   "stories.cast": "In this story",
   "guide.host": "{name} walks you through the grammar of this unit.",
-  "stories.narrator": "Told by"
+  "stories.narrator": "Told by",
+  "quests.title": "Today's quests",
+  "quests.lessons": "Finish {n} lessons",
+  "quests.perfect": "Finish a lesson without a mistake",
+  "quests.combo": "Get {n} right in a row",
+  "quests.listen": "Answer {n} listening exercises right",
+  "quests.type": "Type {n} answers right",
+  "quests.story": "Listen to a whole story",
+  "quests.sounds": "Play a round of Sounds",
+  "quests.progress": "{n} of {target} done",
+  "quests.done": "Done",
+  "quests.chestTodo": "Finish all three for {xp} bonus XP.",
+  "quests.chestDone": "All three done: {xp} bonus XP earned today.",
+  "quests.doneNews": "Quest done: {name}",
+  "quests.chestNews": "All quests done: +{xp} XP"
 }

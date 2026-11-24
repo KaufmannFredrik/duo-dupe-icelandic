@@ -160,6 +160,10 @@ const COMBO = 5;
 const COMBO_XP = 5;
 let run = 0;
 let bonus = 0;
+// For the daily quests: the best run, and right answers to listening and typing exercises.
+let bestRun = 0;
+const counted = { listen: 0, type: 0 };
+const LISTENING = new Set(['listen', 'dictation', 'pair']);
 
 // Hearts (Settings, off by default): five per lesson, one lost per wrong answer. Not in placement.
 const HEARTS = 5;
@@ -251,6 +255,9 @@ async function doCheck(skipped = false) {
   run = r.result === 'correct' ? run + 1 : 0;
   const combo = !plan.placement && run > 0 && run % COMBO === 0 ? run : 0;
   bonus += combo ? COMBO_XP : 0;
+  bestRun = Math.max(bestRun, run);
+  if (r.result === 'correct' && LISTENING.has(spec.type)) counted.listen++;
+  if (r.result === 'correct' && spec.type === 'typeword') counted.type++;
   if (hearts !== null && r.result === 'wrong') {
     hearts--;
     renderHearts();
@@ -287,7 +294,13 @@ async function complete() {
   renderProgress();
   actions.hidden = true;
   if (plan.placement) return completePlacement();
-  const done = await completeLesson(plan.key, results, { bonus });
+  const events = {
+    combo: bestRun,
+    ...counted,
+    ...(mode === 'lesson' ? { lessons: 1, perfect: results.every((x) => x === 'correct') ? 1 : 0 } : {}),
+    ...(mode === 'sounds' ? { sounds: 1 } : {}),
+  };
+  const done = await completeLesson(plan.key, results, { bonus, events });
   const { xp, score } = done;
   const news = celebrationLines(done);
   if (bonus) news.unshift(['xp', t('lesson.comboTotal', { xp: bonus })]);

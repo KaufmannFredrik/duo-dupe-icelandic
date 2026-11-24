@@ -3,7 +3,8 @@
 // exercise correctly, then checks that progress was saved (lesson 1 done, lesson 2 current, XP in
 // the HUD), that progress survives export, reset and import, that hearts end a lesson, that a
 // first visit asks for a generated voice and then uses it (also for the unit host's greeting), that
-// five right answers in a row give a combo bonus, that the unit's host closes the lesson, and that
+// five right answers in a row give a combo bonus, that the unit's host closes the lesson, that the
+// lesson counts toward the daily quests, and that
 // the site loads offline once the service worker is installed.
 // With --all it also plays every lesson of the hand-made units, the sounds and letters drills, and
 // checks the story reader (word panel, line audio from the generated voice, the cast of a dialogue)
@@ -16,6 +17,7 @@ import { chromium } from 'playwright';
 import { startServer } from '../scripts/serve.mjs';
 import { answer } from './helpers/answer.mjs';
 import { fakeSpeech } from './helpers/fake-speech.mjs';
+import { QUEST_BONUS } from '../js/quests.js';
 
 const VIEWPORTS = {
   phone: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
@@ -99,15 +101,20 @@ for (const [name, options] of Object.entries(VIEWPORTS)) {
     const combos = Math.floor(types.length / 5);
     if (types.combos !== combos) throw new Error(`${types.combos} combo lines in ${types.length} right answers, expected ${combos}`);
     if (!(await page.locator('.complete img.char--lg[alt^="Lundi"]').count())) throw new Error('the unit host (Lundi) does not close the lesson');
+    // The first daily quest is always about lessons, so a perfect lesson counts toward it.
+    await page.goto(`${url}practice.html`);
+    await page.locator('.quest').first().waitFor();
+    if (Number(await page.locator('.quest').first().getAttribute('data-n')) < 1) throw new Error('a perfect lesson did not count toward the lesson quest');
+    const chest = (await page.locator('.quests__chest--done').count()) ? QUEST_BONUS : 0;
     await page.goto(`${url}learn.html`);
     await page.locator('.node--current').first().waitFor();
     const done = await page.locator('a.node--done[href*="unit=hello&lesson=1"]').count();
     const current = await page.locator('a.node--current[href*="unit=hello&lesson=2"]').count();
     if (!done || !current) throw new Error('progress not saved: lesson 1 should be done and lesson 2 current');
     const xp = await hudXP(page);
-    if (xp !== 10 * types.length + 5 * combos) throw new Error(`HUD shows ${xp} XP after a perfect lesson, expected ${10 * types.length + 5 * combos}`);
+    if (xp !== 10 * types.length + 5 * combos + chest) throw new Error(`HUD shows ${xp} XP after a perfect lesson, expected ${10 * types.length + 5 * combos + chest}`);
     if (errors.length) throw new Error(`page errors: ${errors.join('; ')}`);
-    console.log(`PASS ${name}: completed ${types.length} exercises (${[...new Set(types)].join(', ')}), ${combos} combos, progress saved, ${xp} XP`);
+    console.log(`PASS ${name}: completed ${types.length} exercises (${[...new Set(types)].join(', ')}), ${combos} combos, quests counted, progress saved, ${xp} XP`);
   } catch (e) {
     failed = true;
     console.log(`FAIL ${name}: ${e.message}`);

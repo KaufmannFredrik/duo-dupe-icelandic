@@ -6,6 +6,7 @@ import { clear, del, get, getAll, put, putMany } from './db.js';
 import { newCard, review } from './srs.js';
 import { getSettings, replaceSettings } from './store.js';
 import { BADGES, MAX_FREEZES, dayKey, freezesEarned, settleFreezes, streakOf, summarize } from './stats.js';
+import { QUEST_BONUS, addQuestEvents } from './quests.js';
 
 const PROGRESS_KEY = 'progress';
 const XP = { correct: 10, almost: 5, wrong: 0 };
@@ -66,21 +67,35 @@ async function awardBadges(p) {
 }
 
 /**
- * Marks a lesson done and adds its XP: per answer, plus bonus (combos in the lesson).
+ * Marks a lesson done and adds its XP: per answer, plus bonus (combos in the lesson). events: what
+ * the round counts toward the daily quests (js/quests.js); finishing all three adds QUEST_BONUS.
  * @param {string} lessonKey
  * @param {('correct'|'almost'|'wrong')[]} results
- * @param {{ bonus?: number }} [extra]
+ * @param {{ bonus?: number, events?: object }} [extra]
  */
-export async function completeLesson(lessonKey, results, { bonus = 0 } = {}) {
+export async function completeLesson(lessonKey, results, { bonus = 0, events } = {}) {
   const p = await loadProgress();
   const xp = results.reduce((sum, r) => sum + XP[r], 0) + bonus;
   const prev = p.lessons[lessonKey];
   const score = results.length ? results.filter((r) => r !== 'wrong').length / results.length : 0;
   p.lessons[lessonKey] = { done: true, at: Date.now(), best: Math.max(score, prev?.best ?? 0), times: (prev?.times ?? 0) + 1 };
-  const streak = gain(p, xp);
+  const quests = events ? addQuestEvents(p, events, today()) : { done: [], chest: false };
+  const questXP = quests.chest ? QUEST_BONUS : 0;
+  const streak = gain(p, xp + questXP);
   const badges = await awardBadges(p);
   await saveProgress(p);
-  return { xp, score, ...streak, badges };
+  return { xp, score, ...streak, badges, quests, questXP };
+}
+
+/** Quest progress from outside a lesson (a story heard to the end). */
+export async function recordQuests(events) {
+  const p = await loadProgress();
+  const quests = addQuestEvents(p, events, today());
+  const questXP = quests.chest ? QUEST_BONUS : 0;
+  const streak = questXP ? gain(p, questXP) : {};
+  const badges = questXP ? await awardBadges(p) : [];
+  await saveProgress(p);
+  return { xp: questXP, ...streak, badges, quests, questXP };
 }
 
 /** XP outside lessons (the case trainer). */

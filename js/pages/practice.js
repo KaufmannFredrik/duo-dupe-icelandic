@@ -4,7 +4,10 @@
 import { ready } from '../app.js';
 import { t } from '../i18n.js';
 import { CASES } from '../grammar.js';
-import { attempts, cards, mistakes } from '../progress.js';
+import { attempts, cards, loadProgress, mistakes } from '../progress.js';
+import { questsOf } from '../quests.js';
+import { questsHTML } from '../ui/quests.js';
+import { dayKey } from '../stats.js';
 import { dueCards } from '../srs.js';
 import { loadLexicon } from '../data.js';
 import { caseTag } from '../ui/forms.js';
@@ -23,6 +26,13 @@ const count = (sel, n) => {
 };
 count('[data-count="mistakes"]', mistakeList.length);
 count('[data-count="review"]', dueCards(list).length);
+
+// Today's quests, redrawn when progress changes.
+const renderQuests = async () => {
+  document.querySelector('[data-quests]').innerHTML = questsHTML(questsOf(await loadProgress(), dayKey()));
+};
+await renderQuests();
+window.addEventListener('tolva:progress', renderQuests);
 
 const GENDERS = ['kk', 'kvk', 'hk'];
 const cells = heatCells(all, (a) => {

@@ -6,7 +6,8 @@
 
 import { loadJSON, ready } from '../app.js';
 import { loadCourse, unitDone } from '../course.js';
-import { loadProgress } from '../progress.js';
+import { loadProgress, recordQuests } from '../progress.js';
+import { celebrate } from '../ui/celebrate.js';
 import { pick, t } from '../i18n.js';
 import { analyze, casesOf, gloss, lemma, loadAll, recordings, sentence, tagsOf, translation } from '../data.js';
 import { play, stop, ttsCredit } from '../audio.js';
@@ -128,6 +129,8 @@ async function playAll() {
     await playLine(n);
     if (playingAll) await new Promise((r) => setTimeout(r, 450));
   }
+  // Heard to the end (not stopped): counts for the daily quest.
+  if (playingAll) recordQuests({ story: 1 }).then(celebrate);
   playingAll = false;
   allButton.setAttribute('aria-pressed', 'false');
 }

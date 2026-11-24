@@ -7,7 +7,9 @@ import { talaSVG } from './tala.js';
 import { t } from './i18n.js';
 import { CASES, CASE_CLASS } from './grammar.js';
 import { attempts, dailyGoal, loadProgress } from './progress.js';
-import { MIN_ANSWERS, heatCells, heatLevel, summarize } from './stats.js';
+import { MIN_ANSWERS, dayKey, heatCells, heatLevel, summarize } from './stats.js';
+import { questsOf } from './quests.js';
+import { questsHTML } from './ui/quests.js';
 
 export const icon = (name, cls = 'icon') => `<svg class="${cls}" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-${name}"></use></svg>`;
 
@@ -62,7 +64,7 @@ function miniHeat(cells) {
   return `<div class="mini-heat"><span></span><span class="muted">${t('number.sg')}</span><span class="muted">${t('number.pl')}</span>${rows}</div>`;
 }
 
-function sideHTML(p, cells) {
+function sideHTML(p, cells, quests) {
   const any = [...cells.values()].some((x) => x.total >= MIN_ANSWERS);
   return `<div class="side-stats card card--quiet side-panel">
       <div>${stat('streak', p.streak, 'hud.streak')}<div class="stat__label">${t('side.streak')}</div></div>
@@ -72,6 +74,7 @@ function sideHTML(p, cells) {
     <section class="card card--quiet side-panel" aria-labelledby="side-goal"><h2 id="side-goal">${t('side.goal')}</h2>
       <div class="goal-row">${goalRing(p.today, p.goal, 'goal-ring--lg')}<p>${goalText(p)}</p></div>
       ${p.freezes ? `<p class="muted side-freeze">${t('side.freezes', { n: p.freezes })}</p>` : ''}</section>
+    <section class="card card--quiet side-panel" aria-labelledby="side-quests"><h2 id="side-quests">${t('quests.title')}</h2>${questsHTML(quests)}</section>
     <section class="card card--quiet side-panel" aria-labelledby="side-weak"><h2 id="side-weak">${t('side.weak')}</h2>
       ${any ? miniHeat(cells) : `<p class="muted">${t('side.weakEmpty')}</p>`}
 
@@ -93,13 +96,13 @@ function fill(name, markup) {
 async function stats() {
   const [progress, log] = await Promise.all([loadProgress(), attempts()]);
   const p = { ...summarize(progress, []), goal: dailyGoal() };
-  return { p, cells: heatCells(log, (a) => `${a.case}|${a.number}`) };
+  return { p, cells: heatCells(log, (a) => `${a.case}|${a.number}`), quests: questsOf(progress, dayKey()) };
 }
 
 async function renderStats() {
-  const { p, cells } = await stats();
+  const { p, cells, quests } = await stats();
   fill('hud', hudHTML(p));
-  if (document.querySelector('[data-shell="side"]')) fill('side', sideHTML(p, cells));
+  if (document.querySelector('[data-shell="side"]')) fill('side', sideHTML(p, cells, quests));
   window.dispatchEvent(new CustomEvent('tolva:shell'));
 }
 

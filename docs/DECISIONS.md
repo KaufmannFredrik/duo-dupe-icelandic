@@ -2,6 +2,15 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Daily quests (2026-11-24)
+
+Three small goals a day give a reason to come back besides the streak, and point at parts of the app a learner may skip (stories, the sounds drill, typing).
+
+- `js/quests.js` picks the day's three from the date, so they are the same all day and need no server: the first is always about course lessons (finish two, or finish one without a mistake), the other two come from 10 right in a row, 8 listening answers, 6 typed answers, a whole story heard to the end, and a round of Sounds. Pure functions with unit tests (`tests/quests.test.mjs`).
+- Progress is `p.quests = { day, counts, chest }` in the progress record, so export and import carry it and a new day starts from nothing. A lesson passes what it counted to `completeLesson` (`events`); a story heard to the end calls `recordQuests`. Finishing all three adds 15 XP once, through the same XP path as everything else (daily goal, streak).
+- The quests show on the Practice page and in the desktop side panel; a finished quest is listed on the lesson's closing screen or shown as a toast.
+- Rejected: quests that can be impossible on the day (a review round when nothing is due, case questions before unit 2), and rewards larger than a lesson's XP, so quests do not outweigh learning.
+
 ## Bokmål translations by hand (2026-11-24)
 
 Tatoeba has a Bokmål translation for only 28 of the 1,764 sentences, so a Norwegian learner saw English in almost every exercise, story line, guidebook example and greeting. The owner asked for translations made by hand.

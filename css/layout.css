@@ -608,6 +608,22 @@ input[type="range"] { width: min(20rem, 100%); accent-color: var(--rf-cyan); }
 .complete__friend { display: flex; align-items: center; gap: var(--space-3); margin: 0; padding: var(--space-2) var(--space-4); border: var(--border) solid var(--rf-cyan); box-shadow: var(--glow-cyan); color: #FFFFFF; text-align: start; }
 .complete__friend .char { flex: none; }
 
+/* Daily quests (Practice page, side panel) */
+.quests-card { margin-bottom: var(--space-5); }
+.quests { display: grid; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+.quest { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-3); }
+.quest .icon { color: var(--rf-cyan); }
+.quest[data-done="true"] .icon { color: var(--rf-gold); }
+.quest__body { display: grid; gap: var(--space-1); min-width: 0; }
+.quest__name { color: #FFFFFF; }
+.quest__bar { display: block; height: 6px; background: var(--rf-night-0); box-shadow: inset 0 0 0 1px var(--rf-blue); }
+.quest__bar span { display: block; width: calc(var(--p) * 100%); height: 100%; background: var(--rf-cyan); }
+.quest[data-done="true"] .quest__bar span { background: var(--rf-gold); }
+.quest__count { color: var(--rf-chrome); font-family: var(--font-mono); font-size: var(--text-sm); }
+.quests__chest { margin: 0; color: var(--rf-chrome); font-size: var(--text-sm); }
+.quests__chest--done { color: var(--rf-gold); }
+.app-side .quests { gap: var(--space-2); font-size: var(--text-sm); }
+
 /* Friends on the Profile */
 .friends { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); margin: 0; padding: 0; list-style: none; }
 .friend-tile { display: grid; justify-items: center; align-content: start; gap: var(--space-1); padding: var(--space-4); border: var(--border) solid var(--rf-blue); text-align: center; color: var(--rf-chrome); font-size: var(--text-sm); }

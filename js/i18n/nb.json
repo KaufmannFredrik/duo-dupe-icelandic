@@ -465,5 +465,19 @@
   "friends.see": "Se vennene dine",
   "stories.cast": "I denne historien",
   "guide.host": "{name} tar deg gjennom grammatikken i denne enheten.",
-  "stories.narrator": "Fortalt av"
+  "stories.narrator": "Fortalt av",
+  "quests.title": "Dagens oppdrag",
+  "quests.lessons": "Fullfør {n} leksjoner",
+  "quests.perfect": "Fullfør en leksjon uten feil",
+  "quests.combo": "Få {n} riktige på rad",
+  "quests.listen": "Svar riktig på {n} lytteoppgaver",
+  "quests.type": "Skriv {n} riktige svar",
+  "quests.story": "Hør en hel historie",
+  "quests.sounds": "Gjør en runde Lyder",
+  "quests.progress": "{n} av {target} gjort",
+  "quests.done": "Fullført",
+  "quests.chestTodo": "Fullfør alle tre for {xp} XP i bonus.",
+  "quests.chestDone": "Alle tre fullført: {xp} XP i bonus i dag.",
+  "quests.doneNews": "Oppdrag fullført: {name}",
+  "quests.chestNews": "Alle oppdrag fullført: +{xp} XP"
 }
