@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { loadData } from './helpers/data.mjs';
 import { allowedFor, lessonStates, nextLesson } from '../js/engine/course-model.js';
 import { analysesIn, parseTag } from '../js/grammar.js';
@@ -300,4 +301,21 @@ test('generator: wrong options take knowing the word or reading the sentence to 
   }
   assert.ok(sameClass / words > 0.9, `${sameClass} of ${words} meaning options share the word class`);
   assert.ok(lengthDiff / sentences < 1, `sentence options differ by ${(lengthDiff / sentences).toFixed(2)} words on average`);
+});
+
+test('course: words learned per section, and goals practiced when their units are finished', async () => {
+  const { goalState, wordsLearned } = await import('../js/engine/course-model.js');
+  const goals = JSON.parse(readFileSync(new URL('../content/goals.json', import.meta.url), 'utf8'));
+  const first = lessonsOf('hello')[0];
+  const p = { lessons: { [first.key]: { done: true } }, skippedUnits: ['family'] };
+  const a1 = wordsLearned(d.course, p, 'a1');
+  for (const id of first.focus) assert.ok(a1.has(id), `${id} learned in a done lesson`);
+  for (const id of d.course.units.find((u) => u.id === 'family').lemmas) assert.ok(a1.has(id), `${id} of a skipped unit`);
+  assert.equal(wordsLearned(d.course, p, 'bonus').size, 0);
+  const self = goals.goals.find((g) => g.id === 'self'); // hello and family
+  assert.equal(goalState(self, d.course, p), 'open');
+  assert.equal(goalState(self, d.course, { ...p, units: { hello: '2026-11-24' } }), 'practiced');
+  assert.equal(goalState(goals.goals.find((g) => g.id === 'health'), d.course, p), 'coming');
+  assert.equal(goals.goals.filter((g) => g.section === 'a1').length, 8);
+  assert.equal(goals.goals.filter((g) => g.section === 'a2').length, 8);
 });

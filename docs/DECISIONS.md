@@ -2,6 +2,15 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Goals for each level (2026-11-24)
+
+The second foundation of [PLAN.md](PLAN.md): what each section aims at, and how far the learner is.
+
+- `content/goals.json` lists the 16 final goals (*lokamarkmið*) of the Ministry of Education's curriculum for adults (2008), four per stage: stages 1–2 as A1, 3–4 as A2 (the course's reading; the curriculum covers A1–A2 without splitting them). Each is quoted in Icelandic with its stage and page and translated for the app, and lists the units that train it; the sources are in `content/CLAIMS.md`. `npm run validate` checks that each goal has its quote, translations and source, and that its units and section exist.
+- Today's units train six of the eight A1 goals (*health* waits for *Líkaminn*, and A2's goals for section A2); new units will add themselves to their goals.
+- Profile has a "Your level" card per section: words learned of about 800 (`wordsLearned`: the words of done lessons and of skipped units), and each goal as practiced (every unit that trains it finished), not practiced yet, or coming to the course (`goalState` in `js/engine/course-model.js`). The section checks will later score the goals themselves.
+- Tests: words learned from done lessons and skipped units, and the three goal states.
+
 ## The path in sections, and finished units recorded (2026-11-24)
 
 The first piece of [PLAN.md](PLAN.md)'s foundations: one path from zero, divided into sections.

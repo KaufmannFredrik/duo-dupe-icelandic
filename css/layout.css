@@ -626,6 +626,19 @@ input[type="range"] { width: min(20rem, 100%); accent-color: var(--rf-cyan); }
 .quests__chest--done { color: var(--rf-gold); }
 .app-side .quests { gap: var(--space-2); font-size: var(--text-sm); }
 
+/* Levels on the Profile: words learned and the section's goals */
+.levels { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+.level__title { display: flex; align-items: center; gap: var(--space-3); color: #FFFFFF; font-size: var(--text-lg); }
+.level__badge { padding: 0 var(--space-2); border: var(--border) solid var(--rf-gold); color: var(--rf-gold); font-family: var(--font-mono); }
+.level__words { margin: 0; color: var(--rf-chrome); font-size: var(--text-sm); }
+.goals { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.goal { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: var(--space-2); }
+.goal .icon { margin-top: 0.2em; color: var(--rf-muted); }
+.goal[data-state="practiced"] .icon { color: var(--rf-gold); }
+.goal[data-state="open"] .icon { color: var(--rf-cyan); }
+.goal__state { display: block; color: var(--rf-muted); font-size: var(--text-sm); }
+.goal[data-state="practiced"] .goal__state { color: var(--rf-gold); }
+
 /* Friends on the Profile */
 .friends { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); margin: 0; padding: 0; list-style: none; }
 .friend-tile { display: grid; justify-items: center; align-content: start; gap: var(--space-1); padding: var(--space-4); border: var(--border) solid var(--rf-blue); text-align: center; color: var(--rf-chrome); font-size: var(--text-sm); }

@@ -20,10 +20,20 @@ Not listed: sentences in exercises, examples and stories are unchanged Tatoeba s
 | UCSC | [Icelandic handout, UC Santa Cruz](https://babel.ucsc.edu/~hank/114/icelandic.pdf) |
 | V2 | Lund working papers on Icelandic word order, e.g. [Xu and Angantýsson, WPSS 111](https://projekt.ht.lu.se/fileadmin/user_upload/sol/ovrigt/projekt_grimm/working_papers/2024-dec/WPSS_111.pdf) |
 | BMO | [Bokmålsordboka](https://ordbokene.no) (Universitetet i Bergen og Språkrådet) |
+| ÍFÚ | Menntamálaráðuneyti, *Íslenska fyrir útlendinga – grunnnám. Námskrá* (2008), [PDF](https://www.stjornarradid.is/media/menntamalaraduneyti-media/media/ritogskyrslur/namskra_islenska_fyrir_utlendinga_2.pdf); page numbers as printed |
 
 Status: **sourced** (a grammar or dictionary states it), **attested** (only shown by Tatoeba sentences or DMII Core forms, which the text then cites), **corrected** (changed after checking; the change is described).
 
 In the content files, `"reviewed": true` means that every hand-written claim in the file is listed here with its source. `npm run validate` lists any file still marked `false`.
+
+## Levels and goals (`content/goals.json`, `content/units/index.json`)
+
+| Claim | Source | Status |
+|---|---|---|
+| The curriculum's four stages of 60 hours "train the skills that correspond to A1–A2" (*Áföngunum fjórum í námskránni er ætlað að þjálfa þá færni sem samsvarar viðmiðunarrömmum A1 – A2*). | ÍFÚ p. 4 | sourced |
+| Stages 1–2 are A1, stages 3–4 are A2. | the course's reading of ÍFÚ, which does not split the stages by level ([docs/PLAN.md](../docs/PLAN.md)) | design choice |
+| The 16 goals are the stages' final goals (*lokamarkmið*, printed in bold), quoted in `is` with stage and page, translated to English and Bokmål for the app. | ÍFÚ pp. 7–13 | sourced (translations by the course) |
+| A level is about 800 words. | Duolingo's blog, "How are Duolingo courses evolving?" (2019): "about 800 words introduced at each level"; no Icelandic source gives a count | sourced (for Duolingo's courses) |
 
 ## Case rules (`content/case-rules.json`)
 

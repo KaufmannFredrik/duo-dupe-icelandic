@@ -1,0 +1,154 @@
+{
+  "note": "The goals of each section of the path (docs/PLAN.md): the final goals (lokamarkmið) of the Ministry of Education's curriculum Íslenska fyrir útlendinga – grunnnám (2008), stages 1-2 for A1 and 3-4 for A2, quoted in Icelandic (is) with their stage and page, translated for the app (en, nb). units: the units that train a goal; a goal is practiced when they are finished, and a goal with no units yet is still coming to the course. words: about how many words a section teaches (Duolingo's figure of about 800 words per level; no Icelandic source gives one). content/CLAIMS.md lists the sources.",
+  "reviewed": true,
+  "sections": {
+    "a1": { "words": 800 },
+    "a2": { "words": 800 }
+  },
+  "goals": [
+    {
+      "id": "self",
+      "section": "a1",
+      "source": "ÍFÚ 1, p. 7",
+      "is": "Nemandi skilur og getur svarað einföldum spurningum um eigin persónu og fjölskylduhagi.",
+      "en": "Understand and answer simple questions about yourself and your family.",
+      "nb": "Forstå og svare på enkle spørsmål om deg selv og familien din.",
+      "units": ["hello", "family"]
+    },
+    {
+      "id": "work-talk",
+      "section": "a1",
+      "source": "ÍFÚ 1, p. 7",
+      "is": "Nemandi skilur samhengi í stuttu, einföldu samtali um vinnu.",
+      "en": "Follow a short, simple conversation about work.",
+      "nb": "Følge en kort, enkel samtale om arbeid.",
+      "units": ["study"]
+    },
+    {
+      "id": "daily",
+      "section": "a1",
+      "source": "ÍFÚ 1, p. 7",
+      "is": "Nemandi getur skýrt frá daglegum athöfnum sínum.",
+      "en": "Tell what you do from day to day.",
+      "nb": "Fortelle hva du gjør i hverdagen.",
+      "units": ["time"]
+    },
+    {
+      "id": "health",
+      "section": "a1",
+      "source": "ÍFÚ 1, p. 7",
+      "is": "Nemandi getur gert sig skiljanlegan um heilsu sína.",
+      "en": "Make yourself understood about your health.",
+      "nb": "Gjøre deg forstått om helsen din.",
+      "units": []
+    },
+    {
+      "id": "familiar",
+      "section": "a1",
+      "source": "ÍFÚ 2, p. 8",
+      "is": "Nemandi getur rætt nokkuð óhikað um málefni sem hann þekkir vel.",
+      "en": "Talk fairly freely about things you know well.",
+      "nb": "Snakke ganske fritt om ting du kjenner godt.",
+      "units": ["shopping"]
+    },
+    {
+      "id": "everyday",
+      "section": "a1",
+      "source": "ÍFÚ 2, p. 8",
+      "is": "Nemandi getur tekið þátt í umræðum um dagleg málefni.",
+      "en": "Take part in conversations about everyday matters.",
+      "nb": "Delta i samtaler om hverdagslige ting.",
+      "units": ["cafe", "weather", "study"]
+    },
+    {
+      "id": "services",
+      "section": "a1",
+      "source": "ÍFÚ 2, p. 8",
+      "is": "Nemandi getur gert sig skiljanlegan í verslun, banka og pósthúsi.",
+      "en": "Make yourself understood in a shop, a bank and a post office.",
+      "nb": "Gjøre deg forstått i butikken, i banken og på postkontoret.",
+      "units": ["cafe", "shopping"]
+    },
+    {
+      "id": "information",
+      "section": "a1",
+      "source": "ÍFÚ 2, p. 9",
+      "is": "Nemandi getur beðið um og gefið almennar upplýsingar.",
+      "en": "Ask for and give general information.",
+      "nb": "Be om og gi generell informasjon.",
+      "units": ["around", "time"]
+    },
+    {
+      "id": "housing",
+      "section": "a2",
+      "source": "ÍFÚ 3, p. 10",
+      "is": "Nemandi getur skilið og beitt almennum orðaforða tengdum húsnæði.",
+      "en": "Understand and use everyday words about housing.",
+      "nb": "Forstå og bruke vanlige ord om bolig.",
+      "units": []
+    },
+    {
+      "id": "emergency",
+      "section": "a2",
+      "source": "ÍFÚ 3, p. 10",
+      "is": "Nemandi er fær um að kalla til aðstoð ef hættu ber að höndum.",
+      "en": "Call for help in an emergency.",
+      "nb": "Tilkalle hjelp i en nødsituasjon.",
+      "units": []
+    },
+    {
+      "id": "customs",
+      "section": "a2",
+      "source": "ÍFÚ 3, p. 10",
+      "is": "Nemandi getur skilið og beitt almennum orðaforða varðandi venjur og siði.",
+      "en": "Understand and use everyday words about customs and traditions.",
+      "nb": "Forstå og bruke vanlige ord om skikker og tradisjoner.",
+      "units": []
+    },
+    {
+      "id": "opinions",
+      "section": "a2",
+      "source": "ÍFÚ 3, p. 11",
+      "is": "Nemandi er fær um að tjá eigin hugmyndir og skoðanir á skiljanlegu máli.",
+      "en": "Express your own ideas and opinions so that others understand.",
+      "nb": "Uttrykke egne tanker og meninger slik at andre forstår.",
+      "units": []
+    },
+    {
+      "id": "school-work",
+      "section": "a2",
+      "source": "ÍFÚ 4, p. 12",
+      "is": "Nemandi getur óhikað skilið og beitt orðaforða í almennum samskiptum t.d. í skóla og vinnu.",
+      "en": "Understand and use everyday words with confidence, for example at school and at work.",
+      "nb": "Forstå og bruke vanlige ord med trygghet, for eksempel på skolen og på jobben.",
+      "units": []
+    },
+    {
+      "id": "media",
+      "section": "a2",
+      "source": "ÍFÚ 4, p. 12",
+      "is": "Nemandi skilur aðalatriði þess sem fjallað er um í íslenskum fjölmiðlum.",
+      "en": "Understand the main points of what Icelandic media report.",
+      "nb": "Forstå hovedpunktene i det islandske medier forteller.",
+      "units": []
+    },
+    {
+      "id": "workplace",
+      "section": "a2",
+      "source": "ÍFÚ 4, p. 12",
+      "is": "Nemandi getur skilið og beitt almennum orðaforða tengdum vinnustað.",
+      "en": "Understand and use everyday words about the workplace.",
+      "nb": "Forstå og bruke vanlige ord om arbeidsplassen.",
+      "units": []
+    },
+    {
+      "id": "travel",
+      "section": "a2",
+      "source": "ÍFÚ 4, p. 13",
+      "is": "Nemandi getur skilið og beitt orðaforða um ferðalög.",
+      "en": "Understand and use words about travel.",
+      "nb": "Forstå og bruke ord om reiser.",
+      "units": []
+    }
+  ]
+}

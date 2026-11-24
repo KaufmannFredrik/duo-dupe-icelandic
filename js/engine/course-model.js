@@ -110,6 +110,30 @@ export function lessonStates(course, progress) {
   return states;
 }
 
+/** Course words learned (in one section, or all): the words of done lessons and every word of a skipped unit. */
+export function wordsLearned(course, progress, sectionId = null) {
+  const out = new Set();
+  for (const u of course.units) {
+    if (sectionId && u.section !== sectionId) continue;
+    if (progress.skippedUnits?.includes(u.id)) {
+      for (const id of u.lemmas) out.add(id);
+      continue;
+    }
+    for (const l of u.lessons) if (!l.review && progress.lessons?.[l.key]?.done) for (const id of l.focus ?? []) out.add(id);
+  }
+  return out;
+}
+
+/**
+ * A goal of content/goals.json: "practiced" when every unit that trains it is finished, "open"
+ * while some are not, "coming" when no unit of the course trains it yet.
+ */
+export function goalState(goal, course, progress) {
+  const units = goal.units.map((id) => unitOf(course, id)).filter(Boolean);
+  if (!units.length) return 'coming';
+  return units.every((u) => unitDone(u, progress)) ? 'practiced' : 'open';
+}
+
 /** The lesson to start when the learner just presses Start. */
 export function nextLesson(course, progress) {
   const states = lessonStates(course, progress);

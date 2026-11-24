@@ -7,7 +7,7 @@ import { pick, t } from '../i18n.js';
 import { checkImport, dailyGoal, exportAll, importAll, lastBackup, loadProgress, loadTally, markBackup, resetAll } from '../progress.js';
 import { BADGES, dayKey, recentDays, summarize } from '../stats.js';
 import { goalRing, icon } from '../shell.js';
-import { loadCourse, unitLabel } from '../course.js';
+import { goalState, loadCourse, loadGoals, unitLabel, wordsLearned } from '../course.js';
 import { friends } from '../characters.js';
 import { characterImg } from '../ui/character.js';
 
@@ -19,10 +19,30 @@ const lang = () => document.documentElement.lang;
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const weekday = (key) => new Date(`${key}T12:00:00`).toLocaleDateString(lang(), { weekday: 'short' });
 const BACKUP_NUDGE = 30 * 864e5; // a month
+const GOAL_ICON = { practiced: 'check', open: 'review', coming: 'lock' };
 
 async function render() {
-  const [p, tally, course, backup] = await Promise.all([loadProgress(), loadTally(), loadCourse(), lastBackup()]);
+  const [p, tally, course, backup, goals] = await Promise.all([loadProgress(), loadTally(), loadCourse(), lastBackup(), loadGoals()]);
   const s = summarize(p, [], undefined, tally);
+  // Each level: words learned of about the section's size, and its goals (practiced, open, coming).
+  $('[data-levels]').innerHTML = course.sections
+    .filter((sec) => goals.sections[sec.id])
+    .map((sec) => {
+      const n = wordsLearned(course, p, sec.id).size;
+      const target = goals.sections[sec.id].words;
+      const words = t('profile.levelWords', { n, target });
+      const list = goals.goals.filter((g) => g.section === sec.id);
+      return `<div class="level stack"><h3 class="level__title"><span class="level__badge">${esc(sec.level)}</span>${esc(pick(sec.title))}</h3>
+        <span class="quest__bar" role="progressbar" aria-label="${esc(words)}" aria-valuemin="0" aria-valuemax="${target}" aria-valuenow="${Math.min(n, target)}" style="--p: ${Math.min(1, n / target)}"><span></span></span>
+        <p class="level__words">${esc(words)}</p>
+        <ul class="goals" role="list">${list
+          .map((g) => {
+            const state = goalState(g, course, p);
+            return `<li class="goal" data-state="${state}">${icon(GOAL_ICON[state], 'icon icon--sm')}<span>${esc(pick({ en: g.en, nb: g.nb }))}<span class="goal__state">${t(`profile.goal.${state}`)}</span></span></li>`;
+          })
+          .join('')}</ul></div>`;
+    })
+    .join('');
   // Progress lives only on this device: say when it was last exported, and nudge after a month.
   const backupEl = $('[data-backup]');
   const date = backup ? new Date(backup).toLocaleDateString(lang()) : '';

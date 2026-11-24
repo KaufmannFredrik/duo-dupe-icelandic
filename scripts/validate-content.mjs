@@ -257,6 +257,20 @@ async function checkSmallFiles() {
   for (const id of ids) if (placed.filter((x) => x === id).length !== 1) err('content/units/index.json', `unit ${id} must be in exactly one section (is in ${placed.filter((x) => x === id).length})`);
   for (const id of placed) if (!ids.includes(id)) err('content/units/index.json', `a section names unit ${id}, which has no file in "units"`);
   for (const s of index.sections ?? []) if (!s.id || !s.title?.en || !s.title?.nb) err('content/units/index.json', `section ${s.id ?? '?'} needs an id and a title in en and nb`);
+  // Goals (content/goals.json): each in a section of the path, quoted, translated, its units real.
+  const goals = await readJson('content/goals.json');
+  if (goals.reviewed === false) unreviewed.push('content/goals.json');
+  const sectionIds = new Set((index.sections ?? []).map((s) => s.id));
+  const goalIds = new Set();
+  for (const g of goals.goals) {
+    const where = `content/goals.json ${g.id}`;
+    if (goalIds.has(g.id)) err(where, 'id used twice');
+    goalIds.add(g.id);
+    if (!sectionIds.has(g.section)) err(where, `unknown section ${g.section}`);
+    if (!g.is || !g.en || !g.nb || !g.source) err(where, 'needs the Icelandic quote (is), en, nb and its source');
+    for (const u of g.units) if (!ids.includes(u)) err(where, `unknown unit ${u}`);
+  }
+  for (const id of Object.keys(goals.sections)) if (!sectionIds.has(id)) err('content/goals.json', `sections names unknown section ${id}`);
   const rules = await readJson('content/case-rules.json');
   if (rules.reviewed === false) unreviewed.push('content/case-rules.json');
   for (const [id, r] of Object.entries(rules.rules)) {

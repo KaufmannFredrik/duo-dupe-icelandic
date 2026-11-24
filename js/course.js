@@ -15,7 +15,14 @@ export async function loadCourse() {
   return course;
 }
 
-export { lessonStates, allowedFor, findLesson, unitOf, nextLesson, unitDone, unitsToRecord } from './engine/course-model.js';
+export { lessonStates, allowedFor, findLesson, unitOf, nextLesson, unitDone, unitsToRecord, wordsLearned, goalState } from './engine/course-model.js';
+
+let goals;
+/** content/goals.json: the goals of each section of the path, and its size in words. */
+export async function loadGoals() {
+  goals ??= await loadJSON('content/goals.json');
+  return goals;
+}
 /**
  * The label of a unit: "Unit 4" or "Bonus unit" (a bonus unit has no number); inline: for the
  * middle of a sentence ("unit 4", "the bonus unit").
