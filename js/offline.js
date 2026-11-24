@@ -4,7 +4,7 @@
 
 import { t } from './i18n.js';
 import { toast } from './ui/toast.js';
-import { ttsManifest, ttsVoice } from './audio.js';
+import { DEFAULT_TTS_VOICE, ttsManifest, ttsUrl, ttsVoice } from './audio.js';
 
 const AUDIO_CACHE = 'tolva-audio-v1';
 const supported = 'serviceWorker' in navigator && 'caches' in window && location.protocol !== 'file:';
@@ -43,6 +43,12 @@ async function register() {
       reloading = true;
       location.reload();
     });
+    // Only the default voice's manifest is precached; the chosen one's is cached when first used.
+    // Fetch it once the worker controls the page, so it is there before the learner goes offline
+    // (also after an update, which starts a fresh cache).
+    if (hadController && ttsVoice() !== DEFAULT_TTS_VOICE) {
+      setTimeout(() => fetch(new URL(`../data/audio/tts-${ttsVoice()}.json`, import.meta.url)).catch(() => {}), 3000);
+    }
     return reg;
   } catch (e) {
     console.warn('Service worker not registered.', e);
@@ -75,7 +81,7 @@ export async function offlineState() {
 }
 
 function audioFiles(manifest) {
-  return [...new Set(Object.values(manifest.texts).map((e) => new URL(`../data/audio/${e.f}`, import.meta.url).href))];
+  return [...new Set(Object.values(manifest.texts).map(ttsUrl))];
 }
 
 /** How many generated audio files are already cached, of how many. */
@@ -88,14 +94,17 @@ export async function audioCacheStatus() {
   return { manifest, urls, cached: urls.filter((u) => have.has(u)).length, total: urls.length };
 }
 
-/** Removes cached generated audio of the voices not in use (after the learner changes voice). */
+/**
+ * Removes cached generated audio the learner no longer uses: the other voices' (after a change of
+ * voice), and files of this voice that were rendered again (another "v") or are no longer used.
+ */
 export async function dropOtherVoices() {
   if (!supported) return 0;
   const cache = await caches.open(AUDIO_CACHE);
-  const mine = `/data/audio/tts/${ttsVoice()}/`;
-  const others = (await cache.keys()).filter((r) => /\/data\/audio\/tts\//.test(r.url) && !new URL(r.url).pathname.includes(mine));
-  await Promise.all(others.map((r) => cache.delete(r)));
-  return others.length;
+  const current = new Set(audioFiles(await ttsManifest()));
+  const stale = (await cache.keys()).filter((r) => /\/data\/audio\/tts\//.test(r.url) && !current.has(r.url));
+  await Promise.all(stale.map((r) => cache.delete(r)));
+  return stale.length;
 }
 
 /** Downloads every generated audio file of the chosen voice not yet cached. onProgress(done, total). */

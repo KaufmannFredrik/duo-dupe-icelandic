@@ -81,6 +81,62 @@ export async function del(store, key) {
   memory[store].delete(key);
 }
 
+/**
+ * Reads, changes and writes one value of the key-value store in a single transaction, so two
+ * updates cannot overwrite each other. fn gets the old value (undefined if none).
+ */
+export async function update(key, fn) {
+  const db = await open();
+  if (!db) {
+    const value = fn(memory.kv.get(key));
+    memory.kv.set(key, value);
+    return value;
+  }
+  return new Promise((resolve, reject) => {
+    const t = db.transaction('kv', 'readwrite');
+    const s = t.objectStore('kv');
+    let value;
+    const req = s.get(key);
+    req.onsuccess = () => {
+      value = fn(req.result);
+      s.put(value, key);
+    };
+    t.oncomplete = () => resolve(value);
+    t.onerror = () => reject(t.error);
+    t.onabort = () => reject(t.error);
+  });
+}
+
+/** Deletes the oldest entries of an auto-increment store, keeping the newest `keep`. */
+export async function trim(store, keep) {
+  const db = await open();
+  if (!db) {
+    const keys = [...memory[store].keys()];
+    for (const k of keys.slice(0, Math.max(0, keys.length - keep))) memory[store].delete(k);
+    return Math.max(0, keys.length - keep);
+  }
+  return new Promise((resolve, reject) => {
+    const t = db.transaction(store, 'readwrite');
+    const s = t.objectStore(store);
+    let extra = 0;
+    let removed = 0;
+    s.count().onsuccess = (e) => {
+      extra = e.target.result - keep;
+      if (extra <= 0) return;
+      s.openCursor().onsuccess = (ev) => {
+        const cursor = ev.target.result;
+        if (!cursor || removed >= extra) return;
+        cursor.delete();
+        removed++;
+        cursor.continue();
+      };
+    };
+    t.oncomplete = () => resolve(removed);
+    t.onerror = () => reject(t.error);
+    t.onabort = () => reject(t.error);
+  });
+}
+
 export async function clear(store) {
   const db = await open();
   if (db) return run(db, store, 'readwrite', (s) => s.clear());

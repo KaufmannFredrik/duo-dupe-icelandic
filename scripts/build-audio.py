@@ -167,6 +167,10 @@ def build(voice_id, force=False, limit=None):
         'bytes': 0,
         'texts': texts,
     }
+    # A short hash of each file's bytes, which the player adds to the file's URL (?v=), so a file
+    # rendered again under the same name (a new model, --force) is not served from an old cache.
+    for entry in texts.values():
+        entry['v'] = hashlib.sha1((OUT / entry['f']).read_bytes()).hexdigest()[:8]
     removed = 0
     if not limit:
         used = {e['f'] for e in texts.values()}

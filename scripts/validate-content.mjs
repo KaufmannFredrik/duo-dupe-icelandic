@@ -21,6 +21,7 @@
 //
 //   node scripts/validate-content.mjs
 
+import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -230,8 +231,21 @@ async function checkAudio() {
   const mp = existsSync(path.join(ROOT, 'content/minimal-pairs.json')) ? await readJson('content/minimal-pairs.json') : { pairs: [] };
   for (const w of mp.pairs.flatMap((p) => p.words)) if (!texts[w]) missing.push(w);
   for (const s of Object.values(sentences)) if (!texts[s.is]) missing.push(s.is);
-  for (const [text, e] of Object.entries(texts)) if (!existsSync(path.join(ROOT, 'data/audio', e.f))) err(rel, `missing file ${e.f} for "${text}"`);
   if (missing.length) warnings.push(`${missing.length} texts have no generated audio (first: ${missing.slice(0, 5).join(', ')}); run scripts/build-audio.py`);
+  // Every voice: each file exists, and its "v" is the hash of its bytes (the player puts v in the
+  // URL, so a stale v would serve an old cached file or miss the cache).
+  for (const voice of ['steinn', 'salka', 'bui', 'ugla']) {
+    const vrel = `data/audio/tts-${voice}.json`;
+    if (!existsSync(path.join(ROOT, vrel))) {
+      err(vrel, 'missing; run scripts/build-audio.py --voice ' + voice);
+      continue;
+    }
+    for (const [text, e] of Object.entries((await readJson(vrel)).texts)) {
+      const file = path.join(ROOT, 'data/audio', e.f);
+      if (!existsSync(file)) err(vrel, `missing file ${e.f} for "${text}"`);
+      else if (e.v !== createHash('sha1').update(await readFile(file)).digest('hex').slice(0, 8)) err(vrel, `"v" of ${e.f} does not match the file; run scripts/build-audio.py --voice ${voice}`);
+    }
+  }
 }
 
 async function checkSmallFiles() {

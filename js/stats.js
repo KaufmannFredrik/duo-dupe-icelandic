@@ -76,11 +76,29 @@ export const BADGES = [
   { id: 'xp1000', icon: 'xp', earned: (s) => s.xp >= 1000 },
 ];
 
-/** Counts used by the badges and the profile, from progress and the attempt log. */
-export function summarize(p, attempts = [], today = dayKey()) {
+const isFormRight = (a) => a.result === 'correct' && a.key && !a.key.endsWith('|meaning');
+
+/**
+ * All-time counts of answers, kept as a running total (js/progress.js "tally") because the attempt
+ * log keeps only the newest answers. Computed from a log when there is no total yet.
+ */
+export function tallyOf(attempts = []) {
+  return { answered: attempts.length, right: attempts.filter((a) => a.result !== 'wrong').length, formsRight: attempts.filter(isFormRight).length };
+}
+
+/** The tally after one more answer. */
+export function addToTally(tally, attempt) {
+  const t = tally ?? tallyOf();
+  return { answered: t.answered + 1, right: t.right + (attempt.result !== 'wrong' ? 1 : 0), formsRight: t.formsRight + (isFormRight(attempt) ? 1 : 0) };
+}
+
+/**
+ * Counts used by the badges and the profile, from progress and the answer tally (or, when none is
+ * given, the attempt log).
+ */
+export function summarize(p, attempts = [], today = dayKey(), tally = tallyOf(attempts)) {
   const lessons = Object.entries(p.lessons ?? {});
-  const answered = attempts.length;
-  const right = attempts.filter((a) => a.result !== 'wrong').length;
+  const { answered, right } = tally;
   const streak = streakOf(p.days ?? {}, p.frozen, today);
   return {
     xp: p.xp ?? 0,
@@ -92,7 +110,7 @@ export function summarize(p, attempts = [], today = dayKey()) {
     unitsDone: lessons.filter(([k, l]) => l.done && k.endsWith('/review')).length,
     perfect: lessons.filter(([, l]) => l.best === 1).length,
     soundsDone: p.lessons?.['practice/sounds']?.times ?? 0,
-    formsRight: attempts.filter((a) => a.result === 'correct' && a.key && !a.key.endsWith('|meaning')).length,
+    formsRight: tally.formsRight,
     accuracy: answered ? right / answered : null,
     answered,
   };

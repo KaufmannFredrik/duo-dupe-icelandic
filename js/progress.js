@@ -1,11 +1,12 @@
 // Learner progress on top of db.js: SRS cards per item, mistakes to replay, an attempt log
-// (for the weak-spots heatmap), lesson completion with XP, the streak with freezes, badges,
-// and export, import and reset of everything.
+// (for the weak-spots heatmap; the newest MAX_ATTEMPTS answers) with an all-time tally of answers,
+// lesson completion with XP, the streak with freezes, badges, and export, import and reset of
+// everything.
 
-import { clear, del, get, getAll, put, putMany } from './db.js';
+import { clear, del, get, getAll, put, putMany, trim, update } from './db.js';
 import { newCard, review } from './srs.js';
 import { getSettings, replaceSettings } from './store.js';
-import { BADGES, MAX_FREEZES, dayKey, freezesEarned, settleFreezes, streakOf, summarize } from './stats.js';
+import { BADGES, MAX_FREEZES, addToTally, dayKey, freezesEarned, settleFreezes, streakOf, summarize, tallyOf } from './stats.js';
 import { QUEST_BONUS, addQuestEvents } from './quests.js';
 
 const PROGRESS_KEY = 'progress';
@@ -36,12 +37,36 @@ export const dailyGoal = () => Number(getSettings().goal) || 20;
  */
 export async function recordAttempt({ key, result, meta = {}, spec }) {
   const now = Date.now();
+  await ensureTally();
   const card = (await get('cards', key)) ?? newCard(key, now);
   await put('cards', review(card, result, now));
   await put('attempts', { key, result, at: now, ...meta });
+  await update(TALLY_KEY, (t) => addToTally(t, { key, result }));
   if (result === 'wrong' && spec) await put('mistakes', { key, spec, at: now });
   if (result === 'correct') await del('mistakes', key);
 }
+
+// The attempt log grows with every answer and is read whole for the weak spots, so only the newest
+// answers are kept; all-time counts (answers, right answers, right forms for the badge) are a
+// running tally beside it.
+export const MAX_ATTEMPTS = 5000;
+const TALLY_KEY = 'tally';
+
+/** The all-time tally of answers: { answered, right, formsRight }. */
+export async function loadTally() {
+  await ensureTally();
+  return get('kv', TALLY_KEY);
+}
+
+// Progress from before the tally: count the attempt log once, while it still has every answer.
+async function ensureTally() {
+  if (await get('kv', TALLY_KEY)) return;
+  const made = tallyOf(await getAll('attempts'));
+  await update(TALLY_KEY, (t) => t ?? made);
+}
+
+/** Drops the oldest answers beyond MAX_ATTEMPTS (the tally keeps counting them). */
+export const trimAttempts = () => trim('attempts', MAX_ATTEMPTS);
 
 // Adds XP for today and updates the streak, best streak and freezes. Mutates p.
 function gain(p, xp) {
@@ -60,7 +85,7 @@ function gain(p, xp) {
 
 // Marks newly earned badges in p and returns their ids.
 async function awardBadges(p) {
-  const s = summarize(p, await getAll('attempts'), today());
+  const s = summarize(p, [], today(), await loadTally());
   const won = BADGES.filter((b) => !p.badges[b.id] && b.earned(s)).map((b) => b.id);
   for (const id of won) p.badges[id] = today();
   return won;
@@ -84,6 +109,7 @@ export async function completeLesson(lessonKey, results, { bonus = 0, events } =
   const streak = gain(p, xp + questXP);
   const badges = await awardBadges(p);
   await saveProgress(p);
+  await trimAttempts();
   return { xp, score, ...streak, badges, quests, questXP };
 }
 
@@ -105,11 +131,16 @@ export async function addXP(xp) {
   const streak = gain(p, xp);
   const badges = await awardBadges(p);
   await saveProgress(p);
+  await trimAttempts();
   return { xp, ...streak, badges };
 }
 
-/** Run once per page load: spends streak freezes on missed days if they cover the gap. */
+/**
+ * Run once per page load: spends streak freezes on missed days if they cover the gap, and makes
+ * the answer tally from the attempt log if there is none yet (progress from before the tally).
+ */
 export async function settle() {
+  await ensureTally();
   const p = await loadProgress();
   const r = settleFreezes(p, today());
   if (!r.changed) return p;
@@ -137,8 +168,12 @@ export async function exportAll() {
     cards: await getAll('cards'),
     mistakes: await getAll('mistakes'),
     attempts: await getAll('attempts'),
+    tally: await loadTally(),
   };
 }
+
+// A tally from an import file, or (older files) one counted from its attempts.
+const validTally = (t) => t && ['answered', 'right', 'formsRight'].every((k) => Number.isInteger(t[k]) && t[k] >= 0);
 
 /** Checks an export file. Returns an error key for i18n, or null when it can be imported. */
 export function checkImport(data) {
@@ -155,6 +190,8 @@ async function writeAll(data) {
   await putMany('cards', data.cards);
   await putMany('mistakes', data.mistakes);
   await putMany('attempts', data.attempts.map(({ id, ...a }) => a));
+  const tally = validTally(data.tally) ? data.tally : tallyOf(data.attempts);
+  await update(TALLY_KEY, () => tally);
   if (data.settings && typeof data.settings === 'object') replaceSettings(data.settings);
   return saveProgress({ ...fresh(), ...data.progress });
 }

@@ -97,3 +97,22 @@ test('heatCells: accuracy per cell and the lemmas that were missed', () => {
   assert.equal(c.right, 2);
   assert.deepEqual([...c.lemmas], [['a', 1]]);
 });
+
+test('tally: all-time answer counts, kept beside a trimmed attempt log', async () => {
+  const { addToTally, summarize, tallyOf } = await import('../js/stats.js');
+  const log = [
+    { key: 'kaffi_no|ÞFET', result: 'correct' },
+    { key: 'kaffi_no|meaning', result: 'correct' },
+    { key: 'te_no|ÞGFET', result: 'almost' },
+    { key: 'te_no|EFET', result: 'wrong' },
+  ];
+  assert.deepEqual(tallyOf(log), { answered: 4, right: 3, formsRight: 1 });
+  // Adding answers one by one gives the same counts as counting the log.
+  assert.deepEqual(log.reduce(addToTally, undefined), tallyOf(log));
+  // summarize takes the tally instead of the (trimmed) log.
+  const s = summarize({ xp: 0, lessons: {}, days: {} }, [], '2026-11-24', { answered: 6000, right: 4500, formsRight: 120 });
+  assert.equal(s.answered, 6000);
+  assert.equal(s.accuracy, 0.75);
+  assert.equal(s.formsRight, 120);
+  assert.equal(summarize({ xp: 0, lessons: {}, days: {} }, log, '2026-11-24').formsRight, 1);
+});

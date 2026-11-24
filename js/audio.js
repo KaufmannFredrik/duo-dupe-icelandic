@@ -55,7 +55,13 @@ export function ttsManifest(voice = ttsVoice()) {
   return manifests.get(voice);
 }
 
-/** The synthetic-voice file for a text: { f, d, w? } or null. */
+/**
+ * The URL of a generated file. Its "v" (a hash of the file) is part of it, so a file rendered again
+ * under the same name is fetched again instead of served from the audio cache.
+ */
+export const ttsUrl = (entry) => `${new URL(`../data/audio/${entry.f}`, import.meta.url).href}${entry.v ? `?v=${entry.v}` : ''}`;
+
+/** The synthetic-voice file for a text: { f, d, w?, v } or null. */
 export async function ttsEntry(text) {
   return (await ttsManifest()).texts[text] ?? null;
 }
@@ -147,7 +153,7 @@ export async function play({ text, url, slow = false, quiet = false, browser = f
   if (finish !== end) return 'none'; // stopped or replaced while the manifest loaded
   if (entry) {
     try {
-      await playFile(new URL(`../data/audio/${entry.f}`, import.meta.url).href, { rate, timings: entry.w, onWord });
+      await playFile(ttsUrl(entry), { rate, timings: entry.w, onWord });
       return 'tts';
     } catch {
       // Fall through to the browser voice.

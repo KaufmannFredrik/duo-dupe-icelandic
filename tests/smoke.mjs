@@ -275,11 +275,19 @@ for (const [name, options] of Object.entries(VIEWPORTS)) {
     await page.evaluate(() => navigator.serviceWorker.ready);
     await page.reload();
     await page.waitForFunction(() => navigator.serviceWorker.controller);
+    await page.locator('.host__pic').first().waitFor();
     await context.setOffline(true);
     for (const href of ['learn.html', 'stories.html?story=cafe', 'lesson.html?unit=hello&lesson=2&qa', 'dictionary.html?q=kaffi', 'declension.html?lemma=bjór']) {
       await page.goto(`${url}${href}`);
       await page.waitForFunction(() => document.documentElement.classList.contains('is-ready'), null, { timeout: 10000 });
       if (href.startsWith('lesson')) await page.waitForFunction(() => window.__tolva?.spec(), null, { timeout: 10000 });
+      // The cast's pictures are not precached but kept once seen: the hosts seen online show offline.
+      if (href === 'learn.html') {
+        await page.locator('.host__pic').first().waitFor();
+        await page.waitForFunction(() => [...document.querySelectorAll('.host__pic')].some((i) => i.complete), null, { timeout: 5000 });
+        const [shown, broken] = await page.$$eval('.host__pic', (imgs) => [imgs.filter((i) => i.complete && i.naturalWidth > 0).length, imgs.filter((i) => i.complete && i.naturalWidth === 0).map((i) => i.src)]);
+        if (broken.length || !shown) throw new Error(`pictures missing offline: ${broken.join(', ') || 'all'}`);
+      }
     }
     if (errors.length) throw new Error(`page errors: ${errors.join('; ')}`);
     console.log('PASS offline: pages, lessons and data load from the service worker cache');
@@ -394,6 +402,46 @@ if (process.argv.includes('--all')) {
   } catch (e) {
     failed = true;
     console.log(`FAIL same meaning: ${e.message}`);
+  }
+  // The attempt log keeps the newest 5,000 answers (MAX_ATTEMPTS in js/progress.js); the all-time
+  // tally of answers keeps counting.
+  try {
+    const store = (p) =>
+      p.evaluate(
+        () =>
+          new Promise((resolve) => {
+            const req = indexedDB.open('tolva');
+            req.onsuccess = () => {
+              const tx = req.result.transaction(['kv', 'attempts']);
+              const out = {};
+              tx.objectStore('kv').get('tally').onsuccess = (e) => (out.tally = e.target.result);
+              tx.objectStore('attempts').count().onsuccess = (e) => (out.count = e.target.result);
+              tx.oncomplete = () => resolve(out);
+            };
+          }),
+      );
+    await page.goto(`${url}practice.html`);
+    await page.evaluate(
+      () =>
+        new Promise((resolve) => {
+          const req = indexedDB.open('tolva');
+          req.onsuccess = () => {
+            const tx = req.result.transaction('attempts', 'readwrite');
+            for (let i = 0; i < 5100; i++) tx.objectStore('attempts').put({ key: 'old_no|meaning', result: 'correct', at: i });
+            tx.oncomplete = resolve;
+          };
+        }),
+    );
+    const before = await store(page);
+    await playLesson(page, 'lesson.html?unit=hello&lesson=1');
+    const after = await store(page);
+    const added = after.tally.answered - before.tally.answered;
+    if (before.count <= 5000 || after.count !== 5000) throw new Error(`${before.count} answers before the lesson, ${after.count} after (5,000 expected)`);
+    if (added < 10 || added > 20) throw new Error(`the tally counted ${added} answers for a 12-exercise lesson`);
+    console.log(`PASS attempt log: ${before.count} answers cut to ${after.count}, the tally counted on to ${after.tally.answered}`);
+  } catch (e) {
+    failed = true;
+    console.log(`FAIL attempt log: ${e.message}`);
   }
   try {
     await page.goto(`${url}stories.html`);

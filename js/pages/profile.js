@@ -4,7 +4,7 @@
 
 import { ready } from '../app.js';
 import { pick, t } from '../i18n.js';
-import { attempts, checkImport, dailyGoal, exportAll, importAll, lastBackup, loadProgress, markBackup, resetAll } from '../progress.js';
+import { checkImport, dailyGoal, exportAll, importAll, lastBackup, loadProgress, loadTally, markBackup, resetAll } from '../progress.js';
 import { BADGES, dayKey, recentDays, summarize } from '../stats.js';
 import { goalRing, icon } from '../shell.js';
 import { loadCourse } from '../course.js';
@@ -21,8 +21,8 @@ const weekday = (key) => new Date(`${key}T12:00:00`).toLocaleDateString(lang(), 
 const BACKUP_NUDGE = 30 * 864e5; // a month
 
 async function render() {
-  const [p, log, course, backup] = await Promise.all([loadProgress(), attempts(), loadCourse(), lastBackup()]);
-  const s = summarize(p, log);
+  const [p, tally, course, backup] = await Promise.all([loadProgress(), loadTally(), loadCourse(), lastBackup()]);
+  const s = summarize(p, [], undefined, tally);
   // Progress lives only on this device: say when it was last exported, and nudge after a month.
   const backupEl = $('[data-backup]');
   const date = backup ? new Date(backup).toLocaleDateString(lang()) : '';
