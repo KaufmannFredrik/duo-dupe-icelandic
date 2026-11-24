@@ -125,6 +125,15 @@ Asked by the owner: an area to learn Icelandic's letters and their sounds agains
 
 About 42 commits: 5 foundations, 2 for letters and sounds, 13 for section A1, 4 for A2's exercise types, 16 for section A2, 2 for the jump tests and Profile.
 
+## Progress
+
+Updated 2026-11-24, at a stop asked for by the owner.
+
+- **Done** (each in `docs/DECISIONS.md`): the path in sections (A1, A2, bonus) with finished units recorded in progress; goals per level (`content/goals.json`) and the level card on Profile; the word picker (`npm run pick-words`).
+- **Postponed:** loading data per section. The service worker downloads every data file on the first visit anyway, so it would only save parsing; it is built when the course data passes about 3 MB.
+- **Next: letters and sounds (*Stafirnir*).** Nothing written yet. Sources gathered: English Wikipedia's *Icelandic orthography* (the 32 letters, their names, the IPA per letter and spelling), *Icelandic phonology* (length, preaspiration in *pp*, *tt*, *kk*, stress always on the first syllable), *Norwegian orthography* and *Norwegian phonology* (Bokmål and Urban East Norwegian values). The comparisons they support, by equal or close IPA: *ö* [œ] = Norwegian short *ø*; *u* [ʏ] = Norwegian short *y*; *ú* [u] = Norwegian long *o* (*bok*); *o* [ɔ] = Norwegian short *å*; *hj* [ç] = Norwegian *kj*; *au* [œy] close to Norwegian *øy*; *ei*, *ey* [ei] close to Norwegian *ei*; and different from what they look like: *æ* [ai], *á* [au], *ó* [ou], *é* [jɛ], *y*/*ý* = *i*/*í* (not rounded), *hv* [kʰv] (Norwegian *hv* is [v]), *ll* mostly [tl], *sl* [stl], *rn* mostly [tn], *f* between vowels [v]. The vowel-length rule is the same in both languages (long before one consonant, short before two). Before writing `content/letters.json`, read the consonant rows after *f* of the *Icelandic orthography* table again on the page itself (the first reading summarized them), and the definition of the "broad" vowels behind *nn* [tn] (*einn*). Then: the letters page, the drills (hear a word and fill in the missing letter; same as Norwegian or not; spell it; the existing sound pairs), a card per letter, the letter names in `scripts/build-audio.py` for all four voices, the claims in `content/CLAIMS.md`, tests.
+- **Then:** section A1 (new units in the order of the table above), section A2.
+
 ## Costs
 
 - **Bokmål translations by hand:** about 3,000 sentences for A1 and 2,000 more for A2 (measured: a cap of 25 sentences per word would save only about 7%, see decision 4).
