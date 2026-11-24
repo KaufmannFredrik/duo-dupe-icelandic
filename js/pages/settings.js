@@ -5,7 +5,7 @@ import { ready } from '../app.js';
 import { t } from '../i18n.js';
 import { getSettings, setSetting } from '../store.js';
 import { icelandicVoices, play } from '../audio.js';
-import { audioCacheStatus, cacheAllAudio, offlineState } from '../offline.js';
+import { audioCacheStatus, cacheAllAudio, keepStorage, offlineState } from '../offline.js';
 import { speechSupport } from '../speech.js';
 import { voicePicker } from '../ui/voice-picker.js';
 
@@ -126,3 +126,11 @@ cacheBtn.addEventListener('click', async () => {
 });
 showOffline();
 navigator.serviceWorker?.addEventListener('controllerchange', showOffline);
+
+// Whether the browser has agreed to keep this site's storage, where all progress lives.
+keepStorage({ ask: false }).then((state) => {
+  const el = form.querySelector('[data-storage-state]');
+  if (state === 'unknown') return;
+  el.textContent = t(state === 'kept' ? 'settings.storageKept' : 'settings.storageNotKept');
+  el.hidden = false;
+});

@@ -50,6 +50,23 @@ async function register() {
   }
 }
 
+/**
+ * Progress lives only in this browser's storage, which a browser may clear when space runs low (and
+ * Safari after seven days without a visit, unless the app is installed). Asks the browser to keep
+ * it. ask: false only reports. Returns 'kept', 'not-kept' or 'unknown' (no Storage API).
+ */
+export async function keepStorage({ ask = true } = {}) {
+  const storage = navigator.storage;
+  if (!storage?.persisted) return 'unknown';
+  try {
+    if (await storage.persisted()) return 'kept';
+    if (!ask || !storage.persist) return 'not-kept';
+    return (await storage.persist()) ? 'kept' : 'not-kept';
+  } catch {
+    return 'unknown';
+  }
+}
+
 /** 'unsupported' (also when registration failed) | 'installing' | 'ready' */
 export async function offlineState() {
   const reg = await registration;

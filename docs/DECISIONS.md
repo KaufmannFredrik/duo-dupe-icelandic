@@ -2,6 +2,17 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Keeping progress safe (2026-11-24)
+
+All progress lives in the browser's storage on one device. Four gaps:
+
+- **The browser may delete it.** Browsers clear a site's storage when space runs low, and Safari after seven days without a visit unless the app is installed; nothing asked them not to. Now the closing screen of a lesson asks once (`keepStorage` in `js/offline.js`, `navigator.storage.persist()`; Chrome decides on its own, Firefox asks the learner), and Settings, under Offline use, says whether the browser agreed, and if not, to export now and then.
+- **Nothing reminded anyone to export.** Profile now says when progress was last exported ("Not exported yet...", "Last exported on ..."), and after a month asks for a new export. The date is kept with the progress (`kv` "backup") and cleared by a reset.
+- **A failed import lost everything.** Import cleared the stores and then wrote the file; a failure halfway left nothing. `importAll` now keeps the progress before in memory, writes it back if the import fails, and Profile says so.
+- **An old mistake could break the Mistakes round.** Mistakes are stored as whole exercises; one whose sentence was excluded later (`content/sentence-exclude.json`), or from an odd import, threw when it was shown. Exercises that cannot be built are now dropped from the mistakes instead.
+- Also: answers are saved one after another, and a lesson's end waits for them, so the badges always count the last answer.
+- `npm run smoke`: the export line before and after an export, a planted mistake with an excluded sentence dropped while another plays, and a reset that is waited for (the test passed before only because the reset was quick).
+
 ## A typed word with the same meaning counts (2026-11-24)
 
 "Type the word" shows a meaning and asked for one word, but seven English and, after the gloss corrections, five Bokmål meanings belong to more than one course word: "to know" (*vita*, *þekkja*, *kunna*), "home" (*heimili*, *heim*), "when" and *når* (*hvenær*, *þegar*), "Icelandic" and *islandsk* (*íslenska*, *íslenskur*). Typing the other one was graded wrong.

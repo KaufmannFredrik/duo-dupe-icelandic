@@ -136,19 +136,43 @@ for (const [name, options] of Object.entries(VIEWPORTS)) {
     await page.goto(`${url}profile.html`);
     await page.locator('.badge-tile[data-earned="true"]').first().waitFor();
     xp = await hudXP(page);
+    if (!(await page.locator('[data-backup]').textContent()).includes('Not exported')) throw new Error('no "not exported yet" line before the first export');
     const [download] = await Promise.all([page.waitForEvent('download'), page.click('[data-export]')]);
     const file = await download.path();
+    await page.waitForFunction(() => document.querySelector('[data-backup]').textContent.startsWith('Last exported'));
     await page.click('[data-reset]');
     await page.click('[data-confirm] [data-ok]');
-    await page.waitForFunction(() => document.querySelector('[data-data-status]').textContent.length > 0);
-    if ((await hudXP(page)) !== 0) throw new Error('reset did not clear XP');
+    // The export already put a line in the status, so wait for the reset itself.
+    await page.waitForFunction(() => Number(document.querySelector('.hud .stat--xp span').textContent) === 0, null, { timeout: 5000 }).catch(() => {
+      throw new Error('reset did not clear XP');
+    });
     await page.setInputFiles('[data-import]', file);
     await page.click('[data-confirm] [data-ok]');
     await page.waitForFunction((want) => Number(document.querySelector('.hud .stat--xp span').textContent) === want, xp, { timeout: 5000 });
     await page.goto(`${url}learn.html`);
     await page.locator('.node--current').first().waitFor();
     if (!(await page.locator('a.node--done[href*="unit=hello&lesson=1"]').count())) throw new Error('lesson 1 not done after import');
-    console.log('PASS export, reset and import');
+    // A stored mistake whose sentence is gone (excluded since) is dropped, not shown.
+    const excluded = Object.keys(JSON.parse(readFileSync(new URL('../content/sentence-exclude.json', import.meta.url), 'utf8')).sentences)[0];
+    await page.evaluate(
+      (sid) =>
+        new Promise((resolve) => {
+          const req = indexedDB.open('tolva');
+          req.onsuccess = () => {
+            const tx = req.result.transaction('mistakes', 'readwrite');
+            tx.objectStore('mistakes').clear();
+            tx.objectStore('mistakes').put({ key: 'gone|meaning', at: Date.now(), spec: { type: 'choice', lemma: 'kaffi_no', sentence: sid, options: [sid], key: 'gone|meaning' } });
+            tx.objectStore('mistakes').put({ key: 'takk_uh|meaning', at: 1, spec: { type: 'typeword', lemma: 'takk_uh', key: 'takk_uh|meaning' } });
+            tx.oncomplete = resolve;
+          };
+        }),
+      excluded,
+    );
+    const errors = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+    const played = await playLesson(page, 'lesson.html?mode=mistakes');
+    if (errors.length || played.join() !== 'typeword') throw new Error(`mistakes round: ${played.join()} ${errors.join('; ')}`);
+    console.log('PASS export, reset and import; the last export is shown; a mistake that cannot be shown is dropped');
   } catch (e) {
     failed = true;
     console.log(`FAIL export/import: ${e.message}`);

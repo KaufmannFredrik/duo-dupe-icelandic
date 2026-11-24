@@ -18,13 +18,14 @@ import { caseRules, getGenerator, gloss, glossLang, lemma, loadAll, paradigm, re
 import { speechSupport } from '../speech.js';
 import { loadBridge } from '../bridge.js';
 import { allowedFor, findLesson, loadCourse, nextLesson, unitDone } from '../course.js';
-import { cards, completeLesson, loadProgress, mistakes, recordAttempt, skipUnits } from '../progress.js';
+import { cards, completeLesson, dropMistake, loadProgress, mistakes, recordAttempt, skipUnits } from '../progress.js';
 import { dueCards } from '../srs.js';
 import { getSettings } from '../store.js';
 import { buildExercise } from '../exercises/index.js';
 import { esc } from '../exercises/common.js';
 import { hashSeed, rng, shuffle } from '../engine/rng.js';
 import { play } from '../audio.js';
+import { keepStorage } from '../offline.js';
 import { sfx } from '../sfx.js';
 import { icon } from '../shell.js';
 import { talaSVG } from '../tala.js';
@@ -76,8 +77,25 @@ async function reviewPlan() {
   return { key: 'practice/review', title: t('practice.review'), specs: gen.review({ cards: due, allowed: learnedSoFar, seed: Date.now() % 1e9, count: 12 }), empty: t('practice.reviewEmpty') };
 }
 
+const data = { lemma, sentence, translation, gloss, sameGloss, paradigm, recordings, caseRules };
+
+// A stored exercise can name a sentence or a word that is gone: a sentence excluded since
+// (content/sentence-exclude.json), or an old or imported progress file. Such a mistake cannot be
+// shown, so it is dropped instead of breaking the round.
+function canShow(spec) {
+  try {
+    buildExercise(spec, { data, lang: glossLang(), strict: false, seed: 1, finePointer: false, contrasts: {}, changed() {} });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function mistakesPlan() {
-  const list = (await mistakes()).sort((a, b) => b.at - a.at).slice(0, 12);
+  const all = (await mistakes()).sort((a, b) => b.at - a.at);
+  const gone = all.filter((m) => !canShow(m.spec));
+  for (const m of gone) await dropMistake(m.key);
+  const list = all.filter((m) => !gone.includes(m)).slice(0, 12);
   return { key: 'practice/mistakes', title: t('practice.mistakes'), specs: list.map((m) => m.spec), empty: t('practice.mistakesEmpty') };
 }
 
@@ -156,6 +174,7 @@ const specs = plan.specs;
 let index = Math.max(0, Math.min(specs.length - 1, (Number(params.get('step')) || 1) - 1));
 let current;
 const results = [];
+let saving = Promise.resolve(); // the answers being saved, in order
 
 // Combo: every COMBO-th right answer in a row adds COMBO_XP (not in the placement test).
 const COMBO = 5;
@@ -181,7 +200,6 @@ if (hearts !== null) {
   $('.lesson__top [data-sound-toggle]').before(heartsEl);
 }
 
-const data = { lemma, sentence, translation, gloss, sameGloss, paradigm, recordings, caseRules };
 const ctxFor = (i) => ({
   data,
   lang: glossLang(),
@@ -267,7 +285,11 @@ async function doCheck(skipped = false) {
   openSheet(r, skipped, combo);
   if (plan.placement) return;
   const records = r.records ?? (spec.key ? [{ key: spec.key, result: r.result, meta: spec.meta }] : []);
-  for (const rec of records) await recordAttempt({ ...rec, spec: rec.result === 'wrong' ? spec : undefined });
+  // Saved one after another; finishing the lesson waits for them (badges count the saved answers).
+  saving = saving.then(async () => {
+    for (const rec of records) await recordAttempt({ ...rec, spec: rec.result === 'wrong' ? spec : undefined });
+  });
+  await saving;
 }
 
 // Placement: after each unit's questions, continue only if all were right.
@@ -302,7 +324,10 @@ async function complete() {
     ...(mode === 'lesson' ? { lessons: 1, perfect: results.every((x) => x === 'correct') ? 1 : 0 } : {}),
     ...(mode === 'sounds' ? { sounds: 1 } : {}),
   };
+  await saving;
   const done = await completeLesson(plan.key, results, { bonus, events });
+  // Progress lives only on this device: ask the browser to keep it (js/offline.js).
+  keepStorage();
   const { xp, score } = done;
   const news = celebrationLines(done);
   if (bonus) news.unshift(['xp', t('lesson.comboTotal', { xp: bonus })]);

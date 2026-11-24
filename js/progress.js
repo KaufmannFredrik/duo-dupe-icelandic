@@ -150,8 +150,7 @@ export function checkImport(data) {
   return null;
 }
 
-/** Replaces all progress (and settings, when present) with an export. Call checkImport first. */
-export async function importAll(data) {
+async function writeAll(data) {
   for (const store of ['cards', 'mistakes', 'attempts']) await clear(store);
   await putMany('cards', data.cards);
   await putMany('mistakes', data.mistakes);
@@ -159,6 +158,30 @@ export async function importAll(data) {
   if (data.settings && typeof data.settings === 'object') replaceSettings(data.settings);
   return saveProgress({ ...fresh(), ...data.progress });
 }
+
+/**
+ * Replaces all progress (and settings, when present) with an export. Call checkImport first. The
+ * progress before is kept in memory and written back if the import fails halfway, so a failed
+ * import loses nothing.
+ */
+export async function importAll(data) {
+  const before = await exportAll();
+  try {
+    return await writeAll(data);
+  } catch (e) {
+    await writeAll(before).catch(() => {});
+    throw e;
+  }
+}
+
+/** When progress was last exported (ms), or null. */
+export async function lastBackup() {
+  return (await get('kv', 'backup')) ?? null;
+}
+export const markBackup = (when = Date.now()) => put('kv', when, 'backup');
+
+/** Forgets a mistake (one that can no longer be shown). */
+export const dropMistake = (key) => del('mistakes', key);
 
 export async function resetAll() {
   for (const store of ['cards', 'mistakes', 'attempts', 'kv']) await clear(store);

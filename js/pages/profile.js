@@ -4,7 +4,7 @@
 
 import { ready } from '../app.js';
 import { pick, t } from '../i18n.js';
-import { attempts, checkImport, dailyGoal, exportAll, importAll, loadProgress, resetAll } from '../progress.js';
+import { attempts, checkImport, dailyGoal, exportAll, importAll, lastBackup, loadProgress, markBackup, resetAll } from '../progress.js';
 import { BADGES, dayKey, recentDays, summarize } from '../stats.js';
 import { goalRing, icon } from '../shell.js';
 import { loadCourse } from '../course.js';
@@ -18,10 +18,16 @@ const dialog = $('[data-confirm]');
 const lang = () => document.documentElement.lang;
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const weekday = (key) => new Date(`${key}T12:00:00`).toLocaleDateString(lang(), { weekday: 'short' });
+const BACKUP_NUDGE = 30 * 864e5; // a month
 
 async function render() {
-  const [p, log, course] = await Promise.all([loadProgress(), attempts(), loadCourse()]);
+  const [p, log, course, backup] = await Promise.all([loadProgress(), attempts(), loadCourse(), lastBackup()]);
   const s = summarize(p, log);
+  // Progress lives only on this device: say when it was last exported, and nudge after a month.
+  const backupEl = $('[data-backup]');
+  const date = backup ? new Date(backup).toLocaleDateString(lang()) : '';
+  backupEl.textContent = !s.xp ? '' : !backup ? t('profile.backupNever') : Date.now() - backup > BACKUP_NUDGE ? t('profile.backupOld', { date }) : t('profile.backupOn', { date });
+  backupEl.classList.toggle('muted', Boolean(backup) && Date.now() - backup <= BACKUP_NUDGE);
   const goal = dailyGoal();
   $('[data-stats]').innerHTML = [
     ['streak', s.streak, 'profile.streak'],
@@ -83,7 +89,9 @@ $('[data-export]').addEventListener('click', async () => {
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+  await markBackup();
   status.textContent = t('profile.exportDone');
+  render();
 });
 
 $('[data-import]').addEventListener('change', async (e) => {
@@ -104,8 +112,13 @@ $('[data-import]').addEventListener('change', async (e) => {
   }
   const when = new Date(data.exported).toLocaleString(lang());
   if (!(await confirmDialog({ title: t('profile.import'), text: t('profile.importConfirm', { date: when }), ok: t('profile.import') }))) return;
-  await importAll(data);
-  status.textContent = t('profile.importDone');
+  try {
+    await importAll(data);
+    status.textContent = t('profile.importDone');
+  } catch (err) {
+    console.warn('Import failed; the progress before it was written back.', err);
+    status.textContent = t('profile.importFailed');
+  }
   render();
 });
 
