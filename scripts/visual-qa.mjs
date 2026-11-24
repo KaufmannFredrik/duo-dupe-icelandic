@@ -37,7 +37,7 @@ for (const unit of data.course.units.slice(0, 2)) {
     specs.forEach((spec, i) => {
       const href = `lesson.html?unit=${unit.id}&lesson=${lesson.id}&step=${i + 1}&qa`;
       if (!firstOf.has(spec.type)) firstOf.set(spec.type, href);
-      if (!specialTypeword && spec.type === 'typeword' && /[þðæö]/.test(data.lexicon.lemmas[spec.lemma].lemma)) specialTypeword = href;
+      if (!specialTypeword && spec.type === 'typeword' && /[þðæöáéíóúý]/.test(data.lexicon.lemmas[spec.lemma].lemma)) specialTypeword = href;
     });
   }
 }

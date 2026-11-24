@@ -1,15 +1,18 @@
 // The app shell shared by the main screens: navigation (tab bar, icon rail or labeled nav,
 // depending on width), the top HUD, the desktop sidebar and the footer. Pages provide empty
 // landmarks marked data-shell="nav|hud|side|footer"; this module fills them. Streak, XP, the
-// daily goal and the mini heatmap come from the learner's own progress and update live.
+// daily goal and the mini heatmap come from the learner's own progress and update live. Tala's tip
+// in the sidebar is a guidebook section of the learner's current unit, a different one each day
+// (js/tips.js); the course data for it loads only when the sidebar is shown.
 
 import { talaSVG } from './tala.js';
-import { t } from './i18n.js';
+import { pick, t } from './i18n.js';
 import { CASES, CASE_CLASS } from './grammar.js';
 import { attempts, dailyGoal, loadProgress } from './progress.js';
 import { MIN_ANSWERS, dayKey, heatCells, heatLevel, summarize } from './stats.js';
 import { questsOf } from './quests.js';
 import { questsHTML } from './ui/quests.js';
+import { dailyTip, firstSentence } from './tips.js';
 
 export const icon = (name, cls = 'icon') => `<svg class="${cls}" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-${name}"></use></svg>`;
 
@@ -80,7 +83,7 @@ function sideHTML(p, cells, quests) {
 
       <a class="button button--sm button--block side-action" href="practice.html">${t('side.train')}</a></section>
     <section class="card card--magenta side-panel tip" aria-labelledby="side-tip">${talaSVG('thinking', { className: 'tala tala--sm' })}
-      <div><h2 id="side-tip">${t('side.tip')}</h2><p>${t('tip.til')}</p></div></section>`;
+      <div><h2 id="side-tip">${t('side.tip')}</h2><div data-side-tip><p>${t('tip.til')}</p></div></div></section>`;
 }
 
 function footerHTML() {
@@ -99,10 +102,44 @@ async function stats() {
   return { p, cells: heatCells(log, (a) => `${a.case}|${a.number}`), quests: questsOf(progress, dayKey()) };
 }
 
+// A sidebar taller than the window scrolls with the page until its bottom reaches the window's
+// bottom, then sticks there (top: window height minus its height), so nothing in it is out of reach.
+function fitSide() {
+  const side = document.querySelector('[data-shell="side"]');
+  if (!side || getComputedStyle(side).display === 'none') return;
+  side.classList.remove('app-side--long');
+  const over = side.scrollHeight - window.innerHeight;
+  side.classList.toggle('app-side--long', over > 0);
+  side.style.setProperty('--side-top', `${Math.min(0, -over)}px`);
+}
+window.addEventListener('resize', fitSide);
+
+// Guidebook prose: Icelandic is written {is:...}.
+const escHTML = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const prose = (text) => escHTML(text).replace(/\{is:([^}]+)\}/g, (_, x) => `<span lang="is">${x}</span>`);
+
+// The day's tip from the guidebook of the learner's current unit; the default tip stays otherwise.
+async function fillTip() {
+  const side = document.querySelector('[data-shell="side"]');
+  const el = side?.querySelector('[data-side-tip]');
+  if (!el || getComputedStyle(side).display === 'none') return;
+  const [{ loadCourse, nextLesson }, progress] = await Promise.all([import('./course.js'), loadProgress()]);
+  const course = await loadCourse();
+  const tip = dailyTip(course, nextLesson(course, progress).unit.id, dayKey());
+  if (!tip || !el.isConnected) return;
+  el.innerHTML = `<p><strong>${escHTML(pick(tip.section.title))}</strong></p><p>${prose(firstSentence(pick(tip.section.text)))}</p>
+    <p><a href="guide.html?unit=${tip.unit.id}#g-${tip.index}">${t('side.tipMore')}</a></p>`;
+  fitSide();
+}
+
 async function renderStats() {
   const { p, cells, quests } = await stats();
   fill('hud', hudHTML(p));
-  if (document.querySelector('[data-shell="side"]')) fill('side', sideHTML(p, cells, quests));
+  if (document.querySelector('[data-shell="side"]')) {
+    fill('side', sideHTML(p, cells, quests));
+    fitSide();
+    fillTip();
+  }
   window.dispatchEvent(new CustomEvent('tolva:shell'));
 }
 

@@ -479,5 +479,6 @@
   "quests.chestTodo": "Fullfør alle tre for {xp} XP i bonus.",
   "quests.chestDone": "Alle tre fullført: {xp} XP i bonus i dag.",
   "quests.doneNews": "Oppdrag fullført: {name}",
-  "quests.chestNews": "Alle oppdrag fullført: +{xp} XP"
+  "quests.chestNews": "Alle oppdrag fullført: +{xp} XP",
+  "side.tipMore": "Les mer i veiledningen"
 }

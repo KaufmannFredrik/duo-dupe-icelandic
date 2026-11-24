@@ -2,6 +2,12 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Tala's tip from the guidebook, and a sidebar that fits (2026-11-24)
+
+- Tala's tip in the sidebar was one fixed sentence. It is now a guidebook section of the learner's current unit, a different one each day (`js/tips.js`): the section's title, its first sentence (a full stop inside `{is:...}` does not end it) and a link to the section. The guidebooks' claims are sourced in `content/CLAIMS.md`, so the tips need no new ones. The course data for it loads only when the sidebar is shown, so phones fetch nothing extra; the old tip shows until it has loaded.
+- With the quests, the sidebar was taller than a 900 px window, and its bottom could only be reached by scrolling inside it. Now a sidebar taller than the window scrolls with the page until its bottom reaches the window's bottom and then sticks there (`fitSide` in `js/shell.js` sets `top` to the window height minus the sidebar's height), so nothing in it is out of reach and there is no scroll area inside the page.
+- The visual QA's *almost* shot showed a correct answer: the test helper only replaced *þ, ð, æ, ö* with ASCII, and the drill's word had an accent instead. It now leaves out acute accents too, and the shot looks for an accented word as well, so it shows a course lesson with the host thinking.
+
 ## A story for unit 10 (2026-11-24)
 
 Units 1 to 9 each had a story; unit 10 now has one too. *A new computer* is a reading told by Katla, the unit's host: an old TV, a little brother watching it, a new computer, writing programs, a phone ringing, and a brother with four mobile phones. Only twelve Tatoeba sentences use unit 10's words and nothing a learner has not met by then, most of them about television, so the reading also uses phone and computer sentences from earlier units. *Visual Basic* joined the proper-name allowlist.

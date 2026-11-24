@@ -127,6 +127,8 @@
     border-left: var(--border) solid var(--rf-blue);
     background: var(--rf-night-0);
   }
+  /* Taller than the window: scrolls with the page, then sticks at its bottom (js/shell.js fitSide). */
+  .app-side.app-side--long { top: var(--side-top, 0); align-self: start; height: auto; overflow: visible; }
 }
 
 /* Sidebar panels ----------------------------------------------------------------------------- */

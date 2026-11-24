@@ -1,7 +1,10 @@
 // Answers the current exercise in a Playwright page through the ?qa test hook.
-// mode: 'correct' answers right; 'almost' types ASCII stand-ins where the exercise has a text box.
+// mode: 'correct' answers right; 'almost' types ASCII stand-ins and leaves out acute accents where
+// the exercise has a text box (both grade as almost), so any word with a special letter or an
+// accent gives an almost.
 
-const fold = (s) => s.replace(/[þ]/g, 'th').replace(/[ð]/g, 'd').replace(/[æ]/g, 'ae').replace(/[ö]/g, 'o');
+const ACUTE = { á: 'a', é: 'e', í: 'i', ó: 'o', ú: 'u', ý: 'y' };
+const fold = (s) => s.replace(/[þ]/g, 'th').replace(/[ð]/g, 'd').replace(/[æ]/g, 'ae').replace(/[ö]/g, 'o').replace(/[áéíóúý]/g, (c) => ACUTE[c]);
 
 export async function answer(page, mode = 'correct') {
   const spec = await page.evaluate(() => window.__tolva.spec());

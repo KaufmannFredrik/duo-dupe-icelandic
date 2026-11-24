@@ -479,5 +479,6 @@
   "quests.chestTodo": "Finish all three for {xp} bonus XP.",
   "quests.chestDone": "All three done: {xp} bonus XP earned today.",
   "quests.doneNews": "Quest done: {name}",
-  "quests.chestNews": "All quests done: +{xp} XP"
+  "quests.chestNews": "All quests done: +{xp} XP",
+  "side.tipMore": "Read more in the guidebook"
 }
