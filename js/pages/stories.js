@@ -1,7 +1,8 @@
 // Stories: short readings made of real Tatoeba sentences (content/stories/). The list shows every
 // reading; ?story=<id> opens the reader: play a line or the whole reading with word-by-word
 // highlighting, tap any word for its dictionary form, meaning, case and number. A dialogue may
-// give its speakers to cast members ("cast": { "A": "katla" }); their pictures mark their lines.
+// give its speakers to cast members ("cast": { "A": "katla" }); their pictures mark their lines. A
+// reading may have a narrator ("narrator": "torfi"), introduced the same way.
 
 import { loadJSON, ready } from '../app.js';
 import { loadCourse, unitDone } from '../course.js';
@@ -33,8 +34,8 @@ function storyReady(s) {
   return Boolean(unit && unitDone(unit, progress));
 }
 
-// The cast members of a dialogue, in the order they first speak.
-const castOf = (s) => [...new Set(s.lines.map((l) => s.cast?.[l.speaker]).filter(Boolean))].map(character).filter(Boolean);
+// The cast members of a dialogue, in the order they first speak, or the narrator of a reading.
+const castOf = (s) => (s.narrator ? [s.narrator] : [...new Set(s.lines.map((l) => s.cast?.[l.speaker]).filter(Boolean))]).map(character).filter(Boolean);
 
 if (!story) {
   readerEl.hidden = true;
@@ -65,7 +66,7 @@ function renderReader() {
   const cast = castOf(story);
   const castEl = document.querySelector('[data-story-cast]');
   castEl.hidden = !cast.length;
-  castEl.innerHTML = cast.map((c) => `<li>${characterImg(c.id, { size: 64, label: '' })}<span><strong>${esc(c.name)}</strong><br><span class="muted">${esc(pick(c.kind))}</span></span></li>`).join('');
+  castEl.innerHTML = cast.map((c) => `<li>${characterImg(c.id, { size: 64, label: '' })}<span>${story.narrator ? `<span class="muted">${t('stories.narrator')}</span><br>` : ''}<strong>${esc(c.name)}</strong><br><span class="muted">${esc(pick(c.kind))}</span></span></li>`).join('');
   const text = document.querySelector('[data-reader-text]');
   text.innerHTML = story.lines
     .map((line, n) => {

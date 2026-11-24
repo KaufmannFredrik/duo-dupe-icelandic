@@ -3,7 +3,7 @@
 // their contents. Generated audio goes into a separate cache when played (or all at once from
 // Settings) and survives updates, because each file name is a hash of its text.
 
-const VERSION = 'd85a9c974741';
+const VERSION = '14a0ad254918';
 const CORE = `tolva-core-${VERSION}`;
 const AUDIO = 'tolva-audio-v1';
 const PRECACHE = [

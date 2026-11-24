@@ -31,6 +31,7 @@ After the owner approved the cast, it was wired into the app, with gentle game m
 ### Story speakers
 
 - A dialogue story maps its letter speakers to the cast: `"cast": { "A": "katla", "B": "torfi" }`. The reader introduces the cast under the title and puts the speaker's picture at each line; the story list shows the cast on the card. A speaker with no cast member keeps the letter (in the hello dialogue B introduces himself as Jack, so only A is Lundi).
+- The five readings have a narrator, the host of the unit they follow (`"narrator": "torfi"`): Torfi tells the café, Amma Sigga the family, Elias the bus ride, Hekla the weekend and Jónas the weather. The reader introduces the narrator like a dialogue's cast, and the story card shows them, so every story now has a face.
 
 ### Combos
 

@@ -190,6 +190,7 @@ async function checkStories() {
     if (!story.title?.en || !story.title?.nb) err(rel, 'title needs en and nb');
     if (story.after && !unitIds.has(story.after)) err(rel, `unknown unit ${story.after}`);
     if (!story.dialogue && story.lines?.some((l) => l.speaker)) err(rel, 'speakers are only for dialogues');
+    if (story.narrator && (story.dialogue || !character(story.narrator))) err(rel, `narrator ${story.narrator}: only a reading may have one, and it must be a cast member`);
     for (const [speaker, id] of Object.entries(story.cast ?? {})) {
       if (!character(id)) err(rel, `unknown cast member ${id}`);
       if (!story.lines?.some((l) => l.speaker === speaker)) err(rel, `cast gives ${speaker} to ${id}, but ${speaker} has no lines`);

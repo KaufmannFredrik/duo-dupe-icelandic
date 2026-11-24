@@ -8,6 +8,7 @@
   },
   "level": "A1",
   "after": "time",
+  "narrator": "hekla",
   "dialogue": false,
   "lines": [
     {

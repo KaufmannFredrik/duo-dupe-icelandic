@@ -296,6 +296,8 @@ if (process.argv.includes('--all')) {
     const cards = await page.locator('.story-card').count();
     if (cards < 9) throw new Error(`only ${cards} stories listed`);
     await page.goto(`${url}stories.html?story=cafe`);
+    await page.locator('.story__cast li').first().waitFor({ timeout: 5000 });
+    if ((await page.locator('.story__cast strong').allTextContents()).join() !== 'Torfi') throw new Error('the café reading is not told by Torfi');
     await page.locator('.word').first().click();
     await page.locator('.word-panel .word-panel__lemma').first().waitFor({ timeout: 5000 });
     const audio = page.waitForResponse((r) => r.url().includes('/data/audio/tts/') && r.ok(), { timeout: 5000 });
@@ -306,7 +308,7 @@ if (process.argv.includes('--all')) {
     const castNames = await page.locator('.story__cast strong').allTextContents();
     const speakers = await page.locator('.speaker--char img').count();
     if (castNames.join() !== 'Katla,Torfi' || speakers < 6) throw new Error(`shopping cast ${castNames.join()} with ${speakers} pictured lines`);
-    console.log(`PASS stories: ${cards} listed, word panel opens, line audio loads, dialogue cast shown`);
+    console.log(`PASS stories: ${cards} listed, word panel opens, line audio loads, dialogue cast and narrator shown`);
   } catch (e) {
     failed = true;
     console.log(`FAIL stories: ${e.message}`);

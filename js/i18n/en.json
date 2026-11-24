@@ -464,5 +464,6 @@
   "friends.new": "{name} is your friend now.",
   "friends.see": "See your friends",
   "stories.cast": "In this story",
-  "guide.host": "{name} walks you through the grammar of this unit."
+  "guide.host": "{name} walks you through the grammar of this unit.",
+  "stories.narrator": "Told by"
 }

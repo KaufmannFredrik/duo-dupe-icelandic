@@ -464,5 +464,6 @@
   "friends.new": "{name} er vennen din nå.",
   "friends.see": "Se vennene dine",
   "stories.cast": "I denne historien",
-  "guide.host": "{name} tar deg gjennom grammatikken i denne enheten."
+  "guide.host": "{name} tar deg gjennom grammatikken i denne enheten.",
+  "stories.narrator": "Fortalt av"
 }
