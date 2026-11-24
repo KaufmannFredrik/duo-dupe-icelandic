@@ -18,6 +18,7 @@ import { gzipSync } from 'node:zlib';
 import path from 'node:path';
 import { CACHE, ROOT, bunzipLines, download, openZip } from './lib/bulk.mjs';
 import { blocking, lintTexts } from './lib/lint.mjs';
+import { HAND_NB, applyHandNb } from './lib/translations.mjs';
 
 const REFRESH = process.argv.includes('--refresh');
 const NO_LINT = process.argv.includes('--no-lint');
@@ -525,6 +526,8 @@ async function main() {
     const s = analyzed.get(id);
     sentences[id] = { is: s.is, author: s.author, en: s.en.slice(0, 2), nb: s.nb.slice(0, 1), tokens: s.tokens.length, unknown: s.unknown, lemmas: [...s.lemmas] };
   }
+  // Where Tatoeba has no Bokmål translation, the one written for TÖLVA (scripts/build-translations.mjs).
+  if (existsSync(path.join(ROOT, HAND_NB))) applyHandNb(sentences, JSON.parse(await readFile(path.join(ROOT, HAND_NB), 'utf8')).sentences);
 
   const files = {
     'data/lexicon.json': lexicon,

@@ -8,7 +8,11 @@
 //  - a hand-written sentence ("source": "authored") has a GreynirCorrect error,
 //  - an excluded sentence (content/sentence-exclude.json) is used in a guidebook or a story,
 //  - a unit's host or a story's cast names a character not in js/characters.js, or a host's
-//    greeting is missing or excluded.
+//    greeting is missing or excluded,
+//  - a hand-written Bokmål translation (content/translations-nb.json) belongs to no sentence, to an
+//    excluded one or to one Tatoeba already translates, ends with other punctuation than the
+//    Icelandic, or has a word that is not a Bokmålsordboka form (or a compound of two, or a name
+//    listed in the file).
 // Content not yet checked against sources ("reviewed": false) is counted and listed, not failed;
 // content/CLAIMS.md lists every hand-written claim with its source.
 //
@@ -20,6 +24,8 @@ import path from 'node:path';
 import { CACHE, ROOT } from './lib/bulk.mjs';
 import { blocking, lintTexts, pythonPath, SETUP_HELP } from './lib/lint.mjs';
 import { character } from '../js/characters.js';
+import { HAND_NB } from './lib/translations.mjs';
+import { bokmalCompound, bokmalForm, bokmalGenitive, eachLimited } from './lib/bokmal.mjs';
 
 const UA = 'TOLVA-validate/0.1 (+https://github.com/KaufmannFredrik/duo-dupe-icelandic)';
 const readJson = async (rel) => JSON.parse(await readFile(path.join(ROOT, rel), 'utf8'));
@@ -269,6 +275,47 @@ async function checkAuthored() {
   return authored.length;
 }
 
+// Hand-written Bokmål translations: where they belong, their punctuation and every word.
+async function checkTranslations() {
+  if (!existsSync(path.join(ROOT, HAND_NB))) return 0;
+  const file = await readJson(HAND_NB);
+  if (file.reviewed === false) unreviewed.push(HAND_NB);
+  const names = new Set(file.names ?? []);
+  const end = (t) => t.match(/[.?!…]["»“”]*$/)?.[0][0] ?? '';
+  const words = new Map(); // lowercase word -> where it first appears
+  for (const [id, text] of Object.entries(file.sentences)) {
+    const where = `${HAND_NB} ${id}`;
+    const s = sentences[id];
+    if (!s) {
+      err(where, 'sentence not found');
+      continue;
+    }
+    if (excluded[id]) err(where, `sentence is excluded: ${excluded[id]}`);
+    if (s.nb?.length && s.nbBy !== 'tolva') err(where, 'Tatoeba has a Bokmål translation of this sentence; remove this one');
+    if (!text || text !== text.trim()) err(where, 'empty, or spaces at the ends');
+    // Like the Icelandic, or like an English translation where Tatoeba's Icelandic has a typo.
+    if (![s.is, ...(s.en ?? [])].some((x) => end(x) === end(text))) err(where, `ends with "${end(text)}", the Icelandic with "${end(s.is)}" (in: ${text})`);
+    // A capitalized word also in the Icelandic sentence is a name (Tom, María).
+    const isWords = new Set([...s.is.matchAll(/\p{Lu}\p{L}*/gu)].map((m) => m[0]));
+    for (const m of text.matchAll(/\p{L}+(?:-\p{L}+)*/gu)) {
+      if (isWords.has(m[0]) || names.has(m[0])) continue;
+      const w = m[0].toLocaleLowerCase('nb');
+      if (!words.has(w)) words.set(w, { where, text, capital: m[0] !== w });
+    }
+  }
+  await eachLimited([...words.keys()].flatMap((w) => w.split('-')), bokmalForm);
+  for (const [w, at] of words) {
+    if (await bokmalForm(w)) continue;
+    const parts = w.split('-');
+    if (parts.length > 1 && (await Promise.all(parts.map(bokmalForm))).every(Boolean)) continue;
+    if ((await bokmalGenitive(w)) || (await bokmalCompound(w))) continue;
+    err(at.where, `"${w}" is not a Bokmål word form in Bokmålsordboka${at.capital ? ' (if it is a name, list it in "names")' : ''} (in: ${at.text})`);
+  }
+  const missing = Object.entries(sentences).filter(([id, s]) => !excluded[id] && !s.nb?.length && !file.sentences[id]);
+  if (missing.length) warnings.push(`${missing.length} sentences have no Bokmål translation (first: ${missing.slice(0, 3).map(([id]) => id).join(', ')})`);
+  return Object.keys(file.sentences).length;
+}
+
 await checkVocab();
 await checkUnits();
 await checkStories();
@@ -276,8 +323,9 @@ await checkMinimalPairs();
 await checkAudio();
 await checkSmallFiles();
 const authoredCount = await checkAuthored();
+const nbCount = await checkTranslations();
 
-console.log(`Checked the vocabulary (${Object.keys(lexicon.lemmas).length} lemmas), lessons, units, stories, rules and ${authoredCount} hand-written sentences.`);
+console.log(`Checked the vocabulary (${Object.keys(lexicon.lemmas).length} lemmas), lessons, units, stories, rules, ${authoredCount} hand-written sentences and ${nbCount} hand-written Bokmål translations.`);
 if (unreviewed.length) console.log(`Not yet checked against sources (${unreviewed.length}): ${unreviewed.join(', ')}. See content/CLAIMS.md.`);
 for (const w of warnings) console.log(`warning: ${w}`);
 if (errors.length) {
