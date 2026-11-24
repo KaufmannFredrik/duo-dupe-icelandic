@@ -8,8 +8,9 @@
 //   bridge      see a Norwegian relative, type the Icelandic word
 //   placement   adaptive test: one step per unit, stops at the first unit with a miss
 // Every answer is recorded per item (word meaning or single form) for spaced repetition.
-// Every fifth right answer in a row earns a combo bonus. In a course lesson the unit's host cheers
-// it on and appears on the closing screens; elsewhere Tala does.
+// Every fifth right answer in a row earns a combo bonus. In a course lesson the unit's host reacts to
+// each answer in the feedback sheet (happy, thinking when almost, sorry when wrong, cheering on a
+// combo) and appears on the closing screens; elsewhere Tala does.
 
 import { loadJSON, ready } from '../app.js';
 import { pick, t } from '../i18n.js';
@@ -139,6 +140,14 @@ function closingPicture(expr) {
   return talaSVG(TALA_FOR[expr], { label: t(`mascot.${TALA_FOR[expr]}`), className: 'tala tala--lg' });
 }
 
+// A small face in the feedback sheet that reacts to the answer. Decorative: the title says it.
+const FACE_FOR = { correct: 'happy', almost: 'thinking', wrong: 'sorry' };
+const TALA_FACE = { happy: 'happy', cheer: 'happy', thinking: 'thinking', sorry: 'wrong' };
+function sheetFace(expr) {
+  if (host) return characterImg(host.id, { expr, size: 48, label: '', className: 'sheet__face' });
+  return talaSVG(TALA_FACE[expr], { className: 'tala tala--mini sheet__face' });
+}
+
 // --- Player ---------------------------------------------------------------------------------------
 
 const specs = plan.specs;
@@ -207,13 +216,12 @@ function openSheet(r, skipped, combo = 0) {
   const state = r.result;
   const title = skipped ? t('feedback.skipped') : t(`feedback.${state}`);
   const comboText = combo ? t('lesson.combo', { n: combo, xp: COMBO_XP }) : '';
-  const cheer = host ? characterImg(host.id, { expr: 'cheer', size: 48, label: '' }) : talaSVG('happy', { className: 'tala tala--mini' });
   const iconName = state === 'correct' ? 'check' : state === 'almost' ? 'almost' : 'wrong';
   sheet.dataset.state = state;
   const playAttrs = r.audio ? `data-play="${esc(r.audio)}"${r.audioUrl ? ` data-url="${esc(r.audioUrl)}"` : ''}` : '';
   sheet.innerHTML = `<div class="sheet__inner">
-      <div class="sheet__head"><svg class="sheet__icon" aria-hidden="true"><use href="assets/icons.svg#i-${iconName}"></use></svg><h2 class="sheet__title" id="sheet-title">${title}</h2></div>
-      ${combo ? `<p class="sheet__combo">${cheer}<span>${comboText}</span></p>` : ''}
+      <div class="sheet__head"><svg class="sheet__icon" aria-hidden="true"><use href="assets/icons.svg#i-${iconName}"></use></svg><h2 class="sheet__title" id="sheet-title">${title}</h2>${sheetFace(combo ? 'cheer' : FACE_FOR[state])}</div>
+      ${combo ? `<p class="sheet__combo">${icon('xp')}<span>${comboText}</span></p>` : ''}
       <div><p class="label">${t('feedback.answer')}</p><p class="sheet__answer">${r.answerHTML}</p></div>
       ${r.why ? `<div class="sheet__why">${r.why}</div>` : ''}
       ${r.sentence ? credit(r.sentence) : ''}

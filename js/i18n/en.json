@@ -463,5 +463,6 @@
   "friends.finish": "Finish Unit {n} to make friends",
   "friends.new": "{name} is your friend now.",
   "friends.see": "See your friends",
-  "stories.cast": "In this story"
+  "stories.cast": "In this story",
+  "guide.host": "{name} walks you through the grammar of this unit."
 }

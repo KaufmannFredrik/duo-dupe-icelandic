@@ -8,6 +8,8 @@ import { loadCourse, unitOf } from '../course.js';
 import { renderTable } from '../ui/table.js';
 import { play } from '../audio.js';
 import { icon } from '../shell.js';
+import { hostOf } from '../characters.js';
+import { characterImg } from '../ui/character.js';
 
 await ready;
 await loadAll();
@@ -18,6 +20,13 @@ const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<
 const prose = (text) => esc(text).replace(/\{is:([^}]+)\}/g, (_, x) => `<span lang="is" class="is-inline">${x}</span>`);
 
 document.querySelector('[data-guide-title]').textContent = `${t('learn.unit', { n: unit.order })}: ${pick(unit.title)}`;
+
+// The unit's host, thinking, as the one who explains the grammar.
+const host = hostOf(unit);
+if (host) {
+  document.querySelector('[data-guide-host]').innerHTML = `<div class="host host--guide">${characterImg(host.id, { expr: 'thinking', size: 72, label: '', className: 'host__pic' })}
+    <p class="host__bubble"><span class="host__name">${esc(host.name)} <span class="host__kind">${esc(pick(host.kind))}</span></span><span>${t('guide.host', { name: esc(host.name) })}</span></p></div>`;
+}
 
 if (!unit.guide) {
   root.innerHTML = `<p class="muted">${t('guide.none')}</p>`;

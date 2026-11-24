@@ -463,5 +463,6 @@
   "friends.finish": "Fullfør enhet {n} for å bli venner",
   "friends.new": "{name} er vennen din nå.",
   "friends.see": "Se vennene dine",
-  "stories.cast": "I denne historien"
+  "stories.cast": "I denne historien",
+  "guide.host": "{name} tar deg gjennom grammatikken i denne enheten."
 }

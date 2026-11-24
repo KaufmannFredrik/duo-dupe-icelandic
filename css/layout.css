@@ -345,6 +345,7 @@
 .host--unmet .host__pic,
 .friend-tile[data-friend="false"] .char { filter: brightness(0) drop-shadow(0 0 1px var(--rf-blue)) drop-shadow(0 0 6px rgba(0, 128, 255, 0.6)); }
 .learn-credit { max-width: 560px; margin: 0 auto; }
+.host--guide { max-width: 40rem; margin: 0; }
 
 @media (min-width: 1200px) {
   .unit-banner { top: var(--space-4); }

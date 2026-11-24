@@ -665,7 +665,6 @@ html[data-calm="on"] .speak__mic .icon { animation: none; }
 .char { display: block; max-width: 100%; height: auto; }
 .char--lg { width: clamp(140px, 30vw, 220px); }
 
-/* Combo line in the feedback sheet: the host (or Tala) cheering. */
-.sheet__combo { display: flex; align-items: center; gap: var(--space-3); margin: 0; color: var(--rf-gold); font-weight: 700; }
-.sheet__combo .char,
-.sheet__combo .tala { flex: none; }
+/* The host's (or Tala's) face at the end of the feedback sheet's title row, and the combo line. */
+.sheet__face { flex: none; margin-left: auto; }
+.sheet__combo { display: flex; align-items: center; gap: var(--space-2); margin: 0; color: var(--rf-gold); font-weight: 700; }

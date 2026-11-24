@@ -23,6 +23,11 @@ After the owner approved the cast, it was wired into the app, with gentle game m
 - The lesson's closing screen shows the host cheering, and the out-of-hearts screen shows them sorry. Practice rounds, which belong to no unit, keep Tala.
 - Units scrolled into view now leave room for the sticky banner (`scroll-margin-top`), so the host is not hidden under it.
 
+### Faces that react, and the guide
+
+- In a course lesson the host's face (48 px) sits at the end of the feedback sheet's title row and reacts to the answer: *happy* when right, *thinking* when almost, *sorry* when wrong, *cheer* on a combo. It adds no height, so the sheet covers no more of the exercise on a phone, and it is decorative (the title says the result). Practice rounds use Tala's matching faces.
+- The guidebook shows the unit's host in the *thinking* pose as the one who walks the learner through the grammar.
+
 ### Story speakers
 
 - A dialogue story maps its letter speakers to the cast: `"cast": { "A": "katla", "B": "torfi" }`. The reader introduces the cast under the title and puts the speaker's picture at each line; the story list shows the cast on the card. A speaker with no cast member keeps the letter (in the hello dialogue B introduces himself as Jack, so only A is Lundi).
