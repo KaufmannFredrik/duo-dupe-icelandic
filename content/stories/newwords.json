@@ -1,0 +1,39 @@
+{
+  "id": "newwords",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "A new computer",
+    "nb": "En ny datamaskin"
+  },
+  "level": "A1",
+  "after": "newwords",
+  "narrator": "katla",
+  "dialogue": false,
+  "lines": [
+    {
+      "sentence": "12701233"
+    },
+    {
+      "sentence": "487120"
+    },
+    {
+      "sentence": "3772657"
+    },
+    {
+      "sentence": "482276"
+    },
+    {
+      "sentence": "386468"
+    },
+    {
+      "sentence": "483459"
+    },
+    {
+      "sentence": "11364596"
+    },
+    {
+      "sentence": "3995292"
+    }
+  ]
+}

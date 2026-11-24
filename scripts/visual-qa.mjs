@@ -177,7 +177,7 @@ const SHOTS = [
 const OVERFLOW_PAGES = [
   'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=shopping', 'guide.html?unit=weather', 'guide.html?unit=study', 'guide.html?unit=grammar', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
   'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
-  'stories.html', 'stories.html?story=hello', 'stories.html?story=cafe', 'stories.html?story=time', 'stories.html?story=shopping', 'stories.html?story=study', 'stories.html?story=grammar', 'lesson.html?mode=sounds', 'voices.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
+  'stories.html', 'stories.html?story=hello', 'stories.html?story=cafe', 'stories.html?story=time', 'stories.html?story=shopping', 'stories.html?story=study', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'voices.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
 ];
 
 async function settle(page) {

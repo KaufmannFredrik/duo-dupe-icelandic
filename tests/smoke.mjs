@@ -301,7 +301,7 @@ if (process.argv.includes('--all')) {
     await page.goto(`${url}stories.html`);
     await page.locator('.story-card').first().waitFor({ timeout: 5000 });
     const cards = await page.locator('.story-card').count();
-    if (cards < 9) throw new Error(`only ${cards} stories listed`);
+    if (cards < 10) throw new Error(`only ${cards} stories listed`);
     await page.goto(`${url}stories.html?story=cafe`);
     await page.locator('.story__cast li').first().waitFor({ timeout: 5000 });
     if ((await page.locator('.story__cast strong').allTextContents()).join() !== 'Torfi') throw new Error('the café reading is not told by Torfi');
