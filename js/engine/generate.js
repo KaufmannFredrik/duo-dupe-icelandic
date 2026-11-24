@@ -4,7 +4,7 @@
 //
 // Exercise specs are plain JSON, so mistakes can be stored and replayed later.
 
-import { CASES, analysesIn, isCommonTag } from '../grammar.js';
+import { CASES, analysesIn, buildTable, isCommonTag } from '../grammar.js';
 import { pick, rng, shuffle } from './rng.js';
 
 const tokenize = (text) => [...text.matchAll(/\p{L}+/gu)].map((m) => ({ raw: m[0], low: m[0].toLocaleLowerCase('is'), index: m.index }));
@@ -179,8 +179,9 @@ export function createGenerator(data) {
   // only course word spelled so), whose analyses agree on number, definiteness and gender, and
   // whose comparable forms differ by case. Its case is the one the parser gives it there: "kaffi"
   // can be three cases, and in "Er hann að drekka kaffi?" it is the accusative. A form that can
-  // be several cases is used only when the parser decided; unique: the form has one case only.
-  function caseTarget(id, sid, { unique = false } = {}) {
+  // be several cases is used only when the parser decided; unique: the form has one case only;
+  // tag: only this form (a review of the form's card), so the card that is due gets practiced.
+  function caseTarget(id, sid, { unique = false, tag = null } = {}) {
     const bm = paradigm(id);
     for (const [i, tok] of toks(sid).entries()) {
       const ids = idsAt(sid, i);
@@ -196,11 +197,13 @@ export function createGenerator(data) {
       if (parsed) an = an.filter((a) => a.parsed.case === parsed);
       else if (formCases.size > 1) continue;
       if (!an.length) continue;
-      const p = an[0].parsed;
+      const chosen = tag ? an.find((a) => a.tag === tag) : an[0];
+      if (!chosen) continue;
+      const p = chosen.parsed;
       const comparable = bm.filter((f) => f.b && /\d$/.test(f.g) === false).map((f) => ({ f, q: analysesIn([f], f.b)[0]?.parsed })).filter(({ q }) => q?.case && same(q));
       const options = [...new Set(comparable.map(({ f }) => f.b))];
       if (options.length < 2) continue;
-      return { tok, index: i, tag: an[0].tag, parsed: p, cases: [...new Set(an.map((a) => a.parsed.case))], options };
+      return { tok, index: i, tag: chosen.tag, parsed: p, cases: [...new Set(an.map((a) => a.parsed.case))], options };
     }
     return null;
   }
@@ -229,10 +232,12 @@ export function createGenerator(data) {
     return null;
   }
 
-  function caseSpec(type, id, allowed, used, r) {
+  // tag: only that form (reviews), looked for in every sentence instead of the 16 shortest.
+  function caseSpec(type, id, allowed, used, r, { tag = null } = {}) {
     if (!CASE_CLASSES.has(lexicon.lemmas[id].ofl)) return null;
-    for (const sid of sentencesFor(id, allowed, used, 9, true).slice(0, 16)) {
-      const t = caseTarget(id, sid, { unique: type === 'case' });
+    const cands = sentencesFor(id, allowed, used, 9, true);
+    for (const sid of tag ? cands : cands.slice(0, 16)) {
+      const t = caseTarget(id, sid, { unique: type === 'case', tag });
       if (!t) continue;
       used.add(sid);
       const base = { lemma: id, sentence: sid, target: t.tok.raw, tag: t.tag, rule: ruleFor(sid, t.index, t.cases[0], id), key: `${id}|${t.tag}`, meta: { case: t.cases[0], number: t.parsed.number, gender: t.parsed.gender ?? lexicon.lemmas[id].kyn } };
@@ -241,13 +246,34 @@ export function createGenerator(data) {
     return null;
   }
 
-  function table(id, r) {
+  // A noun's singular with three cells to fill; the indefinite nominative is always shown.
+  // want: a review of one form (a card such as "bjór_no|ÞFFTgr" or "drekka_so|GM-FH-ÞT-1P-ET"):
+  // the part of the word's table that has that cell (as the case trainer shows it, so any word
+  // class), with that cell and up to two more to fill.
+  function table(id, r, want = null) {
+    if (want) return tableFor(id, want, r);
     if (lexicon.lemmas[id].ofl !== 'no') return null;
     const tags = paradigm(id)
       .filter((f) => f.b && /^(NF|ÞF|ÞGF|EF)ET(gr)?$/.test(f.g) && f.g !== 'NFET')
       .map((f) => f.g);
     if (tags.length < 3) return null;
     return { type: 'table', lemma: id, blanks: shuffle(tags, r).slice(0, 3), key: `${id}|table` };
+  }
+
+  // The table options under which a tag has a cell: a verb's tense, an adjective's strength.
+  const tableOptions = (tag) => ({ tense: /(^|-)ÞT(-|$)/.test(tag) ? 'ÞT' : 'NT', strength: /^FVB-/.test(tag) ? 'VB' : 'SB' });
+  function tableFor(id, want, r) {
+    const l = lexicon.lemmas[id];
+    const options = tableOptions(want);
+    const tb = buildTable({ ofl: l.ofl, ord: l.lemma, bmyndir: paradigm(id) }, options);
+    if (!tb) return null;
+    const all = tb.groups.flatMap((g) => g.columns);
+    const cellsOf = (g) => tb.rows.flatMap((row) => g.columns.map((c) => row.cells[all.indexOf(c)]).filter((cell) => cell?.forms.length).map((cell) => cell.tag));
+    const group = tb.groups.find((g) => cellsOf(g).includes(want));
+    if (!group) return null;
+    const others = [...new Set(cellsOf(group))].filter((g) => g !== want);
+    if (others.length < 2) return null; // keep at least one cell shown
+    return { type: 'table', lemma: id, blanks: [want, ...shuffle(others, r).slice(0, Math.min(2, others.length - 1))], options, key: `${id}|${want}` };
   }
 
   // --- Lessons ------------------------------------------------------------------------------------
@@ -304,7 +330,11 @@ export function createGenerator(data) {
     return out.slice(0, count);
   }
 
-  /** Review of due cards: "id|meaning" cards get word exercises, form cards get case exercises. */
+  /**
+   * Review of due cards: "id|meaning" cards get word exercises; a form card ("bjór_no|ÞFETgr") gets
+   * an exercise on exactly that form, in a sentence or else in the noun's table, so the card that
+   * is due is the one answered. A card no exercise can reach is skipped (reviewable() says which).
+   */
   function review({ cards, allowed, seed, count = 12 }) {
     const r = rng(seed);
     const allow = new Set(allowed);
@@ -318,10 +348,19 @@ export function createGenerator(data) {
       const spec =
         part === 'meaning' ? choice(id, allow, used, r) ?? meaning(id, allow, r) ?? typeword(id)
         : part === 'table' ? table(id, r)
-        : caseSpec('ending', id, allow, used, r) ?? table(id, r);
+        : caseSpec('ending', id, allow, used, r, { tag: part }) ?? table(id, r, part);
       if (spec) out.push(spec);
     }
     return out;
+  }
+
+  /** Whether review() can make an exercise for a card (any word may be used). */
+  function reviewable(key) {
+    const [id, part] = key.split('|');
+    if (!lexicon.lemmas[id]) return false;
+    if (part === 'meaning') return true;
+    if (part === 'table') return Boolean(table(id, rng(1)));
+    return Boolean(caseSpec('ending', id, everyWord, new Set(), rng(1), { tag: part }) ?? table(id, rng(1), part));
   }
 
   /** Placement: one word question per unit, plus a case question from unit 2 on. */
@@ -349,5 +388,5 @@ export function createGenerator(data) {
     return steps;
   }
 
-  return { lesson, review, placement, sentenceOk, caseTarget, ruleFor, toks, hasLemma };
+  return { lesson, review, reviewable, placement, sentenceOk, caseTarget, ruleFor, toks, hasLemma };
 }

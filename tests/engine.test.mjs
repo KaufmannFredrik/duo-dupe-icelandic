@@ -175,3 +175,32 @@ test('generator: review turns due cards into exercises', () => {
   const specs = d.generator.review({ cards: [{ key: 'kaffi_no|meaning' }, { key: 'bjór_no|ÞFETgr' }, { key: 'mjólk_no|table' }], allowed, seed: 1 });
   assert.equal(specs.length, 3);
 });
+
+// A form card's review must answer that card; before, it could practice another form of the word,
+// and the card stayed due for good.
+const reviewKeys = (spec) => (spec.type === 'table' ? spec.blanks.map((tag) => `${spec.lemma}|${tag}`) : [spec.key]);
+
+test('generator: review practices exactly the form that is due', () => {
+  const allowed = new Set(Object.keys(d.lexicon.lemmas));
+  const keys = new Set();
+  for (const u of d.course.units) for (const l of u.lessons) {
+    for (const s of generate(u.id, l).specs) if (s.type === 'ending' || s.type === 'case') keys.add(s.key);
+  }
+  assert.ok(keys.size > 100, `${keys.size} form cards`);
+  for (const key of keys) {
+    const [spec] = d.generator.review({ cards: [{ key }], allowed, seed: 3 });
+    assert.ok(spec, `no review for ${key}`);
+    assert.ok(reviewKeys(spec).includes(key), `${key} reviewed as ${spec.key}`);
+  }
+});
+
+test('generator: case trainer cards are reviewed in their table', () => {
+  const allowed = new Set(Object.keys(d.lexicon.lemmas));
+  // Forms no readable sentence has: a plural with the article, a weak adjective, a verb in the past.
+  for (const key of ['fiskur_no|EFFTgr', 'góður_lo|FVB-KVK-ÞGFFT', 'drekka_so|GM-FH-ÞT-2P-FT']) {
+    const [spec] = d.generator.review({ cards: [{ key }], allowed, seed: 3 });
+    assert.ok(spec, `no review for ${key}`);
+    assert.ok(reviewKeys(spec).includes(key), `${key} reviewed as ${spec.key}`);
+    assert.ok(d.generator.reviewable(key));
+  }
+});

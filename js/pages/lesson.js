@@ -69,8 +69,10 @@ function lessonPlan() {
   };
 }
 
+// Every due card, most overdue first; the generator makes up to twelve exercises from them, each
+// on exactly the word or form of its card, and skips a card it cannot make one for.
 async function reviewPlan() {
-  const due = dueCards(await cards(), Date.now(), 24);
+  const due = dueCards(await cards(), Date.now());
   return { key: 'practice/review', title: t('practice.review'), specs: gen.review({ cards: due, allowed: learnedSoFar, seed: Date.now() % 1e9, count: 12 }), empty: t('practice.reviewEmpty') };
 }
 

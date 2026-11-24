@@ -6,7 +6,8 @@
 // five right answers in a row give a combo bonus, that the unit's host closes the lesson, that the
 // lesson counts toward the daily quests, and that
 // the site loads offline once the service worker is installed.
-// With --all it also plays every lesson of the hand-made units, the sounds and letters drills, and
+// With --all it also plays every lesson of the hand-made units, the sounds and letters drills, a
+// review round of due form cards (each exercise must answer a card that was due), and
 // checks the story reader (word panel, line audio from the generated voice, the cast of a dialogue)
 // and that finishing every unit makes all seven characters friends, at desktop size.
 // With --unit=<id>[,<id>] it only plays every lesson of those units (a quick check while making one).
@@ -28,17 +29,20 @@ const { server, url } = await startServer();
 const browser = await chromium.launch();
 let failed = false;
 
-// Returns the exercise types played; types.combos counts the combo lines in the feedback sheet.
+// Returns the exercise types played; types.combos counts the combo lines in the feedback sheet,
+// types.specs holds the exercises.
 async function playLesson(page, href) {
   await page.goto(`${url}${href}${href.includes('?') ? '&' : '?'}qa`);
   await page.waitForFunction(() => window.__tolva);
   const types = [];
   types.combos = 0;
+  types.specs = [];
   for (let i = 0; i < 30; i++) {
     await page.waitForFunction(() => document.querySelector('.complete__title') || (window.__tolva.spec() && !document.querySelector('[data-sheet].is-open')));
     if (await page.locator('.complete__title').count()) break;
     const spec = await answer(page);
     types.push(spec.type);
+    types.specs.push(spec);
     await page.click('[data-action="check"]');
     const state = await page.getAttribute('[data-sheet]', 'data-state');
     if (state !== 'correct') throw new Error(`${href} exercise ${i + 1} (${spec.type}) graded ${state}`);
@@ -296,6 +300,45 @@ if (process.argv.includes('--all')) {
       failed = true;
       console.log(`FAIL ${href}: ${e.message}`);
     }
+  }
+  // Review: only form cards due. Every exercise must answer a card that was due (a table answers
+  // several), and those cards must not be due afterwards.
+  try {
+    const cardsIn = (p, update) =>
+      p.evaluate(
+        (u) =>
+          new Promise((resolve, reject) => {
+            const req = indexedDB.open('tolva');
+            req.onsuccess = () => {
+              const tx = req.result.transaction('cards', u ? 'readwrite' : 'readonly');
+              const store = tx.objectStore('cards');
+              let all = [];
+              store.getAll().onsuccess = (e) => {
+                all = e.target.result;
+                if (u) for (const c of all) store.put({ ...c, due: /\|(meaning|table)$/.test(c.key) ? Date.now() + 864e5 : 0 });
+              };
+              tx.oncomplete = () => resolve(all.map((c) => ({ key: c.key, due: c.due })));
+              tx.onerror = () => reject(tx.error);
+            };
+          }),
+        update,
+      );
+    await page.goto(`${url}practice.html`);
+    await cardsIn(page, true);
+    const dueBefore = new Set((await cardsIn(page, false)).filter((c) => c.due <= Date.now()).map((c) => c.key));
+    const types = await playLesson(page, 'lesson.html?mode=review');
+    for (const t of types) seen.set(t, (seen.get(t) ?? 0) + 1);
+    const after = new Map((await cardsIn(page, false)).map((c) => [c.key, c.due]));
+    for (const s of types.specs) {
+      const keys = s.type === 'table' ? s.blanks.map((tag) => `${s.lemma}|${tag}`) : [s.key];
+      if (!keys.some((k) => dueBefore.has(k))) throw new Error(`${s.type} ${keys.join(', ')}: no card of it was due`);
+      for (const k of keys.filter((x) => dueBefore.has(x))) if (after.get(k) <= Date.now()) throw new Error(`${k} is still due after the review`);
+    }
+    if (types.length < 6) throw new Error(`only ${types.length} review exercises from ${dueBefore.size} due cards`);
+    console.log(`PASS review: ${types.length} exercises, each on a due form card (${dueBefore.size} due)`);
+  } catch (e) {
+    failed = true;
+    console.log(`FAIL review: ${e.message}`);
   }
   try {
     await page.goto(`${url}stories.html`);

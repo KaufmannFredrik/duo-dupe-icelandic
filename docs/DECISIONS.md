@@ -2,6 +2,14 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Reviews practice the form that is due (2026-11-24)
+
+A review of a form card (*kaffi*, genitive singular) made an exercise on the first form of the word in the shortest sentences, often another form. Of the 187 form cards the lessons create, 39 were practiced as another form when they came due; the due card was never answered, stayed due, and since the review round took the 24 most overdue cards, such cards gathered at its front. They were the rarer forms (*barn* dative, *faðir* nominative, *kaffi* genitive), the weak spots spaced repetition is for.
+
+- `review()` in `js/engine/generate.js` now asks for the card's exact form (`caseTarget(..., { tag })`), in any sentence, not only the 16 shortest. Where no sentence has the form, the word's table is the exercise: the part of it that has the due cell (the plural of a noun, the weak forms of an adjective, a verb's past, as the case trainer shows them), with that cell and up to two more to fill. The table exercise now works for every word class, so the case trainer's cards are reviewed too.
+- The review round gets every due card, most overdue first, instead of the first 24, and makes up to twelve exercises from them.
+- Tests: every form card the lessons create, reviewed, is answered by its exercise (`node --test`); a weak adjective, a plural with the article and a verb in the past go to their table. `npm run smoke` plays a review round with only form cards due and checks that each exercise answered a due card and that those cards are no longer due.
+
 ## Bokmål word glosses corrected (2026-11-24)
 
 A review of the 299 Bokmål glosses that come from Wiktionary found 17 wrong first glosses, the ones exercises show: *vera* was "å bli" (that is *verða*), *elska* "å kjærlighet" (a noun), *búa* "å bo bu" (two words run together), *rauður* "röd" (Swedish), *panta* "å ordne", *eftir* "senere", *þessi* "den", *mega* "å kan", *vinna* the verb "å arbeid", and *úti* "ut" and *heima* "hjem", which contradicted the unit 7 guidebook (*ute*, *hjemme*). About 30 later glosses, shown only in the dictionary, were wrong too (*nótt* "kveld", *kirkja* "gudstjeneste", *barn* "barn n mindreårig").
