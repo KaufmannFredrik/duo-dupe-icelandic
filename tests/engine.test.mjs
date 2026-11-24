@@ -111,7 +111,10 @@ for (const unitId of ['hello', 'cafe', 'family', 'around', 'time', 'shopping', '
           assert.ok(!d.excluded.has(sid), `sentence ${sid} is excluded`);
           for (const t of tokens(d.sentences[sid].is)) assert.ok(known(t), `${lesson.key} ${s.type}: "${t.raw}" in "${d.sentences[sid].is}" is not a known word`);
         }
-        if (s.type === 'choice') assert.equal(new Set(s.options.map((x) => d.sentences[x].en[0])).size, s.options.length, 'distinct translations');
+        if (s.type === 'choice') {
+          assert.equal(new Set(s.options.map((x) => d.sentences[x].en[0])).size, s.options.length, 'distinct English translations');
+          assert.equal(new Set(s.options.map((x) => d.sentences[x].nb[0])).size, s.options.length, 'distinct Bokmål translations');
+        }
         if (s.type === 'wordbank' || s.type === 'dictation') {
           const present = new Set(tokens(d.sentences[s.sentence].is).map((t) => t.low));
           for (const x of s.distractors) assert.ok(!present.has(x.toLocaleLowerCase('is')), `distractor "${x}" is in the sentence`);

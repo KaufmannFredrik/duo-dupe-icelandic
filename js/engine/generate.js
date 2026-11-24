@@ -101,14 +101,14 @@ export function createGenerator(data) {
     const cands = sentencesFor(id, allowed, used, 9, true);
     if (!cands.length) return null;
     const sid = pick(cands.slice(0, 6), r);
-    const en = sentences[sid].en[0];
-    const seen = new Set([en]);
+    // The options show translations (English or Bokmål), so no two may share one in either language.
+    const shown = (x) => [sentences[x].en[0], sentences[x].nb?.[0]].filter(Boolean);
+    const seen = new Set(shown(sid));
     const others = [];
     for (const x of shuffle(pool, r)) {
       if (others.length === 3) break;
-      const e = sentences[x].en[0];
-      if (x === sid || seen.has(e) || !sentenceOk(x, everyWord)) continue;
-      seen.add(e);
+      if (x === sid || shown(x).some((t) => seen.has(t)) || !sentenceOk(x, everyWord)) continue;
+      for (const t of shown(x)) seen.add(t);
       others.push(x);
     }
     if (others.length < 2) return null;

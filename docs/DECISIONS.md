@@ -2,6 +2,16 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Bokmål translations by hand (2026-11-24)
+
+Tatoeba has a Bokmål translation for only 28 of the 1,764 sentences, so a Norwegian learner saw English in almost every exercise, story line, guidebook example and greeting. The owner asked for translations made by hand.
+
+- All 1,732 sentences without one (the four excluded sentences are never shown) were translated from the Icelandic, with Tatoeba's English as a check, in order of use: host greetings, story lines, guidebook examples, the exercise pool, then dictionary examples.
+- They live in `content/translations-nb.json` (with a `names` list for place names in their Norwegian form). `npm run build:translations` writes them into `data/sentences.json` as `nb` with `"nbBy": "tolva"`, only where Tatoeba has none, so a Tatoeba translation added later wins; `scripts/build-data.mjs` applies the same file when it rebuilds everything, and `npm run check` fails while the data is out of date.
+- `npm run validate` looks up every word in Bokmålsordboka (ord.uib.no, cached in `.cache/ordbokene/`). The form search misses some headwords (*morges*), so for a word it does not find, the articles a full-text search finds are read and the word counts only if it is one of their headwords or forms. Genitives and compounds of two forms count too. It also checks the final punctuation and that each translation belongs to a sentence Tatoeba does not translate.
+- Choice exercises show translations as options, so the generator now keeps options apart in both English and Bokmål (before, only English), and the engine test checks both.
+- Rejected: machine translation (the owner asked for hand translations, and a translation service would send the course text out); spelling every feminine noun with *-a* (the interface already writes *ordboken*).
+
 ## The cast in the app: hosts, story speakers, combos and friends (2026-11-23)
 
 After the owner approved the cast, it was wired into the app, with gentle game mechanics around it.

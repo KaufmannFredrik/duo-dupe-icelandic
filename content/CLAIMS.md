@@ -173,6 +173,19 @@ Unit titles are single course words, each in the DMII Core. Which words are taug
 
 The sentences are unchanged Tatoeba sentences, each readable after the unit the story follows (only words from that unit and earlier ones). Their choice, order and speaker labels are design choices, not claims. Which cast member speaks a dialogue (`"cast"`) is a design choice too; so is each unit host's greeting (`"host"` in the unit files), an unchanged Tatoeba sentence shown with its Tatoeba translation.
 
+## Bokmål translations (`content/translations-nb.json`)
+
+Tatoeba has a Bokmål translation for 28 of the 1,764 sentences. The other 1,732 (all but four excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check. A translation is a claim about meaning; these are checked as follows.
+
+| Check | Source | Status |
+|---|---|---|
+| Every word is a Bokmål word form: a headword or inflected form, a word of a headword expression (*morges* in *i morges*, *tide* in *på tide*), a genitive of such a form, or a compound of two (*svømmehall*, *klimaanlegg*) | BMO, looked up by `npm run validate` (`scripts/lib/bokmal.mjs`) | sourced (word forms) |
+| Names: kept as in the Icelandic sentence (Tom, Mary), or in their usual Norwegian form (Island, Tyskland, Sveits, Genève, Moskva), listed in the file's `names` | the place names are the Norwegian exonyms; *Hótel Ísland* keeps its own name | design choice |
+| The sentence ends like the Icelandic (or like Tatoeba's English, where the Icelandic has a typo, such as *Má ég fara með þér.*) | `npm run validate` | checked |
+| Options of one choice exercise never share a translation, in English or Bokmål | `tests/engine.test.mjs` | checked |
+
+Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren*, as the app's Norwegian interface writes *ordboken*), «» for quoted speech, *du* for *þú* and *dere* for *þið*, Norwegian idiom where the Icelandic is idiomatic (*Takk for maten*, *Det har du godt av*, *Det var på tide*). Where Icelandic separates sentences that Bokmål cannot (gender of *þeir*, *þær*, *þau*; *velkominn* and *velkomin*), the translations are the same.
+
 ## The cast (`js/characters.js`, `scripts/characters/`)
 
 | Claim | Source | Status |
