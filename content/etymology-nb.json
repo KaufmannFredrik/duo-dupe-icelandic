@@ -1307,6 +1307,90 @@
     "ef_st": {
       "nb": "Fra norrønt ef, fra urgermansk *jabai.",
       "of": "7caa537c"
+    },
+    "sæll_lo": {
+      "nb": "Fra norrønt sæll («lykkelig»), fra urgermansk *sēliz.",
+      "of": "39b4d090"
+    },
+    "gaman_no": {
+      "nb": "Fra norrønt gaman, fra urgermansk *gamaną. Beslektet med gammelengelsk gamen (moderne engelsk game).",
+      "of": "fad7d23e"
+    },
+    "kynna_so": {
+      "nb": "Fra norrønt kynna, fra urgermansk *kunþijaną. Beslektet med tysk künden, nederlandsk konden og engelsk kithe.",
+      "of": "d08744e3"
+    },
+    "kveðja_no": {
+      "nb": "Fra norrønt kveðja, fra urgermansk *kwadjaną. Beslektet med færøysk kvøðja.",
+      "of": "a803c4e8"
+    },
+    "afsaka_so": {
+      "nb": "Fra af- + saka.",
+      "of": "abcfd49c"
+    },
+    "fyrirgefa_so": {
+      "nb": "Fra norrønt fyrirgefa, fyrgefa, fra urgermansk *fragebaną. Beslektet med nederlandsk vergeven, tysk vergeben og engelsk forgive.",
+      "of": "336c02cd"
+    },
+    "endurtaka_so": {
+      "nb": "Fra endur- («igjen») + taka («ta»), ordrett «ta igjen».",
+      "of": "fad558c5"
+    },
+    "réttur_lo": {
+      "nb": "Fra norrønt réttr, fra urgermansk *rehtaz, fra urindoeuropeisk *h₃reǵtós.",
+      "of": "8ad7b0b9"
+    },
+    "kalla_so": {
+      "nb": "Fra norrønt kalla, fra urgermansk *kalzōną.",
+      "of": "ea610dd7"
+    },
+    "útlendingur_no": {
+      "nb": "Fra útland («fremmed land»).",
+      "of": "6728335f"
+    },
+    "fæða_so": {
+      "nb": "Fra norrønt fœða («fø, føde»), fra urgermansk *fōdijaną, til sist fra urindoeuropeisk *peh₂-. Beslektet med færøysk føða, svensk föda, norsk og dansk føde, engelsk feed og nederlandsk voeden.",
+      "of": "9b4823c7"
+    },
+    "flytja_so": {
+      "nb": "Fra norrønt flytja, fra urgermansk *flutjaną.",
+      "of": "37d7fa5f"
+    },
+    "vegabréf_no": {
+      "nb": "Fra vegur («vei») + bréf («papir»).",
+      "of": "5252ae67"
+    },
+    "heimilisfang_no": {
+      "nb": "Fra heimili + fang.",
+      "of": "9f45b66b"
+    },
+    "símanúmer_no": {
+      "nb": "Fra sími («telefon») + númer («nummer»).",
+      "of": "71e51365"
+    },
+    "kennitala_no": {
+      "nb": "Fra kenni («tegn, merke») + tala («tall»). Sammenlign tysk Kennzahl.",
+      "of": "dc6c360a"
+    },
+    "netfang_no": {
+      "nb": "Fra net («nett, nettverk, internett») + fang («favn, grep»), laget etter mønster av heimilisfang («adresse»).",
+      "of": "b2686851"
+    },
+    "bréf_no": {
+      "nb": "Fra norrønt bréf, som er lånt fra latin brevis («kort»). Sammenlign tysk Brief («brev»).",
+      "of": "b1fb4de7"
+    },
+    "senda_so": {
+      "nb": "Fra norrønt senda, fra urgermansk *sandijaną.",
+      "of": "7615ff2e"
+    },
+    "skilaboð_no": {
+      "nb": "Opprinnelig «muntlig overbrakt beskjed», fra (genitiv av) skil («levering», intetkjønn flertall) + boð («beskjed»).",
+      "of": "74da682a"
+    },
+    "afmæli_no": {
+      "nb": "af («fra, av») + mæla («måle») + -i (endelse for abstrakte substantiv, intetkjønn).",
+      "of": "68e1f442"
     }
   }
 }

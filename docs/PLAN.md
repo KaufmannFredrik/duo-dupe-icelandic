@@ -10,7 +10,7 @@ Status: agreed with the owner on 2026-11-24 (decisions at the end); built in the
   - Stage 3: housing and rent, emergencies (112, police, fire, ambulance, the doctor), holidays and customs, plans for the future, feelings, praising and complaining.
   - Stage 4: media, school and children, the workplace, job applications and payslips, travel and geography.
 - **Grammar:** elon.io's A1 path (pronunciation, gender, the article, present tense, questions, numbers to 20, basic agreement and prepositions) and A2 path (all four cases, strong and weak nouns and the plural, the article in full, strong and weak adjectives and comparison, the past of weak and strong verbs, the perfect, motion and place after two-case prepositions, dative and accusative subjects, dates and ordinals). Its list of what a learner should do before B1 (any known noun in all four cases, singular and plural, with and without the article; strong or weak adjectives; the past and the perfect of common verbs; the case after two-case prepositions; dative and accusative subjects) becomes the grammar part of the A2 check.
-- **Size:** about 800 words for A1 and 1,600 in all for A2 (Duolingo's figure of about 800 words per level; no Icelandic source gives a count). TÖLVA has 337.
+- **Size:** about 800 words for A1 and 1,600 in all for A2 (Duolingo's figure of about 800 words per level; no Icelandic source gives a count). TÖLVA had 337 when the plan was made, 360 with *Um mig*.
 
 ## The path: one path, two sections
 
