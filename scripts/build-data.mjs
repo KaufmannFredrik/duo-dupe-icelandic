@@ -526,9 +526,13 @@ async function main() {
     const s = analyzed.get(id);
     sentences[id] = { is: s.is, author: s.author, en: s.en.slice(0, 2), nb: s.nb.slice(0, 1), tokens: s.tokens.length, unknown: s.unknown, lemmas: [...s.lemmas] };
   }
-  // Where Tatoeba or Wiktionary has no Bokmål, the one written for TÖLVA (scripts/build-translations.mjs).
+  // Where Tatoeba or Wiktionary has no Bokmål, or Wiktionary's is wrong, the one written for TÖLVA
+  // (scripts/build-translations.mjs).
   if (existsSync(path.join(ROOT, HAND_NB))) applyHandNb(sentences, JSON.parse(await readFile(path.join(ROOT, HAND_NB), 'utf8')).sentences);
-  if (existsSync(path.join(ROOT, HAND_GLOSSES))) applyHandNb(lexicon.lemmas, JSON.parse(await readFile(path.join(ROOT, HAND_GLOSSES), 'utf8')).glosses);
+  if (existsSync(path.join(ROOT, HAND_GLOSSES))) {
+    const hand = JSON.parse(await readFile(path.join(ROOT, HAND_GLOSSES), 'utf8'));
+    applyHandNb(lexicon.lemmas, hand.glosses, hand.fixes);
+  }
 
   const files = {
     'data/lexicon.json': lexicon,

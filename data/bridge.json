@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-04T13:57:28.665Z",
+ "generated": "2026-11-24T10:42:11.476Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -18,9 +18,9 @@
   }
  ],
  "counts": {
-  "loan": 5,
-  "old-norse": 156,
-  "form": 8
+  "loan": 7,
+  "old-norse": 170,
+  "form": 10
  },
  "pairs": {
   "halló_uh": {
@@ -33,6 +33,15 @@
    "rules": [
     "o-acute"
    ]
+  },
+  "takk_uh": {
+   "nb": "takk",
+   "evidence": "loan",
+   "loan": {
+    "language": "Danish",
+    "word": "tak"
+   },
+   "rules": []
   },
   "já_uh": {
    "nb": "ja",
@@ -84,6 +93,13 @@
    "evidence": "old-norse",
    "rules": null
   },
+  "heita_so": {
+   "nb": "hete",
+   "article": 23468,
+   "oldNorse": "heita",
+   "evidence": "old-norse",
+   "rules": null
+  },
   "vera_so": {
    "nb": "være",
    "article": 69211,
@@ -99,6 +115,13 @@
    "rules": [
     "ending-a"
    ]
+  },
+  "skilja_so": {
+   "nb": "skille",
+   "article": 52748,
+   "oldNorse": "skilja",
+   "evidence": "old-norse",
+   "rules": null
   },
   "segja_so": {
    "nb": "si",
@@ -420,6 +443,11 @@
    "evidence": "old-norse",
    "rules": null
   },
+  "mamma_no": {
+   "nb": "mamma",
+   "evidence": "form",
+   "rules": []
+  },
   "bróðir_no": {
    "nb": "bror",
    "article": 7635,
@@ -465,14 +493,6 @@
    "rules": [
     "ae",
     "ending-i"
-   ]
-  },
-  "frænka_no": {
-   "nb": "frenke",
-   "evidence": "form",
-   "rules": [
-    "ae",
-    "ending-a"
    ]
   },
   "maður_no": {
@@ -530,12 +550,26 @@
    "evidence": "old-norse",
    "rules": null
   },
+  "búa_so": {
+   "nb": "bo",
+   "article": 6740,
+   "oldNorse": "búa",
+   "evidence": "old-norse",
+   "rules": null
+  },
   "eiga_so": {
    "nb": "eie",
    "article": 11818,
    "oldNorse": "eiga",
    "evidence": "old-norse",
    "rules": null
+  },
+  "elska_so": {
+   "nb": "elske",
+   "evidence": "form",
+   "rules": [
+    "ending-a"
+   ]
   },
   "ungur_lo": {
    "nb": "ung",
@@ -550,6 +584,13 @@
    "nb": "min",
    "article": 38448,
    "oldNorse": "mínn",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "sig_afn": {
+   "nb": "seg",
+   "article": 50355,
+   "oldNorse": "sik",
    "evidence": "old-norse",
    "rules": null
   },
@@ -576,6 +617,13 @@
     "a-acute",
     "ending-a"
    ]
+  },
+  "níu_to": {
+   "nb": "ni",
+   "article": 40792,
+   "oldNorse": "níu",
+   "evidence": "old-norse",
+   "rules": null
   },
   "tíu_to": {
    "nb": "ti",
@@ -644,6 +692,13 @@
     "o-acute",
     "ending-i"
    ]
+  },
+  "hjól_no": {
+   "nb": "hjul",
+   "article": 23918,
+   "oldNorse": "hjól",
+   "evidence": "old-norse",
+   "rules": null
   },
   "bátur_no": {
    "nb": "båt",
@@ -745,6 +800,13 @@
    "evidence": "old-norse",
    "rules": null
   },
+  "keyra_so": {
+   "nb": "kjøre",
+   "article": 29804,
+   "oldNorse": "keyra",
+   "evidence": "old-norse",
+   "rules": null
+  },
   "finna_so": {
    "nb": "finne",
    "article": 14765,
@@ -787,6 +849,20 @@
    "rules": [
     "a-acute-a"
    ]
+  },
+  "við_fs": {
+   "nb": "ved",
+   "article": 67030,
+   "oldNorse": "við",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "yfir_fs": {
+   "nb": "over",
+   "article": 43504,
+   "oldNorse": "yfir",
+   "evidence": "old-norse",
+   "rules": null
   },
   "undir_fs": {
    "nb": "under",
@@ -885,6 +961,13 @@
    "rules": [
     "au"
    ]
+  },
+  "núna_ao": {
+   "nb": "nå",
+   "article": 41676,
+   "oldNorse": "nú",
+   "evidence": "old-norse",
+   "rules": null
   },
   "aldrei_ao": {
    "nb": "aldri",
@@ -1073,6 +1156,13 @@
     "eth"
    ]
   },
+  "af_fs": {
+   "nb": "av",
+   "article": 3341,
+   "oldNorse": "af",
+   "evidence": "old-norse",
+   "rules": null
+  },
   "hundrað_to": {
    "nb": "hundre",
    "article": 24553,
@@ -1145,6 +1235,13 @@
    "evidence": "old-norse",
    "rules": null
   },
+  "rigna_so": {
+   "nb": "regne",
+   "article": 47821,
+   "oldNorse": "regna",
+   "evidence": "old-norse",
+   "rules": null
+  },
   "snjóa_so": {
    "nb": "snø",
    "article": 55277,
@@ -1166,6 +1263,13 @@
    "evidence": "old-norse",
    "rules": [
     "u-acute",
+    "ending-i"
+   ]
+  },
+  "inni_ao": {
+   "nb": "inne",
+   "evidence": "form",
+   "rules": [
     "ending-i"
    ]
   },
@@ -1328,6 +1432,13 @@
    "evidence": "old-norse",
    "rules": null
   },
+  "hringja_so": {
+   "nb": "ringe",
+   "article": 48612,
+   "oldNorse": "hringja",
+   "evidence": "old-norse",
+   "rules": null
+  },
   "hver_fn": {
    "nb": "hver",
    "article": 24783,
@@ -1358,6 +1469,17 @@
    "evidence": "old-norse",
    "rules": []
   },
+  "bara_ao": {
+   "nb": "bare",
+   "evidence": "loan",
+   "loan": {
+    "language": "Danish",
+    "word": "bare"
+   },
+   "rules": [
+    "ending-a"
+   ]
+  },
   "heima_ao": {
    "nb": "hjemme",
    "article": 23769,
@@ -1376,6 +1498,13 @@
    "nb": "at",
    "article": 3024,
    "oldNorse": "at",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "sem_st": {
+   "nb": "som",
+   "article": 55558,
+   "oldNorse": "sem",
    "evidence": "old-norse",
    "rules": null
   },

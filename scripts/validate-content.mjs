@@ -12,7 +12,10 @@
 //  - a hand-written Bokmål translation (content/translations-nb.json) belongs to no sentence, to an
 //    excluded one or to one Tatoeba already translates, ends with other punctuation than the
 //    Icelandic, or has a word that is not a Bokmålsordboka form (or a compound of two, or a name
-//    listed in the file); the same word check for the hand-written glosses (content/glosses-nb.json).
+//    listed in the file),
+//  - a Bokmål word gloss the app shows (from Wiktionary, or written or corrected by hand in
+//    content/glosses-nb.json) has a word that is not a Bokmålsordboka form, or more than one word
+//    without being a listed phrase, or a correction no longer matches what Wiktionary gives.
 // Content not yet checked against sources ("reviewed": false) is counted and listed, not failed;
 // content/CLAIMS.md lists every hand-written claim with its source.
 //
@@ -24,7 +27,7 @@ import path from 'node:path';
 import { CACHE, ROOT } from './lib/bulk.mjs';
 import { blocking, lintTexts, pythonPath, SETUP_HELP } from './lib/lint.mjs';
 import { character } from '../js/characters.js';
-import { HAND_GLOSSES, HAND_NB } from './lib/translations.mjs';
+import { HAND_GLOSSES, HAND_NB, applyHandNb, wiktionaryNb } from './lib/translations.mjs';
 import { bokmalCompound, bokmalForm, bokmalGenitive, eachLimited } from './lib/bokmal.mjs';
 
 const UA = 'TOLVA-validate/0.1 (+https://github.com/KaufmannFredrik/duo-dupe-icelandic)';
@@ -297,27 +300,61 @@ async function checkBokmalWords(words) {
   }
 }
 
-// Hand-written Bokmål glosses: each for a course word Wiktionary gives none for.
+// Bokmål glosses. Hand-written ones ("glosses") are for course words Wiktionary gives none for;
+// corrections ("fixes") replace a Wiktionary list and repeat it ("wiktionary"), so a change on
+// Wiktionary's side is noticed. Every gloss the app shows, from Wiktionary or by hand, must be
+// Bokmålsordboka words, and a gloss of more than one word must be in the file's "phrases" (a
+// Bokmål expression, not two words run together such as "bo bu").
 async function checkGlosses() {
   if (!existsSync(path.join(ROOT, HAND_GLOSSES))) return 0;
   const file = await readJson(HAND_GLOSSES);
   if (file.reviewed === false) unreviewed.push(HAND_GLOSSES);
-  const words = new Map();
-  for (const [id, list] of Object.entries(file.glosses)) {
-    const where = `${HAND_GLOSSES} ${id}`;
+  const glosses = file.glosses ?? {};
+  const fixes = file.fixes ?? {};
+  const phrases = new Set(file.phrases ?? []);
+  const isList = (list) => Array.isArray(list) && list.length > 0 && list.every((g) => typeof g === 'string' && g && g === g.trim());
+  for (const [id, list] of Object.entries(glosses)) {
+    const where = `${HAND_GLOSSES} glosses ${id}`;
+    const l = lexicon.lemmas[id];
+    if (!l) err(where, 'unknown lemma');
+    else if (wiktionaryNb(l).length) err(where, 'Wiktionary gives a Bokmål gloss for this word; correct it in "fixes" instead');
+    if (fixes[id]) err(where, 'also in "fixes"');
+    if (!isList(list)) err(where, 'glosses must be a list of non-empty strings');
+  }
+  for (const [id, fix] of Object.entries(fixes)) {
+    const where = `${HAND_GLOSSES} fixes ${id}`;
     const l = lexicon.lemmas[id];
     if (!l) {
       err(where, 'unknown lemma');
       continue;
     }
-    if (l.nb?.length && l.nbBy !== 'tolva') err(where, 'Wiktionary gives a Bokmål gloss for this word; remove this one');
-    if (!Array.isArray(list) || !list.length || list.some((g) => typeof g !== 'string' || !g || g !== g.trim())) err(where, 'glosses must be a list of non-empty strings');
-    for (const g of list ?? []) addWords(words, where, g);
+    if (!isList(fix.nb)) err(where, '"nb" must be a list of non-empty strings');
+    const wk = wiktionaryNb(l);
+    if (!wk.length) err(where, 'Wiktionary gives no Bokmål gloss for this word; list it in "glosses" instead');
+    else if (JSON.stringify(wk) !== JSON.stringify(fix.wiktionary)) err(where, `Wiktionary now gives ${JSON.stringify(wk)}, not ${JSON.stringify(fix.wiktionary)}: check the correction again and update "wiktionary"`);
+    else if (JSON.stringify(wk) === JSON.stringify(fix.nb)) err(where, 'the same as Wiktionary; remove it');
+  }
+  // What the app will show once the file is applied (as npm run build:translations does).
+  const shown = structuredClone(lexicon.lemmas);
+  applyHandNb(shown, glosses, fixes);
+  const words = new Map();
+  const used = new Set();
+  for (const [id, l] of Object.entries(shown)) {
+    const where = l.nbBy === 'tolva' ? `${HAND_GLOSSES} ${id}` : `data/lexicon.json ${id} (Wiktionary; correct it in ${HAND_GLOSSES} "fixes")`;
+    for (const g of l.nb ?? []) {
+      if (/\s/.test(g)) {
+        if (phrases.has(g)) used.add(g);
+        else err(where, `"${g}" has more than one word: list it in "phrases" if it is a Bokmål expression`);
+      }
+      addWords(words, where, g);
+    }
   }
   await checkBokmalWords(words);
-  const missing = Object.entries(lexicon.lemmas).filter(([id, l]) => !l.nb?.length && !file.glosses[id]);
+  const unused = [...phrases].filter((p) => !used.has(p));
+  if (unused.length) warnings.push(`${HAND_GLOSSES}: phrases no gloss uses: ${unused.join(', ')}`);
+  const missing = Object.entries(shown).filter(([, l]) => !l.nb?.length);
   if (missing.length) warnings.push(`${missing.length} course words have no Bokmål gloss (first: ${missing.slice(0, 3).map(([id]) => id).join(', ')})`);
-  return Object.keys(file.glosses).length;
+  return Object.keys(glosses).length + Object.keys(fixes).length;
 }
 
 // Hand-written Bokmål translations: where they belong, their punctuation and every word.

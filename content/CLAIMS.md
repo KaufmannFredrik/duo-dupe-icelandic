@@ -188,7 +188,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 299 of the 337 course words. The other 38 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences; every word of every gloss is a Bokmålsordboka form (BMO, checked by `npm run validate`). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 299 of the 337 course words. The other 38 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 61 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -198,6 +198,45 @@ Wiktionary gives a Bokmål gloss for 299 of the 337 course words. The other 38 w
 | af, úr, yfir, við, hjá, fyrir | av; ut av; over; ved; hos; for | prepositions, each by its first sense in W; *hjá* (at someone's place) is *hos* |
 | hvaðan, beint, inni | hvorfra; rett; inne | |
 | buxur, húfa, hjól, sími, sundlaug, tölvupóstur, þota, norðurljós, kvöldmatur, skemmtilegur | bukse; lue; sykkel; telefon; svømmebasseng; e-post; jetfly; nordlys; middag; morsom | *kvöldmatur* (the evening meal) is *middag*, the day's hot meal, with *kveldsmat* second |
+
+### Wiktionary glosses corrected (`"fixes"`)
+
+The Bokmål glosses from Wiktionary are copied from the translation table of the English entry that lists the Icelandic word, so a row of another sense, another word class or a mistake in the table came along. Each correction keeps the Icelandic sense of W (the first sense, unless noted) and gives the Bokmål word BMO has for it; every new word was looked up in BMO. The file repeats Wiktionary's list, so `npm run validate` fails if Wiktionary changes it.
+
+| Words | Was (first gloss) | Now | Why (W sense; BMO) |
+|---|---|---|---|
+| vera | bli | være | "to be"; *bli* is "become" (*verða*), and the third gloss was "være or være lik", two glosses run together |
+| elska | kjærlighet | elske | "to love", a verb; *kjærlighet*, *elsk* and *kjærleik* are nouns |
+| búa | bo bu | bo | "to reside, to live"; two words run together |
+| rauður | röd | rød | *röd* is Swedish and not in BMO; *rødlig* is "reddish" |
+| panta | ordne | bestille | "to reserve, to order"; *ordne* is "arrange, sort out" |
+| eftir | senere | etter | "after", a preposition; *senere*, *seinere*, *etterpå* are adverbs ("later") |
+| þessi | den | denne, dette | "this"; *den*, *det* are "that, it" |
+| mega | kan | få lov til, måtte | "to be allowed, may", second "must"; *kan* is a present tense, not an infinitive (the app showed "å kan"), and the unit 9 guidebook notes that *må* usually means "must" |
+| vinna (verb) | arbeid | arbeide, jobbe, vinne | "to work", also "to win" (the unit 8 guidebook); *arbeid*, *jobb*, *verk* are nouns |
+| úti, heima | ut; hjem | ute, utenfor; hjemme | "outside", "at home": the place, which the unit 7 guidebook teaches as *ute*, *hjemme* against *ut*, *hjem* (*út*, *heim*) |
+| velkominn | kjærkommen | velkommen, kjærkommen | "welcome", as in a greeting (*Velkomin til San Francisco*); *kjærkommen* is "a welcome change" and stays second |
+| poki | veske | pose, sekk | "bag, sack"; *veske* is a handbag; the course sentences translate *poka* as *pose* |
+| hlusta | høre | lytte, høre på | "to listen"; *høre* is "hear" (*heyra*) |
+| horfa | se | se på | "to look at, to watch" (the unit 7 guidebook: *horfa á*); *se* is "see" (*sjá*) |
+| sá | det | den | "that (one), the (one)" (*sá sem*, *den som*); *det* is *það* |
+| líka (adverb) | dessuten | også | "also, too"; *dessuten* is "moreover" |
+| vinur, vinkona | venn (both) | venn; venninne, venn | "friend"; "female friend": *venninne* (BMO) |
+| frændi, frænka | slektning (both) | onkel, fetter, slektning; tante, kusine, slektning | "a male relative, especially an uncle or a male cousin"; the female; the course sentences translate them as *onkel*, *fetter*, *tante*, *kusine* |
+| bær | by | by, gård | "town", second "farm" |
+| fara | reise | dra, reise, fare | "to go, to leave"; *reise* is "travel" |
+| seint | sein | sent, seint | an adverb ("late"); *sein* is the adjective |
+| stundum | stundom | av og til, iblant, stundom | "sometimes"; *stundom* is old-fashioned |
+| köttur | huskatt | katt | "cat"; *huskatt* is "house cat" |
+| hátalari | høgtaler | høyttaler | "loudspeaker": the usual spelling |
+| sjór | hav | sjø, hav | "sea"; *hav* is "ocean" (Icelandic *haf*) |
+| eiginkona | hustru | kone, hustru, frue | "wife": *kone* is the everyday word |
+| fá | få tak i | få, få tak i, oppnå | "to receive, to get"; *få tak i* is "get hold of" |
+| nemandi | student | elev, student | "student, pupil"; a school pupil is an *elev* |
+| ef | dersom | hvis, dersom, om | "if": *hvis* is the everyday word |
+| leita | søke | lete, søke | "to search, look for" (*leita að*, *lete etter*) |
+
+Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
 ## The cast (`js/characters.js`, `scripts/characters/`)
 

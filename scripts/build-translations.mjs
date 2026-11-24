@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // Puts the Bokmål written for TÖLVA into /data without rebuilding the rest: sentence translations
-// (content/translations-nb.json) into data/sentences.json and word glosses
-// (content/glosses-nb.json) into data/lexicon.json, where the sources have none, and records the
-// new sizes and the source in data/SOURCES.json. scripts/build-data.mjs does the same when it
-// rebuilds everything.
+// (content/translations-nb.json) into data/sentences.json where Tatoeba has none, and word glosses
+// (content/glosses-nb.json) into data/lexicon.json where Wiktionary has none or a wrong one, and
+// records the new sizes and the source in data/SOURCES.json. scripts/build-data.mjs does the same
+// when it rebuilds everything.
 //   node scripts/build-translations.mjs           write the files
 //   node scripts/build-translations.mjs --check   exit 1 if any of them is out of date
 
@@ -22,7 +22,9 @@ const sentencesOut = `${JSON.stringify(sentencesData)}\n`;
 
 const lexiconRaw = await read('data/lexicon.json');
 const lexiconData = JSON.parse(lexiconRaw);
-const glosses = applyHandNb(lexiconData.lemmas, JSON.parse(await read(HAND_GLOSSES)).glosses);
+const handGlosses = JSON.parse(await read(HAND_GLOSSES));
+const glosses = applyHandNb(lexiconData.lemmas, handGlosses.glosses, handGlosses.fixes);
+const fixed = Object.values(lexiconData.lemmas).filter((l) => l.nbWas).length;
 const lexiconOut = `${JSON.stringify(lexiconData)}\n`;
 
 const sourcesRaw = await read('data/SOURCES.json');
@@ -37,7 +39,7 @@ const files = [
   ['data/SOURCES.json', sourcesRaw, sourcesOut],
 ];
 const inBokmal = (records) => Object.values(records).filter((r) => r.nb.length).length;
-const summary = `${sentences} hand translations (${inBokmal(sentencesData.sentences)} of ${Object.keys(sentencesData.sentences).length} sentences in Bokmål), ${glosses} hand glosses (${inBokmal(lexiconData.lemmas)} of ${Object.keys(lexiconData.lemmas).length} words)`;
+const summary = `${sentences} hand translations (${inBokmal(sentencesData.sentences)} of ${Object.keys(sentencesData.sentences).length} sentences in Bokmål), ${glosses} hand glosses, ${fixed} of them correcting Wiktionary (${inBokmal(lexiconData.lemmas)} of ${Object.keys(lexiconData.lemmas).length} words)`;
 
 if (check) {
   const stale = files.filter(([, raw, out]) => raw !== out).map(([rel]) => rel);

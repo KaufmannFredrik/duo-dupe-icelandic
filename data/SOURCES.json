@@ -4,8 +4,8 @@
   "licenseNote": "Files that contain DMII Core or Wiktionary data are CC BY-SA 4.0; see data/LICENSE.md.",
   "files": {
     "data/lexicon.json": {
-      "bytes": 165873,
-      "gzip": 49532,
+      "bytes": 168193,
+      "gzip": 50138,
       "sources": [
         "dmii-core",
         "wiktionary",
