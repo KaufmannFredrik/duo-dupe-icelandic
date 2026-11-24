@@ -7,7 +7,7 @@ import { pick, t } from '../i18n.js';
 import { checkImport, dailyGoal, exportAll, importAll, lastBackup, loadProgress, loadTally, markBackup, resetAll } from '../progress.js';
 import { BADGES, dayKey, recentDays, summarize } from '../stats.js';
 import { goalRing, icon } from '../shell.js';
-import { loadCourse } from '../course.js';
+import { loadCourse, unitLabel } from '../course.js';
 import { friends } from '../characters.js';
 import { characterImg } from '../ui/character.js';
 
@@ -60,7 +60,7 @@ async function render() {
         ? `<li class="friend-tile" data-friend="true">${characterImg(c.id, { size: 96, label: '' })}<span class="friend-tile__name">${esc(c.name)}</span>
         <span>${esc(pick(c.kind))}</span><span class="muted">${t('friends.host', { unit: esc(pick(c.unit.title)) })}</span></li>`
         : `<li class="friend-tile" data-friend="false">${characterImg(c.id, { size: 96, still: true, label: '' })}<span class="friend-tile__name" aria-hidden="true">???</span><span class="visually-hidden">${t('friends.unknown')}</span>
-        <span class="muted">${c.unit ? t('friends.finish', { n: c.unit.order }) : ''}</span></li>`,
+        <span class="muted">${c.unit ? t('friends.finish', { unit: unitLabel(c.unit, t, { inline: true }) }) : ''}</span></li>`,
     )
     .join('');
 }

@@ -15,4 +15,10 @@ export async function loadCourse() {
   return course;
 }
 
-export { lessonStates, allowedFor, findLesson, unitOf, nextLesson, unitDone } from './engine/course-model.js';
+export { lessonStates, allowedFor, findLesson, unitOf, nextLesson, unitDone, unitsToRecord } from './engine/course-model.js';
+/**
+ * The label of a unit: "Unit 4" or "Bonus unit" (a bonus unit has no number); inline: for the
+ * middle of a sentence ("unit 4", "the bonus unit").
+ */
+export const unitLabel = (unit, t, { inline = false } = {}) =>
+  unit.number ? t(inline ? 'learn.unitInline' : 'learn.unit', { n: unit.number }) : t(inline ? 'learn.bonusUnitInline' : 'learn.bonusUnit');

@@ -73,6 +73,36 @@ test('course: lesson states follow progress', () => {
   assert.equal(nextLesson(d.course, { lessons: {}, skippedUnits: ['hello'] }).lesson.key, 'cafe/1');
 });
 
+test('course: the path has sections; units are numbered in it, a bonus unit is not', () => {
+  assert.deepEqual(d.course.sections.map((s) => s.id), ['a1', 'a2', 'bonus']);
+  const a1 = d.course.sections[0].units;
+  assert.deepEqual(a1.map((u) => u.number), a1.map((_, i) => i + 1));
+  assert.ok(a1.every((u) => u.section === 'a1'));
+  const bonus = d.course.units.find((u) => u.id === 'newwords');
+  assert.equal(bonus.section, 'bonus');
+  assert.equal(bonus.number, null);
+  assert.equal(d.course.units.at(-1), bonus, 'the bonus comes last in the path');
+});
+
+test('course: a unit recorded as finished stays finished when lessons are added or units inserted', async () => {
+  const { courseModel, unitsToRecord } = await import('../js/engine/course-model.js');
+  const doneHello = Object.fromEntries(lessonsOf('hello').filter((l) => !l.review).map((l) => [l.key, { done: true }]));
+  assert.deepEqual(unitsToRecord(d.course, { lessons: doneHello }), ['hello']);
+  // The same course with a new lesson in hello and a new unit before cafe.
+  const units = d.course.units.map((u) => ({ ...u, lessons: u.id === 'hello' ? [...u.lessons.filter((l) => !l.review), { id: 'extra', focus: ['takk_uh'] }, { id: 'review', review: true }] : u.lessons }));
+  const index = { sections: [{ id: 'a1', units: ['hello', 'family', 'cafe'] }] };
+  const lexicon = { themes: d.lexicon.themes };
+  const changed = courseModel({ index, units: units.filter((u) => ['hello', 'family', 'cafe'].includes(u.id)), lexicon });
+  // Without the record, the new lesson would be "current" and the units after hello locked.
+  const unrecorded = lessonStates(changed, { lessons: doneHello, skippedUnits: [] });
+  assert.equal(unrecorded.get('hello/extra'), 'current');
+  assert.equal(unrecorded.get('family/1'), 'locked');
+  const recorded = lessonStates(changed, { lessons: doneHello, units: { hello: '2026-11-24' }, skippedUnits: [] });
+  assert.equal(recorded.get('hello/extra'), 'new', 'the new lesson is open but not where Start goes');
+  assert.equal(recorded.get('family/1'), 'current', 'the inserted unit is next');
+  assert.equal(recorded.get('cafe/1'), 'locked');
+});
+
 test('generator: homographs are told apart by the sentence tags', () => {
   const sid = (text) => Object.keys(d.sentences).find((k) => d.sentences[k].is === text);
   const cases = [

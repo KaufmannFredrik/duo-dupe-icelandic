@@ -35,9 +35,9 @@ Existing units keep their words, lessons, guidebooks, stories and hosts; new one
 | 3 | *Kaffi*: café, drinks and food, 1–5 | existing | ordering |
 | 4 | *Fjölskylda*: family, 6–10, age | existing | family, age |
 | 5 | *Tölur*: 11–100, ordinal numbers, prices, phone numbers | new | numbers and amounts |
-| 6 | *Tími*: the clock, days, seasons, and now months and dates | existing + lesson | time, days, months |
-| 7 | *Dagurinn minn*: daily routine (*vakna*, *þvo sér*, *klæða sig*) | new | daily activities |
-| 8 | *Gata*: places, directions, transport (+ *flugvél*) | existing | asking the way |
+| 6 | *Gata*: places, directions, transport (+ *flugvél*) | existing | asking the way |
+| 7 | *Tími*: the clock, days, seasons, and now months and dates | existing + lesson | time, days, months |
+| 8 | *Dagurinn minn*: daily routine (*vakna*, *þvo sér*, *klæða sig*) | new | daily activities |
 | 9 | *Búð*: shopping, clothes basics, colors, prices | existing | buying |
 | 10 | *Matur*: groceries, meals, cooking, the table | new | food and meals |
 | 11 | *Heima*: rooms, furniture, where things are (+ *sjónvarp*) | new | describing a home |

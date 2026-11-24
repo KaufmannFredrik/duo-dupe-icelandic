@@ -4,7 +4,7 @@
 import { ready } from '../app.js';
 import { pick, t } from '../i18n.js';
 import { entry, lemma, loadAll, sentence, translation } from '../data.js';
-import { loadCourse, unitOf } from '../course.js';
+import { loadCourse, unitLabel, unitOf } from '../course.js';
 import { renderTable } from '../ui/table.js';
 import { play } from '../audio.js';
 import { icon } from '../shell.js';
@@ -19,7 +19,7 @@ const root = document.querySelector('[data-guide]');
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const prose = (text) => esc(text).replace(/\{is:([^}]+)\}/g, (_, x) => `<span lang="is" class="is-inline">${x}</span>`);
 
-document.querySelector('[data-guide-title]').textContent = `${t('learn.unit', { n: unit.order })}: ${pick(unit.title)}`;
+document.querySelector('[data-guide-title]').textContent = `${unitLabel(unit, t)}: ${pick(unit.title)}`;
 
 // The unit's host, thinking, as the one who explains the grammar.
 const host = hostOf(unit);

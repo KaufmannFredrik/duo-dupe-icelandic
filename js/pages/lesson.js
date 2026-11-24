@@ -17,8 +17,8 @@ import { pick, t } from '../i18n.js';
 import { caseRules, getGenerator, gloss, glossLang, isName, lemma, loadAll, paradigm, recordings, sameGloss, sentence, translation } from '../data.js';
 import { speechSupport } from '../speech.js';
 import { loadBridge } from '../bridge.js';
-import { allowedFor, findLesson, loadCourse, nextLesson, unitDone } from '../course.js';
-import { cards, completeLesson, dropMistake, loadProgress, mistakes, recordAttempt, skipUnits } from '../progress.js';
+import { allowedFor, findLesson, loadCourse, nextLesson, unitDone, unitLabel } from '../course.js';
+import { cards, completeLesson, dropMistake, loadProgress, mistakes, recordAttempt, recordUnits, skipUnits } from '../progress.js';
 import { dueCards } from '../srs.js';
 import { getSettings } from '../store.js';
 import { buildExercise } from '../exercises/index.js';
@@ -327,6 +327,7 @@ async function complete() {
   };
   await saving;
   const done = await completeLesson(plan.key, results, { bonus, events });
+  await recordUnits(course);
   // Progress lives only on this device: ask the browser to keep it (js/offline.js).
   keepStorage();
   const { xp, score } = done;
@@ -373,9 +374,9 @@ async function completePlacement() {
   stage.innerHTML = `<div class="complete">
       ${talaSVG(skip.length ? 'happy' : 'thinking', { label: t(skip.length ? 'mascot.happy' : 'mascot.thinking'), className: 'tala tala--lg' })}
       <h2 class="complete__title">${t('placement.done')}</h2>
-      <p>${t('placement.result', { unit: esc(pick(start.title)), n: start.order })}</p>
+      <p>${t('placement.result', { unit: esc(pick(start.title)), label: esc(unitLabel(start, t, { inline: true })) })}</p>
       <div class="cluster complete__actions">
-        ${skip.length ? `<button type="button" class="button button-primary" data-apply>${t('placement.apply', { n: start.order })}</button>` : ''}
+        ${skip.length ? `<button type="button" class="button button-primary" data-apply>${t('placement.apply', { label: unitLabel(start, t, { inline: true }) })}</button>` : ''}
         <a class="button${skip.length ? '' : ' button-primary'}" href="learn.html">${t('placement.fromStart')}</a></div></div>`;
   stage.querySelector('[data-apply]')?.addEventListener('click', async () => {
     await skipUnits(skip, { at: Date.now(), start: start.id });

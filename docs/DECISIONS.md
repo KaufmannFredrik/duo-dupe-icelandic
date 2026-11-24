@@ -2,6 +2,16 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## The path in sections, and finished units recorded (2026-11-24)
+
+The first piece of [PLAN.md](PLAN.md)'s foundations: one path from zero, divided into sections.
+
+- `content/units/index.json` has `sections`: A1 (the nine units 1–9 for now), A2 (empty until its units are made) and a bonus section with unit 10 (*Nýyrði*), as the owner decided. A unit's number is its place in the path (`number` in `js/engine/course-model.js`); a bonus unit has none and is labeled "Bonus unit" (`unitLabel` in `js/course.js`), so units can be inserted later without renumbering files. The `order` field in the unit files is no longer read.
+- The Learn page shows each section with a banner: its level (A1, A2, + for the bonus), title, goal, and how many of its units are finished; a section with no units is not shown. Unit titles are now headings one level under the section's.
+- **Finished units are recorded** (`p.units`: unit id to day, `recordUnits` in `js/progress.js`, after every lesson and when the path is shown, which also records progress from before). The course model counts a recorded unit as finished even when it has a lesson it did not have before, so adding lessons, moving units or inserting new ones never locks a learner out of what they had opened. A lesson added to a finished unit is "new": open, gold, but not where Start goes.
+- Kept order: the plan put *Tími* before *Gata*, but unit 5's lessons rely on *í* and *á*, which unit 4 teaches (*í dag*, *á morgun*), so the existing units keep their order and new units go between them.
+- Tests: sections, numbering and the bonus (`node --test`); a unit recorded as finished stays finished when a lesson is added to it and a unit is inserted before the next one; `npm run smoke` checks that every unit is recorded after all lessons are played.
+
 ## A check before every push (2026-11-24)
 
 `npm run check` (stale `sw.js`, tags or Bokmål data, a missing UI string, invalid content, a failing unit test) only ran when someone remembered to. Without a hosted workflow (the site stays local until the owner says otherwise), a git hook runs it: `.githooks/pre-push`, turned on per clone with `npm run hooks`, and on in this one. It finds Node in Program Files when Git Bash does not have it on its path, and `.gitattributes` keeps the hook's line endings LF in a Windows checkout. It takes about 13 seconds; it stopped a push with a stale `sw.js` in a test. The full `npm run smoke` and `npm run qa` (minutes each) stay manual.

@@ -450,6 +450,8 @@ kbd, .kbd {
 .node .icon { width: 2rem; height: 2rem; }
 .node--done { --node-color: var(--rf-cyan); --node-glow: rgba(0, 255, 255, 0.35); }
 .node--review { --node-color: var(--rf-gold); --node-glow: rgba(255, 215, 0, 0.35); }
+/* A lesson added to a unit the learner had finished: open, gold, but not where Start goes. */
+.node--new { --node-color: var(--rf-gold); --node-glow: rgba(255, 215, 0, 0.35); border-style: double; }
 .node--current { --node-color: var(--rf-pink); --node-fill: var(--rf-pink); --node-ink: #000000; --node-glow: rgba(255, 0, 110, 0.6); width: 84px; height: 84px; }
 .node--locked { --node-color: var(--rf-muted); border-style: dashed; cursor: not-allowed; }
 .node--current::after {
@@ -618,6 +620,36 @@ html[data-calm="on"] .word.is-speaking { text-shadow: none; }
 .unit-banner__title { color: #FFFFFF; font-size: var(--text-lg); text-shadow: none; }
 .unit-banner__eyebrow { display: block; color: var(--rf-magenta); font-size: var(--text-sm); letter-spacing: 0.12em; text-transform: uppercase; }
 .unit-banner__is { color: var(--rf-chrome); }
+
+/* Section banner (A1, A2, bonus) at the start of each part of the path ----------------------- */
+
+.section-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  border: var(--border) solid var(--rf-cyan);
+  background: var(--rf-night-0);
+  box-shadow: var(--glow-cyan);
+}
+.section-banner { flex-wrap: wrap; }
+.section-banner > div { flex: 1 1 16rem; min-width: 0; }
+.section-banner__level {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border: var(--border) solid var(--rf-gold);
+  color: var(--rf-gold);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--text-xl);
+}
+.section-banner__title { color: var(--rf-cyan); font-size: var(--text-xl); }
+.section-banner__progress { color: var(--rf-gold); font-size: var(--text-sm); }
+.path-section + .path-section { margin-top: var(--space-8); }
 
 /* Danger and file buttons ------------------------------------------------------------------- */
 

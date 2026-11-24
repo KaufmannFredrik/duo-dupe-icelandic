@@ -251,6 +251,12 @@ async function checkAudio() {
 async function checkSmallFiles() {
   const index = await readJson('content/units/index.json');
   for (const f of index.units) if (!existsSync(path.join(ROOT, 'content/units', f))) err('content/units/index.json', `missing unit file ${f}`);
+  // The path: every unit file in exactly one section, every section's unit a file.
+  const ids = (await Promise.all(index.units.filter((f) => existsSync(path.join(ROOT, 'content/units', f))).map((f) => readJson(`content/units/${f}`)))).map((u) => u.id);
+  const placed = (index.sections ?? []).flatMap((s) => s.units);
+  for (const id of ids) if (placed.filter((x) => x === id).length !== 1) err('content/units/index.json', `unit ${id} must be in exactly one section (is in ${placed.filter((x) => x === id).length})`);
+  for (const id of placed) if (!ids.includes(id)) err('content/units/index.json', `a section names unit ${id}, which has no file in "units"`);
+  for (const s of index.sections ?? []) if (!s.id || !s.title?.en || !s.title?.nb) err('content/units/index.json', `section ${s.id ?? '?'} needs an id and a title in en and nb`);
   const rules = await readJson('content/case-rules.json');
   if (rules.reviewed === false) unreviewed.push('content/case-rules.json');
   for (const [id, r] of Object.entries(rules.rules)) {

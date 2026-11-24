@@ -7,8 +7,8 @@
 
 import { ready } from '../app.js';
 import { pick, t } from '../i18n.js';
-import { loadCourse, lessonStates } from '../course.js';
-import { loadProgress } from '../progress.js';
+import { loadCourse, lessonStates, unitDone, unitLabel } from '../course.js';
+import { loadProgress, recordUnits } from '../progress.js';
 import { icon } from '../shell.js';
 import { getSettings } from '../store.js';
 import { TTS_VOICES, play, ttsCredit } from '../audio.js';
@@ -18,13 +18,16 @@ import { hostOf } from '../characters.js';
 import { characterImg } from '../ui/character.js';
 
 await ready;
-const [course, progress] = await Promise.all([loadCourse(), loadProgress(), loadSentences()]);
+const course = await loadCourse();
+// Progress from before units were recorded as finished: record them now, before the path changes.
+await recordUnits(course);
+const [progress] = await Promise.all([loadProgress(), loadSentences()]);
 const states = lessonStates(course, progress);
 const root = document.querySelector('[data-path]');
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const OFFSETS = [0, 0.9, 1.3, 0.9, 0, -0.9, -1.3, -0.9];
-const ICONS = { done: 'check', current: 'star', review: 'review', locked: 'lock' };
+const ICONS = { done: 'check', current: 'star', review: 'review', new: 'star', locked: 'lock' };
 const lessonTitle = (l) => (l.title ? pick(l.title) : l.review ? t('learn.review') : t('learn.lessonN', { n: l.index + 1 }));
 
 function node(unit, lesson, i) {
@@ -83,25 +86,36 @@ const voiceCard = choosing
     </section>`
   : '';
 
-root.innerHTML =
-  voiceCard +
-  placementLink +
-  course.units
-    .map(
-      (u) => `<section class="unit" aria-labelledby="unit-${u.id}">
+const unitHTML = (u) => `<section class="unit" aria-labelledby="unit-${u.id}">
       <div class="unit-banner">
-        <div><span class="unit-banner__eyebrow">${t('learn.unit', { n: u.order })}${u.auto ? ` · ${t('learn.preview')}` : ''}</span>
-          <h2 class="unit-banner__title" id="unit-${u.id}">${esc(pick(u.title))} <span class="unit-banner__is" lang="is">${esc(u.is)}</span></h2>
+        <div><span class="unit-banner__eyebrow">${unitLabel(u, t)}${u.auto ? ` · ${t('learn.preview')}` : ''}</span>
+          <h3 class="unit-banner__title" id="unit-${u.id}">${esc(pick(u.title))} <span class="unit-banner__is" lang="is">${esc(u.is)}</span></h3>
           ${u.goal ? `<p class="muted">${esc(pick(u.goal))}</p>` : ''}</div>
         ${u.guide ? `<a class="button button--sm" href="guide.html?unit=${u.id}">${icon('guide')}<span>${t('learn.guidebook')}</span></a>` : ''}
       </div>
       ${hostHTML(u)}
       <div class="path-wrap"><svg class="path__road" aria-hidden="true" focusable="false"></svg>
         <ol class="path" role="list">${u.lessons.map((l, i) => node(u, l, i)).join('')}</ol></div>
-    </section>`,
-    )
-    .join('') +
-  greetingCredit;
+    </section>`;
+
+// The path in sections (A1, A2, a bonus), each with its level, goal and progress; a section with
+// no units yet is not shown.
+const shown = course.sections.filter((s) => s.units.length);
+const sectionHTML = (s, n) => {
+  const done = s.units.filter((u) => unitDone(u, progress)).length;
+  const title = s.bonus ? pick(s.title) : t('learn.section', { n, title: pick(s.title) });
+  return `<section class="path-section" aria-labelledby="section-${s.id}">
+      <header class="section-banner">
+        <span class="section-banner__level" aria-hidden="true">${esc(s.level ?? '+')}</span>
+        <div><h2 class="section-banner__title" id="section-${s.id}">${esc(title)}${s.level ? ` <span class="visually-hidden">(${esc(s.level)})</span>` : ''}</h2>
+          ${s.goal ? `<p class="muted">${esc(pick(s.goal))}</p>` : ''}
+          <p class="section-banner__progress">${t('learn.sectionProgress', { done, total: s.units.length })}</p></div>
+      </header>
+      ${s.units.map(unitHTML).join('')}
+    </section>`;
+};
+
+root.innerHTML = voiceCard + placementLink + shown.map((s, i) => sectionHTML(s, i + 1)).join('') + greetingCredit;
 
 root.addEventListener('click', (e) => {
   const b = e.target.closest('[data-play]');

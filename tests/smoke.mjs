@@ -321,7 +321,17 @@ if (process.argv.includes('--all')) {
     await page.locator('.friend-tile').first().waitFor({ timeout: 5000 });
     const made = await page.locator('.friend-tile[data-friend="true"]').count();
     if (friendLines !== 7 || made !== 7) throw new Error(`${friendLines} "new friend" lines and ${made} friends on the profile, expected 7 and 7`);
-    console.log('PASS friends: each of the seven characters became a friend once');
+    // Every finished unit is recorded, so later changes to the path never lock it again.
+    const recorded = await page.evaluate(() => new Promise((resolve) => {
+      const req = indexedDB.open('tolva');
+      req.onsuccess = () => {
+        const get = req.result.transaction('kv').objectStore('kv').get('progress');
+        get.onsuccess = () => resolve(Object.keys(get.result?.units ?? {}));
+      };
+    }));
+    const unitCount = new Set(handMadeLessons().map(([u]) => u)).size;
+    if (recorded.length !== unitCount) throw new Error(`${recorded.length} of ${unitCount} units recorded as finished`);
+    console.log(`PASS friends: each of the seven characters became a friend once; all ${unitCount} units recorded as finished`);
   } catch (e) {
     failed = true;
     console.log(`FAIL friends: ${e.message}`);

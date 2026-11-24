@@ -8,6 +8,7 @@ import { newCard, review } from './srs.js';
 import { getSettings, replaceSettings } from './store.js';
 import { BADGES, MAX_FREEZES, addToTally, dayKey, freezesEarned, settleFreezes, streakOf, summarize, tallyOf } from './stats.js';
 import { QUEST_BONUS, addQuestEvents } from './quests.js';
+import { unitsToRecord } from './engine/course-model.js';
 
 const PROGRESS_KEY = 'progress';
 const XP = { correct: 10, almost: 5, wrong: 0 };
@@ -15,7 +16,7 @@ export const EXPORT_APP = 'tolva';
 export const EXPORT_VERSION = 1;
 
 const today = (now = Date.now()) => dayKey(now);
-const fresh = () => ({ xp: 0, lessons: {}, skippedUnits: [], days: {}, placement: null, freezes: 0, frozen: [], best: 0, badges: {} });
+const fresh = () => ({ xp: 0, lessons: {}, units: {}, skippedUnits: [], days: {}, placement: null, freezes: 0, frozen: [], best: 0, badges: {} });
 
 export async function loadProgress() {
   return { ...fresh(), ...((await get('kv', PROGRESS_KEY)) ?? {}) };
@@ -147,6 +148,22 @@ export async function settle() {
   p.freezes = r.freezes;
   p.frozen = r.frozen;
   return saveProgress(p);
+}
+
+/**
+ * Records every unit whose lessons are all done as finished (p.units: id -> day), so that a lesson
+ * added to it later, or units moved or inserted before it, never lock the learner out again (the
+ * course model counts a recorded unit as finished). Call with the course after a lesson and when
+ * the path is shown. Returns the ids recorded now.
+ */
+export async function recordUnits(course) {
+  const p = await loadProgress();
+  const ids = unitsToRecord(course, p);
+  if (!ids.length) return ids;
+  p.units = { ...(p.units ?? {}) };
+  for (const id of ids) p.units[id] = today();
+  await saveProgress(p);
+  return ids;
 }
 
 export async function skipUnits(unitIds, placement) {
