@@ -26,7 +26,7 @@ One continuous path from zero, as now, divided into sections like Duolingo's:
 
 ### Section A1 (about 800 words)
 
-Existing units keep their words, lessons, guidebooks, stories and hosts; new ones are made the same way. The order puts personal details and numbers early, as stage 1 does.
+Existing units keep their words, lessons, guidebooks, stories and hosts, and their order (unit 5, *Tími*, relies on *í* and *á* from *Gata*); new ones are made the same way and go between them. The order puts personal details and numbers early, as stage 1 does.
 
 | # | Unit | New or existing | Goals (stage 1–2) |
 |---|---|---|---|
