@@ -146,8 +146,12 @@ export function createGenerator(data) {
     return { type: 'typeword', lemma: id, key: `${id}|meaning` };
   }
 
+  // What a word option shows: its English meaning or its Bokmål gloss, so options differ in both.
+  const glossesOf = (x) => [lexicon.lemmas[x]?.meaning, lexicon.lemmas[x]?.nb?.[0]].filter(Boolean);
+  const sameGloss = (a, b) => glossesOf(a).some((g) => glossesOf(b).includes(g));
+
   function meaning(id, allowed, r) {
-    const others = shuffle([...allowed].filter((x) => x !== id && lexicon.lemmas[x]?.meaning !== lexicon.lemmas[id].meaning), r).slice(0, 3);
+    const others = shuffle([...allowed].filter((x) => x !== id && lexicon.lemmas[x] && !sameGloss(x, id)), r).slice(0, 3);
     if (others.length < 3) return null;
     return { type: 'meaning', lemma: id, options: shuffle([id, ...others], r), key: `${id}|meaning` };
   }
@@ -162,12 +166,9 @@ export function createGenerator(data) {
   }
 
   function match(ids, r) {
-    const glosses = new Set();
     const pairs = [];
     for (const id of shuffle(ids, r)) {
-      const g = lexicon.lemmas[id].meaning;
-      if (glosses.has(g)) continue;
-      glosses.add(g);
+      if (pairs.some((x) => sameGloss(x, id))) continue;
       pairs.push(id);
       if (pairs.length === 4) break;
     }

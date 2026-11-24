@@ -115,6 +115,12 @@ for (const unitId of ['hello', 'cafe', 'family', 'around', 'time', 'shopping', '
           assert.equal(new Set(s.options.map((x) => d.sentences[x].en[0])).size, s.options.length, 'distinct English translations');
           assert.equal(new Set(s.options.map((x) => d.sentences[x].nb[0])).size, s.options.length, 'distinct Bokmål translations');
         }
+        // Word options show the English meaning or the Bokmål gloss: the answer must differ in both.
+        const words = s.type === 'meaning' ? s.options : s.type === 'match' ? s.pairs : [];
+        for (const [field, of] of [['English meaning', (x) => d.lexicon.lemmas[x].meaning], ['Bokmål gloss', (x) => d.lexicon.lemmas[x].nb[0]]]) {
+          if (s.type === 'meaning') assert.equal(words.filter((x) => of(x) === of(s.lemma)).length, 1, `${lesson.key} meaning: another option has the ${field} of ${s.lemma}`);
+          if (s.type === 'match') assert.equal(new Set(words.map(of)).size, words.length, `${lesson.key} match: two pairs share a ${field}`);
+        }
         if (s.type === 'wordbank' || s.type === 'dictation') {
           const present = new Set(tokens(d.sentences[s.sentence].is).map((t) => t.low));
           for (const x of s.distractors) assert.ok(!present.has(x.toLocaleLowerCase('is')), `distractor "${x}" is in the sentence`);

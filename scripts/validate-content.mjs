@@ -12,7 +12,7 @@
 //  - a hand-written Bokmål translation (content/translations-nb.json) belongs to no sentence, to an
 //    excluded one or to one Tatoeba already translates, ends with other punctuation than the
 //    Icelandic, or has a word that is not a Bokmålsordboka form (or a compound of two, or a name
-//    listed in the file).
+//    listed in the file); the same word check for the hand-written glosses (content/glosses-nb.json).
 // Content not yet checked against sources ("reviewed": false) is counted and listed, not failed;
 // content/CLAIMS.md lists every hand-written claim with its source.
 //
@@ -24,7 +24,7 @@ import path from 'node:path';
 import { CACHE, ROOT } from './lib/bulk.mjs';
 import { blocking, lintTexts, pythonPath, SETUP_HELP } from './lib/lint.mjs';
 import { character } from '../js/characters.js';
-import { HAND_NB } from './lib/translations.mjs';
+import { HAND_GLOSSES, HAND_NB } from './lib/translations.mjs';
 import { bokmalCompound, bokmalForm, bokmalGenitive, eachLimited } from './lib/bokmal.mjs';
 
 const UA = 'TOLVA-validate/0.1 (+https://github.com/KaufmannFredrik/duo-dupe-icelandic)';
@@ -276,6 +276,50 @@ async function checkAuthored() {
   return authored.length;
 }
 
+// Every word of hand-written Bokmål must be in Bokmålsordboka: a form, a word of a headword
+// expression, a genitive, a compound of two forms, or (capitalized) a name in skip or names.
+// words: lowercase word -> { where, text, capital }, filled by addWords.
+function addWords(words, where, text, skip = new Set()) {
+  for (const m of text.matchAll(/\p{L}+(?:-\p{L}+)*/gu)) {
+    if (skip.has(m[0])) continue;
+    const w = m[0].toLocaleLowerCase('nb');
+    if (!words.has(w)) words.set(w, { where, text, capital: m[0] !== w });
+  }
+}
+async function checkBokmalWords(words) {
+  await eachLimited([...words.keys()].flatMap((w) => w.split('-')), bokmalForm);
+  for (const [w, at] of words) {
+    if (await bokmalForm(w)) continue;
+    const parts = w.split('-');
+    if (parts.length > 1 && (await Promise.all(parts.map(bokmalForm))).every(Boolean)) continue;
+    if ((await bokmalGenitive(w)) || (await bokmalCompound(w))) continue;
+    err(at.where, `"${w}" is not a Bokmål word form in Bokmålsordboka${at.capital ? ' (if it is a name, list it in "names")' : ''} (in: ${at.text})`);
+  }
+}
+
+// Hand-written Bokmål glosses: each for a course word Wiktionary gives none for.
+async function checkGlosses() {
+  if (!existsSync(path.join(ROOT, HAND_GLOSSES))) return 0;
+  const file = await readJson(HAND_GLOSSES);
+  if (file.reviewed === false) unreviewed.push(HAND_GLOSSES);
+  const words = new Map();
+  for (const [id, list] of Object.entries(file.glosses)) {
+    const where = `${HAND_GLOSSES} ${id}`;
+    const l = lexicon.lemmas[id];
+    if (!l) {
+      err(where, 'unknown lemma');
+      continue;
+    }
+    if (l.nb?.length && l.nbBy !== 'tolva') err(where, 'Wiktionary gives a Bokmål gloss for this word; remove this one');
+    if (!Array.isArray(list) || !list.length || list.some((g) => typeof g !== 'string' || !g || g !== g.trim())) err(where, 'glosses must be a list of non-empty strings');
+    for (const g of list ?? []) addWords(words, where, g);
+  }
+  await checkBokmalWords(words);
+  const missing = Object.entries(lexicon.lemmas).filter(([id, l]) => !l.nb?.length && !file.glosses[id]);
+  if (missing.length) warnings.push(`${missing.length} course words have no Bokmål gloss (first: ${missing.slice(0, 3).map(([id]) => id).join(', ')})`);
+  return Object.keys(file.glosses).length;
+}
+
 // Hand-written Bokmål translations: where they belong, their punctuation and every word.
 async function checkTranslations() {
   if (!existsSync(path.join(ROOT, HAND_NB))) return 0;
@@ -298,20 +342,9 @@ async function checkTranslations() {
     if (![s.is, ...(s.en ?? [])].some((x) => end(x) === end(text))) err(where, `ends with "${end(text)}", the Icelandic with "${end(s.is)}" (in: ${text})`);
     // A capitalized word also in the Icelandic sentence is a name (Tom, María).
     const isWords = new Set([...s.is.matchAll(/\p{Lu}\p{L}*/gu)].map((m) => m[0]));
-    for (const m of text.matchAll(/\p{L}+(?:-\p{L}+)*/gu)) {
-      if (isWords.has(m[0]) || names.has(m[0])) continue;
-      const w = m[0].toLocaleLowerCase('nb');
-      if (!words.has(w)) words.set(w, { where, text, capital: m[0] !== w });
-    }
+    addWords(words, where, text, new Set([...isWords, ...names]));
   }
-  await eachLimited([...words.keys()].flatMap((w) => w.split('-')), bokmalForm);
-  for (const [w, at] of words) {
-    if (await bokmalForm(w)) continue;
-    const parts = w.split('-');
-    if (parts.length > 1 && (await Promise.all(parts.map(bokmalForm))).every(Boolean)) continue;
-    if ((await bokmalGenitive(w)) || (await bokmalCompound(w))) continue;
-    err(at.where, `"${w}" is not a Bokmål word form in Bokmålsordboka${at.capital ? ' (if it is a name, list it in "names")' : ''} (in: ${at.text})`);
-  }
+  await checkBokmalWords(words);
   const missing = Object.entries(sentences).filter(([id, s]) => !excluded[id] && !s.nb?.length && !file.sentences[id]);
   if (missing.length) warnings.push(`${missing.length} sentences have no Bokmål translation (first: ${missing.slice(0, 3).map(([id]) => id).join(', ')})`);
   return Object.keys(file.sentences).length;
@@ -325,8 +358,9 @@ await checkAudio();
 await checkSmallFiles();
 const authoredCount = await checkAuthored();
 const nbCount = await checkTranslations();
+const glossCount = await checkGlosses();
 
-console.log(`Checked the vocabulary (${Object.keys(lexicon.lemmas).length} lemmas), lessons, units, stories, rules, ${authoredCount} hand-written sentences and ${nbCount} hand-written Bokmål translations.`);
+console.log(`Checked the vocabulary (${Object.keys(lexicon.lemmas).length} lemmas), lessons, units, stories, rules, ${authoredCount} hand-written sentences, ${nbCount} Bokmål translations and ${glossCount} Bokmål glosses.`);
 if (unreviewed.length) console.log(`Not yet checked against sources (${unreviewed.length}): ${unreviewed.join(', ')}. See content/CLAIMS.md.`);
 for (const w of warnings) console.log(`warning: ${w}`);
 if (errors.length) {

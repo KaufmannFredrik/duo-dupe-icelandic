@@ -41,7 +41,7 @@ Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=
 | `npm run build:audio` | Generates the MP3 files for every course word, minimal-pair word and sentence with one Piper voice (`--voice steinn`, the default, or `salka`, `bui`, `ugla`; run it once per voice, since the learner can choose any of the four). Existing files are kept and unused ones removed (`scripts/build-audio.py`). `--samples` rebuilds the comparison set on the Voices page. |
 | `npm run build:bridge` | Rebuilds `data/bridge.json`, the Norwegian relatives, from Bokmålsordboka (ord.uib.no, cached in `.cache/ordbokene/`) and the Wiktionary etymologies in `data/lexicon.json`. |
 | `npm run build:tags` | Rewrites `data/tags.json`: which course word each word of each sentence is, and its case, from the Greynir parser (`scripts/tag-icelandic.py`, in `.venv`; cached in `.cache/greynir/`) with the corrections in `content/tag-fixes.json`. Run it after `npm run build:data`. |
-| `npm run build:translations` | Writes the hand-made Bokmål translations (`content/translations-nb.json`) into `data/sentences.json` where Tatoeba has none. `npm run validate` checks every word of them against Bokmålsordboka. |
+| `npm run build:translations` | Writes the hand-made Bokmål into `/data` where the sources have none: sentence translations (`content/translations-nb.json`) into `data/sentences.json`, word glosses (`content/glosses-nb.json`) into `data/lexicon.json`. `npm run validate` checks every word of them against Bokmålsordboka. |
 | `npm run build:sw` | Rewrites `sw.js` (the service worker) with the list of files to precache and a version hashed from their contents. Run it after changing any page, script, style or data file; `npm run check` fails while `sw.js` is out of date. |
 | `npm run build:icons` | Renders the app icons in `assets/icons/` from the mascot, with Playwright. |
 | `npm run build:tala` | Writes the mascot SVG files in `assets/tala/` from `js/tala.js`. |
@@ -64,7 +64,7 @@ js/               app.js (bootstrap), shell.js, i18n.js + i18n/{en,nb}.json, sto
 assets/           icons.svg (sprite), tala/ (mascot SVGs), characters/ (the cast, built by npm run build:characters), icons/ (app icons)
 content/          brand.json, vocab/, units/, stories/, case-rules.json, minimal-pairs.json, allowlist.json,
                   sentence-exclude.json (Tatoeba sentences never shown), tag-fixes.json (hand corrections of the parser),
-                  translations-nb.json (Bokmål translations written for TÖLVA),
+                  translations-nb.json and glosses-nb.json (Bokmål written for TÖLVA),
                   CLAIMS.md (every hand-written language claim and its source)
 data/             generated data (CC BY-SA 4.0; see data/LICENSE.md); tags.json (sentence word tags and cases); audio/ (generated voice, CC BY 4.0)
 scripts/          probe, data builders, checks, dev server, visual QA

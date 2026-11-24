@@ -186,6 +186,19 @@ Tatoeba has a Bokmål translation for 28 of the 1,764 sentences. The other 1,732
 
 Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren*, as the app's Norwegian interface writes *ordboken*), «» for quoted speech, *du* for *þú* and *dere* for *þið*, Norwegian idiom where the Icelandic is idiomatic (*Takk for maten*, *Det har du godt av*, *Det var på tide*). Where Icelandic separates sentences that Bokmål cannot (gender of *þeir*, *þær*, *þau*; *velkominn* and *velkomin*), the translations are the same.
 
+## Bokmål glosses (`content/glosses-nb.json`)
+
+Wiktionary gives a Bokmål gloss for 299 of the 337 course words. The other 38 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences; every word of every gloss is a Bokmålsordboka form (BMO, checked by `npm run validate`). The first gloss is the one exercises show.
+
+| Words | Glosses | Note |
+|---|---|---|
+| takk, bless, mamma, níu, núna, bara, sem, sig, sinn, enginn, einhver | takk; ha det; mamma; ni; nå; bare; som; seg; sin; ingen; noen | the plain equivalents |
+| heita, hitta, hringja, keyra, rigna, hætta | hete; treffe; ringe; kjøre; regne; slutte | verbs, shown with *å* |
+| geta, kunna | kunne; beherske | both are "can" in Bokmål; *kunna* (know, master a skill or a language) gets *beherske* so that the two never look alike as options |
+| af, úr, yfir, við, hjá, fyrir | av; ut av; over; ved; hos; for | prepositions, each by its first sense in W; *hjá* (at someone's place) is *hos* |
+| hvaðan, beint, inni | hvorfra; rett; inne | |
+| buxur, húfa, hjól, sími, sundlaug, tölvupóstur, þota, norðurljós, kvöldmatur, skemmtilegur | bukse; lue; sykkel; telefon; svømmebasseng; e-post; jetfly; nordlys; middag; morsom | *kvöldmatur* (the evening meal) is *middag*, the day's hot meal, with *kveldsmat* second |
+
 ## The cast (`js/characters.js`, `scripts/characters/`)
 
 | Claim | Source | Status |

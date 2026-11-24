@@ -18,7 +18,7 @@ import { gzipSync } from 'node:zlib';
 import path from 'node:path';
 import { CACHE, ROOT, bunzipLines, download, openZip } from './lib/bulk.mjs';
 import { blocking, lintTexts } from './lib/lint.mjs';
-import { HAND_NB, applyHandNb } from './lib/translations.mjs';
+import { HAND_GLOSSES, HAND_NB, applyHandNb, noteTolvaSource } from './lib/translations.mjs';
 
 const REFRESH = process.argv.includes('--refresh');
 const NO_LINT = process.argv.includes('--no-lint');
@@ -526,8 +526,9 @@ async function main() {
     const s = analyzed.get(id);
     sentences[id] = { is: s.is, author: s.author, en: s.en.slice(0, 2), nb: s.nb.slice(0, 1), tokens: s.tokens.length, unknown: s.unknown, lemmas: [...s.lemmas] };
   }
-  // Where Tatoeba has no Bokmål translation, the one written for TÖLVA (scripts/build-translations.mjs).
+  // Where Tatoeba or Wiktionary has no Bokmål, the one written for TÖLVA (scripts/build-translations.mjs).
   if (existsSync(path.join(ROOT, HAND_NB))) applyHandNb(sentences, JSON.parse(await readFile(path.join(ROOT, HAND_NB), 'utf8')).sentences);
+  if (existsSync(path.join(ROOT, HAND_GLOSSES))) applyHandNb(lexicon.lemmas, JSON.parse(await readFile(path.join(ROOT, HAND_GLOSSES), 'utf8')).glosses);
 
   const files = {
     'data/lexicon.json': lexicon,
@@ -550,6 +551,7 @@ async function main() {
   }
 
   const sources = sourcesJson({ started, manifest, entries, paradigms, apiStats, sizes });
+  for (const rel of ['data/sentences.json', 'data/lexicon.json']) noteTolvaSource(sources, rel, `${JSON.stringify(files[rel])}\n`);
   await writeFile(path.join(DATA, 'SOURCES.json'), `${JSON.stringify(sources, null, 2)}\n`);
 
   const report = reportMd({ started, entries, lexicon, sentences, pool, audio, problems, sizes, vocab, lintStats });

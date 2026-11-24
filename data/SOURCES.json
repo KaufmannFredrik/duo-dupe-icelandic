@@ -4,20 +4,22 @@
   "licenseNote": "Files that contain DMII Core or Wiktionary data are CC BY-SA 4.0; see data/LICENSE.md.",
   "files": {
     "data/lexicon.json": {
-      "bytes": 164921,
-      "gzip": 49234,
+      "bytes": 165873,
+      "gzip": 49532,
       "sources": [
         "dmii-core",
         "wiktionary",
         "wiktionary-en",
-        "clarin-freq"
+        "clarin-freq",
+        "tolva"
       ]
     },
     "data/sentences.json": {
-      "bytes": 358244,
-      "gzip": 79991,
+      "bytes": 432417,
+      "gzip": 102258,
       "sources": [
-        "tatoeba"
+        "tatoeba",
+        "tolva"
       ]
     },
     "data/audio.json": {
@@ -199,6 +201,13 @@
       "license": "Per file; see data/audio.json",
       "retrieved": "2026-11-04T13:56:18.809Z",
       "changes": "Links only; no audio files are copied."
+    },
+    {
+      "id": "tolva",
+      "name": "Bokmål translations and glosses written for TÖLVA",
+      "url": "content/translations-nb.json, content/glosses-nb.json",
+      "license": "CC BY 4.0",
+      "changes": "Written by hand only where Tatoeba (sentences) or Wiktionary (word glosses) has no Bokmål; every word is checked against Bokmålsordboka. Marked \"nbBy\": \"tolva\"."
     }
   ],
   "vocabulary": {

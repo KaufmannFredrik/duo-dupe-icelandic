@@ -1,31 +1,52 @@
 #!/usr/bin/env node
-// Puts the hand-written Bokmål translations (content/translations-nb.json) into data/sentences.json,
-// for sentences that have no Bokmål translation on Tatoeba, without rebuilding the rest of /data.
-// scripts/build-data.mjs does the same when it rebuilds everything.
-//   node scripts/build-translations.mjs           write data/sentences.json
-//   node scripts/build-translations.mjs --check   exit 1 if data/sentences.json is out of date
+// Puts the Bokmål written for TÖLVA into /data without rebuilding the rest: sentence translations
+// (content/translations-nb.json) into data/sentences.json and word glosses
+// (content/glosses-nb.json) into data/lexicon.json, where the sources have none, and records the
+// new sizes and the source in data/SOURCES.json. scripts/build-data.mjs does the same when it
+// rebuilds everything.
+//   node scripts/build-translations.mjs           write the files
+//   node scripts/build-translations.mjs --check   exit 1 if any of them is out of date
 
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { ROOT } from './lib/bulk.mjs';
-import { HAND_NB, applyHandNb } from './lib/translations.mjs';
+import { HAND_GLOSSES, HAND_NB, applyHandNb, noteTolvaSource } from './lib/translations.mjs';
 
-const file = path.join(ROOT, 'data/sentences.json');
-const raw = await readFile(file, 'utf8');
-const data = JSON.parse(raw);
-const hand = JSON.parse(await readFile(path.join(ROOT, HAND_NB), 'utf8')).sentences;
-const added = applyHandNb(data.sentences, hand);
-const out = `${JSON.stringify(data)}\n`;
-const total = Object.keys(data.sentences).length;
-const withNb = Object.values(data.sentences).filter((s) => s.nb.length).length;
+const read = async (rel) => readFile(path.join(ROOT, rel), 'utf8');
+const check = process.argv.includes('--check');
 
-if (process.argv.includes('--check')) {
-  if (out !== raw) {
-    console.error('data/sentences.json is out of date with content/translations-nb.json: run npm run build:translations');
+const sentencesRaw = await read('data/sentences.json');
+const sentencesData = JSON.parse(sentencesRaw);
+const sentences = applyHandNb(sentencesData.sentences, JSON.parse(await read(HAND_NB)).sentences);
+const sentencesOut = `${JSON.stringify(sentencesData)}\n`;
+
+const lexiconRaw = await read('data/lexicon.json');
+const lexiconData = JSON.parse(lexiconRaw);
+const glosses = applyHandNb(lexiconData.lemmas, JSON.parse(await read(HAND_GLOSSES)).glosses);
+const lexiconOut = `${JSON.stringify(lexiconData)}\n`;
+
+const sourcesRaw = await read('data/SOURCES.json');
+const sourcesData = JSON.parse(sourcesRaw);
+noteTolvaSource(sourcesData, 'data/sentences.json', sentencesOut);
+noteTolvaSource(sourcesData, 'data/lexicon.json', lexiconOut);
+const sourcesOut = `${JSON.stringify(sourcesData, null, 2)}\n`;
+
+const files = [
+  ['data/sentences.json', sentencesRaw, sentencesOut],
+  ['data/lexicon.json', lexiconRaw, lexiconOut],
+  ['data/SOURCES.json', sourcesRaw, sourcesOut],
+];
+const inBokmal = (records) => Object.values(records).filter((r) => r.nb.length).length;
+const summary = `${sentences} hand translations (${inBokmal(sentencesData.sentences)} of ${Object.keys(sentencesData.sentences).length} sentences in Bokmål), ${glosses} hand glosses (${inBokmal(lexiconData.lemmas)} of ${Object.keys(lexiconData.lemmas).length} words)`;
+
+if (check) {
+  const stale = files.filter(([, raw, out]) => raw !== out).map(([rel]) => rel);
+  if (stale.length) {
+    console.error(`${stale.join(', ')} out of date with the Bokmål in content/: run npm run build:translations`);
     process.exit(1);
   }
-  console.log(`data/sentences.json is up to date (${added} hand translations, ${withNb} of ${total} sentences in Bokmål).`);
+  console.log(`Bokmål data is up to date: ${summary}.`);
 } else {
-  if (out !== raw) await writeFile(file, out);
-  console.log(`${added} hand translations; ${withNb} of ${total} sentences now have a Bokmål translation.`);
+  for (const [rel, raw, out] of files) if (raw !== out) await writeFile(path.join(ROOT, rel), out);
+  console.log(`${summary}.`);
 }
