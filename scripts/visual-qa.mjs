@@ -33,7 +33,7 @@ const firstOf = new Map();
 let specialTypeword = null;
 for (const unit of data.course.units.slice(0, 2)) {
   for (const lesson of unit.lessons) {
-    const specs = data.generator.lesson({ focus: lesson.focus, allowed: allowedFor(data.course, unit.id, lesson.index), seed: hashSeed(`${lesson.key}#0`) });
+    const specs = data.generator.lesson({ focus: lesson.focus, allowed: allowedFor(data.course, unit.id, lesson.index), seed: hashSeed(`${lesson.key}#0`), practiced: Boolean(lesson.review) });
     specs.forEach((spec, i) => {
       const href = `lesson.html?unit=${unit.id}&lesson=${lesson.id}&step=${i + 1}&qa`;
       if (!firstOf.has(spec.type)) firstOf.set(spec.type, href);

@@ -5,6 +5,7 @@ import * as meaning from './meaning.js';
 import * as listen from './listen.js';
 import * as wordbank from './wordbank.js';
 import * as typeword from './typeword.js';
+import * as typeform from './typeform.js';
 import * as match from './match.js';
 import * as ending from './ending.js';
 import * as caseEx from './case.js';
@@ -14,7 +15,8 @@ import * as speak from './speak.js';
 import * as bridge from './bridge.js';
 
 // conjugate: the form of a verb (person and number), on the same screen as a case ending.
-export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, match, ending, conjugate: ending, case: caseEx, table, pair, speak, bridge };
+// typeform: the same form, typed.
+export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, typeform, match, ending, conjugate: ending, case: caseEx, table, pair, speak, bridge };
 
 export function buildExercise(spec, ctx) {
   const mod = EXERCISES[spec.type];

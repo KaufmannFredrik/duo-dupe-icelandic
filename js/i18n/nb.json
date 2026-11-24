@@ -266,6 +266,8 @@
   "ex.listen": "Hvilket ord hører du?",
   "ex.typeword": "Skriv dette ordet på islandsk",
   "ex.table": "Fyll inn formene som mangler",
+  "ex.typeform": "Skriv formen som mangler",
+  "ex.typeformWord": "Ordet: {word}",
   "ex.matchMeaning": "Betydning",
   "guide.intro": "Korte grammatikknotater for denne enheten, med tabeller og ekte eksempelsetninger.",
   "guide.start": "Start enheten",

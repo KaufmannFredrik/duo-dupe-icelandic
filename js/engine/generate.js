@@ -239,8 +239,11 @@ export function createGenerator(data) {
     for (const sid of tag ? cands : cands.slice(0, 16)) {
       const t = caseTarget(id, sid, { unique: type === 'case', tag });
       if (!t) continue;
+      // Writing the form is no exercise when it is the dictionary form the screen shows.
+      if (type === 'typeform' && t.tok.low === lexicon.lemmas[id].lemma.toLocaleLowerCase('is')) continue;
       used.add(sid);
       const base = { lemma: id, sentence: sid, target: t.tok.raw, tag: t.tag, rule: ruleFor(sid, t.index, t.cases[0], id), key: `${id}|${t.tag}`, meta: { case: t.cases[0], number: t.parsed.number, gender: t.parsed.gender ?? lexicon.lemmas[id].kyn } };
+      if (type === 'typeform') return { type, ...base };
       return type === 'case' ? { type: 'case', ...base, cases: t.cases } : { type: 'ending', ...base, options: shuffle(t.options, r) };
     }
     return null;
@@ -352,30 +355,41 @@ export function createGenerator(data) {
 
   // --- Lessons ------------------------------------------------------------------------------------
 
-  // Words with case (nouns, adjectives, pronouns, numerals) rotate through case work early; verbs
-  // start with their forms (person and number), the others alternating between two starting points;
-  // other words go through meaning and sentence work, each starting further along.
-  const CASE_CYCLE = ['ending', 'case', 'listen', 'meaning', 'choice', 'ending', 'dictation', 'case', 'typeword', 'wordbank'];
-  const VERB_CYCLE = ['conjugate', 'listen', 'meaning', 'choice', 'dictation', 'conjugate', 'wordbank', 'typeword', 'choice'];
+  // Each word goes through a cycle of exercise types, from a starting point. Words with case
+  // (nouns, adjectives, pronouns, numerals) start with picking a case form and then build a
+  // sentence, or every other one with naming the case and then listening; verbs start with picking
+  // their form (person and number), then alternate between listening and sentence building; other
+  // words go through meaning and sentence work, each starting further along. Recognition comes
+  // first, production when the word is known: in a unit's review (practiced), every other word
+  // with forms starts with writing its form (typeform).
+  const CASE_CYCLE = ['ending', 'wordbank', 'case', 'listen', 'typeform', 'dictation', 'meaning', 'ending', 'choice', 'typeword'];
+  const VERB_CYCLE = ['conjugate', 'listen', 'meaning', 'choice', 'dictation', 'conjugate', 'wordbank', 'typeform', 'typeword', 'choice'];
   const WORD_CYCLE = ['listen', 'meaning', 'choice', 'dictation', 'wordbank', 'typeword', 'choice'];
-  const cycleFor = (id) => (CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? CASE_CYCLE : lexicon.lemmas[id].ofl === 'so' ? VERB_CYCLE : WORD_CYCLE);
-  const startFor = (id, i) => (CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? 0 : lexicon.lemmas[id].ofl === 'so' ? (i % 2) * 5 : i % WORD_CYCLE.length);
+  const isVerb = (id) => lexicon.lemmas[id].ofl === 'so';
+  const cycleFor = (id) => (CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? CASE_CYCLE : isVerb(id) ? VERB_CYCLE : WORD_CYCLE);
+  function startFor(id, i, practiced) {
+    const typed = practiced && i % 2 === 1;
+    if (CASE_CLASSES.has(lexicon.lemmas[id].ofl)) return typed ? CASE_CYCLE.indexOf('typeform') : i % 2 ? CASE_CYCLE.indexOf('case') : 0;
+    if (isVerb(id)) return typed ? VERB_CYCLE.indexOf('typeform') : (i % 2) * 5;
+    return i % WORD_CYCLE.length;
+  }
   // A form card's exercise: case words in a sentence, verbs in a sentence, else the word's table.
   const formSpec = (type, id, allow, used, r, tag) =>
     lexicon.lemmas[id].ofl === 'so' ? verbSpec(type === 'ending' ? 'conjugate' : type, id, allow, used, r, { tag }) : caseSpec(type, id, allow, used, r, { tag });
 
   /**
-   * @param {{ focus: string[], allowed: Iterable<string>, seed: number, count?: number }} options
-   *   focus: the lesson's new words; allowed: every word the learner may meet (includes focus).
+   * @param {{ focus: string[], allowed: Iterable<string>, seed: number, count?: number, practiced?: boolean }} options
+   *   focus: the lesson's new words; allowed: every word the learner may meet (includes focus);
+   *   practiced: the focus words were taught before (a unit's review), so some start with production.
    */
-  function lesson({ focus, allowed, seed, count = 12 }) {
+  function lesson({ focus, allowed, seed, count = 12, practiced = false }) {
     const r = rng(seed);
     const allow = new Set([...allowed, ...focus]);
     const used = new Set();
     const out = [];
     const intro = match(focus, r);
     if (intro) out.push(intro);
-    const step = new Map(focus.map((id, i) => [id, startFor(id, i)]));
+    const step = new Map(focus.map((id, i) => [id, startFor(id, i, practiced)]));
     let tableDone = false;
     for (let round = 0; out.length < count && round < 8; round++) {
       for (const id of shuffle(focus, r)) {
@@ -399,7 +413,7 @@ export function createGenerator(data) {
             : type === 'meaning' ? meaning(id, allow, r)
             : type === 'listen' ? listen(id, allow, r)
             : type === 'typeword' ? typeword(id)
-            : type === 'conjugate' ? verbSpec(type, id, allow, used, r)
+            : type === 'conjugate' || (type === 'typeform' && isVerb(id)) ? verbSpec(type, id, allow, used, r)
             : caseSpec(type, id, allow, used, r);
           if (spec) {
             out.push(spec);
@@ -411,10 +425,14 @@ export function createGenerator(data) {
     return out.slice(0, count);
   }
 
+  // A form card answered right this often (its Leitner box) is reviewed by writing the form.
+  const TYPE_FROM_BOX = 3;
+
   /**
    * Review of due cards: "id|meaning" cards get word exercises; a form card ("bjór_no|ÞFETgr") gets
-   * an exercise on exactly that form, in a sentence or else in the noun's table, so the card that
-   * is due is the one answered. A card no exercise can reach is skipped (reviewable() says which).
+   * an exercise on exactly that form, in a sentence or else in the word's table, so the card that
+   * is due is the one answered: picked from options while the card is new, typed once it is in
+   * box TYPE_FROM_BOX. A card no exercise can reach is skipped (reviewable() says which).
    */
   function review({ cards, allowed, seed, count = 12 }) {
     const r = rng(seed);
@@ -429,7 +447,7 @@ export function createGenerator(data) {
       const spec =
         part === 'meaning' ? choice(id, allow, used, r) ?? meaning(id, allow, r) ?? typeword(id)
         : part === 'table' ? table(id, r)
-        : formSpec('ending', id, allow, used, r, part) ?? table(id, r, part);
+        : ((card.box ?? 0) >= TYPE_FROM_BOX ? formSpec('typeform', id, allow, used, r, part) : null) ?? formSpec('ending', id, allow, used, r, part) ?? table(id, r, part);
       if (spec) out.push(spec);
     }
     return out;

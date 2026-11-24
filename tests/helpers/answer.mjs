@@ -35,6 +35,9 @@ export async function answer(page, mode = 'correct') {
       await page.fill('#answer', mode === 'almost' ? fold(w) : w);
       break;
     }
+    case 'typeform':
+      await page.fill('#answer', mode === 'almost' ? fold(spec.target) : spec.target);
+      break;
     case 'wordbank':
     case 'dictation': {
       const text = await page.evaluate((sid) => window.__tolva.sentence(sid).is, spec.sentence);

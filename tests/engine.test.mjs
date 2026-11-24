@@ -20,9 +20,10 @@ function checkVerbForm(s) {
   assert.ok(analysesIn(bm, s.target).some((a) => a.tag === s.tag), `"${s.target}" is ${s.tag} of ${s.lemma}`);
   assert.ok(!analysesIn(bm, s.target).some((a) => ['NH', 'SAGNB'].includes(a.parsed.mood)), `"${s.target}" is also the infinitive or supine`);
   const low = (x) => x.toLocaleLowerCase('is');
-  assert.equal(s.options.filter((o) => low(o) === low(s.target)).length, 1, `the answer once among ${s.options}`);
-  assert.equal(new Set(s.options).size, s.options.length, 'distinct options');
-  for (const o of s.options) assert.ok(analysesIn(bm, o).some((a) => a.parsed.mood === 'FH' && a.parsed.tense === p.tense), `option "${o}" is a ${p.tense} form`);
+  const options = s.options ?? []; // typeform has none
+  if (s.options) assert.equal(options.filter((o) => low(o) === low(s.target)).length, 1, `the answer once among ${options}`);
+  assert.equal(new Set(options).size, options.length, 'distinct options');
+  for (const o of options) assert.ok(analysesIn(bm, o).some((a) => a.parsed.mood === 'FH' && a.parsed.tense === p.tense), `option "${o}" is a ${p.tense} form`);
   const toks = tokens(text);
   const tags = d.tagsOf(s.sentence);
   const subjects = toks
@@ -36,7 +37,7 @@ function checkVerbForm(s) {
 
 function generate(unitId, lesson) {
   const allowed = allowedFor(d.course, unitId, lesson.index);
-  return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key) }) };
+  return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key), practiced: Boolean(lesson.review) }) };
 }
 
 test('course: ten units in order, all hand-made', () => {
@@ -151,7 +152,8 @@ for (const unitId of ['hello', 'cafe', 'family', 'around', 'time', 'shopping', '
           for (const x of s.distractors) assert.ok(!present.has(x.toLocaleLowerCase('is')), `distractor "${x}" is in the sentence`);
         }
         if (s.sentence && s.lemma) assert.ok(d.generator.hasLemma(s.sentence, s.lemma), `${s.type}: "${d.sentences[s.sentence].is}" does not contain ${s.lemma}`);
-        if (s.type === 'ending' || s.type === 'case') {
+        const verb = d.lexicon.lemmas[s.lemma]?.ofl === 'so';
+        if (s.type === 'ending' || s.type === 'case' || (s.type === 'typeform' && !verb)) {
           const tags = d.tagsOf(s.sentence);
           const at = tokens(d.sentences[s.sentence].is).findIndex((t) => t.raw === s.target);
           if (tags) assert.equal(tags[at], s.lemma, `"${s.target}" in "${d.sentences[s.sentence].is}" is tagged ${tags[at]}, not ${s.lemma}`);
@@ -181,7 +183,8 @@ for (const unitId of ['hello', 'cafe', 'family', 'around', 'time', 'shopping', '
           assert.ok(s.options.length >= 2 && new Set(s.options).size === s.options.length, 'distinct options');
           for (const o of s.options) assert.ok(d.paradigm(s.lemma).some((f) => f.b === o), `option "${o}" is a form of ${s.lemma}`);
         }
-        if (s.type === 'conjugate') checkVerbForm(s);
+        if (s.type === 'conjugate' || (s.type === 'typeform' && verb)) checkVerbForm(s);
+        if (s.type === 'typeform') assert.notEqual(s.target.toLocaleLowerCase('is'), d.lexicon.lemmas[s.lemma].lemma.toLocaleLowerCase('is'), `typeform asks for the dictionary form ${s.target}`);
         if (s.type === 'case') assert.equal(s.cases.length, 1, 'case questions only for unambiguous forms');
         if (s.type === 'table') for (const tag of s.blanks) assert.ok(d.paradigm(s.lemma).some((f) => f.g === tag), `${tag} in ${s.lemma}`);
       }
@@ -213,11 +216,18 @@ test('generator: review practices exactly the form that is due', () => {
     for (const s of generate(u.id, l).specs) if (['ending', 'case', 'conjugate'].includes(s.type)) keys.add(s.key);
   }
   assert.ok(keys.size > 100 && [...keys].some((k) => k.includes('_so|')), `${keys.size} form cards, verbs among them`);
+  let typed = 0;
   for (const key of keys) {
     const [spec] = d.generator.review({ cards: [{ key }], allowed, seed: 3 });
     assert.ok(spec, `no review for ${key}`);
     assert.ok(reviewKeys(spec).includes(key), `${key} reviewed as ${spec.key}`);
+    assert.notEqual(spec.type, 'typeform', 'a new card is picked, not typed');
+    // A well-learned card (box 3 and up) is typed where the form differs from the dictionary form.
+    const [known] = d.generator.review({ cards: [{ key, box: 4 }], allowed, seed: 3 });
+    assert.ok(reviewKeys(known).includes(key), `${key} (box 4) reviewed as ${known.key}`);
+    if (known.type === 'typeform') typed++;
   }
+  assert.ok(typed > keys.size / 3, `only ${typed} of ${keys.size} known cards are typed`);
 });
 
 test('generator: case trainer cards are reviewed in their table', () => {

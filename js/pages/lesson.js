@@ -66,7 +66,7 @@ function lessonPlan() {
     key: lesson.key,
     unit,
     title: `${pick(unit.title)}: ${lesson.title ? pick(lesson.title) : lesson.review ? t('learn.review') : t('learn.lessonN', { n: lesson.index + 1 })}`,
-    specs: gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`) }),
+    specs: gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`), practiced: Boolean(lesson.review) }),
   };
 }
 
@@ -185,6 +185,7 @@ let bonus = 0;
 let bestRun = 0;
 const counted = { listen: 0, type: 0 };
 const LISTENING = new Set(['listen', 'dictation', 'pair']);
+const TYPED = new Set(['typeword', 'typeform']);
 
 // Hearts (Settings, off by default): five per lesson, one lost per wrong answer. Not in placement.
 const HEARTS = 5;
@@ -277,7 +278,7 @@ async function doCheck(skipped = false) {
   bonus += combo ? COMBO_XP : 0;
   bestRun = Math.max(bestRun, run);
   if (r.result === 'correct' && LISTENING.has(spec.type)) counted.listen++;
-  if (r.result === 'correct' && spec.type === 'typeword') counted.type++;
+  if (r.result === 'correct' && TYPED.has(spec.type)) counted.type++;
   if (hearts !== null && r.result === 'wrong') {
     hearts--;
     renderHearts();

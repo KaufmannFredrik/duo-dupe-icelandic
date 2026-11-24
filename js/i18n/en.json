@@ -266,6 +266,8 @@
   "ex.listen": "Which word do you hear?",
   "ex.typeword": "Write this word in Icelandic",
   "ex.table": "Fill in the missing forms",
+  "ex.typeform": "Write the missing form",
+  "ex.typeformWord": "The word: {word}",
   "ex.matchMeaning": "Meaning",
   "guide.intro": "Short grammar notes for this unit, with tables and real example sentences.",
   "guide.start": "Start the unit",

@@ -2,6 +2,16 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Writing forms, and sentences for nouns (2026-11-24)
+
+Form exercises were all multiple choice, and the only typing was a word's dictionary form, so a learner could finish the course recognizing endings without ever producing one. Nouns also never built a sentence: their cycle started with two case exercises, and a 12-exercise lesson with six words rarely went further.
+
+- **Write the missing form** (`typeform`, `js/exercises/typeform.js`): the sentence with the word left out, the dictionary form given ("The word: *kaffi*") and the translation; the learner types the form, graded like other typing (accents and special letters "almost" early on). It works for case forms and verb forms, shows the same explanation as "Fill in the right form", and never asks for the dictionary form itself. It counts for the "Type 6 answers" quest.
+- **Recognition first, production when known.** In a unit's review lesson every other word with forms starts by writing its form (`practiced` in `lesson()`); a spaced-repetition card in box 3 or higher is reviewed by writing it (`TYPE_FROM_BOX`), a newer one by picking it.
+- **Nouns build sentences.** The case cycle is now pick the form, build the sentence, name the case, listen, write the form; every other noun starts at naming the case, so case questions stay as common as before.
+- Over all lessons: sentence building 46 to 88 exercises, dictation 16 to 34, written forms 0 to 44, picking a case form 175 to 96, naming the case 46 to 45. Nouns alone: sentence building and dictation 0 to 36, written forms 0 to 23.
+- Tests: written forms get the same checks as picked ones (the case named is the parser's, the rule's preposition is there; a verb agrees with its subject) and never ask for the dictionary form; known cards are typed, new ones picked. `scripts/visual-qa.mjs` and the tests now generate unit reviews as the app does.
+
 ## Verb forms in lessons (2026-11-24)
 
 Lessons practiced the case of nouns, adjectives and pronouns, but verbs only through their meaning and sentences: over the 56 lessons verbs had 121 exercises and none on a form, although person and number (*ég drekk*, *þú drekkur*, *við drekkum*) are half of Icelandic grammar and the case trainer already had the tables.
