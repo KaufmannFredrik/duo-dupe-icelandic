@@ -2,6 +2,10 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## A check before every push (2026-11-24)
+
+`npm run check` (stale `sw.js`, tags or Bokmål data, a missing UI string, invalid content, a failing unit test) only ran when someone remembered to. Without a hosted workflow (the site stays local until the owner says otherwise), a git hook runs it: `.githooks/pre-push`, turned on per clone with `npm run hooks`, and on in this one. It finds Node in Program Files when Git Bash does not have it on its path, and `.gitattributes` keeps the hook's line endings LF in a Windows checkout. It takes about 13 seconds; it stopped a push with a stale `sw.js` in a test. The full `npm run smoke` and `npm run qa` (minutes each) stay manual.
+
 ## A lighter first visit, audio that can be renewed, a log that stays small (2026-11-24)
 
 - **First visit.** The service worker precached everything, 4.0 MB in 205 files, among them all four voices' manifests (0.3 MB each, now with file hashes) though a learner uses one, and the cast's 56 pictures (0.8 MB) though they are met one unit at a time. Those now join the cache when first fetched (`ON_USE` in `scripts/build-sw.mjs` and `scripts/sw-template.js`), and the precache is 2.4 MB in 146 files. Steinn's manifest, the default, stays precached; the chosen voice's is fetched in the background once the worker controls the page, so it is cached before the learner goes offline, also after an update. They still count for the cache version.

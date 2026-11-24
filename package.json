@@ -25,7 +25,8 @@
     "build:tags": "node scripts/build-tags.mjs",
     "build:sw": "node scripts/build-sw.mjs",
     "smoke": "node tests/smoke.mjs --all",
-    "build:translations": "node scripts/build-translations.mjs"
+    "build:translations": "node scripts/build-translations.mjs",
+    "hooks": "git config core.hooksPath .githooks"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",

@@ -1,0 +1,23 @@
+#!/bin/sh
+# Runs `npm run check` before every push, so a stale sw.js, tags or Bokmål data, a missing UI
+# string, invalid content or a failing unit test never reaches the repository.
+# Turn it on once per clone with `npm run hooks` (git config core.hooksPath .githooks).
+# To push once without it: git push --no-verify
+
+if ! command -v npm >/dev/null 2>&1; then
+  # Git Bash on Windows may not have Node on its PATH; the installer puts it in Program Files.
+  for dir in "/c/Program Files/nodejs" /usr/local/bin /opt/homebrew/bin; do
+    if [ -x "$dir/npm" ]; then PATH="$dir:$PATH"; break; fi
+  done
+fi
+if ! command -v npm >/dev/null 2>&1; then
+  echo "pre-push: npm not found, so npm run check did not run." >&2
+  exit 0
+fi
+
+echo "pre-push: npm run check"
+if ! npm run check --silent >/dev/null 2>&1; then
+  echo "pre-push: npm run check failed. Run it to see why, fix it, or push with --no-verify." >&2
+  exit 1
+fi
+echo "pre-push: checks pass"
