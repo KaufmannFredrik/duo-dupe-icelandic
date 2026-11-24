@@ -99,6 +99,7 @@
   "feedback.answer": "Riktig svar",
   "feedback.reason.accents": "Aksenter endrer ord: {pairs}.",
   "feedback.reason.letters": "Pass på spesialtegnene: {pairs}.",
+  "feedback.sameMeaning": "{other} betyr det også. Denne gangen var ordet {word}.",
   "feedback.reason.letters+accents": "Pass på spesialtegnene og aksentene: {pairs}.",
   "lesson.progress": "Oppgave {n} av {total}",
   "lesson.progressLabel": "Fremgang i leksjonen",

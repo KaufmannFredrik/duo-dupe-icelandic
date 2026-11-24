@@ -340,6 +340,34 @@ if (process.argv.includes('--all')) {
     failed = true;
     console.log(`FAIL review: ${e.message}`);
   }
+  // A typed word with the same meaning as the one asked for counts: a mistake on þekkja ("to know")
+  // answered with vita.
+  try {
+    await page.goto(`${url}practice.html`);
+    await page.evaluate(
+      () =>
+        new Promise((resolve) => {
+          const req = indexedDB.open('tolva');
+          req.onsuccess = () => {
+            const tx = req.result.transaction('mistakes', 'readwrite');
+            tx.objectStore('mistakes').clear();
+            tx.objectStore('mistakes').put({ key: 'þekkja_so|meaning', at: Date.now(), spec: { type: 'typeword', lemma: 'þekkja_so', key: 'þekkja_so|meaning' } });
+            tx.oncomplete = resolve;
+          };
+        }),
+    );
+    await page.goto(`${url}lesson.html?mode=mistakes&qa`);
+    await page.waitForFunction(() => window.__tolva?.spec());
+    await page.fill('#answer', 'vita');
+    await page.click('[data-action="check"]');
+    const state = await page.getAttribute('[data-sheet]', 'data-state');
+    const why = await page.locator('.sheet__why').textContent();
+    if (state !== 'correct' || !why.includes('þekkja')) throw new Error(`graded ${state}: ${why}`);
+    console.log('PASS same meaning: vita for "to know" counts, and the feedback names þekkja');
+  } catch (e) {
+    failed = true;
+    console.log(`FAIL same meaning: ${e.message}`);
+  }
   try {
     await page.goto(`${url}stories.html`);
     await page.locator('.story-card').first().waitFor({ timeout: 5000 });

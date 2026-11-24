@@ -61,3 +61,17 @@ test('matchWords: in-order word overlap, ignoring case and punctuation', async (
   assert.equal(b.heard, 'ég heiti Jack');
   assert.equal(b.score, 1);
 });
+
+test('gradeWord: another word with the same meaning counts, the word asked for comes first', async () => {
+  const { gradeWord } = await import('../js/normalize.js');
+  // "to know": þekkja asked for, vita and kunna show the same meaning.
+  assert.deepEqual([gradeWord('vita', 'þekkja', ['vita', 'kunna']).result, gradeWord('vita', 'þekkja', ['vita', 'kunna']).other], ['correct', 0]);
+  assert.equal(gradeWord('þekkja', 'þekkja', ['vita']).other, -1);
+  assert.equal(gradeWord('kunna', 'þekkja', ['vita', 'kunna']).other, 1);
+  // Almost (no accents) for an alternative beats wrong for the word asked for.
+  const g = gradeWord('hvenaer', 'þegar', ['hvenær']);
+  assert.deepEqual([g.result, g.other], ['almost', 0]);
+  // An almost for the word asked for is not replaced by an almost for another word.
+  assert.equal(gradeWord('thegar', 'þegar', ['hvenær']).other, -1);
+  assert.equal(gradeWord('fara', 'þekkja', ['vita']).result, 'wrong');
+});

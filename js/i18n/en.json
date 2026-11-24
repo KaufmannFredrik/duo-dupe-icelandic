@@ -99,6 +99,7 @@
   "feedback.answer": "Correct answer",
   "feedback.reason.accents": "Accents change words: {pairs}.",
   "feedback.reason.letters": "Watch the special letters: {pairs}.",
+  "feedback.sameMeaning": "{other} means that too. This time the word was {word}.",
   "feedback.reason.letters+accents": "Watch the special letters and the accents: {pairs}.",
   "lesson.progress": "Exercise {n} of {total}",
   "lesson.progressLabel": "Lesson progress",

@@ -2,7 +2,8 @@
 // correct: matches after NFC, case, whitespace and punctuation normalization.
 // almost:  only missing acute accents, or (in early units) ASCII stand-ins for special
 //          letters: th for þ, d for ð, ae for æ, o for ö.
-// Strict mode counts missing accents as wrong, because accents change words (ar/ár, for/fór).
+// Strict mode counts missing accents as wrong, because accents change words (dýr "animal" and
+// dyr "door"; content/CLAIMS.md).
 
 const PUNCT = /[.,!?;:"'“”„‟«»‹›()[\]{}…¿¡\u2013\u2014-]/g;
 const ACUTE = { á: 'a', é: 'e', í: 'i', ó: 'o', ú: 'u', ý: 'y' };
@@ -44,6 +45,24 @@ export function grade(input, answers, { strict = false, early = true } = {}) {
     }
   }
   return { result: 'wrong', answer: answers[0] };
+}
+
+const RANK = { correct: 2, almost: 1, wrong: 0 };
+
+/**
+ * Grades a typed word against the word asked for and, when one fits the input better, against
+ * other words shown with the same meaning ("to know": vita, þekkja, kunna).
+ * @returns {ReturnType<typeof grade> & { other: number }} other: index of the alternative that was
+ *   typed, or -1 for the word asked for
+ */
+export function gradeWord(input, word, alternatives = [], options = {}) {
+  let best = { ...grade(input, [word], options), other: -1 };
+  alternatives.forEach((alt, i) => {
+    if (best.result === 'correct') return;
+    const g = grade(input, [alt], options);
+    if (RANK[g.result] > RANK[best.result]) best = { ...g, other: i };
+  });
+  return best;
 }
 
 /**

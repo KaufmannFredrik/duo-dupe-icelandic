@@ -14,7 +14,7 @@
 
 import { loadJSON, ready } from '../app.js';
 import { pick, t } from '../i18n.js';
-import { caseRules, getGenerator, gloss, glossLang, lemma, loadAll, paradigm, recordings, sentence, translation } from '../data.js';
+import { caseRules, getGenerator, gloss, glossLang, lemma, loadAll, paradigm, recordings, sameGloss, sentence, translation } from '../data.js';
 import { speechSupport } from '../speech.js';
 import { loadBridge } from '../bridge.js';
 import { allowedFor, findLesson, loadCourse, nextLesson, unitDone } from '../course.js';
@@ -181,7 +181,7 @@ if (hearts !== null) {
   $('.lesson__top [data-sound-toggle]').before(heartsEl);
 }
 
-const data = { lemma, sentence, translation, gloss, paradigm, recordings, caseRules };
+const data = { lemma, sentence, translation, gloss, sameGloss, paradigm, recordings, caseRules };
 const ctxFor = (i) => ({
   data,
   lang: glossLang(),

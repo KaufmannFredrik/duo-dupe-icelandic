@@ -136,6 +136,25 @@ export function gloss(id, lang = glossLang()) {
   return (l.ofl === 'so' ? 'to ' : '') + l.meaning;
 }
 
+const byGloss = new Map();
+/**
+ * Other course words shown with the same gloss as this one ("to know": vita, þekkja, kunna;
+ * "når": hvenær, þegar), so a typed answer of one of them is right too.
+ */
+export function sameGloss(id, lang = glossLang()) {
+  if (!byGloss.has(lang)) {
+    const map = new Map();
+    for (const x of Object.keys(lexicon.lemmas)) {
+      const g = gloss(x, lang).toLocaleLowerCase(lang);
+      if (!map.has(g)) map.set(g, []);
+      map.get(g).push(x);
+    }
+    byGloss.set(lang, map);
+  }
+  const word = lexicon.lemmas[id]?.lemma;
+  return (byGloss.get(lang).get(gloss(id, lang).toLocaleLowerCase(lang)) ?? []).filter((x) => x !== id && lexicon.lemmas[x].lemma !== word);
+}
+
 /** Sentence translation in the gloss language when Tatoeba has one. */
 export function translation(sid, lang = glossLang()) {
   const s = sentence(sid);

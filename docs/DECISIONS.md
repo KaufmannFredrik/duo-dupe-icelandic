@@ -2,6 +2,14 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## A typed word with the same meaning counts (2026-11-24)
+
+"Type the word" shows a meaning and asked for one word, but seven English and, after the gloss corrections, five Bokmål meanings belong to more than one course word: "to know" (*vita*, *þekkja*, *kunna*), "home" (*heimili*, *heim*), "when" and *når* (*hvenær*, *þegar*), "Icelandic" and *islandsk* (*íslenska*, *íslenskur*). Typing the other one was graded wrong.
+
+- `gradeWord` in `js/normalize.js` grades the input against the word asked for and, when one fits better, against the other course words shown with the same meaning (`sameGloss` in `js/data.js`). The answer counts; the feedback says "*vita* means that too. This time the word was *þekkja*.", and the answer goes to the spaced-repetition card of the word typed, so the one asked for stays to be learned (its mistake stays too). The letters drill uses the same exercise.
+- The comment in `js/normalize.js` that gave *ar* and *ár* as words that accents tell apart now gives *dýr* and *dyr*, like `content/CLAIMS.md` (*ar* is not a word).
+- Tests: `tests/normalize.test.mjs` (which word wins, almost against wrong); `npm run smoke` replays a mistake on *þekkja* answered with *vita*.
+
 ## Reviews practice the form that is due (2026-11-24)
 
 A review of a form card (*kaffi*, genitive singular) made an exercise on the first form of the word in the shortest sentences, often another form. Of the 187 form cards the lessons create, 39 were practiced as another form when they came due; the due card was never answered, stayed due, and since the review round took the 24 most overdue cards, such cards gathered at its front. They were the rarer forms (*barn* dative, *faðir* nominative, *kaffi* genitive), the weak spots spaced repetition is for.
