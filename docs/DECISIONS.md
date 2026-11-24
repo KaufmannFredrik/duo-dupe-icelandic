@@ -2,6 +2,10 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## A word picker for new units (2026-11-24)
+
+The third foundation of [PLAN.md](PLAN.md). New units choose their words by topic (the curriculum) first, then by how common a word is and how many example sentences it brings. `npm run pick-words` (`scripts/pick-words.py`, in `.venv`, which has BÍN offline through GreynirCorrect's `islenska` package) answers that from the cached downloads: for given words, their word classes, their rank in the Icelandic Gigaword Corpus frequency list, the Tatoeba sentences that use them and how many each would complete with the course's words; or, with `--top`, the words that complete the most sentences, one after another. It is an estimate for planning (no GreynirCorrect lint, no parser); the real data still comes from `npm run build:data`. First results: *janúar* is common (rank 535) but in no usable sentence, *herbergi* completes 12, and the best openers are *dyr*, *í gær*, *halda*, *samur*, *þreyttur*, *vinsamlegast*.
+
 ## Goals for each level (2026-11-24)
 
 The second foundation of [PLAN.md](PLAN.md): what each section aims at, and how far the learner is.

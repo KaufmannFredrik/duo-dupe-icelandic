@@ -26,7 +26,8 @@
     "build:sw": "node scripts/build-sw.mjs",
     "smoke": "node tests/smoke.mjs --all",
     "build:translations": "node scripts/build-translations.mjs",
-    "hooks": "git config core.hooksPath .githooks"
+    "hooks": "git config core.hooksPath .githooks",
+    "pick-words": "node -e \"process.exit(require('child_process').spawnSync(process.platform === 'win32' ? '.venv/Scripts/python' : '.venv/bin/python', ['-I', 'scripts/pick-words.py', ...process.argv.slice(1)], { stdio: 'inherit' }).status)\" --"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",

@@ -35,6 +35,7 @@ Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=
 | `npm run validate` | Checks every Icelandic word in the content against the DMII Core, and hand-written sentences with GreynirCorrect. |
 | `npm run build:data` | Rebuilds `/data` (needs `npm run probe:coverage` first for the bulk files, and GreynirCorrect in `.venv`). |
 | `npm run check` | Contrast check, UI string check (English and Norwegian), content validation, sentence tags up to date, service worker up to date, unit tests. |
+| `npm run pick-words` | Helps choose a new unit's words (`scripts/pick-words.py`, in `.venv`): for the words given (`npm run pick-words -- janúar sturta`), or the words that would open up the most sentences (`-- --top 40`; `--max-words 14` for A2), how common each is in the Icelandic Gigaword Corpus and how many Tatoeba sentences it brings. |
 | `npm run hooks` | Turns on the pre-push check in this clone (`git config core.hooksPath .githooks`): every `git push` runs `npm run check` first and stops if it fails (`git push --no-verify` skips it once). |
 | `npm run qa` | Playwright visual QA: screenshots of every screen and state at 390x844, 768x1024 and 1440x900 into `screenshots/`, axe accessibility checks, and a no-horizontal-scroll test at 320 px. |
 | `npm run probe` | Probes every external API and dataset and rewrites `docs/api-report.md`. |
