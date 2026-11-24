@@ -76,7 +76,8 @@ export const BADGES = [
   { id: 'xp1000', icon: 'xp', earned: (s) => s.xp >= 1000 },
 ];
 
-const isFormRight = (a) => a.result === 'correct' && a.key && !a.key.endsWith('|meaning');
+// A right answer on a word's form (not its meaning, and not a letter card "letter|æ").
+const isFormRight = (a) => a.result === 'correct' && a.key && !a.key.endsWith('|meaning') && !a.key.startsWith('letter|');
 
 /**
  * All-time counts of answers, kept as a running total (js/progress.js "tally") because the attempt

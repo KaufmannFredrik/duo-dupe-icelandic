@@ -45,7 +45,8 @@ for (const unit of data.course.units.slice(0, 2)) {
 // Each shot: page URL, optional actions to reach a state, full-page or viewport capture.
 const wrongOption = async (p) => {
   const spec = await p.evaluate(() => window.__tolva.spec());
-  await p.locator(`.option:not([data-value="${spec.lemma}"])`).first().click();
+  const right = ['letter', 'lettername', 'likenb', 'pair'].includes(spec.type) ? spec.answer : spec.lemma;
+  await p.locator(`.option:not([data-value="${right}"])`).first().click();
 };
 // A realistic progress export dated around today, imported through the profile page.
 function progressFixture() {
@@ -104,6 +105,19 @@ async function answerRight(p, n) {
   }
 }
 
+// Letters drill: answers until an exercise of the type comes up (a round is random, and mixes the
+// types: the least used comes next).
+async function untilType(p, type) {
+  for (let i = 0; i < 10; i++) {
+    await p.waitForFunction(() => window.__tolva?.spec() && !document.querySelector('[data-sheet].is-open'));
+    if ((await p.evaluate(() => window.__tolva.spec().type)) === type) return;
+    await answer(p);
+    await p.click('[data-action="check"]');
+    await p.click('[data-action="continue"]');
+  }
+  throw new Error(`no ${type} exercise in the letters drill`);
+}
+
 async function playThrough(p) {
   for (let i = 0; i < 30; i++) {
     await p.waitForFunction(() => document.querySelector('.complete__title') || (window.__tolva.spec() && !document.querySelector('[data-sheet].is-open')));
@@ -147,6 +161,15 @@ const SHOTS = [
   { name: 'stories-word', url: 'stories.html?story=cafe', act: async (p) => p.click('.word:text-is("te")') },
   { name: 'stories-speaking', url: 'stories.html?story=cafe', act: async (p) => p.evaluate(() => { document.querySelector('.reader__line').classList.add('is-current'); document.querySelectorAll('.word')[2].classList.add('is-speaking'); }) },
   { name: 'stories-translations', url: 'stories.html?story=family', act: async (p) => p.check('[data-show-translations]', { force: true }) },
+  { name: 'letters', url: 'letters.html', full: true },
+  { name: 'letters-dialog', url: 'letters.html', act: async (p) => p.click('.letter-tile[data-item="þ"]') },
+  { name: 'ex-letter', url: 'lesson.html?mode=alphabet&qa', act: async (p) => untilType(p, 'letter') },
+  { name: 'ex-lettername', url: 'lesson.html?mode=alphabet&qa', act: async (p) => untilType(p, 'lettername') },
+  { name: 'ex-likenb', url: 'lesson.html?mode=alphabet&qa', act: async (p) => untilType(p, 'likenb') },
+  { name: 'ex-spell', url: 'lesson.html?mode=alphabet&qa', act: async (p) => untilType(p, 'spell') },
+  { name: 'feedback-letter', url: 'lesson.html?mode=alphabet&qa', act: async (p) => { await untilType(p, 'letter'); await answer(p); await p.click('[data-action="check"]'); } },
+  { name: 'feedback-likenb-wrong', url: 'lesson.html?mode=alphabet&qa', act: async (p) => { await untilType(p, 'likenb'); await wrongOption(p); await p.click('[data-action="check"]'); } },
+  { name: 'feedback-spell-almost', url: 'lesson.html?mode=alphabet&focus=á&qa', act: async (p) => { await untilType(p, 'spell'); await answer(p, 'almost'); await p.click('[data-action="check"]'); } },
   { name: 'sounds', url: 'lesson.html?mode=sounds&qa' },
   { name: 'feedback-pair', url: 'lesson.html?mode=sounds&qa', act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'voices', url: 'voices.html', full: true },
@@ -177,7 +200,7 @@ const SHOTS = [
 const OVERFLOW_PAGES = [
   'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=shopping', 'guide.html?unit=weather', 'guide.html?unit=study', 'guide.html?unit=grammar', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
   'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
-  'stories.html', 'stories.html?story=hello', 'stories.html?story=cafe', 'stories.html?story=time', 'stories.html?story=shopping', 'stories.html?story=study', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'voices.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
+  'stories.html', 'stories.html?story=hello', 'stories.html?story=cafe', 'stories.html?story=time', 'stories.html?story=shopping', 'stories.html?story=study', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'letters.html', 'lesson.html?mode=alphabet', 'voices.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
 ];
 
 async function settle(page) {

@@ -1,5 +1,6 @@
-// Practice hub: replay mistakes, review due cards, the case trainer, the letters drill, and the
-// weak-spots heatmap of accuracy by case, number and gender, computed from your own answers.
+// Practice hub: letters and sounds (letters.html, with its count of weak letters), replay mistakes,
+// review due cards, the case trainer, and the weak-spots heatmap of accuracy by case, number and
+// gender, computed from your own answers.
 
 import { ready } from '../app.js';
 import { t } from '../i18n.js';
@@ -9,6 +10,7 @@ import { questsOf } from '../quests.js';
 import { questsHTML } from '../ui/quests.js';
 import { dayKey } from '../stats.js';
 import { dueCards } from '../srs.js';
+import { isLetterKey, isWeak } from '../engine/letters.js';
 import { loadLexicon } from '../data.js';
 import { caseTag } from '../ui/forms.js';
 import { getSettings } from '../store.js';
@@ -26,6 +28,13 @@ const count = (sel, n) => {
 };
 count('[data-count="mistakes"]', mistakeList.length);
 count('[data-count="review"]', dueCards(list).length);
+// Letters and sounds: how many letters are weak (answered, but low or often wrong).
+const weakLetters = list.filter((c) => isLetterKey(c.key) && isWeak(c)).length;
+const weakEl = document.querySelector('[data-count="weak-letters"]');
+if (weakLetters) {
+  weakEl.innerHTML = `${weakLetters}<span class="visually-hidden"> ${t('letters.weakCount')}</span>`;
+  weakEl.hidden = false;
+}
 
 // Today's quests, redrawn when progress changes.
 const renderQuests = async () => {

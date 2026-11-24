@@ -65,10 +65,17 @@ const greetingCredit = greetings.length
   ? `<p class="credit learn-credit">${t('learn.hostCredit', { list: greetings.map((sid) => `<a href="https://tatoeba.org/en/sentences/show/${sid}" rel="noopener">#${sid}</a> (${esc(sentence(sid).author ?? t('credit.unknownAuthor'))})`).join(', ') })} <span data-voice-credit></span></p>`
   : '';
 
-const fresh = Object.keys(progress.lessons).length === 0 && !progress.skippedUnits.length;
+// A first visit: no course lesson done and no units skipped (practice rounds, such as the letters,
+// do not count).
+const fresh = !Object.keys(progress.lessons).some((k) => !k.startsWith('practice/')) && !progress.skippedUnits.length;
 const choosing = !getSettings().ttsVoice;
+// Letters and sounds, offered at the start until the learner has done a round of them or a lesson;
+// never required.
+const lettersOffer = fresh && !progress.lessons['practice/alphabet']
+  ? `<p class="letters-offer">${icon('letters')}<span>${t('learn.lettersOffer')} <a href="letters.html">${t('learn.lettersLink')}</a></span></p>`
+  : '';
 const placementLink = fresh && !choosing
-  ? `<p class="card card--gold placement-hint"><span>${t('learn.placementHint')}</span> <a class="button button--sm" href="lesson.html?mode=placement">${t('landing.placement')}</a></p>`
+  ? `<p class="card card--gold placement-hint"><span>${t('learn.placementHint')}</span> <a class="button button--sm" href="lesson.html?mode=placement">${t('landing.placement')}</a></p>${lettersOffer}`
   : '';
 
 // Until a voice is chosen, one card at the top: the voices, and buttons to start the current
@@ -83,6 +90,7 @@ const voiceCard = choosing
       <p class="muted" role="status" data-voice-saved></p>
       ${current ? `<div class="cluster voice-intro__actions"><a class="button button-primary" href="lesson.html?unit=${current[0].id}&lesson=${current[1].id}">${t(fresh ? 'learn.startFirst' : 'lesson.continue')}</a>
         ${fresh ? `<a class="button" href="lesson.html?mode=placement">${t('landing.placement')}</a>` : ''}</div>` : ''}
+      ${lettersOffer}
     </section>`
   : '';
 

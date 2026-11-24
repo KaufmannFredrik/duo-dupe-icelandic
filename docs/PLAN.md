@@ -119,7 +119,7 @@ Asked by the owner: an area to learn Icelandic's letters and their sounds agains
    - a word picker script (topic, frequency, sentences opened up) that lists candidates per unit;
    - data loaded per section, so a beginner's phone does not load A2's paradigms and sentences, and the precache follows the learner's section.
 2. **Letters and sounds** (*Stafirnir*), before the new units, so learners have it from the start.
-3. **Section A1**: reorder the existing units and split unit 10, then units 2, 5, 7, 10, 11, 12, 14, 15, 17, 18 one at a time, the extra lessons in units 6 and 16, numbers by ear, guided writing, the A1 check.
+3. **Section A1**: reorder the existing units and split unit 10, then the new units 2, 5, 8, 10, 11, 12, 14, 15, 17, 18 one at a time, the extra lessons in units 7 and 16, numbers by ear, guided writing, the A1 check.
 4. **Section A2**: the A2 exercise types, then units 21–35 one at a time, the A2 check.
 5. **Each unit**, as units 3–10 were made: choose the words; check them in the DMII Core, Wiktionary and Bokmålsordboka; build the data, lint and tag the sentences; group the lessons by hand and read every generated exercise; write the guidebook and the story with every claim sourced in `content/CLAIMS.md`; translate the new sentences into Bokmål by hand; render audio in four voices; run the tests and the visual QA; commit and push.
 
@@ -127,12 +127,12 @@ About 42 commits: 5 foundations, 2 for letters and sounds, 13 for section A1, 4 
 
 ## Progress
 
-Updated 2026-11-24, at a stop asked for by the owner.
+Updated 2026-11-24.
 
-- **Done** (each in `docs/DECISIONS.md`): the path in sections (A1, A2, bonus) with finished units recorded in progress; goals per level (`content/goals.json`) and the level card on Profile; the word picker (`npm run pick-words`).
+- **Done** (each in `docs/DECISIONS.md`): the path in sections (A1, A2, bonus) with finished units recorded in progress; goals per level (`content/goals.json`) and the level card on Profile; the word picker (`npm run pick-words`); **letters and sounds** (*Stafirnir*): `letters.html` with the 32 letters and 11 spellings against Norwegian, a drill of four new exercise types with a card per letter (`letter|x`) that reviews bring back, the first card on Practice (no sixth tab: six labels do not fit 320 px), and an offer on Learn at the first visit. The sources it rests on are in `content/CLAIMS.md`; the corrections they made to the draft above are in the decision.
 - **Postponed:** loading data per section. The service worker downloads every data file on the first visit anyway, so it would only save parsing; it is built when the course data passes about 3 MB.
-- **Next: letters and sounds (*Stafirnir*).** Nothing written yet. Sources gathered: English Wikipedia's *Icelandic orthography* (the 32 letters, their names, the IPA per letter and spelling), *Icelandic phonology* (length, preaspiration in *pp*, *tt*, *kk*, stress always on the first syllable), *Norwegian orthography* and *Norwegian phonology* (Bokmål and Urban East Norwegian values). The comparisons they support, by equal or close IPA: *ö* [œ] = Norwegian short *ø*; *u* [ʏ] = Norwegian short *y*; *ú* [u] = Norwegian long *o* (*bok*); *o* [ɔ] = Norwegian short *å*; *hj* [ç] = Norwegian *kj*; *au* [œy] close to Norwegian *øy*; *ei*, *ey* [ei] close to Norwegian *ei*; and different from what they look like: *æ* [ai], *á* [au], *ó* [ou], *é* [jɛ], *y*/*ý* = *i*/*í* (not rounded), *hv* [kʰv] (Norwegian *hv* is [v]), *ll* mostly [tl], *sl* [stl], *rn* mostly [tn], *f* between vowels [v]. The vowel-length rule is the same in both languages (long before one consonant, short before two). Before writing `content/letters.json`, read the consonant rows after *f* of the *Icelandic orthography* table again on the page itself (the first reading summarized them), and the definition of the "broad" vowels behind *nn* [tn] (*einn*). Then: the letters page, the drills (hear a word and fill in the missing letter; same as Norwegian or not; spell it; the existing sound pairs), a card per letter, the letter names in `scripts/build-audio.py` for all four voices, the claims in `content/CLAIMS.md`, tests.
-- **Then:** section A1 (new units in the order of the table above), section A2.
+- **Next: section A1** (step 3 under "How it is built"; its list of units now matches the table: new units 2, 5, 8, 10, 11, 12, 14, 15, 17, 18, extra lessons in 7 and 16). Unit 10's five everyday words can only move once the units that take them exist (*farsími* and *tölvupóstur* to *Um mig*, unit 2; *sjónvarp* to *Heima*, 11; *útvarp* to *Fréttir* in A2), so the split happens unit by unit: *flugvél* can move to *Gata* now, and *Nýyrði* keeps the others until then. Each new unit is made as in step 5, starting with `npm run pick-words` for its topic.
+- **Then:** section A2.
 
 ## Costs
 

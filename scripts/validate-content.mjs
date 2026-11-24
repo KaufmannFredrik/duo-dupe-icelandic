@@ -13,6 +13,8 @@
 //    excluded one or to one Tatoeba already translates, ends with other punctuation than the
 //    Icelandic, or has a word that is not a Bokmålsordboka form (or a compound of two, or a name
 //    listed in the file),
+//  - a letter or spelling in content/letters.json is incomplete, is out of alphabet order, names
+//    a word that is not a course word, or has a name without audio in one of the four voices,
 //  - a Bokmål word gloss the app shows (from Wiktionary, or written or corrected by hand in
 //    content/glosses-nb.json) has a word that is not a Bokmålsordboka form, or more than one word
 //    without being a listed phrase, or a correction no longer matches what Wiktionary gives.
@@ -221,6 +223,47 @@ async function checkMinimalPairs() {
   }
 }
 
+// Letters and sounds (content/letters.json): the 32 letters of the alphabet in order, each with a
+// name, sounds, a comparison with Norwegian and text in en and nb, and its name spoken in every
+// voice; the combinations likewise; every example a course word; the drill's yes-or-no question
+// ("as in Norwegian?") only where the answer is yes (same) or no (another sound).
+const ALPHABET = 'a á b d ð e é f g h i í j k l m n o ó p r s t u ú v x y ý þ æ ö'.split(' ');
+async function checkLetters() {
+  const rel = 'content/letters.json';
+  if (!existsSync(path.join(ROOT, rel))) return 0;
+  const file = await readJson(rel);
+  if (file.reviewed === false) unreviewed.push(rel);
+  const ids = file.letters.map((l) => l.id);
+  if (ids.join(' ') !== ALPHABET.join(' ')) err(rel, `letters must be the 32 of the alphabet in order (${ALPHABET.join(' ')}), not ${ids.join(' ')}`);
+  if (!file.order?.en || !file.order?.nb) err(rel, 'order needs text in en and nb');
+  const all = [...file.letters, ...file.combos];
+  const voices = [];
+  for (const v of ['steinn', 'salka', 'bui', 'ugla']) {
+    const vrel = `data/audio/tts-${v}.json`;
+    voices.push([v, existsSync(path.join(ROOT, vrel)) ? (await readJson(vrel)).texts : {}]);
+  }
+  const seen = new Set();
+  for (const item of all) {
+    const where = `${rel} ${item.id}`;
+    if (seen.has(item.id)) err(where, 'the id is used twice');
+    seen.add(item.id);
+    if (!['new', 'other', 'close', 'same'].includes(item.nb)) err(where, 'nb must be new, other, close or same');
+    if (!item.text?.en || !item.text?.nb) err(where, 'needs text in en and nb');
+    if (!item.ipa?.length) err(where, 'needs its sounds (ipa)');
+    if (!item.examples?.length) err(where, 'needs example words');
+    for (const id of [...(item.examples ?? []), ...(item.askNb ? [item.askNb] : [])]) if (!lexicon.lemmas[id]) err(where, `${id} is not a course word`);
+    if (item.askNb && !['same', 'other'].includes(item.nb)) err(where, 'askNb only where nb is same or other (the drill asks yes or no)');
+    for (const c of item.confusable ?? []) if (!ids.includes(c)) err(where, `confusable "${c}" is not a letter`);
+  }
+  for (const l of file.letters) {
+    if (!l.name || !l.nameIpa) err(`${rel} ${l.id}`, 'needs a name and its IPA');
+    const say = l.say ?? l.name;
+    for (const [v, texts] of voices) if (!texts[say]) err(`${rel} ${l.id}`, `the name "${say}" has no audio in voice ${v}; run scripts/build-audio.py --voice ${v}`);
+  }
+  for (const c of file.combos) if (!c.label) err(`${rel} ${c.id}`, 'needs a label');
+  return all.length;
+}
+
 // Audio coverage: texts the app plays without a recording should have a generated file.
 async function checkAudio() {
   const rel = 'data/audio/tts-steinn.json';
@@ -425,13 +468,14 @@ await checkVocab();
 await checkUnits();
 await checkStories();
 await checkMinimalPairs();
+const letterCount = await checkLetters();
 await checkAudio();
 await checkSmallFiles();
 const authoredCount = await checkAuthored();
 const nbCount = await checkTranslations();
 const glossCount = await checkGlosses();
 
-console.log(`Checked the vocabulary (${Object.keys(lexicon.lemmas).length} lemmas), lessons, units, stories, rules, ${authoredCount} hand-written sentences, ${nbCount} Bokmål translations and ${glossCount} Bokmål glosses.`);
+console.log(`Checked the vocabulary (${Object.keys(lexicon.lemmas).length} lemmas), lessons, units, stories, rules, ${letterCount} letters and spellings, ${authoredCount} hand-written sentences, ${nbCount} Bokmål translations and ${glossCount} Bokmål glosses.`);
 if (unreviewed.length) console.log(`Not yet checked against sources (${unreviewed.length}): ${unreviewed.join(', ')}. See content/CLAIMS.md.`);
 for (const w of warnings) console.log(`warning: ${w}`);
 if (errors.length) {

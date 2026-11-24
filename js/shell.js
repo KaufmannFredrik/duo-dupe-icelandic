@@ -24,7 +24,9 @@ const NAV = [
   { page: 'profile', href: 'profile.html', icon: 'profile', key: 'nav.profile' },
 ];
 // Screens reached from a tab highlight that tab.
-const PARENT = { declension: 'practice', bridge: 'practice', settings: 'profile', credits: 'profile', styleguide: 'profile' };
+// Letters and sounds would be a sixth tab, but six labels do not fit a 320 px tab bar; it is the
+// first card on Practice.
+const PARENT = { declension: 'practice', bridge: 'practice', letters: 'practice', settings: 'profile', credits: 'profile', styleguide: 'profile' };
 
 export function goalRing(done, goal, cls = '') {
   const r = 18;

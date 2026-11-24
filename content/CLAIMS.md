@@ -13,6 +13,8 @@ Not listed: sentences in exercises, examples and stories are unchanged Tatoeba s
 | T | Tatoeba sentence, by id (`data/sentences.json`) |
 | Ritreglur | Íslensk málnefnd, *Ritreglur* (Stjórnartíðindi 695/2016), [PDF](https://www.stjornarradid.is/library/04-Raduneytin/Menntamalaraduneytid/Rettritun_Islensk%20malnefnd_2016.pdf) |
 | WP | Wikipedia: [Icelandic grammar](https://en.wikipedia.org/wiki/Icelandic_grammar), [Icelandic phonology](https://en.wikipedia.org/wiki/Icelandic_phonology) |
+| WP-IO | Wikipedia, [Icelandic orthography](https://en.wikipedia.org/wiki/Icelandic_orthography) (the table of letters, names and sounds) |
+| WP-NO | Wikipedia, [Norwegian orthography](https://en.wikipedia.org/wiki/Norwegian_orthography) and [Norwegian phonology](https://en.wikipedia.org/wiki/Norwegian_phonology) (Urban East Norwegian) |
 | elon | elon.io Icelandic grammar: [time prepositions](https://elon.io/grammar/icelandic/prepositions/time-prepositions), [dates and time](https://elon.io/grammar/icelandic/numbers/dates-and-time), [possessive placement](https://elon.io/grammar/icelandic/pronouns/possessive-placement), [temporal conjunctions](https://elon.io/grammar/icelandic/conjunctions/temporal), [dummy það](https://elon.io/grammar/icelandic/syntax/dummy-thad) |
 | islenzka | [islenzka.net, telling time](https://islenzka.net/telling-time/) |
 | Transparent | Transparent Language Icelandic blog, [articles](https://blogs.transparent.com/icelandic/?p=5771) |
@@ -266,6 +268,53 @@ Later glosses (shown in the dictionary only) removed for the same reasons: anoth
 | Long vowel before one consonant, short before two (*man/mann*). | WP phonology ("long vowels occurring in stressed syllables before single consonants") | sourced |
 | Preaspiration before *kk*, *tt* (*tak/takk*, *hatur/hattur*). | WP phonology; W takk [ˈtʰahk], hattur [ˈhahtʏr] | sourced |
 | *ll* like "tl" (*hala/halla*). | W halla [ˈhatla]; WP phonology | sourced |
+
+## Letters and sounds (`content/letters.json`)
+
+Names and sounds of the letters are from WP-IO's table (read on the page on 2026-11-24); Norwegian values from WP-NO and Wiktionary's Bokmål sections. IPA of the example words is Wiktionary's, from the lexicon. The tags in the app (new letter, another sound, close to Norwegian, as in Norwegian) are the course's summary of these comparisons: "close" where the IPA differs a little (a [a] and [ɑ], v [v] and [ʋ], a long ö [œː] and a long ø [øː]), "as in Norwegian" where both sources give the same sound.
+
+| Item | Claim | Source | Status |
+|---|---|---|---|
+| alphabet | 32 letters in the order a á b d ð e é f g h i í j k l m n o ó p r s t u ú v x y ý þ æ ö; c, q and w only in words of foreign origin and some names; z dropped from the spelling in 1973, kept in names (*Zakarías*) | WP-IO | sourced |
+| names | The names and their IPA: a [aː], á [auː], bé [pjɛː], dé [tjɛː], eð [ɛːθ], e [ɛː], é [jɛː], eff [ɛfː], ge [cɛː], há [hauː], i [ɪː], í [iː], joð [jɔːθ], ká [kʰauː], ell [ɛtl̥], emm [ɛmː], enn [ɛnː], o [ɔː], ó [ouː], pé [pʰjɛː], err [ɛr̥ː], ess [ɛsː], té [tʰjɛː], u [ʏː], ú [uː], vaff [vafː], ex [ɛks], ufsilon y [ˈʏfsɪlɔn ɪː], ufsilon ý [ˈʏfsɪlɔn iː], þorn [θɔ(r)tn̥], æ [aiː], ö [œː] | WP-IO | sourced |
+| a | [a]; before ng and nk [au], as á (*ganga*); further forward than Norwegian a | WP-IO (vowel table, column "before ng or nk"); W ganga [ˈkauŋka]; WP phonology ("/a/ is central [ä]"); WP-NO (a short /ɑ/, *arg*; long /ɑː/, *far*) | sourced |
+| á | [au], not a long a; never the a of Norwegian *far* | WP-IO; WP-NO (*far*, /ɑː/) | sourced |
+| b, d | [p], [t] without aspiration; Icelandic tells b from p by aspiration, not voice | WP-IO; WP phonology ("an aspiration contrast between plosives, rather than a voicing contrast"); WP-NO (voiced /b d ɡ/ in the consonant table) | sourced |
+| ð | [ð] between vowels and at the end of a word; [θ] before a pause; the th of English *this*; Norwegian has neither [ð] nor [θ] | WP-IO; WP phonology ("devoiced before a pause"); W this /ðɪs/; WP-NO (consonant table) | sourced |
+| e | [ɛ], long and short; before ng and nk [ei] (*enginn*); like the short e of Norwegian *pest* | WP-IO; W enginn [ˈeiɲcɪn(ː)]; WP-NO (e short /ɛ/ *pest*, long /eː/ *evig*) | sourced |
+| é | [jɛ]: *ég* [jɛːɣ]; Norwegian may add é to tell two words apart (*én gutt*, *en gutt*) | WP-IO; W ég; WP-NO ("Diacritics": not compulsory, added to clarify homonyms) | sourced |
+| f | [f] at the start of a word; [v] between vowels and at the end of a word after a vowel (*hafa* [ˈhaːva], *gjöf* [ˈcœːv]); [p] before n (*nafn* [ˈnapn̥]) | WP-IO; WP phonology (*grafa* [ˈkraːva], *grafna* [ˈkrapna]); W hafa, gjöf, nafn | sourced. The f rows of WP-IO's table were hard to read in the copy fetched, so each value is also checked against the Wiktionary IPA and the phonology page |
+| g | [k] without aspiration at the start (*gata* [ˈkaːta]); [c] before e, i, y and æ (*gefa* [ˈcɛːva]); [ɣ] between vowels (*dagur* [ˈtaːɣʏr]); [j] after a vowel before i or j (*segja* [ˈseija]) | WP-IO; W gata, gefa, dagur, segja; WP phonology (V+g+V [ɣ]; gi [jɪ]) | sourced |
+| h | [h], as Norwegian /h/; hl, hn, hr voiceless (*hlusta* [ˈl̥ʏsta], *hnífur* [ˈn̥iːvʏr]) | WP-IO; W; WP-NO | sourced |
+| i, y | [ɪ], long and short, alike; the short i of Norwegian *litt* | WP-IO (i and y share a row); WP-NO (i short /ɪ/ *litt*) | sourced |
+| í, ý | [i], alike; the long i of Norwegian *mil* | WP-IO; WP-NO (i long /iː/ *mil*) | sourced |
+| j, l, m, n, s | as Norwegian /j l m n s/ | WP-IO; WP-NO (consonant table) | sourced |
+| k | [kʰ] at the start, as Norwegian; [cʰ] before e, i, y, æ, ei, ey (*kennari* [ˈcʰɛn(ː)arɪ], *keyra* [ˈcʰeiːra]); no aspiration after s (*skór*), as in Norwegian | WP-IO; W kennari, keyra; WP-NO ("/p, t, k/ are aspirated"; after /s/ unaspirated) | sourced |
+| o | [ɔ], long and short (*koma* [ˈkʰɔːma]); the o of Norwegian *opp*; not the o of Norwegian *bok* | WP-IO; W koma; W opp /ɔpː/, bok /buːk/ (Bokmål); WP-NO (o: long mostly /uː/) | sourced |
+| ó | [ou]: *bók* [ˈpouːk] | WP-IO; W bók | sourced |
+| p, t | [pʰ], [tʰ] at the start, as in Norwegian | WP-IO; WP-NO | sourced |
+| r | trilled or tapped [r]; voiceless [r̥] next to aspirated consonants and before a pause (*svartur* [ˈsvar̥tʏr]) | WP-IO; W svartur, kort, kirkja; WP-NO (flap, occasionally trilled) | sourced. The app says "before p, t and k ... often" for WP-IO's "aspirated consonants" |
+| u | [ʏ], long and short; before ng and nk [u] (*ungur* [ˈuŋkʏr]); like the y of Norwegian *lykke*, not the u of *gutt* | WP-IO; W ungur; W lykke [ˈlʏʷ.kə], gutt /ɡʉt/ (Bokmål) | sourced |
+| ú | [u]: the o of Norwegian *bok*, not the u of Norwegian *hus* | WP-IO; W bok /buːk/, hus /hʉːs/ (Bokmål) | sourced |
+| v | [v]; Norwegian /ʋ/, "sometimes a fricative" | WP-IO; WP-NO | sourced |
+| x | [ks], as Norwegian *sex* /seks/ | WP-IO; W sex (Icelandic [ˈsɛks]; Bokmål /seks/) | sourced |
+| y, ý | not rounded, unlike Norwegian y (/ʏ/, /yː/) | WP-IO; WP-NO | sourced |
+| þ | [θ], the th of English *thin*; at the start of words (*þú*, *þrír*) | WP-IO; WP phonology ("[θ] is used morpheme-initially"); W thin /ˈθɪn/ | sourced |
+| æ | [ai]; not Norwegian æ (/ɛ, eː/, /æ/ before r); close to Norwegian ai in *hai* (/ɑɪ̯/) | WP-IO; WP-NO | sourced |
+| ö | [œ], long and short; the short ø of Norwegian *kjøtt* | WP-IO; W kjøtt /çœt/ (Bokmål); WP-NO (ø short /œ/, long /øː/) | sourced |
+| hv | [kʰv] (*hvítur* [ˈkʰviːtʏr]); Norwegian hv is /v/ (*hvit* [ˈviːt]); kv sounds the same (*kvöld* [ˈkʰvœlt]) | WP-IO; W hvítur, kvöld; WP-NO | sourced |
+| hj | [ç] (*hjól* [ˈçouːl]), the sound of Norwegian kj (/ç/, *kjele*, *kjøtt*); Norwegian hj is /j/ (*hjelp*) | WP-IO; W hjól, kjøtt; WP-NO | sourced |
+| kj | [cʰ] (*kjöt* [ˈcʰœːt]), not Norwegian kj [ç] (*kjøtt* /çœt/) | WP-IO; W kjöt, kjøtt | sourced |
+| sj, sk | s and j (*sjór* [ˈsjouːr]); s and k before i, y (*ský* [ˈsciː]); Norwegian sj /ʂ/ (*sjuk*), sk before i, y /ʂ/ (*sky* [ʂy̫ː]) | W sjór, ský; WP-NO | sourced |
+| ll | mostly [tl] (*bolli* [ˈpɔtlɪ], *fjall* [ˈfjatl̥]); [lː] at word-part boundaries, in loanwords and pet names (*halló* [ˈhal(ː)ou]); sl [stl] (*íslenska* [ˈistlɛnska]); Norwegian ll is a long l (*alle* [ˈâlːə]) | WP-IO; W bolli, fjall, halló, íslenska, alle (Bokmål) | sourced |
+| nn | [tn] after "broad vowels (accent-bearing and graphical diphthongs)" (*einn* [ˈeitn̥], *grænn* [ˈkraitn̥]); a long n elsewhere (*finna*); rn mostly [tn] (*barn* [ˈpartn̥], [ˈpatn̥]); Norwegian rn is [ɳ] | WP-IO; W einn, grænn, finna, barn; WP-NO ("rn > [ɳ]") | sourced. "Gliding vowels (æ, au, ei, ey)" is the app's wording of "graphical diphthongs"; æ is attested by W grænn |
+| au | [œy] (WP phonology: "/œi̯/ is phonetically [œy]"); close to Norwegian øy /œʏ̯/; Norwegian au is /æʉ̯/ (*raus*) | WP-IO; WP phonology; WP-NO | sourced |
+| ei, ey | [ei], alike; close to Norwegian ei /æɪ̯/ (*meir*) | WP-IO; WP-NO | sourced |
+| pp, tt, kk | a breath before the stop, [hp ht hk] (*takk* [ˈtʰahk], *nótt* [ˈnouht]); also before l, m, n (*epli* [ˈɛhplɪ], *vatn* [ˈvahtn̥], *vakna* [ˈvahkna]); Norwegian *takk* has none (/tak/, [tɑk]) | WP phonology ("Geminated sequences pp tt kk ... become preaspirated"); WP-IO; W takk (Icelandic and Bokmål) | sourced |
+| long, short | a stressed vowel mostly long before one consonant and short before two (the exception is p, t, k, s before j, v, r); stress always on the first syllable; Norwegian: "short vowels are followed by two or more consonant letters", "long vowels are followed by at most one" | WP phonology; WP-NO | sourced |
+| name audio | The voices read the written name "ufsilon y" as "ufsilon ufsilon i", so the audio says "ufsilon i" and "ufsilon í", which match WP-IO's IPA. The other names' phonemes from the voice are those of WP-IO, except that *eð* ends in a voiced [ð] where WP-IO has [θ] before a pause | the voice's phoneme output (espeak-ng, the same for all four voices), compared by hand | checked |
+
+The drill asks "which spelling do you hear?" only with a word whose Wiktionary IPA has the sound at that place (`spot` in `js/engine/letters.js`): *a* in *ganga* is said [au] and is never asked as "a or á"; *ll* only where the IPA shows tl, *nn* only where it shows tn. Its wrong options never sound the same as the answer (i and y, í and ý are never offered together).
 
 ## Language notes in the interface (`js/i18n/*.json`, landing page)
 

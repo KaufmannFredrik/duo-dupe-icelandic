@@ -5,7 +5,7 @@
 // from Settings) and survives updates: each file name is a hash of its text, and its URL carries a
 // hash of its bytes (?v=), so a file rendered again is fetched again.
 
-const VERSION = 'a10b2c18a9ff';
+const VERSION = '06f0fb56042b';
 const CORE = `tolva-core-${VERSION}`;
 const AUDIO = 'tolva-audio-v1';
 const PRECACHE = [
@@ -31,6 +31,7 @@ const PRECACHE = [
   "content/case-rules.json",
   "content/glosses-nb.json",
   "content/goals.json",
+  "content/letters.json",
   "content/minimal-pairs.json",
   "content/sentence-exclude.json",
   "content/stories/around.json",
@@ -94,6 +95,7 @@ const PRECACHE = [
   "js/db.js",
   "js/engine/course-model.js",
   "js/engine/generate.js",
+  "js/engine/letters.js",
   "js/engine/rng.js",
   "js/exercises/bridge.js",
   "js/exercises/case.js",
@@ -101,11 +103,15 @@ const PRECACHE = [
   "js/exercises/common.js",
   "js/exercises/ending.js",
   "js/exercises/index.js",
+  "js/exercises/letter.js",
+  "js/exercises/lettername.js",
+  "js/exercises/likenb.js",
   "js/exercises/listen.js",
   "js/exercises/match.js",
   "js/exercises/meaning.js",
   "js/exercises/pair.js",
   "js/exercises/speak.js",
+  "js/exercises/spell.js",
   "js/exercises/table.js",
   "js/exercises/typeform.js",
   "js/exercises/typeword.js",
@@ -114,6 +120,7 @@ const PRECACHE = [
   "js/i18n.js",
   "js/i18n/en.json",
   "js/i18n/nb.json",
+  "js/letters.js",
   "js/normalize.js",
   "js/offline.js",
   "js/pages/bridge.js",
@@ -124,6 +131,7 @@ const PRECACHE = [
   "js/pages/landing.js",
   "js/pages/learn.js",
   "js/pages/lesson.js",
+  "js/pages/letters.js",
   "js/pages/practice.js",
   "js/pages/profile.js",
   "js/pages/settings.js",
@@ -150,6 +158,7 @@ const PRECACHE = [
   "js/ui/voice-picker.js",
   "learn.html",
   "lesson.html",
+  "letters.html",
   "manifest.webmanifest",
   "practice.html",
   "profile.html",

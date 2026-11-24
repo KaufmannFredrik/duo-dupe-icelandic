@@ -2,7 +2,7 @@
 // build(spec, ctx) -> { html, mount(root), ready(), check(), reveal(), pickByNumber?(n) }.
 // check() and reveal() return { result?, answerHTML, audio?, why?, records? }.
 
-import { t } from '../i18n.js';
+import { pick, t } from '../i18n.js';
 import { icon } from '../shell.js';
 
 export const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -89,3 +89,18 @@ export function sentenceHTML(text, target, mode) {
 }
 
 export const wordsOf = (text) => text.match(tokenRe) ?? [];
+
+/** A word with a gap where a spelling goes (at, len), or with that spelling marked. */
+export function gapHTML(word, at, len, mode = 'blank') {
+  const part = esc(word.slice(at, at + len));
+  const mid = mode === 'blank'
+    ? `<span class="blank blank--letter"><span class="visually-hidden">${t('ex.blank')}</span><span aria-hidden="true">${' '.repeat(3)}</span></span>`
+    : `<mark class="target">${part}</mark>`;
+  return `${esc(word.slice(0, at))}${mid}${esc(word.slice(at + len))}`;
+}
+
+/** The explanation of a letter or combination (content/letters.json), when the page loaded it. */
+export function itemNote(ctx, id) {
+  const item = ctx.letters?.get(id);
+  return item ? `<p>${esc(pick(item.text))}</p>` : '';
+}

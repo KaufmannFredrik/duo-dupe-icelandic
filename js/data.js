@@ -86,6 +86,11 @@ export function casesOf(sid) {
   return c ? [...c].map((x) => CASE_LETTER[x] ?? null) : undefined;
 }
 export const recordings = (id) => audioFile?.recordings[id] ?? [];
+
+/** Only the Commons recordings, for recordings() on pages that need no other word data. */
+export async function loadRecordings() {
+  audioFile ??= await loadJSON('data/audio.json');
+}
 /** A name allowed in sentences (content/allowlist.json), which keeps its capital in a word bank. */
 export const isName = (word) => Boolean(names?.has(word.toLocaleLowerCase('is')));
 export const caseRules = () => rules;

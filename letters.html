@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" data-scan-page="low" data-scan="low">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/letters.js"></script>
+</head>
+<body data-shell data-page="letters" data-title-key="title.letters">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <div class="shell">
+    <nav class="app-nav" aria-label="Main" data-i18n-aria-label="nav.main" data-shell="nav"></nav>
+    <div class="shell__col">
+      <header class="hud" data-shell="hud"></header>
+      <main id="main" class="app-main" tabindex="-1">
+        <div class="page-head">
+          <h1><span data-i18n="letters.title">Letters and sounds</span> <span class="page-head__is" lang="is">Stafirnir</span></h1>
+          <p data-i18n="letters.intro">Icelandic has 32 letters. Most look familiar to a Norwegian, and some of those sound different. Tap a letter to hear its name and see how it sounds.</p>
+        </div>
+        <section class="card card--gold stack letters-start" aria-labelledby="letters-practice-title">
+          <h2 class="card__title" id="letters-practice-title" data-i18n="letters.practice">Practice</h2>
+          <p data-i18n="letters.practiceText">Ten short exercises: hear a word, pick or write its letters, compare with Norwegian. About five minutes.</p>
+          <div class="cluster">
+            <a class="button button-primary" href="lesson.html?mode=alphabet"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-letters"></use></svg><span data-i18n="letters.start">Practice the letters</span></a>
+            <a class="button" href="lesson.html?mode=alphabet&amp;weak" data-weak hidden></a>
+          </div>
+        </section>
+        <section class="stack" aria-labelledby="alphabet-title">
+          <h2 id="alphabet-title" data-i18n="letters.alphabet">The alphabet</h2>
+          <p class="muted" data-order></p>
+          <div class="letter-legend" data-legend></div>
+          <ul class="letter-grid" role="list" data-letters></ul>
+        </section>
+        <section class="stack" aria-labelledby="combos-title">
+          <h2 id="combos-title" data-i18n="letters.combos">Spellings and sounds</h2>
+          <p class="muted" data-i18n="letters.combosText">Letters that together, or in some places, sound different from what a Norwegian would expect.</p>
+          <ul class="letter-grid letter-grid--combos" role="list" data-combos></ul>
+        </section>
+        <section class="stack" aria-labelledby="more-title">
+          <h2 id="more-title" data-i18n="letters.more">More practice</h2>
+          <div class="grid-cards">
+            <a class="card" href="lesson.html?mode=letters">
+              <h3 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-keyboard"></use></svg><span data-i18n="practice.letters">Special letters</span></h3>
+              <p data-i18n-html="practice.lettersText">Type <span lang="is">þ, ð, æ</span> and <span lang="is">ö</span> until they feel normal.</p>
+            </a>
+            <a class="card" href="lesson.html?mode=sounds">
+              <h3 class="card__title cluster"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-sound-wave"></use></svg><span data-i18n="practice.sounds">Sounds</span></h3>
+              <p data-i18n-html="practice.soundsText">Hear the difference between words like <span lang="is">man</span> and <span lang="is">mann</span>.</p>
+            </a>
+          </div>
+        </section>
+        <p class="credit"><span data-i18n="letters.credit">Letter names and sounds: Wikipedia, Icelandic orthography and Icelandic phonology. Norwegian sounds: Wikipedia, Norwegian orthography and phonology, and Wiktionary. Each comparison and its source is listed in the course's content/CLAIMS.md.</span> <span data-voice-credit></span></p>
+        <dialog class="modal letter-dialog" data-letter-dialog aria-labelledby="letter-dialog-title"></dialog>
+      </main>
+      <footer class="app-footer" data-shell="footer"></footer>
+    </div>
+    <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
+  </div>
+</body>
+</html>

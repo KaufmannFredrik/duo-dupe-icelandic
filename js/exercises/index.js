@@ -13,10 +13,15 @@ import * as table from './table.js';
 import * as pair from './pair.js';
 import * as speak from './speak.js';
 import * as bridge from './bridge.js';
+import * as letter from './letter.js';
+import * as lettername from './lettername.js';
+import * as likenb from './likenb.js';
+import * as spell from './spell.js';
 
 // conjugate: the form of a verb (person and number), on the same screen as a case ending.
 // typeform: the same form, typed.
-export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, typeform, match, ending, conjugate: ending, case: caseEx, table, pair, speak, bridge };
+// letter, lettername, likenb, spell: letters and sounds (js/engine/letters.js).
+export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, typeform, match, ending, conjugate: ending, case: caseEx, table, pair, speak, bridge, letter, lettername, likenb, spell };
 
 export function buildExercise(spec, ctx) {
   const mod = EXERCISES[spec.type];

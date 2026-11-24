@@ -6,7 +6,8 @@
 // five right answers in a row give a combo bonus, that the unit's host closes the lesson, that the
 // lesson counts toward the daily quests, and that
 // the site loads offline once the service worker is installed.
-// With --all it also plays every lesson of the hand-made units, the sounds and letters drills, a
+// With --all it also plays every lesson of the hand-made units, checks the letters page and plays
+// its drill (all letters, and one letter), the sounds and letters drills, a
 // review round of due form cards (each exercise must answer a card that was due), and
 // checks the story reader (word panel, line audio from the generated voice, the cast of a dialogue)
 // and that finishing every unit makes all seven characters friends, at desktop size.
@@ -336,7 +337,35 @@ if (process.argv.includes('--all')) {
     failed = true;
     console.log(`FAIL friends: ${e.message}`);
   }
-  for (const href of ['lesson.html?mode=sounds', 'lesson.html?mode=letters', 'lesson.html?mode=bridge']) {
+  // Letters and sounds: the page shows the 32 letters and the spellings; a tile opens its dialog
+  // with example words and its name spoken by the generated voice; a round on one letter records
+  // that letter's card, which its tile then shows.
+  try {
+    await page.goto(`${url}letters.html`);
+    await page.locator('.letter-tile').first().waitFor({ timeout: 5000 });
+    const letters = await page.locator('[data-letters] .letter-tile').count();
+    const combos = await page.locator('[data-combos] .letter-tile').count();
+    if (letters !== 32 || combos < 10) throw new Error(`${letters} letters and ${combos} spellings shown`);
+    await page.click('.letter-tile[data-item="þ"]');
+    await page.locator('[data-letter-dialog][open] .letter-examples li').first().waitFor({ timeout: 5000 });
+    const nameAudio = page.waitForResponse((r) => r.url().includes('/data/audio/tts/') && r.ok(), { timeout: 5000 });
+    await page.click('[data-letter-dialog] .letter-dialog__name [data-play]');
+    await nameAudio;
+    await page.keyboard.press('Escape');
+    if (await page.locator('[data-letter-dialog][open]').count()) throw new Error('Escape does not close the dialog');
+    if (!(await page.evaluate(() => document.activeElement?.dataset.item === 'þ'))) throw new Error('focus does not return to the tile');
+    const types = await playLesson(page, 'lesson.html?mode=alphabet&focus=þ');
+    if (types.length !== 6 || types.specs.some((s) => s.key !== 'letter|þ')) throw new Error(`the þ round: ${types.specs.map((s) => s.key).join(', ')}`);
+    await page.goto(`${url}letters.html`);
+    await page.locator('.letter-tile').first().waitFor({ timeout: 5000 });
+    const ring = await page.getAttribute('.letter-tile[data-item="þ"] .letter-ring__value', 'stroke-dasharray');
+    if (Number(ring.split(' ')[0]) <= 0) throw new Error('the þ tile shows no progress after a round on þ');
+    console.log(`PASS letters: ${letters} letters and ${combos} spellings, the dialog plays the name, a round on þ (${[...new Set(types)].join(', ')}) shows on its tile`);
+  } catch (e) {
+    failed = true;
+    console.log(`FAIL letters: ${e.message}`);
+  }
+  for (const href of ['lesson.html?mode=alphabet', 'lesson.html?mode=sounds', 'lesson.html?mode=letters', 'lesson.html?mode=bridge']) {
     try {
       const types = await playLesson(page, href);
       for (const t of types) seen.set(t, (seen.get(t) ?? 0) + 1);

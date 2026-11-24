@@ -2,8 +2,11 @@
 //   (none)      a course lesson: ?unit=hello&lesson=2, or the next open lesson
 //   review      due spaced-repetition cards
 //   mistakes    replays exercises answered wrong
+//   alphabet    letters and sounds (js/engine/letters.js): &focus=<item> for one letter or
+//               combination, &weak for the weak ones; each answer counts for a "letter|x" card
 //   letters     typing drill for words with þ, ð, æ, ö and accents
-//   sounds      minimal pairs: hear one word of a pair, pick which it was
+//   sounds      minimal pairs: hear one word of a pair, pick which it was (counts for the card
+//               of its sound: long and short, pp/tt/kk, ll)
 //   speak       say short sentences you have met (experimental; Settings turns it on)
 //   bridge      see a Norwegian relative, type the Icelandic word
 //   placement   adaptive test: one step per unit, stops at the first unit with a miss
@@ -32,6 +35,8 @@ import { talaSVG } from '../tala.js';
 import { celebrationLines } from '../ui/celebrate.js';
 import { befriendedBy, hostOf } from '../characters.js';
 import { characterImg } from '../ui/character.js';
+import { CONTRAST_ITEM, isLetterKey, letterDrill, letterKey, letterReview } from '../engine/letters.js';
+import { itemLabel, loadLetters, lettersModel } from '../letters.js';
 
 await ready;
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -54,6 +59,9 @@ const params = new URLSearchParams(location.search);
 const mode = params.get('mode') ?? 'lesson';
 const position = nextLesson(course, progress);
 const learnedSoFar = allowedFor(course, position.unit.id, position.lesson.index);
+// Letters and sounds: their explanations show in the feedback of letter exercises, which reviews
+// and mistakes can hold too.
+const letterData = ['alphabet', 'review', 'mistakes', 'sounds'].includes(mode) ? await loadLetters() : null;
 
 // --- Plans: what to practice ----------------------------------------------------------------------
 
@@ -72,9 +80,22 @@ function lessonPlan() {
 
 // Every due card, most overdue first; the generator makes up to twelve exercises from them, each
 // on exactly the word or form of its card, and skips a card it cannot make one for.
+// Letter cards that are due come back too, up to four in a round, spread among the words.
 async function reviewPlan() {
   const due = dueCards(await cards(), Date.now());
-  return { key: 'practice/review', title: t('practice.review'), specs: gen.review({ cards: due, allowed: learnedSoFar, seed: Date.now() % 1e9, count: 12 }), empty: t('practice.reviewEmpty') };
+  const seed = Date.now() % 1e9;
+  const letterCards = due.filter((c) => isLetterKey(c.key)).slice(0, 4);
+  const letters = letterCards.length ? letterReview(await lettersModel(learnedSoFar), { cards: letterCards, seed }) : [];
+  const words = gen.review({ cards: due.filter((c) => !isLetterKey(c.key)), allowed: learnedSoFar, seed, count: 12 - letters.length });
+  return { key: 'practice/review', title: t('practice.review'), specs: interleave(words, letters), empty: t('practice.reviewEmpty') };
+}
+
+// b's items spread evenly among a's.
+function interleave(a, b) {
+  const out = [...a];
+  const step = (a.length + b.length) / Math.max(1, b.length);
+  b.forEach((x, i) => out.splice(Math.min(out.length, Math.floor(i * step + step / 2)), 0, x));
+  return out;
 }
 
 const data = { lemma, sentence, translation, gloss, sameGloss, paradigm, recordings, caseRules, isName };
@@ -108,8 +129,19 @@ function lettersPlan() {
 async function soundsPlan() {
   const mp = await loadJSON('content/minimal-pairs.json');
   const r = rng(Date.now() % 1e9);
-  const specs = shuffle(mp.pairs.flatMap((p) => p.words.map((w) => ({ type: 'pair', words: p.words, answer: w, contrast: p.contrast, key: null }))), r).slice(0, 12);
+  const pairSpec = (p, w) => ({ type: 'pair', words: p.words, answer: w, contrast: p.contrast, item: CONTRAST_ITEM[p.contrast], key: letterKey(CONTRAST_ITEM[p.contrast]) });
+  const specs = shuffle(mp.pairs.flatMap((p) => p.words.map((w) => pairSpec(p, w))), r).slice(0, 12);
   return { key: 'practice/sounds', title: t('practice.sounds'), specs, contrasts: mp.contrasts };
+}
+
+// Letters and sounds: a round of ten over all letters and combinations (due ones first, then new
+// ones), the weak ones (&weak), or six on one item (&focus=æ).
+async function alphabetPlan() {
+  const model = await lettersModel(learnedSoFar);
+  const focus = model.byId.has(params.get('focus')) ? params.get('focus') : null;
+  const { specs, weakOnly } = letterDrill(model, { cards: await cards(), seed: Date.now() % 1e9, focus, weak: params.has('weak') });
+  const title = focus ? t('letters.practiceItem', { x: itemLabel(model.byId.get(focus), pick) }) : t(weakOnly ? 'letters.weak' : 'letters.title');
+  return { key: 'practice/alphabet', title, specs, contrasts: letterData.pairs.contrasts };
 }
 
 // Speaking: short sentences made of words the learner has met, shortest first.
@@ -144,6 +176,7 @@ function placementPlan() {
 const plan =
   mode === 'review' ? await reviewPlan()
   : mode === 'mistakes' ? await mistakesPlan()
+  : mode === 'alphabet' ? await alphabetPlan()
   : mode === 'letters' ? lettersPlan()
   : mode === 'sounds' ? await soundsPlan()
   : mode === 'speak' ? await speakPlan()
@@ -184,8 +217,8 @@ let bonus = 0;
 // For the daily quests: the best run, and right answers to listening and typing exercises.
 let bestRun = 0;
 const counted = { listen: 0, type: 0 };
-const LISTENING = new Set(['listen', 'dictation', 'pair']);
-const TYPED = new Set(['typeword', 'typeform']);
+const LISTENING = new Set(['listen', 'dictation', 'pair', 'letter', 'lettername']);
+const TYPED = new Set(['typeword', 'typeform', 'spell']);
 
 // Hearts (Settings, off by default): five per lesson, one lost per wrong answer. Not in placement.
 const HEARTS = 5;
@@ -207,7 +240,8 @@ const ctxFor = (i) => ({
   strict: getSettings().strict,
   seed: hashSeed(`${plan.key}:${i}`),
   finePointer,
-  contrasts: plan.contrasts,
+  contrasts: plan.contrasts ?? letterData?.pairs.contrasts,
+  letters: letterData?.items,
   changed: () => {
     checkBtn.disabled = !current.ready();
   },
@@ -323,7 +357,7 @@ async function complete() {
     combo: bestRun,
     ...counted,
     ...(mode === 'lesson' ? { lessons: 1, perfect: results.every((x) => x === 'correct') ? 1 : 0 } : {}),
-    ...(mode === 'sounds' ? { sounds: 1 } : {}),
+    ...(mode === 'sounds' || mode === 'alphabet' ? { sounds: 1 } : {}),
   };
   await saving;
   const done = await completeLesson(plan.key, results, { bonus, events });
@@ -344,7 +378,7 @@ async function complete() {
       <div class="cluster complete__stats"><span class="stat">${icon('xp')}<span>+${xp} XP</span></span><span class="stat">${icon('check')}<span>${t('lesson.accuracy', { pct: Math.round(score * 100) })}</span></span></div>
       ${news.length ? `<ul class="complete__news" role="list">${news.map(([ic, text]) => `<li>${icon(ic)}<span>${esc(text)}</span></li>`).join('')}</ul>` : ''}
       ${friend ? `<p class="complete__friend">${characterImg(friend.id, { size: 56, still: true, label: '' })}<span>${t('friends.new', { name: esc(friend.name) })} <a href="profile.html#friends-title">${t('friends.see')}</a></span></p>` : ''}
-      <div class="cluster complete__actions"><a class="button button-primary" href="${mode === 'lesson' ? nextHref : 'practice.html'}">${t('lesson.continue')}</a><a class="button" href="learn.html">${t('nav.learn')}</a></div></div>`;
+      <div class="cluster complete__actions"><a class="button button-primary" href="${mode === 'lesson' ? nextHref : mode === 'alphabet' ? 'letters.html' : 'practice.html'}">${t('lesson.continue')}</a><a class="button" href="learn.html">${t('nav.learn')}</a></div></div>`;
   sfx('complete');
   live.textContent = t('lesson.complete');
   stage.querySelector('.button-primary').focus();

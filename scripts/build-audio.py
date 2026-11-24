@@ -1,7 +1,7 @@
 """Generates static Icelandic audio for TÖLVA with Piper (offline neural TTS).
 
-Every course word and every sentence in data/sentences.json gets a small MP3 file, so the site
-needs no speech service at runtime. Human recordings (data/audio.json) are still preferred by
+Every course word, every sentence in data/sentences.json, the minimal pairs and the letter names
+(content/letters.json) get a small MP3 file, so the site needs no speech service at runtime. Human recordings (data/audio.json) are still preferred by
 the player; these files fill the gaps.
 
     .venv/Scripts/python scripts/build-audio.py                 # default voice, skips existing files
@@ -131,6 +131,13 @@ def build(voice_id, force=False, limit=None):
     for pair in pairs:
         for w in pair['words']:
             items.setdefault(w, ('w', f'pair:{w}'))
+    # Letter names (content/letters.json): "say" where the voice reads the written name wrongly
+    # (it reads the y of "ufsilon y" as the letter's name).
+    letters_file = ROOT / 'content/letters.json'
+    letters = json.loads(letters_file.read_text(encoding='utf-8'))['letters'] if letters_file.exists() else []
+    for letter in letters:
+        name = letter.get('say', letter['name'])
+        items.setdefault(name, ('w', f'letter:{name}'))
     for sid, s in sentences.items():
         items[s['is']] = ('s', sid)
     manifest_path = OUT / f'tts-{voice_id}.json'

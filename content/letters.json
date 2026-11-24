@@ -1,0 +1,356 @@
+{
+  "reviewed": true,
+  "note": "Letters and sounds (Stafirnir): the 32 letters in Icelandic order and the spellings that sound different from Norwegian. Names and sounds from Wikipedia's Icelandic orthography and phonology; every comparison with Norwegian is listed with its source in content/CLAIMS.md. Examples are course words (lemma ids), so they have audio in every voice. say: the text spoken for a name, where the synthetic voice reads the written name wrongly. nb: how the sound compares with Norwegian (new letter, another sound, close, same). askNb: the word the drill asks about (\"In this word, does it sound as in Norwegian?\"). confusable: the spellings offered beside it when the learner hears a word.",
+  "order": {
+    "en": "In a dictionary, á comes after a, ð after d, é after e and so on, and þ, æ and ö come last. c, q, w and z are used only in names and words from other languages.",
+    "nb": "I en ordbok kommer á etter a, ð etter d, é etter e og så videre, og þ, æ og ö kommer sist. c, q, w og z brukes bare i navn og ord fra andre språk."
+  },
+  "letters": [
+    {
+      "id": "a", "name": "a", "nameIpa": "aː", "ipa": ["a"], "nb": "close",
+      "text": {
+        "en": "Close to Norwegian a, a little further forward in the mouth. Before ng and nk it sounds like á: ganga.",
+        "nb": "Nær norsk a, litt lenger fram i munnen. Foran ng og nk uttales den som á: ganga."
+      },
+      "examples": ["taka_so", "matur_no", "ganga_so"], "confusable": ["á"]
+    },
+    {
+      "id": "á", "name": "á", "nameIpa": "auː", "ipa": ["au"], "nb": "other",
+      "text": {
+        "en": "Not a long a: á glides from a to u, [au]. It never sounds like the a of Norwegian far.",
+        "nb": "Ikke en lang a: á glir fra a til u, [au]. Den høres aldri ut som a i norsk far."
+      },
+      "examples": ["já_uh", "ár_no", "bátur_no"], "askNb": "já_uh", "confusable": ["a"]
+    },
+    {
+      "id": "b", "name": "bé", "nameIpa": "pjɛː", "ipa": ["p"], "nb": "close",
+      "text": {
+        "en": "Without voice: a p without the puff of air. Icelandic tells b from p by the puff of air, not by the voice.",
+        "nb": "Ustemt: en p uten pustestøt. Islandsk skiller b fra p med pustestøtet, ikke med stemmen."
+      },
+      "examples": ["bók_no", "bíll_no", "bær_no"]
+    },
+    {
+      "id": "d", "name": "dé", "nameIpa": "tjɛː", "ipa": ["t"], "nb": "close",
+      "text": {
+        "en": "Without voice: a t without the puff of air. dagur.",
+        "nb": "Ustemt: en t uten pustestøt. dagur."
+      },
+      "examples": ["dagur_no", "dóttir_no"], "confusable": ["þ"]
+    },
+    {
+      "id": "ð", "name": "eð", "nameIpa": "ɛːθ", "ipa": ["ð", "θ"], "nb": "new",
+      "text": {
+        "en": "A new letter: the th of English this [ð]. Norwegian has no such sound. At the end of a word, before a pause, it loses its voice [θ].",
+        "nb": "En ny bokstav: th-lyden i engelsk this [ð]. Norsk har ikke denne lyden. På slutten av et ord, foran en pause, blir den ustemt [θ]."
+      },
+      "examples": ["maður_no", "góður_lo", "bróðir_no"], "confusable": ["d"]
+    },
+    {
+      "id": "e", "name": "e", "nameIpa": "ɛː", "ipa": ["ɛ"], "nb": "close",
+      "text": {
+        "en": "Like the short e of Norwegian pest, also when it is long: vera. Before ng and nk it sounds like ei: enginn.",
+        "nb": "Som den korte e-en i norsk pest, også når den er lang: vera. Foran ng og nk uttales den ei: enginn."
+      },
+      "examples": ["vera_so", "egg_no", "enginn_fn"], "confusable": ["é", "æ"]
+    },
+    {
+      "id": "é", "name": "é", "nameIpa": "jɛː", "ipa": ["jɛ"], "nb": "other",
+      "text": {
+        "en": "j and e together, [jɛ]: ég (I). Norwegian writes é now and then to tell two words apart (én, en); in Icelandic é is a letter with a sound of its own.",
+        "nb": "j og e sammen, [jɛ]: ég (jeg). Norsk skriver é av og til for å skille to ord (én, en); på islandsk er é en bokstav med en egen lyd."
+      },
+      "examples": ["ég_pfn", "flugvél_no"], "askNb": "ég_pfn", "confusable": ["e"]
+    },
+    {
+      "id": "f", "name": "eff", "nameIpa": "ɛfː", "ipa": ["f", "v"], "nb": "close",
+      "text": {
+        "en": "As in Norwegian at the start of a word: fiskur. Between vowels and at the end of a word it is said v: hafa. Before n it is said p: nafn.",
+        "nb": "Som på norsk i starten av et ord: fiskur. Mellom vokaler og på slutten av et ord uttales den v: hafa. Foran n uttales den p: nafn."
+      },
+      "examples": ["fiskur_no", "hafa_so", "nafn_no"]
+    },
+    {
+      "id": "g", "name": "ge", "nameIpa": "cɛː", "ipa": ["k", "c", "ɣ", "j"], "nb": "other",
+      "text": {
+        "en": "At the start of a word it has no voice, like a k without the puff of air: gata. Before e, i, y and æ it moves forward, [c]: gefa. Between vowels it is soft, [ɣ], with the mouth not quite closed: dagur. After a vowel and before i or j it is said j: segja.",
+        "nb": "I starten av et ord er den ustemt, som en k uten pustestøt: gata. Foran e, i, y og æ flyttes den fram, [c]: gefa. Mellom vokaler er den myk, [ɣ], uten at munnen lukkes helt: dagur. Etter en vokal og foran i eller j uttales den j: segja."
+      },
+      "examples": ["gata_no", "gefa_so", "dagur_no", "segja_so"], "askNb": "dagur_no"
+    },
+    {
+      "id": "h", "name": "há", "nameIpa": "hauː", "ipa": ["h"], "nb": "same",
+      "text": {
+        "en": "As in Norwegian: hundur. Before l, n and r it takes their voice away: hlusta, hnífur. Before v and j it makes sounds of its own: see hv and hj.",
+        "nb": "Som på norsk: hundur. Foran l, n og r tar den bort stemmen deres: hlusta, hnífur. Foran v og j gir den egne lyder: se hv og hj."
+      },
+      "examples": ["hundur_no", "hlusta_so", "hnífur_no"], "askNb": "hundur_no"
+    },
+    {
+      "id": "i", "name": "i", "nameIpa": "ɪː", "ipa": ["ɪ"], "nb": "close",
+      "text": {
+        "en": "The short i of Norwegian litt, also when it is long: vinur. y sounds the same.",
+        "nb": "Den korte i-en i norsk litt, også når den er lang: vinur. y uttales likt."
+      },
+      "examples": ["vinur_no", "fiskur_no", "vika_no"], "confusable": ["í"]
+    },
+    {
+      "id": "í", "name": "í", "nameIpa": "iː", "ipa": ["i"], "nb": "same",
+      "text": {
+        "en": "The long i of Norwegian mil: vín, tími. ý sounds the same.",
+        "nb": "Den lange i-en i norsk mil: vín, tími. ý uttales likt."
+      },
+      "examples": ["vín_no", "tími_no"], "askNb": "vín_no", "confusable": ["i"]
+    },
+    {
+      "id": "j", "name": "joð", "nameIpa": "jɔːθ", "ipa": ["j"], "nb": "same",
+      "text": {
+        "en": "As in Norwegian: já, jökull.",
+        "nb": "Som på norsk: já, jökull."
+      },
+      "examples": ["já_uh", "jökull_no"], "askNb": "já_uh"
+    },
+    {
+      "id": "k", "name": "ká", "nameIpa": "kʰauː", "ipa": ["kʰ", "cʰ"], "nb": "close",
+      "text": {
+        "en": "With a puff of air at the start of a word, as in Norwegian: kaka. Before e, i, y, æ, ei and ey it moves forward, [cʰ], but stays a k: kennari. After s there is no puff of air: skór.",
+        "nb": "Med pustestøt i starten av et ord, som på norsk: kaka. Foran e, i, y, æ, ei og ey flyttes den fram, [cʰ], men er fortsatt en k: kennari. Etter s er det ikke noe pustestøt: skór."
+      },
+      "examples": ["kaka_no", "kennari_no", "skór_no"]
+    },
+    {
+      "id": "l", "name": "ell", "nameIpa": "ɛtl̥", "ipa": ["l"], "nb": "same",
+      "text": {
+        "en": "As in Norwegian: land. Double ll is mostly said tl: see ll.",
+        "nb": "Som på norsk: land. Dobbel ll uttales oftest tl: se ll."
+      },
+      "examples": ["land_no", "tala_so"], "askNb": "land_no"
+    },
+    {
+      "id": "m", "name": "emm", "nameIpa": "ɛmː", "ipa": ["m"], "nb": "same",
+      "text": {
+        "en": "As in Norwegian: matur, mamma.",
+        "nb": "Som på norsk: matur, mamma."
+      },
+      "examples": ["matur_no", "mamma_no"], "askNb": "matur_no"
+    },
+    {
+      "id": "n", "name": "enn", "nameIpa": "ɛnː", "ipa": ["n"], "nb": "same",
+      "text": {
+        "en": "As in Norwegian: nei, nótt. Double nn is sometimes said tn: see nn.",
+        "nb": "Som på norsk: nei, nótt. Dobbel nn uttales noen ganger tn: se nn."
+      },
+      "examples": ["nei_uh", "nótt_no"], "askNb": "nei_uh"
+    },
+    {
+      "id": "o", "name": "o", "nameIpa": "ɔː", "ipa": ["ɔ"], "nb": "other",
+      "text": {
+        "en": "The open o of Norwegian opp, also when it is long: koma, sonur. Not the o of Norwegian bok: Icelandic writes that sound ú.",
+        "nb": "Den åpne o-en i norsk opp, også når den er lang: koma, sonur. Ikke o-en i norsk bok: den lyden skrives ú på islandsk."
+      },
+      "examples": ["koma_so", "sonur_no", "vor_no"], "askNb": "koma_so", "confusable": ["ó", "ö"]
+    },
+    {
+      "id": "ó", "name": "ó", "nameIpa": "ouː", "ipa": ["ou"], "nb": "other",
+      "text": {
+        "en": "A glide from o to u, [ou]: bók, sól. Not like the o of Norwegian bok, although the word is the same.",
+        "nb": "Glir fra o til u, [ou]: bók, sól. Ikke som o i norsk bok, selv om ordet er det samme."
+      },
+      "examples": ["bók_no", "sól_no", "stór_lo"], "askNb": "bók_no", "confusable": ["o"]
+    },
+    {
+      "id": "p", "name": "pé", "nameIpa": "pʰjɛː", "ipa": ["pʰ"], "nb": "same",
+      "text": {
+        "en": "With a puff of air at the start of a word, as in Norwegian: poki. Before l and n, and doubled, a breath comes before it: see pp, tt, kk.",
+        "nb": "Med pustestøt i starten av et ord, som på norsk: poki. Foran l og n, og når den er dobbel, kommer et pust før den: se pp, tt, kk."
+      },
+      "examples": ["poki_no", "pabbi_no"], "askNb": "poki_no"
+    },
+    {
+      "id": "r", "name": "err", "nameIpa": "ɛr̥ː", "ipa": ["r", "r̥"], "nb": "close",
+      "text": {
+        "en": "Rolled or tapped with the tip of the tongue: rauður. Before p, t and k and at the end of a word it often loses its voice: svartur.",
+        "nb": "Rullet eller slått med tungespissen: rauður. Foran p, t og k og på slutten av et ord blir den ofte ustemt: svartur."
+      },
+      "examples": ["rauður_lo", "svartur_lo"]
+    },
+    {
+      "id": "s", "name": "ess", "nameIpa": "ɛsː", "ipa": ["s"], "nb": "same",
+      "text": {
+        "en": "As in Norwegian: sól, sumar. In sj and sk it stays an s: see sj, sk.",
+        "nb": "Som på norsk: sól, sumar. I sj og sk forblir den en s: se sj, sk."
+      },
+      "examples": ["sól_no", "sumar_no"], "askNb": "sumar_no"
+    },
+    {
+      "id": "t", "name": "té", "nameIpa": "tʰjɛː", "ipa": ["tʰ"], "nb": "same",
+      "text": {
+        "en": "With a puff of air at the start of a word, as in Norwegian: taka. Before l, m and n, and doubled, a breath comes before it: see pp, tt, kk.",
+        "nb": "Med pustestøt i starten av et ord, som på norsk: taka. Foran l, m og n, og når den er dobbel, kommer et pust før den: se pp, tt, kk."
+      },
+      "examples": ["taka_so", "tala_so"], "askNb": "taka_so", "confusable": ["þ"]
+    },
+    {
+      "id": "u", "name": "u", "nameIpa": "ʏː", "ipa": ["ʏ"], "nb": "other",
+      "text": {
+        "en": "Like the y of Norwegian lykke, not the u of Norwegian gutt: hundur, sumar. Before ng and nk it sounds like ú: ungur.",
+        "nb": "Som y i norsk lykke, ikke som u i norsk gutt: hundur, sumar. Foran ng og nk uttales den som ú: ungur."
+      },
+      "examples": ["hundur_no", "sumar_no", "gulur_lo"], "askNb": "gulur_lo", "confusable": ["ú"]
+    },
+    {
+      "id": "ú", "name": "ú", "nameIpa": "uː", "ipa": ["u"], "nb": "other",
+      "text": {
+        "en": "The o of Norwegian bok, not the u of Norwegian hus: hús, þú.",
+        "nb": "o-en i norsk bok, ikke u-en i norsk hus: hús, þú."
+      },
+      "examples": ["hús_no", "þú_pfn", "búð_no"], "askNb": "hús_no", "confusable": ["u"]
+    },
+    {
+      "id": "v", "name": "vaff", "nameIpa": "vafː", "ipa": ["v"], "nb": "close",
+      "text": {
+        "en": "Close to Norwegian v, with a little more friction: vatn, vinur.",
+        "nb": "Nær norsk v, med litt mer friksjon: vatn, vinur."
+      },
+      "examples": ["vatn_no", "vinur_no"]
+    },
+    {
+      "id": "x", "name": "ex", "nameIpa": "ɛks", "ipa": ["ks"], "nb": "same",
+      "text": {
+        "en": "ks, as in Norwegian: sex (six), buxur.",
+        "nb": "ks, som på norsk: sex (seks), buxur."
+      },
+      "examples": ["sex_to", "buxur_no"], "askNb": "sex_to"
+    },
+    {
+      "id": "y", "name": "ufsilon y", "say": "ufsilon i", "nameIpa": "ˈʏfsɪlɔn ɪː", "ipa": ["ɪ"], "nb": "other",
+      "text": {
+        "en": "Said like i, never rounded like Norwegian y: systir, sykur.",
+        "nb": "Uttales som i, aldri rundet som norsk y: systir, sykur."
+      },
+      "examples": ["systir_no", "sykur_no", "byrja_so"], "askNb": "systir_no", "confusable": ["ý"]
+    },
+    {
+      "id": "ý", "name": "ufsilon ý", "say": "ufsilon í", "nameIpa": "ˈʏfsɪlɔn iː", "ipa": ["i"], "nb": "other",
+      "text": {
+        "en": "Said like í, not like Norwegian y: nýr, dýr, ský.",
+        "nb": "Uttales som í, ikke som norsk y: nýr, dýr, ský."
+      },
+      "examples": ["nýr_lo", "dýr_lo", "ský_no"], "askNb": "nýr_lo", "confusable": ["y"]
+    },
+    {
+      "id": "þ", "name": "þorn", "nameIpa": "θɔ(r)tn̥", "ipa": ["θ"], "nb": "new",
+      "text": {
+        "en": "A new letter: the th of English thin [θ]. Norwegian has no such sound. You find it at the start of words: þú, þrír.",
+        "nb": "En ny bokstav: th-lyden i engelsk thin [θ]. Norsk har ikke denne lyden. Du finner den i starten av ord: þú, þrír."
+      },
+      "examples": ["þú_pfn", "þrír_to", "það_pfn"], "confusable": ["t"]
+    },
+    {
+      "id": "æ", "name": "æ", "nameIpa": "aiː", "ipa": ["ai"], "nb": "other",
+      "text": {
+        "en": "Not the æ of Norwegian: æ glides from a to i, [ai], close to Norwegian ai in hai: bær, grænn.",
+        "nb": "Ikke den norske æ-en: æ glir fra a til i, [ai], nær norsk ai i hai: bær, grænn."
+      },
+      "examples": ["bær_no", "grænn_lo", "strætó_no"], "askNb": "bær_no", "confusable": ["e"]
+    },
+    {
+      "id": "ö", "name": "ö", "nameIpa": "œː", "ipa": ["œ"], "nb": "close",
+      "text": {
+        "en": "The short ø of Norwegian kjøtt, also when it is long: kjöt, sjö. Norwegian writes ø, Icelandic ö.",
+        "nb": "Den korte ø-en i norsk kjøtt, også når den er lang: kjöt, sjö. Norsk skriver ø, islandsk ö."
+      },
+      "examples": ["kjöt_no", "tölva_no", "sjö_to"], "confusable": ["o"]
+    }
+  ],
+  "combos": [
+    {
+      "id": "hv", "label": "hv", "spell": ["hv"], "ipa": ["kʰv"], "nb": "other",
+      "text": {
+        "en": "Said kv, while Norwegian hv is just v: hvar, hvítur (Norwegian hvit [viːt]). hv and kv sound the same: kvöld.",
+        "nb": "Uttales kv, mens norsk hv bare er v: hvar, hvítur (norsk hvit [viːt]). hv og kv høres like ut: kvöld."
+      },
+      "examples": ["hvar_ao", "hvítur_lo", "hvenær_ao"], "askNb": "hvar_ao", "confusable": ["v"]
+    },
+    {
+      "id": "hj", "label": "hj", "spell": ["hj"], "ipa": ["ç"], "nb": "other",
+      "text": {
+        "en": "The sound of Norwegian kj in kjøtt, [ç]; Norwegian hj is just j: hjól, hjálpa.",
+        "nb": "Lyden i norsk kj i kjøtt, [ç]; norsk hj er bare j: hjól, hjálpa."
+      },
+      "examples": ["hjól_no", "hjálpa_so", "hjá_fs"], "askNb": "hjól_no", "confusable": ["j"]
+    },
+    {
+      "id": "kj", "label": "kj", "spell": ["kj"], "ipa": ["cʰ"], "nb": "other",
+      "text": {
+        "en": "A k sound, [cʰ], not the sound of Norwegian kj: Icelandic kjöt, Norwegian kjøtt [çœt].",
+        "nb": "En k-lyd, [cʰ], ikke lyden i norsk kj: islandsk kjöt, norsk kjøtt [çœt]."
+      },
+      "examples": ["kjöt_no", "kjóll_no"], "askNb": "kjöt_no"
+    },
+    {
+      "id": "sj", "label": "sj, sk", "spell": ["sj", "sk"], "ipa": ["sj", "sc"], "nb": "other",
+      "text": {
+        "en": "s stays an s. sj is s and j: sjór, sjö. sk is s and k, also before i and y: ský [sciː]. Norwegian says sj, and sk before i and y, as one sound [ʂ]: sky.",
+        "nb": "s forblir en s. sj er s og j: sjór, sjö. sk er s og k, også foran i og y: ský [sciː]. På norsk blir sj, og sk foran i og y, én lyd [ʂ]: sky."
+      },
+      "examples": ["sjór_no", "sjö_to", "ský_no"], "askNb": "sjór_no", "confusable": ["s"]
+    },
+    {
+      "id": "ll", "label": "ll", "spell": ["ll"], "ipa": ["tl"], "nb": "other",
+      "text": {
+        "en": "Mostly said tl: bolli, fjall, jökull. Norwegian ll is a long l (alle). In a few words, such as loanwords and pet names, it stays a long l: halló. sl often gets a t as well: íslenska.",
+        "nb": "Uttales oftest tl: bolli, fjall, jökull. Norsk ll er en lang l (alle). I noen få ord, som lånord og kjælenavn, forblir den en lang l: halló. Også sl får ofte en t: íslenska."
+      },
+      "examples": ["bolli_no", "fjall_no", "jökull_no"], "askNb": "bolli_no", "confusable": ["l"]
+    },
+    {
+      "id": "nn", "label": "nn", "spell": ["nn"], "ipa": ["tn", "nː"], "nb": "other",
+      "text": {
+        "en": "After a vowel with an accent or a gliding vowel (æ, au, ei, ey), nn is said tn: einn, grænn, þjónn. Elsewhere it is a long n: finna, kennari. rn often gets a t as well (barn), where Norwegian rn is one sound [ɳ].",
+        "nb": "Etter en vokal med aksent eller en glidende vokal (æ, au, ei, ey) uttales nn tn: einn, grænn, þjónn. Ellers er den en lang n: finna, kennari. Også rn får ofte en t (barn), der norsk rn er én lyd [ɳ]."
+      },
+      "examples": ["einn_to", "grænn_lo", "þjónn_no", "finna_so"], "confusable": ["n"]
+    },
+    {
+      "id": "au", "label": "au", "spell": ["au"], "ipa": ["œy"], "nb": "other",
+      "text": {
+        "en": "Close to Norwegian øy, not Norwegian au: brauð, rauður, haust. Norwegian au (raus) starts with an æ sound, [æʉ].",
+        "nb": "Nær norsk øy, ikke norsk au: brauð, rauður, haust. Norsk au (raus) begynner med en æ-lyd, [æʉ]."
+      },
+      "examples": ["brauð_no", "rauður_lo", "haust_no"], "askNb": "brauð_no", "confusable": ["á", "ö"]
+    },
+    {
+      "id": "ei", "label": "ei, ey", "spell": ["ei", "ey"], "ipa": ["ei"], "nb": "close",
+      "text": {
+        "en": "Close to Norwegian ei [æɪ], starting a little higher, [ei]. ey sounds the same as ei: nei, tveir, heyra.",
+        "nb": "Nær norsk ei [æɪ], men begynner litt høyere, [ei]. ey uttales som ei: nei, tveir, heyra."
+      },
+      "examples": ["nei_uh", "tveir_to", "heyra_so"], "confusable": ["æ"]
+    },
+    {
+      "id": "pp", "label": "pp, tt, kk", "spell": ["pp", "tt", "kk"], "ipa": ["hp", "ht", "hk"], "nb": "other",
+      "text": {
+        "en": "A breath before the stop: takk is said tahk, nótt nouht. The same happens before l, m and n: epli, vatn, vakna. Norwegian takk has no such breath.",
+        "nb": "Et pust før lukkelyden: takk uttales tahk, nótt nouht. Det samme skjer foran l, m og n: epli, vatn, vakna. Norsk takk har ikke dette pustet."
+      },
+      "examples": ["takk_uh", "nótt_no", "drekka_so", "epli_no"], "askNb": "takk_uh", "confusable": ["p", "t", "k"]
+    },
+    {
+      "id": "fv", "label": "f = v", "spell": ["f"], "ipa": ["v"], "nb": "other",
+      "text": {
+        "en": "Between vowels, and at the end of a word after a vowel, f is said v: hafa, gefa, gjöf. Before n it is said p: nafn.",
+        "nb": "Mellom vokaler, og på slutten av et ord etter en vokal, uttales f som v: hafa, gefa, gjöf. Foran n uttales den p: nafn."
+      },
+      "examples": ["hafa_so", "gefa_so", "gjöf_no"], "askNb": "hafa_so"
+    },
+    {
+      "id": "length", "label": { "en": "long, short", "nb": "lang, kort" }, "ipa": ["ɪː", "ɪ"], "nb": "same",
+      "text": {
+        "en": "As in Norwegian, a stressed vowel is mostly long before one consonant and short before two: vinur, vinna (man, mann). The stress is always on the first syllable.",
+        "nb": "Som på norsk er en trykksterk vokal oftest lang foran én konsonant og kort foran to: vinur, vinna (man, mann). Trykket ligger alltid på første stavelse."
+      },
+      "examples": ["vinur_no", "vinna_so"]
+    }
+  ]
+}

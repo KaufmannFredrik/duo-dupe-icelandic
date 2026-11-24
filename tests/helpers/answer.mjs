@@ -14,7 +14,13 @@ export async function answer(page, mode = 'correct') {
       await page.click(`.option[data-value="${spec.sentence}"]`);
       break;
     case 'pair':
+    case 'letter':
+    case 'lettername':
+    case 'likenb':
       await page.click(`.option[data-value="${spec.answer}"]`);
+      break;
+    case 'spell':
+      await page.fill('#answer', mode === 'almost' ? spec.word.replace(/[áéíóúý]/g, (c) => ACUTE[c]) : spec.word);
       break;
     case 'meaning':
     case 'listen':
