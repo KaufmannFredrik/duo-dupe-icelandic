@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Minimal static file server for development and tests (no dependencies).
-//   node scripts/serve.mjs [port]      then open http://localhost:8080/
+//   node scripts/serve.mjs [port]      then open http://127.0.0.1:8080/ (it listens on 127.0.0.1 only)
 
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';

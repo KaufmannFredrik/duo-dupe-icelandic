@@ -11,7 +11,7 @@ TÖLVA is a free, static, grammar-first website for learning Icelandic: a unit p
 The site needs only a static file server, because pages load JSON with `fetch`:
 
 ```sh
-npm run serve            # node scripts/serve.mjs 8080, then open http://localhost:8080/
+npm run serve            # node scripts/serve.mjs 8080, then open http://127.0.0.1:8080/
 # or
 python3 -m http.server 8080
 ```
