@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-04T13:56:18.809Z",
+  "generated": "2026-11-24T18:02:13.080Z",
   "generator": "scripts/build-data.mjs",
   "licenseNote": "Files that contain DMII Core or Wiktionary data are CC BY-SA 4.0; see data/LICENSE.md.",
   "files": {
     "data/lexicon.json": {
-      "bytes": 168193,
-      "gzip": 50138,
+      "bytes": 179767,
+      "gzip": 53568,
       "sources": [
         "dmii-core",
         "wiktionary",
@@ -15,16 +15,16 @@
       ]
     },
     "data/sentences.json": {
-      "bytes": 432417,
-      "gzip": 102258,
+      "bytes": 461147,
+      "gzip": 109160,
       "sources": [
         "tatoeba",
         "tolva"
       ]
     },
     "data/audio.json": {
-      "bytes": 92292,
-      "gzip": 5397,
+      "bytes": 92908,
+      "gzip": 5428,
       "sources": [
         "commons"
       ]
@@ -32,6 +32,13 @@
     "data/forms/hello.json": {
       "bytes": 51698,
       "gzip": 6871,
+      "sources": [
+        "dmii-core"
+      ]
+    },
+    "data/forms/aboutme.json": {
+      "bytes": 51086,
+      "gzip": 6640,
       "sources": [
         "dmii-core"
       ]
@@ -51,8 +58,8 @@
       ]
     },
     "data/forms/around.json": {
-      "bytes": 41250,
-      "gzip": 6175,
+      "bytes": 41971,
+      "gzip": 6277,
       "sources": [
         "dmii-core"
       ]
@@ -86,8 +93,8 @@
       ]
     },
     "data/forms/newwords.json": {
-      "bytes": 8316,
-      "gzip": 1605,
+      "bytes": 6118,
+      "gzip": 1285,
       "sources": [
         "dmii-core"
       ]
@@ -107,9 +114,9 @@
       "attribution": "Beygingarlýsing íslensks nútímamáls. Stofnun Árna Magnússonar í íslenskum fræðum. Höfundur og ritstjóri Kristín Bjarnadóttir.",
       "url": "https://bin.arnastofnun.is/api/",
       "license": "CC BY-SA 4.0; may be published on the web unmodified with credit",
-      "retrieved": "2026-11-04T13:56:18.809Z",
-      "items": 337,
-      "requestsThisRun": 12,
+      "retrieved": "2026-11-24T18:02:13.080Z",
+      "items": 360,
+      "requestsThisRun": 23,
       "changes": "None. Each paradigm is the API response object for the word, unchanged. Files group the objects by theme."
     },
     {
@@ -128,7 +135,7 @@
       "name": "Wiktionary (English entries, translation tables), via kaikki.org per-word pages",
       "url": "https://kaikki.org/dictionary/English/meaning/",
       "license": "CC BY-SA 4.0 and GFDL",
-      "retrieved": "2026-11-04T13:56:18.809Z",
+      "retrieved": "2026-11-24T18:02:13.080Z",
       "changes": "Norwegian Bokmål translations taken from the same translation sense that lists the Icelandic lemma."
     },
     {
@@ -191,7 +198,7 @@
       "name": "Ylhýra inflection API (wrapper over the full BÍN)",
       "url": "https://ylhyra.is/api/inflection",
       "license": "Data CC BY-SA 4.0 (BÍN); software MIT",
-      "retrieved": "2026-11-04T13:56:18.809Z",
+      "retrieved": "2026-11-24T18:02:13.080Z",
       "changes": "Used only to confirm that indeclinable numerals exist in BÍN; no data copied except the BÍN id."
     },
     {
@@ -199,7 +206,7 @@
       "name": "Wikimedia Commons and Lingua Libre recordings",
       "url": "https://commons.wikimedia.org/",
       "license": "Per file; see data/audio.json",
-      "retrieved": "2026-11-04T13:56:18.809Z",
+      "retrieved": "2026-11-24T18:02:13.080Z",
       "changes": "Links only; no audio files are copied."
     },
     {
@@ -207,11 +214,11 @@
       "name": "Bokmål translations and glosses written for TÖLVA",
       "url": "content/translations-nb.json, content/glosses-nb.json",
       "license": "CC BY 4.0",
-      "changes": "Written by hand only where Tatoeba (sentences) or Wiktionary (word glosses) has no Bokmål; every word is checked against Bokmålsordboka. Marked \"nbBy\": \"tolva\"."
+      "changes": "Written by hand where Tatoeba (sentences) or Wiktionary (word glosses) has no Bokmål, and in place of Wiktionary glosses that are wrong (the original is kept as \"nbWas\"); every word is checked against Bokmålsordboka. Marked \"nbBy\": \"tolva\"."
     }
   ],
   "vocabulary": {
     "file": "content/vocab/core.json",
-    "entries": 337
+    "entries": 360
   }
 }

@@ -41,8 +41,8 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key), practiced: Boolean(lesson.review) }) };
 }
 
-test('course: ten units in order, all hand-made', () => {
-  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
+test('course: eleven units in order, all hand-made', () => {
+  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
   for (const u of d.course.units) assert.equal(u.auto, false, `${u.id} has hand-made lessons`);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
 });
@@ -67,11 +67,12 @@ test('course: lesson states follow progress', () => {
   const doneHello = Object.fromEntries(lessonsOf('hello').filter((l) => !l.review).map((l) => [l.key, { done: true }]));
   const after = lessonStates(d.course, { lessons: doneHello, skippedUnits: [] });
   assert.equal(after.get('hello/review'), 'review');
-  assert.equal(after.get('cafe/1'), 'current');
+  assert.equal(after.get('aboutme/1'), 'current');
+  assert.equal(after.get('cafe/1'), 'locked');
   const skipped = lessonStates(d.course, { lessons: {}, skippedUnits: ['hello'] });
   assert.equal(skipped.get('hello/1'), 'done');
-  assert.equal(skipped.get('cafe/1'), 'current');
-  assert.equal(nextLesson(d.course, { lessons: {}, skippedUnits: ['hello'] }).lesson.key, 'cafe/1');
+  assert.equal(skipped.get('aboutme/1'), 'current');
+  assert.equal(nextLesson(d.course, { lessons: {}, skippedUnits: ['hello'] }).lesson.key, 'aboutme/1');
 });
 
 test('course: the path has sections; units are numbered in it, a bonus unit is not', () => {
@@ -152,7 +153,7 @@ test('generator: the same seed gives the same lesson', () => {
   assert.deepEqual(generate('hello', l).specs, generate('hello', l).specs);
 });
 
-for (const unitId of ['hello', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']) {
+for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);
@@ -312,9 +313,10 @@ test('course: words learned per section, and goals practiced when their units ar
   for (const id of first.focus) assert.ok(a1.has(id), `${id} learned in a done lesson`);
   for (const id of d.course.units.find((u) => u.id === 'family').lemmas) assert.ok(a1.has(id), `${id} of a skipped unit`);
   assert.equal(wordsLearned(d.course, p, 'bonus').size, 0);
-  const self = goals.goals.find((g) => g.id === 'self'); // hello and family
+  const self = goals.goals.find((g) => g.id === 'self'); // hello, aboutme and family
   assert.equal(goalState(self, d.course, p), 'open');
-  assert.equal(goalState(self, d.course, { ...p, units: { hello: '2026-11-24' } }), 'practiced');
+  assert.equal(goalState(self, d.course, { ...p, units: { hello: '2026-11-24' } }), 'open');
+  assert.equal(goalState(self, d.course, { ...p, units: { hello: '2026-11-24', aboutme: '2026-11-24' } }), 'practiced');
   assert.equal(goalState(goals.goals.find((g) => g.id === 'health'), d.course, p), 'coming');
   assert.equal(goals.goals.filter((g) => g.section === 'a1').length, 8);
   assert.equal(goals.goals.filter((g) => g.section === 'a2').length, 8);

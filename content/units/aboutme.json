@@ -1,0 +1,212 @@
+{
+  "id": "aboutme",
+  "theme": "aboutme",
+  "reviewed": true,
+  "title": {
+    "en": "About me",
+    "nb": "Om meg"
+  },
+  "is": "Um mig",
+  "goal": {
+    "en": "Introduce yourself politely, and give your details: where you are from, your address, phone number and e-mail.",
+    "nb": "Presenter deg høflig, og gi opplysningene dine: hvor du kommer fra, adressen, telefonnummeret og e-posten din."
+  },
+  "host": {
+    "character": "elias",
+    "says": "384719"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Hello and goodbye",
+        "nb": "Hei og ha det"
+      },
+      "focus": [
+        "sæll_lo",
+        "heilsa_so",
+        "kynna_so",
+        "gaman_no",
+        "kveðja_no"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Sorry?",
+        "nb": "Unnskyld?"
+      },
+      "focus": [
+        "fyrirgefa_so",
+        "afsaka_so",
+        "endurtaka_so",
+        "réttur_lo",
+        "kalla_so"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "Born and married",
+        "nb": "Født og gift"
+      },
+      "focus": [
+        "fæða_so",
+        "afmæli_no",
+        "giftur_lo",
+        "útlendingur_no",
+        "flytja_so",
+        "vegabréf_no"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "Phone and address",
+        "nb": "Telefon og adresse"
+      },
+      "focus": [
+        "símanúmer_no",
+        "heimilisfang_no",
+        "farsími_no",
+        "kennitala_no",
+        "netfang_no"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "Letters and e-mail",
+        "nb": "Brev og e-post"
+      },
+      "focus": [
+        "bréf_no",
+        "senda_so",
+        "tölvupóstur_no",
+        "skilaboð_no"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "Hello and goodbye: komdu sæll, vertu sæl",
+          "nb": "Hei og ha det: komdu sæll, vertu sæl"
+        },
+        "text": {
+          "en": "{is:sæll} means happy, and it makes the polite hello and goodbye: {is:komdu sæll} (come happy) when you meet someone, {is:vertu sæll} (be happy) when you leave. {is:sæll} is an adjective, so it agrees with the person you speak to: {is:sæll} to a man, {is:sæl} to a woman, and {is:verið þið sæl} to several people, in the neuter plural that a mixed group takes. Norwegian has the same old word, {is:sæll} in Old Norse, as sæl (happy, glad).",
+          "nb": "{is:sæll} betyr lykkelig, og det gir den høflige hilsenen og avskjeden: {is:komdu sæll} (kom lykkelig) når du møter noen, {is:vertu sæll} (vær lykkelig) når du går. {is:sæll} er et adjektiv, så det samsvarer med den du snakker til: {is:sæll} til en mann, {is:sæl} til en kvinne, og {is:verið þið sæl} til flere, i nøytrum flertall som en blandet gruppe får. Norsk har det samme gamle ordet, {is:sæll} på norrønt, som sæl (lykkelig, glad)."
+        },
+        "examples": [
+          "10628605",
+          "3838986",
+          "3838987",
+          "5007770"
+        ],
+        "tables": [
+          "sæll_lo"
+        ]
+      },
+      {
+        "title": {
+          "en": "Getting to know someone: kynna, kynnast",
+          "nb": "Å bli kjent: kynna, kynnast"
+        },
+        "text": {
+          "en": "{is:kynna} is to introduce: {is:kynna mig fyrir henni} (introduce me to her). With the ending -st it becomes {is:kynnast}, to get to know each other, and the person you get to know is in the dative: {is:Ég kynntist henni}, {is:Hvernig kynntist þú honum?} The -st ending comes from the old reflexive pronoun, and Norwegian does the same with -s: {is:sjást}, sees (see each other), {is:hittast}, møtes (meet). {is:gaman} (fun) gives {is:Þetta er gaman} and the greeting {is:gaman að sjá þig} (nice to see you).",
+          "nb": "{is:kynna} er å presentere: {is:kynna mig fyrir henni} (presentere meg for henne). Med endelsen -st blir det {is:kynnast}, å bli kjent, og den du blir kjent med, står i dativ: {is:Ég kynntist henni}, {is:Hvernig kynntist þú honum?} Endelsen -st kommer av det gamle refleksive pronomenet, og norsk gjør det samme med -s: {is:sjást}, sees (se hverandre), {is:hittast}, møtes. {is:gaman} (moro) gir {is:Þetta er gaman} og hilsenen {is:gaman að sjá þig} (hyggelig å se deg)."
+        },
+        "examples": [
+          "743237",
+          "828368",
+          "868561",
+          "12701227"
+        ]
+      },
+      {
+        "title": {
+          "en": "Sorry, excuse me: fyrirgefðu, afsakið",
+          "nb": "Unnskyld: fyrirgefðu, afsakið"
+        },
+        "text": {
+          "en": "{is:Fyrirgefðu} is the everyday sorry and excuse me: the command form of {is:fyrirgefa} (forgive) with {is:þú} joined on, like {is:komdu}. {is:Afsakið} is the plural command of {is:afsaka} (excuse), and it is used to one person too; {is:afsakaðu} is the singular. Both open a question to a stranger: {is:Afsakið mig, hvað er klukkan?} When you did not catch what was said: {is:Gætirðu endurtekið þetta?} (could you repeat that?)",
+          "nb": "{is:Fyrirgefðu} er det vanlige unnskyld: bydeformen av {is:fyrirgefa} (tilgi) med {is:þú} hengt på, som {is:komdu}. {is:Afsakið} er bydeformen i flertall av {is:afsaka} (unnskylde), og den brukes til én person også; {is:afsakaðu} er entall. Begge innleder et spørsmål til en fremmed: {is:Afsakið mig, hvað er klukkan?} Når du ikke fikk med deg hva som ble sagt: {is:Gætirðu endurtekið þetta?} (kunne du gjenta det?)"
+        },
+        "examples": [
+          "1315536",
+          "944765",
+          "870842",
+          "870843",
+          "1356534"
+        ]
+      },
+      {
+        "title": {
+          "en": "Where you are from: fæddist, flutti",
+          "nb": "Hvor du kommer fra: fæddist, flutti"
+        },
+        "text": {
+          "en": "{is:Hvaðan ertu?} asks where you are from. {is:fæðast}, to be born, is {is:fæða} (to give birth) with -st, and you say it in the past: {is:ég fæddist} (I was born). {is:flytja} is to move, past {is:flutti}: {is:Ég flutti í síðasta mánuði}. A person from a country is written with a capital letter, the adjective and the language are not: {is:Íslendingur} and {is:Norðmaður} (an Icelander, a Norwegian), but {is:íslenskur}, {is:norskur} and {is:íslenska}. Someone from abroad is an {is:útlendingur}.",
+          "nb": "{is:Hvaðan ertu?} spør hvor du kommer fra. {is:fæðast}, å bli født, er {is:fæða} (å føde) med -st, og du sier det i fortid: {is:ég fæddist} (jeg ble født). {is:flytja} er å flytte, fortid {is:flutti}: {is:Ég flutti í síðasta mánuði}. En person fra et land skrives med stor forbokstav, adjektivet og språket gjør ikke det: {is:Íslendingur} og {is:Norðmaður} (en islending, en nordmann), men {is:íslenskur}, {is:norskur} og {is:íslenska}. Den som kommer fra utlandet, er en {is:útlendingur}."
+        },
+        "examples": [
+          "384719",
+          "542128",
+          "1337013",
+          "1324559",
+          "827775"
+        ],
+        "tables": [
+          "útlendingur_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Your details: símanúmer, heimilisfang, kennitala",
+          "nb": "Opplysningene dine: símanúmer, heimilisfang, kennitala"
+        },
+        "text": {
+          "en": "Forms and people ask for your {is:nafn}, {is:heimilisfang} (address), {is:símanúmer} (phone number), {is:netfang} (e-mail address) and, in Iceland, your {is:kennitala}, the national identification number ({is:kenni}, a mark, and {is:tala}, a number). All but {is:kennitala} are neuter, so with the article they end in -ið, and a possessive after them is neuter too: {is:Hvað er símanúmerið þitt?}, {is:heimilisfangið mitt}.",
+          "nb": "Skjemaer og folk spør etter {is:nafn}, {is:heimilisfang} (adresse), {is:símanúmer} (telefonnummer), {is:netfang} (e-postadresse) og, på Island, {is:kennitala}, personnummeret ({is:kenni}, et kjennetegn, og {is:tala}, et tall). Alle unntatt {is:kennitala} er intetkjønn, så med artikkel ender de på -ið, og et eiendomsord etter dem står også i intetkjønn: {is:Hvað er símanúmerið þitt?}, {is:heimilisfangið mitt}."
+        },
+        "examples": [
+          "466872",
+          "1368317",
+          "473512",
+          "3998400"
+        ],
+        "tables": [
+          "símanúmer_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Letters and messages: skilaboð, kveðja",
+          "nb": "Brev og beskjeder: skilaboð, kveðja"
+        },
+        "text": {
+          "en": "{is:skilaboð} (a message) has only plural forms, also for one message: {is:Get ég skilið eftir skilaboð?} A letter or an e-mail ends with {is:kveðja} (regards) or {is:kærar kveðjur} (kind regards) before the name. To send your regards through someone, {is:skila kveðju}: {is:Skilaðu kveðju til hans}.",
+          "nb": "{is:skilaboð} (en beskjed) har bare flertallsformer, også om én beskjed: {is:Get ég skilið eftir skilaboð?} Et brev eller en e-post slutter med {is:kveðja} (hilsen) eller {is:kærar kveðjur} (vennlig hilsen) foran navnet. Å hilse gjennom noen er {is:skila kveðju}: {is:Skilaðu kveðju til hans}."
+        },
+        "examples": [
+          "1356528",
+          "387054",
+          "675073",
+          "882626"
+        ],
+        "tables": [
+          "skilaboð_no"
+        ]
+      }
+    ]
+  }
+}

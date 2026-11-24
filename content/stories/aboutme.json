@@ -1,0 +1,62 @@
+{
+  "id": "aboutme",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "A newcomer",
+    "nb": "En nykommer"
+  },
+  "level": "A1",
+  "after": "aboutme",
+  "dialogue": true,
+  "cast": {
+    "A": "elias",
+    "B": "katla"
+  },
+  "lines": [
+    {
+      "sentence": "490406",
+      "speaker": "A"
+    },
+    {
+      "sentence": "3838981",
+      "speaker": "B"
+    },
+    {
+      "sentence": "10963640",
+      "speaker": "B"
+    },
+    {
+      "sentence": "827775",
+      "speaker": "A"
+    },
+    {
+      "sentence": "11158378",
+      "speaker": "B"
+    },
+    {
+      "sentence": "397461",
+      "speaker": "A"
+    },
+    {
+      "sentence": "868561",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1315536",
+      "speaker": "A"
+    },
+    {
+      "sentence": "514670",
+      "speaker": "A"
+    },
+    {
+      "sentence": "3838987",
+      "speaker": "A"
+    },
+    {
+      "sentence": "3838986",
+      "speaker": "B"
+    }
+  ]
+}

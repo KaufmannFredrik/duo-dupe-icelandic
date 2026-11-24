@@ -10,7 +10,7 @@
   "lessons": [
     { "id": "1", "title": { "en": "In town", "nb": "I byen" }, "focus": ["bær_no", "borg_no", "gata_no", "hús_no", "í_fs", "á_fs"] },
     { "id": "2", "title": { "en": "Places", "nb": "Steder" }, "focus": ["búð_no", "banki_no", "skóli_no", "sjúkrahús_no", "hótel_no", "staður_no"] },
-    { "id": "3", "title": { "en": "Getting there", "nb": "Ta seg fram" }, "focus": ["bíll_no", "strætó_no", "hjól_no", "bátur_no", "flugvöllur_no", "keyra_so"] },
+    { "id": "3", "title": { "en": "Getting there", "nb": "Ta seg fram" }, "focus": ["bíll_no", "strætó_no", "hjól_no", "bátur_no", "flugvél_no", "flugvöllur_no", "keyra_so"] },
     { "id": "4", "title": { "en": "To and from", "nb": "Til og fra" }, "focus": ["til_fs", "frá_fs", "úr_fs", "hjá_fs", "við_fs", "land_no"] },
     { "id": "5", "title": { "en": "Where?", "nb": "Hvor?" }, "focus": ["hvar_ao", "hér_ao", "þar_ao", "heimili_no", "finna_so", "leita_so"] },
     { "id": "6", "title": { "en": "Left and right", "nb": "Venstre og høyre" }, "focus": ["hægri_lo", "vinstri_lo", "beint_ao", "beygja_so", "ganga_so", "vegur_no"] },

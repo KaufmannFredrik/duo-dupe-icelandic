@@ -40,7 +40,14 @@
     "við_fs": ["ved", "mot"],
     "yfir_fs": ["over"],
     "þota_no": ["jetfly"],
-    "úr_fs": ["ut av", "fra"]
+    "úr_fs": ["ut av", "fra"],
+    "sæll_lo": ["hei", "ha det", "sæl"],
+    "réttur_lo": ["riktig", "rett"],
+    "kynna_so": ["presentere", "introdusere"],
+    "heilsa_so": ["hilse"],
+    "afsaka_so": ["unnskylde"],
+    "kennitala_no": ["personnummer"],
+    "netfang_no": ["e-postadresse"]
   },
   "fixes": {
     "barn_no": { "nb": ["barn"], "wiktionary": ["barn", "barn n mindreårig"] },
@@ -103,6 +110,9 @@
     "vinna_so": { "nb": ["arbeide", "jobbe", "vinne"], "wiktionary": ["arbeid", "jobb", "verk"] },
     "vinur_no": { "nb": ["venn"], "wiktionary": ["venn", "venninne"] },
     "þessi_fn": { "nb": ["denne", "dette"], "wiktionary": ["den", "denne", "det"] },
-    "þú_pfn": { "nb": ["du"], "wiktionary": ["du", "De", "I"] }
+    "þú_pfn": { "nb": ["du"], "wiktionary": ["du", "De", "I"] },
+    "flytja_so": { "nb": ["flytte"], "wiktionary": ["flytte seg", "flytte"] },
+    "fæða_so": { "nb": ["føde"], "wiktionary": ["bære", "fram", "føde"] },
+    "skilaboð_no": { "nb": ["beskjed", "melding", "budskap"], "wiktionary": ["budskap", "melding"] }
   }
 }

@@ -13,7 +13,7 @@
       "is": "Nemandi skilur og getur svarað einföldum spurningum um eigin persónu og fjölskylduhagi.",
       "en": "Understand and answer simple questions about yourself and your family.",
       "nb": "Forstå og svare på enkle spørsmål om deg selv og familien din.",
-      "units": ["hello", "family"]
+      "units": ["hello", "aboutme", "family"]
     },
     {
       "id": "work-talk",
@@ -76,7 +76,7 @@
       "is": "Nemandi getur beðið um og gefið almennar upplýsingar.",
       "en": "Ask for and give general information.",
       "nb": "Be om og gi generell informasjon.",
-      "units": ["around", "time"]
+      "units": ["aboutme", "around", "time"]
     },
     {
       "id": "housing",

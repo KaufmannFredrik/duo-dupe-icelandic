@@ -14,8 +14,8 @@
   },
   "host": { "character": "katla", "says": "10360022" },
   "lessons": [
-    { "id": "1", "title": { "en": "Sound and screens", "nb": "Lyd og skjerm" }, "focus": ["sjónvarp_no", "útvarp_no", "farsími_no", "tölvupóstur_no", "forrit_no", "hátalari_no"] },
-    { "id": "2", "title": { "en": "From planes to planets", "nb": "Fra fly til planeter" }, "focus": ["flugvél_no", "þota_no", "tækni_no", "rafmagn_no", "veira_no", "reikistjarna_no"] },
+    { "id": "1", "title": { "en": "Sound and screens", "nb": "Lyd og skjerm" }, "focus": ["sjónvarp_no", "útvarp_no", "forrit_no", "hátalari_no"] },
+    { "id": "2", "title": { "en": "From planes to planets", "nb": "Fra fly til planeter" }, "focus": ["þota_no", "tækni_no", "rafmagn_no", "veira_no", "reikistjarna_no"] },
     { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
   ],
   "guide": {

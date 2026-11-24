@@ -62,6 +62,7 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | *sé* in *Ég sé það* is *sjá* ("see"). | DMII (*sé*, present of *sjá*); translation of T 3799208 | sourced |
 | *Sá* in *Sá einhver hvað gerðist?* is the past of *sjá*. | DMII (*sá*, GM-FH-ÞT); translation of T 3997410 | sourced |
 | *þeir*, *þau* in *Eru þeir bræður?*, *Hvaða tungumál tala þau í Kóreu?* are personal pronouns. | DMII (*þeir* of *hann*, *þau* of *það*); translations of T 3801939, 10963603 | sourced |
+| *gift*, *giftur* in *Ég er gift*, *Er hún gift?* and five more are the adjective *giftur* ("married"), not the participle of *gifta* the parser reads; *gifta sig* stays the verb. | W giftur (adjective, "married"); DMII (*giftur* lo); translations of T 469356, 476778, 479374, 488544, 690287, 738927, 1318023 | sourced |
 | The parser's dative for a meal after *í*, *eftir*, *fyrir* is not kept. | T: all 14 sentences with a definite meal after *eftir* or *fyrir* have the accusative; elon (*eftir matinn*) | sourced |
 | In a sentence without a verb, the parser's case is not kept. | *Góða nótt*: W góður (strong masc. acc. *góðan*, fem. acc. *góða*), so the greeting is not the nominative the parser picks | sourced |
 
@@ -69,9 +70,9 @@ The parser itself is not checked case by case: `npm run build:tags` lists the 22
 
 ## Unit guidebooks (`content/units/`)
 
-Unit titles are single course words, each in the DMII Core. Which words are taught together is a design choice, made by running the lesson generator over each grouping (`docs/DECISIONS.md`).
+Headings name the units rather than their numbers, because new units are inserted into the path (see `content/units/index.json`). Unit titles are single course words, each in the DMII Core. Which words are taught together is a design choice, made by running the lesson generator over each grouping (`docs/DECISIONS.md`).
 
-### Unit 1, *Halló*, and unit 2, *Kaffi*
+### *Halló* and *Kaffi*
 
 | Claim | Source | Status |
 |---|---|---|
@@ -85,7 +86,29 @@ Unit titles are single course words, each in the DMII Core. Which words are taug
 | Most verbs take an accusative object. | WP lists verbs with dative and genitive objects (*safna*, *sakna*) as special cases; T | attested |
 | *einn* to *fjórir* inflect, from five on numbers do not. | WP ("The numbers one to four are declined") | sourced |
 
-### Unit 3, *Fjölskylda*
+### *Um mig*
+
+| Claim | Source | Status |
+|---|---|---|
+| *sæll* is "happy" and a greeting; *komdu sæll* when meeting, *vertu sæll* when leaving, "come happy", "be happy" word for word. | W sæll ("happy, content"; "hello (a greeting)"; derived *vertu sæll*); W vertu sæll ("goodbye (speaking to a man)"); W koma, vera (imperatives *komdu*, *vertu*); T 10628605, 3838986 | sourced |
+| *sæll* agrees with the person spoken to: *sæll* (a man), *sæl* (a woman), *verið þið sæl* (several, neuter plural). | DMII (*sæl* FSB-KVK-NFET and FSB-HK-NFFT); T 3838986, 3838987, 5007770; WP (neuter plural for a mixed group, as in the *Orð* guidebook) | sourced |
+| Norwegian *sæl* (happy, glad) is the same word, Old Norse *sæll*. | BMO sæl ("lykkelig, glad"; etymology "norr. sæll") | sourced |
+| *kynna* is "introduce"; *kynna X fyrir Y*. | W kynna ("to introduce"); T 743237, 828368 | sourced |
+| *kynnast* is *kynna* + -st, "get to know", with the person in the dative. | W kynnast ("From kynna + -st"); W kynna ("to become acquainted with"); T 868561 (*honum*), 518532 (*henni*) | sourced (dative attested) |
+| -st comes from the old reflexive pronoun; Norwegian has -s in the same use: *sjást*/*sees*, *hittast*/*møtes*. | W -st ("From Old Norse -sk, reduced form of the reflexive pronoun sik"; "turns verbs into middle voice verbs"); W sjást ("to see each other"), hittast ("to meet each other"); BMO sees ("se hverandre"), møtes ("møte hverandre") | sourced |
+| *gaman* is "fun"; *gaman að sjá þig*. | W gaman ("fun, pleasure"; derived *gaman að sjá þig*); T 12701227 | sourced |
+| *fyrirgefðu* is the imperative of *fyrirgefa* with *þú* joined on, "excuse me, sorry". | W fyrirgefðu ("The imperative form of the verb fyrirgefa"; "excuse me, sorry"); DMII (GM-BH-ET *fyrirgefðu*, the clitic -ðu as in the *Gata* guidebook) | sourced |
+| *afsakið* is the plural imperative of *afsaka* and is used to one person too; *afsakaðu* is the singular. | W afsakið ("Plural imperative mood of afsaka"; example *Afsakið, en gætirðu fært þig?*, with *gætirðu* to one person); W afsaka (*Afsakaðu mig*); DMII (GM-BH-FT *afsakið*, GM-BH-ET *afsakaðu*); T 870842, 870843 | sourced |
+| *Gætirðu endurtekið þetta?* "could you repeat that?". | T 1356534; W endurtaka ("to repeat") | attested |
+| *fæðast* is *fæða* + -st, "be born"; *ég fæddist*. | W fæðast ("From fæða + -st"; "to be born"); W fæða ("to give birth to"); T 542128, 1337013 | sourced |
+| *flytja* "move", past *flutti*. | W flytja ("to move (between homes)"); DMII (*flutti*, GM-FH-ÞT); T 1324559 | sourced |
+| *Íslendingur* and *Norðmaður* are written with a capital letter, *íslenskur*, *norskur* and *íslenska* are not. | W Íslendingur, Norðmaður (capitalized headwords: "Icelander", "Norwegian"); W íslenskur, norskur, íslenska (lowercase headwords) | attested |
+| *kennitala* is the national identification number, *kenni* (mark) + *tala* (number). | W kennitala ("national identification number"; "From kenni n (“sign, mark”) + tala f (“number”)") | sourced |
+| *heimilisfang*, *símanúmer*, *netfang* are neuter and end in -ið with the article; *kennitala* is feminine; *þitt*, *mitt* are the neuter of *þinn*, *minn*. | DMII (genders, NFETgr *símanúmerið*, *heimilisfangið*; *þitt*, *mitt* HK-NFET); T 466872, 1368317 | attested |
+| *skilaboð* has only plural forms. | W skilaboð ("plural-only"); DMII (only FT forms) | sourced |
+| A letter ends with *kveðja* or *kærar kveðjur*; *skila kveðju* is to send one's regards. | W kveðja ("regards, a greeting at the end of a letter": *Kveðja, Gunna*, *Kærar kveðjur, Jóhann*; derived *skila kveðju*); T 387054, 675073 | sourced |
+
+### *Fjölskylda*
 
 | Claim | Source | Status |
 |---|---|---|
@@ -97,7 +120,7 @@ Unit titles are single course words, each in the DMII Core. Which words are taug
 | *búa*: *bý, býrð, býr*. | DMII | attested |
 | Five to twenty do not inflect; *Hún er átta ára*. | WP; DMII (*ára* EFFT); T 10633141 | sourced |
 
-### Unit 4, *Gata*
+### *Gata*
 
 | Claim | Source | Status |
 |---|---|---|
@@ -106,7 +129,7 @@ Unit titles are single course words, each in the DMII Core. Which words are taug
 | *hvar*, *hvert*, *hvaðan*; *hingað*, *þangað*. | WP ("where/whither/whence"); W hingað ("here (movement)"), þangað ("there (in that direction)") | sourced |
 | Imperative: stem + *þú* as -ðu, -du, -tu; *gakktu*. | W (*hjálpaðu*, *vinndu*, *þekktu*, *lokaðu*); WP (*Talarðu*); DMII (GM-BH-ET forms) | sourced |
 
-### Unit 5, *Tími*
+### *Tími*
 
 | Claim | Source | Status |
 |---|---|---|
@@ -122,7 +145,7 @@ Unit titles are single course words, each in the DMII Core. Which words are taug
 | Frequency adverbs right after the finite verb; *aldrei* in the place of *ekki*. | V2 (sentence adverbs before the verb phrase, after the finite verb) | sourced |
 | *hvenær* asks; *þegar* joins two clauses. | elon (temporal conjunctions) | sourced |
 
-### Unit 6, *Búð*
+### *Búð*
 
 | Claim | Source | Status |
 |---|---|---|
@@ -134,7 +157,7 @@ Unit titles are single course words, each in the DMII Core. Which words are taug
 | *með* + dative for company, + accusative for what one brings or has. | W með ("with dative or accusative", *með konunni minni*); T 3799264, 698251, 388901 | sourced |
 | *án* + genitive; *af* + dative; *Af hverju?* | W án, af | sourced |
 
-### Unit 7, *Veður*
+### *Veður*
 
 | Claim | Source | Status |
 |---|---|---|
@@ -145,7 +168,7 @@ Unit titles are single course words, each in the DMII Core. Which words are taug
 | *eldfjall* = *eldur* + *fjall*; *norðurljós* = *norður* + *ljós*. | W eldfjall, norðurljós | sourced |
 | Norwegian relatives (*vær*, *fjell*, *foss*, *jøkel*, *sky*, *sol*, *vind*). | `data/bridge.json` (BMO and W name the same Old Norse word) | sourced |
 
-### Unit 8, *Vinna*
+### *Vinna*
 
 | Claim | Source | Status |
 |---|---|---|
@@ -156,7 +179,7 @@ Unit titles are single course words, each in the DMII Core. Which words are taug
 | The past in -aði, -ði, -di, -ti; strong verbs change their vowel. | DMII | attested |
 | *vinna* is "work" and "win". | W vinna (*Ég vann!* "I won!") | sourced |
 
-### Unit 9, *Orð*
+### *Orð*
 
 | Claim | Source | Status |
 |---|---|---|
@@ -168,7 +191,7 @@ Unit titles are single course words, each in the DMII Core. Which words are taug
 | *að* is "that" and the infinitive marker; *sem*, *ef*. | WP (complementizer *að*); W (infinitives *að heita*) | sourced |
 | *líka* the adverb and the verb. | W líka | sourced |
 
-### Unit 10, *Nýyrði*
+### *Nýyrði* (bonus)
 
 | Claim | Source | Status |
 |---|---|---|
@@ -187,7 +210,7 @@ The sentences are unchanged Tatoeba sentences, each readable after the unit the 
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 28 of the 1,764 sentences. The other 1,732 (all but four excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 28 of the 1,876 sentences. The other 1,843 (all but five excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -200,7 +223,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 299 of the 337 course words. The other 38 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 61 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 315 of the 360 course words. The other 45 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 64 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -210,6 +233,8 @@ Wiktionary gives a Bokmål gloss for 299 of the 337 course words. The other 38 w
 | af, úr, yfir, við, hjá, fyrir | av; ut av; over; ved; hos; for | prepositions, each by its first sense in W; *hjá* (at someone's place) is *hos* |
 | hvaðan, beint, inni | hvorfra; rett; inne | |
 | buxur, húfa, hjól, sími, sundlaug, tölvupóstur, þota, norðurljós, kvöldmatur, skemmtilegur | bukse; lue; sykkel; telefon; svømmebasseng; e-post; jetfly; nordlys; middag; morsom | *kvöldmatur* (the evening meal) is *middag*, the day's hot meal, with *kveldsmat* second |
+| réttur, kynna, heilsa, afsaka, kennitala, netfang | riktig, rett; presentere, introdusere; hilse; unnskylde; personnummer; e-postadresse | the adjective "right, correct" (W's third sense, the one in the course sentences, *Það er rétt*, *rétta svarið*); "to introduce"; "to greet"; "to excuse"; "national identification number" (BMO personnummer: the Norwegian number of the same kind); "e-mail address" |
+| sæll | hei, ha det, sæl | W's senses "hello (a greeting)" and "happy"; the course sentences use it to greet and take leave (*Komdu nú sæll*, *Vertu sæll*), and *sæl* (BMO "lykkelig, glad") is the same Old Norse word |
 
 ### Wiktionary glosses corrected (`"fixes"`)
 
@@ -247,6 +272,9 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | nemandi | student | elev, student | "student, pupil"; a school pupil is an *elev* |
 | ef | dersom | hvis, dersom, om | "if": *hvis* is the everyday word |
 | leita | søke | lete, søke | "to search, look for" (*leita að*, *lete etter*) |
+| flytja | flytte seg | flytte | "to move (between homes)", also "to move something"; *flytte seg* is "move out of the way" |
+| fæða | bære | føde | "to give birth to"; *bære* and *fram* were *bære fram* (bring forth), split in two |
+| skilaboð | budskap | beskjed, melding, budskap | "message", in the course sentences one left for someone (*skilja eftir skilaboð*, *legge igjen en beskjed*); *budskap* is a message in the sense of what a text says |
 
 Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 

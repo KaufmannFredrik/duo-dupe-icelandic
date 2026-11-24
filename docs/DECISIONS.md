@@ -2,6 +2,24 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A1 begins: unit 2, *Um mig* (2026-11-24)
+
+The first new unit of section A1 in [PLAN.md](PLAN.md), between *Halló* and *Kaffi*: introducing yourself politely and giving your details, the curriculum's stage 1 (name, address, politeness) and the goals "answer simple questions about yourself" and "ask for and give general information" (`content/goals.json`).
+
+- **Words** (25, theme `aboutme`): *sæll*, *heilsa*, *kynna*, *gaman*, *kveðja*; *fyrirgefa*, *afsaka*, *endurtaka*, *réttur*, *kalla*; *fæða* (*fæddist*), *afmæli*, *giftur*, *útlendingur*, *flytja*, *vegabréf*; *símanúmer*, *heimilisfang*, *farsími*, *kennitala*, *netfang*; *bréf*, *senda*, *tölvupóstur*, *skilaboð*. Chosen by topic first, then with `npm run pick-words`: *afmæli*, *giftur*, *fæða*, *réttur* and *bréf* bring many readable sentences; *kennitala* has none on Tatoeba but is on every Icelandic form, so it is taught with word exercises only. *Íslendingur* and *Norðmaður* are not course words: written with a capital letter, the sentence analysis reads them as names, so they are explained in the guidebook instead.
+- **Unit 10 split, two of five:** *farsími* and *tölvupóstur* moved from *Nýyrði* to this unit, and *flugvél* to *Gata*'s lesson 3 (*Getting there*), as the plan says. *Nýyrði* keeps nine words; *sjónvarp* and *útvarp* move when *Heima* and *Fréttir* exist. A learner who finished *Gata* or *Nýyrði* keeps them finished (recorded units).
+- **The unit's place limits its sentences:** after *Halló* only, a sentence the learner builds may use only *Halló*'s words, the grammar words and these; *búa*, *frá*, *í* and *á* come in later units (the plan keeps the existing units' words). So the unit has fewer sentence exercises than *Kaffi*, and *Hvaðan ertu?*, *Ég fæddist í...* and *Ég flutti í...* are taught in the guidebook with Tatoeba examples. Each lesson still has 12 exercises of six to nine kinds.
+- **Lessons** (grouped by hand, every exercise read): Hello and goodbye; Sorry?; Born and married; Phone and address; Letters and e-mail; and a review.
+- **Guidebook**, six sections, every claim in `content/CLAIMS.md`: *komdu sæll*, *vertu sæl* and how *sæll* agrees with the person spoken to (Norwegian *sæl* is the same word); *kynna* and *kynnast* with the dative, and the -st verbs against Norwegian *sees*, *møtes*; *fyrirgefðu* and *afsakið*; where you are from (*fæddist*, *flutti*, capital letters for *Íslendingur*, not for *íslenskur*); your details (*kennitala*, neuter nouns with -ið); *skilaboð* (plural only) and *kveðja* in letters.
+- **Host and story:** Elias, the learner from Norway, hosts the unit (*Hvaðan ertu?*); the story *A newcomer* is a dialogue between Elias and Katla, eleven unchanged Tatoeba sentences a learner can read after this unit, ending with *Vertu sæl!* and *Vertu sæll!*.
+- **Tag fixes:** the parser reads *gift* in *Ég er gift*, *Er hún gift?* and five more as the participle of *gifta*; `content/tag-fixes.json` makes them the adjective *giftur*, as BÍN and Wiktionary list it. *gifta sig* stays the verb.
+- **Data:** 360 words; 1,876 sentences (122 new, 10 dropped because better ones were found for their words; their nine hand translations were removed from `content/translations-nb.json`); 120 new Bokmål translations by hand; 7 hand glosses (*sæll*, *réttur*, *kynna*, *heilsa*, *afsaka*, *kennitala*, *netfang*) and 3 corrections (*flytja* was "flytte seg", *fæða* "bære", *skilaboð* now *beskjed* first); two more sentences excluded (a curse word; "Traitors will be deported"); audio for 145 new texts in all four voices; the Norwegian bridge has 196 words (7 new Old Norse relatives: *sæl*, *gaman*, *rett*, *kalle* and others). Piper drops espeak's mark for a voiceless l or r (*sæll*, *afmæli*), as it did for *farsími* before.
+- **Numbers:** a unit's number is its place in the path, so every unit after *Halló* moved up one. Nothing in the app names a unit by number; `content/CLAIMS.md` now names units instead of numbering them.
+
+### Tests
+
+- `node --test`: 148 tests (the course has eleven units; after *Halló* comes *Um mig*; the goal "self" is practiced when *Halló*, *Um mig* and *Fjölskylda* are finished; the six new lessons produce valid exercises).
+- `npm run smoke`: every lesson of every unit, eleven stories. `npm run qa`: the new guidebook at three sizes and its story.
 ## Everything in Norwegian: credits, the voice credit, word origins (2026-11-24)
 
 The owner asked whether everything on the site is in Norwegian. Every page, lesson and drill was loaded with the Norwegian interface and its 1,571 visible texts checked for English: three places were still in English, and all three are now Norwegian.

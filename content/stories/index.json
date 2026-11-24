@@ -1,6 +1,7 @@
 {
   "stories": [
     "hello.json",
+    "aboutme.json",
     "cafe.json",
     "family.json",
     "around.json",

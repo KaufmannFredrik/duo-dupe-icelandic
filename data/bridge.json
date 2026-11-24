@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-24T10:42:11.476Z",
+ "generated": "2026-11-24T18:12:51.231Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -19,8 +19,8 @@
  ],
  "counts": {
   "loan": 7,
-  "old-norse": 170,
-  "form": 10
+  "old-norse": 177,
+  "form": 12
  },
  "pairs": {
   "halló_uh": {
@@ -210,6 +210,77 @@
    "oldNorse": "ekki",
    "evidence": "old-norse",
    "rules": null
+  },
+  "sæll_lo": {
+   "nb": "sæl",
+   "article": 59202,
+   "oldNorse": "sæll",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "gaman_no": {
+   "nb": "gaman",
+   "article": 18953,
+   "oldNorse": "gaman",
+   "evidence": "old-norse",
+   "rules": []
+  },
+  "réttur_lo": {
+   "nb": "rett",
+   "article": 48356,
+   "oldNorse": "réttr",
+   "evidence": "old-norse",
+   "rules": [
+    "e-acute",
+    "ending-ur"
+   ]
+  },
+  "kalla_so": {
+   "nb": "kalle",
+   "article": 28339,
+   "oldNorse": "kalla",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "útlendingur_no": {
+   "nb": "utlending",
+   "evidence": "form",
+   "rules": [
+    "u-acute",
+    "ending-ur"
+   ]
+  },
+  "flytja_so": {
+   "nb": "flytte",
+   "article": 15627,
+   "oldNorse": "flytja",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "bréf_no": {
+   "nb": "brev",
+   "article": 7487,
+   "oldNorse": "bréf",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "senda_so": {
+   "nb": "sende",
+   "article": 50851,
+   "oldNorse": "senda",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "giftur_lo": {
+   "nb": "gift",
+   "evidence": "form",
+   "rules": [
+    "ending-ur"
+   ]
   },
   "kaffi_no": {
    "nb": "kaffe",

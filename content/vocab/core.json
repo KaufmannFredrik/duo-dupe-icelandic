@@ -190,6 +190,140 @@
       ]
     },
     {
+      "id": "aboutme",
+      "title": {
+        "en": "About me",
+        "nb": "Om meg"
+      },
+      "words": [
+        [
+          "sæll",
+          "lo",
+          "hello"
+        ],
+        [
+          "gaman",
+          "no",
+          "fun"
+        ],
+        [
+          "kynna",
+          "so",
+          "introduce"
+        ],
+        [
+          "heilsa",
+          "so",
+          "greet"
+        ],
+        [
+          "kveðja",
+          "no",
+          "regards"
+        ],
+        [
+          "afsaka",
+          "so",
+          "excuse"
+        ],
+        [
+          "fyrirgefa",
+          "so",
+          "forgive"
+        ],
+        [
+          "endurtaka",
+          "so",
+          "repeat"
+        ],
+        [
+          "réttur",
+          "lo",
+          "correct"
+        ],
+        [
+          "kalla",
+          "so",
+          "call"
+        ],
+        [
+          "útlendingur",
+          "no",
+          "foreigner"
+        ],
+        [
+          "fæða",
+          "so",
+          "give birth"
+        ],
+        [
+          "flytja",
+          "so",
+          "move"
+        ],
+        [
+          "vegabréf",
+          "no",
+          "passport"
+        ],
+        [
+          "heimilisfang",
+          "no",
+          "address"
+        ],
+        [
+          "símanúmer",
+          "no",
+          "telephone number"
+        ],
+        [
+          "farsími",
+          "no",
+          "mobile phone"
+        ],
+        [
+          "kennitala",
+          "no",
+          "identification number"
+        ],
+        [
+          "netfang",
+          "no",
+          "e-mail address"
+        ],
+        [
+          "tölvupóstur",
+          "no",
+          "e-mail"
+        ],
+        [
+          "bréf",
+          "no",
+          "letter"
+        ],
+        [
+          "senda",
+          "so",
+          "send"
+        ],
+        [
+          "skilaboð",
+          "no",
+          "message"
+        ],
+        [
+          "afmæli",
+          "no",
+          "birthday"
+        ],
+        [
+          "giftur",
+          "lo",
+          "married"
+        ]
+      ]
+    },
+    {
       "id": "cafe",
       "title": {
         "en": "At the café",
@@ -753,6 +887,11 @@
           "flugvöllur",
           "no",
           "airport"
+        ],
+        [
+          "flugvél",
+          "no",
+          "airplane"
         ],
         [
           "strætó",
@@ -1570,21 +1709,6 @@
           "útvarp",
           "no",
           "radio"
-        ],
-        [
-          "flugvél",
-          "no",
-          "airplane"
-        ],
-        [
-          "farsími",
-          "no",
-          "mobile phone"
-        ],
-        [
-          "tölvupóstur",
-          "no",
-          "e-mail"
         ],
         [
           "forrit",
