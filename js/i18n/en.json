@@ -543,5 +543,22 @@
   "ex.likenb.same": "Yes, about the same",
   "ex.likenb.other": "No, another sound",
   "ex.spell": "Write the word you hear",
-  "ex.spellHint": "It means: {meaning}"
+  "ex.spellHint": "It means: {meaning}",
+  "credits.bin.title": "BÍN: Database of Icelandic Morphology",
+  "credits.bin.text": "Every inflected form in TÖLVA comes from the DMII Core (BÍN-kjarninn) of the Árni Magnússon Institute for Icelandic Studies, <a href=\"https://bin.arnastofnun.is\">bin.arnastofnun.is</a>. License: <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC BY-SA 4.0</a>. Paradigms are shown exactly as published, without changes. Seven indeclinable numerals that the DMII Core lacks were confirmed in the full BÍN through <a href=\"https://ylhyra.is\">Ylhýra</a>.",
+  "credits.wikt.text": "Glosses, IPA, etymology and Norwegian translations come from <a href=\"https://en.wiktionary.org\">Wiktionary</a> by its contributors, extracted by <a href=\"https://kaikki.org\">kaikki.org</a> (wiktextract). License: CC BY-SA 4.0. For the few course words Wiktionary gives no Norwegian for, and where its Norwegian gloss is wrong (another sense or word class, or a misspelling), the Bokmål gloss was written for TÖLVA; every word of every Bokmål gloss is a form in <a href=\"https://ordbokene.no\">Bokmålsordboka</a>. The etymologies were translated into Bokmål by hand for TÖLVA, under the same license, and are shown when the app is in Norwegian.",
+  "credits.tatoeba.text": "Example sentences and translations come from <a href=\"https://tatoeba.org\">Tatoeba</a>. License: <a href=\"https://creativecommons.org/licenses/by/2.0/fr/\">CC BY 2.0 FR</a>. Each sentence in the app links to its page and names its author. Every sentence was checked with GreynirCorrect before use. Tatoeba has a Norwegian Bokmål translation for only a few of these sentences; for the others, the Bokmål translation was written by hand for TÖLVA, from the Icelandic with Tatoeba's English translation as a check, and every word in it is a form in <a href=\"https://ordbokene.no\">Bokmålsordboka</a>.",
+  "credits.audio.title": "Recordings",
+  "credits.audio.text": "Word recordings are played from <a href=\"https://commons.wikimedia.org\">Wikimedia Commons</a>, most of them made with <a href=\"https://lingualibre.org\">Lingua Libre</a>. Each recording shows its speaker and license where it is played.",
+  "credits.tts.title": "Generated voice",
+  "credits.tts.text": "Words and sentences without a human recording are spoken by the generated voice the learner chooses (Steinn, Salka, Búi or Ugla), made ahead of time with <a href=\"https://github.com/OHF-Voice/piper1-gpl\">Piper</a> (GPL-3.0; a build tool, not part of the website). The Icelandic Piper voices were trained on the <a href=\"https://hdl.handle.net/20.500.12537/104\">Talrómur</a> corpus by Reykjavík University (CC BY 4.0). The generated audio is offered under CC BY 4.0 with that credit; sentence audio speaks Tatoeba sentences, credited above. <a href=\"voices.html\">Compare all four voices</a>.",
+  "credits.bm.text": "The <a href=\"bridge.html\">Norwegian bridge</a> links course words to their Bokmål relatives and the Old Norse words behind them: Bokmålsordboka, Universitetet i Bergen og Språkrådet, <a href=\"https://ordbokene.no\">ordbøkene.no</a>, CC BY 4.0. Only the Bokmål lemma, the article number and the Old Norse word are stored.",
+  "credits.clarin.title": "CLARIN-IS frequency lists",
+  "credits.clarin.text": "The order of the course vocabulary follows \"Frequency lists for Icelandic 23.06\", <a href=\"https://hdl.handle.net/20.500.12537/314\">hdl.handle.net/20.500.12537/314</a>. License: CC BY 4.0.",
+  "credits.tools.title": "Tools",
+  "credits.tools.text": "Sentences are checked with <a href=\"https://github.com/mideind/GreynirCorrect\">GreynirCorrect</a> by Miðeind (MIT license) when the data is built. It is not part of the website.",
+  "credits.project.title": "This project",
+  "credits.project.text": "Code: MIT license. Generated data in <code>/data</code>: CC BY-SA 4.0 with the attributions above (see <code>data/LICENSE.md</code> and <code>data/SOURCES.json</code>). The mascot Tala, the icons and the design are original work for TÖLVA. Fonts: system fonts only, no font services.",
+  "credits.project.name": "The name: <span lang=\"is\">tölva</span> (computer) was coined by Sigurður Nordal in 1965 from <span lang=\"is\">tala</span> (number) and <span lang=\"is\">völva</span> (seeress), according to Wiktionary.",
+  "audio.credit": "Synthetic voice {name} ({gender}): Piper, trained on Talrómur (Reykjavík University, CC BY 4.0, hdl.handle.net/20.500.12537/104)."
 }

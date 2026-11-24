@@ -1,0 +1,1312 @@
+{
+  "reviewed": true,
+  "note": "Bokmål translations of the etymologies the dictionary shows from English Wiktionary (data/lexicon.json \"etymology\"), made by hand for TÖLVA. of: the hash of the English text translated (hashSeed in js/engine/rng.js, in hex), so a translation of an older Wiktionary text is not shown and npm run validate lists it. Conventions: language names in Bokmål (norrønt, urgermansk, urindoeuropeisk, gammelengelsk...), glosses in «», cited forms unchanged; the \"Etymology tree\" lists Wiktionary sometimes puts before the text repeat it and are left out. nb null: nothing to translate (why). names: words not in Bokmålsordboka that the translations use, with their source in content/CLAIMS.md. The dictionary loads this file when the app is in Norwegian.",
+  "names": [
+    "urindoeuropeisk",
+    "urindoeuropeiske",
+    "urslavisk",
+    "kasjubisk",
+    "oldgutnisk",
+    "älvdalsk",
+    "norn"
+  ],
+  "etymology": {
+    "halló_uh": {
+      "nb": "Lånt fra dansk hallo. Tatt i bruk på 1600-tallet.",
+      "of": "279240c0"
+    },
+    "hæ_uh": {
+      "nb": "Lånt fra engelsk hi en gang etter 1970, kanskje også påvirket av dansk hej.",
+      "of": "fb131f1e"
+    },
+    "bless_uh": {
+      "nb": "Trolig en avkorting knyttet til hilsenen vertu blessaður (ordrett «vær velsignet»), sammenlign engelsk God bless.",
+      "of": "4fe3bd2e"
+    },
+    "takk_uh": {
+      "nb": "Lånt fra dansk tak, fra norrønt þǫkk (som islandsk þökk er arvet fra), fra urgermansk *þankō, *þankaz. Beslektet med færøysk og norsk takk, dansk tak, svensk tack, engelsk thank, vestfrisisk tank, nederlandsk dank og tysk Dank.",
+      "of": "8d73ec87"
+    },
+    "já_uh": {
+      "nb": "Fra norrønt já («ja»), urgermansk *ja («ja»).",
+      "of": "2eeafc42"
+    },
+    "nei_uh": {
+      "nb": "Fra norrønt nei, fra urgermansk *nai («aldri»), *nē («ikke»), fra urindoeuropeisk *né, *nē, *nēy (nektende partikkel).",
+      "of": "31864751"
+    },
+    "velkominn_lo": {
+      "nb": "Fra norrønt velkominn, fra middelnedertysk wolkomen, willekomen («velkommen»), perfektum partisipp av middelnedertysk willekomen («å ønske velkommen»). Kan analyseres som vel («godt») + kominn («kommet»). Beslektet med engelsk welcome, dansk velkommen.",
+      "of": "64225326"
+    },
+    "góður_lo": {
+      "nb": "Fra norrønt góðr, fra urgermansk *gōdaz, fra urindoeuropeisk *gʰedʰ-.",
+      "of": "625155a1"
+    },
+    "dagur_no": {
+      "nb": "Arvet fra norrønt dagr.",
+      "of": "480f0e9d"
+    },
+    "kvöld_no": {
+      "nb": "Fra norrønt kveld, fra urgermansk *kweldą, *kwildiz.",
+      "of": "d4f3b846"
+    },
+    "nótt_no": {
+      "nb": "Arvet fra norrønt nátt, fra urgermansk *nahts, fra urindoeuropeisk *nókʷts.",
+      "of": "bc8fd5e1"
+    },
+    "morgunn_no": {
+      "nb": "Fra norrønt morgunn, morginn, myrginn.",
+      "of": "22df176b"
+    },
+    "nafn_no": {
+      "nb": "Fra norrønt nafn, fra urgermansk *namô, fra urindoeuropeisk *h₁nómn̥.",
+      "of": "1bb35dd0"
+    },
+    "heita_so": {
+      "nb": "Fra norrønt heita, fra urgermansk *haitaną.",
+      "of": "75d07071"
+    },
+    "vera_so": {
+      "nb": "Fra norrønt vera, tidligere vesa, fra urgermansk *wesaną. Beslektet med dansk være, norsk bokmål være, norsk nynorsk vera og svensk vara.",
+      "of": "d93ebec6"
+    },
+    "tala_so": {
+      "nb": "Fra norrønt tala, fra urgermansk *talōną.",
+      "of": "5b7c344f"
+    },
+    "skilja_so": {
+      "nb": "Fra norrønt skilja, fra urgermansk *skiljaną, fra urindoeuropeisk *(s)kelH-.",
+      "of": "b6f5b521"
+    },
+    "segja_so": {
+      "nb": "Fra norrønt segja, fra urgermansk *sagjaną, opprinnelig fra urindoeuropeisk *sekʷ- («å si»).",
+      "of": "41d959c1"
+    },
+    "spyrja_so": {
+      "nb": "Fra norrønt spyrja, fra urgermansk *spurjaną. Beslektet med gammelengelsk spyrian, tysk spüren, dansk spørge.",
+      "of": "3b596e07"
+    },
+    "svara_so": {
+      "nb": "Fra norrønt svara («å svare»), fra urgermansk *swarōną.",
+      "of": "9792383f"
+    },
+    "hitta_so": {
+      "nb": "Fra norrønt hitta.",
+      "of": "bea76f01"
+    },
+    "koma_so": {
+      "nb": "Fra norrønt koma, fra urgermansk *kwemaną, fra urindoeuropeisk *gʷem-.",
+      "of": "0f00f4da"
+    },
+    "fara_so": {
+      "nb": "Fra norrønt fara, fra urgermansk *faraną, fra urindoeuropeisk *por- («gang, passasje»).",
+      "of": "e4f3dbe4"
+    },
+    "ég_pfn": {
+      "nb": "Det islandske pronomenet fører videre norrønt ek, fra urgermansk *ek, fra urindoeuropeisk *eǵh₂óm. Pronomenet er belagt i urnordiske innskrifter fra minst 200-tallet.",
+      "of": "5068e6cb"
+    },
+    "þú_pfn": {
+      "nb": "Fra norrønt þú, fra urgermansk *þū, fra urindoeuropeisk *túh₂. Beslektet med engelsk thou, tysk du.",
+      "of": "ad442422"
+    },
+    "hann_pfn": {
+      "nb": "Fra norrønt hann, fra urnordisk *hānaʀ, av usikker opprinnelse.",
+      "of": "da9b27c4"
+    },
+    "hún_pfn": {
+      "nb": "Fra norrønt hón.",
+      "of": "cc51d184"
+    },
+    "það_pfn": {
+      "nb": "Fra norrønt þat («det, den»), fra urgermansk *þat, fra urindoeuropeisk *tód (intetkjønn av *só). Beslektet med svensk det, færøysk tað og engelsk that.",
+      "of": "5a19dc57"
+    },
+    "hvernig_ao": {
+      "nb": "Fra norrønt hvernig.",
+      "of": "9c5e1de0"
+    },
+    "og_st": {
+      "nb": "Fra norrønt ok.",
+      "of": "339be277"
+    },
+    "en_st": {
+      "nb": "Fra norrønt en. Betydningene «enn» og «men» har utviklet seg fra former som opprinnelig var forskjellige. Den komparative «enn» er -an på norrønt og -þan på urnordisk, trolig i slekt med engelsk then, mens betydningen «men» er dannet av en forsterkende form.",
+      "of": "7de4b69d"
+    },
+    "ekki_ao": {
+      "nb": "Fra norrønt ekki («ingenting»), fra eitt (intetkjønn av einn («én»)) + det nektende suffikset -gi, -ki.",
+      "of": "de09105e"
+    },
+    "kaffi_no": {
+      "nb": "Lånt fra italiensk caffè, fra osmansk tyrkisk قهوه (kahve) (tyrkisk kahve), fra arabisk قَهْوَة (qahwa, «kaffe»).",
+      "of": "4a71f6a1"
+    },
+    "te_no": {
+      "nb": "Lånt fra hokkien 茶 (tê) (amoy-dialekten).",
+      "of": "522eb7e2"
+    },
+    "vatn_no": {
+      "nb": "Fra norrønt vatn, fra urgermansk *watōr, opprinnelig fra urindoeuropeisk *wódr̥.",
+      "of": "7a205dbc"
+    },
+    "mjólk_no": {
+      "nb": "Fra norrønt mjǫlk, mjolk, fra urgermansk *meluks, beslektet med dansk mælk, svensk mjölk, engelsk milk. Opprinnelig fra urindoeuropeisk *h₂melǵ-. Legg merke til at genitiv mangler i-omlyd (fra *melukiz). Selv om formen skulle tilsi en form med omlyd, **mýlkur, er -jó- ikke den opprinnelige vokalen (fra *-eu-, som i þjóð), men resultatet av to vokalendringer: først brytning, meluk- > mjǫlk, og så forlengelse, o/ǫ > ó foran lk. Dessuten svekkes evnen -iz har til å gi i-omlyd i den første vokalen, av den mellomliggende -u-.",
+      "of": "c9776303"
+    },
+    "bjór_no": {
+      "nb": "Arvet fra norrønt bjórr, fra urgermansk *bebruz.",
+      "of": "8a1abe9b"
+    },
+    "vín_no": {
+      "nb": "Fra norrønt vín, fra latin vīnum («vin»), fra urindoeuropeisk *wóyh₁nom.",
+      "of": "067c966d"
+    },
+    "safi_no": {
+      "nb": "Fra norrønt safi, fra urgermansk *safô («sevje, bærsaft»), fra urindoeuropeisk *sap- («å smake, merke»). Sammenlign gammelengelsk sāfor («sikkel, sleve»).",
+      "of": "fe56c0fe"
+    },
+    "matur_no": {
+      "nb": "Fra norrønt matr («mat»), fra urgermansk *matiz. Derfra kommer også gammelengelsk mēte (mellomengelsk mēte, som engelsk meat kommer fra), gotisk 𐌼𐌰𐍄𐍃 (mats), gammelhøytysk maz, svensk mat, dansk mad og færøysk matur.",
+      "of": "08315c0a"
+    },
+    "brauð_no": {
+      "nb": "Fra norrønt brauð, fra urgermansk *braudą. Beslektet med engelsk bread, tysk Brot, nederlandsk brood. Mulige indoeuropeiske slektninger kan være gammelirsk bruth og gammelgresk φρέαρ (phréar).",
+      "of": "6f4041c2"
+    },
+    "smjör_no": {
+      "nb": "Fra norrønt smjǫr, smør, fra urgermansk *smerwą. Beslektet med svensk smör, færøysk, norsk og dansk smør.",
+      "of": "ebeb0bcb"
+    },
+    "ostur_no": {
+      "nb": "Fra norrønt ostr (som også har gitt dansk ost, færøysk ostur, norsk ost og svensk ost), fra urgermansk *justaz. I slekt med latin ius, urslavisk *juxa. Sammenlign finsk juusto.",
+      "of": "39452dbf"
+    },
+    "kaka_no": {
+      "nb": "Fra norrønt kaka.",
+      "of": "5076c135"
+    },
+    "súpa_no": {
+      "nb": "Først belagt på 1600-tallet. Trolig i det minste delvis et lånord fra middelnedertysk sope, fra gammelsaksisk *sopo, fra urgermansk *supô.",
+      "of": "0e84c8e3"
+    },
+    "fiskur_no": {
+      "nb": "Fra norrønt fiskr, fra urgermansk *fiskaz, fra urindoeuropeisk *peysk-.",
+      "of": "b0f698ff"
+    },
+    "kjöt_no": {
+      "nb": "Fra norrønt kjǫt, fra urgermansk *ketwą. Beslektet med dansk kød, færøysk kjøt, norsk bokmål kjøtt, norsk nynorsk kjøt, kjøtt, og svensk kött.",
+      "of": "d2c9613b"
+    },
+    "epli_no": {
+      "nb": "Fra norrønt epli, fra urgermansk *apaliją, *apluz («eple, frukt»), fra urindoeuropeisk *h₂ébōl.",
+      "of": "7cb8e049"
+    },
+    "sykur_no": {
+      "nb": "Lånt fra dansk sukker, fra middelhøytysk zucker, fra gammelhøytysk zucker, fra gammelitaliensk zucchero, fra arabisk سُكَّر (sukkar), fra tidlig moderne persisk شکر (šakar), fra mellompersisk 𐭱𐭪𐭥 (šakar), fra sanskrit शर्करा (śárkarā).",
+      "of": "1b1fdf08"
+    },
+    "egg_no": {
+      "nb": "Fra norrønt egg, fra urgermansk *ajją, fra urindoeuropeisk *h₂ōwyóm. Beslektet med gammelengelsk ǣġ (foreldet engelsk ey), svensk ägg, gammelhøytysk ei (tysk Ei).",
+      "of": "6927390c"
+    },
+    "morgunmatur_no": {
+      "nb": "Fra morgun («morgen») + matur («måltid»). Beslektet med gammelengelsk morgenmete.",
+      "of": "f526b5d7"
+    },
+    "hádegismatur_no": {
+      "nb": "(genitiv av) hádegi («midt på dagen») + matur («mat»)",
+      "of": "73b11926"
+    },
+    "kvöldmatur_no": {
+      "nb": "Fra kvöld («kveld») + matur («mat»).",
+      "of": "d907a47a"
+    },
+    "bolli_no": {
+      "nb": "Fra norrønt bolli («kopp»), fra urgermansk *bullǭ eller *bullô, fra urindoeuropeisk *bʰel- («å blåse; å svulme opp»).",
+      "of": "500f6500"
+    },
+    "glas_no": {
+      "nb": "Arvet fra norrønt glas(keri), selv lånt fra middelnedertysk glas, fra gammelsaksisk glas.",
+      "of": "7bdfcd40"
+    },
+    "diskur_no": {
+      "nb": "Fra norrønt diskr, fra gammelengelsk disc, fra latin discus, fra gammelgresk δίσκος (dískos).",
+      "of": "8dbf8368"
+    },
+    "skeið_no": {
+      "nb": "Arvet fra norrønt skeið («et skip, en slire»), fra urgermansk *skaiþiz.",
+      "of": "6d0ad1da"
+    },
+    "gaffall_no": {
+      "nb": "Lånt fra dansk gaffel, fra middelnedertysk gaffel/gaffele, fra gammelsaksisk gavala/gafila, fra vestgermansk urspråk *gabulu.",
+      "of": "e1d18675"
+    },
+    "hnífur_no": {
+      "nb": "Først belagt i denne formen på 1500-tallet. Fra eldre knífur, fra norrønt knífr, fra urgermansk *knībaz.",
+      "of": "60827f56"
+    },
+    "reikningur_no": {
+      "nb": "reikna («å regne ut») + -ingur (substantivsuffiks). Tilsvarer nøyaktig engelsk reckoning.",
+      "of": "0a3cc91c"
+    },
+    "kaffihús_no": {
+      "nb": "Fra kaffi + hús.",
+      "of": "19ca7536"
+    },
+    "veitingastaður_no": {
+      "nb": "Fra veitingar («servering, mat og drikke som blir servert») + staður («sted»).",
+      "of": "8c9f1fec"
+    },
+    "þjónn_no": {
+      "nb": "Opprinnelig fra urgermansk *þewaz, som også har gitt gotisk 𐌸𐌹𐌿𐍃 (þius, «tjener») og gammelengelsk þēow.",
+      "of": "7c75d3a0"
+    },
+    "matseðill_no": {
+      "nb": "Fra matur («mat») + seðill («lapp»).",
+      "of": "0f19740d"
+    },
+    "borð_no": {
+      "nb": "Fra norrønt borð, fra urgermansk *burdą.",
+      "of": "073bf545"
+    },
+    "stóll_no": {
+      "nb": "Fra norrønt stóll, fra urgermansk *stōlaz, fra urindoeuropeisk *stāl- («ramme, stativ»).",
+      "of": "51dc6037"
+    },
+    "borða_so": {
+      "nb": "Fra borð («bord»).",
+      "of": "5b190fba"
+    },
+    "drekka_so": {
+      "nb": "Fra norrønt drekka, fra urgermansk *drinkaną.",
+      "of": "a53d0ce6"
+    },
+    "vilja_so": {
+      "nb": "Fra norrønt vilja («å ville»), fra urgermansk *wiljaną, fra urindoeuropeisk *welh₁-.",
+      "of": "41df8068"
+    },
+    "panta_so": {
+      "nb": "Et lån fra 1600-tallet fra middelnedertysk panden («å pantsette»); sammenlign nederlandsk pand («hus; pant»).",
+      "of": "2c8f8fdc"
+    },
+    "borga_so": {
+      "nb": "Fra norrønt borga, fra urgermansk *burgōną.",
+      "of": "54670fd3"
+    },
+    "svangur_lo": {
+      "nb": "Fra norrønt svangr («slank, smal, tynn»), fra urgermansk *swangaz («tynn, slank»). Den opprinnelige betydningen i germansk var trolig «buet innover», slik en kan se av det avledede norrøne svangi («flanke, lyske»), det vil si «sidene av buken, som buer litt innover». På islandsk utviklet betydningen seg fra «tynn» til «sulten». Beslektede ord er færøysk svangur («sulten»), dansk svang («tynn, utsultet»), norsk svang («sulten»), dialektalt svensk svånger («tynn, sulten, tom»), mellomsvensk svanger («slank, avmagret, svært tynn») og middelhøytysk swanger («bøyelig, slank»). Videre opphav er usikkert, kanskje i slekt med mellomirsk seng («smal, tynn»). Ikke i slekt med dansk svanger, norsk svanger, nederlandsk zwanger, tysk schwanger («gravid»).",
+      "of": "c5b5a1b3"
+    },
+    "þyrstur_lo": {
+      "nb": "Fra norrønt þyrstr.",
+      "of": "8283fe59"
+    },
+    "heitur_lo": {
+      "nb": "Fra norrønt heitr, fra urgermansk *haitaz.",
+      "of": "8d56a615"
+    },
+    "kaldur_lo": {
+      "nb": "Fra norrønt kaldr («kald»), fra urgermansk *kaldaz («kald»), fra urgermansk *kalaną («å være kald»), fra urindoeuropeisk *gel- («å være kald; å fryse»).",
+      "of": "6a95a907"
+    },
+    "sætur_lo": {
+      "nb": "Fra norrønt sœtr, fra urgermansk *swōtuz, fra urindoeuropeisk *swéh₂dus.",
+      "of": "02045ab4"
+    },
+    "einn_to": {
+      "nb": "Fra norrønt einn, fra urgermansk *ainaz, fra urindoeuropeisk *h₁óynos. Beslektet med norsk bokmål en, færøysk ein og dansk en.",
+      "of": "7f111ca0"
+    },
+    "tveir_to": {
+      "nb": "Fra norrønt tveir, fra urgermansk *twai. Beslektet med færøysk tveir og dansk to.",
+      "of": "346ac9ed"
+    },
+    "þrír_to": {
+      "nb": "Fra norrønt þrír, fra urnordisk ᚦᚱᛁᛃᛟᛉ (þrijoʀ) (hunkjønn flertall), fra urgermansk *þrīz. Sammenlign færøysk tríggir og dansk tre.",
+      "of": "56335d43"
+    },
+    "fjórir_to": {
+      "nb": "Fra norrønt fjórir, fra urgermansk *fedwōr. Beslektet med færøysk fýra og dansk fire.",
+      "of": "4f72dfd6"
+    },
+    "fimm_to": {
+      "nb": "Fra norrønt fimm («fem»), fra urgermansk *fimf. Beslektet med færøysk fimm og dansk fem.",
+      "of": "3ab9561d"
+    },
+    "fjölskylda_no": {
+      "nb": "Fra fjöl- («mange, fler-») + skylda («plikt»).",
+      "of": "0a10b528"
+    },
+    "móðir_no": {
+      "nb": "Fra norrønt móðir, fra urgermansk *mōdēr, fra urindoeuropeisk *méh₂tēr.",
+      "of": "7ded529c"
+    },
+    "faðir_no": {
+      "nb": "Fra norrønt faðir («far»), fra urgermansk *fadēr, fra urindoeuropeisk *ph₂tḗr. Beslektet med engelsk father, tysk Vater, tysk nedertysk Vader, Voder, Vadder, færøysk faðir, norsk bokmål far, fader, norsk nynorsk far, fader, dansk far, fader, svensk far, fader.",
+      "of": "253fbbfa"
+    },
+    "pabbi_no": {
+      "nb": "Lydmalende ord for «far», som finnes i lignende form i mange språk; se engelsk papa for mer.",
+      "of": "a29262ba"
+    },
+    "foreldri_no": {
+      "nb": "Fra norrønt foreldri. Sammensatt av for- («tidligere») + eldri («eldre», komparativ av gamall). Sammenlign nederlandsk voorouder («forfar»).",
+      "of": "c6fb5597"
+    },
+    "bróðir_no": {
+      "nb": "Fra norrønt bróðir («en bror»), fra urgermansk *brōþēr, fra urindoeuropeisk *bʰréh₂tēr.",
+      "of": "775b6dec"
+    },
+    "systir_no": {
+      "nb": "Fra norrønt systir, fra urnordisk ᛊᚹᛖᛊᛏᚨᚱ (swestar), fra urgermansk *swestēr, fra urindoeuropeisk *swésōr.",
+      "of": "1dd62602"
+    },
+    "sonur_no": {
+      "nb": "Fra norrønt sonr, fra urgermansk *sunuz, fra urindoeuropeisk *suHnús.",
+      "of": "a8c06e6d"
+    },
+    "dóttir_no": {
+      "nb": "Arvet fra norrønt dóttir, fra urnordisk *ᛞᛟᚺᛏᛖᚱ (*dohter /dohtēr/), fra urgermansk *duhtēr, fra urindoeuropeisk *dʰugh₂tḗr, kanskje fra *dʰewgʰ- + *-tḗr.",
+      "of": "128a72a1"
+    },
+    "barn_no": {
+      "nb": "Fra norrønt barn, fra urgermansk *barną.",
+      "of": "0f62cd7f"
+    },
+    "amma_no": {
+      "nb": "Fra norrønt amma.",
+      "of": "e12fc139"
+    },
+    "afi_no": {
+      "nb": "Fra norrønt afi.",
+      "of": "cbb92d8d"
+    },
+    "frændi_no": {
+      "nb": "Fra norrønt frændi, fra urgermansk *frijōndz.",
+      "of": "94d18849"
+    },
+    "frænka_no": {
+      "nb": "Fra norrønt frænka, beslektet med svensk fränka og norsk nynorsk frenke.",
+      "of": "a7575cc7"
+    },
+    "maður_no": {
+      "nb": "Arvet fra norrønt maðr, fra urgermansk *mann-, trolig opprinnelig fra urindoeuropeisk *mon-(u-) («person»).",
+      "of": "9fd8e168"
+    },
+    "kona_no": {
+      "nb": "Fra norrønt kona («kvinne, kone»), fra urgermansk *kwenǭ («kvinne»), fra urindoeuropeisk *gʷḗn («kvinne»).",
+      "of": "4115bd28"
+    },
+    "eiginmaður_no": {
+      "nb": "Fra eiginn («egen») + maður («mann, ektemann»).",
+      "of": "f150540c"
+    },
+    "eiginkona_no": {
+      "nb": "Fra eiginn («egen») + kona («kvinne, kone»).",
+      "of": "64cb6250"
+    },
+    "vinur_no": {
+      "nb": "Fra norrønt vinr, urgermansk *winiz, fra urindoeuropeisk *wenh₁- («å søke, ønske, elske, vinne»).",
+      "of": "91620b68"
+    },
+    "vinkona_no": {
+      "nb": "Fra vinur («venn») + kona («kvinne»).",
+      "of": "c925ddf1"
+    },
+    "strákur_no": {
+      "nb": "Fra norrønt strákr («landstryker, vagabond, fant»), med betydningsendringen «omstreifer» > «gutt».",
+      "of": "e64e1d9f"
+    },
+    "stelpa_no": {
+      "nb": "Fra norrønt stelpa («jente»), av usikker videre opprinnelse. Sammenlign det beslektede danske verbet stolpre («snuble») og tysk stolpern («snuble»), som kan være lydsymbolske. For en lignende dannelse, sammenlign engelsk toddler.",
+      "of": "e482eafa"
+    },
+    "fólk_no": {
+      "nb": "Fra norrønt folk, fólk, fra urgermansk *fulką.",
+      "of": "30e4122d"
+    },
+    "aldur_no": {
+      "nb": "Fra norrønt aldr, urgermansk *aldrą.",
+      "of": "2e13d497"
+    },
+    "hundur_no": {
+      "nb": "Fra norrønt hundr, fra urgermansk *hundaz, fra urindoeuropeisk *ḱwn̥tós, fra *ḱwṓ («hund»).",
+      "of": "b67311f6"
+    },
+    "köttur_no": {
+      "nb": "Arvet fra norrønt kǫttr.",
+      "of": "ed73cd55"
+    },
+    "búa_so": {
+      "nb": "Fra norrønt búa, fra urgermansk *būaną.",
+      "of": "48f13bba"
+    },
+    "eiga_so": {
+      "nb": "Fra norrønt eiga, fra urgermansk *aiganą.",
+      "of": "4ec9f67b"
+    },
+    "þekkja_so": {
+      "nb": "Fra norrønt þekkja, fra urgermansk *þankijaną, fra urindoeuropeisk *teng-.",
+      "of": "f99374ab"
+    },
+    "ungur_lo": {
+      "nb": "Fra norrønt ungr, fra urgermansk *jungaz, fra urindoeuropeisk *h₂yuh₁en-.",
+      "of": "5372658b"
+    },
+    "minn_fn": {
+      "nb": "Fra norrønt mínn, fra urgermansk *mīnaz, fra urindoeuropeisk *méynos.",
+      "of": "cf70d9df"
+    },
+    "þinn_fn": {
+      "nb": "Fra norrønt þínn, fra urgermansk *þīnaz.",
+      "of": "13cf55db"
+    },
+    "sinn_fn": {
+      "nb": "Fra norrønt sínn, sinn, fra urgermansk *sīnaz.",
+      "of": "f3f74143"
+    },
+    "sig_afn": {
+      "nb": "Arvet fra norrønt sik, fra urgermansk *sik.",
+      "of": "2cfc19a8"
+    },
+    "sex_to": {
+      "nb": "Fra norrønt sex, fra urgermansk *sehs. Beslektet med færøysk seks og dansk seks.",
+      "of": "0d873cd8"
+    },
+    "sjö_to": {
+      "nb": "Fra norrønt sjau, fra urgermansk *sebun, fra eldre *sebunt, fra urindoeuropeisk *septḿ̥.",
+      "of": "c8404a5a"
+    },
+    "átta_to": {
+      "nb": "Fra norrønt átta, fra urgermansk *ahtōu, fra urindoeuropeisk *oḱtṓw. Sammenlign norsk åtte, svensk åtta, dansk otte.",
+      "of": "3d7d0a2d"
+    },
+    "níu_to": {
+      "nb": "Arvet fra norrønt níu («ni»), fra urgermansk *newun, fra urindoeuropeisk *h₁néwn̥. Beslektet med dansk ni, færøysk níggju, norsk ni, svensk nio.",
+      "of": "8db88304"
+    },
+    "tíu_to": {
+      "nb": "Arvet fra norrønt tíu, fra urgermansk *tehun («ti»), fra urindoeuropeisk *déḱm̥ («ti»). Beslektet med færøysk tíggju, svensk tio, dansk ti og engelsk ten.",
+      "of": "092c4852"
+    },
+    "tuttugu_to": {
+      "nb": "Fra norrønt tuttugu, fra urgermansk *twai tigiwiz.",
+      "of": "31dff26d"
+    },
+    "hús_no": {
+      "nb": "Fra norrønt hús, fra urgermansk *hūsą.",
+      "of": "61973e8a"
+    },
+    "heimili_no": {
+      "nb": "Fra norrønt heimili («hjem»), en dannelse i slekt med heimr («rike, område»).",
+      "of": "76b6ef0d"
+    },
+    "borg_no": {
+      "nb": "Fra norrønt borg, fra urgermansk *burgz, fra urindoeuropeisk *bʰerǵʰ-. I slekt med berg, bjarg («fjell, klippe»).",
+      "of": "c1187ec9"
+    },
+    "bær_no": {
+      "nb": "Fra norrønt bǿr.",
+      "of": "3ec2fc1a"
+    },
+    "land_no": {
+      "nb": "Fra norrønt land, fra urgermansk *landą, fra urindoeuropeisk *lendʰ- («land, hei»).",
+      "of": "b226b453"
+    },
+    "gata_no": {
+      "nb": "Fra norrønt gata, fra urgermansk *gatwǭ.",
+      "of": "72191bcd"
+    },
+    "vegur_no": {
+      "nb": "Fra norrønt vegr, urgermansk *wegaz, fra urindoeuropeisk *weǵʰ-. Beslektet med latin via.",
+      "of": "11437094"
+    },
+    "staður_no": {
+      "nb": "Avledet av norrønt staðr.",
+      "of": "15b301a2"
+    },
+    "búð_no": {
+      "nb": "Fra norrønt búð, en variant av *bóð, fra urgermansk *bōþō («bygning, bolig»).",
+      "of": "1ddd1c64"
+    },
+    "skóli_no": {
+      "nb": "Lånt fra latin schola, fra gammelgresk σχολή (skholḗ).",
+      "of": "7a856344"
+    },
+    "sjúkrahús_no": {
+      "nb": "Fra sjúkur + hús.",
+      "of": "5b251ebe"
+    },
+    "hótel_no": {
+      "nb": "Lånt fra dansk hotel.",
+      "of": "f4b1524c"
+    },
+    "flugvöllur_no": {
+      "nb": "Fra flug («flyging») + völlur («voll, slette»).",
+      "of": "6dfe984f"
+    },
+    "strætó_no": {
+      "nb": "Forkortelse av strætisvagn med -ó.",
+      "of": "bb79a738"
+    },
+    "bíll_no": {
+      "nb": "Lånt fra dansk bil, en forkortet form av automobil, opprinnelig fra gammelgresk αὐτός (autós, «selv»), stammen αὐτo- (auto-) + latin mōbilis («bevegelig»), altså «[kjøretøy] som beveger seg selv».",
+      "of": "65525114"
+    },
+    "hjól_no": {
+      "nb": "Fra norrønt hjól, opprinnelig flertall av hvel.",
+      "of": "99e3048b"
+    },
+    "bátur_no": {
+      "nb": "Fra norrønt bátr, fra gammelengelsk bāt («båt»). Dublett av beit, som er arvet direkte fra urgermansk.",
+      "of": "75a038ac"
+    },
+    "kirkja_no": {
+      "nb": "Fra norrønt kirkja, fra gammelengelsk cirice.",
+      "of": "f57c75b7"
+    },
+    "safn_no": {
+      "nb": "Fra safna, fra norrønt safna, en sideform av samna («å samle, sette sammen»), fra urgermansk *samnōną («å samle»). Mer under sam.",
+      "of": "c62c264f"
+    },
+    "sundlaug_no": {
+      "nb": "Fra sund («svømming») + laug («basseng»).",
+      "of": "724276ce"
+    },
+    "garður_no": {
+      "nb": "Fra norrønt garðr, fra urgermansk *gardaz, fra urindoeuropeisk *gʰórdʰos < *gʰerdʰ-.",
+      "of": "ad1bde89"
+    },
+    "kort_no": {
+      "nb": "Arvet fra norrønt kort («et kart»), fra middelhøytysk karte, fra gammelfransk carte, fra latin charta («papyrus, papir»). I slekt med dansk kort («et kart») og tysk Karte («et kort; et kart»).",
+      "of": "dcbd1730"
+    },
+    "hægri_lo": {
+      "nb": "Fra norrønt hǿgri, komparativ av hǿgr («lett, beleilig»), fra urgermansk *hōgiz. Beslektet med dansk højre og svensk högra, höger.",
+      "of": "d1610ba8"
+    },
+    "vinstri_lo": {
+      "nb": "Fra norrønt vinstri, fra urgermansk *winistraz. Beslektet med gammelhøytysk winstar, dansk venstre og svensk vänster.",
+      "of": "3b59db67"
+    },
+    "beint_ao": {
+      "nb": "Intetkjønn av beinn.",
+      "of": "cbb57e33"
+    },
+    "hér_ao": {
+      "nb": "Fra norrønt hér («her»), fra urgermansk *hē₂r.",
+      "of": "e842119a"
+    },
+    "þar_ao": {
+      "nb": "Fra norrønt þar, fra urgermansk *þar.",
+      "of": "0a106d8e"
+    },
+    "hvar_ao": {
+      "nb": "Fra norrønt hvar, fra urgermansk *hwar.",
+      "of": "7fe0bb77"
+    },
+    "norður_ao": {
+      "nb": "Fra norrønt norðr, fra urgermansk *nurþrą.",
+      "of": "eeedc5d3"
+    },
+    "suður_ao": {
+      "nb": "Fra norrønt suðr, fra urgermansk *sunþrą.",
+      "of": "9058656d"
+    },
+    "austur_ao": {
+      "nb": "Fra norrønt austr, fra urgermansk *austrą.",
+      "of": "70bde677"
+    },
+    "vestur_ao": {
+      "nb": "Fra norrønt vestr, fra urgermansk *westrą.",
+      "of": "426335a4"
+    },
+    "ganga_so": {
+      "nb": "Fra norrønt ganga, fra urgermansk *ganganą, fra urindoeuropeisk *ǵʰengʰ-.",
+      "of": "e62da48e"
+    },
+    "keyra_so": {
+      "nb": "Fra norrønt keyra, fra urgermansk *kaurijaną, som også har gitt dansk køre («å kjøre, reise»). Ingen kjent direkte motsvarighet i vest- eller østgermansk, men kanskje beslektet med engelsk chare, tysk kehren eller med serbokroatisk журити (се)/žúriti (se) («å skynde seg»).",
+      "of": "eff1a28c"
+    },
+    "finna_so": {
+      "nb": "Fra norrønt finna, fra urgermansk *finþaną, fra urindoeuropeisk *pent- («å gå, passere; sti, bro»).",
+      "of": "6179009f"
+    },
+    "leita_so": {
+      "nb": "Fra norrønt leita.",
+      "of": "a908bbb0"
+    },
+    "beygja_so": {
+      "nb": "Fra norrønt beygja, fra urgermansk *baugijaną.",
+      "of": "56cd3df8"
+    },
+    "bíða_so": {
+      "nb": "Fra norrønt bíða, fra urgermansk *bīdaną. Supinum beðið, som er uregelmessig, er trolig et resultat av sammenblanding med verbet biðja («å be»).",
+      "of": "a15b209d"
+    },
+    "í_fs": {
+      "nb": "Fra norrønt í, fra urgermansk *in, fra urindoeuropeisk *h₁én.",
+      "of": "e8ef360b"
+    },
+    "á_fs": {
+      "nb": "Fra norrønt á, fra urnordisk ᚨᚾ (an), fra urgermansk *ana.",
+      "of": "c91468d1"
+    },
+    "til_fs": {
+      "nb": "Fra norrønt til, fra urgermansk *til (sammenlign *tilą («mål»)).",
+      "of": "cdf7cb09"
+    },
+    "frá_fs": {
+      "nb": "Fra norrønt frá, fra urgermansk *fram.",
+      "of": "1ea01e8f"
+    },
+    "við_fs": {
+      "nb": "Fra norrønt við.",
+      "of": "62f3e056"
+    },
+    "hjá_fs": {
+      "nb": "Arvet fra norrønt hjá.",
+      "of": "a759dba2"
+    },
+    "úr_fs": {
+      "nb": "Fra norrønt ór («ut av»), fra urgermansk *uz («ut, ut av»). Mer under gammelengelsk or-.",
+      "of": "103b314d"
+    },
+    "yfir_fs": {
+      "nb": "Fra norrønt yfir, fra urgermansk *ubiri, fra urindoeuropeisk *upéri, fra *upér, fra *upo. I slekt med of («for») og ofan («ovenfra»).",
+      "of": "829d1400"
+    },
+    "undir_fs": {
+      "nb": "Fra norrønt undir, fra urgermansk *under.",
+      "of": "51f03336"
+    },
+    "tími_no": {
+      "nb": "Fra norrønt tími, fra urgermansk *tīmô («tid»), fra urindoeuropeisk *tī-, fra *dī- («tid»).",
+      "of": "1a59dae0"
+    },
+    "vika_no": {
+      "nb": "Fra norrønt vika, fra urgermansk *wikǭ, fra urindoeuropeisk *weyg- («å bøye, vri, snu, vike»).",
+      "of": "96f280c1"
+    },
+    "mánuður_no": {
+      "nb": "Fra norrønt mánuðr, en variant av mánaðr, fra urgermansk *mēnōþs («måned»), fra en avledning av urindoeuropeisk *mḗh₁n̥s («måne, måned»). Se også máni. Beslektet med færøysk mánaður, dansk og norsk bokmål måned og svensk og norsk nynorsk månad, engelsk month, gammelengelsk mōnaþ, tysk Monat, nederlandsk maand.",
+      "of": "f6ebf878"
+    },
+    "ár_no": {
+      "nb": "Arvet fra norrønt ár («år»), fra urgermansk *jērą, fra urindoeuropeisk *yeh₁r-. Beslektet med nederlandsk jaar og afrikaans jaar, engelsk year, tysk Jahr, dansk år, norsk bokmål år og svensk år.",
+      "of": "f261abfc"
+    },
+    "klukka_no": {
+      "nb": "Fra norrønt klokka, fra latin clocca.",
+      "of": "e25b50eb"
+    },
+    "mínúta_no": {
+      "nb": "Lånt fra latin minuta.",
+      "of": "86a27773"
+    },
+    "helgi_no": {
+      "nb": "Fra norrønt helgr (akkusativ og dativ helgi).",
+      "of": "53e0d35f"
+    },
+    "mánudagur_no": {
+      "nb": "Fra norrønt mánadagr, fra vestgermansk urspråk *mānini dag, et oversettelseslån av latin dies lunae. Sammenlign færøysk mánadagur, dansk og norsk bokmål mandag, svensk og norsk nynorsk måndag.",
+      "of": "8ec99edb"
+    },
+    "þriðjudagur_no": {
+      "nb": "Fra þriðji («tredje») + dagur («dag»).",
+      "of": "b68312f4"
+    },
+    "miðvikudagur_no": {
+      "nb": "Fra mið («midt») + vika («uke») + dagur («dag»). Sammenlign tysk Mittwoch («onsdag»).",
+      "of": "7c7eb96c"
+    },
+    "fimmtudagur_no": {
+      "nb": "Fra fimmti («femte») + dagur («dag»).",
+      "of": "85e4bdf4"
+    },
+    "föstudagur_no": {
+      "nb": "Fra fasta («faste») + dagur («dag»).",
+      "of": "c368b690"
+    },
+    "laugardagur_no": {
+      "nb": "Fra norrønt laugardagr.",
+      "of": "a5a6ee67"
+    },
+    "sunnudagur_no": {
+      "nb": "Fra sunna («sol») + dagur («dag»). Fra norrønt sunnudagr, fra vestgermansk urspråk *sunnōn dag, et oversettelseslån av latin dies Solis.",
+      "of": "bc0ab8aa"
+    },
+    "sumar_no": {
+      "nb": "Fra norrønt sumar (intetkjønn), tidligere sumarr (hankjønn), fra urgermansk *sumaraz.",
+      "of": "79af9c6d"
+    },
+    "vetur_no": {
+      "nb": "Fra norrønt vetr («vinter, år»), fra urgermansk *wintruz.",
+      "of": "17cce6c6"
+    },
+    "vor_no": {
+      "nb": "Fra norrønt vár.",
+      "of": "f0f91a1c"
+    },
+    "haust_no": {
+      "nb": "Fra norrønt haust, fra eldre haustr (hankjønn), fra urgermansk *harbustaz, *harbistaz, opprinnelig fra urindoeuropeisk *kerp-. Sammenlign gammelengelsk hærfest, engelsk harvest, gammelhøytysk Herbist, tysk Herbst, dansk høst og svensk höst.",
+      "of": "eaaff3b4"
+    },
+    "núna_ao": {
+      "nb": "Fra norrønt nú («nå»), fra urgermansk *nu.",
+      "of": "6da48719"
+    },
+    "alltaf_ao": {
+      "nb": "allt («alt») + af («fra, av»).",
+      "of": "fade23f1"
+    },
+    "aldrei_ao": {
+      "nb": "Fra norrønt aldri, aldrigi.",
+      "of": "758811d9"
+    },
+    "oft_ao": {
+      "nb": "Fra norrønt oft («ofte»), opt («ofte»), fra urgermansk *ufta, *uftō («ofte»).",
+      "of": "70d6da3d"
+    },
+    "snemma_ao": {
+      "nb": "Fra norrønt snemma, snimma, fra urgermansk *sneumô. Beslektet med færøysk snimma.",
+      "of": "c12b20ad"
+    },
+    "hvenær_ao": {
+      "nb": "Fra norrønt hvenær.",
+      "of": "a64f9472"
+    },
+    "byrja_so": {
+      "nb": "Fra norrønt byrja, fra urgermansk *burjaną.",
+      "of": "319d97cd"
+    },
+    "hætta_so": {
+      "nb": "Fra norrønt hætta, fra urgermansk *hanhtijaną. I betydningen «slutte» har et trykklett prefiks trolig falt bort, kanskje *ab-.",
+      "of": "3bca03e4"
+    },
+    "sofa_so": {
+      "nb": "Fra norrønt sofa, fra urgermansk *swefaną. Ikke i slekt med engelsk sofa.",
+      "of": "1ec63cce"
+    },
+    "vakna_so": {
+      "nb": "Fra norrønt vakna, fra urgermansk *waknaną. Ved overflateanalyse vakinn («våken») + -a (suffiks for at noe begynner).",
+      "of": "ef7e51e7"
+    },
+    "um_fs": {
+      "nb": "Arvet fra norrønt um, arvet fra urgermansk *umbi («rundt, om»).",
+      "of": "5427944b"
+    },
+    "eftir_fs": {
+      "nb": "Fra norrønt eptir, eptr, fra urgermansk *aftiri («lenger akter, lenger bak»), *after, fra urindoeuropeisk *h₂epóteros («lenger bak, lenger borte»), komparativ form av *h₂epó («av, bak»).",
+      "of": "657f42e7"
+    },
+    "fyrir_fs": {
+      "nb": "Fra norrønt fyrir («før, for»), fra urgermansk *furi («før, for»).",
+      "of": "467f5138"
+    },
+    "þegar_st": {
+      "nb": "Fra norrønt þegar, beslektet med gammelsvensk þaghar, oldgutnisk þegar.",
+      "of": "33747c9a"
+    },
+    "verð_no": {
+      "nb": "Fra norrønt verðr, fra urgermansk *werþaz. Beslektet med gammelengelsk weorþ («verdi»), engelsk worth.",
+      "of": "22781643"
+    },
+    "peningur_no": {
+      "nb": "Fra norrønt peningr, fra urgermansk *panningaz. Beslektet med engelsk penny.",
+      "of": "df990e6e"
+    },
+    "króna_no": {
+      "nb": "Lånt fra dansk krone, opprinnelig fra latin corōna.",
+      "of": "f1faf6cb"
+    },
+    "föt_no": {
+      "nb": "Fra norrønt fǫt («klær»), flertall av fat («et klesplagg»), fra urgermansk *fatą (samme betydning).",
+      "of": "eb27eea5"
+    },
+    "skór_no": {
+      "nb": "Fra norrønt skór, fra urgermansk *skōhaz, av uklar opprinnelse; kanskje en avledning av *skehaną («å bevege seg raskt»), fra urindoeuropeisk *skek- («å bevege seg raskt, hoppe»).",
+      "of": "ef631998"
+    },
+    "peysa_no": {
+      "nb": "Trolig en avkorting av middelnedertysk wambeis eller mellomnederlandsk wambeis; se nederlandsk wambuis («vattert våpenkjole») for mer.",
+      "of": "4198cfbf"
+    },
+    "jakki_no": {
+      "nb": "Fra dansk jakke, fra middelnedertysk og middelhøytysk jacke, fra mellomfransk jaque.",
+      "of": "733a2068"
+    },
+    "buxur_no": {
+      "nb": "Belagt siden 1500-tallet. Lånt fra middelnedertysk buxe, boxe, fra buck («bukk, geitebukk») + hose («bukser»), opprinnelig om bukser av geiteskinn. Beslektet med dansk buks, svensk byxa, norsk bukse, norsk nynorsk bukse, kasjubisk bùksë.",
+      "of": "9df4d15b"
+    },
+    "kjóll_no": {
+      "nb": "Lånt fra dansk kjole, sammentrukket fra kjortel, beslektet med islandsk kyrtill.",
+      "of": "689cb14c"
+    },
+    "húfa_no": {
+      "nb": "Arvet fra norrønt húfa. Beslektet med skotsk how, gammelhøytysk hūba (tysk Haube), færøysk húgva, dansk og norsk bokmål hue, norsk nynorsk huve og svensk huva.",
+      "of": "76c1ec17"
+    },
+    "poki_no": {
+      "nb": "Fra norrønt poki, fra urgermansk *puhô.",
+      "of": "41de9ef5"
+    },
+    "stærð_no": {
+      "nb": "Fra norrønt stœrð, fra urgermansk *stōriþō, selv en substantivdannelse fra *stōraz («stor»).",
+      "of": "28b88a5d"
+    },
+    "gjöf_no": {
+      "nb": "Fra norrønt gjǫf, fra urgermansk *gebō.",
+      "of": "96bb50b7"
+    },
+    "kaupa_so": {
+      "nb": "Fra norrønt kaupa.",
+      "of": "154a9c2f"
+    },
+    "selja_so": {
+      "nb": "Fra norrønt selja («selge»), fra urgermansk *saljaną.",
+      "of": "6c0691eb"
+    },
+    "dýr_lo": {
+      "nb": "Fra norrønt dýrr, fra urgermansk *diurijaz, som også har gitt gammelengelsk dīere (engelsk dear), gammelhøytysk tiuri. Beslektet med dansk dyr, færøysk dýrur, norsk bokmål dyr og svensk dyr.",
+      "of": "578bfaa6"
+    },
+    "ódýr_lo": {
+      "nb": "Fra ó- («u-») + dýr («dyr»).",
+      "of": "d5ed5ae8"
+    },
+    "stór_lo": {
+      "nb": "Fra norrønt stórr, fra urgermansk *stōraz.",
+      "of": "27409657"
+    },
+    "lítill_lo": {
+      "nb": "Fra norrønt lítill, fra urgermansk *lītilaz. Beslektet med færøysk lítil, dansk liden, norsk liten, svensk liten, älvdalsk litn.",
+      "of": "9ca63ee8"
+    },
+    "nýr_lo": {
+      "nb": "Fra norrønt nýr, fra urgermansk *niwjaz, fra urindoeuropeisk *néwos («ny»).",
+      "of": "590ceac3"
+    },
+    "gamall_lo": {
+      "nb": "Fra norrønt gamall, fra urgermansk *gamalaz.",
+      "of": "29af471d"
+    },
+    "fallegur_lo": {
+      "nb": "Belagt siden 1500-tallet. Sammenlign færøysk falligur («vakker»). Trolig avledet av verbet falla, som tysk gefällig.",
+      "of": "69a0c9ba"
+    },
+    "rauður_lo": {
+      "nb": "Fra norrønt rauðr, fra urgermansk *raudaz.",
+      "of": "0f02eb05"
+    },
+    "blár_lo": {
+      "nb": "Fra norrønt blár, fra urgermansk *blēwaz.",
+      "of": "25e438e4"
+    },
+    "grænn_lo": {
+      "nb": "Fra norrønt grœnn, fra urgermansk *grōniz, som også har gitt engelsk green.",
+      "of": "919215f5"
+    },
+    "gulur_lo": {
+      "nb": "Fra norrønt gulr, fra urgermansk *gulaz.",
+      "of": "06892cbb"
+    },
+    "hvítur_lo": {
+      "nb": "Fra norrønt hvítr, fra urgermansk *hwītaz, opprinnelig fra urindoeuropeisk *ḱweytos.",
+      "of": "08110447"
+    },
+    "svartur_lo": {
+      "nb": "Fra norrønt svartr, fra urgermansk *swartaz, fra urindoeuropeisk *swordo- («skitten, mørk, svart»).",
+      "of": "a5b0d5d1"
+    },
+    "með_fs": {
+      "nb": "Fra norrønt með.",
+      "of": "4a311765"
+    },
+    "án_fs": {
+      "nb": "Fra norrønt án, ón, fra urgermansk *ēnu.",
+      "of": "f363f36a"
+    },
+    "af_fs": {
+      "nb": "Fra norrønt af, fra urgermansk *ab.",
+      "of": "d5a529aa"
+    },
+    "hundrað_to": {
+      "nb": "Fra norrønt hundrað, fra urgermansk *hundaradą, fra *hundą (< urindoeuropeisk *ḱm̥tóm) + *radą («telling»).",
+      "of": "30d023f9"
+    },
+    "þúsund_to": {
+      "nb": "Arvet fra norrønt þúsund, fra urgermansk *þūsundī.",
+      "of": "38be8352"
+    },
+    "eða_st": {
+      "nb": "Fra norrønt eða, fra urgermansk *efþau og dermed i slekt med gammelhøytysk odar, gammelengelsk oþþe, gotisk 𐌰𐌹𐌸𐌸𐌰𐌿 (aiþþau).",
+      "of": "2a1dd9e9"
+    },
+    "veður_no": {
+      "nb": "Arvet fra norrønt veðr («vær»).",
+      "of": "89f86afc"
+    },
+    "rigning_no": {
+      "nb": "Fra rigna + -ing.",
+      "of": "bc055766"
+    },
+    "snjór_no": {
+      "nb": "Fra norrønt snjór, snjár, snær.",
+      "of": "89eb0f28"
+    },
+    "vindur_no": {
+      "nb": "Fra norrønt vindr, fra urgermansk *windaz, fra urindoeuropeisk *h₂wéh₁n̥ts («blåsende»), presens partisipp av *h₂weh₁- («å blåse»).",
+      "of": "a7c1e92e"
+    },
+    "sól_no": {
+      "nb": "Fra norrønt sól, fra urgermansk *sōl («sol»).",
+      "of": "7f9aca3c"
+    },
+    "ský_no": {
+      "nb": "Fra norrønt ský, fra urgermansk *skiwją («sky, skydekke»), fra urindoeuropeisk *(s)kewH- («å dekke, skjule»).",
+      "of": "b3943d85"
+    },
+    "norðurljós_no": {
+      "nb": "Fra norður («nord») + ljós («lys»).",
+      "of": "e0e9ec78"
+    },
+    "eldfjall_no": {
+      "nb": "Fra eldur («ild») + fjall («fjell»).",
+      "of": "ae2c3cf6"
+    },
+    "jökull_no": {
+      "nb": "Fra norrønt jǫkull, fra urgermansk *jekulaz. Diminutiv av jaki («et stykke is, brukket is»).",
+      "of": "d2cfca66"
+    },
+    "foss_no": {
+      "nb": "Arvet fra norrønt fors. Beslektede ord: færøysk fossur, norsk fors, dansk fors, svensk fors, engelsk force (om en foss), middelnedertysk vorsch og norn fors.",
+      "of": "6ea6615c"
+    },
+    "fjall_no": {
+      "nb": "Fra norrønt fjall, urgermansk *falisaz, fra urindoeuropeisk *pels-.",
+      "of": "26c2f8c7"
+    },
+    "sjór_no": {
+      "nb": "Fra norrønt sær, fra urgermansk *saiwiz.",
+      "of": "36bd8efe"
+    },
+    "rigna_so": {
+      "nb": "Fra norrønt regna, fra urgermansk *regnōną («å regne»), verbform av *regną («regn»), fra urindoeuropeisk *Hreǵʰ- («å flyte»).",
+      "of": "100ecb59"
+    },
+    "snjóa_so": {
+      "nb": "Fra norrønt snjóva, fra urgermansk *snīwaną.",
+      "of": "eb70cbf4"
+    },
+    "sjá_so": {
+      "nb": "Arvet fra norrønt sjá, séa, fra urgermansk *sehwaną, fra urindoeuropeisk *sekʷ- («å se, legge merke til»).",
+      "of": "6f8500fe"
+    },
+    "heyra_so": {
+      "nb": "Fra norrønt heyra, fra urgermansk *hauzijaną, fra urindoeuropeisk *h₂ḱh₂owsyéti.",
+      "of": "fdad017c"
+    },
+    "mjög_ao": {
+      "nb": "Fra norrønt mjǫk, fra urgermansk *mekō, fra urindoeuropeisk *méǵh₂s; i slekt med mikill (< *mikilaz, avledet av en form med suffiks av det samme indoeuropeiske ordet).",
+      "of": "b75d1de7"
+    },
+    "úti_ao": {
+      "nb": "Fra norrønt úti, fra urgermansk *ūtai.",
+      "of": "efda3aa0"
+    },
+    "kannski_ao": {
+      "nb": "Trolig lånt fra dansk kanske («kanskje»), men i alle fall i slekt med det. Andre beslektede ord er færøysk kanska, norsk nynorsk kanskje, norsk bokmål kanskje, svensk kanske.",
+      "of": "b8fb1da9"
+    },
+    "vinna_no": {
+      "nb": "Fra norrønt vinna.",
+      "of": "a30b7ad7"
+    },
+    "kennari_no": {
+      "nb": "Fra kenna («å lære bort») + -ari (suffiks som danner personbetegnelser av verb).",
+      "of": "2d278f27"
+    },
+    "nemandi_no": {
+      "nb": "Fra nema + -andi.",
+      "of": "764d56b4"
+    },
+    "bók_no": {
+      "nb": "Fra norrønt bók, fra urgermansk *bōks.",
+      "of": "fc4dd737"
+    },
+    "tölva_no": {
+      "nb": "Et teleskopord, laget av Sigurður Nordal i 1965 av tala («tall») + völva («spåkone»).",
+      "of": "5293ec72"
+    },
+    "sími_no": {
+      "nb": "Bygd på síma («snor»).",
+      "of": "49a79ec1"
+    },
+    "orð_no": {
+      "nb": "Fra norrønt orð, fra urgermansk *wurdą, fra urindoeuropeisk *werdʰo- («ord»), fra urindoeuropeisk *werh₁- («å snakke»). Beslektet med gammelfrisisk word, gammelsaksisk word, nederlandsk woord, gammelhøytysk wort (tysk Wort), svensk ord, gotisk 𐍅𐌰𐌿𐍂𐌳 (waurd) og engelsk word. Den urindoeuropeiske roten har også gitt latin verbum, litauisk vardas og, mer fjernt, gammelgresk εἴρω (eírō, «å si») og gammelkirkeslavisk ротити сѧ (rotiti sę, «å sverge») (russisk ротиться (rotitʹsja, «å avlegge løfte»)).",
+      "of": "6f3a6b71"
+    },
+    "tungumál_no": {
+      "nb": "Fra tunga («tunge») + mál («tale, språk»).",
+      "of": "e7ef344b"
+    },
+    "íslenska_no": {
+      "nb": "Fra íslenskur.",
+      "of": "645b9977"
+    },
+    "enska_no": {
+      "nb": "Fra norrønt enska.",
+      "of": "0fc8520b"
+    },
+    "spurning_no": {
+      "nb": "spurn («spørring», brukt i faste uttrykk) + -ing («-ing»).",
+      "of": "a5fc4f0f"
+    },
+    "svar_no": {
+      "nb": "Fra norrønt svar («svar»).",
+      "of": "3e5ee597"
+    },
+    "læra_so": {
+      "nb": "Fra senere norrønt læra, lǽra, fra gammelsaksisk lērian, opprinnelig fra urgermansk *laizijaną.",
+      "of": "80dc7a2b"
+    },
+    "lesa_so": {
+      "nb": "Fra norrønt lesa, fra urgermansk *lesaną.",
+      "of": "91f3ba75"
+    },
+    "skrifa_so": {
+      "nb": "Fra norrønt skrifa, fra urgermansk *skrībaną, et sent lån fra latin scrībō («skriver»), opprinnelig fra urindoeuropeisk *skreybʰ-. Sammenlign færøysk skriva, dansk skrive, vestfrisisk skriuwe, nedertysk schrieven, nederlandsk schrijven, tysk schreiben, svensk skriva.",
+      "of": "daf0cebd"
+    },
+    "hlusta_so": {
+      "nb": "Fra norrønt hlusta, tilsvarer hlust f («øregang») + -a (suffiks som danner verb av substantiv).",
+      "of": "b9dae179"
+    },
+    "vinna_so": {
+      "nb": "Fra norrønt vinna, fra urgermansk *winnaną, fra urindoeuropeisk *wenh₁- («å streve, ønske, begjære, elske»). I slekt med færøysk vinna, svensk vinna, norsk bokmål vinne, engelsk win, nederlandsk winnen og tysk gewinnen.",
+      "of": "e7990ef7"
+    },
+    "hjálpa_so": {
+      "nb": "Fra norrønt hjalpa, fra urgermansk *helpaną, fra urindoeuropeisk *ḱelb-, *ḱelp-.",
+      "of": "6e8abc26"
+    },
+    "kunna_so": {
+      "nb": "Fra norrønt kunna, fra urgermansk *kunnaną, fra urindoeuropeisk *ǵneh₃-.",
+      "of": "a54a4480"
+    },
+    "muna_so": {
+      "nb": "Fra norrønt muna, fra urgermansk *munaną. Beslektet med færøysk muna og engelsk mind.",
+      "of": "01342d58"
+    },
+    "hugsa_so": {
+      "nb": "Fra norrønt hugsa.",
+      "of": "4c33c69b"
+    },
+    "erfiður_lo": {
+      "nb": "Fra norrønt erfiðr, synkront analysert som et adjektiv dannet av erfiði («slit»).",
+      "of": "9f2984e5"
+    },
+    "auðveldur_lo": {
+      "nb": "Fra norrønt auðveldr.",
+      "of": "1fd0852c"
+    },
+    "skemmtilegur_lo": {
+      "nb": "Avledet av norrønt skemtiligr («morsom, interessant, hyggelig»), sammenlign norrønt óskemtiligr («kjedelig, uinteressant»), skemtiliga («morsomt, hyggelig»), skemta («å more, å underholde»), skemtan eller skemtun («underholdning») og skemtanligr («morsom, hyggelig»). Ved overflateanalyse skemmta + -legur.",
+      "of": "a85e3a2e"
+    },
+    "íslenskur_lo": {
+      "nb": "Fra norrønt íslenzkr, fra Ísland.",
+      "of": "c5f7772e"
+    },
+    "sjónvarp_no": {
+      "nb": "Fra sjón («syn») + varp («projeksjon»), etter mønster av útvarp («kringkasting, radio»).",
+      "of": "0962ef97"
+    },
+    "útvarp_no": {
+      "nb": "Fra út («ut») + varp («projeksjon, kast»).",
+      "of": "b701afb5"
+    },
+    "flugvél_no": {
+      "nb": "Fra flug («flyging») + vél («maskin»).",
+      "of": "792b17dc"
+    },
+    "farsími_no": {
+      "nb": "Fra far- («mobil, fjern») + sími («telefon»).",
+      "of": "bca56935"
+    },
+    "tölvupóstur_no": {
+      "nb": "Sammensatt av tölva («datamaskin») + póstur («post»).",
+      "of": "a3e70db8"
+    },
+    "forrit_no": {
+      "nb": "Fra for- («for-, pro-») + rit («skrift»). Oversettelseslån av engelsk program, som er avledet av gammelgresk πρό (pró, «før») + γράμμα (grámma, «skrift»).",
+      "of": "15c623fb"
+    },
+    "tækni_no": {
+      "nb": "Et nyord avledet av tæki («et redskap») + -ni (substantivsuffiks). Tilpasset etter både lyd og betydning fra dansk teknik. Laget av dr. Björn Bjarnason fra Viðfjörður i 1912.",
+      "of": "ee873bbf"
+    },
+    "rafmagn_no": {
+      "nb": "Fra raf («rav») + magn («kraft»), et oversettelseslån av det internasjonale ordet electricity (elektrisitet), som kommer av gammelgresk ἤλεκτρον (ḗlektron, «rav»).",
+      "of": "fdf771ac"
+    },
+    "þota_no": {
+      "nb": "Et nyord fra þotinn, perfektum partisipp av verbet þjóta («fare, styrte»).",
+      "of": "68bb8776"
+    },
+    "veira_no": {
+      "nb": "Sies å være laget av helsedirektør Vilmundur Jónsson i 1955, på grunnlag av feyra («råte, mugg; forfall»), tilpasset etter både lyd og betydning fra engelsk virus.",
+      "of": "6ec31f48"
+    },
+    "hátalari_no": {
+      "nb": "Fra hátt («høyt») + tala («å snakke, å tale») + -ari («-er»), et oversettelseslån av engelsk loudspeaker.",
+      "of": "9e729a8f"
+    },
+    "reikistjarna_no": {
+      "nb": "Laget av Jónas Hallgrímsson, av reika («å vandre») + stjarna («stjerne»). Oversettelseslån av gammelgresk πλανήτης (planḗtēs, «vandrer, planet»).",
+      "of": "b523d866"
+    },
+    "hafa_so": {
+      "nb": "Fra norrønt hafa, fra urgermansk *habjaną, fra urindoeuropeisk *kap- («ta, gripe»).",
+      "of": "22e5d05a"
+    },
+    "gera_so": {
+      "nb": "Fra norrønt gera, gøra, gørva, fra urgermansk *garwijaną.",
+      "of": "1182ec69"
+    },
+    "verða_so": {
+      "nb": "Fra norrønt verða, fra urgermansk *werþaną.",
+      "of": "dac3430a"
+    },
+    "geta_so": {
+      "nb": "Fra norrønt geta (som også har gitt engelsk get), fra urgermansk *getaną, fra urindoeuropeisk *gʰed- («ta, gripe»). Sammenlign dansk gide, svensk gitta, engelsk get.",
+      "of": "7ecf73f9"
+    },
+    "fá_so": {
+      "nb": "Fra norrønt fá, fra urgermansk *fanhaną. Dublett av fanga («å fange, å gripe»).",
+      "of": "45b9d8a7"
+    },
+    "taka_so": {
+      "nb": "Fra norrønt taka, fra urgermansk *tēkaną.",
+      "of": "7178b423"
+    },
+    "vita_so": {
+      "nb": "Fra norrønt vita, fra urgermansk *witaną, opprinnelig fra urindoeuropeisk *weyd- («se»).",
+      "of": "5cacf016"
+    },
+    "gefa_so": {
+      "nb": "Arvet fra norrønt gefa, fra urgermansk *gebaną, fra urindoeuropeisk *gʰebʰ-.",
+      "of": "53744703"
+    },
+    "þurfa_so": {
+      "nb": "Fra norrønt þurfa, fra urgermansk *þurbaną.",
+      "of": "c132e4e5"
+    },
+    "mega_so": {
+      "nb": "Fra norrønt mega, fra urgermansk *maganą, fra urindoeuropeisk *magʰ-, *megʰ-.",
+      "of": "0700a91e"
+    },
+    "líka_so": {
+      "nb": "Fra norrønt líka, fra urgermansk *līkāną.",
+      "of": "8b1d43d7"
+    },
+    "sitja_so": {
+      "nb": "Fra norrønt sitja, fra urgermansk *sitjaną, fra urindoeuropeisk *sed- («sitte»).",
+      "of": "cef40915"
+    },
+    "standa_so": {
+      "nb": "Fra norrønt standa, fra urgermansk *standaną. Beslektet med færøysk standa, engelsk stand, dansk stande, norsk nynorsk standa.",
+      "of": "09856127"
+    },
+    "liggja_so": {
+      "nb": "Fra norrønt liggja, fra urgermansk *ligjaną, fra urindoeuropeisk *legʰ-.",
+      "of": "ecbdc764"
+    },
+    "opna_so": {
+      "nb": "Fra norrønt opna, fra urgermansk *upanōną.",
+      "of": "cf420d4a"
+    },
+    "loka_so": {
+      "nb": null,
+      "why": "Wiktionary's text only points to another entry (\"See Etymology 1.\") and says nothing about this word.",
+      "of": "c224a298"
+    },
+    "hringja_so": {
+      "nb": "Fra norrønt hringja, fra urgermansk *hringijaną.",
+      "of": "b1a0c7a2"
+    },
+    "þessi_fn": {
+      "nb": "Fra norrønt *þes-, þessi (intetkjønn flertall), sjá (nominativ), i slekt med og av samme opphav som den uregelmessige bøyningen av norrønt sá, som går tilbake på det likeledes uregelmessig bøyde urgermanske *sa. Beslektet med gammelengelsk þes og gammelhøytysk dese.",
+      "of": "8776bd59"
+    },
+    "sá_fn": {
+      "nb": "Fra norrønt sá, som går tilbake på urgermansk *sa, fra urindoeuropeisk *só. I slekt med norrønt sjá.",
+      "of": "ad72c2ed"
+    },
+    "hver_fn": {
+      "nb": "Fra norrønt hverr (fra urgermansk *hwarjaz) og *hver (fra urgermansk *hwaz), som falt sammen i senere norrønt. De fleste bøyningsformene av *hwaz er gått ut av bruk, og det som er igjen, er i hovedsak etterkommeren av *hwarjaz, men med en ekstra form for intetkjønn nominativ og akkusativ entall: hvað, fra norrønt hvat.",
+      "of": "73993adc"
+    },
+    "hvaða_fn": {
+      "nb": "Fra norrønt hvaða.",
+      "of": "d60c7aa1"
+    },
+    "allur_fn": {
+      "nb": "Fra norrønt allr.",
+      "of": "650e3ca0"
+    },
+    "enginn_fn": {
+      "nb": "Fra senere norrønt enginn, fra eldre engi, eingi, med endelsen -inn hentet fra adjektivene. På samme måte kommer intetkjønn ekkert fra eldre ekki («ingenting») i analogi med hvert («hver», intetkjønn). E(i)ngi er en sammensmelting av einn («én») + -gi («ikke»).",
+      "of": "acb94cb2"
+    },
+    "einhver_fn": {
+      "nb": "Fra norrønt einnhverr.",
+      "of": "ffc8e1d2"
+    },
+    "annar_fn": {
+      "nb": "Fra norrønt annarr, fra urgermansk *anþeraz, som også har gitt engelsk other.",
+      "of": "71c8198e"
+    },
+    "líka_ao": {
+      "nb": "Arvet fra norrønt líka. Se líkur.",
+      "of": "383fad3c"
+    },
+    "vel_ao": {
+      "nb": "Fra norrønt vel, fra urgermansk *wela.",
+      "of": "e6e37520"
+    },
+    "bara_ao": {
+      "nb": "Lånt fra dansk bare («knapt, bare»). Først belagt på 1700-tallet. Sammenlign svensk bara.",
+      "of": "d9dc9223"
+    },
+    "aftur_ao": {
+      "nb": "Fra norrønt aptr, fra urgermansk *aftrą.",
+      "of": "368fb0b5"
+    },
+    "heima_ao": {
+      "nb": "Fra norrønt heima. Beslektet med svensk hemma («hjemme»).",
+      "of": "bce05b99"
+    },
+    "heim_ao": {
+      "nb": "Fra norrønt heim («hjem, hjemover»), akkusativformen av heimr («bosted, verden, land»), fra urgermansk *haimaz.",
+      "of": "3331b5fd"
+    },
+    "að_st": {
+      "nb": "Fra norrønt at («at»). Fra urgermansk *þat («det»). Beslektet med gammelengelsk þæt, gotisk 𐌸𐌰𐍄𐌰 (þata).",
+      "of": "a86f6707"
+    },
+    "sem_st": {
+      "nb": "Fra norrønt sem («som, lik»), kanskje fra urgermansk *samaz («samme, lik»).",
+      "of": "96610dad"
+    },
+    "ef_st": {
+      "nb": "Fra norrønt ef, fra urgermansk *jabai.",
+      "of": "7caa537c"
+    }
+  }
+}

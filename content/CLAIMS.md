@@ -250,6 +250,20 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 
 Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
+## Bokmål etymologies (`content/etymology-nb.json`)
+
+The 324 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+
+| Name | Source | Status |
+|---|---|---|
+| *urindoeuropeisk*, *urindoeuropeiske* (Proto-Indo-European) | Norwegian Wikipedia, [Urindoeuropeisk](https://no.wikipedia.org/wiki/Urindoeuropeisk) | sourced |
+| *urslavisk* (Proto-Slavic) | [Urslavisk](https://no.wikipedia.org/wiki/Urslavisk) | sourced |
+| *kasjubisk* (Kashubian) | [Kasjubisk](https://no.wikipedia.org/wiki/Kasjubisk) | sourced |
+| *oldgutnisk* (Old Gutnish) | [Gutnisk](https://no.wikipedia.org/wiki/Gutnisk) ("oldgutnisk (forngutnisk)"; the article does not use "gammelgutnisk") | sourced |
+| *älvdalsk* (Elfdalian) | [Älvdalsk](https://no.wikipedia.org/wiki/%C3%84lvdalsk) | sourced |
+| *norn* (Norn) | [Norn](https://no.wikipedia.org/wiki/Norn) | sourced |
+| *vestgermansk urspråk* (Proto-West Germanic) | [Vestgermanske språk](https://no.wikipedia.org/wiki/Vestgermanske_spr%C3%A5k) ("et vestgermansk urspråk"; there is no article "urvestgermansk") | sourced |
+
 ## The cast (`js/characters.js`, `scripts/characters/`)
 
 | Claim | Source | Status |

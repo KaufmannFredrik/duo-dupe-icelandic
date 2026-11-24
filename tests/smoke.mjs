@@ -505,6 +505,29 @@ if (process.argv.includes('--all')) {
     failed = true;
     console.log(`FAIL stories: ${e.message}`);
   }
+  // In Norwegian: a word's origin in the dictionary is in Bokmål, and so are Credits and the voice credit.
+  try {
+    const nbContext = await browser.newContext({ ...VIEWPORTS.desktop, ...isolated });
+    await nbContext.addInitScript(() => localStorage.setItem('tolva.settings.v1', JSON.stringify({ uiLang: 'nb', ttsVoice: 'steinn' })));
+    const p = await nbContext.newPage();
+    p.on('pageerror', (e) => errors.push(e.message));
+    await p.goto(`${url}dictionary.html?q=bók`);
+    const etym = p.locator('#dict-etym + p');
+    await etym.waitFor({ timeout: 5000 });
+    const etymText = await etym.textContent();
+    if ((await etym.getAttribute('lang')) !== 'nb' || !etymText.startsWith('Fra norrønt bók')) throw new Error(`the origin of bók reads "${etymText}"`);
+    await p.goto(`${url}credits.html`);
+    await p.waitForFunction(() => document.documentElement.classList.contains('is-ready'));
+    const heading = await p.locator('#c-tts').textContent();
+    if (heading !== 'Generert stemme') throw new Error(`Credits heading "${heading}"`);
+    await p.goto(`${url}letters.html`);
+    await p.locator('[data-voice-credit]', { hasText: 'Syntetisk stemme Steinn (mann)' }).waitFor({ timeout: 5000 });
+    await nbContext.close();
+    console.log('PASS Norwegian: the origin of bók, the Credits page and the voice credit are in Bokmål');
+  } catch (e) {
+    failed = true;
+    console.log(`FAIL Norwegian: ${e.message}`);
+  }
   if (errors.length) {
     failed = true;
     console.log(`page errors: ${errors.join('; ')}`);

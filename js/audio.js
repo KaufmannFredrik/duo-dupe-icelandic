@@ -66,8 +66,10 @@ export async function ttsEntry(text) {
   return (await ttsManifest()).texts[text] ?? null;
 }
 
+/** The credit line of the generated voice in use, in the interface language. */
 export async function ttsCredit() {
-  return (await ttsManifest()).credit ?? '';
+  const v = TTS_VOICES[ttsVoice()];
+  return t('audio.credit', { name: v.name, gender: t(`voices.${v.gender}`) });
 }
 
 export function stop() {

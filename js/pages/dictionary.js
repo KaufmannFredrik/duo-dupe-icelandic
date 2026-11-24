@@ -1,8 +1,10 @@
 // Dictionary: search any course word by its dictionary form or any inflected form, then see
-// glosses (English and Norwegian), IPA, recordings, the paradigm, example sentences and etymology.
+// glosses (English and Norwegian), IPA, recordings, the paradigm, example sentences and etymology
+// (from Wiktionary; in Bokmål when the app is in Norwegian, content/etymology-nb.json).
 
-import { ready } from '../app.js';
-import { t } from '../i18n.js';
+import { loadJSON, ready } from '../app.js';
+import { getLang, t } from '../i18n.js';
+import { hashSeed } from '../engine/rng.js';
 import { analyze, formIndex, gloss, lemma, loadAll, loadLexicon, recordings, sentence, translation } from '../data.js';
 import { normalize, stripAcutes } from '../normalize.js';
 import { play } from '../audio.js';
@@ -15,6 +17,8 @@ import { evidenceHTML, loadBridge, ordbokeneUrl, relative, rulesHTML } from '../
 await ready;
 await Promise.all([loadAll(), loadBridge()]);
 const lexicon = await loadLexicon();
+// Bokmål etymologies, made by hand from the English (content/etymology-nb.json), when the app is in Norwegian.
+const etymNb = getLang() === 'nb' ? ((await loadJSON('content/etymology-nb.json').catch(() => null))?.etymology ?? {}) : null;
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const form = document.querySelector('[data-search]');
 const input = form.querySelector('input');
@@ -51,6 +55,17 @@ function renderResults(list, q) {
     : `<li class="muted">${t('dict.none', { q: esc(q) })}</li>`;
 }
 
+// The etymology in Bokmål when there is a translation of the English shown now (its hash, "of"),
+// none when the translation says there is nothing to translate (nb null), else the English.
+function etymologyHTML(id, l) {
+  if (!l.etymology) return '';
+  const nb = etymNb?.[id];
+  const current = nb && nb.of === hashSeed(l.etymology).toString(16).padStart(8, '0');
+  if (current && nb.nb === null) return '';
+  const [text, lang] = current ? [nb.nb, 'nb'] : [l.etymology, 'en'];
+  return `<section aria-labelledby="dict-etym"><h3 class="label" id="dict-etym">${t('dict.etymology')}</h3><p lang="${lang}">${esc(text)}</p></section>`;
+}
+
 function renderEntry(wid) {
   const l = lemma(wid);
   const recs = recordings(wid);
@@ -83,7 +98,7 @@ function renderEntry(wid) {
               .join('')}</ul>`
           : `<p class="muted">${t('dict.noExamples')}</p>`
       }</section>
-    ${l.etymology ? `<section aria-labelledby="dict-etym"><h3 class="label" id="dict-etym">${t('dict.etymology')}</h3><p lang="en">${esc(l.etymology)}</p></section>` : ''}
+    ${etymologyHTML(wid, l)}
     <p class="credit">${t('credit.dict', { url: `https://en.wiktionary.org/wiki/${encodeURIComponent(l.lemma)}#Icelandic` })}</p>`;
 }
 

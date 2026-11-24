@@ -17,7 +17,11 @@
 //    a word that is not a course word, or has a name without audio in one of the four voices,
 //  - a Bokmål word gloss the app shows (from Wiktionary, or written or corrected by hand in
 //    content/glosses-nb.json) has a word that is not a Bokmålsordboka form, or more than one word
-//    without being a listed phrase, or a correction no longer matches what Wiktionary gives.
+//    without being a listed phrase, or a correction no longer matches what Wiktionary gives,
+//  - a Bokmål etymology (content/etymology-nb.json) has a word that is not a Bokmålsordboka form
+//    (cited forms, which are also in the English, and the file's names aside), English left in it,
+//    or English quotation marks; words without one, or translated from an older English text, are
+//    warnings.
 // Content not yet checked against sources ("reviewed": false) is counted and listed, not failed;
 // content/CLAIMS.md lists every hand-written claim with its source.
 //
@@ -30,6 +34,7 @@ import path from 'node:path';
 import { CACHE, ROOT } from './lib/bulk.mjs';
 import { blocking, lintTexts, pythonPath, SETUP_HELP } from './lib/lint.mjs';
 import { character } from '../js/characters.js';
+import { hashSeed } from '../js/engine/rng.js';
 import { HAND_GLOSSES, HAND_NB, applyHandNb, wiktionaryNb } from './lib/translations.mjs';
 import { bokmalCompound, bokmalForm, bokmalGenitive, eachLimited } from './lib/bokmal.mjs';
 
@@ -464,6 +469,52 @@ async function checkTranslations() {
   return Object.keys(file.sentences).length;
 }
 
+// Bokmål etymologies (content/etymology-nb.json): translations of the Wiktionary etymologies,
+// each made from the English text whose hash it names ("of"); the dictionary shows only current ones.
+const ETYM_NB = 'content/etymology-nb.json';
+// Words of the English that must not be left in a translation (cited forms are checked apart).
+const ENGLISH_LEFT = new Set(['the', 'from', 'and', 'with', 'cognate', 'cognates', 'compare', 'borrowed', 'inherited', 'whence', 'ultimately', 'earlier', 'which', 'uncertain', 'origin', 'derived', 'related', 'literally', 'possibly', 'probably', 'perhaps', 'attested', 'since', 'century', 'coined', 'calque', 'equivalent', 'see']);
+async function checkEtymologies() {
+  if (!existsSync(path.join(ROOT, ETYM_NB))) return 0;
+  const file = await readJson(ETYM_NB);
+  if (file.reviewed === false) unreviewed.push(ETYM_NB);
+  const hand = file.etymology ?? {};
+  const names = new Set((file.names ?? []).map((n) => n.toLocaleLowerCase('nb')));
+  const hashOf = (text) => hashSeed(text).toString(16).padStart(8, '0');
+  const words = new Map();
+  const stale = [];
+  const missing = Object.entries(lexicon.lemmas).filter(([id, l]) => l.etymology && !hand[id]).map(([id]) => id);
+  for (const [id, e] of Object.entries(hand)) {
+    const where = `${ETYM_NB} ${id}`;
+    const l = lexicon.lemmas[id];
+    if (!l?.etymology) {
+      warnings.push(`${where}: not a course word with an etymology`);
+      continue;
+    }
+    if (e.of !== hashOf(l.etymology)) stale.push(id);
+    if (e.nb === null) {
+      if (!e.why) err(where, '"nb" is null without a "why"');
+      continue;
+    }
+    if (typeof e.nb !== 'string' || !e.nb.trim() || e.nb !== e.nb.trim()) {
+      err(where, '"nb" must be a text without spaces at the ends, or null with a "why"');
+      continue;
+    }
+    if (/[“”"]/.test(e.nb)) err(where, `quote glosses with «», not English quotation marks (in: ${e.nb})`);
+    // A word also in the English is a cited form (vera, *wesaną, Danish tak) and is not checked.
+    const cited = new Set([...l.etymology.matchAll(/\p{L}+/gu)].map((m) => m[0].toLocaleLowerCase('nb')));
+    for (const m of e.nb.matchAll(/\p{L}+/gu)) {
+      const w = m[0].toLocaleLowerCase('nb');
+      if (ENGLISH_LEFT.has(w)) err(where, `"${m[0]}" is English left in the translation (in: ${e.nb})`);
+      else if (!cited.has(w) && !names.has(w)) addWords(words, where, w);
+    }
+  }
+  await checkBokmalWords(words);
+  if (missing.length) warnings.push(`${missing.length} course words have no Bokmål etymology in ${ETYM_NB}, so the English shows (first: ${missing.slice(0, 5).join(', ')})`);
+  if (stale.length) warnings.push(`${stale.length} Bokmål etymologies in ${ETYM_NB} were translated from an older English text and are not shown; translate again and update "of" (first: ${stale.slice(0, 5).join(', ')})`);
+  return Object.keys(hand).length;
+}
+
 await checkVocab();
 await checkUnits();
 await checkStories();
@@ -474,8 +525,9 @@ await checkSmallFiles();
 const authoredCount = await checkAuthored();
 const nbCount = await checkTranslations();
 const glossCount = await checkGlosses();
+const etymCount = await checkEtymologies();
 
-console.log(`Checked the vocabulary (${Object.keys(lexicon.lemmas).length} lemmas), lessons, units, stories, rules, ${letterCount} letters and spellings, ${authoredCount} hand-written sentences, ${nbCount} Bokmål translations and ${glossCount} Bokmål glosses.`);
+console.log(`Checked the vocabulary (${Object.keys(lexicon.lemmas).length} lemmas), lessons, units, stories, rules, ${letterCount} letters and spellings, ${authoredCount} hand-written sentences, ${nbCount} Bokmål translations, ${glossCount} Bokmål glosses and ${etymCount} Bokmål etymologies.`);
 if (unreviewed.length) console.log(`Not yet checked against sources (${unreviewed.length}): ${unreviewed.join(', ')}. See content/CLAIMS.md.`);
 for (const w of warnings) console.log(`warning: ${w}`);
 if (errors.length) {

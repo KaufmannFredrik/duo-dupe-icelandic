@@ -2,6 +2,18 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Everything in Norwegian: credits, the voice credit, word origins (2026-11-24)
+
+The owner asked whether everything on the site is in Norwegian. Every page, lesson and drill was loaded with the Norwegian interface and its 1,571 visible texts checked for English: three places were still in English, and all three are now Norwegian.
+
+- **The voice credit line** (Learn, Letters, Stories) came from the audio manifests, which hold English. It now comes from the interface strings (`audio.credit`, `ttsCredit` in `js/audio.js`).
+- **The Credits page** had its text only in the HTML. Every heading and paragraph is now an interface string in English and Bokmål.
+- **Word origins in the Dictionary** come from English Wiktionary, and no Norwegian source has them. All 324 were translated into Bokmål by hand (`content/etymology-nb.json`; conventions and the sources of seven language names in `content/CLAIMS.md`). The dictionary loads the file when the app is in Norwegian and shows a translation only while it was made from the English shown now (each names its English by hash), so a rebuilt Wiktionary text falls back to the English instead of an outdated translation. *loka* has none (its English only says "See Etymology 1."), so in Norwegian it shows no etymology.
+- `npm run validate` checks every word of the translations against Bokmålsordboka, except cited forms (words also in the English: *vera*, *\*wesaną*) and the listed names, and fails on English left in a translation or English quotation marks. A word without a translation, or one made from an older English text, is a warning: new words arrive that way, with their English shown until they are translated.
+- The file is loaded by the page instead of merged into `data/lexicon.json`, because the lexicon was being rebuilt for the next unit at the same time. It is 52 KB and fetched only in Norwegian (precached with the other content files).
+- The interface still starts in Norwegian only when the browser is set to Norwegian, otherwise in English until it is changed in Settings.
+- `npm run smoke` checks a Norwegian origin in the dictionary, a Norwegian heading on Credits and the Norwegian voice credit.
+
 ## Letters and sounds, *Stafirnir* (2026-11-24)
 
 The next piece of [PLAN.md](PLAN.md), before the new units: Icelandic's letters and their sounds against Norwegian, always open, like Duolingo's character practice. For a Norwegian the problem is less new shapes than familiar shapes with other sounds.
