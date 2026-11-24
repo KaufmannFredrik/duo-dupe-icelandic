@@ -2,12 +2,37 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { loadData } from './helpers/data.mjs';
 import { allowedFor, lessonStates, nextLesson } from '../js/engine/course-model.js';
-import { analysesIn } from '../js/grammar.js';
+import { analysesIn, parseTag } from '../js/grammar.js';
 import { hashSeed } from '../js/engine/rng.js';
 
 const d = loadData();
 const tokens = (text) => [...text.matchAll(/\p{L}+/gu)].map((m) => ({ raw: m[0], low: m[0].toLocaleLowerCase('is'), index: m.index }));
 const lessonsOf = (unitId) => d.course.units.find((u) => u.id === unitId).lessons;
+
+// A verb-form exercise: the verb is in the sentence in a finite form of the tag, the options are
+// forms of the same tense with the answer once, and the person agrees with a subject pronoun.
+const PRONOUN = { 'ég_pfn': 1, 'þú_pfn': 2, 'hann_pfn': 3, 'hún_pfn': 3, 'það_pfn': 3 };
+function checkVerbForm(s) {
+  const text = d.sentences[s.sentence].is;
+  const bm = d.paradigm(s.lemma);
+  const p = parseTag(s.tag);
+  assert.ok(p.voice === 'GM' && p.mood === 'FH' && p.person, `${s.tag} is a finite active form`);
+  assert.ok(analysesIn(bm, s.target).some((a) => a.tag === s.tag), `"${s.target}" is ${s.tag} of ${s.lemma}`);
+  assert.ok(!analysesIn(bm, s.target).some((a) => ['NH', 'SAGNB'].includes(a.parsed.mood)), `"${s.target}" is also the infinitive or supine`);
+  const low = (x) => x.toLocaleLowerCase('is');
+  assert.equal(s.options.filter((o) => low(o) === low(s.target)).length, 1, `the answer once among ${s.options}`);
+  assert.equal(new Set(s.options).size, s.options.length, 'distinct options');
+  for (const o of s.options) assert.ok(analysesIn(bm, o).some((a) => a.parsed.mood === 'FH' && a.parsed.tense === p.tense), `option "${o}" is a ${p.tense} form`);
+  const toks = tokens(text);
+  const tags = d.tagsOf(s.sentence);
+  const subjects = toks
+    .map((t, i) => (typeof tags?.[i] === 'string' && PRONOUN[tags[i]] ? analysesIn(d.paradigm(tags[i]), t.raw).filter((a) => a.parsed.case === 'NF').map((a) => [PRONOUN[tags[i]], a.parsed.number]) : []))
+    .flat();
+  if (subjects.length && analysesIn(bm, s.target).filter((a) => a.parsed.mood === 'FH').length > 1) {
+    assert.ok(subjects.some(([person, number]) => person === p.person && number === p.number), `"${text}": ${s.target} as ${s.tag} does not agree with its subject`);
+  }
+  if (toks[0].raw === s.target) assert.ok(text.trim().endsWith('?') || subjects.length, `"${text}" starts with the verb: a command`);
+}
 
 function generate(unitId, lesson) {
   const allowed = allowedFor(d.course, unitId, lesson.index);
@@ -156,6 +181,7 @@ for (const unitId of ['hello', 'cafe', 'family', 'around', 'time', 'shopping', '
           assert.ok(s.options.length >= 2 && new Set(s.options).size === s.options.length, 'distinct options');
           for (const o of s.options) assert.ok(d.paradigm(s.lemma).some((f) => f.b === o), `option "${o}" is a form of ${s.lemma}`);
         }
+        if (s.type === 'conjugate') checkVerbForm(s);
         if (s.type === 'case') assert.equal(s.cases.length, 1, 'case questions only for unambiguous forms');
         if (s.type === 'table') for (const tag of s.blanks) assert.ok(d.paradigm(s.lemma).some((f) => f.g === tag), `${tag} in ${s.lemma}`);
       }
@@ -184,9 +210,9 @@ test('generator: review practices exactly the form that is due', () => {
   const allowed = new Set(Object.keys(d.lexicon.lemmas));
   const keys = new Set();
   for (const u of d.course.units) for (const l of u.lessons) {
-    for (const s of generate(u.id, l).specs) if (s.type === 'ending' || s.type === 'case') keys.add(s.key);
+    for (const s of generate(u.id, l).specs) if (['ending', 'case', 'conjugate'].includes(s.type)) keys.add(s.key);
   }
-  assert.ok(keys.size > 100, `${keys.size} form cards`);
+  assert.ok(keys.size > 100 && [...keys].some((k) => k.includes('_so|')), `${keys.size} form cards, verbs among them`);
   for (const key of keys) {
     const [spec] = d.generator.review({ cards: [{ key }], allowed, seed: 3 });
     assert.ok(spec, `no review for ${key}`);

@@ -4,7 +4,7 @@
 //
 // Exercise specs are plain JSON, so mistakes can be stored and replayed later.
 
-import { CASES, analysesIn, buildTable, isCommonTag } from '../grammar.js';
+import { CASES, analysesIn, buildTable, isCommonTag, parseTag } from '../grammar.js';
 import { pick, rng, shuffle } from './rng.js';
 
 const tokenize = (text) => [...text.matchAll(/\p{L}+/gu)].map((m) => ({ raw: m[0], low: m[0].toLocaleLowerCase('is'), index: m.index }));
@@ -246,6 +246,80 @@ export function createGenerator(data) {
     return null;
   }
 
+  // --- Verb forms -----------------------------------------------------------------------------------
+
+  // A finite verb form in the active indicative: person, number and tense, as in the verb table.
+  const finite = (p) => p.voice === 'GM' && p.mood === 'FH' && Boolean(p.person) && p.variant === 1;
+  const PERSON = { 'ég_pfn': 1, 'þú_pfn': 2, 'hann_pfn': 3, 'hún_pfn': 3, 'það_pfn': 3 };
+  // Persons and numbers of the personal pronouns in the nominative in a sentence (its subjects).
+  function subjects(sid) {
+    const out = [];
+    for (const [i, tok] of toks(sid).entries()) {
+      const ids = idsAt(sid, i);
+      if (ids.length !== 1 || !PERSON[ids[0]]) continue;
+      const parsed = caseAt(sid, i);
+      if (parsed && parsed !== 'NF') continue;
+      const an = analysesIn(paradigm(ids[0]), tok.raw).find((a) => a.parsed.case === 'NF');
+      if (an) out.push({ person: PERSON[ids[0]], number: an.parsed.number });
+    }
+    return out;
+  }
+
+  // A verb target: a token that is this verb in the sentence, in a finite form whose spelling is
+  // not also the infinitive or the supine ("drekka" after "vil" is not 3rd person plural). A form
+  // that is also an imperative is used only with a subject pronoun that fits it ("Ég drekk", not
+  // "Spurðu Alex", where spurðu is "ask!" and not "they asked"). Where persons share a form
+  // ("drekkur": 2nd and 3rd singular), the subject pronoun decides, else the 3rd person (a noun
+  // subject). Options: the other forms of the same tense, so the choice is about person and number.
+  // tag: only this form (a review).
+  function verbTarget(id, sid, { tag = null } = {}) {
+    const bm = paradigm(id);
+    for (const [i, tok] of toks(sid).entries()) {
+      const ids = idsAt(sid, i);
+      if (ids.length !== 1 || ids[0] !== id) continue;
+      const all = analysesIn(bm, tok.raw).filter((a) => a.parsed.variant === 1);
+      let an = all.filter((a) => finite(a.parsed));
+      if (!an.length || all.some((a) => a.parsed.mood === 'NH' || a.parsed.mood === 'SAGNB')) continue;
+      const tense = an[0].parsed.tense;
+      if (!an.every((a) => a.parsed.tense === tense)) continue;
+      const subj = subjects(sid);
+      const fit = an.filter((a) => subj.some((s) => s.person === a.parsed.person && s.number === a.parsed.number));
+      // A sentence that starts with the verb and is no question is a command ("Spurðu Alex.", with
+      // the everyday imperative spurðu where the DMII Core has spyrðu), unless a subject fits.
+      if (i === 0 && !/\?\s*$/.test(sentences[sid].is) && !fit.length) continue;
+      if (all.some((a) => a.parsed.mood === 'BH')) {
+        if (!fit.length) continue;
+        an = fit;
+      } else if (!tag && an.length > 1) {
+        const third = an.filter((a) => a.parsed.person === 3);
+        an = fit.length ? fit : third.length ? third : an;
+      }
+      const chosen = tag ? an.find((a) => a.tag === tag) : an[0];
+      if (!chosen) continue;
+      const forms = [...new Set(bm.filter((f) => f.b && /\d$/.test(f.g) === false && finite(parseTag(f.g)) && parseTag(f.g).tense === tense).map((f) => f.b))];
+      const answer = forms.find((f) => f.toLocaleLowerCase('is') === tok.low);
+      if (!answer || forms.length < 3) continue;
+      return { tok, index: i, tag: chosen.tag, parsed: chosen.parsed, answer, forms };
+    }
+    return null;
+  }
+
+  // "conjugate": pick the verb's form for the blank; "typeform": type it.
+  function verbSpec(type, id, allowed, used, r, { tag = null } = {}) {
+    if (lexicon.lemmas[id].ofl !== 'so') return null;
+    const cands = sentencesFor(id, allowed, used, 9, true);
+    for (const sid of tag ? cands : cands.slice(0, 16)) {
+      const t = verbTarget(id, sid, { tag });
+      if (!t) continue;
+      used.add(sid);
+      const base = { lemma: id, sentence: sid, target: t.tok.raw, tag: t.tag, key: `${id}|${t.tag}`, meta: { person: t.parsed.person, number: t.parsed.number, tense: t.parsed.tense } };
+      if (type === 'typeform') return { type, ...base };
+      const others = shuffle(t.forms.filter((f) => f !== t.answer), r).slice(0, 3);
+      return { type: 'conjugate', ...base, options: shuffle([t.answer, ...others], r) };
+    }
+    return null;
+  }
+
   // A noun's singular with three cells to fill; the indefinite nominative is always shown.
   // want: a review of one form (a card such as "bjór_no|ÞFFTgr" or "drekka_so|GM-FH-ÞT-1P-ET"):
   // the part of the word's table that has that cell (as the case trainer shows it, so any word
@@ -278,11 +352,17 @@ export function createGenerator(data) {
 
   // --- Lessons ------------------------------------------------------------------------------------
 
-  // Words with case (nouns, adjectives, pronouns, numerals) rotate through case work early;
-  // other words through meaning and sentence work.
+  // Words with case (nouns, adjectives, pronouns, numerals) rotate through case work early; verbs
+  // start with their forms (person and number), the others alternating between two starting points;
+  // other words go through meaning and sentence work, each starting further along.
   const CASE_CYCLE = ['ending', 'case', 'listen', 'meaning', 'choice', 'ending', 'dictation', 'case', 'typeword', 'wordbank'];
+  const VERB_CYCLE = ['conjugate', 'listen', 'meaning', 'choice', 'dictation', 'conjugate', 'wordbank', 'typeword', 'choice'];
   const WORD_CYCLE = ['listen', 'meaning', 'choice', 'dictation', 'wordbank', 'typeword', 'choice'];
-  const cycleFor = (id) => (CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? CASE_CYCLE : WORD_CYCLE);
+  const cycleFor = (id) => (CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? CASE_CYCLE : lexicon.lemmas[id].ofl === 'so' ? VERB_CYCLE : WORD_CYCLE);
+  const startFor = (id, i) => (CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? 0 : lexicon.lemmas[id].ofl === 'so' ? (i % 2) * 5 : i % WORD_CYCLE.length);
+  // A form card's exercise: case words in a sentence, verbs in a sentence, else the word's table.
+  const formSpec = (type, id, allow, used, r, tag) =>
+    lexicon.lemmas[id].ofl === 'so' ? verbSpec(type === 'ending' ? 'conjugate' : type, id, allow, used, r, { tag }) : caseSpec(type, id, allow, used, r, { tag });
 
   /**
    * @param {{ focus: string[], allowed: Iterable<string>, seed: number, count?: number }} options
@@ -295,7 +375,7 @@ export function createGenerator(data) {
     const out = [];
     const intro = match(focus, r);
     if (intro) out.push(intro);
-    const step = new Map(focus.map((id, i) => [id, CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? 0 : i % WORD_CYCLE.length]));
+    const step = new Map(focus.map((id, i) => [id, startFor(id, i)]));
     let tableDone = false;
     for (let round = 0; out.length < count && round < 8; round++) {
       for (const id of shuffle(focus, r)) {
@@ -319,6 +399,7 @@ export function createGenerator(data) {
             : type === 'meaning' ? meaning(id, allow, r)
             : type === 'listen' ? listen(id, allow, r)
             : type === 'typeword' ? typeword(id)
+            : type === 'conjugate' ? verbSpec(type, id, allow, used, r)
             : caseSpec(type, id, allow, used, r);
           if (spec) {
             out.push(spec);
@@ -348,7 +429,7 @@ export function createGenerator(data) {
       const spec =
         part === 'meaning' ? choice(id, allow, used, r) ?? meaning(id, allow, r) ?? typeword(id)
         : part === 'table' ? table(id, r)
-        : caseSpec('ending', id, allow, used, r, { tag: part }) ?? table(id, r, part);
+        : formSpec('ending', id, allow, used, r, part) ?? table(id, r, part);
       if (spec) out.push(spec);
     }
     return out;
@@ -360,7 +441,7 @@ export function createGenerator(data) {
     if (!lexicon.lemmas[id]) return false;
     if (part === 'meaning') return true;
     if (part === 'table') return Boolean(table(id, rng(1)));
-    return Boolean(caseSpec('ending', id, everyWord, new Set(), rng(1), { tag: part }) ?? table(id, rng(1), part));
+    return Boolean(formSpec('ending', id, everyWord, new Set(), rng(1), part) ?? table(id, rng(1), part));
   }
 
   /** Placement: one word question per unit, plus a case question from unit 2 on. */

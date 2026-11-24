@@ -2,6 +2,15 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Verb forms in lessons (2026-11-24)
+
+Lessons practiced the case of nouns, adjectives and pronouns, but verbs only through their meaning and sentences: over the 56 lessons verbs had 121 exercises and none on a form, although person and number (*ég drekk*, *þú drekkur*, *við drekkum*) are half of Icelandic grammar and the case trainer already had the tables.
+
+- A new exercise type, `conjugate`, on the "Fill in the right form" screen: a sentence with the verb left out, and four forms of the same tense to choose from, so the choice is about person and number (`verbTarget` and `verbSpec` in `js/engine/generate.js`). The feedback names the form ("1st person singular, present"). Each answer counts for the form's card (`drekka_so|GM-FH-NT-1P-ET`), which reviews then practice like case forms.
+- Which form a word is: only finite active forms whose spelling is not also the infinitive or the supine (*drekka* after *vil* is not 3rd person plural). Where persons share a form (*drekkur*, 2nd and 3rd singular; *drakk*, 1st and 3rd), the subject pronoun in the nominative decides (*Selur þú vín?*, *Allan morguninn leitaði ég hans*), else the 3rd person, for a noun subject. A form that is also an imperative is used only with a fitting subject (*Ég drekk*), and a sentence that starts with its verb and is no question is taken for a command and not used: *Spurðu Alex* uses the everyday imperative *spurðu*, which the DMII Core lists as *spyrðu*, and *spurðu* is otherwise "they asked".
+- Verbs start their cycle with their form, then sentence work (`VERB_CYCLE`); the lessons now have 67 verb-form exercises.
+- Tests: for every verb-form exercise in every lesson, the target is that form of the verb in its sentence, the options are forms of the same tense with the answer once, the person agrees with a subject pronoun, and no command is used; verb cards are among those reviews must answer exactly.
+
 ## Keeping progress safe (2026-11-24)
 
 All progress lives in the browser's storage on one device. Four gaps:

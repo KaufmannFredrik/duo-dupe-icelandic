@@ -1,4 +1,5 @@
-// Fill in the right form: the options are other forms of the same word, so the choice is about case.
+// Fill in the right form: the options are other forms of the same word, so the choice is about case
+// ("ending") or, for a verb, about person and number ("conjugate": the forms of the same tense).
 
 import { pick } from '../i18n.js';
 import { describe } from '../ui/forms.js';

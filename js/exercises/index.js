@@ -13,7 +13,8 @@ import * as pair from './pair.js';
 import * as speak from './speak.js';
 import * as bridge from './bridge.js';
 
-export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, match, ending, case: caseEx, table, pair, speak, bridge };
+// conjugate: the form of a verb (person and number), on the same screen as a case ending.
+export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, match, ending, conjugate: ending, case: caseEx, table, pair, speak, bridge };
 
 export function buildExercise(spec, ctx) {
   const mod = EXERCISES[spec.type];

@@ -20,7 +20,8 @@ export async function answer(page, mode = 'correct') {
     case 'listen':
       await page.click(`.option[data-value="${spec.lemma}"]`);
       break;
-    case 'ending': {
+    case 'ending':
+    case 'conjugate': {
       const target = spec.options.find((o) => o.toLocaleLowerCase('is') === spec.target.toLocaleLowerCase('is'));
       await page.click(`.option[data-value="${target}"]`);
       break;
