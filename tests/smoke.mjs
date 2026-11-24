@@ -238,6 +238,9 @@ for (const [name, options] of Object.entries(VIEWPORTS)) {
   try {
     await page.goto(`${url}learn.html`);
     await page.locator('.voice-intro').waitFor({ timeout: 5000 });
+    // A phone shows a way to start without scrolling (before, the voice card filled the screen).
+    const start = await page.locator('.voice-intro .button-primary').boundingBox();
+    if (!start || start.y + start.height > VIEWPORTS.phone.viewport.height - 64) throw new Error(`the start button is below the fold at ${Math.round(start?.y ?? -1)} px`);
     const sample = page.waitForResponse((r) => r.url().includes('/data/audio/samples/ugla-') && r.ok(), { timeout: 5000 });
     await page.click('.voice-intro [data-sample="ugla"]');
     await sample;

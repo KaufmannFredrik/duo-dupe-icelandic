@@ -2,6 +2,15 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## A first visit that shows where to start (2026-11-24)
+
+On a phone the voice card filled the first screen, and the first lesson's Start was two screens down, under the placement card, the unit banner and the host's greeting (the page does not scroll to the lesson while the card waits, so that the card is seen). The owner's decision stands that the learner chooses a voice at the start.
+
+- The card is shorter: one line of text, the legend only for screen readers (the card title says it), and the four voices as compact tiles (radio, name with a small tag under it, sample button), two across on a phone and four across where there is room, never three and one (a container query in `css/components.css`; one per row in a column narrower than 19rem, at 320 px).
+- The card ends with "Start the first lesson" and, on a first visit, "Take the placement test", which replaces the separate placement card until a voice is chosen. Start uses Steinn when no voice is chosen, and the card stays until one is.
+- At 390 x 844 the start button now ends at 517 px (the lesson's Start node was at 1,201 px); at 768 x 1024 and 1440 x 900 at 386 and 328 px. At 320 x 640 the voices are one per row and the button needs a short scroll.
+- `npm run smoke` checks that a phone shows the start button without scrolling on a first visit.
+
 ## Wrong options that take knowing to rule out (2026-11-24)
 
 The wrong options of the choice exercises were random, so many could be ruled out without reading: the first lesson offered *halló* with "open, all, that, hello" (grammar words the learner had not been taught, and verbs next to a greeting), and "Hello!" next to "Maybe he will be a good teacher." Two wrong options could even be the same ("that" for both *sá* and *að*).

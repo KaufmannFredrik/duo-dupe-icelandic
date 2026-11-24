@@ -23,14 +23,16 @@ export async function playSample(voice) {
 /**
  * Renders the chooser into `root`.
  * @param {HTMLElement} root
- * @param {{ legend: string, help?: string, preselect?: boolean, onChoose?: (voice: string) => void }} options
- *   preselect: mark the voice in use (Steinn) even before the learner has chosen one
+ * @param {{ legend: string, help?: string, preselect?: boolean, compact?: boolean, onChoose?: (voice: string) => void }} options
+ *   preselect: mark the voice in use (Steinn) even before the learner has chosen one; compact: the
+ *   legend only for screen readers (a card title says it), as on the Learn page
  */
-export function voicePicker(root, { legend, help, preselect = false, onChoose }) {
+export function voicePicker(root, { legend, help, preselect = false, compact = false, onChoose }) {
   const chosen = getSettings().ttsVoice || preselect ? ttsVoice() : null;
   const id = `voice-picker-${Math.random().toString(36).slice(2, 8)}`;
-  root.innerHTML = `<fieldset class="voice-picker" ${help ? `aria-describedby="${id}-help"` : ''}>
-      <legend class="setting__label">${esc(legend)}</legend>
+  // The list is two voices across on a phone and four where there is room (a container query).
+  root.innerHTML = `<div class="voice-picker-wrap"><fieldset class="voice-picker" ${help ? `aria-describedby="${id}-help"` : ''}>
+      <legend class="${compact ? 'visually-hidden' : 'setting__label'}">${esc(legend)}</legend>
       ${help ? `<p class="setting__help" id="${id}-help">${esc(help)}</p>` : ''}
       <ul class="voice-picker__list" role="list">${Object.entries(TTS_VOICES)
         .map(([v, { name, gender }]) => `<li class="voice-option">
@@ -39,7 +41,7 @@ export function voicePicker(root, { legend, help, preselect = false, onChoose })
           <button type="button" class="icon-button" data-sample="${v}" aria-label="${esc(t('voices.playSample', { name }))}">${icon('play')}</button>
         </li>`)
         .join('')}</ul>
-    </fieldset>`;
+    </fieldset></div>`;
   root.addEventListener('change', (e) => {
     if (e.target.name !== id) return;
     setSetting('ttsVoice', e.target.value);

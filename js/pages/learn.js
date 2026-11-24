@@ -1,6 +1,7 @@
 // Learn path: every unit as a winding road of lesson nodes. States come from progress:
 // done, current (pulsing, "Start"), review (gold, after the unit's lessons) and locked.
-// Until the learner has chosen a generated voice, a card at the top asks them to. Each unit's host
+// Until the learner has chosen a generated voice, a card at the top asks them to, with buttons to
+// start (and on a first visit, to take the placement test). Each unit's host
 // (js/characters.js) greets the learner under its banner with a Tatoeba sentence; the host of a
 // unit that is still locked shows as a silhouette.
 
@@ -61,18 +62,26 @@ const greetingCredit = greetings.length
   ? `<p class="credit learn-credit">${t('learn.hostCredit', { list: greetings.map((sid) => `<a href="https://tatoeba.org/en/sentences/show/${sid}" rel="noopener">#${sid}</a> (${esc(sentence(sid).author ?? t('credit.unknownAuthor'))})`).join(', ') })} <span data-voice-credit></span></p>`
   : '';
 
-const placementLink = Object.keys(progress.lessons).length === 0 && !progress.skippedUnits.length
+const fresh = Object.keys(progress.lessons).length === 0 && !progress.skippedUnits.length;
+const choosing = !getSettings().ttsVoice;
+const placementLink = fresh && !choosing
   ? `<p class="card card--gold placement-hint"><span>${t('learn.placementHint')}</span> <a class="button button--sm" href="lesson.html?mode=placement">${t('landing.placement')}</a></p>`
   : '';
 
-const voiceCard = getSettings().ttsVoice
-  ? ''
-  : `<section class="card card--gold stack voice-intro" aria-labelledby="voice-intro-title">
+// Until a voice is chosen, one card at the top: the voices, and buttons to start the current
+// lesson and (on a first visit) the placement test, so a phone shows a way to start without
+// scrolling past the first unit's banner and host.
+const current = course.units.flatMap((u) => u.lessons.map((l) => [u, l])).find(([, l]) => states.get(l.key) === 'current');
+const voiceCard = choosing
+  ? `<section class="card card--gold stack voice-intro" aria-labelledby="voice-intro-title">
       <h2 class="card__title" id="voice-intro-title">${t('learn.voiceTitle')}</h2>
       <p>${t('learn.voiceText')}</p>
       <div data-voice-picker></div>
       <p class="muted" role="status" data-voice-saved></p>
-    </section>`;
+      ${current ? `<div class="cluster voice-intro__actions"><a class="button button-primary" href="lesson.html?unit=${current[0].id}&lesson=${current[1].id}">${t(fresh ? 'learn.startFirst' : 'lesson.continue')}</a>
+        ${fresh ? `<a class="button" href="lesson.html?mode=placement">${t('landing.placement')}</a>` : ''}</div>` : ''}
+    </section>`
+  : '';
 
 root.innerHTML =
   voiceCard +
@@ -104,6 +113,7 @@ const pickerEl = root.querySelector('[data-voice-picker]');
 if (pickerEl) {
   voicePicker(pickerEl, {
     legend: t('learn.voiceLegend'),
+    compact: true,
     onChoose: (v) => {
       root.querySelector('[data-voice-saved]').textContent = t('learn.voiceSaved', { name: TTS_VOICES[v].name });
     },
