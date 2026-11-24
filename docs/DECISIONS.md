@@ -2,6 +2,17 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Wrong options that take knowing to rule out (2026-11-24)
+
+The wrong options of the choice exercises were random, so many could be ruled out without reading: the first lesson offered *halló* with "open, all, that, hello" (grammar words the learner had not been taught, and verbs next to a greeting), and "Hello!" next to "Maybe he will be a good teacher." Two wrong options could even be the same ("that" for both *sá* and *að*).
+
+- **Word meanings** (`meaning`): wrong options of the same word class first, then the lesson's own words (`wordDistractors` in `js/engine/generate.js`); no two options with the same English or Bokmål meaning. *halló* now gets "bye, no, yes". 399 of 399 wrong options share the word class (120 before).
+- **Listening** (`listen`): the options are written words, so wrong ones that start like the answer come first: 261 of 273 (20 before).
+- **Sentence meanings** (`choice`): wrong options are about as long as the sentence, share a word with it and are readable with the learner's words, the best of a random sample of 400; the average length difference is 0.02 words (2.1 before). Translations count as the same without case and punctuation, so "Welcome." and "Welcome!" are never two options.
+- **Word bank:** the chips show the sentence's first word in small letters unless it is a name (`isName` in `js/data.js`), so its capital no longer tells which chip comes first.
+- Placement questions prefer the unit's own words.
+- Tests: over all lessons, at least nine in ten meaning options share the answer's class, no two options show the same meaning, sentence options differ in length by under a word on average, and no two read alike.
+
 ## Writing forms, and sentences for nouns (2026-11-24)
 
 Form exercises were all multiple choice, and the only typing was a word's dictionary form, so a learner could finish the course recognizing endings without ever producing one. Nouns also never built a sentence: their cycle started with two case exercises, and a 12-exercise lesson with six words rarely went further.

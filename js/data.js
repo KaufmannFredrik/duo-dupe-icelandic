@@ -86,6 +86,8 @@ export function casesOf(sid) {
   return c ? [...c].map((x) => CASE_LETTER[x] ?? null) : undefined;
 }
 export const recordings = (id) => audioFile?.recordings[id] ?? [];
+/** A name allowed in sentences (content/allowlist.json), which keeps its capital in a word bank. */
+export const isName = (word) => Boolean(names?.has(word.toLocaleLowerCase('is')));
 export const caseRules = () => rules;
 
 /** Forms of a lemma as [{ g, b }]; an indeclinable word has its single form. */

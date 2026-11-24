@@ -41,7 +41,8 @@ export async function answer(page, mode = 'correct') {
     case 'wordbank':
     case 'dictation': {
       const text = await page.evaluate((sid) => window.__tolva.sentence(sid).is, spec.sentence);
-      for (const w of text.match(/\p{L}+/gu)) await page.locator('[data-bank] .chip:not(:disabled)', { hasText: new RegExp(`^${w}$`) }).first().click();
+      // Chips show the first word in small letters, so match without case.
+      for (const w of text.match(/\p{L}+/gu)) await page.locator('[data-bank] .chip:not(:disabled)', { hasText: new RegExp(`^${w}$`, 'iu') }).first().click();
       break;
     }
     case 'match':

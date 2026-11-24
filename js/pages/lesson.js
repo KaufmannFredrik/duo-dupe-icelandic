@@ -14,7 +14,7 @@
 
 import { loadJSON, ready } from '../app.js';
 import { pick, t } from '../i18n.js';
-import { caseRules, getGenerator, gloss, glossLang, lemma, loadAll, paradigm, recordings, sameGloss, sentence, translation } from '../data.js';
+import { caseRules, getGenerator, gloss, glossLang, isName, lemma, loadAll, paradigm, recordings, sameGloss, sentence, translation } from '../data.js';
 import { speechSupport } from '../speech.js';
 import { loadBridge } from '../bridge.js';
 import { allowedFor, findLesson, loadCourse, nextLesson, unitDone } from '../course.js';
@@ -77,7 +77,7 @@ async function reviewPlan() {
   return { key: 'practice/review', title: t('practice.review'), specs: gen.review({ cards: due, allowed: learnedSoFar, seed: Date.now() % 1e9, count: 12 }), empty: t('practice.reviewEmpty') };
 }
 
-const data = { lemma, sentence, translation, gloss, sameGloss, paradigm, recordings, caseRules };
+const data = { lemma, sentence, translation, gloss, sameGloss, paradigm, recordings, caseRules, isName };
 
 // A stored exercise can name a sentence or a word that is gone: a sentence excluded since
 // (content/sentence-exclude.json), or an old or imported progress file. Such a mistake cannot be

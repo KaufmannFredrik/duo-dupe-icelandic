@@ -101,13 +101,22 @@ export function createGenerator(data) {
     const cands = sentencesFor(id, allowed, used, 9, true);
     if (!cands.length) return null;
     const sid = pick(cands.slice(0, 6), r);
-    // The options show translations (English or Bokmål), so no two may share one in either language.
-    const shown = (x) => [sentences[x].en[0], sentences[x].nb?.[0]].filter(Boolean);
+    // The options show translations (English or Bokmål), so no two may share one in either language,
+    // also not with other punctuation ("Welcome." and "Welcome!").
+    const plain = (t) => t.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+    const shown = (x) => [sentences[x].en[0], sentences[x].nb?.[0]].filter(Boolean).map(plain);
     const seen = new Set(shown(sid));
+    // Wrong options that take reading to rule out: about as long as the sentence, sharing a word
+    // with it, and readable with the learner's words; best of a random sample, ties in random order.
+    const len = toks(sid).length;
+    const own = new Set(toks(sid).flatMap((_, i) => idsAt(sid, i)));
+    const score = (x) => Math.min(Math.abs(toks(x).length - len), 3) + (toks(x).some((_, i) => idsAt(x, i).some((y) => own.has(y))) ? 0 : 1) + (sentenceOk(x, allowed) ? 0 : 1);
+    const sample = shuffle(pool, r).slice(0, 400).filter((x) => x !== sid && sentenceOk(x, everyWord));
+    const ranked = sample.map((x, i) => [x, score(x), i]).sort((a, b) => a[1] - b[1] || a[2] - b[2]).map(([x]) => x);
     const others = [];
-    for (const x of shuffle(pool, r)) {
+    for (const x of ranked) {
       if (others.length === 3) break;
-      if (x === sid || shown(x).some((t) => seen.has(t)) || !sentenceOk(x, everyWord)) continue;
+      if (shown(x).some((t) => seen.has(t))) continue;
       for (const t of shown(x)) seen.add(t);
       others.push(x);
     }
@@ -150,17 +159,37 @@ export function createGenerator(data) {
   const glossesOf = (x) => [lexicon.lemmas[x]?.meaning, lexicon.lemmas[x]?.nb?.[0]].filter(Boolean);
   const sameGloss = (a, b) => glossesOf(a).some((g) => glossesOf(b).includes(g));
 
-  function meaning(id, allowed, r) {
-    const others = shuffle([...allowed].filter((x) => x !== id && lexicon.lemmas[x] && !sameGloss(x, id)), r).slice(0, 3);
+  // Three wrong options for a word, best first by score (lower is better; ties stay random), no
+  // two of them, nor one and the answer, alike by `apart`.
+  function wordDistractors(id, allowed, r, score, apart) {
+    const cands = shuffle([...allowed].filter((x) => x !== id && lexicon.lemmas[x] && !apart(x, id)), r);
+    const ranked = cands.map((x, i) => [x, score(x), i]).sort((a, b) => a[1] - b[1] || a[2] - b[2]).map(([x]) => x);
+    const out = [];
+    for (const x of ranked) {
+      if (out.some((y) => apart(x, y))) continue;
+      out.push(x);
+      if (out.length === 3) break;
+    }
+    return out;
+  }
+
+  // Meaning options: words of the same class first (a noun among nouns, so the class gives nothing
+  // away), then the words the lesson is teaching (prefer), not grammar words met only in passing.
+  function meaning(id, allowed, r, prefer = null) {
+    const ofl = lexicon.lemmas[id].ofl;
+    const others = wordDistractors(id, allowed, r, (x) => (lexicon.lemmas[x].ofl === ofl ? 0 : 2) + (prefer?.has(x) ? 0 : 1), sameGloss);
     if (others.length < 3) return null;
     return { type: 'meaning', lemma: id, options: shuffle([id, ...others], r), key: `${id}|meaning` };
   }
 
-  function listen(id, allowed, r) {
+  // Listening options are written words: ones that start like the answer first, then the lesson's.
+  function listen(id, allowed, r, prefer = null) {
     const rec = audio[id]?.find((x) => x.mp3 || x.ogg);
     if (!rec) return null;
     const lemma = lexicon.lemmas[id].lemma;
-    const others = shuffle([...allowed].filter((x) => x !== id && lexicon.lemmas[x].lemma !== lemma), r).slice(0, 3);
+    const start = (w) => w.toLocaleLowerCase('is')[0];
+    const spelled = (a, b) => lexicon.lemmas[a].lemma === lexicon.lemmas[b].lemma;
+    const others = wordDistractors(id, allowed, r, (x) => (start(lexicon.lemmas[x].lemma) === start(lemma) ? 0 : 2) + (prefer?.has(x) ? 0 : 1), spelled);
     if (others.length < 3) return null;
     return { type: 'listen', lemma: id, recording: rec, options: shuffle([id, ...others], r), key: `${id}|meaning` };
   }
@@ -390,6 +419,7 @@ export function createGenerator(data) {
     const intro = match(focus, r);
     if (intro) out.push(intro);
     const step = new Map(focus.map((id, i) => [id, startFor(id, i, practiced)]));
+    const lessonWords = new Set(focus);
     let tableDone = false;
     for (let round = 0; out.length < count && round < 8; round++) {
       for (const id of shuffle(focus, r)) {
@@ -410,8 +440,8 @@ export function createGenerator(data) {
             type === 'choice' ? choice(id, allow, used, r)
             : type === 'wordbank' ? wordbank(id, allow, used, r)
             : type === 'dictation' ? dictation(id, allow, used, r)
-            : type === 'meaning' ? meaning(id, allow, r)
-            : type === 'listen' ? listen(id, allow, r)
+            : type === 'meaning' ? meaning(id, allow, r, lessonWords)
+            : type === 'listen' ? listen(id, allow, r, lessonWords)
             : type === 'typeword' ? typeword(id)
             : type === 'conjugate' || (type === 'typeform' && isVerb(id)) ? verbSpec(type, id, allow, used, r)
             : caseSpec(type, id, allow, used, r);
@@ -471,7 +501,7 @@ export function createGenerator(data) {
       for (const id of unit.lemmas) allowed.add(id);
       const words = unit.lemmas.slice(0, 12);
       const items = [];
-      const m = meaning(pick(words, r), allowed, r);
+      const m = meaning(pick(words, r), allowed, r, new Set(unit.lemmas));
       if (m) items.push(m);
       if (i > 0) {
         for (const id of shuffle(unit.lemmas, r)) {

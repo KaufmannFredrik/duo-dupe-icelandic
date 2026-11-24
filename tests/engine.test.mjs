@@ -240,3 +240,34 @@ test('generator: case trainer cards are reviewed in their table', () => {
     assert.ok(d.generator.reviewable(key));
   }
 });
+
+test('generator: wrong options take knowing the word or reading the sentence to rule out', () => {
+  let words = 0;
+  let sameClass = 0;
+  let sentences = 0;
+  let lengthDiff = 0;
+  const plain = (t) => t.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+  for (const u of d.course.units) for (const l of u.lessons) {
+    for (const s of generate(u.id, l).specs) {
+      if (s.type === 'meaning') {
+        const ofl = d.lexicon.lemmas[s.lemma].ofl;
+        for (const o of s.options.filter((x) => x !== s.lemma)) {
+          words++;
+          if (d.lexicon.lemmas[o].ofl === ofl) sameClass++;
+        }
+        // No two options show the same meaning (before, "hæ" could get "that" twice).
+        for (const of of [(x) => d.lexicon.lemmas[x].meaning, (x) => d.lexicon.lemmas[x].nb[0]]) assert.equal(new Set(s.options.map(of)).size, s.options.length, `${l.key}: options ${s.options.map(of)}`);
+      }
+      if (s.type === 'choice') {
+        const n = tokens(d.sentences[s.sentence].is).length;
+        for (const o of s.options.filter((x) => x !== s.sentence)) {
+          sentences++;
+          lengthDiff += Math.abs(tokens(d.sentences[o].is).length - n);
+        }
+        assert.equal(new Set(s.options.map((x) => plain(d.sentences[x].en[0]))).size, s.options.length, `${l.key}: two options read alike`);
+      }
+    }
+  }
+  assert.ok(sameClass / words > 0.9, `${sameClass} of ${words} meaning options share the word class`);
+  assert.ok(lengthDiff / sentences < 1, `sentence options differ by ${(lengthDiff / sentences).toFixed(2)} words on average`);
+});

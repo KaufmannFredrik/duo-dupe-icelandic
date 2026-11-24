@@ -10,7 +10,10 @@ import { rng, shuffle } from '../engine/rng.js';
 export function build(spec, ctx) {
   const s = ctx.data.sentence(spec.sentence);
   const tr = ctx.data.translation(spec.sentence);
-  const bank = shuffle([...wordsOf(s.is), ...spec.distractors].map((w, k) => ({ w, k: String(k) })), rng(ctx.seed));
+  // The sentence's first word in small letters (unless it is a name), so its capital does not tell
+  // which chip comes first; the distractors are small already.
+  const own = wordsOf(s.is).map((w, i) => (i === 0 && !ctx.data.isName?.(w) ? w.toLocaleLowerCase('is') : w));
+  const bank = shuffle([...own, ...spec.distractors].map((w, k) => ({ w, k: String(k) })), rng(ctx.seed));
   const placed = [];
   const word = (k) => bank.find((b) => b.k === k).w;
   let root;
