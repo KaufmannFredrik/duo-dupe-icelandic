@@ -55,6 +55,7 @@ function navHTML(current) {
 function hudHTML(p) {
   return `<a class="hud__home" href="index.html" aria-label="${t('hud.home')}">${talaSVG('happy', { crop: 'head', className: 'tala tala--mini' })}<span class="logo" data-brand="wordmark">TÖLVA</span></a>
     <div class="hud__stats">${stat('streak', p.streak, 'hud.streak')}${stat('xp', p.xp, 'hud.xp')}${goalRing(p.today, p.goal)}
+    <button class="icon-button" type="button" data-music-toggle aria-pressed="false" aria-label="${t('music.turnOn')}">${icon('music-off')}</button>
     <button class="icon-button" type="button" data-sound-toggle aria-pressed="false" aria-label="${t('sound.turnOn')}">${icon('sound-off')}</button></div>`;
 }
 
@@ -74,7 +75,8 @@ function sideHTML(p, cells, quests) {
   return `<div class="side-stats card card--quiet side-panel">
       <div>${stat('streak', p.streak, 'hud.streak')}<div class="stat__label">${t('side.streak')}</div></div>
       <div>${stat('xp', p.xp, 'hud.xp')}<div class="stat__label">${t('side.xp')}</div></div>
-      <button class="icon-button" type="button" data-sound-toggle aria-pressed="false" aria-label="${t('sound.turnOn')}">${icon('sound-off')}</button>
+      <div class="cluster side-toggles"><button class="icon-button" type="button" data-music-toggle aria-pressed="false" aria-label="${t('music.turnOn')}">${icon('music-off')}</button>
+      <button class="icon-button" type="button" data-sound-toggle aria-pressed="false" aria-label="${t('sound.turnOn')}">${icon('sound-off')}</button></div>
     </div>
     <section class="card card--quiet side-panel" aria-labelledby="side-goal"><h2 id="side-goal">${t('side.goal')}</h2>
       <div class="goal-row">${goalRing(p.today, p.goal, 'goal-ring--lg')}<p>${goalText(p)}</p></div>

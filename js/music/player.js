@@ -11,12 +11,14 @@ const LOOKAHEAD = 0.2;
 const TICK_MS = 40;
 // Parts whose notes are long enough to be worth starting late when playback joins mid-note.
 const SUSTAINED = new Set(['pad', 'drone', 'wind', 'duet1', 'duet2', 'melody', 'bass']);
+const DRUMS = new Set(['kick', 'snare', 'hat', 'ohat', 'crash']);
 
 /**
- * A player for one mood. options: { seed, volume (0 to 1), onBar({ bar, cycle, section, at, label,
- * song }) }. start(bar) starts at an absolute bar (0 is the intro of the first song), fading in.
+ * A player for one mood. options: { seed, volume (0 to 1), calm (no drums), onBar({ bar, cycle,
+ * section, at, label, song }) }. start(bar) starts at an absolute bar (0 is the intro of the first
+ * song), fading in.
  */
-export function createPlayer(ctx, styleId, { seed = 1, volume = 0.5, onBar = null, destination } = {}) {
+export function createPlayer(ctx, styleId, { seed = 1, volume = 0.5, calm = false, onBar = null, destination } = {}) {
   const style = STYLES[styleId];
   const stepSec = 60 / style.tempo / 4;
   const rig = createRig(ctx, style.sound, style.tempo, destination);
@@ -59,7 +61,7 @@ export function createPlayer(ctx, styleId, { seed = 1, volume = 0.5, onBar = nul
       const barAbs = Math.floor(next / STEPS);
       const step = next % STEPS;
       const { bar } = barAt(barAbs);
-      for (const ev of bar.events) if (ev.step === step) rig.play(ev, Math.max(t, ctx.currentTime), stepSec);
+      for (const ev of bar.events) if (ev.step === step && !(calm && DRUMS.has(ev.part))) rig.play(ev, Math.max(t, ctx.currentTime), stepSec);
       if (step === 0) notify(barAbs, t);
       next++;
     }

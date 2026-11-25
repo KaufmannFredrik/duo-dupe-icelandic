@@ -4,6 +4,8 @@ import { MODES, chord, diatonic, inKey, key, melodyProblems, mod12, noteName, pa
 import { STYLES, STYLE_IDS } from '../js/music/styles.js';
 import { compose, composeDuet, STEPS } from '../js/music/compose.js';
 import { rng } from '../js/engine/rng.js';
+import { pageMood, resumePosition } from '../js/music/background.js';
+import { HAPPY_MINUTES, cheer, happyMood, isHappy } from '../js/music/mood.js';
 
 const SEEDS = 12;
 const names = (k) => k.pcs.map((p) => noteName(60 + p).replace(/\d+$/, ''));
@@ -217,5 +219,50 @@ test('music: the bass plays the chord bass on every downbeat, inside its range',
         for (const e of bar.events.filter((x) => x.part === 'arp')) assert.ok(bar.chord.pcs.includes(mod12(e.midi)), `${id}: arpeggio ${noteName(e.midi)} over ${bar.chord.name}`);
       });
     }
+  }
+});
+
+test('music in the app: a mood per screen, silence where Icelandic is the point', () => {
+  const at = (path) => `https://example.org/tolva/${path}`;
+  assert.equal(pageMood(at('')), 'synthwave');
+  assert.equal(pageMood(at('learn.html')), 'synthwave');
+  assert.equal(pageMood(at('profile.html')), 'synthwave');
+  assert.equal(pageMood(at('practice.html')), 'cyberpunk');
+  for (const page of ['guide.html?unit=hello', 'dictionary.html', 'declension.html?lemma=kaffi', 'stories.html', 'settings.html', 'credits.html', 'bridge.html']) assert.equal(pageMood(at(page)), 'dreamwave', page);
+  for (const page of ['lesson.html?unit=hello&lesson=1', 'lesson.html?mode=speak', 'letters.html', 'voices.html', 'music.html', 'stories.html?story=cafe', 'styleguide.html']) assert.equal(pageMood(at(page)), null, page);
+  assert.equal(pageMood(at('practice.html'), true), 'dreamwave', 'Calm mode plays Dreamwave');
+  assert.equal(pageMood(at('lesson.html'), true), null);
+  // A happy spell: Happy replaces the driving moods, not the calm ones, and never in Calm mode.
+  assert.equal(pageMood(at('learn.html'), false, true), 'glad');
+  assert.equal(pageMood(at('practice.html'), false, true), 'glad');
+  assert.equal(pageMood(at('dictionary.html'), false, true), 'dreamwave');
+  assert.equal(pageMood(at('lesson.html'), false, true), null);
+  assert.equal(pageMood(at('learn.html'), true, true), 'dreamwave');
+});
+
+test('music in the app: the song carries over a page change, and starts fresh after a break', () => {
+  const opts = { now: 100_000, day: '2026-11-25', barSeconds: 2, length: 64 };
+  assert.equal(resumePosition(undefined, opts), 0);
+  assert.equal(resumePosition({ pos: 10, at: 99_000, day: '2026-11-25' }, opts), 10.5, 'one second later, half a bar on');
+  assert.equal(resumePosition({ pos: 10, at: 50_000, day: '2026-11-25' }, opts), 64, 'after a break, the next song from its intro');
+  assert.equal(resumePosition({ pos: 70, at: 50_000, day: '2026-11-25' }, opts), 128);
+  assert.equal(resumePosition({ pos: 10, at: 99_000, day: '2026-11-24' }, opts), 0, 'a new day starts over');
+  assert.equal(resumePosition(undefined, { ...opts, entry: 24 }), 24, 'Happy starts at its chorus');
+  assert.equal(resumePosition({ pos: 10, at: 50_000, day: '2026-11-25' }, { ...opts, entry: 24 }), 88);
+});
+
+test('music in the app: a good moment makes the music happy for a few minutes', () => {
+  const store = new Map();
+  globalThis.sessionStorage = { getItem: (k) => store.get(k) ?? null, setItem: (k, v) => store.set(k, String(v)) };
+  try {
+    assert.equal(isHappy(1_000), false);
+    cheer(1_000);
+    assert.equal(isHappy(1_000 + 60_000), true);
+    assert.equal(isHappy(1_000 + HAPPY_MINUTES * 60_000 + 1), false);
+    assert.equal(happyMood('synthwave', true), 'glad');
+    assert.equal(happyMood('dreamwave', true), 'dreamwave');
+    assert.equal(happyMood('synthwave', false), 'synthwave');
+  } finally {
+    delete globalThis.sessionStorage;
   }
 });

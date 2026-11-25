@@ -10,6 +10,7 @@ import { hashSeed } from '../engine/rng.js';
 import { STYLES, STYLE_IDS } from '../music/styles.js';
 import { chord, key, noteName } from '../music/theory.js';
 import { createPlayer, volumeGain } from '../music/player.js';
+import { audioContext, unlock } from '../audio-context.js';
 import { icon } from '../shell.js';
 
 await ready;
@@ -103,8 +104,8 @@ function setPressed(id) {
 }
 
 async function play(id, section = 'intro') {
-  ctx ??= new AudioContext({ latencyHint: 'playback' });
-  if (ctx.state === 'suspended') await ctx.resume();
+  ctx ??= audioContext();
+  await unlock();
   const old = player;
   player = null;
   old?.stop({ fade: 0.4 });

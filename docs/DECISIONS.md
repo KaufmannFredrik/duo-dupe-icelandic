@@ -2,6 +2,25 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Menu music, step 3: happy moments (2026-11-25)
+
+- **When:** a finished lesson (any lesson round, Letters and sounds included), the daily goal reached (also in the case trainer), or the third daily quest done (also by hearing a story to the end). `completeLesson`, `addXP` and `recordQuests` in `js/progress.js` call `cheer()` (`js/music/mood.js`), which starts a happy spell of three minutes in `sessionStorage`, so it carries from the lesson to the screen the learner goes to next.
+- **What:** during a spell the Happy mood replaces Synthwave and Cyberpunk (Learn, Profile, the start page, Practice) and starts at its chorus, so the first thing heard is the hopscotch IV–V–vi–I and the heroic ♭VI–♭VII–I. The calm Dreamwave screens stay as they are, and Calm mode keeps Dreamwave everywhere. When a spell ends, Happy plays on until the learner opens another screen, so no song is cut off.
+- **Never sad:** nothing in the music reacts to mistakes, a lost heart or a missed day.
+
+## Menu music, step 2: in the app (2026-11-25)
+
+The music from step 1 now plays in the app when the learner turns it on.
+
+- **Off by default, two ways to turn it on:** a Music switch in Settings (Sound and voice), and a note button beside the sound-effects button in the top bar and the side panel. Settings also has the **music volume** (0 to 100, default 50; the lab's slider is the same setting) and the link to the Music lab. While music is off, the music code (about 70 KB) is not even loaded and no audio context is made (`bindMusic` in `js/app.js` imports `js/music/background.js` on demand).
+- **A mood per screen** (`PAGE_MOODS`, by file name): Synthwave on the start page, Learn and Profile; Cyberpunk on Practice; Dreamwave on the guidebook, Dictionary, Case trainer, the Stories list, the Norwegian bridge, Settings and Credits. **Silent:** lessons (every exercise, the placement test and speaking practice), Letters and sounds, Voices, the story reader (it is narrated), the Music lab (it has its own player) and the style guide. The section checkpoints are not built yet; when they are, their start and result screens get Cyberpunk and their questions stay silent like every lesson.
+- **Icelandic always wins.** `js/audio.js` sends `tolva:speaking` when any Icelandic audio starts and ends (recordings, the generated voice, the device voice); the music drops to 15% within about a tenth of a second and comes back over about a second. `js/speech.js` sends `tolva:listening` while the microphone is open, and the music stops, so it never reaches the speech recognizer.
+- **Calm mode** (on, or auto from reduced motion or more contrast) plays Dreamwave on every screen with music, without drums and at 60% of the volume; it follows a change of the device setting at once.
+- **Across pages** each mood keeps its position in `sessionStorage`: the next screen of the same mood within 20 seconds continues the song where it was, fading in over 1.5 seconds; after a longer break (or a new day) the next song starts from its intro. A hidden tab stops the music and saves its place. Songs are seeded by the day and the mood.
+- **One audio context** for the sound effects and the music (`js/audio-context.js`).
+- **Starting without a tap:** checked in Chromium with its default autoplay policy (Playwright): after music is turned on with a click, a screen reached by a link creates its audio context already running, so Practice started Cyberpunk on its own. Browsers that hold audio back until the page is used (Firefox, Safari) start the music at the first tap, click or key press.
+- **Checked in Chromium:** with music off, no music file loads and no audio context exists; the top-bar button starts Synthwave on Learn; Practice then plays Cyberpunk without a tap; a lesson and the story reader create no audio at all; Settings plays Dreamwave and its switch turns the music off everywhere. New tests: the mood of every screen (and Calm mode), and where a song resumes.
+
 ## Menu music, step 1: the engine and the Music lab (2026-11-25)
 
 The owner asked for music in the menus that fits the retro-futuristic look, made by code: synthwave, with dreamwave and cyberpunk where they suit, and a happier sound when the learner does well. Owner decisions: music is **off by default**; a **volume control**; the page-to-mood map below; **Cyberpunk on Practice and the section checkpoints**; Icelandic two-part singing in fifths (*tvísöngur*) woven in; and "it is very important that the music theory is correct", so the rules were looked up and are checked by tests. This step builds the engine and a listening page (`music.html`, linked from Settings) where the owner can hear every mood and jump to any section. Nothing plays anywhere else yet.

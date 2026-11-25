@@ -1,5 +1,6 @@
 // Page bootstrap shared by every screen: display settings (Calm mode, scanlines), UI language,
-// brand strings, the app shell and the sound toggle. Pages do `import { ready } from './app.js'`.
+// brand strings, the app shell, the sound and music toggles, and the menu music (loaded only once
+// the learner turns music on). Pages do `import { ready } from './app.js'`.
 
 import { getSettings, setSetting } from './store.js';
 import { applyI18n, detectLang, initI18n, pick, t } from './i18n.js';
@@ -55,6 +56,35 @@ function bindSoundToggles() {
   update();
 }
 
+function bindMusic() {
+  const update = () => {
+    const on = getSettings().music;
+    for (const btn of document.querySelectorAll('[data-music-toggle]')) {
+      btn.setAttribute('aria-pressed', String(on));
+      btn.setAttribute('aria-label', t(on ? 'music.turnOff' : 'music.turnOn'));
+      btn.querySelector('use')?.setAttribute('href', `assets/icons.svg#${on ? 'i-music' : 'i-music-off'}`);
+    }
+  };
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('[data-music-toggle]')) return;
+    setSetting('music', !getSettings().music);
+  });
+  window.addEventListener('tolva:settings', update);
+  window.addEventListener('tolva:shell', update);
+  update();
+  // The music code (about 70 KB) loads only when music is on.
+  const load = () => import('./music/background.js').then((m) => m.initMusic());
+  if (getSettings().music) load();
+  else {
+    const on = (e) => {
+      if (!getSettings().music) return;
+      window.removeEventListener('tolva:settings', on);
+      load();
+    };
+    window.addEventListener('tolva:settings', on);
+  }
+}
+
 async function init() {
   applyDisplaySettings();
   for (const m of CALM_QUERIES) m.addEventListener('change', applyDisplaySettings);
@@ -76,6 +106,7 @@ async function init() {
   applyI18n();
   applyBrand();
   bindSoundToggles();
+  bindMusic();
   html.classList.add('is-ready');
   registerWorker();
 }

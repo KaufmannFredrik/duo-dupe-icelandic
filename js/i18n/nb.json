@@ -560,6 +560,8 @@
   "credits.audio.text": "Ordopptakene spilles av fra <a href=\"https://commons.wikimedia.org\">Wikimedia Commons</a>, de fleste laget med <a href=\"https://lingualibre.org\">Lingua Libre</a>. Hvert opptak viser hvem som snakker, og lisensen, der det spilles av.",
   "credits.tts.title": "Generert stemme",
   "credits.tts.text": "Ord og setninger uten opptak av et menneske leses av den genererte stemmen eleven velger (Steinn, Salka, Búi eller Ugla), laget på forhånd med <a href=\"https://github.com/OHF-Voice/piper1-gpl\">Piper</a> (GPL-3.0; et byggeverktøy, ikke en del av nettstedet). De islandske Piper-stemmene er trent på korpuset <a href=\"https://hdl.handle.net/20.500.12537/104\">Talrómur</a> fra Háskólinn í Reykjavík (CC BY 4.0). Den genererte lyden tilbys under CC BY 4.0 med den kreditteringen; setningslyden leser Tatoeba-setninger, som er kreditert ovenfor. <a href=\"voices.html\">Sammenlign alle fire stemmene</a>.",
+  "credits.music.title": "Musikk",
+  "credits.music.text": "Menymusikken komponeres og lages i nettleseren din av TÖLVAs egen kode (MIT-lisens): ingen opptak, lydprøver eller eksisterende melodier. Reglene for harmonikk og melodi følger <a href=\"https://human.libretexts.org/Bookshelves/Music/Music_Theory/Open_Music_Theory_2e_(Gotham_et_al.)\">Open Music Theory</a> (Gotham mfl.), og tvísöngur-delene følger beskrivelser av islandsk tostemt sang, som er oppført i <a href=\"music.html\">musikklaben</a>.",
   "credits.bm.text": "<a href=\"bridge.html\">Norsk bro</a> kobler kursord til slektningene deres på bokmål og de norrøne ordene bak dem: Bokmålsordboka, Universitetet i Bergen og Språkrådet, <a href=\"https://ordbokene.no\">ordbøkene.no</a>, CC BY 4.0. Bare oppslagsordet på bokmål, artikkelnummeret og det norrøne ordet er lagret.",
   "credits.clarin.title": "Frekvenslister fra CLARIN-IS",
   "credits.clarin.text": "Rekkefølgen på ordforrådet i kurset følger «Frequency lists for Icelandic 23.06», <a href=\"https://hdl.handle.net/20.500.12537/314\">hdl.handle.net/20.500.12537/314</a>. Lisens: CC BY 4.0.",
@@ -571,7 +573,7 @@
   "audio.credit": "Syntetisk stemme {name} ({gender}): Piper, trent på Talrómur (Háskólinn í Reykjavík, CC BY 4.0, hdl.handle.net/20.500.12537/104).",
   "title.music": "Musikk",
   "settings.musicLab": "Musikklab: hør de fire stemningene",
-  "music.intro": "Musikk til menyene, laget av kode i nettleseren din: ingen opptak og ingenting å laste ned. Hør de fire stemningene her.",
+  "music.intro": "Musikk til menyene, laget av kode i nettleseren din: ingen opptak og ingenting å laste ned. Den er av som standard; slå den på i Innstillinger eller med noteknappen øverst. Hør de fire stemningene her.",
   "music.now": "Spilles nå",
   "music.volume": "Musikkvolum",
   "music.idle": "Ingenting spilles. Trykk på Spill av ved en stemning.",
@@ -615,5 +617,10 @@
   "music.how.title": "Slik er sangene bygd",
   "music.how.form": "Hver sang har intro, vers, refreng og tvísöngur, i deler på åtte takter. Akkordrekkene er kjente mønstre fra popmusikken, som Am, F, C, G i Synthwave og den heroiske A♭, B♭, C som avslutter refrenget i Glad (<a href=\"https://human.libretexts.org/Bookshelves/Music/Music_Theory/Open_Music_Theory_2e_(Gotham_et_al.)/07%3A_Popular_Music/7.12%3A_Modal_Schemas\">Open Music Theory</a>).",
   "music.how.melody": "Melodiene i versene er perioder: fire takter som slutter åpent, besvart av fire takter som begynner likt og slutter på grunntonen. Melodiene i refrengene er setninger: en kort idé, en gjentakelse og en travlere avslutning. Toner på slaget hører til akkorden, toner mellom slagene går trinnvis, hver frase har ett høydepunkt, og den siste tonen nås trinnvis. Hver dag gir nye melodier, og hver av dem sjekkes mot disse reglene.",
-  "music.how.sound": "Alle lydene lages mens du lytter: trommemaskin, bass, flater, arpeggio, melodistemme og de to stemmene. Når en sang er ferdig, lages en ny."
+  "music.how.sound": "Alle lydene lages mens du lytter: trommemaskin, bass, flater, arpeggio, melodistemme og de to stemmene. Når en sang er ferdig, lages en ny.",
+  "music.turnOn": "Slå på musikk",
+  "music.turnOff": "Slå av musikk",
+  "settings.music": "Musikk",
+  "settings.musicHelp": "Synthwave laget av kode, med en stemning for hver type skjerm. Aldri i leksjoner, og lavere når det snakkes islandsk. Av som standard.",
+  "settings.musicVolume": "Musikkvolum"
 }

@@ -134,6 +134,7 @@
 /* Sidebar panels ----------------------------------------------------------------------------- */
 
 .side-stats { display: flex; justify-content: space-between; gap: var(--space-3); }
+.side-toggles { flex-wrap: nowrap; gap: 0; }
 .side-panel { padding: var(--space-4); }
 .side-panel h2 { margin-bottom: var(--space-3); font-size: var(--text-sm); letter-spacing: 0.12em; text-transform: uppercase; }
 .goal-row { display: flex; align-items: center; gap: var(--space-4); }

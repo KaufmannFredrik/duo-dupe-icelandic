@@ -560,6 +560,8 @@
   "credits.audio.text": "Word recordings are played from <a href=\"https://commons.wikimedia.org\">Wikimedia Commons</a>, most of them made with <a href=\"https://lingualibre.org\">Lingua Libre</a>. Each recording shows its speaker and license where it is played.",
   "credits.tts.title": "Generated voice",
   "credits.tts.text": "Words and sentences without a human recording are spoken by the generated voice the learner chooses (Steinn, Salka, Búi or Ugla), made ahead of time with <a href=\"https://github.com/OHF-Voice/piper1-gpl\">Piper</a> (GPL-3.0; a build tool, not part of the website). The Icelandic Piper voices were trained on the <a href=\"https://hdl.handle.net/20.500.12537/104\">Talrómur</a> corpus by Reykjavík University (CC BY 4.0). The generated audio is offered under CC BY 4.0 with that credit; sentence audio speaks Tatoeba sentences, credited above. <a href=\"voices.html\">Compare all four voices</a>.",
+  "credits.music.title": "Music",
+  "credits.music.text": "The menu music is composed and synthesized in your browser by TÖLVA's own code (MIT license): no recordings, samples or existing melodies. Its rules for harmony and melody follow <a href=\"https://human.libretexts.org/Bookshelves/Music/Music_Theory/Open_Music_Theory_2e_(Gotham_et_al.)\">Open Music Theory</a> (Gotham and others), and its tvísöngur sections follow descriptions of Icelandic two-part singing, listed in the <a href=\"music.html\">Music lab</a>.",
   "credits.bm.text": "The <a href=\"bridge.html\">Norwegian bridge</a> links course words to their Bokmål relatives and the Old Norse words behind them: Bokmålsordboka, Universitetet i Bergen og Språkrådet, <a href=\"https://ordbokene.no\">ordbøkene.no</a>, CC BY 4.0. Only the Bokmål lemma, the article number and the Old Norse word are stored.",
   "credits.clarin.title": "CLARIN-IS frequency lists",
   "credits.clarin.text": "The order of the course vocabulary follows \"Frequency lists for Icelandic 23.06\", <a href=\"https://hdl.handle.net/20.500.12537/314\">hdl.handle.net/20.500.12537/314</a>. License: CC BY 4.0.",
@@ -571,7 +573,7 @@
   "audio.credit": "Synthetic voice {name} ({gender}): Piper, trained on Talrómur (Reykjavík University, CC BY 4.0, hdl.handle.net/20.500.12537/104).",
   "title.music": "Music",
   "settings.musicLab": "Music lab: hear the four moods",
-  "music.intro": "Music for the menus, made by code in your browser: no recordings and nothing to download. Listen to the four moods here.",
+  "music.intro": "Music for the menus, made by code in your browser: no recordings and nothing to download. It is off by default; turn it on in Settings or with the note button at the top. Listen to the four moods here.",
   "music.now": "Now playing",
   "music.volume": "Music volume",
   "music.idle": "Nothing is playing. Press Play on a mood.",
@@ -615,5 +617,10 @@
   "music.how.title": "How the songs are built",
   "music.how.form": "Each song has an intro, verses, choruses and the tvísöngur, in sections of eight bars. The chord loops are well-known patterns of pop music, such as Am, F, C, G in Synthwave and the heroic A♭, B♭, C that ends the Happy chorus (<a href=\"https://human.libretexts.org/Bookshelves/Music/Music_Theory/Open_Music_Theory_2e_(Gotham_et_al.)/07%3A_Popular_Music/7.12%3A_Modal_Schemas\">Open Music Theory</a>).",
   "music.how.melody": "Verse melodies are periods: four bars that end open, answered by four bars that start the same way and end on the keynote. Chorus melodies are sentences: a short idea, its repeat, and a busier ending. Notes on the beat belong to the chord, notes between beats move by step, each phrase has one high point, and the last note is approached by step. Each day brings new melodies, and every one is checked against these rules.",
-  "music.how.sound": "Every sound is synthesized as you listen: drum machine, bass, pads, arpeggio, lead and the two voices. When a song ends, a new one is composed."
+  "music.how.sound": "Every sound is synthesized as you listen: drum machine, bass, pads, arpeggio, lead and the two voices. When a song ends, a new one is composed.",
+  "music.turnOn": "Turn music on",
+  "music.turnOff": "Turn music off",
+  "settings.music": "Music",
+  "settings.musicHelp": "Synthwave made by code, with a mood for each kind of screen. Never in lessons, and quieter whenever Icelandic is spoken. Off by default.",
+  "settings.musicVolume": "Music volume"
 }

@@ -9,6 +9,7 @@ import { getSettings, replaceSettings } from './store.js';
 import { BADGES, MAX_FREEZES, addToTally, dayKey, freezesEarned, settleFreezes, streakOf, summarize, tallyOf } from './stats.js';
 import { QUEST_BONUS, addQuestEvents } from './quests.js';
 import { unitsToRecord } from './engine/course-model.js';
+import { cheer } from './music/mood.js';
 
 const PROGRESS_KEY = 'progress';
 const XP = { correct: 10, almost: 5, wrong: 0 };
@@ -111,6 +112,7 @@ export async function completeLesson(lessonKey, results, { bonus = 0, events } =
   const badges = await awardBadges(p);
   await saveProgress(p);
   await trimAttempts();
+  cheer(); // a finished lesson: the menu music turns happy (js/music/mood.js)
   return { xp, score, ...streak, badges, quests, questXP };
 }
 
@@ -122,6 +124,7 @@ export async function recordQuests(events) {
   const streak = questXP ? gain(p, questXP) : {};
   const badges = questXP ? await awardBadges(p) : [];
   await saveProgress(p);
+  if (quests.chest) cheer();
   return { xp: questXP, ...streak, badges, quests, questXP };
 }
 
@@ -133,6 +136,7 @@ export async function addXP(xp) {
   const badges = await awardBadges(p);
   await saveProgress(p);
   await trimAttempts();
+  if (streak.goalReached) cheer();
   return { xp, ...streak, badges };
 }
 

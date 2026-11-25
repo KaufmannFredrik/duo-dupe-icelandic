@@ -50,6 +50,10 @@ export function listen({ onInterim, local = false } = {}) {
     rec.onerror = (e) => (e.error === 'no-speech' || e.error === 'aborted' ? resolve([]) : reject(new Error(e.error)));
     rec.onend = () => resolve(finals);
   });
+  // The menu music (js/music/background.js) stops while the microphone listens.
+  const listening = (on) => window.dispatchEvent(new CustomEvent('tolva:listening', { detail: on }));
+  result.finally(() => listening(false)).catch(() => {});
+  listening(true);
   rec.start();
   return { result, stop: () => rec.stop() };
 }

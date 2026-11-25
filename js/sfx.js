@@ -2,6 +2,7 @@
 // Off by default; they only play after the user turns sound on.
 
 import { getSettings } from './store.js';
+import { audioContext } from './audio-context.js';
 
 const SOUNDS = {
   tap: [[1200, 0.03]],
@@ -11,12 +12,11 @@ const SOUNDS = {
   complete: [[523, 0.08], [659, 0.08], [784, 0.08], [1047, 0.22]],
 };
 
-let ctx;
-
 export function sfx(name) {
   if (!getSettings().sound || !SOUNDS[name]) return;
   try {
-    ctx ??= new AudioContext();
+    const ctx = audioContext();
+    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
     let t = ctx.currentTime + 0.01;
     for (const [freq, dur] of SOUNDS[name]) {
       const osc = ctx.createOscillator();

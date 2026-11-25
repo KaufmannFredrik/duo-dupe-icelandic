@@ -22,6 +22,7 @@ radio('scan', s.scan);
 radio('strict', s.strict ? 'strict' : 'easy');
 radio('goal', s.goal);
 form.elements.sound.checked = s.sound;
+form.elements.music.checked = s.music;
 form.elements.hearts.checked = s.hearts;
 form.elements.speaking.checked = s.speaking;
 // Speech support is only checked once speaking is on: the check asks the browser about its
@@ -68,6 +69,7 @@ form.addEventListener('change', (e) => {
       setSetting('goal', Number(el.value));
       break;
     case 'sound':
+    case 'music':
     case 'hearts':
       setSetting(el.name, el.checked);
       break;
@@ -87,6 +89,17 @@ form.addEventListener('change', (e) => {
       break;
     default:
   }
+});
+const musicOut = form.querySelector('[data-music-volume-out]');
+form.elements.musicVolume.value = String(s.musicVolume);
+musicOut.textContent = `${s.musicVolume}%`;
+form.elements.musicVolume.addEventListener('input', (e) => {
+  musicOut.textContent = `${e.target.value}%`;
+  setSetting('musicVolume', Number(e.target.value));
+});
+// The top bar's music button changes the setting too.
+window.addEventListener('tolva:settings', (e) => {
+  if (e.detail?.key === 'music') form.elements.music.checked = e.detail.value;
 });
 form.elements.rate.addEventListener('input', (e) => {
   rateOut.textContent = `${Number(e.target.value).toFixed(1)}x`;

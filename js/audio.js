@@ -82,6 +82,9 @@ export function stop() {
   finish?.();
 }
 
+// Tells the menu music (js/music/background.js) to make room while Icelandic is spoken.
+const speaking = (on) => window.dispatchEvent(new CustomEvent('tolva:speaking', { detail: on }));
+
 // Wraps onWord/onEnd so the end callbacks run exactly once.
 function ender(onWord, onEnd) {
   let done = false;
@@ -89,10 +92,12 @@ function ender(onWord, onEnd) {
     if (done) return;
     done = true;
     if (finish === end) finish = null;
+    speaking(false);
     onWord?.(-1);
     onEnd?.();
   };
   finish = end;
+  speaking(true);
   return end;
 }
 
