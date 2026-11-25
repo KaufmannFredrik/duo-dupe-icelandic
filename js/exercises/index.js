@@ -17,11 +17,15 @@ import * as letter from './letter.js';
 import * as lettername from './lettername.js';
 import * as likenb from './likenb.js';
 import * as spell from './spell.js';
+import * as numlisten from './numlisten.js';
+import * as numtype from './numtype.js';
+import * as numbuild from './numbuild.js';
 
 // conjugate: the form of a verb (person and number), on the same screen as a case ending.
 // typeform: the same form, typed.
 // letter, lettername, likenb, spell: letters and sounds (js/engine/letters.js).
-export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, typeform, match, ending, conjugate: ending, case: caseEx, table, pair, speak, bridge, letter, lettername, likenb, spell };
+// numlisten, numtype, numbuild: numbers by ear and in words (js/engine/numbers.js).
+export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, typeform, match, ending, conjugate: ending, case: caseEx, table, pair, speak, bridge, letter, lettername, likenb, spell, numlisten, numtype, numbuild };
 
 export function buildExercise(spec, ctx) {
   const mod = EXERCISES[spec.type];

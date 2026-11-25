@@ -62,6 +62,16 @@ export async function answer(page, mode = 'correct') {
       await page.click('[data-mic]');
       await page.waitForFunction(() => !document.querySelector('[data-action="check"]').disabled);
       break;
+    case 'numlisten':
+      await page.click(`.option[data-value="${spec.answer}"]`);
+      break;
+    case 'numtype':
+      // A phone number typed in its groups, as people write it: only the digits count.
+      await page.fill('#answer', spec.phone ? `${spec.answer.slice(0, 3)} ${spec.answer.slice(3)}` : spec.answer);
+      break;
+    case 'numbuild':
+      for (const w of spec.words) await page.locator('[data-bank] .chip:not(:disabled)', { hasText: new RegExp(`^${w}$`, 'u') }).first().click();
+      break;
     case 'table': {
       const forms = await page.evaluate((id) => window.__tolva.paradigm(id), spec.lemma);
       for (const tag of spec.blanks) await page.fill(`.decl__input[data-tag="${tag}"]`, forms.find((f) => f.g === tag).b);

@@ -5,7 +5,7 @@
 // from Settings) and survives updates: each file name is a hash of its text, and its URL carries a
 // hash of its bytes (?v=), so a file rendered again is fetched again.
 
-const VERSION = '7581fb580683';
+const VERSION = '43000a04dbe5';
 const CORE = `tolva-core-${VERSION}`;
 const AUDIO = 'tolva-audio-v1';
 const PRECACHE = [
@@ -43,6 +43,7 @@ const PRECACHE = [
   "content/stories/hello.json",
   "content/stories/index.json",
   "content/stories/newwords.json",
+  "content/stories/numbers.json",
   "content/stories/shopping.json",
   "content/stories/study.json",
   "content/stories/time.json",
@@ -61,6 +62,7 @@ const PRECACHE = [
   "content/units/10-newwords.json",
   "content/units/aboutme.json",
   "content/units/index.json",
+  "content/units/numbers.json",
   "content/vocab/core.json",
   "credits.html",
   "css/base.css",
@@ -78,6 +80,7 @@ const PRECACHE = [
   "data/forms/family.json",
   "data/forms/hello.json",
   "data/forms/newwords.json",
+  "data/forms/numbers.json",
   "data/forms/shopping.json",
   "data/forms/study.json",
   "data/forms/time.json",
@@ -100,6 +103,7 @@ const PRECACHE = [
   "js/engine/course-model.js",
   "js/engine/generate.js",
   "js/engine/letters.js",
+  "js/engine/numbers.js",
   "js/engine/rng.js",
   "js/exercises/bridge.js",
   "js/exercises/case.js",
@@ -113,6 +117,9 @@ const PRECACHE = [
   "js/exercises/listen.js",
   "js/exercises/match.js",
   "js/exercises/meaning.js",
+  "js/exercises/numbuild.js",
+  "js/exercises/numlisten.js",
+  "js/exercises/numtype.js",
   "js/exercises/pair.js",
   "js/exercises/speak.js",
   "js/exercises/spell.js",

@@ -1,0 +1,226 @@
+{
+  "id": "numbers",
+  "theme": "numbers",
+  "reviewed": true,
+  "title": {
+    "en": "Numbers",
+    "nb": "Tall"
+  },
+  "is": "Tölur",
+  "goal": {
+    "en": "Count up to ninety-nine, understand numbers and phone numbers by ear, and say first, second, third.",
+    "nb": "Tell opp til nittini, forstå tall og telefonnumre når du hører dem, og si første, andre, tredje."
+  },
+  "host": {
+    "character": "jonas",
+    "says": "469365"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Eleven to fifteen",
+        "nb": "Elleve til femten"
+      },
+      "focus": [
+        "ellefu_to",
+        "tólf_to",
+        "þrettán_to",
+        "fjórtán_to",
+        "fimmtán_to"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Sixteen to nineteen",
+        "nb": "Seksten til nitten"
+      },
+      "focus": [
+        "sextán_to",
+        "sautján_to",
+        "átján_to",
+        "nítján_to",
+        "telja_so"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "Thirty to sixty",
+        "nb": "Tretti til seksti"
+      },
+      "focus": [
+        "þrjátíu_to",
+        "fjörutíu_to",
+        "fimmtíu_to",
+        "sextíu_to",
+        "tala_no"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "Seventy to ninety",
+        "nb": "Sytti til nitti"
+      },
+      "focus": [
+        "sjötíu_to",
+        "áttatíu_to",
+        "níutíu_to",
+        "númer_no"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "First to fifth",
+        "nb": "Første til femte"
+      },
+      "focus": [
+        "fyrstur_lo",
+        "þriðji_rt",
+        "fjórði_rt",
+        "fimmti_rt",
+        "skipti_no"
+      ]
+    },
+    {
+      "id": "6",
+      "title": {
+        "en": "Sixth to tenth",
+        "nb": "Sjette til tiende"
+      },
+      "focus": [
+        "sjötti_rt",
+        "sjöundi_rt",
+        "áttundi_rt",
+        "níundi_rt",
+        "tíundi_rt"
+      ]
+    },
+    {
+      "id": "7",
+      "title": {
+        "en": "Many and few",
+        "nb": "Mange og få"
+      },
+      "focus": [
+        "margur_lo",
+        "mikill_lo",
+        "mikið_ao",
+        "fár_lo",
+        "nokkur_fn",
+        "hálfur_lo"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "Eleven to nineteen: -tán",
+          "nb": "Elleve til nitten: -tán"
+        },
+        "text": {
+          "en": "{is:ellefu} and {is:tólf} are Norwegian elleve and tolv. From thirteen to nineteen the numbers end in -tán, where Norwegian has -ten: {is:þrettán}, {is:fjórtán}, {is:fimmtán}, {is:sextán}, {is:sautján}, {is:átján}, {is:nítján}. Like every number from five up, they never change. Listen for the endings: {is:sautján} is 17 and {is:sjötíu} 70, {is:fjórtán} is 14 and {is:fjörutíu} 40. To count is {is:telja}: {is:Strákurinn getur talið upp á tíu} (the boy can count to ten). It also means to think: {is:Hann taldi sig vera snilling}.",
+          "nb": "{is:ellefu} og {is:tólf} er norsk elleve og tolv. Fra tretten til nitten ender tallene på -tán, der norsk har -ten: {is:þrettán}, {is:fjórtán}, {is:fimmtán}, {is:sextán}, {is:sautján}, {is:átján}, {is:nítján}. Som alle tall fra fem og oppover bøyes de aldri. Lytt etter endelsene: {is:sautján} er 17 og {is:sjötíu} 70, {is:fjórtán} er 14 og {is:fjörutíu} 40. Å telle er {is:telja}: {is:Strákurinn getur talið upp á tíu} (gutten kan telle til ti). Det betyr også å mene: {is:Hann taldi sig vera snilling}."
+        },
+        "examples": [
+          "1368321",
+          "665882",
+          "489674",
+          "487079",
+          "868053"
+        ]
+      },
+      {
+        "title": {
+          "en": "Tens, with og between: fjörutíu og sjö",
+          "nb": "Tiere, med og imellom: fjörutíu og sjö"
+        },
+        "text": {
+          "en": "The tens end in -tíu, ten: {is:tuttugu} (20) is the odd one, then {is:þrjátíu}, {is:fjörutíu}, {is:fimmtíu}, {is:sextíu}, {is:sjötíu}, {is:áttatíu}, {is:níutíu}. Mind the ö in {is:fjörutíu} and {is:sjötíu}. In between, the ten comes first and {is:og} (and) joins the unit to it: {is:tuttugu og fimm} (25), {is:fjörutíu og sjö} (47). When you just count, one to four are masculine: {is:þrjátíu og einn}, {is:fjörutíu og tveir}. Before a noun the last number agrees with it, and after one the noun stays singular: {is:tuttugu og ein króna}, {is:Hún er þrjátíu og eins árs}. A hundred, {is:hundrað}, and a thousand, {is:þúsund}, are nouns; they come with prices in {is:Búð}.",
+          "nb": "Tierne ender på -tíu, ti: {is:tuttugu} (20) skiller seg ut, så kommer {is:þrjátíu}, {is:fjörutíu}, {is:fimmtíu}, {is:sextíu}, {is:sjötíu}, {is:áttatíu}, {is:níutíu}. Legg merke til ö i {is:fjörutíu} og {is:sjötíu}. Mellom tierne kommer tieren først, og {is:og} binder eneren til den: {is:tuttugu og fimm} (25), {is:fjörutíu og sjö} (47). Når du bare teller, står én til fire i hankjønn: {is:þrjátíu og einn}, {is:fjörutíu og tveir}. Foran et substantiv samsvarer det siste tallet med det, og etter én står substantivet i entall: {is:tuttugu og ein króna}, {is:Hún er þrjátíu og eins árs}. Hundre, {is:hundrað}, og tusen, {is:þúsund}, er substantiver; de kommer med priser i {is:Búð}."
+        },
+        "examples": [
+          "12276658",
+          "3995294",
+          "1356556",
+          "383550",
+          "727691"
+        ]
+      },
+      {
+        "title": {
+          "en": "Phone numbers, in pairs",
+          "nb": "Telefonnumre, i par"
+        },
+        "text": {
+          "en": "An Icelandic phone number has seven digits, written 567 1258. It is said as the first three digits one by one, then two pairs, each pair as one number: {is:fimm sex sjö, tólf, fimmtíu og átta}. Ask {is:Hvað er símanúmerið þitt?} A number that marks something, such as a phone number or a size, is {is:númer} (neuter): {is:Þú ert með vitlaust númer} (you have the wrong number). A number in itself is {is:tala} (feminine): {is:Aldur er bara tala}.",
+          "nb": "Et islandsk telefonnummer har sju sifre og skrives 567 1258. Det sies med de tre første sifrene ett og ett og så to par, der hvert par er ett tall: {is:fimm sex sjö, tólf, fimmtíu og átta}. Spør {is:Hvað er símanúmerið þitt?} Et nummer som merker noe, som et telefonnummer eller en størrelse, er {is:númer} (intetkjønn): {is:Þú ert með vitlaust númer} (du har feil nummer). Et tall i seg selv er {is:tala} (hunkjønn): {is:Aldur er bara tala}."
+        },
+        "examples": [
+          "466872",
+          "385691",
+          "385707",
+          "10633179",
+          "883851"
+        ],
+        "tables": [
+          "tala_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "First, second, third",
+          "nb": "Første, andre, tredje"
+        },
+        "text": {
+          "en": "Ordinal numbers say which one in a row. Written with digits they take a period: 3. is {is:þriðji}. They are {is:fyrsti}, {is:annar}, {is:þriðji}, {is:fjórði}, {is:fimmti}, {is:sjötti}, {is:sjöundi}, {is:áttundi}, {is:níundi}, {is:tíundi}. Second, {is:annar}, is also the word for other, just as Norwegian andre comes from annen. All but {is:annar} end in -i and agree like weak adjectives: in the nominative {is:þriðji} with a masculine noun and {is:þriðja} with a feminine or neuter one, and -u in the plural and the other cases of the feminine: {is:á þriðju hæð} (on the third floor). {is:fyrsti} is the weak form of {is:fyrstur}, first. Dates use ordinals: {is:5. júní} is said {is:fimmti júní}.",
+          "nb": "Ordenstall sier hvilken i rekken. Skrevet med sifre får de punktum: 3. er {is:þriðji}. De er {is:fyrsti}, {is:annar}, {is:þriðji}, {is:fjórði}, {is:fimmti}, {is:sjötti}, {is:sjöundi}, {is:áttundi}, {is:níundi}, {is:tíundi}. Andre, {is:annar}, er også ordet for annen, slik norsk andre kommer av annen. Alle unntatt {is:annar} ender på -i og bøyes som svake adjektiver: i nominativ {is:þriðji} med et hankjønnsord og {is:þriðja} med et hunkjønns- eller intetkjønnsord, og -u i flertall og i de andre kasusene i hunkjønn: {is:á þriðju hæð} (i tredje etasje). {is:fyrsti} er den svake formen av {is:fyrstur}, første. Datoer bruker ordenstall: {is:5. júní} sies {is:fimmti júní}."
+        },
+        "examples": [
+          "10892718",
+          "386817",
+          "385241",
+          "1353689",
+          "3998697"
+        ],
+        "tables": [
+          "þriðji_rt"
+        ]
+      },
+      {
+        "title": {
+          "en": "Many, much, few: margur, mikill, fár",
+          "nb": "Mange, mye, få: margur, mikill, fár"
+        },
+        "text": {
+          "en": "{is:margur} is many, for things you can count, and {is:mikill} much, for an amount: {is:Það eru margir fiskar í þessu vatni}, {is:Ég drekk ekki mikinn bjór}. Both agree with the noun like other adjectives. Their comparatives are {is:fleiri} (more, of things you count) and {is:meiri}, {is:meira} (more, of an amount): {is:Vilt þú meira te?} As an adverb, {is:mikið} is a lot: {is:Við gengum mikið}. {is:fár} is few, {is:nokkur} some or a few ({is:nokkrar bækur}), and {is:hálfur} half. {is:skipti} is a time, an occasion: {is:í fyrsta skipti} (for the first time), {is:í þetta skipti} (this time).",
+          "nb": "{is:margur} er mange, om ting du kan telle, og {is:mikill} er mye, om en mengde: {is:Það eru margir fiskar í þessu vatni}, {is:Ég drekk ekki mikinn bjór}. Begge samsvarer med substantivet som andre adjektiver. Komparativ er {is:fleiri} (flere, om ting du teller) og {is:meiri}, {is:meira} (mer, om en mengde): {is:Vilt þú meira te?} Som adverb er {is:mikið} mye: {is:Við gengum mikið}. {is:fár} er få, {is:nokkur} noen ({is:nokkrar bækur}), og {is:hálfur} er halv. {is:skipti} er en gang: {is:í fyrsta skipti} (for første gang), {is:í þetta skipti} (denne gangen)."
+        },
+        "examples": [
+          "469365",
+          "511399",
+          "738964",
+          "488331",
+          "451215",
+          "384146",
+          "10691649"
+        ],
+        "tables": [
+          "margur_lo"
+        ]
+      }
+    ]
+  }
+}

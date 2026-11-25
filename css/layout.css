@@ -724,6 +724,10 @@ input[type="range"] { width: min(20rem, 100%); accent-color: var(--rf-cyan); }
 .letter-word { color: #FFFFFF; font-size: var(--text-xl); letter-spacing: 0.08em; text-align: center; }
 .blank--letter { min-width: 2.5ch; }
 .letter-option { font-size: var(--text-lg); font-weight: 700; }
+/* Numbers by ear and in words: digits large and of equal width, so 17 and 71 line up. */
+.number-option { font-size: var(--text-lg); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.number-prompt { display: block; font-size: var(--text-xl); font-weight: 700; font-variant-numeric: tabular-nums; text-align: center; }
+.input--number { font-size: var(--text-lg); font-variant-numeric: tabular-nums; letter-spacing: 0.08em; }
 .spell-hint { text-align: center; }
 .letters-offer { display: flex; align-items: flex-start; gap: var(--space-2); margin-bottom: var(--space-5); }
 .voice-intro .letters-offer { margin-bottom: 0; }

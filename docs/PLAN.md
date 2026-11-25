@@ -127,12 +127,12 @@ About 42 commits: 5 foundations, 2 for letters and sounds, 13 for section A1, 4 
 
 ## Progress
 
-Updated 2026-11-24 (unit 2, *Um mig*).
+Updated 2026-11-25 (unit 5, *Tölur*).
 
 - **Done** (each in `docs/DECISIONS.md`): the path in sections (A1, A2, bonus) with finished units recorded in progress; goals per level (`content/goals.json`) and the level card on Profile; the word picker (`npm run pick-words`); **letters and sounds** (*Stafirnir*): `letters.html` with the 32 letters and 11 spellings against Norwegian, a drill of four new exercise types with a card per letter (`letter|x`) that reviews bring back, the first card on Practice (no sixth tab: six labels do not fit 320 px), and an offer on Learn at the first visit. The sources it rests on are in `content/CLAIMS.md`; the corrections they made to the draft above are in the decision.
 - **Postponed:** loading data per section. The service worker downloads every data file on the first visit anyway, so it would only save parsing; it is built when the course data passes about 3 MB.
-- **Section A1, in progress** (step 3 under "How it is built"): unit 2, *Um mig*, is done (25 words; `docs/DECISIONS.md`), with *farsími* and *tölvupóstur* moved into it from *Nýyrði* and *flugvél* moved to *Gata*. *Nýyrði* keeps *sjónvarp* and *útvarp* until *Heima* (11) and *Fréttir* (A2) exist.
-- **Next:** unit 5, *Tölur* (11–100, ordinal numbers, prices, phone numbers), then units 8, 10, 11, 12, 14, 15, 17, 18 and the extra lessons in 7 and 16, each made as in step 5, starting with `npm run pick-words` for its topic. A unit placed early in the path can only build sentences from the units before it, so its sentence work is thinner (see the *Um mig* decision); the guidebook carries the phrases it cannot drill yet.
+- **Section A1, in progress** (step 3 under "How it is built"): unit 2, *Um mig*, is done (25 words; `docs/DECISIONS.md`), with *farsími* and *tölvupóstur* moved into it from *Nýyrði* and *flugvél* moved to *Gata*. *Nýyrði* keeps *sjónvarp* and *útvarp* until *Heima* (11) and *Fréttir* (A2) exist. Unit 5, *Tölur*, is done (35 words: 11 to 99, ordinals, phone numbers, amounts), and with it **numbers by ear** (hear a number or phone number and pick or write it, build a number's words); *hundrað* and *þúsund* stay in *Búð* with the prices, so *Tölur* counts to 99. Numbers by ear can later play prices (*Búð*) and times (*Tími*), with those units' words.
+- **Next:** units 8, 10, 11, 12, 14, 15, 17, 18 and the extra lessons in 7 and 16, each made as in step 5, starting with `npm run pick-words` for its topic. A unit placed early in the path can only build sentences from the units before it, so its sentence work is thinner (see the *Um mig* decision); the guidebook carries the phrases it cannot drill yet.
 - **Then:** section A2.
 
 ## Costs

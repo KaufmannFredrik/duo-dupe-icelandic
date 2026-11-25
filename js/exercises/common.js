@@ -4,6 +4,7 @@
 
 import { pick, t } from '../i18n.js';
 import { icon } from '../shell.js';
+import { sfx } from '../sfx.js';
 
 export const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
@@ -97,6 +98,55 @@ export function gapHTML(word, at, len, mode = 'blank') {
     ? `<span class="blank blank--letter"><span class="visually-hidden">${t('ex.blank')}</span><span aria-hidden="true">${' '.repeat(3)}</span></span>`
     : `<mark class="target">${part}</mark>`;
   return `${esc(word.slice(0, at))}${mid}${esc(word.slice(at + len))}`;
+}
+
+/**
+ * Word chips to tap into an answer line, and tap again to take back (wordbank, numbuild).
+ * @param {string[]} words every chip, in the order shown
+ * @param {() => void} changed called when the answer changes
+ */
+export function chipBank(words, changed) {
+  const placed = [];
+  let root;
+  const html =
+    `<div class="answer-line" data-answer role="group" aria-label="${t('ex.yourAnswer')}"></div>
+     <div class="bank" data-bank role="group" aria-label="${t('ex.wordBank')}">${words.map((w, k) => `<button type="button" class="chip" lang="is" data-k="${k}">${esc(w)}</button>`).join('')}</div>`;
+  return {
+    html,
+    mount(r) {
+      root = r;
+      const line = root.querySelector('[data-answer]');
+      const bankEl = root.querySelector('[data-bank]');
+      bankEl.addEventListener('click', (e) => {
+        const chip = e.target.closest('.chip');
+        if (!chip || chip.disabled) return;
+        placed.push(chip.dataset.k);
+        chip.disabled = true;
+        chip.classList.add('is-used');
+        line.insertAdjacentHTML('beforeend', `<button type="button" class="chip" lang="is" data-k="${chip.dataset.k}">${esc(words[chip.dataset.k])}</button>`);
+        sfx('tap');
+        const next = [...bankEl.querySelectorAll('.chip:not(:disabled)')].find((c) => c.compareDocumentPosition(chip) & Node.DOCUMENT_POSITION_PRECEDING) ?? bankEl.querySelector('.chip:not(:disabled)');
+        (next ?? document.querySelector('[data-action="check"]'))?.focus();
+        changed();
+      });
+      line.addEventListener('click', (e) => {
+        const chip = e.target.closest('.chip');
+        if (!chip || chip.disabled) return;
+        placed.splice(placed.indexOf(chip.dataset.k), 1);
+        chip.remove();
+        const original = bankEl.querySelector(`[data-k="${chip.dataset.k}"]`);
+        original.disabled = false;
+        original.classList.remove('is-used');
+        original.focus();
+        changed();
+      });
+    },
+    /** The words placed, in order. */
+    built: () => placed.map((k) => words[k]),
+    lock() {
+      for (const c of root.querySelectorAll('.chip')) c.disabled = true;
+    },
+  };
 }
 
 /** The explanation of a letter or combination (content/letters.json), when the page loaded it. */

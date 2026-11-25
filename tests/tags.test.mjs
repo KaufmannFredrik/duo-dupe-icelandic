@@ -19,13 +19,14 @@ const lexicon = {
     dýr_lo: { lemma: 'dýr', ofl: 'lo' },
     klukka_no: { lemma: 'klukka', ofl: 'no' },
     sjö_to: { lemma: 'sjö', ofl: 'to' },
+    þriðji_rt: { lemma: 'þriðji', ofl: 'rt' },
   },
 };
 const forms = new Map(
   Object.entries({
     afar: ['afi_no'], sinni: ['sinn_fn'], einu: ['einn_to'], einn: ['einn_to'], sér: ['sig_afn', 'sjá_so'], þér: ['þú_pfn'],
     farinn: ['fara_so'], til: ['til_fs'], mun: ['muna_so'], seint: ['seint_ao'], já: ['já_uh'], dýr: ['dýr_lo'],
-    klukkan: ['klukka_no'], sjö: ['sjö_to'],
+    klukkan: ['klukka_no'], sjö: ['sjö_to'], þriðju: ['þriðji_rt'],
   }).map(([k, v]) => [k, new Set(v)]),
 );
 const r = (word, tok) => resolve(word, tok, forms, lexicon);
@@ -43,6 +44,8 @@ test('tags: the parser picks between two course words with the same spelling', (
 });
 
 test('tags: conventions that name the same word are accepted', () => {
+  // An ordinal is its own class in BÍN (rt) and an adjective to the parser.
+  assert.equal(r('þriðju', { t: 'þriðju', l: 'þriðji', c: 'lo' }), 'þriðji_rt');
   // The parser's lemma is itself a DMII Core form of the course word: þér (of þú), farinn (of fara).
   assert.equal(r('þér', { t: 'þér', l: 'þér', c: 'pfn' }), 'þú_pfn');
   assert.equal(r('farinn', { t: 'farinn', l: 'farinn', c: 'lo' }), 'fara_so');

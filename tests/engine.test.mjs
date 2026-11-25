@@ -5,6 +5,7 @@ import { loadData } from './helpers/data.mjs';
 import { allowedFor, lessonStates, nextLesson } from '../js/engine/course-model.js';
 import { analysesIn, parseTag } from '../js/grammar.js';
 import { hashSeed } from '../js/engine/rng.js';
+import { numberOf } from '../js/engine/numbers.js';
 
 const d = loadData();
 const tokens = (text) => [...text.matchAll(/\p{L}+/gu)].map((m) => ({ raw: m[0], low: m[0].toLocaleLowerCase('is'), index: m.index }));
@@ -34,6 +35,27 @@ function checkVerbForm(s) {
     assert.ok(subjects.some(([person, number]) => person === p.person && number === p.number), `"${text}": ${s.target} as ${s.tag} does not agree with its subject`);
   }
   if (toks[0].raw === s.target) assert.ok(text.trim().endsWith('?') || subjects.length, `"${text}" starts with the verb: a command`);
+  // A form that can only be 1st or 2nd person has its subject pronoun ("taldir" alone is a participle).
+  const finite = analysesIn(bm, s.target).filter((a) => a.parsed.voice === 'GM' && a.parsed.mood === 'FH' && a.parsed.person);
+  if (finite.every((a) => a.parsed.person !== 3)) assert.ok(subjects.some(([person, number]) => person === p.person && number === p.number), `"${text}": ${s.target} has no subject pronoun`);
+}
+
+// A number exercise: the number is said with words the learner knows, the answer is among
+// distinct options, and the words to build are what the number is called.
+function checkNumber(s, allowed) {
+  const known = new Set([...allowed, s.lemma]);
+  const words = tokens(s.say ?? s.words.join(' ')).map((t) => t.low);
+  for (const w of words) assert.ok([...(d.formIndex.get(w) ?? [])].some((id) => known.has(id)), `${s.type}: "${w}" in "${s.say ?? s.words.join(' ')}" is not a known word`);
+  assert.ok(words.some((w) => d.formIndex.get(w)?.has(s.lemma)) || numberOf(s.lemma)?.form, `${s.type}: ${s.lemma} is not said in "${s.say}"`);
+  if (s.type === 'numlisten') {
+    assert.equal(s.options.filter((o) => o === s.answer).length, 1, `the answer once among ${s.options}`);
+    assert.equal(new Set(s.options).size, s.options.length, 'distinct options');
+    assert.equal(s.options.length, 4, 'four options');
+  }
+  if (s.type === 'numbuild') {
+    assert.equal(s.distractors.length, 2, 'two other chips');
+    for (const x of s.distractors) assert.ok(!s.words.includes(x), `chip "${x}" is in the answer`);
+  }
 }
 
 function generate(unitId, lesson) {
@@ -41,8 +63,8 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key), practiced: Boolean(lesson.review) }) };
 }
 
-test('course: eleven units in order, all hand-made', () => {
-  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
+test('course: twelve units in order, all hand-made', () => {
+  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
   for (const u of d.course.units) assert.equal(u.auto, false, `${u.id} has hand-made lessons`);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
 });
@@ -153,7 +175,7 @@ test('generator: the same seed gives the same lesson', () => {
   assert.deepEqual(generate('hello', l).specs, generate('hello', l).specs);
 });
 
-for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']) {
+for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);
@@ -219,6 +241,7 @@ for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'around', 'time', 's
         if (s.type === 'typeform') assert.notEqual(s.target.toLocaleLowerCase('is'), d.lexicon.lemmas[s.lemma].lemma.toLocaleLowerCase('is'), `typeform asks for the dictionary form ${s.target}`);
         if (s.type === 'case') assert.equal(s.cases.length, 1, 'case questions only for unambiguous forms');
         if (s.type === 'table') for (const tag of s.blanks) assert.ok(d.paradigm(s.lemma).some((f) => f.g === tag), `${tag} in ${s.lemma}`);
+        if (s.type === 'numlisten' || s.type === 'numtype' || s.type === 'numbuild') checkNumber(s, allowed);
       }
     });
   }

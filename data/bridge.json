@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-24T18:12:51.231Z",
+ "generated": "2026-11-25T07:35:49.495Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -19,7 +19,7 @@
  ],
  "counts": {
   "loan": 7,
-  "old-norse": 177,
+  "old-norse": 192,
   "form": 12
  },
  "pairs": {
@@ -700,6 +700,113 @@
    "nb": "ti",
    "article": 60573,
    "oldNorse": "tíu",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "ellefu_to": {
+   "nb": "elleve",
+   "article": 12429,
+   "oldNorse": "ellifu",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "þrettán_to": {
+   "nb": "tretten",
+   "article": 62176,
+   "oldNorse": "þrettán",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "fjórtán_to": {
+   "nb": "fjorten",
+   "article": 15114,
+   "oldNorse": "fjórtán",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "sextán_to": {
+   "nb": "seksten",
+   "article": 50502,
+   "oldNorse": "sextán",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "sautján_to": {
+   "nb": "sytten",
+   "article": 59178,
+   "oldNorse": "sjaután",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "nítján_to": {
+   "nb": "nitten",
+   "article": 40886,
+   "oldNorse": "nítján",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "þriðji_rt": {
+   "nb": "tredje",
+   "article": 61984,
+   "oldNorse": "þriði",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "fjórði_rt": {
+   "nb": "fjerde",
+   "article": 15043,
+   "oldNorse": "fjórði",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "sjöundi_rt": {
+   "nb": "sjuende",
+   "article": 51992,
+   "oldNorse": "sjaundi",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "níundi_rt": {
+   "nb": "niende",
+   "article": 40810,
+   "oldNorse": "níundi",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "tíundi_rt": {
+   "nb": "tiende",
+   "article": 60650,
+   "oldNorse": "tíundi",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "tala_no": {
+   "nb": "tale",
+   "article": 59665,
+   "oldNorse": "tala",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "telja_so": {
+   "nb": "telle",
+   "article": 60235,
+   "oldNorse": "telja",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "nokkur_fn": {
+   "nb": "noen",
+   "article": 40926,
+   "oldNorse": "nǫkkurr",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "hálfur_lo": {
+   "nb": "halv",
+   "article": 22016,
+   "oldNorse": "halfr",
    "evidence": "old-norse",
    "rules": null
   },

@@ -6,9 +6,10 @@
 
 import { CASES, analysesIn, buildTable, isCommonTag, parseTag } from '../grammar.js';
 import { pick, rng, shuffle } from './rng.js';
+import { CARDINAL, ORDINAL, confusables, numberOf, numbersWith, ordinalConfusables, phoneConfusables, phoneSay, phoneWords, phonesWith, say, wordsOf } from './numbers.js';
 
 const tokenize = (text) => [...text.matchAll(/\p{L}+/gu)].map((m) => ({ raw: m[0], low: m[0].toLocaleLowerCase('is'), index: m.index }));
-const CASE_CLASSES = new Set(['no', 'lo', 'pfn', 'fn', 'to']);
+const CASE_CLASSES = new Set(['no', 'lo', 'pfn', 'fn', 'to', 'rt']);
 
 /** The rules of content/case-rules.json, with each rule's noun groups turned into lemma ids. */
 export function expandRules(file) {
@@ -319,6 +320,10 @@ export function createGenerator(data) {
       // A sentence that starts with the verb and is no question is a command ("Spurðu Alex.", with
       // the everyday imperative spurðu where the DMII Core has spyrðu), unless a subject fits.
       if (i === 0 && !/\?\s*$/.test(sentences[sid].is) && !fit.length) continue;
+      // A form that can only be 1st or 2nd person is used only with its subject pronoun in the
+      // sentence; without one it is more likely another form spelled the same: "taldir" in "Dagar
+      // hennar eru taldir" is the past participle (her days are numbered), not "you counted".
+      if (!fit.length && an.every((a) => a.parsed.person !== 3)) continue;
       if (all.some((a) => a.parsed.mood === 'BH')) {
         if (!fit.length) continue;
         an = fit;
@@ -382,6 +387,62 @@ export function createGenerator(data) {
     return { type: 'table', lemma: id, blanks: [want, ...shuffle(others, r).slice(0, Math.min(2, others.length - 1))], options, key: `${id}|${want}` };
   }
 
+  // --- Numbers by ear (js/engine/numbers.js) --------------------------------------------------------
+
+  // Numerals drilled as numbers: the cardinals that never change (five and up) and the ordinals.
+  // One to four keep their exercises on gender and case.
+  const drill = (id) => {
+    const v = numberOf(id);
+    return v && lexicon.lemmas[id] && (v.kind === 'ordinal' || v.n >= 5) ? v.kind : null;
+  };
+  const knowsNumber = (allowed, n) => wordsOf(n).every((w) => allowed.has(w));
+
+  // Number words for chips that are not in the answer: the words of numbers that sound alike
+  // first (fjórtán for fjörutíu), then other numbers the learner knows.
+  function numberChips(words, near, allowed, r) {
+    const out = [];
+    const add = (w) => {
+      if (w && !words.includes(w) && !out.includes(w) && out.length < 3) out.push(w);
+    };
+    for (const n of near) for (const id of wordsOf(n)) if (allowed.has(id)) add(lexicon.lemmas[id].lemma);
+    for (const n of shuffle(Object.keys(CARDINAL).map(Number), r)) if (allowed.has(`${CARDINAL[n]}_to`)) add(CARDINAL[n]);
+    return out.slice(0, 2);
+  }
+
+  // numlisten: hear a number and pick it; numtype: hear it and write it in digits; numbuild: see
+  // it in digits and build its words. A cardinal is heard in a number the learner can say that has
+  // it (fjörutíu in 40 to 49), an ordinal in the form said for a date (þriðji, "3."). phone: a
+  // phone number with the word in it instead (numlisten and numtype).
+  function numberSpec(type, id, allowed, r, { phone = false } = {}) {
+    const v = numberOf(id);
+    if (!drill(id)) return null;
+    const key = `${id}|meaning`;
+    if (v.kind === 'ordinal') {
+      if (phone) return null;
+      const answer = `${v.n}.`;
+      if (type === 'numlisten') return { type, lemma: id, say: v.form, answer, options: shuffle([v.n, ...ordinalConfusables(v.n).slice(0, 3)], r).map((k) => `${k}.`), key };
+      if (type === 'numtype') return { type, lemma: id, say: v.form, answer, key };
+      const near = [CARDINAL[v.n] ? `${CARDINAL[v.n]}_to` : null, ...ordinalConfusables(v.n).map((k) => ORDINAL[k][0])].filter((x) => allowed.has(x));
+      const distractors = near.map((x) => (numberOf(x)?.form ?? lexicon.lemmas[x].lemma)).slice(0, 2);
+      return distractors.length === 2 ? { type, lemma: id, show: answer, words: [v.form], distractors, key } : null;
+    }
+    if (phone) {
+      const phones = phonesWith(id).filter((p) => phoneWords(p).every((w) => allowed.has(w)));
+      if (!phones.length) return null;
+      const p = pick(phones, r);
+      const base = { type, lemma: id, say: phoneSay(p), answer: p, phone: true, key };
+      return type === 'numlisten' ? { ...base, options: shuffle([p, ...phoneConfusables(p).slice(0, 3)], r) } : base;
+    }
+    const values = numbersWith(id).filter((n) => knowsNumber(allowed, n));
+    if (!values.length) return null;
+    const n = pick(values, r);
+    if (type === 'numlisten') return { type, lemma: id, say: say(n), answer: String(n), options: shuffle([n, ...confusables(n).slice(0, 3)], r).map(String), key };
+    if (type === 'numtype') return { type, lemma: id, say: say(n), answer: String(n), key };
+    const words = say(n).split(' ');
+    const distractors = numberChips(words, confusables(n), allowed, r);
+    return distractors.length === 2 ? { type, lemma: id, show: String(n), words, distractors, key } : null;
+  }
+
   // --- Lessons ------------------------------------------------------------------------------------
 
   // Each word goes through a cycle of exercise types, from a starting point. Words with case
@@ -391,13 +452,23 @@ export function createGenerator(data) {
   // words go through meaning and sentence work, each starting further along. Recognition comes
   // first, production when the word is known: in a unit's review (practiced), every other word
   // with forms starts with writing its form (typeform).
+  // Numerals drilled as numbers go from hearing them to building and writing them, with phone
+  // numbers for the cardinals and forms in sentences for the ordinals, where there are any.
   const CASE_CYCLE = ['ending', 'wordbank', 'case', 'listen', 'typeform', 'dictation', 'meaning', 'ending', 'choice', 'typeword'];
   const VERB_CYCLE = ['conjugate', 'listen', 'meaning', 'choice', 'dictation', 'conjugate', 'wordbank', 'typeform', 'typeword', 'choice'];
   const WORD_CYCLE = ['listen', 'meaning', 'choice', 'dictation', 'wordbank', 'typeword', 'choice'];
+  const NUMBER_CYCLE = ['numlisten', 'meaning', 'numbuild', 'phone', 'numtype', 'typeword', 'choice', 'wordbank'];
+  const ORDINAL_CYCLE = ['numlisten', 'meaning', 'numbuild', 'ending', 'numtype', 'typeword', 'choice'];
   const isVerb = (id) => lexicon.lemmas[id].ofl === 'so';
-  const cycleFor = (id) => (CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? CASE_CYCLE : isVerb(id) ? VERB_CYCLE : WORD_CYCLE);
+  const cycleFor = (id) =>
+    drill(id) === 'cardinal' ? NUMBER_CYCLE
+    : drill(id) === 'ordinal' ? ORDINAL_CYCLE
+    : CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? CASE_CYCLE
+    : isVerb(id) ? VERB_CYCLE
+    : WORD_CYCLE;
   function startFor(id, i, practiced) {
     const typed = practiced && i % 2 === 1;
+    if (drill(id)) return typed ? cycleFor(id).indexOf('numtype') : (i * 2) % cycleFor(id).length;
     if (CASE_CLASSES.has(lexicon.lemmas[id].ofl)) return typed ? CASE_CYCLE.indexOf('typeform') : i % 2 ? CASE_CYCLE.indexOf('case') : 0;
     if (isVerb(id)) return typed ? VERB_CYCLE.indexOf('typeform') : (i % 2) * 5;
     return i % WORD_CYCLE.length;
@@ -443,6 +514,8 @@ export function createGenerator(data) {
             : type === 'meaning' ? meaning(id, allow, r, lessonWords)
             : type === 'listen' ? listen(id, allow, r, lessonWords)
             : type === 'typeword' ? typeword(id)
+            : type === 'numlisten' || type === 'numtype' || type === 'numbuild' ? numberSpec(type, id, allow, r)
+            : type === 'phone' ? numberSpec(r() < 0.5 ? 'numlisten' : 'numtype', id, allow, r, { phone: true })
             : type === 'conjugate' || (type === 'typeform' && isVerb(id)) ? verbSpec(type, id, allow, used, r)
             : caseSpec(type, id, allow, used, r);
           if (spec) {
@@ -474,8 +547,11 @@ export function createGenerator(data) {
       const [id, part] = card.key.split('|');
       if (!lexicon.lemmas[id]) continue;
       allow.add(id);
+      // A numeral's meaning card is mostly reviewed as a number: heard, written or built.
+      const asNumber = part === 'meaning' && drill(id) && r() < 0.75 ? numberSpec(pick(['numlisten', 'numtype', 'numbuild'], r), id, allow, r) : null;
       const spec =
-        part === 'meaning' ? choice(id, allow, used, r) ?? meaning(id, allow, r) ?? typeword(id)
+        asNumber ? asNumber
+        : part === 'meaning' ? choice(id, allow, used, r) ?? meaning(id, allow, r) ?? typeword(id)
         : part === 'table' ? table(id, r)
         : ((card.box ?? 0) >= TYPE_FROM_BOX ? formSpec('typeform', id, allow, used, r, part) : null) ?? formSpec('ending', id, allow, used, r, part) ?? table(id, r, part);
       if (spec) out.push(spec);

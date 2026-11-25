@@ -76,7 +76,7 @@
       "is": "Nemandi getur beðið um og gefið almennar upplýsingar.",
       "en": "Ask for and give general information.",
       "nb": "Be om og gi generell informasjon.",
-      "units": ["aboutme", "around", "time"]
+      "units": ["aboutme", "numbers", "around", "time"]
     },
     {
       "id": "housing",

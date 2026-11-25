@@ -1391,6 +1391,130 @@
     "afmæli_no": {
       "nb": "af («fra, av») + mæla («måle») + -i (endelse for abstrakte substantiv, intetkjønn).",
       "of": "68e1f442"
+    },
+    "ellefu_to": {
+      "nb": "Fra norrønt ellifu, fra urgermansk *ainalif, en sammensetning av *ainaz og *-lif. Sammenlign færøysk ellivu, norsk og dansk elleve, svensk elva.",
+      "of": "f21c8e43"
+    },
+    "tólf_to": {
+      "nb": "Fra norrønt tólf, fra urgermansk *twalif. Sammenlign færøysk tólv, norsk, svensk og dansk tolv.",
+      "of": "d9521fe3"
+    },
+    "þrettán_to": {
+      "nb": "Fra norrønt þrettán, fra urgermansk *þritehun.",
+      "of": "235715e3"
+    },
+    "fjórtán_to": {
+      "nb": "Fra norrønt fjórtán, fra urgermansk *fedurtehun.",
+      "of": "4ba48950"
+    },
+    "fimmtán_to": {
+      "nb": "Fra norrønt fimmtán, fra urgermansk *fimftehun.",
+      "of": "2fd496e0"
+    },
+    "sextán_to": {
+      "nb": "Fra norrønt sextán, fra urgermansk *sehstehun.",
+      "of": "a94e2802"
+    },
+    "sautján_to": {
+      "nb": "Fra norrønt sjaután, fra urgermansk *sebuntehun.",
+      "of": "b61e0783"
+    },
+    "átján_to": {
+      "nb": "Fra norrønt átján, fra urgermansk *ahtōutehun. Beslektet med svensk arton, dansk atten, engelsk eighteen og tysk achtzehn.",
+      "of": "7a0dda36"
+    },
+    "nítján_to": {
+      "nb": "Arvet fra norrønt nítján, fra urgermansk *newuntehun.",
+      "of": "c8017ae1"
+    },
+    "þrjátíu_to": {
+      "nb": "Av þrjá («tre») + tíu («ti»).",
+      "of": "c960d03c"
+    },
+    "fjörutíu_to": {
+      "nb": "Av fjórir («fire») + tíu («ti»).",
+      "of": "3026b667"
+    },
+    "fimmtíu_to": {
+      "nb": "Av fimm («fem») + tíu («ti»).",
+      "of": "8be99a76"
+    },
+    "fyrstur_lo": {
+      "nb": "Fra norrønt fyrstr, fra urgermansk *furistaz.",
+      "of": "4ba04040"
+    },
+    "þriðji_rt": {
+      "nb": "Fra norrønt þriði, fra urgermansk *þridjô.",
+      "of": "475b8113"
+    },
+    "fjórði_rt": {
+      "nb": "Fra norrønt fjórði, fra urgermansk *fedurþô.",
+      "of": "5f72249c"
+    },
+    "fimmti_rt": {
+      "nb": "Fra norrønt fimmti, fra urgermansk *fimftô.",
+      "of": "89a92a5e"
+    },
+    "sjötti_rt": {
+      "nb": "Fra eldre sétti, fra norrønt sétti, fra urgermansk *sehtô.",
+      "of": "ba97cc68"
+    },
+    "sjöundi_rt": {
+      "nb": "Fra norrønt sjaundi, fra urgermansk *sebundô.",
+      "of": "c21a7041"
+    },
+    "áttundi_rt": {
+      "nb": "Fra norrønt áttundi. Erstattet eldre átti, omformet etter sjöundi («sjuende») og níundi («niende»).",
+      "of": "3a6869d7"
+    },
+    "níundi_rt": {
+      "nb": "Fra norrønt níundi, fra urgermansk *newundô.",
+      "of": "42c36664"
+    },
+    "tíundi_rt": {
+      "nb": "Fra norrønt tíundi, fra urgermansk *tehundô.",
+      "of": "57467837"
+    },
+    "skipti_no": {
+      "nb": "Fra norrønt skipti.",
+      "of": "c270e421"
+    },
+    "tala_no": {
+      "nb": "Fra norrønt tala, fra urgermansk *talō («beregning, tall»), fra urindoeuropeisk *del- («regne, telle»). Beslektet med nederlandsk taal («språk, tale»), engelsk tale («antall») (fra mellomengelsk, fra gammelengelsk talu («beregning; fortelling»)), tysk Zahl («tall, siffer»), dansk tale («tale»), latin dolus («list, svik, bedrag»), gammelgresk δόλος (dólos, «list, agn») og gammelarmensk տող (toł, «rad»). I slekt med engelsk tell og talk.",
+      "of": "37a63e4a"
+    },
+    "númer_no": {
+      "nb": "Lånt fra dansk.",
+      "of": "28c1f7c7"
+    },
+    "telja_so": {
+      "nb": "Fra norrønt telja, fra urgermansk *taljaną.",
+      "of": "d856daf5"
+    },
+    "margur_lo": {
+      "nb": "Fra norrønt margr, enten et selvstendig ord fra urgermansk *margaz, i slekt med mor og merja, eller avledet av mangr (< urgermansk *managaz) under påvirkning av slike ord.",
+      "of": "02955ed2"
+    },
+    "mikill_lo": {
+      "nb": "Fra norrønt mikill, fra urgermansk *mikilaz, fra urindoeuropeisk *meǵh₂-.",
+      "of": "f232cc8c"
+    },
+    "mikið_ao": {
+      "nb": "Se mikill.",
+      "of": "0b408360"
+    },
+    "fár_lo": {
+      "nb": "Fra norrønt fár, fra urgermansk *fawaz.",
+      "of": "3c9e4fa6"
+    },
+    "nokkur_fn": {
+      "nb": "Fra norrønt nǫkkurr, fra eldre nakkvarr, fra urnordisk *ᚾᛁ ᚹᚨᛁᛏ ᛖᚲ ᚺᚹᚨᚱᛃᚨᛉ (*ni wait ek hwarjaʀ, ordrett «ikke-vet-jeg-hvem»).",
+      "of": "2366c120"
+    },
+    "hálfur_lo": {
+      "nb": "Fra norrønt halfr, fra urgermansk *halbaz.",
+      "of": "77fd5465"
     }
   }
 }

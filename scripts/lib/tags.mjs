@@ -5,7 +5,7 @@ const low = (s) => s.toLocaleLowerCase('is');
 export const words = (text) => [...text.matchAll(/\p{L}+/gu)].map((m) => m[0]);
 
 // Greynir and BÍN word classes, mapped to the DMII Core classes used in content/vocab/core.json.
-export const CLASS = { no: 'no', kk: 'no', kvk: 'no', hk: 'no', so: 'so', lo: 'lo', ao: 'ao', eo: 'ao', fs: 'fs', pfn: 'pfn', abfn: 'afn', afn: 'afn', fn: 'fn', st: 'st', stt: 'st', nhm: 'st', to: 'to', töl: 'to', uh: 'uh' };
+export const CLASS = { no: 'no', kk: 'no', kvk: 'no', hk: 'no', so: 'so', lo: 'lo', ao: 'ao', eo: 'ao', fs: 'fs', pfn: 'pfn', abfn: 'afn', afn: 'afn', fn: 'fn', st: 'st', stt: 'st', nhm: 'st', to: 'to', töl: 'to', rt: 'rt', uh: 'uh' };
 
 // A multiword token of these classes is an idiom ("einu sinni" once, "á morgun" tomorrow,
 // "undir eins" at once): its words are not taught as the course words they look like.
@@ -40,7 +40,8 @@ export function align(appWords, parserTokens) {
  *  - the parser's lemma is itself a DMII Core form of the word (þér for þú, hvað for hver),
  *  - a past participle used as an adjective (farinn, lokaður) belongs to its verb,
  *  - an adverb that is the neuter of an adjective (seint, beint),
- *  - interjections in any class (já, bless), compass directions and sides as nouns (norður, vinstri).
+ *  - interjections in any class (já, bless), compass directions and sides as nouns (norður, vinstri),
+ *  - ordinals, which BÍN classes on their own (rt) and the parser as adjectives (þriðji).
  * Others are the same word used in another way, and are "loose": prepositions as adverbs or
  * particles ("Við erum öll til", we are all ready; "búa til", to make), að as a preposition, and
  * einn or annar as pronoun or adjective ("Hann býr einn", he lives alone). A loose word counts as
@@ -56,6 +57,7 @@ export function sameWord(id, word, tok, forms, lexicon) {
   if (low(tok.l) === low(L.lemma)) {
     if (cls === L.ofl) return true;
     if (L.ofl === 'uh') return true;
+    if (L.ofl === 'rt' && cls === 'lo') return true; // Greynir reads an ordinal as an adjective
     if (L.ofl === 'fs' && (cls === 'ao' || cls === 'st')) return 'loose';
     if (L.lemma === 'að' && (cls === 'fs' || cls === 'ao')) return 'loose';
     if (L.ofl === 'ao' && cls === 'no') return true;

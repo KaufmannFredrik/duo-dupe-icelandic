@@ -17,7 +17,7 @@ const INCLUDE = [
   { dir: 'js', ext: ['.js', '.json'] },
   { dir: 'assets', ext: ['.svg', '.png'] },
   { dir: 'content', ext: ['.json'] },
-  { dir: 'data', ext: ['.json'], skip: ['data/audio/samples.json'] },
+  { dir: 'data', ext: ['.json'], skip: ['data/audio/samples.json', 'data/numbers.json'] }, // numbers.json: for the audio build only
 ];
 
 async function list({ dir, ext, deep = true, skip = [] }) {

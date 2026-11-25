@@ -171,7 +171,7 @@ async function frequencies(lemmas) {
   }
   return out;
 }
-const FREQ_CATS = { so: ['s'], lo: ['l'], fn: ['f'], pfn: ['f'], afn: ['f'], ao: ['a'], fs: ['a'], st: ['c'], to: ['t'], uh: ['a', 'x', 'e'] };
+const FREQ_CATS = { so: ['s'], lo: ['l'], fn: ['f'], pfn: ['f'], afn: ['f'], ao: ['a'], fs: ['a'], st: ['c'], to: ['t'], rt: ['l'], uh: ['a', 'x', 'e'] };
 function freqFor(list, ofl, kyn) {
   if (!list?.length) return null;
   const cats = ofl === 'no' ? [`n${{ kk: 'k', kvk: 'v', hk: 'h' }[kyn] ?? ''}`] : (FREQ_CATS[ofl] ?? []);
@@ -182,7 +182,7 @@ function freqFor(list, ofl, kyn) {
 
 // --- Wiktionary -----------------------------------------------------------------------------------------
 
-const POS = { no: ['noun', 'name'], so: ['verb'], lo: ['adj'], ao: ['adv'], fs: ['prep', 'adv'], pfn: ['pron'], afn: ['pron'], fn: ['pron', 'det', 'adj'], st: ['conj'], to: ['num'], uh: ['intj', 'adv'] };
+const POS = { no: ['noun', 'name'], so: ['verb'], lo: ['adj'], ao: ['adv'], fs: ['prep', 'adv'], pfn: ['pron'], afn: ['pron'], fn: ['pron', 'det', 'adj'], st: ['conj'], to: ['num'], rt: ['adj', 'num'], uh: ['intj', 'adv'] };
 
 async function wiktionary(words) {
   const out = new Map();

@@ -217,7 +217,7 @@ let bonus = 0;
 // For the daily quests: the best run, and right answers to listening and typing exercises.
 let bestRun = 0;
 const counted = { listen: 0, type: 0 };
-const LISTENING = new Set(['listen', 'dictation', 'pair', 'letter', 'lettername']);
+const LISTENING = new Set(['listen', 'dictation', 'pair', 'letter', 'lettername', 'numlisten', 'numtype']);
 const TYPED = new Set(['typeword', 'typeform', 'spell']);
 
 // Hearts (Settings, off by default): five per lesson, one lost per wrong answer. Not in placement.

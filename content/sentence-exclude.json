@@ -1,11 +1,14 @@
 {
-  "note": "Tatoeba sentences that are correct Icelandic but unsuitable for a course. They are never shown: not in exercises, examples, the dictionary or stories. Checked by scripts/validate-content.mjs.",
+  "note": "Tatoeba sentences that are correct Icelandic but unsuitable for a course, or whose English translation does not say what the Icelandic says. They are never shown: not in exercises, examples, the dictionary or stories. Checked by scripts/validate-content.mjs.",
   "sentences": {
     "10718176": "\"I love little girls\": reads as a sexual remark about children.",
     "10691643": "\"War is fun.\"",
     "10613347": "\"Nazis are marching in the streets.\"",
     "383725": "\"There were two murders this month.\"",
     "11192520": "\"Oh shit, I'm sorry.\": a curse (djöfullinn).",
-    "479475": "\"Traitors will be deported.\""
+    "479475": "\"Traitors will be deported.\"",
+    "385852": "\"Since 1990, eleven female students...\": the Icelandic says since 1900 (nítjánhundruð).",
+    "511305": "\"I met him for the first time in three years.\": the Icelandic says for the first time, three years ago.",
+    "5003460": "\"Absence makes the heart grow fonder.\": an English proverb for an Icelandic one that says something else (distance makes the mountains blue and the men great)."
   }
 }

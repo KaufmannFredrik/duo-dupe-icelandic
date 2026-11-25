@@ -1,0 +1,70 @@
+{
+  "id": "numbers",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "More tea?",
+    "nb": "Mer te?"
+  },
+  "level": "A1",
+  "after": "numbers",
+  "dialogue": true,
+  "cast": {
+    "A": "jonas",
+    "B": "amma"
+  },
+  "lines": [
+    {
+      "sentence": "4171703",
+      "speaker": "A"
+    },
+    {
+      "sentence": "543802",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1351305",
+      "speaker": "B"
+    },
+    {
+      "sentence": "669468",
+      "speaker": "A"
+    },
+    {
+      "sentence": "738964",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1364326",
+      "speaker": "A"
+    },
+    {
+      "sentence": "499384",
+      "speaker": "A"
+    },
+    {
+      "sentence": "479367",
+      "speaker": "B"
+    },
+    {
+      "sentence": "12701223",
+      "speaker": "B"
+    },
+    {
+      "sentence": "10633179",
+      "speaker": "A"
+    },
+    {
+      "sentence": "12701227",
+      "speaker": "B"
+    },
+    {
+      "sentence": "3838987",
+      "speaker": "A"
+    },
+    {
+      "sentence": "3838986",
+      "speaker": "B"
+    }
+  ]
+}

@@ -24,7 +24,7 @@ const lexicon = await loadLexicon();
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const root = document.querySelector('[data-decl]');
 
-const CLASS_ORDER = ['no', 'lo', 'pfn', 'afn', 'fn', 'to', 'so'];
+const CLASS_ORDER = ['no', 'lo', 'pfn', 'afn', 'fn', 'to', 'rt', 'so'];
 const words = Object.entries(lexicon.lemmas).filter(([wid, l]) => tableKind(l.ofl) && tableFor(wid)?.rows.some((r) => r.cells.some((c) => c.forms.length)));
 const requested = new URLSearchParams(location.search).get('lemma');
 const find = (w) => words.find(([wid, l]) => wid === w || l.lemma === w)?.[0];

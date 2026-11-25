@@ -56,7 +56,7 @@ export function formsFor(bmyndir, tag) {
 
 /** Which table layout fits a word class. */
 export function tableKind(ofl) {
-  return { no: 'noun', lo: 'adjective', pfn: 'pronoun', afn: 'pronoun', fn: 'gendered', to: 'gendered', so: 'verb' }[ofl] ?? null;
+  return { no: 'noun', lo: 'adjective', pfn: 'pronoun', afn: 'pronoun', fn: 'gendered', to: 'gendered', rt: 'gendered', so: 'verb' }[ofl] ?? null;
 }
 
 /**

@@ -75,7 +75,7 @@ function etymon(text) {
 // homograph with the same Old Norse source (sá "that" and så "to sow") is not taken.
 const CLASSES = {
   no: ['NOUN'], so: ['VERB'], lo: ['ADJ'], ao: ['ADV', 'ADP'], fs: ['ADP', 'ADV'],
-  fn: ['DET', 'PRON'], pfn: ['PRON'], afn: ['PRON'], to: ['DET', 'NUM', 'NOUN'], st: ['CCONJ', 'SCONJ'], uh: ['INTJ'],
+  fn: ['DET', 'PRON'], pfn: ['PRON'], afn: ['PRON'], to: ['DET', 'NUM', 'NOUN'], rt: ['ADJ', 'NUM'], st: ['CCONJ', 'SCONJ'], uh: ['INTJ'],
 };
 function sameClass(ofl, art) {
   const tags = new Set((art.lemmas ?? []).flatMap((l) => (l.paradigm_info ?? []).flatMap((p) => p.tags ?? [])));

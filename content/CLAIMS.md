@@ -15,8 +15,10 @@ Not listed: sentences in exercises, examples and stories are unchanged Tatoeba s
 | WP | Wikipedia: [Icelandic grammar](https://en.wikipedia.org/wiki/Icelandic_grammar), [Icelandic phonology](https://en.wikipedia.org/wiki/Icelandic_phonology) |
 | WP-IO | Wikipedia, [Icelandic orthography](https://en.wikipedia.org/wiki/Icelandic_orthography) (the table of letters, names and sounds) |
 | WP-NO | Wikipedia, [Norwegian orthography](https://en.wikipedia.org/wiki/Norwegian_orthography) and [Norwegian phonology](https://en.wikipedia.org/wiki/Norwegian_phonology) (Urban East Norwegian) |
-| elon | elon.io Icelandic grammar: [time prepositions](https://elon.io/grammar/icelandic/prepositions/time-prepositions), [dates and time](https://elon.io/grammar/icelandic/numbers/dates-and-time), [possessive placement](https://elon.io/grammar/icelandic/pronouns/possessive-placement), [temporal conjunctions](https://elon.io/grammar/icelandic/conjunctions/temporal), [dummy það](https://elon.io/grammar/icelandic/syntax/dummy-thad) |
+| elon | elon.io Icelandic grammar: [time prepositions](https://elon.io/grammar/icelandic/prepositions/time-prepositions), [dates and time](https://elon.io/grammar/icelandic/numbers/dates-and-time), [possessive placement](https://elon.io/grammar/icelandic/pronouns/possessive-placement), [temporal conjunctions](https://elon.io/grammar/icelandic/conjunctions/temporal), [dummy það](https://elon.io/grammar/icelandic/syntax/dummy-thad); numbers: [1 to 4](https://elon.io/grammar/icelandic/numbers/overview), [cardinals 5 and up](https://elon.io/grammar/icelandic/numbers/cardinals-5-plus), [ordinals](https://elon.io/grammar/icelandic/numbers/ordinals), [ordinals in use](https://elon.io/grammar/icelandic/numbers/ordinals-in-use), [numbers in use](https://elon.io/grammar/icelandic/expressions/numbers-in-use) |
 | islenzka | [islenzka.net, telling time](https://islenzka.net/telling-time/) |
+| HÞ | Höskuldur Þráinsson (University of Iceland), *Kynhlutlaust mál* (2025), [PDF](https://uni.hi.is/hoski/files/2025/02/Kynhlutlaust-mal.pdf); page numbers as printed |
+| WP-Tel | Wikipedia, [Telephone numbers in Iceland](https://en.wikipedia.org/wiki/Telephone_numbers_in_Iceland) |
 | Transparent | Transparent Language Icelandic blog, [articles](https://blogs.transparent.com/icelandic/?p=5771) |
 | Weather verbs | Eyþórsson and Sigurðardóttir, [A Brief History of Icelandic Weather Verbs](https://projekt.ht.lu.se/fileadmin/_migrated/content_uploads/4._Eythorsson-Sigurdardottir.pdf) |
 | UCSC | [Icelandic handout, UC Santa Cruz](https://babel.ucsc.edu/~hank/114/icelandic.pdf) |
@@ -66,7 +68,9 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | The parser's dative for a meal after *í*, *eftir*, *fyrir* is not kept. | T: all 14 sentences with a definite meal after *eftir* or *fyrir* have the accusative; elon (*eftir matinn*) | sourced |
 | In a sentence without a verb, the parser's case is not kept. | *Góða nótt*: W góður (strong masc. acc. *góðan*, fem. acc. *góða*), so the greeting is not the nominative the parser picks | sourced |
 
-The parser itself is not checked case by case: `npm run build:tags` lists the 221 words it gives to another word than their spelling suggests.
+| An ordinal is its own class in BÍN (rt) and an adjective to the parser: *þriðju* (lemma *þriðji*, class lo) is the course word *þriðji*. | DMII (class rt for *þriðji* to *tíundi*); the parser's output for *Ég bý á þriðju hæð* and *sjöunda skipti* | checked |
+
+The parser itself is not checked case by case: `npm run build:tags` lists the 257 words it gives to another word than their spelling suggests.
 
 ## Unit guidebooks (`content/units/`)
 
@@ -119,6 +123,34 @@ Headings name the units rather than their numbers, because new units are inserte
 | *eiga* for family and things; *á, átt, á, eigum*; accusative object. | W eiga ("to have, to be closely related to", *Ég á skemmtilega konu*) | sourced |
 | *búa*: *bý, býrð, býr*. | DMII | attested |
 | Five to twenty do not inflect; *Hún er átta ára*. | WP; DMII (*ára* EFFT); T 10633141 | sourced |
+
+### *Tölur*
+
+| Claim | Source | Status |
+|---|---|---|
+| 11 to 19 are *ellefu, tólf, þrettán, fjórtán, fimmtán, sextán, sautján, átján, nítján*; 13 to 19 end in -*tán*. | elon (cardinals 5 and up: the list, "all end in -tán"); W each word; BÍN via Ylhýra (the build) | sourced |
+| *ellefu*, *tólf* are Norwegian *elleve*, *tolv*; where Icelandic has -*tán*, Norwegian has -*ten* (*tretten*, *fjorten*). | W ellefu ("Compare ... Norwegian and Danish elleve"), tólf ("Norwegian, Swedish, and Danish tolv"); BMO tretten, fjorten, femten, seksten, sytten, atten, nitten | sourced |
+| From five up, numbers never change. | WP ("Other numbers are ... not declined"); elon (1 to 4: "Draw the line at four") | sourced |
+| *telja* is "to count", also "to think, believe"; *talið*, *taldi*. | W telja ("to count; to believe, think"); DMII; T 868053, 384704 | sourced |
+| The tens are *tuttugu, þrjátíu, fjörutíu, fimmtíu, sextíu, sjötíu, áttatíu, níutíu*, with ö in *fjörutíu* and *sjötíu*. | elon (cardinals 5 and up: the tens and the warning about ö); W þrjátíu, fjörutíu, fimmtíu ("From fjórir + tíu") | sourced |
+| The ten comes first, then *og* and the unit: *tuttugu og fimm*. | elon (cardinals 5 and up: "tuttugu og einn", "þrjátíu og fjórir", "níutíu og níu"; "tuttugu einn" without og is wrong); W tuttugu og einn ("Literally, 'twenty and one'") | sourced |
+| When you count with no noun in mind, one to four are masculine (*þrjátíu og einn*). | HÞ pp. 1-2 ("Nú skal ég telja upp að tíu: einn, tveir, þrír, fjórir... (ekki verið að telja neitt sérstakt)"; "málfræðilegt karlkyn er sjálfgefið í íslensku") | sourced |
+| Before a noun the last number agrees with it, and after a number ending in one the noun is singular: *tuttugu og ein króna*, *þrjátíu og eins árs*. | elon (cardinals 5 and up: the noun is singular after "... og einn", "tuttugu og ein króna"); W tuttugu og einn (declined as *einn*); T 3995294 | sourced |
+| *hundrað* and *þúsund* are nouns. | WP ("hundrað is actually a neuter noun, þúsund can be either feminine or neuter"); elon (cardinals 5 and up) | sourced |
+| An Icelandic phone number has seven digits, written 567 1258. | WP-Tel ("seven digits long and generally written in the form xxx xxxx") | sourced |
+| It is said as the first three digits one by one, then two pairs, each pair one number: *fimm sex sjö, tólf, fimmtíu og átta*. | elon (numbers in use: "567 12 34" said "fimm sex sjö — tólf — þrjátíu og fjögur"; digit by digit is "stilted") | sourced (the example keeps to pairs whose form no source disputes, see below) |
+| *númer* (neuter) is a number that marks or identifies something, a phone number or a size; *tala* (feminine) is a number. | W númer ("number (indicating position in a list or sequence, or acting as an identifier)", "numerical size", "number as in phone number"); W tala ("number"); DMII (genders); T 385691, 10633179 | sourced |
+| *Þú ert með vitlaust númer* is "you have the wrong number". | T 385691, 881353 | attested |
+| Ordinals are written with a period (3.) and are *fyrsti, annar, þriðji, fjórði, fimmti, sjötti, sjöundi, áttundi, níundi, tíundi*; all but *annar* end in -i and decline as weak adjectives. | elon (ordinals: the list, "all of these except annar end in -i", the weak table of *fjórði*, *annar* strong); DMII (*þriðji*: KK-NFET *þriðji*, KVK-NFET and HK-NFET *þriðja*, KVK-ÞGFET and the plural *þriðju*) | sourced |
+| *á þriðju hæð* is "on the third floor" (*hæð* is feminine). | elon (ordinals in use: "Skrifstofan er á þriðju hæð"); DMII (*hæð* kvk) | sourced |
+| *annar* is "second" and "other"; Norwegian *andre* (second) comes from *annen*. | W annar ("other, another"; adjective "second"); BMO andre, annen 2 ("ordenstall til to (2.)", "av annen") | sourced |
+| *fyrsti* is the weak form of *fyrstur*, "first". | DMII (*fyrstur* FVB-KK-NFET *fyrsti*); W fyrstur ("first") | sourced |
+| Dates use ordinals: *5. júní* is said *fimmti júní*. | elon (ordinals: "5. júní is read aloud as fimmti júní") | sourced |
+| *margur* is "many" (things counted), *mikill* "much" (an amount). | W margur ("many, a lot of"), mikill ("large in quantity or number; much"); T 469365, 511399 | sourced |
+| The comparatives are *fleiri*, *fleira* (of *margur*) and *meiri*, *meira* (of *mikill*). | DMII (MST forms); T 3795655, 738964 | attested |
+| The adverb *mikið* is "a lot". | W mikið ("much, a lot"); T 488331 | sourced |
+| *fár* is "few", *nokkur* "some, a few", *hálfur* "half". | W fár ("few"), nokkur ("some"), hálfur ("half"); T 451215, 468938, 385869 (*eftir nokkur ár*, "in a few years") | sourced |
+| *skipti* is a time, an occasion: *í fyrsta skipti*, *í þetta skipti*. | W skipti ("time, as in occurrence"); T 384146, 10691649, 698277 | sourced |
 
 ### *Gata*
 
@@ -210,7 +242,7 @@ The sentences are unchanged Tatoeba sentences, each readable after the unit the 
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 28 of the 1,876 sentences. The other 1,843 (all but five excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 28 of the 1,991 sentences. The other 1,955 (all but eight excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -223,7 +255,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 315 of the 360 course words. The other 45 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 64 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 344 of the 395 course words. The other 51 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 66 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -234,6 +266,7 @@ Wiktionary gives a Bokmål gloss for 315 of the 360 course words. The other 45 w
 | hvaðan, beint, inni | hvorfra; rett; inne | |
 | buxur, húfa, hjól, sími, sundlaug, tölvupóstur, þota, norðurljós, kvöldmatur, skemmtilegur | bukse; lue; sykkel; telefon; svømmebasseng; e-post; jetfly; nordlys; middag; morsom | *kvöldmatur* (the evening meal) is *middag*, the day's hot meal, with *kveldsmat* second |
 | réttur, kynna, heilsa, afsaka, kennitala, netfang | riktig, rett; presentere, introdusere; hilse; unnskylde; personnummer; e-postadresse | the adjective "right, correct" (W's third sense, the one in the course sentences, *Það er rétt*, *rétta svarið*); "to introduce"; "to greet"; "to excuse"; "national identification number" (BMO personnummer: the Norwegian number of the same kind); "e-mail address" |
+| áttatíu, níutíu, níundi, hálfur, nokkur, mikið | åtti; nitti; niende; halv; noen; mye | the plain equivalents (W "eighty", "ninety", "ninth", "half", "some", "much, a lot"); *nokkur* shares *noen* with *einhver*, and the adverb *mikið* (W: from *mikill*) shares *mye* with *mikill*: near-synonyms, so typing either counts and they are never options together |
 | sæll | hei, ha det, sæl | W's senses "hello (a greeting)" and "happy"; the course sentences use it to greet and take leave (*Komdu nú sæll*, *Vertu sæll*), and *sæl* (BMO "lykkelig, glad") is the same Old Norse word |
 
 ### Wiktionary glosses corrected (`"fixes"`)
@@ -274,13 +307,15 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | leita | søke | lete, søke | "to search, look for" (*leita að*, *lete etter*) |
 | flytja | flytte seg | flytte | "to move (between homes)", also "to move something"; *flytte seg* is "move out of the way" |
 | fæða | bære | føde | "to give birth to"; *bære* and *fram* were *bære fram* (bring forth), split in two |
+| tala (noun) | antall | tall, antall | "number" (*Aldur er bara tala*, *Alder er bare et tall*); *antall* is an amount of things (BMO antall: "mengde (som kan telles)") |
+| skipti | tid | gang | "time, as in occurrence" (*í fyrsta skipti*, *for første gang*); *tid* is time that passes, the course word *tími* |
 | skilaboð | budskap | beskjed, melding, budskap | "message", in the course sentences one left for someone (*skilja eftir skilaboð*, *legge igjen en beskjed*); *budskap* is a message in the sense of what a text says |
 
 Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 345 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 376 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|
@@ -368,11 +403,21 @@ The drill asks "which spelling do you hear?" only with a word whose Wiktionary I
 | `landing.say`, `brand.mascot.meaning` | *tölva* from *tala* and *völva*; *tala* is speech and number. | W tölva, tala | sourced |
 | `feedback.reason.*` | Accents change words. | W dýr ("animal", "expensive") and dyr ("door") | sourced (the old example *ar*/*ár* in this file was wrong: *ar* is not an Icelandic word) |
 
+## Numbers by ear (`js/engine/numbers.js`)
+
+| Claim or choice | Source | Status |
+|---|---|---|
+| Numbers are heard as said when counting: one to four masculine (*fjörutíu og einn*), the ten first with *og*. | HÞ pp. 1-2; elon (cardinals 5 and up) | sourced |
+| Ordinals are heard in the form said for a date, the weak masculine nominative (*þriðji*, as in *Í dag er þriðji mars*), and shown as "3.". | elon (ordinals in use: "Í dag er þriðji mars", "Í dag er 3. mars") | sourced |
+| Phone numbers are said in pairs after three single digits, as in the *Tölur* guidebook, and start with 5 to 8 (landlines 4 and 5, mobile phones 6, 7 and 8). | elon (numbers in use); WP-Tel ("Numbers of mobile phones tend to begin with either 6xx xxxx, 7xx xxxx or 8xx xxxx", "landline numbers starting with 5xx xxxx ... or 4xx xxxx") | sourced |
+| The course's phone numbers have no 1 to 4 said alone or at the end of a pair, no 0 said alone and no pair starting with 0. | elon writes 34 in a phone number as *þrjátíu og fjögur* (neuter), while HÞ gives the masculine for counting; no source here says how 0 or 05 is said. So the course avoids them and makes no claim. | design choice |
+| Options that sound or look alike: 17 *sautján*, 70 *sjötíu*, 7 *sjö*; 47 and 74; a phone number with its pairs swapped. | the spellings above | design choice |
+
 ## Generated audio (`data/audio/`)
 
 The four Piper voices sometimes mispronounce: *Ísland* comes out as [ˈisland], without the t that Wiktionary gives for the single-word pronunciation. Word highlighting uses estimated timings.
 
 ## Norwegian bridge (`data/bridge.json`, `js/bridge-rules.js`)
 
-156 pairs are sourced (Bokmålsordboka and Wiktionary name the same Old Norse word), 5 are shared loans (Wiktionary names the source language). 8 pairs only look alike with the same meaning and are labeled in the app as "a shared origin is not confirmed". The spelling patterns describe spelling, not historical sound laws.
+192 pairs are sourced (Bokmålsordboka and Wiktionary name the same Old Norse word), 7 are shared loans (Wiktionary names the source language). 12 pairs only look alike with the same meaning and are labeled in the app as "a shared origin is not confirmed". The spelling patterns describe spelling, not historical sound laws.
 

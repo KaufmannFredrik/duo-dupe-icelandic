@@ -47,7 +47,13 @@
     "heilsa_so": ["hilse"],
     "afsaka_so": ["unnskylde"],
     "kennitala_no": ["personnummer"],
-    "netfang_no": ["e-postadresse"]
+    "netfang_no": ["e-postadresse"],
+    "áttatíu_to": ["åtti"],
+    "níutíu_to": ["nitti"],
+    "níundi_rt": ["niende"],
+    "mikið_ao": ["mye"],
+    "nokkur_fn": ["noen"],
+    "hálfur_lo": ["halv"]
   },
   "fixes": {
     "barn_no": { "nb": ["barn"], "wiktionary": ["barn", "barn n mindreårig"] },
@@ -113,6 +119,8 @@
     "þú_pfn": { "nb": ["du"], "wiktionary": ["du", "De", "I"] },
     "flytja_so": { "nb": ["flytte"], "wiktionary": ["flytte seg", "flytte"] },
     "fæða_so": { "nb": ["føde"], "wiktionary": ["bære", "fram", "føde"] },
-    "skilaboð_no": { "nb": ["beskjed", "melding", "budskap"], "wiktionary": ["budskap", "melding"] }
+    "skilaboð_no": { "nb": ["beskjed", "melding", "budskap"], "wiktionary": ["budskap", "melding"] },
+    "tala_no": { "nb": ["tall", "antall"], "wiktionary": ["antall", "tall", "numerus"] },
+    "skipti_no": { "nb": ["gang"], "wiktionary": ["tid", "gang"] }
   }
 }

@@ -2,6 +2,47 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A1, unit 5: *Tölur*, and numbers by ear (2026-11-25)
+
+The second new unit of section A1 in [PLAN.md](PLAN.md), between *Fjölskylda* and *Gata*: the numbers 11 to 99, ordinal numbers, phone numbers and amounts, for the goal "ask for and give general information" (`content/goals.json`). With it comes the plan's first new exercise type, *numbers by ear*.
+
+- **Words** (35, theme `numbers`): *ellefu* to *nítján* and *þrjátíu* to *níutíu* (16, indeclinable, confirmed in the full BÍN like *fimm* to *tuttugu*); *fyrstur* and *þriðji* to *tíundi* (*annar*, "second", is already the core word "other"); *skipti*, *tala* (the noun "number"), *númer*, *telja*; *margur*, *mikill*, *mikið*, *fár*, *nokkur*, *hálfur*. Chosen by topic, then with `npm run pick-words`.
+- **What stays where it was:** *hundrað* and *þúsund* stay in *Búð*'s lesson "How much is it?" with *króna*, *verð* and *kosta*, as the plan keeps the existing units' words; so this unit counts to 99 (its goal says so), and prices are shown in the guidebook and drilled in *Búð*. The adverb *fyrst* was left out: it shares the gloss "first" with *fyrstur* in the same lesson. *mikið* is its own word because the parser reads it as an adverb ("a lot") in most sentences, which would otherwise be unreadable.
+- **Ordinals are a word class of their own:** the DMII Core has *þriðji* to *tíundi* as class `rt` (24 forms each, weak declension), and the parser reads them as adjectives. `rt` is now known to the build (frequency and Wiktionary classes), the tables (`gendered`), the declension page, the Norwegian bridge, the class labels ("ordinal number", "ordenstall") and the sentence tags (`scripts/lib/tags.mjs`: an `rt` course word is the parser's adjective with the same lemma).
+
+### Numbers by ear
+
+Tatoeba has almost no sentences for 11 to 99 (0 to 8 each among the 9,407 Tatoeba sentences of up to ten words with an English translation), so a numbers unit made only of sentence exercises would be thin. The plan's "numbers by ear" carries it instead:
+
+- **Three exercise types** (`js/exercises/numlisten.js`, `numtype.js`, `numbuild.js`): hear a number and pick it from four that sound or look alike (17, 70, 7, 27; 47, 74); hear it and write it in digits; see it in digits and build its words from chips (*fjörutíu og sjö* among *fjórtán* and *sjötíu*; "3." as *þriðji* among *þrír* and *fjórði*). Phone numbers come in the first two: hear *sex átta fimm, sautján, tuttugu og fimm* and pick or type 685 17 25. Each answer counts for the word's meaning card.
+- **What numbers are called** (`js/engine/numbers.js`, pure, shared by the generator, the audio build and the tests): when counting, one to four are masculine (*þrjátíu og einn*), the ten comes first and *og* joins the unit (Höskuldur Þráinsson's *Kynhlutlaust mál*, elon.io). Ordinals are heard in the form said for a date (*þriðji*). A lesson plays only numbers the learner can say so far, so the first lesson hears 11 to 15 alone and phone numbers with 10, 20 and 25 to 29 in them.
+- **Phone numbers** are said as the first three digits one by one and then two pairs (elon.io: *fimm sex sjö — tólf — þrjátíu og fjögur*). The sources disagree on the form of one to four at the end of a pair (elon.io writes the neuter *fjögur*, while counting takes the masculine), and none says how 0 is read in a pair, so the course's 32 phone numbers avoid both: no 1 to 4 or 0 said alone, no pair that ends in 1 to 4 or starts with 0. They start with 5 to 8, as Icelandic numbers do (Wikipedia). They are a fixed list, because every text the exercises play is rendered ahead of time.
+- **In lessons:** the indeclinable numerals (five and up) and the ordinals get their own cycle (hear, meaning, build, phone number, write, type the word, sentences where there are any); one to four keep their exercises on gender and case. So *Fjölskylda*'s lesson "Age and counting" now hears and builds 6 to 10 and 20 too. **In reviews**, a numeral's meaning card is reviewed as a number three times in four.
+- **Audio:** `node scripts/build-numbers.mjs` writes `data/numbers.json`, the 141 texts the exercises can say (1 to 99, the ordinals, the phone numbers), and `scripts/build-audio.py` renders them in every voice. The file is for the build only and not precached. `tests/numbers.test.mjs` fails if it is out of date or a voice lacks one of its texts.
+- **Shared chips:** the word chips of the sentence bank are now a helper (`chipBank` in `js/exercises/common.js`) that the number builder uses too.
+
+### The unit
+
+- **Lessons** (grouped by hand, every exercise read): Eleven to fifteen; Sixteen to nineteen (with *telja*); Thirty to sixty (with *tala*); Seventy to ninety (with *númer*); First to fifth (with *skipti*); Sixth to tenth; Many and few; and a review. Each has 12 exercises of six to eight kinds.
+- **Guidebook**, five sections, every claim in `content/CLAIMS.md`: 11 to 19 and *-tán* against Norwegian *-ten*, and *telja*; the tens, *og*, the masculine when counting, the singular after *og einn* (*tuttugu og ein króna*), *hundrað* and *þúsund* as nouns; phone numbers in pairs, *númer* and *tala*; ordinals with a period, their weak declension (*á þriðju hæð*), *annar* as "second" and "other" (as Norwegian *andre* comes from *annen*), dates (*fimmti júní*); *margur* and *mikill*, *fleiri* and *meira*, *mikið*, *fár*, *nokkur*, *hálfur*, *í fyrsta skipti*.
+- **Host and story:** Jónas the fisherman hosts the unit (*Það eru margir fiskar í þessu vatni*); the story *More tea?* is a dialogue between Jónas and Amma Sigga, thirteen unchanged Tatoeba sentences readable after this unit (*Hvað áttu margar systur?* ... *Kvöldið er ungt.* *Aldur er bara tala.*).
+- **What the sources changed:** a search summary said that the masculine is used in phone numbers, while elon.io's example has the neuter, so the phone numbers avoid the question (above). Bokmålsordboka gives *antall* as "mengde (som kan telles)", so *tala* is glossed *tall* first.
+
+### A fix found on the way
+
+*Dagar hennar eru taldir* ("her days are numbered") was drilled as a verb form, *taldir* "you counted". Now a form that can only be 1st or 2nd person is asked only with its subject pronoun in the sentence. Of the 89 verb-form exercises the lessons make, only that one changed; a first try that skipped every form spelled like a past participle would have removed many good ones (*Við lærðum ensku*, *Þau töluðu ekki*), and was dropped.
+
+### Data
+
+- 395 words; 1,991 sentences (134 new; 19 dropped because better ones were found for their words, and their hand translations removed); 131 new Bokmål translations by hand; three new sentences excluded because their English translation says something else (*nítjánhundruð* translated "1990"; *í fyrsta skipti fyrir þremur árum* as "for the first time in three years"; an Icelandic proverb glossed with an English one).
+- Bokmål glosses by hand for *áttatíu*, *níutíu*, *níundi*, *hálfur*, *nokkur*, *mikið*, and two corrections: *tala* was *antall* first, *skipti* was *tid* (now *gang*). *nokkur* shares *noen* with *einhver*, and *mikið* shares *mye* with *mikill*: near-synonyms, handled like *vita*, *þekkja* and *kunna*.
+- 31 Bokmål etymologies; the credits now say 23 indeclinable numerals were confirmed in the full BÍN; audio for 274 new texts in each of the four voices; the Norwegian bridge has 211 words (15 new, such as *elleve*, *telle*, *halv*, *tiende*).
+
+### Tests
+
+- `node --test`: 165 tests (twelve units; the eight new lessons produce valid exercises, with checks for number exercises: words the learner knows, the answer once among four options, chips not in the answer; `tests/numbers.test.mjs`: what numbers are called, options, phone-number rules, the audio list, lessons and reviews with number exercises, the verb-form fix; a tag test for ordinals).
+- `npm run smoke`: every lesson of every unit (the number exercises among them), twelve stories, all seven friends with twelve units finished. `npm run qa`: the new guidebook, the story, and every number exercise and its feedback at three sizes; no axe violations, no overflow at 320 px.
+
 ## Section A1 begins: unit 2, *Um mig* (2026-11-24)
 
 The first new unit of section A1 in [PLAN.md](PLAN.md), between *Halló* and *Kaffi*: introducing yourself politely and giving your details, the curriculum's stage 1 (name, address, politeness) and the goals "answer simple questions about yourself" and "ask for and give general information" (`content/goals.json`).
