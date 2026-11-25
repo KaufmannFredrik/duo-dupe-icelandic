@@ -127,7 +127,9 @@ export function createGenerator(data) {
   }
 
   function wordbank(id, allowed, used, r) {
-    const cands = sentencesFor(id, allowed, used, 7);
+    // The chips are the words (letters only), so a sentence with digits ("Hvað með 12:45?") could
+    // never be built right.
+    const cands = sentencesFor(id, allowed, used, 7).filter((sid) => !/\d/.test(sentences[sid].is));
     if (!cands.length) return null;
     const sid = pick(cands.slice(0, 6), r);
     const present = new Set(toks(sid).map((t) => t.low));

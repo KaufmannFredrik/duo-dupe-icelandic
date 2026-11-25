@@ -49,7 +49,7 @@
       "is": "Nemandi getur rætt nokkuð óhikað um málefni sem hann þekkir vel.",
       "en": "Talk fairly freely about things you know well.",
       "nb": "Snakke ganske fritt om ting du kjenner godt.",
-      "units": ["shopping", "food"]
+      "units": ["shopping", "food", "home"]
     },
     {
       "id": "everyday",
@@ -58,7 +58,7 @@
       "is": "Nemandi getur tekið þátt í umræðum um dagleg málefni.",
       "en": "Take part in conversations about everyday matters.",
       "nb": "Delta i samtaler om hverdagslige ting.",
-      "units": ["cafe", "food", "weather", "study"]
+      "units": ["cafe", "food", "home", "weather", "study"]
     },
     {
       "id": "services",

@@ -1,0 +1,74 @@
+{
+  "id": "home",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "Come on in",
+    "nb": "Kom inn"
+  },
+  "level": "A1",
+  "after": "home",
+  "dialogue": true,
+  "cast": {
+    "A": "katla",
+    "B": "elias"
+  },
+  "lines": [
+    {
+      "sentence": "1321846",
+      "speaker": "A"
+    },
+    {
+      "sentence": "3799254",
+      "speaker": "A"
+    },
+    {
+      "sentence": "690345",
+      "speaker": "A"
+    },
+    {
+      "sentence": "1323381",
+      "speaker": "B"
+    },
+    {
+      "sentence": "479367",
+      "speaker": "A"
+    },
+    {
+      "sentence": "473554",
+      "speaker": "A"
+    },
+    {
+      "sentence": "657272",
+      "speaker": "A"
+    },
+    {
+      "sentence": "647411",
+      "speaker": "B"
+    },
+    {
+      "sentence": "469045",
+      "speaker": "A"
+    },
+    {
+      "sentence": "827609",
+      "speaker": "B"
+    },
+    {
+      "sentence": "827613",
+      "speaker": "A"
+    },
+    {
+      "sentence": "624577",
+      "speaker": "B"
+    },
+    {
+      "sentence": "738964",
+      "speaker": "A"
+    },
+    {
+      "sentence": "397461",
+      "speaker": "B"
+    }
+  ]
+}

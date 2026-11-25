@@ -424,6 +424,330 @@
       ],
       "is": "Það er kokkur í eldhúsinu.",
       "en": "There is a cook in the kitchen."
+    },
+    "469047-1": {
+      "from": "469047",
+      "swap": [
+        "ísskápurinn",
+        "skápurinn"
+      ],
+      "is": "Litli skápurinn er skítugur.",
+      "en": "The little cupboard is dirty."
+    },
+    "469047-2": {
+      "from": "469047",
+      "swap": [
+        "skítugur",
+        "hreinn"
+      ],
+      "is": "Litli ísskápurinn er hreinn.",
+      "en": "The little fridge is clean."
+    },
+    "473555-1": {
+      "from": "473555",
+      "swap": [
+        "stól",
+        "sófa"
+      ],
+      "is": "Þennan sófa þarf að laga.",
+      "en": "This sofa needs to be fixed."
+    },
+    "473555-2": {
+      "from": "473555",
+      "swap": [
+        "stól",
+        "lampa"
+      ],
+      "is": "Þennan lampa þarf að laga.",
+      "en": "This lamp needs to be fixed."
+    },
+    "483002-1": {
+      "from": "483002",
+      "swap": [
+        "baðherberginu",
+        "stofunni"
+      ],
+      "is": "Hún er í stofunni.",
+      "en": "She is in the living room."
+    },
+    "483002-2": {
+      "from": "483002",
+      "swap": [
+        "baðherberginu",
+        "svefnherberginu"
+      ],
+      "is": "Hún er í svefnherberginu.",
+      "en": "She is in the bedroom."
+    },
+    "657272-1": {
+      "from": "657272",
+      "swap": [
+        "sófanum",
+        "teppinu"
+      ],
+      "is": "Kötturinn sefur á teppinu.",
+      "en": "The cat sleeps on the carpet."
+    },
+    "827613-1": {
+      "from": "827613",
+      "swap": [
+        "Klósettið",
+        "Svefnherbergið"
+      ],
+      "is": "Svefnherbergið er uppi.",
+      "en": "The bedroom is upstairs."
+    },
+    "827613-2": {
+      "from": "827613",
+      "swap": [
+        "Klósettið",
+        "Baðherbergið"
+      ],
+      "is": "Baðherbergið er uppi.",
+      "en": "The bathroom is upstairs."
+    },
+    "827613-3": {
+      "from": "827613",
+      "swap": [
+        "uppi",
+        "niðri"
+      ],
+      "is": "Klósettið er niðri.",
+      "en": "The toilet is downstairs."
+    },
+    "827650-1": {
+      "from": "827650",
+      "swap": [
+        "klósettið",
+        "stofan"
+      ],
+      "is": "Hvar er stofan?",
+      "en": "Where is the living room?"
+    },
+    "827650-2": {
+      "from": "827650",
+      "swap": [
+        "klósettið",
+        "svefnherbergið"
+      ],
+      "is": "Hvar er svefnherbergið?",
+      "en": "Where is the bedroom?"
+    },
+    "827650-3": {
+      "from": "827650",
+      "swap": [
+        "klósettið",
+        "lampinn"
+      ],
+      "is": "Hvar er lampinn?",
+      "en": "Where is the lamp?"
+    },
+    "827650-4": {
+      "from": "827650",
+      "swap": [
+        "klósettið",
+        "skápurinn"
+      ],
+      "is": "Hvar er skápurinn?",
+      "en": "Where is the cupboard?"
+    },
+    "827650-5": {
+      "from": "827650",
+      "swap": [
+        "klósettið",
+        "sjónvarpið"
+      ],
+      "is": "Hvar er sjónvarpið?",
+      "en": "Where is the television?"
+    },
+    "827650-6": {
+      "from": "827650",
+      "swap": [
+        "klósettið",
+        "lykillinn"
+      ],
+      "is": "Hvar er lykillinn?",
+      "en": "Where is the key?"
+    },
+    "828861-1": {
+      "from": "828861",
+      "swap": [
+        "dyrnar",
+        "skápinn"
+      ],
+      "is": "Opnaðu skápinn.",
+      "en": "Open the cupboard."
+    },
+    "905147-1": {
+      "from": "905147",
+      "swap": [
+        "stólar",
+        "sófar"
+      ],
+      "is": "Það eru engir sófar í þessu herbergi.",
+      "en": "There are no sofas in this room."
+    },
+    "1316200-1": {
+      "from": "1316200",
+      "swap": [
+        "Slökktu",
+        "Kveiktu"
+      ],
+      "is": "Kveiktu á honum.",
+      "en": "Turn it on."
+    },
+    "1316201-1": {
+      "from": "1316201",
+      "swap": [
+        "Slökktu",
+        "Kveiktu"
+      ],
+      "is": "Kveiktu á henni.",
+      "en": "Turn it on."
+    },
+    "1316202-1": {
+      "from": "1316202",
+      "swap": [
+        "Slökktu",
+        "Kveiktu"
+      ],
+      "is": "Kveiktu á því.",
+      "en": "Turn it on."
+    },
+    "1320713-1": {
+      "from": "1320713",
+      "swap": [
+        "heitt",
+        "hreint"
+      ],
+      "is": "Herbergið er hreint.",
+      "en": "The room is clean."
+    },
+    "1320713-2": {
+      "from": "1320713",
+      "swap": [
+        "heitt",
+        "skítugt"
+      ],
+      "is": "Herbergið er skítugt.",
+      "en": "The room is dirty."
+    },
+    "1320714-1": {
+      "from": "1320714",
+      "swap": [
+        "herberginu",
+        "stofunni"
+      ],
+      "is": "Það er heitt í stofunni.",
+      "en": "The living room is hot."
+    },
+    "1320714-2": {
+      "from": "1320714",
+      "swap": [
+        "herberginu",
+        "íbúðinni"
+      ],
+      "is": "Það er heitt í íbúðinni.",
+      "en": "The apartment is hot."
+    },
+    "1323737-1": {
+      "from": "1323737",
+      "swap": [
+        "kom",
+        "fór"
+      ],
+      "is": "Hann fór niður.",
+      "en": "He went downstairs."
+    },
+    "1323737-2": {
+      "from": "1323737",
+      "swap": [
+        "niður",
+        "upp"
+      ],
+      "is": "Hann kom upp.",
+      "en": "He came upstairs."
+    },
+    "1329150-1": {
+      "from": "1329150",
+      "swap": [
+        "útvarpinu",
+        "lampanum"
+      ],
+      "is": "Slökktu á lampanum.",
+      "en": "Turn off the lamp."
+    },
+    "1329150-2": {
+      "from": "1329150",
+      "swap": [
+        "útvarpinu",
+        "sjónvarpinu"
+      ],
+      "is": "Slökktu á sjónvarpinu.",
+      "en": "Turn off the television."
+    },
+    "1355099-1": {
+      "from": "1355099",
+      "swap": [
+        "herberginu",
+        "íbúðinni"
+      ],
+      "is": "Tökum til í íbúðinni okkar.",
+      "en": "Let's clean our apartment."
+    },
+    "1355101-1": {
+      "from": "1355101",
+      "swap": [
+        "herbergið",
+        "íbúðina"
+      ],
+      "is": "Þrífum íbúðina okkar.",
+      "en": "Let's clean our apartment."
+    },
+    "1355138-1": {
+      "from": "1355138",
+      "swap": [
+        "teppi",
+        "sjónvarp"
+      ],
+      "is": "Við viljum nýtt sjónvarp.",
+      "en": "We want a new television."
+    },
+    "11052105-1": {
+      "from": "11052105",
+      "swap": [
+        "hérna",
+        "uppi"
+      ],
+      "is": "Ég er uppi.",
+      "en": "I'm upstairs."
+    },
+    "11052105-2": {
+      "from": "11052105",
+      "swap": [
+        "hérna",
+        "niðri"
+      ],
+      "is": "Ég er niðri.",
+      "en": "I'm downstairs."
+    },
+    "11514512-1": {
+      "from": "11514512",
+      "swap": [
+        "hreinn",
+        "skítugur"
+      ],
+      "is": "Báturinn var skítugur.",
+      "en": "The boat was dirty."
+    },
+    "12701233-1": {
+      "from": "12701233",
+      "swap": [
+        "Sjónvarpið",
+        "Teppið"
+      ],
+      "is": "Teppið mitt er gamalt.",
+      "en": "My carpet is old."
     }
   }
 }

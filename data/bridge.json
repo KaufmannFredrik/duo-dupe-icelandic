@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-25T18:43:02.465Z",
+ "generated": "2026-11-25T20:37:56.161Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -19,8 +19,8 @@
  ],
  "counts": {
   "loan": 7,
-  "old-norse": 205,
-  "form": 17
+  "old-norse": 217,
+  "form": 20
  },
  "pairs": {
   "halló_uh": {
@@ -1496,6 +1496,116 @@
    "rules": [
     "ending-a"
    ]
+  },
+  "herbergi_no": {
+   "nb": "herberge",
+   "article": 23294,
+   "oldNorse": "herbergi",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-i"
+   ]
+  },
+  "lykill_no": {
+   "nb": "nøkkel",
+   "article": 41604,
+   "oldNorse": "lykill",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "læsa_so": {
+   "nb": "låse",
+   "article": 34719,
+   "oldNorse": "læsa",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "lampi_no": {
+   "nb": "lampe",
+   "article": 33630,
+   "oldNorse": "lampi",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-i"
+   ]
+  },
+  "skápur_no": {
+   "nb": "skap",
+   "evidence": "form",
+   "rules": [
+    "a-acute-a",
+    "ending-ur"
+   ]
+  },
+  "teppi_no": {
+   "nb": "teppe",
+   "evidence": "form",
+   "rules": [
+    "ending-i"
+   ]
+  },
+  "uppi_ao": {
+   "nb": "oppe",
+   "article": 42390,
+   "oldNorse": "uppi",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "inn_ao": {
+   "nb": "inn",
+   "evidence": "form",
+   "rules": []
+  },
+  "út_ao": {
+   "nb": "ut",
+   "article": 65032,
+   "oldNorse": "út",
+   "evidence": "old-norse",
+   "rules": [
+    "u-acute"
+   ]
+  },
+  "upp_ao": {
+   "nb": "opp",
+   "article": 42343,
+   "oldNorse": "upp",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "niður_ao": {
+   "nb": "ned",
+   "article": 40445,
+   "oldNorse": "niðr",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "setja_so": {
+   "nb": "sette",
+   "article": 51169,
+   "oldNorse": "setja",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "leggja_so": {
+   "nb": "legge",
+   "article": 34290,
+   "oldNorse": "leggja",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "slökkva_so": {
+   "nb": "slokke",
+   "article": 54520,
+   "oldNorse": "sløkkva",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "hreinn_lo": {
+   "nb": "ren",
+   "article": 48093,
+   "oldNorse": "hreinn",
+   "evidence": "old-norse",
+   "rules": null
   },
   "veður_no": {
    "nb": "vær",

@@ -48,6 +48,12 @@
     {"sentence": "11208765", "word": "salt", "lemma": "salt_no", "reason": "Þetta er ekki salt (this isn't salt): the parser reads salt as the neuter of the adjective saltur (salty); the English says it is the noun salt."},
     {"sentence": "488539-1", "word": "ísa", "lemma": "ís_no", "reason": "Tvo stóra ísa, takk (two big ice creams, please): the parser cannot analyze this short request, and ísa is also a form of the verb ísa (to ice); here it is the accusative plural of ís after tvo, as in the original Tvo vanillu ísa, takk."},
     {"sentence": "382243-1", "word": "sósu", "lemma": "sósa_no", "reason": "Hrísgrjón eru góð með sósu (rice is good with sauce): the parser gives sósu the accusative after með; með in the sense along with takes the dative, as in Hann át brauð með smjöri. sósu is spelled the same in both cases, so the fix keeps the word and drops the wrong case."},
-    {"sentence": "382243-2", "word": "fiski", "lemma": "fiskur_no", "reason": "Hrísgrjón eru góð með fiski (rice is good with fish): the parser reads fiski as the accusative of the noun fiski (fishing); it is the dative of fiskur (fish) after með in the sense along with, as in Hann át brauð með smjöri."}
+    {"sentence": "382243-2", "word": "fiski", "lemma": "fiskur_no", "reason": "Hrísgrjón eru góð með fiski (rice is good with fish): the parser reads fiski as the accusative of the noun fiski (fishing); it is the dative of fiskur (fish) after með in the sense along with, as in Hann át brauð með smjöri."},
+    {"sentence": "1356570", "word": "læs", "lemma": null, "reason": "Hann er læs og skrifandi (he can read and write): læs is the adjective læs (literate), not a form of the verb læsa (to lock)."},
+    {"sentence": "1316200", "word": "á", "lemma": "á_fs", "reason": "Slökktu á honum (turn it off): the parser reads á as the noun á (river); slökkva á (turn off) takes the preposition á with the dative."},
+    {"sentence": "1316201", "word": "á", "lemma": "á_fs", "reason": "Slökktu á henni (turn it off): the parser reads á as the noun á (river); slökkva á (turn off) takes the preposition á with the dative."},
+    {"sentence": "1316202", "word": "á", "lemma": "á_fs", "reason": "Slökktu á því (turn it off): the parser reads á as the noun á (river); slökkva á (turn off) takes the preposition á with the dative."},
+    {"sentence": "1329150-1", "word": "á", "lemma": "á_fs", "reason": "Slökktu á lampanum (turn off the lamp): the parser reads á as the noun á (river); slökkva á (turn off) takes the preposition á with the dative."},
+    {"sentence": "1329150-2", "word": "á", "lemma": "á_fs", "reason": "Slökktu á sjónvarpinu (turn off the television): the parser reads á as the noun á (river); slökkva á (turn off) takes the preposition á with the dative."}
   ]
 }

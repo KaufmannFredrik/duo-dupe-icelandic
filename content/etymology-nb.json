@@ -1683,6 +1683,118 @@
     "hollur_lo": {
       "nb": "Fra norrønt hollr, fra urgermansk *hulþaz. Beslektet med gotisk 𐌷𐌿𐌻𐌸𐍃 (hulþs), svensk huld.",
       "of": "93933405"
+    },
+    "herbergi_no": {
+      "nb": "Fra norrønt herbergi.",
+      "of": "4dd7a605"
+    },
+    "stofa_no": {
+      "nb": "Fra norrønt stofa, stufa, lånt fra middelnedertysk stōve, stūve, gammelsaksisk *stova, *stuva, fra vestgermansk urspråk *stubu.",
+      "of": "b58ef69b"
+    },
+    "svefnherbergi_no": {
+      "nb": "Av svefn («søvn») + herbergi («rom»).",
+      "of": "49703e82"
+    },
+    "baðherbergi_no": {
+      "nb": "Av bað («bad») + herbergi («rom»).",
+      "of": "2f464849"
+    },
+    "klósett_no": {
+      "nb": "Lånt fra dansk kloset («rom til vannlating og avføring»), fra tysk Klosett, fra engelsk closet. Sammenlign engelsk water closet.",
+      "of": "088b9e35"
+    },
+    "íbúð_no": {
+      "nb": "Av í («i») + búð («bodd»), ordrett «det man bor i», fra perfektum partisipp av verbet å bo.",
+      "of": "52a82219"
+    },
+    "dyr_no": {
+      "nb": "Fra norrønt dyrr, fra urgermansk *duriz, fra urindoeuropeisk *dʰwer- («dør, port»).",
+      "of": "28aaba18"
+    },
+    "hurð_no": {
+      "nb": "Fra norrønt hurð, fra urgermansk *hurdiz.",
+      "of": "01c2b267"
+    },
+    "gluggi_no": {
+      "nb": "Fra norrønt gluggi. Sammenlign svensk glugg og norsk bokmål glugge.",
+      "of": "4cbd50e4"
+    },
+    "lykill_no": {
+      "nb": "Fra norrønt lykill, fra urgermansk *lukilaz.",
+      "of": "2dd66f1b"
+    },
+    "læsa_so": {
+      "nb": "Fra norrønt læsa, av láss («lås») (som islandsk lás kommer fra).",
+      "of": "fb51cf44"
+    },
+    "lampi_no": {
+      "nb": "Fra norrønt lampi, fra latin lampas, fra gammelgresk λαμπάς (lampás).",
+      "of": "75f843e9"
+    },
+    "skápur_no": {
+      "nb": "Fra sen norrønt skáp, fra middelnedertysk schap, fra gammelsaksisk skap, fra vestgermansk urspråk *skap («form»), fra urgermansk *skapą.",
+      "of": "0f6ebfd6"
+    },
+    "mynd_no": {
+      "nb": "Arvet fra norrønt mynd («skikkelse, form»).",
+      "of": "77590b50"
+    },
+    "hérna_ao": {
+      "nb": "hér («her») + -na (akkusativsuffiks).",
+      "of": "1ad951f4"
+    },
+    "þarna_ao": {
+      "nb": "Fra norrønt þarna. Ved overflateanalyse þar («der», adverb som viser tilbake) + -na (påpekende suffiks). Sammenlign svo og svona.",
+      "of": "ae8fb8aa"
+    },
+    "uppi_ao": {
+      "nb": "Fra norrønt uppi.",
+      "of": "56fbff63"
+    },
+    "hlið_no": {
+      "nb": "Fra norrønt hlið («side»). Beslektet med gammelsvensk liþ («side»).",
+      "of": "eba7cb5b"
+    },
+    "út_ao": {
+      "nb": "Fra norrønt út, fra urgermansk *ūt.",
+      "of": "1ecbffcf"
+    },
+    "upp_ao": {
+      "nb": "Fra norrønt upp, fra urgermansk *upp.",
+      "of": "5ebb3dee"
+    },
+    "niður_ao": {
+      "nb": "Fra norrønt niðr, fra urgermansk *niþer, fra urindoeuropeisk *niter. Beslektet med dansk og svensk ned, engelsk nether, nederlandsk neder og tysk nieder.",
+      "of": "e1d10191"
+    },
+    "setja_so": {
+      "nb": "Fra norrønt setja, fra urgermansk *satjaną.",
+      "of": "0c78ce61"
+    },
+    "leggja_so": {
+      "nb": "Fra norrønt leggja, fra urgermansk *lagjaną.",
+      "of": "6ca189c4"
+    },
+    "þrífa_so": {
+      "nb": "Fra norrønt þrífa, fra urgermansk *þrībaną. Beslektet med engelsk thrive, som kom til å bety «å ta» og dermed «å vokse» (refleksivt).",
+      "of": "fc6a4be6"
+    },
+    "laga_so": {
+      "nb": "Arvet fra norrønt laga («å forberede, gjøre i stand»).",
+      "of": "a7c7af05"
+    },
+    "slökkva_so": {
+      "nb": "Fra norrønt sløkkva, fra urgermansk *slakwjaną. Trolig ikke beslektet med engelsk slake, som opprinnelig betydde «å svekke».",
+      "of": "56158deb"
+    },
+    "hreinn_lo": {
+      "nb": "Fra norrønt hreinn, fra urgermansk *hrainiz.",
+      "of": "e9d92f3f"
+    },
+    "skítugur_lo": {
+      "nb": "Av skítur («skitt, møkk») + -ugur.",
+      "of": "d099b30e"
     }
   }
 }

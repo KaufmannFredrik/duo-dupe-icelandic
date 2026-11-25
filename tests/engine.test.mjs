@@ -63,8 +63,8 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key), practiced: Boolean(lesson.review) }) };
 }
 
-test('course: fourteen units in order, all hand-made', () => {
-  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'weather', 'study', 'grammar', 'newwords']);
+test('course: fifteen units in order, all hand-made', () => {
+  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'weather', 'study', 'grammar', 'newwords']);
   for (const u of d.course.units) assert.equal(u.auto, false, `${u.id} has hand-made lessons`);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
 });
@@ -140,6 +140,9 @@ test('generator: homographs are told apart by the sentence tags', () => {
     ['Eru þeir bræður?', 'sá_fn', 'hann_pfn'], // þeir = they; content/tag-fixes.json
     ['Það er svo satt.', 'saddur_lo', 'vera_so'], // satt = true (sannur), not full: a fix with lemma null
     ['Þú verður að fara til baka.', 'baka_so', 'fara_so'], // til baka = back
+    ['Slökktu á honum.', 'eiga_so', 'á_fs'], // slökkva á: the parser reads á as a river; content/tag-fixes.json
+    ['Hann er læs og skrifandi.', 'læsa_so', 'vera_so'], // læs = literate, not lock: a fix with lemma null
+    ['Allt er í lagi.', 'laga_so', 'vera_so'], // í lagi = all right, the noun lag
   ];
   for (const [text, not, yes] of cases) {
     assert.ok(sid(text), `"${text}" is in the data`);
@@ -198,7 +201,21 @@ test('generator: the same seed gives the same lesson', () => {
   assert.deepEqual(generate('hello', l).specs, generate('hello', l).specs);
 });
 
-for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'weather', 'study', 'grammar', 'newwords']) {
+test('generator: a sentence built from word chips has no digits, in the lessons as the browser plays them', () => {
+  // Chips hold letters only, so "Hvað með 12:45?" could never be built right (grammar/4 drew it).
+  for (const unit of d.course.units) {
+    for (const lesson of unit.lessons) {
+      for (const n of [0, 1, 2]) {
+        const specs = d.generator.lesson({ focus: lesson.focus, allowed: allowedFor(d.course, unit.id, lesson.index), seed: hashSeed(`${lesson.key}#${n}`), practiced: Boolean(lesson.review) });
+        for (const s of specs.filter((x) => x.type === 'wordbank' || x.type === 'dictation')) {
+          assert.ok(!/\d/.test(d.sentences[s.sentence].is), `${lesson.key}#${n} ${s.type}: "${d.sentences[s.sentence].is}" has digits`);
+        }
+      }
+    }
+  }
+});
+
+for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'weather', 'study', 'grammar', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);
@@ -209,6 +226,8 @@ for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around',
       for (const s of specs) {
         // Sentence building uses only words met so far; reading exercises may use any course word.
         const known = knownIn(s.type === 'wordbank' || s.type === 'dictation' ? allowed : everyWord);
+        // Word chips hold letters only, so a sentence to build has no digits.
+        if (s.type === 'wordbank' || s.type === 'dictation') assert.ok(!/\d/.test(d.sentences[s.sentence].is), `${lesson.key} ${s.type}: "${d.sentences[s.sentence].is}" has digits`);
         for (const sid of [s.sentence, ...(s.type === 'choice' ? s.options : [])].filter(Boolean)) {
           assert.ok(d.sentences[sid], `sentence ${sid} exists`);
           assert.ok(!d.excluded.has(sid), `sentence ${sid} is excluded`);

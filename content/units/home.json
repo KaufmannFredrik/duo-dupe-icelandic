@@ -1,0 +1,272 @@
+{
+  "id": "home",
+  "theme": "home",
+  "reviewed": true,
+  "title": {
+    "en": "At home",
+    "nb": "Hjemme"
+  },
+  "is": "Heima",
+  "goal": {
+    "en": "Talk about your home: the rooms, doors and keys, the furniture, where things are, and keeping it clean.",
+    "nb": "Snakk om hjemmet ditt: rommene, dører og nøkler, møblene, hvor ting er, og å holde det rent."
+  },
+  "host": {
+    "character": "torfi",
+    "says": "384630"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Rooms",
+        "nb": "Rom"
+      },
+      "focus": [
+        "herbergi_no",
+        "stofa_no",
+        "svefnherbergi_no",
+        "baðherbergi_no",
+        "klósett_no",
+        "íbúð_no"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Doors and keys",
+        "nb": "Dører og nøkler"
+      },
+      "focus": [
+        "dyr_no",
+        "hurð_no",
+        "gluggi_no",
+        "lykill_no",
+        "læsa_so"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "In the living room",
+        "nb": "I stuen"
+      },
+      "focus": [
+        "sófi_no",
+        "lampi_no",
+        "skápur_no",
+        "teppi_no",
+        "mynd_no",
+        "sjónvarp_no"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "Where is it?",
+        "nb": "Hvor er det?"
+      },
+      "focus": [
+        "hérna_ao",
+        "þarna_ao",
+        "uppi_ao",
+        "niðri_ao",
+        "hlið_no"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "In and out",
+        "nb": "Inn og ut"
+      },
+      "focus": [
+        "inn_ao",
+        "út_ao",
+        "upp_ao",
+        "niður_ao",
+        "setja_so",
+        "leggja_so"
+      ]
+    },
+    {
+      "id": "6",
+      "title": {
+        "en": "Cleaning up",
+        "nb": "Rydde og vaske"
+      },
+      "focus": [
+        "þrífa_so",
+        "laga_so",
+        "kveikja_so",
+        "slökkva_so",
+        "hreinn_lo",
+        "skítugur_lo"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "Rooms: herbergi, stofa, íbúð",
+          "nb": "Rom: herbergi, stofa, íbúð"
+        },
+        "text": {
+          "en": "{is:herbergi} (room) is the word Norwegian has as herberge, a place to stay the night; both come from Old Norse herbergi. Other rooms are built from it: {is:svefnherbergi} (bedroom) is {is:svefn} (sleep) and {is:herbergi}, and {is:baðherbergi} (bathroom) is {is:bað} and {is:herbergi}. {is:stofa} (living room) is Norwegian stue, from Old Norse stofa. {is:íbúð} (apartment) is {is:í} (in) and {is:búð} (lived), what you live in, from {is:búa}. {is:klósett} (toilet) was borrowed from Danish, and goes back to English closet, as Norwegian klosett does: {is:Hvar er klósettið?} {is:Má ég fara á klósettið hjá þér?} (may I use your toilet?).",
+          "nb": "{is:herbergi} (rom) er ordet norsk har som herberge, et sted å overnatte; begge kommer fra norrønt herbergi. Andre rom bygges av det: {is:svefnherbergi} (soverom) er {is:svefn} (søvn) og {is:herbergi}, og {is:baðherbergi} (baderom) er {is:bað} og {is:herbergi}. {is:stofa} (stue) er norsk stue, fra norrønt stofa. {is:íbúð} (leilighet) er {is:í} (i) og {is:búð} (bodd), det man bor i, av {is:búa}. {is:klósett} (toalett) ble lånt fra dansk og går tilbake til engelsk closet, slik norsk klosett gjør: {is:Hvar er klósettið?} {is:Má ég fara á klósettið hjá þér?} (kan jeg gå på toalettet hos deg?)."
+        },
+        "examples": [
+          "1329181",
+          "827613-1",
+          "387203",
+          "482328",
+          "827650",
+          "827609"
+        ],
+        "tables": [
+          "herbergi_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Doors: dyr and hurð",
+          "nb": "Dører: dyr og hurð"
+        },
+        "text": {
+          "en": "Icelandic has two words for a door. {is:dyr} is the doorway, and it is always plural: {is:dyrnar} (the door), {is:Opnaðu dyrnar}. {is:hurð} is the door itself, the panel that opens and shuts. Norwegian dør comes from {is:dyr}, which was plural in Old Norse too. Watch the case: {is:opna} (open) takes the accusative, {is:Opnaðu dyrnar}, but {is:loka} (close) takes the dative, {is:Lokaðu dyrunum}, {is:Lokaðu hurðinni}. {is:læsa} (lock, Norwegian låse) takes the dative as well: {is:Læstu dyrunum}. {is:gluggi} (window) is Norwegian glugge, a small opening to let in light or air; Norwegian vindu is Old Norse vindauga, the wind's eye. {is:lykill} (key) became Norwegian nøkkel.",
+          "nb": "Islandsk har to ord for dør. {is:dyr} er døråpningen, og det står alltid i flertall: {is:dyrnar} (døren), {is:Opnaðu dyrnar}. {is:hurð} er selve døren, platen som åpnes og lukkes. Norsk dør kommer av {is:dyr}, som var flertall også på norrønt. Pass på kasus: {is:opna} (åpne) styrer akkusativ, {is:Opnaðu dyrnar}, men {is:loka} (lukke) styrer dativ, {is:Lokaðu dyrunum}, {is:Lokaðu hurðinni}. {is:læsa} (låse) styrer også dativ: {is:Læstu dyrunum}. {is:gluggi} (vindu) er norsk glugge, en liten åpning som slipper inn lys eller luft; norsk vindu er norrønt vindauga, «vindøye». {is:lykill} (nøkkel) ble til norsk nøkkel."
+        },
+        "examples": [
+          "828861",
+          "828852",
+          "481527",
+          "860019",
+          "624577",
+          "831751",
+          "479465"
+        ],
+        "tables": [
+          "dyr_no",
+          "hurð_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "In the living room: sófi, lampi, sjónvarp",
+          "nb": "I stuen: sófi, lampi, sjónvarp"
+        },
+        "text": {
+          "en": "Much of the furniture sounds as in Norwegian. {is:sófi} (sofa) and {is:lampi} (lamp) are weak masculine nouns, with -a in the other cases of the singular: {is:Þennan sófa þarf að laga}, but {is:Hvar er lampinn?}. {is:skápur} (cupboard) and Norwegian skap both came from Low German schap. {is:teppi} is a carpet and also a blanket, as Norwegian teppe is. {is:mynd} is a picture or a photo, and also a film. {is:sjónvarp} (television) was made on the model of {is:útvarp} (radio), from {is:sjón} (sight) and {is:varp} (casting).",
+          "nb": "Mye av innboet høres ut som på norsk. {is:sófi} (sofa) og {is:lampi} (lampe) er svake hankjønnsord, med -a i de andre kasusene i entall: {is:Þennan sófa þarf að laga}, men {is:Hvar er lampinn?}. {is:skápur} (skap) og norsk skap kom begge fra nedertysk schap. {is:teppi} er et teppe på gulvet og et teppe å ha over seg, slik norsk teppe er. {is:mynd} er et bilde eller et foto, og også en film. {is:sjónvarp} (fjernsyn) ble laget etter mønster av {is:útvarp} (radio), av {is:sjón} (syn) og {is:varp} (kast)."
+        },
+        "examples": [
+          "657272",
+          "473555-1",
+          "827650-3",
+          "1355138",
+          "469045",
+          "12701233"
+        ],
+        "tables": [
+          "sófi_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Where is it? hérna, þarna, uppi, niðri",
+          "nb": "Hvor er det? hérna, þarna, uppi, niðri"
+        },
+        "text": {
+          "en": "{is:hérna} is {is:hér} (here) with -na, and {is:þarna} is {is:þar} (there) with -na. Use {is:þarna} for a place you can point at, over there: {is:Klósettið er þarna}; {is:þar} refers back to a place already named. {is:uppi} is up or upstairs, {is:niðri} down or downstairs: {is:Klósettið er uppi}. Next to is {is:við hliðina á}, word for word by the side on, with the dative after {is:á}: {is:Það er kirkja við hliðina á húsinu mínu}, {is:Má ég sitja við hliðina á þér?}. In front of is {is:fyrir framan}, with the accusative: {is:Hann er fyrir framan hurðina}.",
+          "nb": "{is:hérna} er {is:hér} (her) med -na, og {is:þarna} er {is:þar} (der) med -na. Bruk {is:þarna} om et sted du kan peke på, der borte: {is:Klósettið er þarna}; {is:þar} viser tilbake til et sted som alt er nevnt. {is:uppi} er oppe eller ovenpå, {is:niðri} nede eller nedenunder: {is:Klósettið er uppi}. Ved siden av er {is:við hliðina á}, ord for ord «ved siden på», med dativ etter {is:á}: {is:Það er kirkja við hliðina á húsinu mínu}, {is:Má ég sitja við hliðina á þér?}. Foran er {is:fyrir framan}, med akkusativ: {is:Hann er fyrir framan hurðina}."
+        },
+        "examples": [
+          "827649",
+          "11052105",
+          "827613",
+          "827613-3",
+          "734476",
+          "1368361",
+          "1312450"
+        ],
+        "tables": [
+          "hlið_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Going or being: inn and inni",
+          "nb": "Å dra eller å være: inn og inni"
+        },
+        "text": {
+          "en": "Icelandic keeps going somewhere apart from being there. With a verb of motion you use {is:inn}, {is:út}, {is:upp}, {is:niður} and {is:heim}; with a verb of being or staying, {is:inni}, {is:úti}, {is:uppi}, {is:niðri} and {is:heima}: {is:Förum inn} (let's go in), but {is:Ég er uppi} (I'm upstairs); {is:Hann kom niður}, but {is:Klósettið er niðri}. Norwegian does the same, with the same Old Norse words: inn and inne, ut and ute, opp and oppe, ned and nede, hjem and hjemme. Many verbs take one of the words of motion: {is:standa upp} (stand up, {is:Stattu upp!}), {is:gefast upp} (give up, Norwegian gi opp: {is:Ég gefst upp}), {is:taka út} (take out money).",
+          "nb": "Islandsk skiller mellom å dra et sted og å være der. Med et bevegelsesverb bruker du {is:inn}, {is:út}, {is:upp}, {is:niður} og {is:heim}; med et verb for å være eller bli, {is:inni}, {is:úti}, {is:uppi}, {is:niðri} og {is:heima}: {is:Förum inn} (la oss gå inn), men {is:Ég er uppi} (jeg er ovenpå); {is:Hann kom niður}, men {is:Klósettið er niðri}. Norsk gjør det samme, med de samme norrøne ordene: inn og inne, ut og ute, opp og oppe, ned og nede, hjem og hjemme. Mange verb tar et av bevegelsesordene: {is:standa upp} (reise seg, {is:Stattu upp!}), {is:gefast upp} (gi opp: {is:Ég gefst upp}), {is:taka út} (ta ut penger)."
+        },
+        "examples": [
+          "3799254",
+          "11052105-1",
+          "1323737",
+          "827613-3",
+          "1315528",
+          "1315534",
+          "460447"
+        ]
+      },
+      {
+        "title": {
+          "en": "Put and lay: setja, leggja",
+          "nb": "Sette og legge: setja, leggja"
+        },
+        "text": {
+          "en": "{is:setja} is to put or set, Norwegian sette, and {is:leggja} to lay, Norwegian legge: {is:Má ég setja það hérna?}, {is:Má ég leggja það hérna?}. With -st, {is:setja} becomes {is:setjast}, to sit down, where Norwegian says sette seg, and {is:leggja} becomes {is:leggjast}, to lie down, Norwegian legge seg: {is:Hann settist við hliðina á mér}, {is:Hún lagðist í rúmið}, {is:Sestu og talaðu við mig}. {is:leggja af stað} is to set off: {is:Þú verður að leggja af stað undir eins}. And {is:leggja} alone can mean to park: {is:Þú mátt leggja hérna}.",
+          "nb": "{is:setja} er å sette, og {is:leggja} å legge: {is:Má ég setja það hérna?}, {is:Má ég leggja það hérna?}. Med -st blir {is:setja} til {is:setjast}, å sette seg, og {is:leggja} til {is:leggjast}, å legge seg: {is:Hann settist við hliðina á mér}, {is:Hún lagðist í rúmið}, {is:Sestu og talaðu við mig}. {is:leggja af stað} er å dra av sted: {is:Þú verður að leggja af stað undir eins}. Og {is:leggja} alene kan bety å parkere: {is:Þú mátt leggja hérna}."
+        },
+        "examples": [
+          "1323381",
+          "1323382",
+          "389899",
+          "450785",
+          "12300662",
+          "544549",
+          "1323724"
+        ],
+        "tables": [
+          "leggja_so"
+        ]
+      },
+      {
+        "title": {
+          "en": "Cleaning up: þrífa, kveikja, slökkva",
+          "nb": "Rydde og vaske: þrífa, kveikja, slökkva"
+        },
+        "text": {
+          "en": "{is:þrífa} (clean) is a strong verb: {is:Hún þreif herbergið} (she cleaned the room). To tidy up is {is:taka til}: {is:Tökum til í herberginu okkar}. {is:hreinn} (clean) is Norwegian ren, from Old Norse hreinn, and {is:skítugur} (dirty) is made from {is:skítur} (dirt); both agree like other adjectives: {is:Herbergið er hreint}, {is:Litli ísskápurinn er skítugur}. {is:laga} is to fix: {is:Þennan stól þarf að laga}; {is:Allt er í lagi} (everything is all right) has the noun {is:lag} (order). Lights and machines are turned on with {is:kveikja á} and off with {is:slökkva á}, with the dative: {is:Kveiktu á því}, {is:Ég slökkti á lampanum og sofnaði}. {is:slökkva} is Norwegian slokke, from Old Norse sløkkva.",
+          "nb": "{is:þrífa} (vaske, gjøre rent) er et sterkt verb: {is:Hún þreif herbergið} (hun vasket rommet). Å rydde er {is:taka til}: {is:Tökum til í herberginu okkar}. {is:hreinn} (ren) er norsk ren, fra norrønt hreinn, og {is:skítugur} (skitten) er laget av {is:skítur} (skitt); begge bøyes som andre adjektiv: {is:Herbergið er hreint}, {is:Litli ísskápurinn er skítugur}. {is:laga} er å reparere: {is:Þennan stól þarf að laga}; {is:Allt er í lagi} (alt er i orden) har substantivet {is:lag} (orden). Lys og apparater slås på med {is:kveikja á} og av med {is:slökkva á}, med dativ: {is:Kveiktu á því}, {is:Ég slökkti á lampanum og sofnaði}. {is:slökkva} er norsk slokke, fra norrønt sløkkva."
+        },
+        "examples": [
+          "906682",
+          "1355099",
+          "1320713-1",
+          "469047",
+          "473555",
+          "677836",
+          "1316202-1",
+          "1312221"
+        ],
+        "tables": [
+          "þrífa_so",
+          "hreinn_lo"
+        ]
+      }
+    ]
+  }
+}

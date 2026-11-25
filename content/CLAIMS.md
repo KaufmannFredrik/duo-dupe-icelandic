@@ -78,6 +78,8 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | *salt* in *Þetta er ekki salt* is the noun, as its translation says ("This isn't salt."), not the neuter of the adjective *saltur* the parser reads. | translation of T 11208765 | sourced |
 | *ísa* in *Tvo stóra ísa, takk* (made from T 488539) is the accusative plural of *ís* after *tvo*; the parser cannot analyze the sentence. | DMII (*ísa* ÞFFT of *ís*); T 488539 ("Two vanilla ice creams, please.") | sourced |
 | *með* in the sense "along with" takes the dative, so *Hrísgrjón eru góð með sósu* and *með fiski* (made from T 382243) keep no parser case (it gives the accusative), and *fiski* there is *fiskur*, not the noun *fiski* ("fishing"). | W með (as in the *Búð* rows); T 870309 (*brauð með smjöri*); DMII (*fiski* ÞGFET of *fiskur*) | sourced |
+| *á* in *Slökktu á honum*, *á henni*, *á því* and in *Slökktu á lampanum*, *á sjónvarpinu* (made from T 1329150) is the preposition of *slökkva á* ("turn off"), not the noun *á* ("river") the parser reads; the five sentences keep no parser case. | W slökkva (*Slökktu á perunum*, "Turn off the lights"); translations of T 1316200, 1316201, 1316202, 1329150 | sourced |
+| *læs* in *Hann er læs og skrifandi* is the adjective *læs* ("literate"), not a form of *læsa* ("to lock"); a fix with lemma null. | W læs ("literate (able to read)"); translation of T 1356570 ("He can read and write") | sourced |
 
 The parser itself is not checked case by case: `npm run build:tags` lists the 306 words it gives to another word than their spelling suggests.
 
@@ -259,6 +261,47 @@ Headings name the units rather than their numbers, because new units are inserte
 | *hollur* is "healthy"; *ljúffengur* is "delicious". | W hollur ("wholesome, healthy"), ljúffengur ("delicious, tasty"); T 3997620, 3795532 | sourced |
 | *hella* is Norwegian *helle*, from Old Norse *hella*. | W hella ("to pour"); BMO helle ("norr. hella") | sourced |
 
+### *Heima*
+
+| Claim | Source | Status |
+|---|---|---|
+| *herbergi* and Norwegian *herberge* (a place to stay the night) both come from Old Norse *herbergi*. | W herbergi ("From Old Norse herbergi"); BMO herberge ("norr. herbergi"; "husly, losji") | sourced |
+| *svefnherbergi* is *svefn* ("sleep") + *herbergi*; *baðherbergi* is *bað* + *herbergi*. | W svefnherbergi, baðherbergi | sourced |
+| *stofa* is the living room, Norwegian *stue*, both from Old Norse *stofa*. | W stofa ("a living room"; "From Old Norse stofa"); BMO stue ("norr. stofa"; "oppholdsrom i bolighus") | sourced |
+| *íbúð* is *í* + *búð* ("lived"), "that which is lived in", from the verb for to live. | W íbúð | sourced |
+| *klósett* was borrowed from Danish and goes back to English *closet*, as Norwegian *klosett* does. | W klósett ("Borrowed from Danish kloset ... from English closet"); BMO klosett ("gj ty. og eng.") | sourced |
+| *Má ég fara á klósettið hjá þér?* is "May I use your toilet?". | T 827609 | attested |
+| *dyr* is the doorway and always plural (*dyrnar*); *hurð* is the door itself, the panel. | W dyr ("a door, a doorway", plural only); W hurð ("door (rigid movable pane designed to open and close a doorway)"); DMII (*dyr*: plural forms only) | sourced |
+| Norwegian *dør* comes from Old Norse *dyrr*, which was plural. | BMO dør ("norr. dyr(r) fl"); W dyr ("From Old Norse dyrr") | sourced |
+| *opna* takes the accusative (*Opnaðu dyrnar*), *loka* the dative (*Lokaðu dyrunum*, *Lokaðu hurðinni*). | elon [opna and loka](https://elon.io/grammar/icelandic/verb-ref/opna-loka-a1) ("You open something in the accusative ... but you close something in the dative"); T 828861, 828852, 481527 | sourced |
+| *læsa* takes the dative: *Læstu dyrunum*, *Hún læsti dyrunum*, *Læstu hurðinni*. | T 831751, 836055, 831750 (*dyrunum*, *hurðinni*: DMII ÞGF) | attested |
+| *læsa* and Norwegian *låse* are the same Old Norse verb. | W læsa ("From Old Norse læsa"); BMO låse ("norr. læsa") | sourced |
+| *gluggi* is Norwegian *glugge*, a small opening to let in light or air; Norwegian *vindu* is Old Norse *vindauga*, "wind eye". | W gluggi ("Compare ... Norwegian Bokmål glugge"); BMO glugge ("norr. gluggr, gluggi"; "åpning ... til å slippe inn lys eller luft"), vindu ("norr. vindauga, oppr 'vindøye, lufthull'") | sourced |
+| *lykill* became Norwegian *nøkkel*. | W lykill ("From Old Norse lykill"); BMO nøkkel ("m.no. nykill", "norr. lykill") | sourced |
+| *sófi* and *lampi* are weak masculine nouns, with -a in the other cases of the singular (*sófa*, *lampa*). | DMII; T 473555-1 (made, *Þennan sófa*) | attested |
+| *skápur* and Norwegian *skap* (a cupboard) both came from Low German *schap*. | W skápur ("from Middle Low German schap"); BMO skap ("av lty schap"; "oppbevaringsmøbel") | sourced |
+| *teppi* is a carpet and also a blanket, as Norwegian *teppe* is. | W teppi ("carpet"; "blanket, bedspread"); BMO teppe ("gulvet er dekket av et mykt teppe"; "varme seg under teppet") | sourced |
+| *mynd* is a picture or a photo, and also a film. | W mynd ("image, picture"; "movie, film"); T 469045 ("That's a photo of my sister") | sourced |
+| *sjónvarp* is *sjón* + *varp*, made on the model of *útvarp*. | W sjónvarp (as in the *Nýyrði* rows) | sourced |
+| *hérna* is *hér* + -na, *þarna* is *þar* + -na. | W hérna, þarna | sourced |
+| *þarna* is for a place one can point at ("over there"); *þar* refers back to a place already named. | elon [adverbs of place](https://elon.io/grammar/icelandic/adverbs/place) ("if you could point your finger at it, use þarna; if you're calling back to a place you already named, use þar"), [here and there](https://elon.io/grammar/icelandic/adverbs/here-there-a1); W þarna ("the place being pointed at") | sourced |
+| *uppi* is "up, upstairs", *niðri* "down, downstairs". | W uppi ("above, upstairs"), niðri ("downstairs, below") | sourced |
+| *við hliðina á* is "next to", with the dative after *á*. | W við hliðina á ("next to"); T 734476 (*húsinu*: DMII ÞGF), 1368361 (*þér*) | sourced (meaning), attested (case) |
+| *fyrir framan* is "in front of", with the accusative. | T 1312450 ("He is in front of the door"; *hurðina*: DMII ÞF) | attested |
+| A verb of motion takes *inn*, *út*, *upp*, *niður*, *heim*; a verb of being or staying takes *inni*, *úti*, *uppi*, *niðri*, *heima*. | elon [adverbs of place](https://elon.io/grammar/icelandic/adverbs/place) ("a verb of being or staying ... takes the -i form; a verb of motion ... takes the bare form"), [here and there](https://elon.io/grammar/icelandic/adverbs/here-there-a1) (*heima* "at home", *heim* "home(ward)") | sourced |
+| Norwegian has the same pairs, from the same Old Norse words: *inne*, *ute*, *oppe*, *nede*, *hjemme* are *inni*, *úti*, *uppi*, *niðri*, *heima*. | BMO inne ("norr. inni"), ute ("norr. úti, av ut"), oppe ("norr. uppi", "jamfør opp"), nede ("norr. niðri"), hjemme ("norr. heima") | sourced |
+| *standa upp* is to stand up, *gefast upp* to give up, *taka út* to take out (money). | T 1315528; W gefast upp ("to give up"), T 1315534; T 460447 | sourced |
+| *setja* and *leggja* are Norwegian *sette* and *legge*, from Old Norse *setja*, *leggja*. | W setja, leggja ("From Old Norse"); BMO sette, legge (the Old Norse words in `data/bridge.json`) | sourced |
+| *setjast* (*setja* + -st) is to sit down; *leggjast* is to lie down. | W setjast ("to sit (down)", "From setja + -st"); T 389899, 12300662, 450785 ("She lay down on the bed"), 513951 ("He lay on his back") | sourced |
+| *leggja af stað* is to set off; *leggja* alone can be to park. | T 544549, 505500 ("set off"); W leggja ("to park (a vehicle)"); T 1323724 ("You may park here") | sourced |
+| *þrífa* is a strong verb (*þreif*). | DMII (*þreif* GM-FH-ÞT-3P-ET); T 906682 | attested |
+| *taka til* is to tidy up. | W taka til ("to clean, to tidy up", with *í* + dative); T 1355099 | sourced |
+| *hreinn* and Norwegian *ren* come from Old Norse *hreinn*; *skítugur* is *skítur* ("dirt") + -ugur. | W hreinn, skítugur; BMO ren ("norr. hreinn") | sourced |
+| *laga* is to fix; *allt í lagi* ("all right") has the noun *lag* ("order"). | W laga ("to fix, repair"), lag ("order"), allt í lagi ("all right") | sourced |
+| Lights and machines are turned on with *kveikja á* and off with *slökkva á*, with the dative. | W kveikja ("turn on (a light) ... with the preposition á"), slökkva (*Slökktu á perunum*, "Turn off the lights"); T 1312221 (*lampanum*: DMII ÞGF), 706951 | sourced |
+| *slökkva* and Norwegian *slokke* come from Old Norse *sløkkva*. | W slökkva ("From Old Norse sløkkva"); BMO slokke ("norr. sløkkva") | sourced |
+| Unit 11 drops *framan*: the parser reads *fyrir framan* as one preposition, and the only sentence where *framan* stands alone, *Þvoðu þér í framan* ("Wash your face"), is not "in front". | the parser's output (`npm run build:tags`); T 1318339 | checked |
+
 ### *Veður*
 
 | Claim | Source | Status |
@@ -371,10 +414,46 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | 389025-2 | *Ég fékk mér samloku í hádegismat.* | T 389025 | *pulsu* → *samloku* | I ate a sandwich for lunch. |
 | 788778-1 | *Það er lítið af mjólk eftir í ísskápnum.* | T 788778 | *flöskunni* → *ísskápnum* | There is little milk left in the fridge. |
 | 677862-1 | *Það er kokkur í eldhúsinu.* | T 677862 | *köttur* → *kokkur* | There is a cook in the kitchen. |
+| 469047-1 | *Litli skápurinn er skítugur.* | T 469047 | *ísskápurinn* → *skápurinn* | The little cupboard is dirty. |
+| 469047-2 | *Litli ísskápurinn er hreinn.* | T 469047 | *skítugur* → *hreinn* | The little fridge is clean. |
+| 473555-1 | *Þennan sófa þarf að laga.* | T 473555 | *stól* → *sófa* | This sofa needs to be fixed. |
+| 473555-2 | *Þennan lampa þarf að laga.* | T 473555 | *stól* → *lampa* | This lamp needs to be fixed. |
+| 483002-1 | *Hún er í stofunni.* | T 483002 | *baðherberginu* → *stofunni* | She is in the living room. |
+| 483002-2 | *Hún er í svefnherberginu.* | T 483002 | *baðherberginu* → *svefnherberginu* | She is in the bedroom. |
+| 657272-1 | *Kötturinn sefur á teppinu.* | T 657272 | *sófanum* → *teppinu* | The cat sleeps on the carpet. |
+| 827613-1 | *Svefnherbergið er uppi.* | T 827613 | *Klósettið* → *Svefnherbergið* | The bedroom is upstairs. |
+| 827613-2 | *Baðherbergið er uppi.* | T 827613 | *Klósettið* → *Baðherbergið* | The bathroom is upstairs. |
+| 827613-3 | *Klósettið er niðri.* | T 827613 | *uppi* → *niðri* | The toilet is downstairs. |
+| 827650-1 | *Hvar er stofan?* | T 827650 | *klósettið* → *stofan* | Where is the living room? |
+| 827650-2 | *Hvar er svefnherbergið?* | T 827650 | *klósettið* → *svefnherbergið* | Where is the bedroom? |
+| 827650-3 | *Hvar er lampinn?* | T 827650 | *klósettið* → *lampinn* | Where is the lamp? |
+| 827650-4 | *Hvar er skápurinn?* | T 827650 | *klósettið* → *skápurinn* | Where is the cupboard? |
+| 827650-5 | *Hvar er sjónvarpið?* | T 827650 | *klósettið* → *sjónvarpið* | Where is the television? |
+| 827650-6 | *Hvar er lykillinn?* | T 827650 | *klósettið* → *lykillinn* | Where is the key? |
+| 828861-1 | *Opnaðu skápinn.* | T 828861 | *dyrnar* → *skápinn* | Open the cupboard. |
+| 905147-1 | *Það eru engir sófar í þessu herbergi.* | T 905147 | *stólar* → *sófar* | There are no sofas in this room. |
+| 1316200-1 | *Kveiktu á honum.* | T 1316200 | *Slökktu* → *Kveiktu* | Turn it on. |
+| 1316201-1 | *Kveiktu á henni.* | T 1316201 | *Slökktu* → *Kveiktu* | Turn it on. |
+| 1316202-1 | *Kveiktu á því.* | T 1316202 | *Slökktu* → *Kveiktu* | Turn it on. |
+| 1320713-1 | *Herbergið er hreint.* | T 1320713 | *heitt* → *hreint* | The room is clean. |
+| 1320713-2 | *Herbergið er skítugt.* | T 1320713 | *heitt* → *skítugt* | The room is dirty. |
+| 1320714-1 | *Það er heitt í stofunni.* | T 1320714 | *herberginu* → *stofunni* | The living room is hot. |
+| 1320714-2 | *Það er heitt í íbúðinni.* | T 1320714 | *herberginu* → *íbúðinni* | The apartment is hot. |
+| 1323737-1 | *Hann fór niður.* | T 1323737 | *kom* → *fór* | He went downstairs. |
+| 1323737-2 | *Hann kom upp.* | T 1323737 | *niður* → *upp* | He came upstairs. |
+| 1329150-1 | *Slökktu á lampanum.* | T 1329150 | *útvarpinu* → *lampanum* | Turn off the lamp. |
+| 1329150-2 | *Slökktu á sjónvarpinu.* | T 1329150 | *útvarpinu* → *sjónvarpinu* | Turn off the television. |
+| 1355099-1 | *Tökum til í íbúðinni okkar.* | T 1355099 | *herberginu* → *íbúðinni* | Let's clean our apartment. |
+| 1355101-1 | *Þrífum íbúðina okkar.* | T 1355101 | *herbergið* → *íbúðina* | Let's clean our apartment. |
+| 1355138-1 | *Við viljum nýtt sjónvarp.* | T 1355138 | *teppi* → *sjónvarp* | We want a new television. |
+| 11052105-1 | *Ég er uppi.* | T 11052105 | *hérna* → *uppi* | I'm upstairs. |
+| 11052105-2 | *Ég er niðri.* | T 11052105 | *hérna* → *niðri* | I'm downstairs. |
+| 11514512-1 | *Báturinn var skítugur.* | T 11514512 | *hreinn* → *skítugur* | The boat was dirty. |
+| 12701233-1 | *Teppið mitt er gamalt.* | T 12701233 | *Sjónvarpið* → *Teppið* | My carpet is old. |
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 32 of the 2,283 sentences. The other 2,237 (all but 14 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 47 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 32 of the 2,497 sentences. The other 2,445 (all but 20 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 83 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -387,7 +466,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 386 of the 447 course words. The other 61 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 76 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 408 of the 480 course words. The other 72 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 81 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -402,6 +481,9 @@ Wiktionary gives a Bokmål gloss for 386 of the 447 course words. The other 61 w
 | svo, ætla, seinn, klára, hvíla, venjulega, bað | så; ha tenkt, skulle, planlegge; sen, forsinket; fullføre, gjøre ferdig; hvile; vanligvis, normalt; bad | W "so", "to intend, to plan, be going to", "late", "to finish (a task)", "to rest", "normally", "bath"; *seinn* is *sen* (BMO sen: "som skjer lenger inn i framtiden enn ventet"), the same Old Norse word; *klára* is not *klare*, which is "manage" (BMO; the guidebook says so) |
 | skyr, sjóða, saddur | skyr; koke; mett | W "skyr", "to boil", "satiated, full"; BMO skyr (a word from Icelandic), koke, mett ("som ikke er sulten") |
 | sæll | hei, ha det, sæl | W's senses "hello (a greeting)" and "happy"; the course sentences use it to greet and take leave (*Komdu nú sæll*, *Vertu sæll*), and *sæl* (BMO "lykkelig, glad") is the same Old Norse word |
+| upp, út, inn, uppi, niðri, hérna, leggja | opp; ut; inn; oppe, ovenpå; nede, nedenunder; her; legge | W "up", "out", "in, inside", "above, upstairs", "downstairs, below", "here", "to lay, to put"; BMO oppe ("norr. uppi"), nede ("norr. niðri"), legge; *hérna* shares *her* with *hér*, near-synonyms |
+| hreinn, skítugur | ren; skitten | W "clean", "dirty"; BMO ren ("norr. hreinn"), skitten ("som ikke er ren") |
+| kveikja, slökkva | tenne, slå på; slokke, slå av | W "to light ... turn on (a light)", "to extinguish, to put out"; BMO tenne ("skru på elektrisk lys"), slokke ("slokke lyset"; "norr. sløkkva"); *slå på* and *slå av* are phrases in the file |
 
 ### Wiktionary glosses corrected (`"fixes"`)
 
@@ -452,12 +534,16 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | loksins | til slutt | endelig, til slutt | "finally", in the course sentences "at last" (*Loksins fékk hann bílinn*); BMO endelig ("brukt som adverb: til slutt, omsider") |
 | skilaboð | budskap | beskjed, melding, budskap | "message", in the course sentences one left for someone (*skilja eftir skilaboð*, *legge igjen en beskjed*); *budskap* is a message in the sense of what a text says |
 | kjúklingur | høne | kylling | "chicken"; *høne* is a hen (BMO "hunndyr av arten tamhøns"), *kylling* the young bird and its meat (BMO), from the same Old Norse word (the guidebook) |
+| setja | legge | sette, stille | "to put, to place"; *legge* is *leggja* ("to lay"), a course word of the same unit |
+| mynd | bilde (second: kino) | bilde, film | "image, picture", also "movie, film"; *kino* is a cinema (BMO), Icelandic *bíó* |
+| svefnherbergi, baðherbergi | soveværelse; bad | soverom, soveværelse; baderom, bad | "bedroom", "bathroom": *soverom* is the everyday word (BMO); *bad* is also *bað* ("bath"), so *baderom* comes first |
+| þarna | der | der borte, der | "over there, there (the place being pointed at)"; *der* alone is *þar* (the guidebook) |
 
 Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *dós* kanne (BMO: a jug), *pylsa* kurv and korv (BMO's other word for a sausage, but *kurv* is mostly a basket), *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 418 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 446 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|
@@ -561,5 +647,5 @@ The four Piper voices sometimes mispronounce: *Ísland* comes out as [ˈisland],
 
 ## Norwegian bridge (`data/bridge.json`, `js/bridge-rules.js`)
 
-192 pairs are sourced (Bokmålsordboka and Wiktionary name the same Old Norse word), 7 are shared loans (Wiktionary names the source language). 12 pairs only look alike with the same meaning and are labeled in the app as "a shared origin is not confirmed". The spelling patterns describe spelling, not historical sound laws.
+217 pairs are sourced (Bokmålsordboka and Wiktionary name the same Old Norse word), 7 are shared loans (Wiktionary names the source language). 20 pairs only look alike with the same meaning and are labeled in the app as "a shared origin is not confirmed". The spelling patterns describe spelling, not historical sound laws.
 
