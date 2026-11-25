@@ -368,8 +368,8 @@ async function complete() {
   const news = celebrationLines(done);
   if (bonus) news.unshift(['xp', t('lesson.comboTotal', { xp: bonus })]);
   const after = await loadProgress();
-  // Finishing the first unit a character hosts makes them a friend (listed on the Profile).
-  const friend = plan.unit && !unitDone(plan.unit, progress) && unitDone(plan.unit, after) ? befriendedBy(course, plan.unit) : null;
+  // Finishing a unit a character hosts makes them a friend (listed on the Profile), once.
+  const friend = plan.unit && !unitDone(plan.unit, progress) && unitDone(plan.unit, after) ? befriendedBy(course, plan.unit, progress) : null;
   const nextUp = nextLesson(course, after);
   const nextHref = `lesson.html?unit=${nextUp.unit.id}&lesson=${nextUp.lesson.id}`;
   stage.innerHTML = `<div class="complete">${burst()}

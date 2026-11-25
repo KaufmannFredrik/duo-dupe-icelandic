@@ -1,7 +1,7 @@
 {
   "note": "Bokmål glosses written for TÖLVA. \"glosses\": for course words that Wiktionary gives none for. \"fixes\": in place of Wiktionary glosses that are wrong (another sense, another word class, two words run together, a Swedish or outdated spelling), or that two course words share; \"wiktionary\" repeats what Wiktionary gives, so npm run validate notices when it changes. The first gloss is the one exercises show (verbs get å in front); the rest show in the dictionary. Each was chosen from the word's English Wiktionary meaning and its uses in the course sentences, with the reasons and sources in content/CLAIMS.md. npm run validate checks every word of every gloss the app shows against Bokmålsordboka, and that a gloss of several words is listed in \"phrases\"; npm run build:translations puts them into data/lexicon.json.",
   "reviewed": true,
-  "phrases": ["av og til", "be om", "en eller annen", "få lov til", "få tak i", "god dag", "ha det", "hele tiden", "høre på", "kan hende", "komme i hu", "lukke opp", "må hende", "på nytt", "se på", "synes om", "ut av"],
+  "phrases": ["av og til", "be om", "en eller annen", "falle i søvn", "få lov til", "få tak i", "gjøre ferdig", "god dag", "ha det", "ha tenkt", "hele tiden", "høre på", "kan hende", "komme i hu", "lukke opp", "med en gang", "må hende", "på nytt", "se på", "skynde seg", "synes om", "til slutt", "ut av"],
   "glosses": {
     "af_fs": ["av", "fra"],
     "bara_ao": ["bare"],
@@ -53,7 +53,14 @@
     "níundi_rt": ["niende"],
     "mikið_ao": ["mye"],
     "nokkur_fn": ["noen"],
-    "hálfur_lo": ["halv"]
+    "hálfur_lo": ["halv"],
+    "svo_ao": ["så"],
+    "ætla_so": ["ha tenkt", "skulle", "planlegge"],
+    "seinn_lo": ["sen", "forsinket"],
+    "klára_so": ["fullføre", "gjøre ferdig"],
+    "hvíla_so": ["hvile"],
+    "venjulega_ao": ["vanligvis", "normalt"],
+    "bað_no": ["bad"]
   },
   "fixes": {
     "barn_no": { "nb": ["barn"], "wiktionary": ["barn", "barn n mindreårig"] },
@@ -121,6 +128,13 @@
     "fæða_so": { "nb": ["føde"], "wiktionary": ["bære", "fram", "føde"] },
     "skilaboð_no": { "nb": ["beskjed", "melding", "budskap"], "wiktionary": ["budskap", "melding"] },
     "tala_no": { "nb": ["tall", "antall"], "wiktionary": ["antall", "tall", "numerus"] },
-    "skipti_no": { "nb": ["gang"], "wiktionary": ["tid", "gang"] }
+    "skipti_no": { "nb": ["gang"], "wiktionary": ["tid", "gang"] },
+    "þvo_so": { "nb": ["vaske"], "wiktionary": ["tvette", "vaske"] },
+    "fótur_no": { "nb": ["fot", "bein"], "wiktionary": ["fot", "pote", "labb"] },
+    "strax_ao": { "nb": ["straks", "med en gang", "umiddelbart"], "wiktionary": ["øyeblikkelig", "med en gang", "umiddelbart"] },
+    "syfjaður_lo": { "nb": ["søvnig", "trøtt"], "wiktionary": ["trøtt", "døsig", "søvnig"] },
+    "upptekinn_lo": { "nb": ["opptatt", "travel"], "wiktionary": ["travel", "opptatt"] },
+    "sofna_so": { "nb": ["sovne", "falle i søvn"], "wiktionary": ["falle i søvn", "sovne"] },
+    "loksins_ao": { "nb": ["endelig", "til slutt"], "wiktionary": ["til slutt"] }
   }
 }

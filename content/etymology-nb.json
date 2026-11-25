@@ -1515,6 +1515,74 @@
     "hálfur_lo": {
       "nb": "Fra norrønt halfr, fra urgermansk *halbaz.",
       "of": "77fd5465"
+    },
+    "fótur_no": {
+      "nb": "Fra norrønt fótr, fra urgermansk *fōts, fra urindoeuropeisk *pṓds.",
+      "of": "74476b56"
+    },
+    "þreyttur_lo": {
+      "nb": "Fra norrønt þreyttr.",
+      "of": "6aabcb87"
+    },
+    "strax_ao": {
+      "nb": "Lånt fra middelnedertysk, beslektet med svensk strax, dansk straks og gammeldags tysk stracks.",
+      "of": "cbdf51bd"
+    },
+    "þvo_so": {
+      "nb": "Fra norrønt þvá, fra urgermansk *þwahaną.",
+      "of": "25b65d1b"
+    },
+    "sturta_no": {
+      "nb": "Laget av verbet sturta i betydningen «helle ned».",
+      "of": "329d3b16"
+    },
+    "bað_no": {
+      "nb": "Fra norrønt bað.",
+      "of": "6f2f31c2"
+    },
+    "bursta_so": {
+      "nb": "Fra norrønt burst («bust»).",
+      "of": "4f3a4482"
+    },
+    "tönn_no": {
+      "nb": "Fra norrønt tǫnn, fra urgermansk *tanþs, fra urindoeuropeisk *h₃dónts.",
+      "of": "77f18104"
+    },
+    "klæða_so": {
+      "nb": "Fra norrønt klæða, synkront analysert som klæði + -a.",
+      "of": "495cfb00"
+    },
+    "seinn_lo": {
+      "nb": "Fra norrønt seinn (som også svensk sen kommer av), fra urgermansk *sainaz, *sainijaz, kanskje i slekt med *sīþuz («sen»), som kan tyde på at det er avledet av en form av urindoeuropeisk *seh₁- («lang, varig»). Se også litauisk at-sainùs («likegyldig»).",
+      "of": "a61c1fb1"
+    },
+    "tilbúinn_lo": {
+      "nb": "Av til + búinn.",
+      "of": "b93063a0"
+    },
+    "svo_ao": {
+      "nb": "Fra norrønt svá.",
+      "of": "2f9779b7"
+    },
+    "lengi_ao": {
+      "nb": "Fra norrønt lengi.",
+      "of": "6fefece6"
+    },
+    "ætla_so": {
+      "nb": "Arvet fra norrønt ætla, fra urgermansk *ahtilōną («å streve, tenke»). Beslektet med svensk ättla og gammeldansk ætle.",
+      "of": "c70bd31b"
+    },
+    "klára_so": {
+      "nb": "Av klár («klar, ferdig») + -a (endelse som lager verb), ordrett «å gjøre klar».",
+      "of": "d8aac72f"
+    },
+    "rúm_no": {
+      "nb": "Fra norrønt rúm, fra urgermansk *rūmą, fra urindoeuropeisk *rewh₁-.",
+      "of": "e67751c1"
+    },
+    "sofna_so": {
+      "nb": "Fra norrønt sofna.",
+      "of": "317c5440"
     }
   }
 }

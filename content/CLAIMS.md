@@ -68,9 +68,13 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | The parser's dative for a meal after *í*, *eftir*, *fyrir* is not kept. | T: all 14 sentences with a definite meal after *eftir* or *fyrir* have the accusative; elon (*eftir matinn*) | sourced |
 | In a sentence without a verb, the parser's case is not kept. | *Góða nótt*: W góður (strong masc. acc. *góðan*, fem. acc. *góða*), so the greeting is not the nominative the parser picks | sourced |
 
+| *þreytt*, *þreyttur* in *Ég var þreytt*, *Af hverju er Tom þreyttur?* and eight more are the adjective *þreyttur* ("tired"), not the participle of *þreyta* the parser reads. | W þreyttur (adjective, "tired"); DMII (*þreyttur* lo); translations of T 1316177, 1316178, 3795617, 1364312, 1364313, 477841, 10616898, 10616903, 382239, 476884 | sourced |
+| *tilbúinn*, *tilbúin*, *tilbúið*, *tilbúnir* in *Allir eru tilbúnir*, *Er baðið tilbúið?* and four more are the adjective *tilbúinn* ("ready"), not the participle of *tilbúa* the parser reads. | W tilbúinn (adjective, "ready"); DMII (*tilbúinn* lo); translations of T 852821, 1316634, 1321848, 1323369, 3795750, 10973123 | sourced |
+| *sofna* in *Þú mátt ekki sofna* is the verb *sofna* ("fall asleep"), not a plural of a noun *sofn* as the parser reads it; *hvíldum* in *Við hvíldum okkur einn á eftir öðrum* is the past of *hvíla*, which the parser leaves open. | W sofna; DMII (*sofna* infinitive; *hvíldum* GM-FH-ÞT-1P-FT); translation of T 7319832; the parser's own reading of T 673384, 673385 | sourced |
+| *Farðu í sturtu* and *Ekki standa á fætur* take the accusative (a movement), not the dative and the nominative the parser gives; the two sentences keep no parser case. | the case rules for *í* and *á* with a movement (elon); the parser's accusative in T 664662, 698321 (*í sturtu*) and in ten sentences with *á fætur* | sourced |
 | An ordinal is its own class in BÍN (rt) and an adjective to the parser: *þriðju* (lemma *þriðji*, class lo) is the course word *þriðji*. | DMII (class rt for *þriðji* to *tíundi*); the parser's output for *Ég bý á þriðju hæð* and *sjöunda skipti* | checked |
 
-The parser itself is not checked case by case: `npm run build:tags` lists the 257 words it gives to another word than their spelling suggests.
+The parser itself is not checked case by case: `npm run build:tags` lists the 306 words it gives to another word than their spelling suggests.
 
 ## Unit guidebooks (`content/units/`)
 
@@ -177,6 +181,35 @@ Headings name the units rather than their numbers, because new units are inserte
 | Frequency adverbs right after the finite verb; *aldrei* in the place of *ekki*. | V2 (sentence adverbs before the verb phrase, after the finite verb) | sourced |
 | *hvenær* asks; *þegar* joins two clauses. | elon (temporal conjunctions) | sourced |
 
+### *Dagurinn minn*
+
+| Claim | Source | Status |
+|---|---|---|
+| *vakna* is to wake up, *vekja* to wake someone. | W vakna ("(intransitive) to wake up"), vekja ("(transitive) to awaken, to wake up (somebody)"); T 1315613, 891385 | sourced |
+| Norwegian *våkne* and *vekke* come from Old Norse *vakna* and *vekja*. | BMO våkne ("norr. vakna"), vekke ("norr. vekja") | sourced |
+| *fara á fætur* is to get up; *fætur* is the plural of *fótur*, as *føtter* is of *fot*. | W fara á fætur ("to get up"); DMII (*fætur* NFFT); T 382330, 863024; BMO fot | sourced |
+| *þreyttur* and Norwegian *trett* both come from Old Norse *þreyttr*. | W þreyttur ("From Old Norse þreyttr"); BMO trøtt, trett ("norr. þreyttr") | sourced |
+| *þvo* and *flýta* take a dative reflexive (*Ég þvæ mér*, *Flýttu þér*); *klæða* and *hvíla* an accusative one (*Ég klæddi mig*, *Má ég hvíla mig?*). | W þvo ("(dative reflexive) to wash oneself"), hvíla ("[with accusative]"); T 460453, 1318339, 586712, 586698, 1353641, 1323383; DMII (*mig* accusative and *mér* dative of *ég*) | sourced (*flýta* and *klæða* attested) |
+| *sig* has the dative *sér*; *mig*, *mér*, *þig*, *þér*, *okkur* do the same work for I, you and we. | DMII (*sig*, *ég*, *þú*, *við*) | sourced |
+| Norwegian says *vaske seg*, *kle på seg*, *skynde seg*, *hvile seg*. | BMO vaske, kle, skynde, hvile | sourced |
+| *þvo* in the present: *þvæ*, *þvær*, *þvoum*. | DMII | attested |
+| *tönn* has the plural *tennur*, as Norwegian *tann* has *tenner*. | DMII (*tennur* NFFT); BMO tann | sourced |
+| Where English says your teeth, Icelandic says the teeth: *Burstaðu tennurnar*. | T 385858, 508850 (translated "Brush your teeth") | attested |
+| *fara í sturtu*, *fara í bað* is to take a shower, a bath; *í* takes the accusative for a movement: *í bað*, not the dative *í baði*. | W sturta ("að fara í sturtu = to take a shower"); T 460469, 4007782; DMII (*bað* ÞFET, *baði* ÞGFET); elon (*í* with a movement) | sourced |
+| *seinn* agrees with who is late (*seinn*, *sein*; *sein* for a mixed group); the adverb is *seint*. | DMII; T 1324574, 1324575, 11539549, 5003451; WP (neuter plural for a mixed group) | sourced |
+| Norwegian *sen* is the same Old Norse word, *seinn*. | W seinn ("From Old Norse seinn"); BMO sen ("norr. seinn") | sourced |
+| *tilbúinn* is *til* + *búinn*; *upptekinn* is the past participle of *upptaka* ("take up"), *upp* + *tekinn* (of *taka*), as Norwegian *opptatt* is made from *oppta* and *ta*. | W tilbúinn ("From til + búinn"), upptekinn ("past participle of upptaka"); DMII (*tekinn*, participle of *taka*); BMO opptatt ("av oppta og ta") | sourced |
+| *fyrst* is the superlative of *snemma*. | W snemma (as in the *Tími* rows) | sourced |
+| *svo* is "so" and "then"; *gerðu svo vel* is please. | W svo ("so", "then"); T 1316193, 1321821 | sourced |
+| *venjulega* comes right after the finite verb; a habitual time of day is plural with the article: *á kvöldin*, "in the evenings". | V2 (as in the *Tími* rows); T 664662; DMII (*kvöldin* ÞFFTgr) | sourced |
+| *á hverjum degi*, *á hverjum morgni* are every day, every morning. | T 508850, 385922 | attested |
+| *strax* and Norwegian *straks* were both borrowed from (Middle) Low German. | W strax ("Borrowed from Middle Low German"); BMO straks ("fra l.ty.") | sourced |
+| *lengi* is Norwegian *lenge* (Old Norse *lengi*); *ekki lengur* is "no longer". | W lengi; BMO lenge ("norr. lengi"); T 511366, 1353593 | sourced |
+| *ætla að* + a verb is what you are going to do, where Bokmål says *skal*; with a place no verb is needed. | W ætla ("to intend, to plan, ... be going to"; "Ég ætla heim! = I'm going home!"); T 11074830, 3799246; Tatoeba's own Bokmål translations of T 382340, 863104, 3799246 (*skal*) | sourced |
+| *fara að sofa* is to go to bed; *sofna* is to fall asleep, Norwegian *sovne*, both from Old Norse *sofna*. | W fara að sofa ("to go to bed"), sofna ("to fall asleep"; "From Old Norse sofna"); BMO sovne ("norr. sofna") | sourced |
+| *rúm* is a bed, and also room, space; Norwegian *rom* comes from Old Norse *rúm*. | W rúm ("bed"; "room, space"); BMO rom ("norr. rúm") | sourced |
+| *klára* is made from *klár* ("ready") and -*a*; Norwegian *klare* (to manage) is related to *klar*. | W klára ("From klár ('clear, ready') + -a"), klár ("prepared, ready"); BMO klare ("beslektet med klar": "makte, greie") | sourced |
+
 ### *Búð*
 
 | Claim | Source | Status |
@@ -242,7 +275,7 @@ The sentences are unchanged Tatoeba sentences, each readable after the unit the 
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 28 of the 1,991 sentences. The other 1,955 (all but eight excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 32 of the 2,174 sentences. The other 2,133 (all but nine excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -255,7 +288,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 344 of the 395 course words. The other 51 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 66 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 361 of the 419 course words. The other 58 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 73 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -267,6 +300,7 @@ Wiktionary gives a Bokmål gloss for 344 of the 395 course words. The other 51 w
 | buxur, húfa, hjól, sími, sundlaug, tölvupóstur, þota, norðurljós, kvöldmatur, skemmtilegur | bukse; lue; sykkel; telefon; svømmebasseng; e-post; jetfly; nordlys; middag; morsom | *kvöldmatur* (the evening meal) is *middag*, the day's hot meal, with *kveldsmat* second |
 | réttur, kynna, heilsa, afsaka, kennitala, netfang | riktig, rett; presentere, introdusere; hilse; unnskylde; personnummer; e-postadresse | the adjective "right, correct" (W's third sense, the one in the course sentences, *Það er rétt*, *rétta svarið*); "to introduce"; "to greet"; "to excuse"; "national identification number" (BMO personnummer: the Norwegian number of the same kind); "e-mail address" |
 | áttatíu, níutíu, níundi, hálfur, nokkur, mikið | åtti; nitti; niende; halv; noen; mye | the plain equivalents (W "eighty", "ninety", "ninth", "half", "some", "much, a lot"); *nokkur* shares *noen* with *einhver*, and the adverb *mikið* (W: from *mikill*) shares *mye* with *mikill*: near-synonyms, so typing either counts and they are never options together |
+| svo, ætla, seinn, klára, hvíla, venjulega, bað | så; ha tenkt, skulle, planlegge; sen, forsinket; fullføre, gjøre ferdig; hvile; vanligvis, normalt; bad | W "so", "to intend, to plan, be going to", "late", "to finish (a task)", "to rest", "normally", "bath"; *seinn* is *sen* (BMO sen: "som skjer lenger inn i framtiden enn ventet"), the same Old Norse word; *klára* is not *klare*, which is "manage" (BMO; the guidebook says so) |
 | sæll | hei, ha det, sæl | W's senses "hello (a greeting)" and "happy"; the course sentences use it to greet and take leave (*Komdu nú sæll*, *Vertu sæll*), and *sæl* (BMO "lykkelig, glad") is the same Old Norse word |
 
 ### Wiktionary glosses corrected (`"fixes"`)
@@ -309,13 +343,20 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | fæða | bære | føde | "to give birth to"; *bære* and *fram* were *bære fram* (bring forth), split in two |
 | tala (noun) | antall | tall, antall | "number" (*Aldur er bara tala*, *Alder er bare et tall*); *antall* is an amount of things (BMO antall: "mengde (som kan telles)") |
 | skipti | tid | gang | "time, as in occurrence" (*í fyrsta skipti*, *for første gang*); *tid* is time that passes, the course word *tími* |
+| þvo | tvette | vaske | "to wash"; BMO explains *tvette* as *vaske*, the everyday word |
+| fótur | fot | fot, bein | first gloss unchanged; *pote* and *labb* are an animal's paws, and W's second sense is "leg" (BMO bein) |
+| strax | øyeblikkelig | straks, med en gang, umiddelbart | "immediately, right away"; *straks* (BMO "med en gang") is the same Low German word |
+| syfjaður | trøtt | søvnig, trøtt | "sleepy"; *trøtt* is also "tired", the gloss of *þreyttur*, so *søvnig* (BMO "som kjenner trang til å sove") comes first and the two never look alike as options |
+| upptekinn | travel | opptatt, travel | "busy, occupied", also "taken" (a seat); *opptatt* is the same word (the guidebook) |
+| sofna | falle i søvn | sovne, falle i søvn | "to fall asleep": the one-word verb first (BMO sovne) |
+| loksins | til slutt | endelig, til slutt | "finally", in the course sentences "at last" (*Loksins fékk hann bílinn*); BMO endelig ("brukt som adverb: til slutt, omsider") |
 | skilaboð | budskap | beskjed, melding, budskap | "message", in the course sentences one left for someone (*skilja eftir skilaboð*, *legge igjen en beskjed*); *budskap* is a message in the sense of what a text says |
 
 Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 376 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 393 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|

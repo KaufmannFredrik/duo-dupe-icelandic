@@ -1,0 +1,66 @@
+{
+  "id": "myday",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "Better late than never",
+    "nb": "Bedre sent enn aldri"
+  },
+  "level": "A1",
+  "after": "myday",
+  "dialogue": true,
+  "cast": {
+    "A": "amma",
+    "B": "katla"
+  },
+  "lines": [
+    {
+      "sentence": "1315613",
+      "speaker": "A"
+    },
+    {
+      "sentence": "739007",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1315526",
+      "speaker": "A"
+    },
+    {
+      "sentence": "1323383",
+      "speaker": "B"
+    },
+    {
+      "sentence": "7319832",
+      "speaker": "A"
+    },
+    {
+      "sentence": "4007788",
+      "speaker": "A"
+    },
+    {
+      "sentence": "664662",
+      "speaker": "B"
+    },
+    {
+      "sentence": "385858",
+      "speaker": "A"
+    },
+    {
+      "sentence": "1324574",
+      "speaker": "B"
+    },
+    {
+      "sentence": "586712",
+      "speaker": "A"
+    },
+    {
+      "sentence": "1353593",
+      "speaker": "B"
+    },
+    {
+      "sentence": "5003451",
+      "speaker": "A"
+    }
+  ]
+}

@@ -31,7 +31,7 @@
       "is": "Nemandi getur skýrt frá daglegum athöfnum sínum.",
       "en": "Tell what you do from day to day.",
       "nb": "Fortelle hva du gjør i hverdagen.",
-      "units": ["time"]
+      "units": ["time", "myday"]
     },
     {
       "id": "health",

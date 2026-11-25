@@ -63,8 +63,8 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key), practiced: Boolean(lesson.review) }) };
 }
 
-test('course: twelve units in order, all hand-made', () => {
-  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
+test('course: thirteen units in order, all hand-made', () => {
+  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
   for (const u of d.course.units) assert.equal(u.auto, false, `${u.id} has hand-made lessons`);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
 });
@@ -175,7 +175,7 @@ test('generator: the same seed gives the same lesson', () => {
   assert.deepEqual(generate('hello', l).specs, generate('hello', l).specs);
 });
 
-for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'shopping', 'weather', 'study', 'grammar', 'newwords']) {
+for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'weather', 'study', 'grammar', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);

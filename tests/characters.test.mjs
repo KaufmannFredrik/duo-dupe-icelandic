@@ -45,9 +45,19 @@ test('characters: finishing the first unit a character hosts makes them a friend
   const p = finish(fresh(), 'hello');
   assert.deepEqual(friends(course, p).filter((c) => c.friend).map((c) => c.id), ['lundi']);
   // Torfi hosts cafe and shopping: cafe makes the friend, shopping does not make another.
-  assert.equal(befriendedBy(course, unit('cafe'))?.id, 'torfi');
-  assert.equal(befriendedBy(course, unit('shopping')), null);
+  assert.equal(befriendedBy(course, unit('cafe'), p)?.id, 'torfi');
   assert.equal(friends(course, finish(p, 'cafe')).find((c) => c.id === 'torfi').friend, true);
+  assert.equal(befriendedBy(course, unit('shopping'), p), null);
+});
+
+test('characters: a friend made in a later unit stays a friend when an earlier unit they host is added', () => {
+  // Katla hosts myday (added 2026-11-25) before study: a learner who finished study keeps her.
+  const p = finish(fresh(), 'study');
+  const katla = friends(course, p).find((c) => c.id === 'katla');
+  assert.equal(katla.unit.id, 'myday', 'Profile names the first unit she hosts');
+  assert.equal(katla.friend, true);
+  assert.equal(befriendedBy(course, unit('myday'), p), null, 'finishing myday then is not a new friend');
+  assert.equal(befriendedBy(course, unit('myday'), fresh())?.id, 'katla');
 });
 
 test('characters: units skipped by the placement test count as finished', () => {

@@ -140,6 +140,7 @@ const SHOTS = [
   { name: 'guide-numbers', url: 'guide.html?unit=numbers', full: true },
   { name: 'guide-around', url: 'guide.html?unit=around', full: true },
   { name: 'guide-time', url: 'guide.html?unit=time', full: true },
+  { name: 'guide-myday', url: 'guide.html?unit=myday', full: true },
   { name: 'guide-shopping', url: 'guide.html?unit=shopping', full: true },
   { name: 'guide-weather', url: 'guide.html?unit=weather', full: true },
   { name: 'guide-study', url: 'guide.html?unit=study', full: true },
@@ -165,6 +166,7 @@ const SHOTS = [
   { name: 'stories-reader', url: 'stories.html?story=hello', full: true },
   { name: 'stories-shopping', url: 'stories.html?story=shopping', full: true },
   { name: 'stories-numbers', url: 'stories.html?story=numbers', full: true },
+  { name: 'stories-myday', url: 'stories.html?story=myday', full: true },
   { name: 'stories-word', url: 'stories.html?story=cafe', act: async (p) => p.click('.word:text-is("te")') },
   { name: 'stories-speaking', url: 'stories.html?story=cafe', act: async (p) => p.evaluate(() => { document.querySelector('.reader__line').classList.add('is-current'); document.querySelectorAll('.word')[2].classList.add('is-speaking'); }) },
   { name: 'stories-translations', url: 'stories.html?story=family', act: async (p) => p.check('[data-show-translations]', { force: true }) },
@@ -206,9 +208,9 @@ const SHOTS = [
   { name: 'landing-calm', url: 'index.html', calm: true },
 ];
 const OVERFLOW_PAGES = [
-  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=aboutme', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=numbers', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=shopping', 'guide.html?unit=weather', 'guide.html?unit=study', 'guide.html?unit=grammar', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
+  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=aboutme', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=numbers', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=myday', 'guide.html?unit=shopping', 'guide.html?unit=weather', 'guide.html?unit=study', 'guide.html?unit=grammar', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
   'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
-  'stories.html', 'stories.html?story=hello', 'stories.html?story=aboutme', 'stories.html?story=cafe', 'stories.html?story=numbers', 'stories.html?story=time', 'stories.html?story=shopping', 'stories.html?story=study', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'letters.html', 'lesson.html?mode=alphabet', 'voices.html', 'music.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
+  'stories.html', 'stories.html?story=hello', 'stories.html?story=aboutme', 'stories.html?story=cafe', 'stories.html?story=numbers', 'stories.html?story=time', 'stories.html?story=myday', 'stories.html?story=shopping', 'stories.html?story=study', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'letters.html', 'lesson.html?mode=alphabet', 'voices.html', 'music.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
 ];
 
 async function settle(page) {

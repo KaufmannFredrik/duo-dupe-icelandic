@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-25T07:35:49.495Z",
+ "generated": "2026-11-25T17:47:06.246Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -19,8 +19,8 @@
  ],
  "counts": {
   "loan": 7,
-  "old-norse": 192,
-  "form": 12
+  "old-norse": 200,
+  "form": 13
  },
  "pairs": {
   "halló_uh": {
@@ -1172,6 +1172,77 @@
    "nb": "om",
    "article": 42048,
    "oldNorse": "um",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "fótur_no": {
+   "nb": "fot",
+   "article": 17343,
+   "oldNorse": "fótr",
+   "evidence": "old-norse",
+   "rules": [
+    "o-acute",
+    "ending-ur"
+   ]
+  },
+  "þreyttur_lo": {
+   "nb": "trøtt",
+   "article": 62171,
+   "oldNorse": "þreyttr",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "bað_no": {
+   "nb": "bad",
+   "article": 4012,
+   "oldNorse": "bað",
+   "evidence": "old-norse",
+   "rules": [
+    "eth"
+   ]
+  },
+  "klæða_so": {
+   "nb": "kle",
+   "article": 30011,
+   "oldNorse": "klæða",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "seinn_lo": {
+   "nb": "sen",
+   "article": 50846,
+   "oldNorse": "seinn",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "lengi_ao": {
+   "nb": "lenge",
+   "article": 34835,
+   "oldNorse": "lengi",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-i"
+   ]
+  },
+  "hvíla_so": {
+   "nb": "hvile",
+   "evidence": "form",
+   "rules": [
+    "i-acute",
+    "ending-a"
+   ]
+  },
+  "ætla_so": {
+   "nb": "esle",
+   "article": 13145,
+   "oldNorse": "ætla",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "sofna_so": {
+   "nb": "sovne",
+   "article": 55764,
+   "oldNorse": "sofna",
    "evidence": "old-norse",
    "rules": null
   },

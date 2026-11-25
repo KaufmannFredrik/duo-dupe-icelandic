@@ -1,0 +1,229 @@
+{
+  "id": "myday",
+  "theme": "myday",
+  "reviewed": true,
+  "title": {
+    "en": "My day",
+    "nb": "Dagen min"
+  },
+  "is": "Dagurinn minn",
+  "goal": {
+    "en": "Tell what you do from morning to night: getting up, washing, hurrying out, and going to bed.",
+    "nb": "Fortell hva du gjør fra morgen til kveld: å stå opp, vaske deg, skynde deg ut og legge deg."
+  },
+  "host": {
+    "character": "katla",
+    "says": "1324574"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Getting up",
+        "nb": "Å stå opp"
+      },
+      "focus": [
+        "vekja_so",
+        "fótur_no",
+        "syfjaður_lo",
+        "þreyttur_lo"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Washing",
+        "nb": "Å vaske seg"
+      },
+      "focus": [
+        "þvo_so",
+        "sturta_no",
+        "bað_no",
+        "bursta_so",
+        "tönn_no"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "Hurry up!",
+        "nb": "Skynd deg!"
+      },
+      "focus": [
+        "klæða_so",
+        "flýta_so",
+        "seinn_lo",
+        "tilbúinn_lo",
+        "upptekinn_lo"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "Right away, at last",
+        "nb": "Straks, endelig"
+      },
+      "focus": [
+        "strax_ao",
+        "svo_ao",
+        "venjulega_ao",
+        "loksins_ao",
+        "lengi_ao"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "Bedtime",
+        "nb": "Leggetid"
+      },
+      "focus": [
+        "hvíla_so",
+        "ætla_so",
+        "klára_so",
+        "rúm_no",
+        "sofna_so"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "Waking up and getting up: vakna, vekja, á fætur",
+          "nb": "Å våkne og stå opp: vakna, vekja, á fætur"
+        },
+        "text": {
+          "en": "{is:vakna} is to wake up, {is:vekja} to wake someone else: {is:Vaknaðu!} (wake up!), {is:Hávaðinn vakti hana} (the noise woke her up). Norwegian has the same pair from the same Old Norse words: våkne and vekke. To get up is {is:fara á fætur}, to go onto your feet: {is:fætur} is the plural of {is:fótur} (foot), as føtter is of fot. {is:Klukkan hvað fer hún á fætur?} asks what time she gets up. {is:þreyttur} (tired) is Norwegian trett: both come from Old Norse þreyttr. Sleepy is {is:syfjaður}.",
+          "nb": "{is:vakna} er å våkne, {is:vekja} å vekke noen andre: {is:Vaknaðu!} (våkn opp!), {is:Hávaðinn vakti hana} (bråket vekket henne). Norsk har det samme paret fra de samme norrøne ordene: våkne og vekke. Å stå opp er {is:fara á fætur}, å gå på føttene: {is:fætur} er flertall av {is:fótur} (fot), slik føtter er av fot. {is:Klukkan hvað fer hún á fætur?} spør når hun står opp. {is:þreyttur} er norsk trett: begge kommer av norrønt þreyttr. Søvnig er {is:syfjaður}."
+        },
+        "examples": [
+          "1315613",
+          "891385",
+          "382330",
+          "863024",
+          "1317146"
+        ],
+        "tables": [
+          "fótur_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Washing and dressing: þvo sér, klæða sig",
+          "nb": "Å vaske seg og kle seg: þvo sér, klæða sig"
+        },
+        "text": {
+          "en": "Norwegian says seg with every reflexive verb: vaske seg, kle på seg, skynde seg, hvile seg. Icelandic {is:sig} has a dative form, {is:sér}, and the verb decides which one it takes. {is:þvo} (wash) and {is:flýta} (hurry) take the dative: {is:Ég þvæ mér}, {is:Flýttu þér!} {is:klæða} (dress) and {is:hvíla} (rest) take the accusative: {is:Ég klæddi mig}, {is:Má ég hvíla mig?} As in Norwegian, I and you use their own forms: {is:mig} and {is:mér} with {is:ég}, {is:þig} and {is:þér} with {is:þú}, {is:okkur} with {is:við}. {is:þvo} changes its vowel in the present singular: {is:ég þvæ}, {is:hann þvær}, but {is:við þvoum}.",
+          "nb": "Norsk sier seg med alle refleksive verb: vaske seg, kle på seg, skynde seg, hvile seg. Islandsk {is:sig} har en dativform, {is:sér}, og verbet bestemmer hvilken det tar. {is:þvo} (vaske) og {is:flýta} (skynde) tar dativ: {is:Ég þvæ mér}, {is:Flýttu þér!} {is:klæða} (kle) og {is:hvíla} (hvile) tar akkusativ: {is:Ég klæddi mig}, {is:Má ég hvíla mig?} Som på norsk har jeg og du egne former: {is:mig} og {is:mér} med {is:ég}, {is:þig} og {is:þér} med {is:þú}, {is:okkur} med {is:við}. {is:þvo} skifter vokal i presens entall: {is:ég þvæ}, {is:hann þvær}, men {is:við þvoum}."
+        },
+        "examples": [
+          "460453",
+          "1318339",
+          "586712",
+          "1353641",
+          "1323383"
+        ],
+        "tables": [
+          "sig_afn",
+          {
+            "lemma": "þvo_so",
+            "tense": "NT"
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Teeth, shower and bath: tönn, sturta, bað",
+          "nb": "Tenner, dusj og bad: tönn, sturta, bað"
+        },
+        "text": {
+          "en": "{is:tönn} (tooth) changes its vowel in the plural, {is:tennur}, as Norwegian tann does in tenner. Where English says your teeth, Icelandic says the teeth: {is:Burstaðu tennurnar} (brush your teeth). You take a shower or a bath by going into it: {is:fara í sturtu}, {is:fara í bað}. It is a movement, so {is:í} takes the accusative: {is:í bað}, not the dative {is:í baði}.",
+          "nb": "{is:tönn} (tann) skifter vokal i flertall, {is:tennur}, slik norsk tann gjør i tenner. Der engelsk sier your teeth, sier islandsk tennene: {is:Burstaðu tennurnar} (puss tennene). Du tar en dusj eller et bad ved å gå inn i det: {is:fara í sturtu}, {is:fara í bað}. Det er en bevegelse, så {is:í} styrer akkusativ: {is:í bað}, ikke dativ {is:í baði}."
+        },
+        "examples": [
+          "385858",
+          "508850",
+          "4007788",
+          "460469",
+          "664662",
+          "1323369"
+        ],
+        "tables": [
+          "tönn_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Late, ready, busy: seinn, tilbúinn, upptekinn",
+          "nb": "Sen, klar, opptatt: seinn, tilbúinn, upptekinn"
+        },
+        "text": {
+          "en": "{is:seinn} (late) is an adjective, so it agrees with whoever is late: {is:Ég er seinn} from a man, {is:Ég er sein} from a woman, {is:Eruð þið ekki sein?} to a mixed group. Norwegian sen is the same Old Norse word, {is:seinn}. The adverb is {is:seint}, as in {is:Betra er seint en aldrei} (better late than never). {is:tilbúinn} (ready) is {is:til} and {is:búinn}, and {is:upptekinn} (busy) is taken up, {is:upp} and {is:tekinn} from {is:taka}, just as Norwegian opptatt is opp and tatt. They change with gender and number too: {is:Bíllinn er tilbúinn}, {is:Er baðið tilbúið?}, {is:Allir eru tilbúnir}.",
+          "nb": "{is:seinn} (sen) er et adjektiv, så det samsvarer med den som er sen: {is:Ég er seinn} fra en mann, {is:Ég er sein} fra en kvinne, {is:Eruð þið ekki sein?} til en blandet gruppe. Norsk sen er det samme norrøne ordet, {is:seinn}. Adverbet er {is:seint}, som i {is:Betra er seint en aldrei} (bedre sent enn aldri). {is:tilbúinn} (klar) er {is:til} og {is:búinn}, og {is:upptekinn} (opptatt) er tatt opp, {is:upp} og {is:tekinn} av {is:taka}, akkurat som norsk opptatt er opp og tatt. De bøyes også etter kjønn og tall: {is:Bíllinn er tilbúinn}, {is:Er baðið tilbúið?}, {is:Allir eru tilbúnir}."
+        },
+        "examples": [
+          "1324574",
+          "1324575",
+          "11539549",
+          "5003451",
+          "852821",
+          "1315521"
+        ],
+        "tables": [
+          "seinn_lo"
+        ]
+      },
+      {
+        "title": {
+          "en": "Your day in order: svo, venjulega, loksins",
+          "nb": "Dagen i rekkefølge: svo, venjulega, loksins"
+        },
+        "text": {
+          "en": "To tell your day in order: {is:fyrst} (first, from {is:snemma} in the Time unit), {is:svo} (then), and at the end {is:loksins} (at last). {is:svo} is also so: {is:svo snemma} (so early), {is:Ég er svo þreytt} (I am so tired), and {is:Gerðu svo vel} is please. What you usually do takes {is:venjulega} right after the verb, and a time of day in the plural with the article: {is:Ég fer venjulega í sturtu á kvöldin} (in the evenings). Every day is {is:á hverjum degi}, every morning {is:á hverjum morgni}. {is:strax} (right away) is Norwegian straks: both came from Low German. {is:lengi} is lenge, and {is:ekki lengur} is ikke lenger.",
+          "nb": "For å fortelle om dagen i rekkefølge: {is:fyrst} (først, av {is:snemma} i enheten om tid), {is:svo} (så), og til slutt {is:loksins} (endelig). {is:svo} er også så som i så tidlig: {is:svo snemma}, {is:Ég er svo þreytt} (jeg er så trøtt), og {is:Gerðu svo vel} er vær så snill. Det du vanligvis gjør, får {is:venjulega} rett etter verbet, og en tid på dagen i flertall med artikkel: {is:Ég fer venjulega í sturtu á kvöldin} (om kveldene). Hver dag er {is:á hverjum degi}, hver morgen {is:á hverjum morgni}. {is:strax} (med en gang) er norsk straks: begge kom fra lavtysk. {is:lengi} er lenge, og {is:ekki lengur} er ikke lenger."
+        },
+        "examples": [
+          "664662",
+          "1316193",
+          "739007",
+          "508850",
+          "845653",
+          "511366"
+        ]
+      },
+      {
+        "title": {
+          "en": "Plans and bedtime: ætla, sofna",
+          "nb": "Planer og leggetid: ætla, sofna"
+        },
+        "text": {
+          "en": "{is:ætla að} with a verb is what you are going to do, where Norwegian says skal: {is:Ég ætla að panta annan bjór} (I am going to order another beer), {is:Hvar ætlum við að hittast?} With a place, no verb is needed: {is:Ég ætla í bæinn} (I am going to town). At night you {is:fara að sofa} (go to bed) and {is:sofna} (fall asleep), Norwegian sovne, from the Old Norse {is:sofna}. {is:rúm} (bed) is the word that became Norwegian rom, and in Icelandic it still means room, space too. {is:klára} (finish) is made from {is:klár} (ready), as Norwegian klare is related to klar, but Norwegian klare means to manage.",
+          "nb": "{is:ætla að} med et verb er det du skal gjøre: {is:Ég ætla að panta annan bjór} (jeg skal bestille en øl til), {is:Hvar ætlum við að hittast?} (hvor skal vi møtes?). Med et sted trengs det ikke noe verb: {is:Ég ætla í bæinn} (jeg skal til byen). Om kvelden {is:fara að sofa} (legger du deg) og {is:sofna} (sovner du), norsk sovne, fra norrønt {is:sofna}. {is:rúm} (seng) er ordet som ble norsk rom, og på islandsk betyr det fortsatt også rom, plass. {is:klára} (gjøre ferdig) er laget av {is:klár} (klar), slik norsk klare er beslektet med klar, men norsk klare betyr å greie."
+        },
+        "examples": [
+          "11074830",
+          "1329183",
+          "3799246",
+          "907650",
+          "1312221",
+          "10360024"
+        ],
+        "tables": [
+          {
+            "lemma": "ætla_so",
+            "tense": "NT"
+          }
+        ]
+      }
+    ]
+  }
+}

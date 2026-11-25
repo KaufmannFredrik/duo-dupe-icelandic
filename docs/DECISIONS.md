@@ -2,6 +2,32 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A1, unit 8: *Dagurinn minn* (2026-11-25)
+
+The third new unit of section A1 in [PLAN.md](PLAN.md), between *Tími* and *Búð*: a day from waking up to bedtime, the curriculum's "sleep and washing" and the school and work day (stage 1), for the goal "tell what you do from day to day" (`content/goals.json`, now trained by *Tími* and this unit).
+
+- **Words** (24, theme `myday`): *vekja*, *fótur* (for *fara á fætur*), *syfjaður*, *þreyttur*; *þvo*, *sturta*, *bað*, *bursta*, *tönn*; *klæða*, *flýta*, *seinn*, *tilbúinn*, *upptekinn*; *strax*, *svo*, *venjulega*, *loksins*, *lengi*; *hvíla*, *ætla*, *klára*, *rúm*, *sofna*. *vakna* and *sofa* were already in *Tími*. Chosen by topic, then with the word picker limited to the words a learner has at this point of the path (a scratch version of `npm run pick-words`): *þreyttur*, *flýta*, *seinn*, *upptekinn*, *ætla* and *tilbúinn* bring the most readable sentences, *fótur* brings *fara á fætur*. *klæða* has no sentence a learner can read here (*Ég klæddi mig í buxurnar* needs *Búð*'s *buxur*), so it is taught with word exercises and that sentence as reading.
+- **Left out:** *hádegi* (noon): Wiktionary's only gloss is "forenoon; the start of the fifth of the eight eyktir", which the app would show; the guidebook has *fyrir hádegi* and *eftir hádegi* as phrases. The adverb *fyrst*: the parser reads every *fyrst* as *fyrstur* (*Tölur*) or as the superlative of *snemma*, so it had no sentences; the guidebook shows *fyrst ... svo ... loksins*, and *Tími* already teaches *fyrst* as the superlative of *snemma*. *svo* is glossed "so", not "then": that is what it means in 12 of its 13 readable sentences (*svo snemma*, *Ég er svo þreytt*, *Gerðu svo vel*).
+- **Tag fixes** (`content/tag-fixes.json`): the parser reads *þreytt(ur)* and *tilbúinn* as the participles of *þreyta* and *tilbúa* (ten and six sentences), as it did with *giftur*; BÍN and Wiktionary list both as adjectives. *sofna* in *Þú mátt ekki sofna* was a plural of a noun *sofn*, and *hvíldum* in one sentence was left open. Two fixes only drop a wrong case: *Farðu í sturtu* (the parser's dative, where *fara í sturtu* is a movement and accusative, as it reads the same phrase elsewhere) and *Ekki standa á fætur* (nominative). With them *þreyttur* has 13 readable sentences instead of 4.
+- **Excluded:** *Ég ætlast til að hann komi* ("I expect him to come"): *ætlast til* is a verb of its own, which the course would teach as a form of *ætla* ("to intend").
+- **Lessons** (grouped by hand, every exercise read): Getting up; Washing; Hurry up!; Right away, at last; Bedtime; and a review. Each has 12 exercises of six to ten kinds (the adverb lesson has the fewest kinds: adverbs do not inflect).
+- **Guidebook**, six sections, every claim in `content/CLAIMS.md`: *vakna* and *vekja* against Norwegian *våkne* and *vekke* (the same Old Norse pair), *fara á fætur*, *þreyttur* and *trett*; reflexive verbs, where Norwegian always has *seg* but Icelandic takes the dative *sér* with *þvo* and *flýta* and the accusative *sig* with *klæða* and *hvíla*; *tönn*, *tennur*, *Burstaðu tennurnar*, *fara í sturtu* and *í bað* (accusative, not *í baði*); *seinn* agreeing (*Ég er sein*), *tilbúinn* and *upptekinn* as participles, *upptekinn* and *opptatt* both "taken up"; the order of the day (*svo*, *venjulega* after the verb, *á kvöldin*, *á hverjum degi*, *strax* and *straks* from Low German, *ekki lengur*); *ætla að* where Bokmål says *skal*, *fara að sofa* and *sofna*, *rúm* and Norwegian *rom*, and *klára* against Norwegian *klare* ("manage").
+- **Host and story:** Katla the student hosts the unit (*Ég er sein, er það ekki?*); the story *Better late than never* is a dialogue in which Amma Sigga wakes Katla, twelve unchanged Tatoeba sentences readable after this unit, ending with *Betra er seint en aldrei*.
+
+### Friends stay friends
+
+Katla now hosts this unit before *Nám og vinna*, and a character became a friend only by finishing the first unit they host; a learner who made Katla a friend in *Nám og vinna* would have lost her (the same had happened to Elias with *Um mig* and Jónas with *Tölur*). Now finishing any unit a character hosts makes them a friend, the Profile still names the first unit, and the "new friend" line shows only once (`js/characters.js`, `tests/characters.test.mjs`).
+
+### Data
+
+- 419 words; 2,174 sentences (199 new, 16 dropped because better ones were found for their words, and their hand translations removed); 194 new Bokmål translations by hand (four names added: Harry, Mary, Kate and the exonym Hannover); 7 hand glosses (*svo*, *ætla*, *seinn*, *klára*, *hvíla*, *venjulega*, *bað*) and 7 corrections (*þvo* was *tvette*, *fótur* had *pote* and *labb*, *strax* is *straks* first, *syfjaður* *søvnig* before *trøtt*, *upptekinn* *opptatt* before *travel*, *sofna* *sovne*, *loksins* *endelig*); six new phrases (*skynde seg*, *ha tenkt*, *gjøre ferdig*, *med en gang*, *falle i søvn*, *til slutt*).
+- 17 Bokmål etymologies; audio for 223 new texts in each of the four voices; the Norwegian bridge has 220 words (9 new: *fot*, *trøtt*, *bad*, *kle*, *sen*, *lenge*, *hvile*, *esle*, *sovne*).
+
+### Tests
+
+- `node --test`: 184 tests (thirteen units; the six new lessons produce valid exercises; a friend made in a later unit stays a friend).
+- `node tests/smoke.mjs --unit=myday`: every lesson of the unit played in the browser. `npm run smoke` and `npm run qa` (with the new guidebook and story at three sizes): see the commit.
+
 ## Menu music, step 3: happy moments (2026-11-25)
 
 - **When:** a finished lesson (any lesson round, Letters and sounds included), the daily goal reached (also in the case trainer), or the third daily quest done (also by hearing a story to the end). `completeLesson`, `addXP` and `recordQuests` in `js/progress.js` call `cheer()` (`js/music/mood.js`), which starts a happy spell of three minutes in `sessionStorage`, so it carries from the lesson to the screen the learner goes to next.

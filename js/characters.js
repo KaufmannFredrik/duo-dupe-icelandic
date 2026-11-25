@@ -24,22 +24,28 @@ export const character = (id) => CAST.find((c) => c.id === id) ?? null;
 /** The character who hosts a unit (a unit from the course model), or null. */
 export const hostOf = (unit) => (unit?.host ? character(unit.host.character) : null);
 
+const hostedBy = (course, id) => course.units.filter((u) => u.host?.character === id);
+
 /**
- * Every cast member with the first unit they host. A character becomes a friend when that unit is
- * finished (or skipped by the placement test).
+ * Every cast member with the first unit they host. A character becomes a friend when a unit they
+ * host is finished (or skipped by the placement test); usually that is the first one, but a unit
+ * added earlier in the path must not take a friend away from a learner who finished a later one.
  * @returns {{ id: string, name: string, kind: object, unit: object|null, friend: boolean }[]}
  */
 export function friends(course, progress) {
   return CAST.map((c) => {
-    const unit = course.units.find((u) => u.host?.character === c.id) ?? null;
-    return { ...c, unit, friend: Boolean(unit && unitDone(unit, progress)) };
+    const hosted = hostedBy(course, c.id);
+    return { ...c, unit: hosted[0] ?? null, friend: hosted.some((u) => unitDone(u, progress)) };
   });
 }
 
-/** The character who becomes a friend by finishing this unit, or null. */
-export function befriendedBy(course, unit) {
+/**
+ * The character who becomes a friend by finishing this unit, or null: its host, unless another
+ * unit they host was finished before (progress, as it was before this unit was finished).
+ */
+export function befriendedBy(course, unit, progress) {
   const host = hostOf(unit);
-  return host && course.units.find((u) => u.host?.character === host.id) === unit ? host : null;
+  return host && !hostedBy(course, host.id).some((u) => u !== unit && unitDone(u, progress)) ? host : null;
 }
 
 /** Path of a character file. still: the copy without animation (Calm mode, reduced motion). */
