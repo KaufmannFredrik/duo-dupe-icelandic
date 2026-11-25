@@ -7,6 +7,8 @@ export const DEFAULT_SETTINGS = {
   calm: 'auto', // auto | on | off
   scan: 'default', // default (page decides) | low | off
   sound: false, // sound effects; off by default
+  music: false, // generated menu music (js/music/); off by default
+  musicVolume: 50, // 0 to 100
   strict: false, // strict answer checking: missing accents count as wrong
   hearts: false, // lose a heart per mistake; out of hearts ends the lesson
   goal: 20, // daily goal in XP

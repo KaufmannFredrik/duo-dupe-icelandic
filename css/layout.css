@@ -734,3 +734,14 @@ input[type="range"] { width: min(20rem, 100%); accent-color: var(--rf-cyan); }
 .letters-offer .icon { flex: none; color: var(--rf-magenta); }
 
 .placement-hint + .letters-offer { margin-top: calc(-1 * var(--space-4)); }
+
+/* Music lab: the chords of the current section as a row of cells, the current bar lit. */
+.music-now { margin-bottom: var(--space-5); }
+.music-moods { margin-bottom: var(--space-5); }
+.music-bars { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.music-bars li { padding: var(--space-2); border: var(--border) solid var(--rf-blue); color: var(--rf-muted); font-variant-numeric: tabular-nums; text-align: center; }
+.music-bars li.is-current { border-color: var(--rf-cyan); background: var(--fill-selected); color: #FFFFFF; box-shadow: var(--glow-cyan-sm); }
+.music-voices { color: #FFFFFF; }
+.music-chords { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-1) var(--space-3); margin: 0; font-size: var(--text-sm); }
+.music-chords dt { color: var(--rf-muted); }
+.music-chords dd { margin: 0; color: var(--rf-chrome); }

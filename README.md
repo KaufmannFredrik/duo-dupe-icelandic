@@ -16,7 +16,7 @@ npm run serve            # node scripts/serve.mjs 8080, then open http://127.0.0
 python3 -m http.server 8080
 ```
 
-Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=2`, or `?mode=review`, `mistakes`, `letters`, `sounds`, `speak`, `bridge` or `placement`), `guide.html?unit=hello`, `practice.html`, `declension.html?lemma=kaffi` (case trainer), `stories.html` (`?story=cafe` opens the reader), `dictionary.html`, `profile.html`, `settings.html`, `voices.html`, `bridge.html`, `credits.html`, `styleguide.html`.
+Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=2`, or `?mode=review`, `mistakes`, `letters`, `sounds`, `speak`, `bridge` or `placement`), `guide.html?unit=hello`, `practice.html`, `declension.html?lemma=kaffi` (case trainer), `stories.html` (`?story=cafe` opens the reader), `dictionary.html`, `profile.html`, `settings.html`, `voices.html`, `music.html` (Music lab), `bridge.html`, `credits.html`, `styleguide.html`.
 
 ## Requirements for the scripts
 
@@ -30,7 +30,7 @@ Pages: `index.html` (landing), `learn.html`, `lesson.html` (`?unit=hello&lesson=
 
 | Command | What it does |
 |---|---|
-| `npm test` | Unit tests (`node --test`): grading, spaced repetition, the course model, and the exercise generator against the real data. |
+| `npm test` | Unit tests (`node --test`): grading, spaced repetition, the course model, the exercise generator against the real data, and the music theory of the menu music. |
 | `npm run smoke` | Playwright plays every lesson of the hand-made units and the sounds and letters drills, checks that progress and XP (with combo bonuses) are saved, that the unit host closes a lesson, that a lesson counts toward the daily quests, that export, reset and import round-trip, that hearts end a lesson, that the site loads offline, plays a speaking round with a stand-in recognizer, plays a host's greeting in the chosen voice, opens a story (word panel, line audio, the dialogue's cast) and checks that all seven characters become friends. |
 | `npm run validate` | Checks every Icelandic word in the content against the DMII Core, and hand-written sentences with GreynirCorrect. |
 | `npm run build:data` | Rebuilds `/data` (needs `npm run probe:coverage` first for the bulk files, and GreynirCorrect in `.venv`). |
@@ -63,6 +63,7 @@ js/               app.js (bootstrap), shell.js, i18n.js + i18n/{en,nb}.json, sto
                   course.js, progress.js, stats.js, srs.js, db.js, offline.js, normalize.js, audio.js,
                   sfx.js, tala.js (mascot), characters.js (the cast, hosts and friends),
                   engine/ (course model, lesson generator), exercises/ (one module per type), ui/, pages/
+                  music/ (generated menu music: theory, composer, moods, Web Audio synthesizer, player)
 assets/           icons.svg (sprite), tala/ (mascot SVGs), characters/ (the cast, built by npm run build:characters), icons/ (app icons)
 content/          brand.json, vocab/, units/, stories/, case-rules.json, minimal-pairs.json, allowlist.json,
                   sentence-exclude.json (Tatoeba sentences never shown), tag-fixes.json (hand corrections of the parser),

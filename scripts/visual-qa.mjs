@@ -180,6 +180,7 @@ const SHOTS = [
   { name: 'sounds', url: 'lesson.html?mode=sounds&qa' },
   { name: 'feedback-pair', url: 'lesson.html?mode=sounds&qa', act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'voices', url: 'voices.html', full: true },
+  { name: 'music', url: 'music.html', full: true },
   { name: 'bridge', url: 'bridge.html', full: true },
   { name: 'bridge-filtered', url: 'bridge.html', act: async (p) => p.click('[data-rule="ending-ur"]') },
   { name: 'ex-bridge', url: 'lesson.html?mode=bridge&qa' },
@@ -207,7 +208,7 @@ const SHOTS = [
 const OVERFLOW_PAGES = [
   'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=aboutme', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=numbers', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=shopping', 'guide.html?unit=weather', 'guide.html?unit=study', 'guide.html?unit=grammar', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
   'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
-  'stories.html', 'stories.html?story=hello', 'stories.html?story=aboutme', 'stories.html?story=cafe', 'stories.html?story=numbers', 'stories.html?story=time', 'stories.html?story=shopping', 'stories.html?story=study', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'letters.html', 'lesson.html?mode=alphabet', 'voices.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
+  'stories.html', 'stories.html?story=hello', 'stories.html?story=aboutme', 'stories.html?story=cafe', 'stories.html?story=numbers', 'stories.html?story=time', 'stories.html?story=shopping', 'stories.html?story=study', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'letters.html', 'lesson.html?mode=alphabet', 'voices.html', 'music.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
 ];
 
 async function settle(page) {

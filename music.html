@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-scan-page="low" data-scan="low">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#1A1A2E">
+  <title>TÖLVA</title>
+  <link rel="icon" href="assets/tala/tala-happy-head.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script type="module" src="js/pages/music.js"></script>
+</head>
+<body data-shell data-page="settings" data-title-key="title.music">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <div class="shell">
+    <nav class="app-nav" aria-label="Main" data-i18n-aria-label="nav.main" data-shell="nav"></nav>
+    <div class="shell__col">
+      <header class="hud" data-shell="hud"></header>
+      <main id="main" class="app-main" tabindex="-1">
+        <p><a class="back-link" href="settings.html"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons.svg#i-arrow-left"></use></svg><span data-i18n="title.settings">Settings</span></a></p>
+        <div class="page-head">
+          <h1 data-i18n="title.music">Music</h1>
+          <p data-i18n="music.intro">Music for the menus, made by code in your browser: no recordings and nothing to download. Listen to the four moods here.</p>
+        </div>
+        <section class="card stack music-now" aria-labelledby="music-now-title">
+          <h2 class="card__title" id="music-now-title" data-i18n="music.now">Now playing</h2>
+          <div class="setting">
+            <label class="setting__label" for="music-volume" data-i18n="music.volume">Music volume</label>
+            <div class="cluster"><input id="music-volume" type="range" min="0" max="100" step="5"><output for="music-volume" data-volume-out>50%</output></div>
+          </div>
+          <p data-now data-i18n="music.idle">Nothing is playing. Press Play on a mood.</p>
+          <ol class="music-bars" data-bars hidden></ol>
+          <p class="music-voices" data-voices hidden></p>
+          <div class="cluster">
+            <button type="button" class="button button--sm" data-stop disabled><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-sound-off"></use></svg><span data-i18n="music.stop">Stop</span></button>
+            <button type="button" class="button button--sm" data-another disabled><span data-i18n="music.another">Another tune</span></button>
+          </div>
+        </section>
+        <div class="grid-cards music-moods" data-moods></div>
+        <section class="card card--quiet stack" aria-labelledby="music-iceland-title">
+          <h2 class="card__title" id="music-iceland-title" data-i18n="music.iceland.title">Icelandic in the music</h2>
+          <p data-i18n-html="music.iceland.tvisongur"></p>
+          <p data-i18n-html="music.iceland.modes"></p>
+          <p data-i18n-html="music.iceland.langspil"></p>
+        </section>
+        <section class="card card--quiet stack" aria-labelledby="music-how-title">
+          <h2 class="card__title" id="music-how-title" data-i18n="music.how.title">How the songs are built</h2>
+          <p data-i18n-html="music.how.form"></p>
+          <p data-i18n-html="music.how.melody"></p>
+          <p data-i18n-html="music.how.sound"></p>
+        </section>
+      </main>
+      <footer class="app-footer" data-shell="footer"></footer>
+    </div>
+    <aside class="app-side" aria-label="Your progress" data-i18n-aria-label="side.label" data-shell="side"></aside>
+  </div>
+</body>
+</html>
