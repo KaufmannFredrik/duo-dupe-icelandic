@@ -5,7 +5,7 @@
 
 import { loadJSON } from './app.js';
 import { getSettings } from './store.js';
-import { getLang } from './i18n.js';
+import { getLang, t } from './i18n.js';
 import { analysesIn } from './grammar.js';
 import { createGenerator, expandRules } from './engine/generate.js';
 
@@ -65,6 +65,19 @@ export async function loadAll() {
 export const lemma = (id) => lexicon?.lemmas[id];
 export const entry = (id) => shards.get(lexicon.lemmas[id]?.theme)?.[id] ?? null;
 export const sentence = (sid) => (excluded.has(sid) ? undefined : sentencesFile?.sentences[sid]);
+/** The ids of every sentence that may be shown. */
+export const sentenceIds = () => Object.keys(sentencesFile?.sentences ?? {}).filter((sid) => !excluded.has(sid));
+
+// A sentence made for TÖLVA from a Tatoeba sentence by replacing one word has "from", the
+// original's id: credits link to the original and say that a word was changed.
+const TATOEBA_SHOW = 'https://tatoeba.org/en/sentences/show/';
+/** A link to a sentence's page on Tatoeba (the original's, for a made sentence), labeled label + its id. */
+export function tatoebaLink(sid, label = '#') {
+  const id = sentencesFile?.sentences[sid]?.from ?? sid;
+  return `<a href="${TATOEBA_SHOW}${id}" rel="noopener">${label}${id}</a>`;
+}
+/** ", one word changed for TÖLVA" after the credit of a made sentence, otherwise nothing. */
+export const changedNote = (sid) => (sentencesFile?.sentences[sid]?.from ? `, ${t('credit.changed')}` : '');
 
 /**
  * Which course word each word (p{L}+ token) of a sentence is there, from the Greynir parse:

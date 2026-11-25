@@ -17,7 +17,7 @@
 
 import { loadJSON, ready } from '../app.js';
 import { pick, t } from '../i18n.js';
-import { caseRules, getGenerator, gloss, glossLang, isName, lemma, loadAll, paradigm, recordings, sameGloss, sentence, translation } from '../data.js';
+import { caseRules, changedNote, getGenerator, gloss, glossLang, isName, lemma, loadAll, paradigm, recordings, sameGloss, sentence, tatoebaLink, translation } from '../data.js';
 import { speechSupport } from '../speech.js';
 import { loadBridge } from '../bridge.js';
 import { allowedFor, findLesson, loadCourse, nextLesson, unitDone, unitLabel } from '../course.js';
@@ -267,7 +267,8 @@ function show(n, { focus = true } = {}) {
 
 function credit(sid) {
   const s = sentence(sid);
-  return s ? `<p class="credit">${t('credit.sentence', { id: sid, author: esc(s.author ?? t('credit.unknownAuthor')) }).replace(`#${sid}`, `<a href="https://tatoeba.org/en/sentences/show/${sid}" rel="noopener">#${sid}</a>`)}</p>` : '';
+  const id = s?.from ?? sid;
+  return s ? `<p class="credit">${t('credit.sentence', { id, author: esc(s.author ?? t('credit.unknownAuthor')) }).replace(`#${id}`, tatoebaLink(sid))}${changedNote(sid)}</p>` : '';
 }
 
 // combo: the length of the run of right answers when this one completes a combo, else 0.

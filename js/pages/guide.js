@@ -3,7 +3,7 @@
 
 import { ready } from '../app.js';
 import { pick, t } from '../i18n.js';
-import { entry, lemma, loadAll, sentence, translation } from '../data.js';
+import { changedNote, entry, lemma, loadAll, sentence, tatoebaLink, translation } from '../data.js';
 import { loadCourse, unitLabel, unitOf } from '../course.js';
 import { renderTable } from '../ui/table.js';
 import { play } from '../audio.js';
@@ -53,7 +53,7 @@ if (!unit.guide) {
                   const tr = translation(sid);
                   return `<li class="example"><button type="button" class="icon-button" data-play="${esc(s.is)}" aria-label="${t('audio.playSentence')}">${icon('play')}</button>
                     <span lang="is">${esc(s.is)}</span><small lang="${tr.lang}">${esc(tr.text)}</small>
-                    <small><a href="https://tatoeba.org/en/sentences/show/${sid}" rel="noopener">Tatoeba #${sid}</a>, ${esc(s.author ?? t('credit.unknownAuthor'))}</small></li>`;
+                    <small>${tatoebaLink(sid, 'Tatoeba #')}, ${esc(s.author ?? t('credit.unknownAuthor'))}${changedNote(sid)}</small></li>`;
                 })
                 .join('')}</ul>`
             : ''

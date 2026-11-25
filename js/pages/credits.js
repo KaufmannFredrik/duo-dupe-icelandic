@@ -13,7 +13,7 @@ for (const s of Object.values(sentences)) {
   const name = s.author ?? t('credit.unknownAuthor');
   authors.set(name, (authors.get(name) ?? 0) + 1);
 }
-document.querySelector('[data-tatoeba-summary]').textContent = t('credits.tatoebaSummary', { sentences: Object.keys(sentences).length, authors: authors.size });
+document.querySelector('[data-tatoeba-summary]').textContent = t('credits.tatoebaSummary', { sentences: Object.keys(sentences).length, authors: authors.size, made: Object.values(sentences).filter((s) => s.from).length });
 document.querySelector('[data-tatoeba-authors]').innerHTML = [...authors]
   .sort((a, b) => b[1] - a[1])
   .map(([name, n]) => `<span>${esc(name)} (${n})</span>`)

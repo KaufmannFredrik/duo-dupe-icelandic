@@ -5,7 +5,7 @@
 import { loadJSON, ready } from '../app.js';
 import { getLang, t } from '../i18n.js';
 import { hashSeed } from '../engine/rng.js';
-import { analyze, formIndex, gloss, lemma, loadAll, loadLexicon, recordings, sentence, translation } from '../data.js';
+import { analyze, changedNote, formIndex, gloss, lemma, loadAll, loadLexicon, recordings, sentence, sentenceIds, tagsOf, tatoebaLink, translation } from '../data.js';
 import { normalize, stripAcutes } from '../normalize.js';
 import { play } from '../audio.js';
 import { icon } from '../shell.js';
@@ -66,12 +66,24 @@ function etymologyHTML(id, l) {
   return `<section aria-labelledby="dict-etym"><h3 class="label" id="dict-etym">${t('dict.etymology')}</h3><p lang="${lang}">${esc(text)}</p></section>`;
 }
 
+// Up to four examples in which the parser reads the word as this word (the build picks sentences
+// by spelling, which would show "Er það satt?" for saddur and "til baka" for baka): the build's
+// picks first, then other sentences with the word, shortest first.
+function examplesOf(wid, l) {
+  const picked = l.sentences.filter((sid) => sentence(sid) && (tagsOf(sid)?.includes(wid) ?? true));
+  if (picked.length < 4) {
+    const more = sentenceIds().filter((sid) => !picked.includes(sid) && tagsOf(sid)?.includes(wid));
+    picked.push(...more.sort((a, b) => sentence(a).tokens - sentence(b).tokens || a.localeCompare(b)).slice(0, 4 - picked.length));
+  }
+  return picked.slice(0, 4);
+}
+
 function renderEntry(wid) {
   const l = lemma(wid);
   const recs = recordings(wid);
   const rec = recs[0];
   detail.dataset.lemma = wid;
-  const examples = l.sentences.filter((sid) => sentence(sid)).slice(0, 4);
+  const examples = examplesOf(wid, l);
   detail.innerHTML = `<header class="entry__head"><h2 class="entry__lemma" lang="is">${esc(l.lemma)}</h2>
       ${l.kyn ? `<span class="tag tag--gender">${genderLabel(l.kyn)}</span>` : ''}<span class="tag tag--pos">${esc(classLabel(l.ofl))}</span>
       ${l.ipa.length ? `<span class="entry__ipa">${l.ipa.map(esc).join(' ')}</span>` : ''}
@@ -93,7 +105,7 @@ function renderEntry(wid) {
               .map((sid) => {
                 const s = sentence(sid);
                 const tr = translation(sid);
-                return `<li class="example"><span lang="is">${esc(s.is)}</span><small lang="${tr.lang}">${esc(tr.text)}</small><small><a href="https://tatoeba.org/en/sentences/show/${sid}" rel="noopener">Tatoeba #${sid}</a>, ${esc(s.author ?? t('credit.unknownAuthor'))}</small></li>`;
+                return `<li class="example"><span lang="is">${esc(s.is)}</span><small lang="${tr.lang}">${esc(tr.text)}</small><small>${tatoebaLink(sid, 'Tatoeba #')}, ${esc(s.author ?? t('credit.unknownAuthor'))}${changedNote(sid)}</small></li>`;
               })
               .join('')}</ul>`
           : `<p class="muted">${t('dict.noExamples')}</p>`

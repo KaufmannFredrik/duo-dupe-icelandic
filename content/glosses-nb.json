@@ -1,7 +1,7 @@
 {
   "note": "Bokmål glosses written for TÖLVA. \"glosses\": for course words that Wiktionary gives none for. \"fixes\": in place of Wiktionary glosses that are wrong (another sense, another word class, two words run together, a Swedish or outdated spelling), or that two course words share; \"wiktionary\" repeats what Wiktionary gives, so npm run validate notices when it changes. The first gloss is the one exercises show (verbs get å in front); the rest show in the dictionary. Each was chosen from the word's English Wiktionary meaning and its uses in the course sentences, with the reasons and sources in content/CLAIMS.md. npm run validate checks every word of every gloss the app shows against Bokmålsordboka, and that a gloss of several words is listed in \"phrases\"; npm run build:translations puts them into data/lexicon.json.",
   "reviewed": true,
-  "phrases": ["av og til", "be om", "en eller annen", "falle i søvn", "få lov til", "få tak i", "gjøre ferdig", "god dag", "ha det", "ha tenkt", "hele tiden", "høre på", "kan hende", "komme i hu", "lukke opp", "med en gang", "må hende", "på nytt", "se på", "skynde seg", "synes om", "til slutt", "ut av"],
+  "phrases": ["av og til", "be om", "en eller annen", "falle i søvn", "få lov til", "få tak i", "gjøre ferdig", "god dag", "ha det", "ha tenkt", "hele tiden", "høre på", "kan hende", "komme i hu", "lage mat", "lukke opp", "med en gang", "må hende", "på nytt", "se på", "skynde seg", "synes om", "til slutt", "ut av"],
   "glosses": {
     "af_fs": ["av", "fra"],
     "bara_ao": ["bare"],
@@ -60,7 +60,10 @@
     "klára_so": ["fullføre", "gjøre ferdig"],
     "hvíla_so": ["hvile"],
     "venjulega_ao": ["vanligvis", "normalt"],
-    "bað_no": ["bad"]
+    "bað_no": ["bad"],
+    "skyr_no": ["skyr"],
+    "sjóða_so": ["koke"],
+    "saddur_lo": ["mett"]
   },
   "fixes": {
     "barn_no": { "nb": ["barn"], "wiktionary": ["barn", "barn n mindreårig"] },
@@ -135,6 +138,9 @@
     "syfjaður_lo": { "nb": ["søvnig", "trøtt"], "wiktionary": ["trøtt", "døsig", "søvnig"] },
     "upptekinn_lo": { "nb": ["opptatt", "travel"], "wiktionary": ["travel", "opptatt"] },
     "sofna_so": { "nb": ["sovne", "falle i søvn"], "wiktionary": ["falle i søvn", "sovne"] },
-    "loksins_ao": { "nb": ["endelig", "til slutt"], "wiktionary": ["til slutt"] }
+    "loksins_ao": { "nb": ["endelig", "til slutt"], "wiktionary": ["til slutt"] },
+    "kjúklingur_no": { "nb": ["kylling"], "wiktionary": ["høne", "kylling"] },
+    "pylsa_no": { "nb": ["pølse"], "wiktionary": ["pølse", "korv", "kurv"] },
+    "dós_no": { "nb": ["boks"], "wiktionary": ["boks", "kanne"] }
   }
 }

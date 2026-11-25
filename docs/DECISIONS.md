@@ -2,6 +2,49 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A1, unit 10: *Matur*, and sentences made for thin topics (2026-11-25)
+
+The fourth new unit of section A1 in [PLAN.md](PLAN.md), between *Búð* and *Veður*: food and meals, the curriculum's "meals, food, buying" (stage 1) and "cooking and the table" (stage 2), for the goals "talk fairly freely about things you know well" and "take part in conversations about everyday matters" (`content/goals.json`, now also trained by this unit). With it come the plan's made sentences for thin topics (decision 3).
+
+- **Words** (28, theme `food`): *ávöxtur*, *grænmeti*, *kartafla*, *banani*, *tómatur*; *kjúklingur*, *hrísgrjón*, *pylsa*, *skyr*, *sósa*, *salt*; *eldhús*, *ísskápur*, *elda*, *sjóða*, *baka*, *kokkur*; *samloka*, *pitsa*, *súkkulaði*, *ís*, *flaska*, *dós*; *smakka*, *saddur*, *hollur*, *ljúffengur*, *hella*. *Kaffi* already teaches the café's food and drink, the table and the meals (*brauð*, *fiskur*, *súpa*, *diskur*, *hnífur*, *kvöldmatur*, *svangur*), so this unit takes groceries, cooking and how food tastes. Chosen by topic, then with the word picker limited to the words a learner has at this point (the scratch version from unit 8).
+- ***pitsa*, not *pítsa*:** Tatoeba writes *pítsa*, but the DMII Core has only *pitsa* (neither *pítsa* nor *pizza*), and Wiktionary lists *pítsa* as another spelling. The course teaches *pitsa*; the guidebook shows a Tatoeba sentence with *pítsu*.
+- **Left out:** *laukur* (onion; in its sentences the forms are those of *ljúka*, "to finish"), *hamborgari*, *gulrót*, *máltíð*, *eftirréttur* (no readable sentence, or one), *langa* and *finnast* (planned for *Frítími*), *biðja* and *vinsamlegast* (*Þjónusta*).
+
+### Sentences made for thin topics
+
+Tatoeba has almost no sentences for everyday foods: among its sentences of up to ten words with an English translation, *kartafla*, *banani*, *tómatur*, *pylsa*, *skyr*, *súkkulaði*, *ís* and *hrísgrjón* had none a learner could read at this point of the path, and *grænmeti* none either (*Af hverju borðarðu ekki grænmeti?* has the clitic form *borðarðu*, which the build counts as unknown). The plan's decision 3 answers this: a sentence made from a real Tatoeba sentence by putting another word in.
+
+- **`content/sentences-made.json`:** each entry names the Tatoeba sentence (`from`), the word replaced and the word put in (`swap`), the result (`is`) and its English (`en`: the original's English with the same word changed). Ids are `<Tatoeba id>-<n>`, so they never clash with Tatoeba's and sort next to their original.
+- **The build** (`scripts/build-data.mjs`) applies the swap to the original (the word must occur exactly once, and the result must equal `is`), keeps the original's author and checks the result with GreynirCorrect like every sentence; a flagged made sentence stops the build. From there it is like any other sentence: tagged by the parser, in the pool if readable, with Bokmål in `content/translations-nb.json` and audio in four voices. `data/sentences.json` marks it with `from` and `swap`, and its license line and `data/SOURCES.json` say so.
+- **In the app**, the credit of a made sentence (lessons, guidebook, dictionary, stories, the hosts' greetings) links to the original on Tatoeba and adds "one word changed for TÖLVA" (`tatoebaLink` and `changedNote` in `js/data.js`); Credits says how many there are. Stories keep unchanged sentences.
+- **47 made sentences** from 25 originals, so that every word of the unit has at least three readable sentences except *hella* (two). For example *Hún keypti kjúkling* gave *kartöflur*, *banana*, *tómata*, *skyr*, *hrísgrjón*, *ís* and *grænmeti*; *Hvernig smakkast súpan?* gave *sósan*, *pitsan*, *kjúklingurinn*; *Ávextir eru hollir* gave *Bananar* and *Tómatar*; *Saltið er búið* gave *Skyrið* and *Súkkulaðið* (only neuter nouns, because *búið* agrees). All are listed in `content/CLAIMS.md`.
+- **Checked:** all 47 passed GreynirCorrect, and the parser read the word put in as the course word in all but three, fixed by hand: *sósu* and *fiski* after *með* (read with the accusative, and *fiski* as the noun "fishing"), and *ísa* in a short request the parser could not analyze. A test checks that each made sentence differs from its original in one word and teaches the word put in.
+
+### Fixes found on the way
+
+- **A slur among Wiktionary's senses:** *hrísgrjón* (rice) has an ethnic-slur sense on Wiktionary, which the dictionary would have shown. The build now drops senses that Wiktionary tags slur, offensive, derogatory or vulgar; no other course word had one.
+- **A gloss that is just the meaning comes first:** exercises would have shown *hrísgrjón* as "a grain of rice" and *sjóða* as "to seethe". A Wiktionary sense that is exactly the word's intended meaning (with or without "to") now comes first. That also changed *af* ("of" before "off, from"), *gefa* ("to give" before "to give something") and the order of *ætla*'s senses in the dictionary. Picking the matching part inside a longer sense would have changed the exercise glosses of 23 older words (*panta*, *lítill*, *búa* and others), so that was not done; *saddur* shows "satiated" and *hollur* "wholesome", Wiktionary's first words for them.
+- **The parser:** it reads *satt* ("true", of *sannur*) as *saddur* in eight sentences, and *saddur* itself as the participle of *seðja*. A tag fix can now say that a word is another word, not a course word (`"lemma": null`, `scripts/build-tags.mjs`), so the eight *satt* sentences do not teach *saddur* (and are not readable, since *sannur* is not taught). *Þetta er ekki salt* has the noun *salt* (the parser read the adjective *saltur*).
+- **Dictionary examples:** the build picks a word's examples by spelling, so *saddur* would have shown *Er það satt?* and *baka* *Flýttu þér til baka*. The dictionary now shows the examples in which the parser reads the word as that word, and fills up from other sentences with it (shortest first) when the build's picks run out. The examples of 90 words changed, nearly all by losing a homograph (*verð*, "price", no longer shows *Verð ég að læra?*, nor *á* "on" *Ég á hund*).
+- **Sentences the content names stay in the data:** the new words changed which sentences the build picks per word, and *Opnaðu dyrnar*, an example in the *Nám og vinna* guidebook, dropped out. The build now keeps every sentence a guidebook, a host or a story names.
+- **Excluded:** *Svengd er besti kokkurinn* ("Hunger is the best spice": an English proverb for one that says cook); three *sjóða niður* sentences translated "They can fish." (to can fish, but it reads as being able to fish); *Hrísgrjón eru góð með mísósúpu* (miso is not in Bokmålsordboka, so it can have no checked Bokmål; its two made sentences do not need it shown).
+
+### The unit
+
+- **Lessons** (grouped by hand, every exercise read over three plays): Fruit and vegetables; What's for dinner?; In the kitchen; Snacks; Thanks for the food; and a review. Each has 12 exercises of seven to nine kinds.
+- **Guidebook**, six sections, every claim in `content/CLAIMS.md`: *grænmeti* (green food, no plural), *ávextir*, *kartöflur* (from Danish, where Norwegian has *potet*); rice in the plural (*Hrísgrjón eru góð*), *kjúklingur* and *kylling* from the same Old Norse word, *pylsa* and *pølse*, *skyr* in Bokmålsordboka, *fá sér*; *vera til*, *búinn*, *með* with the dative for food; cooking with fire (*elda* from *eldur*, *eldhús* and Nynorsk *eldhus*, one verb for *lage mat*), *sjóða* and Norwegian *syde*, *bökum*, *ísskápur*; borrowed food words in Icelandic spelling (*súkkulaði*, *pitsa*), *samloka*, *ís* as ice and ice cream; *Takk fyrir matinn* and *Verði þér að góðu*, *smakkast* and *smaker*, *saddur* (from the participle of *seðja*), *hollur*, *ljúffengur*, *hella* and *helle*.
+- **Host and story:** Amma Sigga hosts the unit (*Viltu sósu með kjötinu?*); the story *Dinner's ready* is a dialogue in which she has Elias over for dinner, twelve unchanged Tatoeba sentences readable after this unit, ending with *Það er ekki gott að borða yfir sig* and *Takk fyrir að hafa komið*.
+
+### Data
+
+- 447 words; 2,283 sentences (47 made; 23 dropped because better ones were found for their words, and their hand translations removed); 126 new Bokmål translations by hand (79 for Tatoeba sentences, 47 for made ones) and one restored (*Opnaðu dyrnar*); 3 hand glosses (*skyr*; *koke* for *sjóða*; *mett* for *saddur*) and 3 corrections (*kjúklingur* was *høne*, a hen; *dós* lost *kanne*, a jug; *pylsa* lost *kurv*, mostly a basket); *lage mat* listed as a phrase.
+- 25 Bokmål etymologies; audio for 159 new texts in each of the four voices; the Norwegian bridge has 229 words (9 new: *kylling*, *salt*, *bake*, *is*, *flaske*, *helle*, *kokk*, *tomat*, *skyr*).
+
+### Tests
+
+- `node --test`: 191 tests (fourteen units; the six new lessons produce valid exercises; *satt* is not *saddur* and *til baka* is not *baka*; every made sentence differs from its original in one word and teaches the word put in).
+- `node tests/smoke.mjs --unit=food`: every lesson played in the browser. `npm run smoke` (with a new dictionary check: a made sentence's credit links to its original, and *saddur* shows no *satt*) and `npm run qa` (the new guidebook and story at three sizes): see the commit.
+
 ## Section A1, unit 8: *Dagurinn minn* (2026-11-25)
 
 The third new unit of section A1 in [PLAN.md](PLAN.md), between *Tími* and *Búð*: a day from waking up to bedtime, the curriculum's "sleep and washing" and the school and work day (stage 1), for the goal "tell what you do from day to day" (`content/goals.json`, now trained by *Tími* and this unit).

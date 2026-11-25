@@ -1,0 +1,429 @@
+{
+  "reviewed": true,
+  "note": "Sentences made for TÖLVA where Tatoeba has too few for a topic (docs/PLAN.md, decision 3). Each is a real Tatoeba sentence (\"from\", CC BY 2.0 FR) with one word replaced by another in its DMII Core form (\"swap\": the word as written in the original, the word put in its place); \"is\" is the result, which scripts/build-data.mjs checks. \"en\" is written for TÖLVA from the original's English translation, with the same word changed; the Bokmål is in content/translations-nb.json. They are built, checked with GreynirCorrect and the parser, and used like Tatoeba's sentences; the app credits the original's author, links to the original and says a word was changed. content/CLAIMS.md lists them.",
+  "sentences": {
+    "1324689-1": {
+      "from": "1324689",
+      "swap": [
+        "kjúkling",
+        "kartöflur"
+      ],
+      "is": "Hún keypti kartöflur.",
+      "en": "She bought potatoes."
+    },
+    "1324689-2": {
+      "from": "1324689",
+      "swap": [
+        "kjúkling",
+        "banana"
+      ],
+      "is": "Hún keypti banana.",
+      "en": "She bought bananas."
+    },
+    "1324689-3": {
+      "from": "1324689",
+      "swap": [
+        "kjúkling",
+        "skyr"
+      ],
+      "is": "Hún keypti skyr.",
+      "en": "She bought skyr."
+    },
+    "1324689-4": {
+      "from": "1324689",
+      "swap": [
+        "kjúkling",
+        "hrísgrjón"
+      ],
+      "is": "Hún keypti hrísgrjón.",
+      "en": "She bought rice."
+    },
+    "1324689-5": {
+      "from": "1324689",
+      "swap": [
+        "kjúkling",
+        "ís"
+      ],
+      "is": "Hún keypti ís.",
+      "en": "She bought ice cream."
+    },
+    "1324689-6": {
+      "from": "1324689",
+      "swap": [
+        "kjúkling",
+        "grænmeti"
+      ],
+      "is": "Hún keypti grænmeti.",
+      "en": "She bought vegetables."
+    },
+    "1324689-7": {
+      "from": "1324689",
+      "swap": [
+        "kjúkling",
+        "tómata"
+      ],
+      "is": "Hún keypti tómata.",
+      "en": "She bought tomatoes."
+    },
+    "470238-1": {
+      "from": "470238",
+      "swap": [
+        "fisk",
+        "grænmeti"
+      ],
+      "is": "Hann borðar oft grænmeti í kvöldmat.",
+      "en": "He often eats vegetables for dinner."
+    },
+    "470238-2": {
+      "from": "470238",
+      "swap": [
+        "fisk",
+        "pylsur"
+      ],
+      "is": "Hann borðar oft pylsur í kvöldmat.",
+      "en": "He often eats hot dogs for dinner."
+    },
+    "470238-3": {
+      "from": "470238",
+      "swap": [
+        "fisk",
+        "kjúkling"
+      ],
+      "is": "Hann borðar oft kjúkling í kvöldmat.",
+      "en": "He often eats chicken for dinner."
+    },
+    "479467-1": {
+      "from": "479467",
+      "swap": [
+        "samloku",
+        "pitsu"
+      ],
+      "is": "Ég ætla að panta pitsu.",
+      "en": "I would like to order a pizza."
+    },
+    "479467-2": {
+      "from": "479467",
+      "swap": [
+        "samloku",
+        "pylsu"
+      ],
+      "is": "Ég ætla að panta pylsu.",
+      "en": "I would like to order a hot dog."
+    },
+    "479467-3": {
+      "from": "479467",
+      "swap": [
+        "samloku",
+        "ís"
+      ],
+      "is": "Ég ætla að panta ís.",
+      "en": "I would like to order an ice cream."
+    },
+    "468923-1": {
+      "from": "468923",
+      "swap": [
+        "salt",
+        "súkkulaði"
+      ],
+      "is": "Það er ekki til meira súkkulaði.",
+      "en": "There's no more chocolate."
+    },
+    "468923-2": {
+      "from": "468923",
+      "swap": [
+        "salt",
+        "grænmeti"
+      ],
+      "is": "Það er ekki til meira grænmeti.",
+      "en": "There are no more vegetables."
+    },
+    "468926-1": {
+      "from": "468926",
+      "swap": [
+        "Saltið",
+        "Skyrið"
+      ],
+      "is": "Skyrið er búið.",
+      "en": "The skyr is all gone."
+    },
+    "468926-2": {
+      "from": "468926",
+      "swap": [
+        "Saltið",
+        "Súkkulaðið"
+      ],
+      "is": "Súkkulaðið er búið.",
+      "en": "The chocolate is all gone."
+    },
+    "387357-1": {
+      "from": "387357",
+      "swap": [
+        "mat",
+        "kjúkling"
+      ],
+      "is": "Mamma mín eldar góðan kjúkling.",
+      "en": "My mother cooks good chicken."
+    },
+    "908840-1": {
+      "from": "908840",
+      "swap": [
+        "eggin",
+        "kartöflurnar"
+      ],
+      "is": "Hún sauð kartöflurnar.",
+      "en": "She boiled the potatoes."
+    },
+    "908840-2": {
+      "from": "908840",
+      "swap": [
+        "eggin",
+        "pylsurnar"
+      ],
+      "is": "Hún sauð pylsurnar.",
+      "en": "She boiled the sausages."
+    },
+    "496225-1": {
+      "from": "496225",
+      "swap": [
+        "vatnið",
+        "hrísgrjónin"
+      ],
+      "is": "Sjóddu hrísgrjónin.",
+      "en": "Boil the rice."
+    },
+    "496225-2": {
+      "from": "496225",
+      "swap": [
+        "vatnið",
+        "kartöflurnar"
+      ],
+      "is": "Sjóddu kartöflurnar.",
+      "en": "Boil the potatoes."
+    },
+    "511469-1": {
+      "from": "511469",
+      "swap": [
+        "köku",
+        "pitsu"
+      ],
+      "is": "Hún bakaði mér pitsu.",
+      "en": "She made me a pizza."
+    },
+    "908931-1": {
+      "from": "908931",
+      "swap": [
+        "köku",
+        "brauð"
+      ],
+      "is": "Bökum brauð.",
+      "en": "Let's bake bread."
+    },
+    "1319432-1": {
+      "from": "1319432",
+      "swap": [
+        "flöskuna",
+        "ísskápinn"
+      ],
+      "is": "Opnaðu ísskápinn.",
+      "en": "Open the fridge."
+    },
+    "1319432-2": {
+      "from": "1319432",
+      "swap": [
+        "flöskuna",
+        "dósina"
+      ],
+      "is": "Opnaðu dósina.",
+      "en": "Open the can."
+    },
+    "1321809-1": {
+      "from": "1321809",
+      "swap": [
+        "dós",
+        "ísskápinn"
+      ],
+      "is": "Má ég opna ísskápinn?",
+      "en": "May I open the fridge?"
+    },
+    "698232-1": {
+      "from": "698232",
+      "swap": [
+        "súpan",
+        "sósan"
+      ],
+      "is": "Hvernig smakkast sósan?",
+      "en": "How does the sauce taste?"
+    },
+    "698232-2": {
+      "from": "698232",
+      "swap": [
+        "súpan",
+        "pitsan"
+      ],
+      "is": "Hvernig smakkast pitsan?",
+      "en": "How does the pizza taste?"
+    },
+    "698232-3": {
+      "from": "698232",
+      "swap": [
+        "súpan",
+        "kjúklingurinn"
+      ],
+      "is": "Hvernig smakkast kjúklingurinn?",
+      "en": "How does the chicken taste?"
+    },
+    "3997620-1": {
+      "from": "3997620",
+      "swap": [
+        "Ávextir",
+        "Bananar"
+      ],
+      "is": "Bananar eru hollir.",
+      "en": "Bananas are healthy."
+    },
+    "3997620-2": {
+      "from": "3997620",
+      "swap": [
+        "Ávextir",
+        "Tómatar"
+      ],
+      "is": "Tómatar eru hollir.",
+      "en": "Tomatoes are healthy."
+    },
+    "3795532-1": {
+      "from": "3795532",
+      "swap": [
+        "það",
+        "skyrið"
+      ],
+      "is": "Er skyrið ekki ljúffengt?",
+      "en": "Isn't the skyr delicious?"
+    },
+    "3795532-2": {
+      "from": "3795532",
+      "swap": [
+        "það",
+        "súkkulaðið"
+      ],
+      "is": "Er súkkulaðið ekki ljúffengt?",
+      "en": "Isn't the chocolate delicious?"
+    },
+    "475506-1": {
+      "from": "475506",
+      "swap": [
+        "tei",
+        "kaffi"
+      ],
+      "is": "Hún hellti mér bolla af kaffi.",
+      "en": "She poured me a cup of coffee."
+    },
+    "12340291-1": {
+      "from": "12340291",
+      "swap": [
+        "fiskur",
+        "banani"
+      ],
+      "is": "Þetta er grænn banani.",
+      "en": "This is a green banana."
+    },
+    "12340291-2": {
+      "from": "12340291",
+      "swap": [
+        "fiskur",
+        "tómatur"
+      ],
+      "is": "Þetta er grænn tómatur.",
+      "en": "This is a green tomato."
+    },
+    "7319740-1": {
+      "from": "7319740",
+      "swap": [
+        "Gulrót",
+        "Epli"
+      ],
+      "is": "Epli eða banani?",
+      "en": "Apple or banana?"
+    },
+    "11208765-1": {
+      "from": "11208765",
+      "swap": [
+        "salt",
+        "sósa"
+      ],
+      "is": "Þetta er ekki sósa.",
+      "en": "This isn't sauce."
+    },
+    "382243-1": {
+      "from": "382243",
+      "swap": [
+        "mísósúpu",
+        "sósu"
+      ],
+      "is": "Hrísgrjón eru góð með sósu.",
+      "en": "Rice is good with sauce."
+    },
+    "382243-2": {
+      "from": "382243",
+      "swap": [
+        "mísósúpu",
+        "fiski"
+      ],
+      "is": "Hrísgrjón eru góð með fiski.",
+      "en": "Rice is good with fish."
+    },
+    "488539-1": {
+      "from": "488539",
+      "swap": [
+        "vanillu",
+        "stóra"
+      ],
+      "is": "Tvo stóra ísa, takk.",
+      "en": "Two big ice creams, please."
+    },
+    "389015-1": {
+      "from": "389015",
+      "swap": [
+        "flösku",
+        "dós"
+      ],
+      "is": "Hann drekkur dós af bjór með matnum.",
+      "en": "He drinks a can of beer at dinner."
+    },
+    "389025-1": {
+      "from": "389025",
+      "swap": [
+        "pulsu",
+        "pylsu"
+      ],
+      "is": "Ég fékk mér pylsu í hádegismat.",
+      "en": "I ate a hot dog for lunch."
+    },
+    "389025-2": {
+      "from": "389025",
+      "swap": [
+        "pulsu",
+        "samloku"
+      ],
+      "is": "Ég fékk mér samloku í hádegismat.",
+      "en": "I ate a sandwich for lunch."
+    },
+    "788778-1": {
+      "from": "788778",
+      "swap": [
+        "flöskunni",
+        "ísskápnum"
+      ],
+      "is": "Það er lítið af mjólk eftir í ísskápnum.",
+      "en": "There is little milk left in the fridge."
+    },
+    "677862-1": {
+      "from": "677862",
+      "swap": [
+        "köttur",
+        "kokkur"
+      ],
+      "is": "Það er kokkur í eldhúsinu.",
+      "en": "There is a cook in the kitchen."
+    }
+  }
+}

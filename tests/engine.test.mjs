@@ -63,8 +63,8 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key), practiced: Boolean(lesson.review) }) };
 }
 
-test('course: thirteen units in order, all hand-made', () => {
-  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'weather', 'study', 'grammar', 'newwords']);
+test('course: fourteen units in order, all hand-made', () => {
+  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'weather', 'study', 'grammar', 'newwords']);
   for (const u of d.course.units) assert.equal(u.auto, false, `${u.id} has hand-made lessons`);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
 });
@@ -138,11 +138,34 @@ test('generator: homographs are told apart by the sentence tags', () => {
     ['Ég sé það.', 'vera_so', 'sjá_so'], // the parser reads sé as vera; content/tag-fixes.json
     ['Sá einhver hvað gerðist?', 'sá_fn', 'sjá_so'], // Sá = saw; content/tag-fixes.json
     ['Eru þeir bræður?', 'sá_fn', 'hann_pfn'], // þeir = they; content/tag-fixes.json
+    ['Það er svo satt.', 'saddur_lo', 'vera_so'], // satt = true (sannur), not full: a fix with lemma null
+    ['Þú verður að fara til baka.', 'baka_so', 'fara_so'], // til baka = back
   ];
   for (const [text, not, yes] of cases) {
     assert.ok(sid(text), `"${text}" is in the data`);
     assert.equal(d.generator.hasLemma(sid(text), not), false, `"${text}" has no ${not}`);
     assert.equal(d.generator.hasLemma(sid(text), yes), true, `"${text}" has ${yes}`);
+  }
+});
+
+test('data: a made sentence is a Tatoeba sentence with one word replaced, and teaches that word', () => {
+  const made = Object.entries(d.sentences).filter(([, s]) => s.from);
+  assert.ok(made.length >= 47, `${made.length} made sentences`);
+  for (const [id, s] of made) {
+    assert.match(id, new RegExp(`^${s.from}-\\d+$`), `${id} is named after its original`);
+    const toks = tokens(s.is);
+    const at = toks.findIndex((t) => t.raw === s.swap[1]);
+    assert.ok(at >= 0, `${id}: "${s.swap[1]}" is a word of "${s.is}"`);
+    const original = d.sentences[s.from];
+    if (original) {
+      const theirs = tokens(original.is).map((t) => t.raw);
+      assert.deepEqual(toks.map((t, i) => (i === at ? s.swap[0] : t.raw)), theirs, `${id} differs from ${s.from} in one word`);
+    }
+    assert.ok(s.en.length && s.nb.length, `${id} has English and Bokmål`);
+    // The word put in is a course word there (the parser or a tag fix says so), so it is taught.
+    const tag = d.tagsOf(id)?.[at];
+    assert.ok(typeof tag === 'string' && !tag.startsWith('~') && d.lexicon.lemmas[tag], `${id}: "${s.swap[1]}" is tagged ${tag}`);
+    assert.ok(d.pool.includes(id), `${id} is in the pool`);
   }
 });
 
@@ -175,7 +198,7 @@ test('generator: the same seed gives the same lesson', () => {
   assert.deepEqual(generate('hello', l).specs, generate('hello', l).specs);
 });
 
-for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'weather', 'study', 'grammar', 'newwords']) {
+for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'weather', 'study', 'grammar', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);

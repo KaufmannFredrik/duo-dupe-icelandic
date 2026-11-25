@@ -10,6 +10,7 @@
     "05-time.json",
     "myday.json",
     "06-shopping.json",
+    "food.json",
     "07-weather.json",
     "08-study.json",
     "09-grammar.json",
@@ -20,8 +21,8 @@
       "id": "a1",
       "level": "A1",
       "title": { "en": "Beginner", "nb": "Nybegynner" },
-      "goal": { "en": "Introduce yourself and the people around you, and get by in everyday situations: the café, numbers, getting around, time, shopping, the weather, school and work.", "nb": "Presenter deg selv og folkene rundt deg, og klar deg i hverdagen: kafeen, tall, å finne fram, tid, handling, været, skole og jobb." },
-      "units": ["hello", "aboutme", "cafe", "family", "numbers", "around", "time", "myday", "shopping", "weather", "study", "grammar"]
+      "goal": { "en": "Introduce yourself and the people around you, and get by in everyday situations: the café, numbers, getting around, time, shopping, food, the weather, school and work.", "nb": "Presenter deg selv og folkene rundt deg, og klar deg i hverdagen: kafeen, tall, å finne fram, tid, handling, mat, været, skole og jobb." },
+      "units": ["hello", "aboutme", "cafe", "family", "numbers", "around", "time", "myday", "shopping", "food", "weather", "study", "grammar"]
     },
     {
       "id": "a2",

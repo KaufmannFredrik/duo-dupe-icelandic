@@ -5,7 +5,8 @@
 //   node scripts/build-data.mjs --refresh   asks the APIs again (bulk files stay cached)
 //
 // Sources: DMII Core API (paradigms, unmodified), Wiktionary via kaikki.org (glosses, IPA,
-// etymology; English entries' translation tables for Norwegian glosses), Tatoeba (sentences),
+// etymology; English entries' translation tables for Norwegian glosses), Tatoeba (sentences; and
+// content/sentences-made.json, sentences made from a Tatoeba sentence by replacing one word),
 // CLARIN-IS frequency lists (order), Wikimedia Commons (recordings with author and license).
 // Outputs: data/lexicon.json, data/forms/<theme>.json, data/sentences.json, data/audio.json,
 // data/SOURCES.json and docs/data-report.md. API calls are sequential and spaced out.
@@ -28,6 +29,9 @@ const DATA = path.join(ROOT, 'data');
 const TATOEBA = 'https://downloads.tatoeba.org/exports/per_language';
 const SENTENCES_PER_LEMMA = 6;
 const POOL_MAX_TOKENS = 10;
+const MADE = 'content/sentences-made.json';
+// Sentence ids: Tatoeba's numbers, and "<Tatoeba id>-<n>" for a sentence made from that one.
+const byId = (a, b) => parseInt(a, 10) - parseInt(b, 10) || a.localeCompare(b);
 const log = (...xs) => console.error(...xs);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const fold = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -184,6 +188,8 @@ function freqFor(list, ofl, kyn) {
 
 const POS = { no: ['noun', 'name'], so: ['verb'], lo: ['adj'], ao: ['adv'], fs: ['prep', 'adv'], pfn: ['pron'], afn: ['pron'], fn: ['pron', 'det', 'adj'], st: ['conj'], to: ['num'], rt: ['adj', 'num'], uh: ['intj', 'adv'] };
 
+const OFFENSIVE = new Set(['slur', 'offensive', 'derogatory', 'vulgar']);
+
 async function wiktionary(words) {
   const out = new Map();
   for await (const line of createInterface({ input: createReadStream(cachePath('kaikki')), crlfDelay: Infinity })) {
@@ -193,10 +199,12 @@ async function wiktionary(words) {
     if (!out.has(e.word)) out.set(e.word, []);
     const senses = e.senses ?? [];
     const isFormOf = (s) => s.form_of || s.alt_of || (s.tags ?? []).some((t) => t === 'form-of' || t === 'alt-of');
-    const real = senses.filter((s) => !isFormOf(s));
+    // Never shown: senses Wiktionary marks as slurs or offensive (hrísgrjón, "rice", has one).
+    const offensive = (s) => (s.tags ?? []).some((t) => OFFENSIVE.has(t));
+    const real = senses.filter((s) => !isFormOf(s) && !offensive(s));
     out.get(e.word).push({
       pos: e.pos,
-      glosses: (real.length ? real : senses).flatMap((s) => s.glosses ?? []),
+      glosses: (real.length ? real : senses.filter((s) => !offensive(s))).flatMap((s) => s.glosses ?? []),
       ipa: [...new Set((e.sounds ?? []).filter((s) => s.ipa).map((s) => s.ipa))],
       audio: (e.sounds ?? []).filter((s) => s.audio).map((s) => s.audio),
       etymology: e.etymology_text ?? null,
@@ -210,8 +218,11 @@ function wiktFor(list, { ofl, meaning }) {
   const byPos = all.filter((w) => POS[ofl]?.includes(w.pos));
   const use = byPos.length ? byPos : all;
   const matches = (g) => fold(g).includes(fold(meaning));
-  // Glosses that carry the intended meaning first, so exercises show it (bjór: "beer", not "beaver").
-  const glosses = [...new Set(use.flatMap((w) => w.glosses))].sort((a, b) => Number(matches(b)) - Number(matches(a)));
+  const exact = (g) => fold(g).replace(/^to /, '') === fold(meaning);
+  // Glosses that carry the intended meaning first, so exercises show it (bjór: "beer", not "beaver"),
+  // and one that is just the meaning before one that says more (hrísgrjón: "rice", not "a grain of
+  // rice"; sjóða: "to boil", not "to seethe, to boil").
+  const glosses = [...new Set(use.flatMap((w) => w.glosses))].sort((a, b) => Number(exact(b)) - Number(exact(a)) || Number(matches(b)) - Number(matches(a)));
   const meaningOk = glosses.some(matches);
   return {
     glosses,
@@ -254,6 +265,36 @@ function norwegianFor(lemma, entries) {
 
 const tokenize = (text) => [...text.matchAll(/\p{L}+/gu)].map((m) => ({ raw: m[0], low: m[0].toLocaleLowerCase('is'), index: m.index }));
 
+function analyzeText(text, formIndex) {
+  const tokens = tokenize(text);
+  let unknown = 0;
+  const lemmas = new Set();
+  let ambiguous = 0;
+  for (const tok of tokens) {
+    const ids = formIndex.get(tok.low);
+    // A capitalized word inside the sentence is treated as a name, not as unknown vocabulary.
+    const isName = tok.index > 0 && tok.raw[0] !== tok.low[0];
+    if (!ids) {
+      if (!isName) unknown++;
+      continue;
+    }
+    if (ids.size > 1) ambiguous++;
+    for (const x of ids) lemmas.add(x);
+  }
+  return { tokens, unknown, ambiguous, lemmas };
+}
+
+/**
+ * The text of a made sentence: the Tatoeba sentence with one word replaced. swap is [the word as
+ * written in the original, the word put in its place]; the word must occur exactly once.
+ */
+function swapWord(text, [from, to]) {
+  const at = tokenize(text).filter((t) => t.raw === from);
+  if (at.length !== 1) throw new Error(`"${from}" occurs ${at.length} times in "${text}"`);
+  if (!/^\p{L}+$/u.test(to)) throw new Error(`"${to}" is not one word`);
+  return text.slice(0, at[0].index) + to + text.slice(at[0].index + from.length);
+}
+
 async function tatoeba(formIndex) {
   const isl = new Map();
   for await (const line of bunzipLines(cachePath('isl'))) {
@@ -285,26 +326,39 @@ async function tatoeba(formIndex) {
 
   const analyzed = new Map();
   for (const [id, s] of isl) {
-    const tokens = tokenize(s.is);
-    let unknown = 0;
-    const lemmas = new Set();
-    let ambiguous = 0;
-    for (const tok of tokens) {
-      const ids = formIndex.get(tok.low);
-      // A capitalized word inside the sentence is treated as a name, not as unknown vocabulary.
-      const isName = tok.index > 0 && tok.raw[0] !== tok.low[0];
-      if (!ids) {
-        if (!isName) unknown++;
-        continue;
-      }
-      if (ids.size > 1) ambiguous++;
-      for (const x of ids) lemmas.add(x);
-    }
     const en = (engLinks.get(id) ?? []).map((x) => engText.get(x)).filter(Boolean);
     const nb = (nobLinks.get(id) ?? []).map((x) => nobText.get(x)).filter(Boolean);
-    analyzed.set(id, { ...s, en, nb, tokens, unknown, ambiguous, lemmas });
+    analyzed.set(id, { ...s, en, nb, ...analyzeText(s.is, formIndex) });
+  }
+  // Made sentences keep the original's author and link to it ("from"); their English is written
+  // for TÖLVA from the original's, their Bokmål comes from content/translations-nb.json.
+  if (existsSync(path.join(ROOT, MADE))) {
+    for (const [id, m] of Object.entries(JSON.parse(await readFile(path.join(ROOT, MADE), 'utf8')).sentences)) {
+      const where = `${MADE} ${id}`;
+      const src = isl.get(m.from);
+      if (id.split('-')[0] !== m.from || !/^\d+-\d+$/.test(id)) throw new Error(`${where}: the id must be "${m.from}-<n>"`);
+      if (!src) throw new Error(`${where}: no Tatoeba sentence ${m.from}`);
+      const is = swapWord(src.is, m.swap);
+      if (is !== m.is) throw new Error(`${where}: "${m.is}" should be "${is}"`);
+      if (!m.en) throw new Error(`${where}: no English`);
+      analyzed.set(id, { is, author: src.author, from: m.from, swap: m.swap, en: [m.en], nb: [], ...analyzeText(is, formIndex) });
+    }
   }
   return analyzed;
+}
+
+async function referencedSentences() {
+  const read = async (rel) => JSON.parse(await readFile(path.join(ROOT, rel), 'utf8'));
+  const ids = new Set();
+  for (const f of (await read('content/units/index.json')).units) {
+    const u = await read(`content/units/${f}`);
+    if (u.host?.says) ids.add(u.host.says);
+    for (const s of u.guide?.sections ?? []) for (const x of s.examples ?? []) ids.add(x);
+  }
+  for (const f of (await read('content/stories/index.json')).stories) {
+    for (const l of (await read(`content/stories/${f}`)).lines) if (l.sentence) ids.add(l.sentence);
+  }
+  return ids;
 }
 
 function pickSentences(analyzed, lemmaForms) {
@@ -463,6 +517,7 @@ async function main() {
       const bad = blocking(results.get(s.is) ?? []);
       lintStats.checked++;
       if (!bad.length) continue;
+      if (s.from) throw new Error(`${MADE}: GreynirCorrect flags "${s.is}": ${bad.map((a) => `${a.code} ${a.text}`).join('; ')}`);
       s.flagged = bad;
       lintStats.excluded++;
       for (const a of bad) lintStats.codes[a.code] = (lintStats.codes[a.code] ?? 0) + 1;
@@ -472,6 +527,9 @@ async function main() {
   const perLemma = pickSentences(usable, lemmaForms);
   const pool = [...usable].filter(([, s]) => s.en.length && s.unknown === 0 && s.tokens.length <= POOL_MAX_TOKENS).map(([id]) => id);
   const sentenceIds = new Set([...perLemma.values()].flat().concat(pool));
+  // Sentences the content names (guidebook examples, the hosts' greetings, stories) stay in the
+  // data when better ones are found for their words.
+  for (const id of await referencedSentences()) if (usable.has(id)) sentenceIds.add(id);
 
   log('collecting recordings from Wikimedia Commons (cached after the first run)');
   const audio = await recordings(entries, wikt);
@@ -522,9 +580,9 @@ async function main() {
     };
   }
   const sentences = {};
-  for (const id of [...sentenceIds].sort((a, b) => Number(a) - Number(b))) {
+  for (const id of [...sentenceIds].sort(byId)) {
     const s = analyzed.get(id);
-    sentences[id] = { is: s.is, author: s.author, en: s.en.slice(0, 2), nb: s.nb.slice(0, 1), tokens: s.tokens.length, unknown: s.unknown, lemmas: [...s.lemmas] };
+    sentences[id] = { is: s.is, author: s.author, ...(s.from ? { from: s.from, swap: s.swap } : {}), en: s.en.slice(0, 2), nb: s.nb.slice(0, 1), tokens: s.tokens.length, unknown: s.unknown, lemmas: [...s.lemmas] };
   }
   // Where Tatoeba or Wiktionary has no Bokmål, or Wiktionary's is wrong, the one written for TÖLVA
   // (scripts/build-translations.mjs).
@@ -536,7 +594,7 @@ async function main() {
 
   const files = {
     'data/lexicon.json': lexicon,
-    'data/sentences.json': { version: 1, generated: started, license: 'CC BY 2.0 FR (Tatoeba). Each sentence lists its author; ids link to tatoeba.org/sentences/show/<id>.', pool, sentences },
+    'data/sentences.json': { version: 1, generated: started, license: 'CC BY 2.0 FR (Tatoeba). Each sentence lists its author; ids link to tatoeba.org/sentences/show/<id>. A sentence with "from" was made for TÖLVA from that Tatoeba sentence by replacing one word ("swap": the word replaced and the word put in; content/sentences-made.json).', pool, sentences },
     'data/audio.json': { version: 1, generated: started, note: 'Links to recordings on Wikimedia Commons; files are not copied. Credit the speaker and license shown for each.', recordings: audio },
   };
   for (const [theme, lemmas] of Object.entries(shards)) {
@@ -600,7 +658,7 @@ function sourcesJson({ started, manifest, entries, paradigms, apiStats, sizes })
         changes: 'Norwegian Bokmål translations taken from the same translation sense that lists the Icelandic lemma.',
       },
       { id: 'clarin-freq', name: 'Frequency lists for Icelandic 23.06 (giga_simple_freq.tsv)', handle: 'http://hdl.handle.net/20.500.12537/314', ...m('freq'), license: 'CC BY 4.0', changes: 'Only the rank and count of course lemmas are kept.' },
-      { id: 'tatoeba', name: 'Tatoeba sentences and translations', files: ['isl', 'islEng', 'islNob', 'eng', 'nob'].map(m), license: 'CC BY 2.0 FR', changes: 'Sentences selected per lemma; text unchanged; author kept for each sentence.' },
+      { id: 'tatoeba', name: 'Tatoeba sentences and translations', files: ['isl', 'islEng', 'islNob', 'eng', 'nob'].map(m), license: 'CC BY 2.0 FR', changes: 'Sentences selected per lemma; text unchanged; author kept for each sentence. For topics Tatoeba has few sentences on, a few sentences were made from a Tatoeba sentence by replacing one word, with an English translation written for TÖLVA (content/sentences-made.json); they keep the original author, link to the original and say that a word was changed.' },
       { id: 'bin-ylhyra', name: 'Ylhýra inflection API (wrapper over the full BÍN)', url: 'https://ylhyra.is/api/inflection', license: 'Data CC BY-SA 4.0 (BÍN); software MIT', retrieved: started, changes: 'Used only to confirm that indeclinable numerals exist in BÍN; no data copied except the BÍN id.' },
       { id: 'commons', name: 'Wikimedia Commons and Lingua Libre recordings', url: 'https://commons.wikimedia.org/', license: 'Per file; see data/audio.json', retrieved: started, changes: 'Links only; no audio files are copied.' },
     ],
@@ -635,7 +693,7 @@ function reportMd({ started, entries, lexicon, sentences, pool, audio, problems,
     `| 3 or more Tatoeba sentences | ${pct(count((x) => x.sentences.length >= 3))} |`,
     `| Frequency rank in the Icelandic Gigaword Corpus | ${pct(count((x) => x.freq))} |`,
     '',
-    `Sentences kept: ${Object.keys(sentences).length}, of which ${pool.length} use only course vocabulary (names allowed) and have at most ${POOL_MAX_TOKENS} words. Recordings linked: ${Object.values(audio).flat().length}.`,
+    `Sentences kept: ${Object.keys(sentences).length} (${Object.values(sentences).filter((s) => s.from).length} made from a Tatoeba sentence by replacing one word), of which ${pool.length} use only course vocabulary (names allowed) and have at most ${POOL_MAX_TOKENS} words. Recordings linked: ${Object.values(audio).flat().length}.`,
     '',
     lintStats.checked
       ? `GreynirCorrect checked ${lintStats.checked} Tatoeba sentences (with an English translation, at most ${LINT_MAX_TOKENS} words) and excluded ${lintStats.excluded} that it flagged. Most frequent codes: ${Object.entries(lintStats.codes).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([c, k]) => `${c} ${k}`).join(', ')}. Parse failures (E001), exclamation marks (E007) and unknown words (U001) do not exclude a sentence.`

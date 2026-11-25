@@ -528,6 +528,23 @@ if (process.argv.includes('--all')) {
     failed = true;
     console.log(`FAIL Norwegian: ${e.message}`);
   }
+  // The dictionary: a made sentence links to its Tatoeba original and says a word was changed;
+  // examples are the sentences in which the parser reads the word as that word.
+  try {
+    await page.goto(`${url}dictionary.html?q=kartafla`);
+    const credit = page.locator('#dict-examples ~ ul .example small', { hasText: 'one word changed for TÖLVA' }).first();
+    await credit.waitFor({ timeout: 5000 });
+    const href = await credit.locator('a').getAttribute('href');
+    if (!/sentences\/show\/\d+$/.test(href)) throw new Error(`a made sentence links to ${href}`);
+    await page.goto(`${url}dictionary.html?q=saddur`);
+    await page.locator('#dict-examples ~ ul .example').first().waitFor({ timeout: 5000 });
+    const examples = await page.locator('#dict-examples ~ ul .example [lang="is"]').allTextContents();
+    if (!examples.length || examples.some((x) => /\bsatt\b/i.test(x))) throw new Error(`saddur examples: ${examples.join(' | ')}`);
+    console.log(`PASS dictionary: a made sentence credits its original (${href.split('/').pop()}); saddur shows ${examples.length} examples, none with satt (true)`);
+  } catch (e) {
+    failed = true;
+    console.log(`FAIL dictionary: ${e.message}`);
+  }
   if (errors.length) {
     failed = true;
     console.log(`page errors: ${errors.join('; ')}`);

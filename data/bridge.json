@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-25T17:47:06.246Z",
+ "generated": "2026-11-25T18:43:02.465Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -19,8 +19,8 @@
  ],
  "counts": {
   "loan": 7,
-  "old-norse": 200,
-  "form": 13
+  "old-norse": 205,
+  "form": 17
  },
  "pairs": {
   "halló_uh": {
@@ -1428,6 +1428,74 @@
    "oldNorse": "þúsund",
    "evidence": "old-norse",
    "rules": null
+  },
+  "tómatur_no": {
+   "nb": "tomat",
+   "evidence": "form",
+   "rules": [
+    "o-acute",
+    "ending-ur"
+   ]
+  },
+  "kjúklingur_no": {
+   "nb": "kylling",
+   "article": 33339,
+   "oldNorse": "kjúklingr",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "skyr_no": {
+   "nb": "skyr",
+   "evidence": "form",
+   "rules": []
+  },
+  "salt_no": {
+   "nb": "salt",
+   "article": 49779,
+   "oldNorse": "salt",
+   "evidence": "old-norse",
+   "rules": []
+  },
+  "baka_so": {
+   "nb": "bake",
+   "article": 4091,
+   "oldNorse": "baka",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "kokkur_no": {
+   "nb": "kokk",
+   "evidence": "form",
+   "rules": [
+    "ending-ur"
+   ]
+  },
+  "ís_no": {
+   "nb": "is",
+   "article": 27187,
+   "oldNorse": "íss",
+   "evidence": "old-norse",
+   "rules": [
+    "i-acute"
+   ]
+  },
+  "flaska_no": {
+   "nb": "flaske",
+   "article": 15247,
+   "oldNorse": "flaska",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "hella_so": {
+   "nb": "helle",
+   "evidence": "form",
+   "rules": [
+    "ending-a"
+   ]
   },
   "veður_no": {
    "nb": "vær",

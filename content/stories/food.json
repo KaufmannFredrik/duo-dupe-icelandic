@@ -1,0 +1,66 @@
+{
+  "id": "food",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "Dinner's ready",
+    "nb": "Middagen er klar"
+  },
+  "level": "A1",
+  "after": "food",
+  "dialogue": true,
+  "cast": {
+    "A": "amma",
+    "B": "elias"
+  },
+  "lines": [
+    {
+      "sentence": "794381",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1316634",
+      "speaker": "A"
+    },
+    {
+      "sentence": "473497",
+      "speaker": "B"
+    },
+    {
+      "sentence": "738263",
+      "speaker": "A"
+    },
+    {
+      "sentence": "482978",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1319432",
+      "speaker": "A"
+    },
+    {
+      "sentence": "698232",
+      "speaker": "A"
+    },
+    {
+      "sentence": "736645",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1351282",
+      "speaker": "B"
+    },
+    {
+      "sentence": "905135",
+      "speaker": "B"
+    },
+    {
+      "sentence": "386241",
+      "speaker": "A"
+    },
+    {
+      "sentence": "1355183",
+      "speaker": "A"
+    }
+  ]
+}

@@ -73,6 +73,11 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | *sofna* in *Þú mátt ekki sofna* is the verb *sofna* ("fall asleep"), not a plural of a noun *sofn* as the parser reads it; *hvíldum* in *Við hvíldum okkur einn á eftir öðrum* is the past of *hvíla*, which the parser leaves open. | W sofna; DMII (*sofna* infinitive; *hvíldum* GM-FH-ÞT-1P-FT); translation of T 7319832; the parser's own reading of T 673384, 673385 | sourced |
 | *Farðu í sturtu* and *Ekki standa á fætur* take the accusative (a movement), not the dative and the nominative the parser gives; the two sentences keep no parser case. | the case rules for *í* and *á* with a movement (elon); the parser's accusative in T 664662, 698321 (*í sturtu*) and in ten sentences with *á fætur* | sourced |
 | An ordinal is its own class in BÍN (rt) and an adjective to the parser: *þriðju* (lemma *þriðji*, class lo) is the course word *þriðji*. | DMII (class rt for *þriðji* to *tíundi*); the parser's output for *Ég bý á þriðju hæð* and *sjöunda skipti* | checked |
+| *satt* in *Það er svo satt*, *Ég er sein, ekki satt?* and six more is the neuter of *sannur* ("true"), not of *saddur* ("full") as the parser reads it; a fix with lemma null marks it as a word outside the course. | W satt ("inflection of sannur: neuter singular"); translations of T 489143, 503350, 1324576, 1324577, 3799338, 4032163, 11537023, 11537032 | sourced |
+| *saddur*, *södd* in *Ég er saddur!*, *Ég er södd.* and two more are the adjective *saddur* ("full"), not the participle of *seðja* the parser reads. | W saddur (adjective, "satiated, full"); DMII (*saddur* lo); translations of T 905135, 905137, 1316219, 1316220 | sourced |
+| *salt* in *Þetta er ekki salt* is the noun, as its translation says ("This isn't salt."), not the neuter of the adjective *saltur* the parser reads. | translation of T 11208765 | sourced |
+| *ísa* in *Tvo stóra ísa, takk* (made from T 488539) is the accusative plural of *ís* after *tvo*; the parser cannot analyze the sentence. | DMII (*ísa* ÞFFT of *ís*); T 488539 ("Two vanilla ice creams, please.") | sourced |
+| *með* in the sense "along with" takes the dative, so *Hrísgrjón eru góð með sósu* and *með fiski* (made from T 382243) keep no parser case (it gives the accusative), and *fiski* there is *fiskur*, not the noun *fiski* ("fishing"). | W með (as in the *Búð* rows); T 870309 (*brauð með smjöri*); DMII (*fiski* ÞGFET of *fiskur*) | sourced |
 
 The parser itself is not checked case by case: `npm run build:tags` lists the 306 words it gives to another word than their spelling suggests.
 
@@ -222,6 +227,38 @@ Headings name the units rather than their numbers, because new units are inserte
 | *með* + dative for company, + accusative for what one brings or has. | W með ("with dative or accusative", *með konunni minni*); T 3799264, 698251, 388901 | sourced |
 | *án* + genitive; *af* + dative; *Af hverju?* | W án, af | sourced |
 
+### *Matur*
+
+| Claim | Source | Status |
+|---|---|---|
+| *grænmeti* is made from *grænn* ("green") and *matur* ("food"); Norwegian says *grønnsaker*. | W grænmeti ("From grænn ('green') + -meti, from matur"); BMO grønnsak | sourced |
+| *grænmeti*, *skyr* and *súkkulaði* have no plural; *Hún keypti grænmeti í gær* is "she bought vegetables yesterday". | DMII (singular forms only); T 653128, 476765 | sourced |
+| *ávöxtur* has the plural *ávextir*; *kartafla* has *kartöflur*, as *kaka* has *kökur*; *banani* and *tómatur* have *bananar*, *tómatar*, and are masculine. | DMII | attested |
+| *kartafla* was borrowed from Danish *kartoffel*; Norwegian says *potet*. | W kartafla ("Borrowed from Danish kartoffel"); BMO potet | sourced |
+| *hrísgrjón* is plural for rice (one *hrísgrjón* is a grain), so the verb and the adjective are plural. | W hrísgrjón ("a grain of rice"; "(in the plural) rice"); T 382243 (*Hrísgrjón eru góð*) | sourced |
+| Norwegian *kylling* and Icelandic *kjúklingur* come from Old Norse *kjúklingr*. | W kjúklingur ("From Old Norse kjúklingr"); BMO kylling ("norr. kjúklingr") | sourced |
+| *pylsa* is a sausage and a hot dog, probably from Danish *pølse*, the word Norwegian has too. | W pylsa ("sausage", "hot dog"; "Probably from Danish pølse"); BMO pølse ("jf isl pylsa") | sourced |
+| Bokmålsordboka has *skyr* as a word from Icelandic. | BMO skyr ("fra isl") | sourced |
+| *fá sér* is to have something to eat or drink. | T 385537 ("I have breakfast at seven"), 389025 ("I ate a hot dog for lunch"), 1337026, 382340 | attested |
+| *vera til* is to exist, to be available: *Það er ekki til meira salt* is "there's no more salt". | W vera til ("to exist, to be available"); T 468923 | sourced |
+| *búinn* is "used up, finished" and agrees with what is used up: *Saltið er búið*. | W búinn ("depleted, finished"); T 468926; DMII | sourced |
+| *með* takes the dative with food, as for company; *sósu* is the same in the dative and the accusative, *kjötinu* is dative. | W með (as in the *Búð* rows); T 690335, 870309; DMII (*sósu* ÞFET and ÞGFET, *kjötinu* ÞGFETgr) | sourced |
+| *elda* is made from *eldur* ("fire"), and *eldhús* from *eldur* + *hús*; compare Nynorsk *eldhus*. | W elda ("From eldur ('fire')"), eldhús ("From eldur ('fire') + hús ('house'). Compare Norwegian Nynorsk eldhus") | sourced |
+| Where Norwegian says *lage mat*, Icelandic has the one verb *elda*; a cook is a *kokkur*, Norwegian *kokk*. | W elda ("to cook"; Bokmål *lage mat* in its translation table); W kokkur ("cook, chef"); BMO kokk | sourced |
+| *sjóða* became Norwegian *syde*, and it changes its vowel in the past: *sauð*. | W sjóða ("From Old Norse sjóða"); BMO syde ("norr. sjóða"); DMII (*sauð* GM-FH-ÞT-3P-ET); T 908840 | sourced |
+| *baka* is regular, with *ö* before *u*: *bakaði*, *bökum*. | DMII; T 908931, 511469 | attested |
+| *ísskápur* is *ís* + *skápur* ("cupboard"). | W ísskápur ("From ís ('ice') + skápur ('cupboard, cabinet')"), skápur | sourced |
+| *súkkulaði* came through Danish *chokolade*. | W súkkulaði ("Borrowed from Danish chokolade") | sourced |
+| BÍN spells pizza *pitsa*; Wiktionary lists *pítsa* as another spelling, and Tatoeba writes it so. | DMII Core API (*pitsa* found, *pítsa* and *pizza* not, 2026-11-25); W pítsa ("alternative form of pitsa"); T 4032141 | sourced |
+| *samloka* is the prefix *sam-* and *loka* ("latch"), and also means a clam. | W samloka (etymology "sam- + loka ('latch, catch, bolt')"; senses "sandwich", "bivalve") | sourced |
+| *ís* is both ice and ice cream, as Norwegian *is* is. | W ís ("ice cream; ice"); BMO is ("frosset vann"; "ispinne, iskrem") | sourced |
+| *flaska* is Norwegian *flaske*; *dós* is a tin can, Norwegian *boks*. | W flaska, dós ("tin can"); BMO flaske, boks | sourced |
+| After a meal one says *Takk fyrir matinn*, as Norwegians say *takk for maten*; the answer is *Verði þér að góðu* ("you're welcome"), which before a meal wishes a good meal. | T 917595 (Tatoeba's own Bokmål: *Takk for maten.*), 482353; W verði þér að góðu ("you're welcome (a response to a 'thank you')"; "bon appétit") | sourced |
+| How something tastes is the -st form *smakkast*: *Hvernig smakkast súpan?*, Norwegian *Hvordan smaker suppen?*; both verbs came from Low German. | T 698232 (Tatoeba's own Bokmål: *Hvordan smaker suppen?*); W smakka ("Borrowed from Middle Low German smaken"); BMO smake ("fra l.ty.") | sourced |
+| *saddur* agrees like *seinn* (*saddur*, *södd*), and began as the past participle of *seðja* ("to satiate"). | DMII (*saddur*, *södd*; *seðja*); T 905135, 905137; W saddr (Old Norse section: "past participle of seðja") | sourced |
+| *hollur* is "healthy"; *ljúffengur* is "delicious". | W hollur ("wholesome, healthy"), ljúffengur ("delicious, tasty"); T 3997620, 3795532 | sourced |
+| *hella* is Norwegian *helle*, from Old Norse *hella*. | W hella ("to pour"); BMO helle ("norr. hella") | sourced |
+
 ### *Veður*
 
 | Claim | Source | Status |
@@ -273,9 +310,71 @@ Headings name the units rather than their numbers, because new units are inserte
 
 The sentences are unchanged Tatoeba sentences, each readable after the unit the story follows (only words from that unit and earlier ones). Their choice, order and speaker labels are design choices, not claims. Which cast member speaks a dialogue (`"cast"`) or tells a reading (`"narrator"`) is a design choice too; so is each unit host's greeting (`"host"` in the unit files), an unchanged Tatoeba sentence shown with its Tatoeba translation.
 
+## Made sentences (`content/sentences-made.json`)
+
+Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA from a Tatoeba sentence by putting another word in place of one word, in the DMII Core form the sentence needs (`docs/PLAN.md`, decision 3). The app names the original's author, links to the original and says that a word was changed (CC BY 2.0 FR). Each is a claim that the result is correct Icelandic and says what its English says; they are checked as follows.
+
+| Check | Source | Status |
+|---|---|---|
+| The sentence is the Tatoeba sentence with exactly one word replaced (the word occurs once; the rest is unchanged) | `scripts/build-data.mjs` (`swapWord`), `tests/engine.test.mjs` | checked |
+| The word put in is a DMII Core form, and the one the sentence needs: the same case as the word it replaces, and agreement kept (*Saltið er búið* → *Skyrið er búið*, both neuter; *Ávextir eru hollir* → *Bananar eru hollir*, both masculine plural) | DMII; the parser's reading of each made sentence (`data/tags.json`; *sósu*, *fiski* and *ísa* corrected in the tag rows above) | checked |
+| GreynirCorrect finds no error (a flagged made sentence stops the build) | `scripts/build-data.mjs` | checked |
+| The word put in is the course word the sentence is for, in the parser's reading | `tests/engine.test.mjs` | checked |
+| The English is the original's English with the same word changed; the Bokmål is written like the other hand translations (below) | T (the original's English); BMO | checked |
+
+| Made | Sentence | From | Word replaced | English |
+|---|---|---|---|---|
+| 1324689-1 | *Hún keypti kartöflur.* | T 1324689 | *kjúkling* → *kartöflur* | She bought potatoes. |
+| 1324689-2 | *Hún keypti banana.* | T 1324689 | *kjúkling* → *banana* | She bought bananas. |
+| 1324689-3 | *Hún keypti skyr.* | T 1324689 | *kjúkling* → *skyr* | She bought skyr. |
+| 1324689-4 | *Hún keypti hrísgrjón.* | T 1324689 | *kjúkling* → *hrísgrjón* | She bought rice. |
+| 1324689-5 | *Hún keypti ís.* | T 1324689 | *kjúkling* → *ís* | She bought ice cream. |
+| 1324689-6 | *Hún keypti grænmeti.* | T 1324689 | *kjúkling* → *grænmeti* | She bought vegetables. |
+| 1324689-7 | *Hún keypti tómata.* | T 1324689 | *kjúkling* → *tómata* | She bought tomatoes. |
+| 470238-1 | *Hann borðar oft grænmeti í kvöldmat.* | T 470238 | *fisk* → *grænmeti* | He often eats vegetables for dinner. |
+| 470238-2 | *Hann borðar oft pylsur í kvöldmat.* | T 470238 | *fisk* → *pylsur* | He often eats hot dogs for dinner. |
+| 470238-3 | *Hann borðar oft kjúkling í kvöldmat.* | T 470238 | *fisk* → *kjúkling* | He often eats chicken for dinner. |
+| 479467-1 | *Ég ætla að panta pitsu.* | T 479467 | *samloku* → *pitsu* | I would like to order a pizza. |
+| 479467-2 | *Ég ætla að panta pylsu.* | T 479467 | *samloku* → *pylsu* | I would like to order a hot dog. |
+| 479467-3 | *Ég ætla að panta ís.* | T 479467 | *samloku* → *ís* | I would like to order an ice cream. |
+| 468923-1 | *Það er ekki til meira súkkulaði.* | T 468923 | *salt* → *súkkulaði* | There's no more chocolate. |
+| 468923-2 | *Það er ekki til meira grænmeti.* | T 468923 | *salt* → *grænmeti* | There are no more vegetables. |
+| 468926-1 | *Skyrið er búið.* | T 468926 | *Saltið* → *Skyrið* | The skyr is all gone. |
+| 468926-2 | *Súkkulaðið er búið.* | T 468926 | *Saltið* → *Súkkulaðið* | The chocolate is all gone. |
+| 387357-1 | *Mamma mín eldar góðan kjúkling.* | T 387357 | *mat* → *kjúkling* | My mother cooks good chicken. |
+| 908840-1 | *Hún sauð kartöflurnar.* | T 908840 | *eggin* → *kartöflurnar* | She boiled the potatoes. |
+| 908840-2 | *Hún sauð pylsurnar.* | T 908840 | *eggin* → *pylsurnar* | She boiled the sausages. |
+| 496225-1 | *Sjóddu hrísgrjónin.* | T 496225 | *vatnið* → *hrísgrjónin* | Boil the rice. |
+| 496225-2 | *Sjóddu kartöflurnar.* | T 496225 | *vatnið* → *kartöflurnar* | Boil the potatoes. |
+| 511469-1 | *Hún bakaði mér pitsu.* | T 511469 | *köku* → *pitsu* | She made me a pizza. |
+| 908931-1 | *Bökum brauð.* | T 908931 | *köku* → *brauð* | Let's bake bread. |
+| 1319432-1 | *Opnaðu ísskápinn.* | T 1319432 | *flöskuna* → *ísskápinn* | Open the fridge. |
+| 1319432-2 | *Opnaðu dósina.* | T 1319432 | *flöskuna* → *dósina* | Open the can. |
+| 1321809-1 | *Má ég opna ísskápinn?* | T 1321809 | *dós* → *ísskápinn* | May I open the fridge? |
+| 698232-1 | *Hvernig smakkast sósan?* | T 698232 | *súpan* → *sósan* | How does the sauce taste? |
+| 698232-2 | *Hvernig smakkast pitsan?* | T 698232 | *súpan* → *pitsan* | How does the pizza taste? |
+| 698232-3 | *Hvernig smakkast kjúklingurinn?* | T 698232 | *súpan* → *kjúklingurinn* | How does the chicken taste? |
+| 3997620-1 | *Bananar eru hollir.* | T 3997620 | *Ávextir* → *Bananar* | Bananas are healthy. |
+| 3997620-2 | *Tómatar eru hollir.* | T 3997620 | *Ávextir* → *Tómatar* | Tomatoes are healthy. |
+| 3795532-1 | *Er skyrið ekki ljúffengt?* | T 3795532 | *það* → *skyrið* | Isn't the skyr delicious? |
+| 3795532-2 | *Er súkkulaðið ekki ljúffengt?* | T 3795532 | *það* → *súkkulaðið* | Isn't the chocolate delicious? |
+| 475506-1 | *Hún hellti mér bolla af kaffi.* | T 475506 | *tei* → *kaffi* | She poured me a cup of coffee. |
+| 12340291-1 | *Þetta er grænn banani.* | T 12340291 | *fiskur* → *banani* | This is a green banana. |
+| 12340291-2 | *Þetta er grænn tómatur.* | T 12340291 | *fiskur* → *tómatur* | This is a green tomato. |
+| 7319740-1 | *Epli eða banani?* | T 7319740 | *Gulrót* → *Epli* | Apple or banana? |
+| 11208765-1 | *Þetta er ekki sósa.* | T 11208765 | *salt* → *sósa* | This isn't sauce. |
+| 382243-1 | *Hrísgrjón eru góð með sósu.* | T 382243 | *mísósúpu* → *sósu* | Rice is good with sauce. |
+| 382243-2 | *Hrísgrjón eru góð með fiski.* | T 382243 | *mísósúpu* → *fiski* | Rice is good with fish. |
+| 488539-1 | *Tvo stóra ísa, takk.* | T 488539 | *vanillu* → *stóra* | Two big ice creams, please. |
+| 389015-1 | *Hann drekkur dós af bjór með matnum.* | T 389015 | *flösku* → *dós* | He drinks a can of beer at dinner. |
+| 389025-1 | *Ég fékk mér pylsu í hádegismat.* | T 389025 | *pulsu* → *pylsu* | I ate a hot dog for lunch. |
+| 389025-2 | *Ég fékk mér samloku í hádegismat.* | T 389025 | *pulsu* → *samloku* | I ate a sandwich for lunch. |
+| 788778-1 | *Það er lítið af mjólk eftir í ísskápnum.* | T 788778 | *flöskunni* → *ísskápnum* | There is little milk left in the fridge. |
+| 677862-1 | *Það er kokkur í eldhúsinu.* | T 677862 | *köttur* → *kokkur* | There is a cook in the kitchen. |
+
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 32 of the 2,174 sentences. The other 2,133 (all but nine excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 32 of the 2,283 sentences. The other 2,237 (all but 14 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 47 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -288,7 +387,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 361 of the 419 course words. The other 58 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 73 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 386 of the 447 course words. The other 61 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 76 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -301,6 +400,7 @@ Wiktionary gives a Bokmål gloss for 361 of the 419 course words. The other 58 w
 | réttur, kynna, heilsa, afsaka, kennitala, netfang | riktig, rett; presentere, introdusere; hilse; unnskylde; personnummer; e-postadresse | the adjective "right, correct" (W's third sense, the one in the course sentences, *Það er rétt*, *rétta svarið*); "to introduce"; "to greet"; "to excuse"; "national identification number" (BMO personnummer: the Norwegian number of the same kind); "e-mail address" |
 | áttatíu, níutíu, níundi, hálfur, nokkur, mikið | åtti; nitti; niende; halv; noen; mye | the plain equivalents (W "eighty", "ninety", "ninth", "half", "some", "much, a lot"); *nokkur* shares *noen* with *einhver*, and the adverb *mikið* (W: from *mikill*) shares *mye* with *mikill*: near-synonyms, so typing either counts and they are never options together |
 | svo, ætla, seinn, klára, hvíla, venjulega, bað | så; ha tenkt, skulle, planlegge; sen, forsinket; fullføre, gjøre ferdig; hvile; vanligvis, normalt; bad | W "so", "to intend, to plan, be going to", "late", "to finish (a task)", "to rest", "normally", "bath"; *seinn* is *sen* (BMO sen: "som skjer lenger inn i framtiden enn ventet"), the same Old Norse word; *klára* is not *klare*, which is "manage" (BMO; the guidebook says so) |
+| skyr, sjóða, saddur | skyr; koke; mett | W "skyr", "to boil", "satiated, full"; BMO skyr (a word from Icelandic), koke, mett ("som ikke er sulten") |
 | sæll | hei, ha det, sæl | W's senses "hello (a greeting)" and "happy"; the course sentences use it to greet and take leave (*Komdu nú sæll*, *Vertu sæll*), and *sæl* (BMO "lykkelig, glad") is the same Old Norse word |
 
 ### Wiktionary glosses corrected (`"fixes"`)
@@ -351,12 +451,13 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | sofna | falle i søvn | sovne, falle i søvn | "to fall asleep": the one-word verb first (BMO sovne) |
 | loksins | til slutt | endelig, til slutt | "finally", in the course sentences "at last" (*Loksins fékk hann bílinn*); BMO endelig ("brukt som adverb: til slutt, omsider") |
 | skilaboð | budskap | beskjed, melding, budskap | "message", in the course sentences one left for someone (*skilja eftir skilaboð*, *legge igjen en beskjed*); *budskap* is a message in the sense of what a text says |
+| kjúklingur | høne | kylling | "chicken"; *høne* is a hen (BMO "hunndyr av arten tamhøns"), *kylling* the young bird and its meat (BMO), from the same Old Norse word (the guidebook) |
 
-Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
+Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *dós* kanne (BMO: a jug), *pylsa* kurv and korv (BMO's other word for a sausage, but *kurv* is mostly a basket), *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 393 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 418 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|

@@ -13,7 +13,7 @@ import { icon } from '../shell.js';
 import { getSettings } from '../store.js';
 import { TTS_VOICES, play, ttsCredit } from '../audio.js';
 import { voicePicker } from '../ui/voice-picker.js';
-import { loadSentences, sentence, translation } from '../data.js';
+import { changedNote, loadSentences, sentence, tatoebaLink, translation } from '../data.js';
 import { hostOf } from '../characters.js';
 import { characterImg } from '../ui/character.js';
 
@@ -62,7 +62,7 @@ function hostHTML(u) {
 }
 const greetings = course.units.filter((u) => hostOf(u) && unitOpen(u) && sentence(u.host.says)).map((u) => u.host.says);
 const greetingCredit = greetings.length
-  ? `<p class="credit learn-credit">${t('learn.hostCredit', { list: greetings.map((sid) => `<a href="https://tatoeba.org/en/sentences/show/${sid}" rel="noopener">#${sid}</a> (${esc(sentence(sid).author ?? t('credit.unknownAuthor'))})`).join(', ') })} <span data-voice-credit></span></p>`
+  ? `<p class="credit learn-credit">${t('learn.hostCredit', { list: greetings.map((sid) => `${tatoebaLink(sid)} (${esc(sentence(sid).author ?? t('credit.unknownAuthor'))}${changedNote(sid)})`).join(', ') })} <span data-voice-credit></span></p>`
   : '';
 
 // A first visit: no course lesson done and no units skipped (practice rounds, such as the letters,

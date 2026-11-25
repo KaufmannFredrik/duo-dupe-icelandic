@@ -9,7 +9,7 @@ import { loadCourse, unitDone } from '../course.js';
 import { loadProgress, recordQuests } from '../progress.js';
 import { celebrate } from '../ui/celebrate.js';
 import { pick, t } from '../i18n.js';
-import { analyze, casesOf, gloss, lemma, loadAll, recordings, sentence, tagsOf, translation } from '../data.js';
+import { analyze, casesOf, changedNote, gloss, lemma, loadAll, recordings, sentence, tagsOf, tatoebaLink, translation } from '../data.js';
 import { play, stop, ttsCredit } from '../audio.js';
 import { icon } from '../shell.js';
 import { caseTag, classLabel, describe, genderLabel } from '../ui/forms.js';
@@ -83,7 +83,7 @@ function renderReader() {
     })
     .join('');
   document.querySelector('[data-reader-credits]').innerHTML = t('stories.credit', {
-    list: story.lines.map(({ sentence: sid }) => `<a href="https://tatoeba.org/en/sentences/show/${sid}" rel="noopener">#${sid}</a> (${esc(sentence(sid).author ?? t('credit.unknownAuthor'))})`).join(', '),
+    list: story.lines.map(({ sentence: sid }) => `${tatoebaLink(sid)} (${esc(sentence(sid).author ?? t('credit.unknownAuthor'))}${changedNote(sid)})`).join(', '),
   });
   ttsCredit().then((c) => {
     if (c) document.querySelector('[data-voice-credit]').textContent = c;

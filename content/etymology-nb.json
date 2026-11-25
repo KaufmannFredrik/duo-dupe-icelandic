@@ -1583,6 +1583,106 @@
     "sofna_so": {
       "nb": "Fra norrønt sofna.",
       "of": "317c5440"
+    },
+    "ávöxtur_no": {
+      "nb": "Fra norrønt ávǫxtr; sammenlign færøysk ávøkstur.",
+      "of": "73df66aa"
+    },
+    "grænmeti_no": {
+      "nb": "Av grænn («grønn») + -meti, av matur.",
+      "of": "fb383ad7"
+    },
+    "kartafla_no": {
+      "nb": "Lånt fra dansk kartoffel, fra tysk Kartoffel eller Tartuffel, fra italiensk tartufolo, av tartufo («trøffel»).",
+      "of": "109b77f7"
+    },
+    "banani_no": {
+      "nb": "Lånt fra dansk banan, fra engelsk banana, fra et romansk språk (enten portugisisk banana eller spansk banana), fra wolof banaana.",
+      "of": "6095876c"
+    },
+    "tómatur_no": {
+      "nb": "Opprinnelig fra klassisk nahuatl tomatl.",
+      "of": "f5890e70"
+    },
+    "kjúklingur_no": {
+      "nb": "Fra norrønt kjúklingr.",
+      "of": "13332e9f"
+    },
+    "hrísgrjón_no": {
+      "nb": "Av hrís («ris») + grjón («korn»).",
+      "of": "1325d7aa"
+    },
+    "pylsa_no": {
+      "nb": "Trolig fra dansk pølse.",
+      "of": "d3a1df33"
+    },
+    "skyr_no": {
+      "nb": "Fra norrønt skyr («tykk, surnet melk», ordrett «utskilt»), av skera («å dele»). I slekt med dansk skør (dialekt), skørost (dialekt), norsk nynorsk skyr («kjernemelk, surmelk») eller skjør, og svensk skyr. Det latinske uttrykket lac concretum («tykk melk») finnes i Tacitus’ Germania. Kanskje lånt inn i engelsk som scurvy.",
+      "of": "d7a7c272"
+    },
+    "sósa_no": {
+      "nb": "Lånt fra dansk sovs, fra fransk sauce, fra latin salsa, hunkjønn av salsus («saltet»).",
+      "of": "16ea1068"
+    },
+    "salt_no": {
+      "nb": "Fra norrønt salt, fra urgermansk *saltą, fra urindoeuropeisk *séh₂l-, *sḗh₂l, *sáls.",
+      "of": "00d42190"
+    },
+    "eldhús_no": {
+      "nb": "Av eldur («ild») + hús («hus»). Sammenlign norsk nynorsk eldhus.",
+      "of": "7b0ce731"
+    },
+    "ísskápur_no": {
+      "nb": "Av ís («is») + skápur («skap»).",
+      "of": "27a54e63"
+    },
+    "elda_so": {
+      "nb": "Av eldur («ild»).",
+      "of": "b4e0c3b5"
+    },
+    "sjóða_so": {
+      "nb": "Fra norrønt sjóða, fra urgermansk *seuþaną.",
+      "of": "3a950d74"
+    },
+    "baka_so": {
+      "nb": "Fra norrønt baka, fra urgermansk *bakaną, fra urindoeuropeisk *bʰeh₃g-.",
+      "of": "e814b9ce"
+    },
+    "kokkur_no": {
+      "nb": "Arvet fra norrønt kokkr, fra urgermansk *kukkaz.",
+      "of": "4d9261b5"
+    },
+    "samloka_no": {
+      "nb": "sam- («sam-») + loka («lås, slå»), tilsynelatende om måten skjell «klemmer» skallene sammen på. Betydningen «sandwich» kommer av at en sandwich (særlig en lang sandwich) ligner ulike skjell, særlig blåskjell, der brødskivene over og under ligner skallet.",
+      "of": "dc3889a0"
+    },
+    "pitsa_no": {
+      "nb": "Lånt fra italiensk pizza.",
+      "of": "59bbbb9d"
+    },
+    "súkkulaði_no": {
+      "nb": "Lånt fra dansk chokolade, fra tysk Schokolade, fra nederlandsk chocolade, fra spansk chocolate, fra klassisk nahuatl chocolātl.",
+      "of": "295ee0c0"
+    },
+    "ís_no": {
+      "nb": "Fra norrønt íss.",
+      "of": "1d502c44"
+    },
+    "flaska_no": {
+      "nb": "Fra norrønt flaska, fra urgermansk *flaskǭ. Dublett av fíaskó.",
+      "of": "f6d19237"
+    },
+    "smakka_so": {
+      "nb": "Lånt fra middelnedertysk smaken («å smake»); se nederlandsk smaken («å smake») for mer.",
+      "of": "9a1d26b4"
+    },
+    "saddur_lo": {
+      "nb": "Fra norrønt saddr.",
+      "of": "c640e691"
+    },
+    "hollur_lo": {
+      "nb": "Fra norrønt hollr, fra urgermansk *hulþaz. Beslektet med gotisk 𐌷𐌿𐌻𐌸𐍃 (hulþs), svensk huld.",
+      "of": "93933405"
     }
   }
 }

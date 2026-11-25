@@ -1,0 +1,235 @@
+{
+  "id": "food",
+  "theme": "food",
+  "reviewed": true,
+  "title": {
+    "en": "Food",
+    "nb": "Mat"
+  },
+  "is": "Matur",
+  "goal": {
+    "en": "Talk about food: fruit and vegetables, what is for dinner, cooking in the kitchen, snacks, and how the food tastes.",
+    "nb": "Snakk om mat: frukt og grønnsaker, hva det er til middag, matlaging på kjøkkenet, noe å bite i, og hvordan maten smaker."
+  },
+  "host": {
+    "character": "amma",
+    "says": "690335"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Fruit and vegetables",
+        "nb": "Frukt og grønnsaker"
+      },
+      "focus": [
+        "ávöxtur_no",
+        "grænmeti_no",
+        "kartafla_no",
+        "banani_no",
+        "tómatur_no"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "What's for dinner?",
+        "nb": "Hva er det til middag?"
+      },
+      "focus": [
+        "kjúklingur_no",
+        "hrísgrjón_no",
+        "pylsa_no",
+        "skyr_no",
+        "sósa_no",
+        "salt_no"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "In the kitchen",
+        "nb": "På kjøkkenet"
+      },
+      "focus": [
+        "eldhús_no",
+        "ísskápur_no",
+        "elda_so",
+        "sjóða_so",
+        "baka_so",
+        "kokkur_no"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "Snacks",
+        "nb": "Noe å bite i"
+      },
+      "focus": [
+        "samloka_no",
+        "pitsa_no",
+        "súkkulaði_no",
+        "ís_no",
+        "flaska_no",
+        "dós_no"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "Thanks for the food",
+        "nb": "Takk for maten"
+      },
+      "focus": [
+        "smakka_so",
+        "saddur_lo",
+        "hollur_lo",
+        "ljúffengur_lo",
+        "hella_so"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "Fruit and vegetables: ávöxtur, grænmeti, kartafla",
+          "nb": "Frukt og grønnsaker: ávöxtur, grænmeti, kartafla"
+        },
+        "text": {
+          "en": "{is:grænmeti} (vegetables) is green food, made from {is:grænn} (green) and {is:matur} (food). It is one word for vegetables in general and has no plural, so where Norwegian says grønnsaker, Icelandic says {is:Hún keypti grænmeti í gær} (she bought vegetables yesterday). {is:ávöxtur} (a fruit) changes its vowel in the plural: {is:Ávextir eru hollir} (fruit is healthy). Potatoes reached Icelandic from Danish: {is:kartafla} is Danish kartoffel, where Norwegian says potet. Its plural is {is:kartöflur}, with ö before the u of the ending, as {is:kaka} has {is:kökur}. {is:banani} and {is:tómatur} are masculine: {is:bananar}, {is:tómatar}.",
+          "nb": "{is:grænmeti} (grønnsaker) er grønn mat, laget av {is:grænn} (grønn) og {is:matur} (mat). Det er ett ord for grønnsaker i det hele tatt og har ikke flertall, så der norsk sier grønnsaker, sier islandsk {is:Hún keypti grænmeti í gær} (hun kjøpte grønnsaker i går). {is:ávöxtur} (en frukt) skifter vokal i flertall: {is:Ávextir eru hollir} (frukt er sunt). Poteten kom til islandsk fra dansk: {is:kartafla} er dansk kartoffel, der norsk sier potet. Flertall er {is:kartöflur}, med ö foran u-en i endelsen, slik {is:kaka} har {is:kökur}. {is:banani} og {is:tómatur} er hankjønn: {is:bananar}, {is:tómatar}."
+        },
+        "examples": [
+          "3997620",
+          "653128",
+          "1324689-1",
+          "12340291-1",
+          "470231"
+        ],
+        "tables": [
+          "ávöxtur_no",
+          "kartafla_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "What's for dinner: kjúklingur, hrísgrjón, pylsa, skyr",
+          "nb": "Hva er det til middag: kjúklingur, hrísgrjón, pylsa, skyr"
+        },
+        "text": {
+          "en": "Rice is plural in Icelandic: {is:hrísgrjón} are grains of rice, so the verb and the adjective are plural too, {is:Hrísgrjón eru góð með fiski} (rice is good with fish). Norwegian kylling comes from the same Old Norse word as {is:kjúklingur}, kjúklingr. {is:pylsa} is a sausage and the Icelandic hot dog; Wiktionary takes it from Danish pølse, the word Norwegian has too. {is:skyr} went the other way: Bokmålsordboka has skyr as a word from Icelandic. Like {is:grænmeti}, {is:skyr} has no plural. To have something to eat or drink is {is:fá sér}, to get yourself: {is:Ég fæ mér morgunmat klukkan sjö} (I have breakfast at seven), {is:Ég fékk mér pylsu í hádegismat} (I had a hot dog for lunch).",
+          "nb": "Ris er flertall på islandsk: {is:hrísgrjón} er riskorn, så verbet og adjektivet står også i flertall, {is:Hrísgrjón eru góð með fiski} (ris er godt med fisk). Norsk kylling kommer av det samme norrøne ordet som {is:kjúklingur}, kjúklingr. {is:pylsa} er en pølse og den islandske pølsa i brød; Wiktionary mener det kommer av dansk pølse, ordet norsk også har. {is:skyr} gikk den andre veien: Bokmålsordboka har skyr som et ord fra islandsk. Som {is:grænmeti} har {is:skyr} ikke flertall. Å ta seg noe å spise eller drikke er {is:fá sér}, å få seg: {is:Ég fæ mér morgunmat klukkan sjö} (jeg spiser frokost klokken sju), {is:Ég fékk mér pylsu í hádegismat} (jeg spiste en pølse til lunsj)."
+        },
+        "examples": [
+          "382243-2",
+          "1324689",
+          "389025-1",
+          "385537",
+          "468926-1"
+        ],
+        "tables": [
+          "hrísgrjón_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "No more salt: vera til, búinn, með",
+          "nb": "Ikke mer salt: vera til, búinn, með"
+        },
+        "text": {
+          "en": "{is:vera til} is to exist, to be there to have, so {is:Það er ekki til meira salt} is there is no more salt. {is:búinn} is finished, used up, and agrees with what is finished: {is:Saltið er búið}. With food, {is:með} takes the dative, as it does for company: {is:Viltu sósu með kjötinu?} (do you want sauce with the meat?). {is:sósu} looks the same in the dative and the accusative, but {is:kjötinu} shows the case.",
+          "nb": "{is:vera til} er å finnes, å være der å få tak i, så {is:Það er ekki til meira salt} er det er ikke mer salt. {is:búinn} er ferdig, oppbrukt, og samsvarer med det som er brukt opp: {is:Saltið er búið}. Med mat styrer {is:með} dativ, slik det gjør om følge: {is:Viltu sósu með kjötinu?} (vil du ha saus til kjøttet?). {is:sósu} ser lik ut i dativ og akkusativ, men {is:kjötinu} viser kasus."
+        },
+        "examples": [
+          "468923",
+          "468926",
+          "690335",
+          "382243-1",
+          "11208765"
+        ],
+        "tables": [
+          "sósa_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Cooking with fire: elda, sjóða, baka",
+          "nb": "Matlaging med ild: elda, sjóða, baka"
+        },
+        "text": {
+          "en": "Icelandic cooks with fire: {is:elda} (to cook) is made from {is:eldur} (fire), and {is:eldhús} (kitchen) is a fire house, as Nynorsk eldhus is. Where Norwegian says lage mat, Icelandic has one verb, {is:Hún eldar vel} (she cooks well), and a cook is a {is:kokkur}, Norwegian kokk. {is:sjóða} (to boil) is the Old Norse verb that became Norwegian syde, and it changes its vowel in the past: {is:Hún sauð eggin} (she boiled the eggs). {is:baka} is regular, with ö before u: {is:Bökum köku} (let's bake a cake). The fridge is an ice cupboard, {is:ísskápur}, from {is:ís} and {is:skápur}.",
+          "nb": "Islandsk lager mat med ild: {is:elda} (å lage mat) er laget av {is:eldur} (ild), og {is:eldhús} (kjøkken) er et ildhus, slik nynorsk eldhus er. Der norsk sier lage mat, har islandsk ett verb, {is:Hún eldar vel} (hun lager god mat), og en kokk er en {is:kokkur}. {is:sjóða} (å koke) er det norrøne verbet som ble norsk syde, og det skifter vokal i fortid: {is:Hún sauð eggin} (hun kokte eggene). {is:baka} er regelrett, med ö foran u: {is:Bökum köku} (la oss bake en kake). Kjøleskapet er et isskap, {is:ísskápur}, av {is:ís} og {is:skápur}."
+        },
+        "examples": [
+          "791836",
+          "387357",
+          "908840",
+          "496225",
+          "908931",
+          "1351282"
+        ],
+        "tables": [
+          {
+            "lemma": "sjóða_so",
+            "tense": "ÞT"
+          },
+          "baka_so"
+        ]
+      },
+      {
+        "title": {
+          "en": "Snacks: samloka, pitsa, súkkulaði, ís",
+          "nb": "Noe å bite i: samloka, pitsa, súkkulaði, ís"
+        },
+        "text": {
+          "en": "Icelandic spells borrowed food words its own way: {is:súkkulaði} came through Danish chokolade, and pizza is {is:pitsa} in BÍN, the Árni Magnússon Institute's database of Icelandic forms; Wiktionary lists pítsa as another spelling, and the second example below writes it so. A sandwich is a {is:samloka}, from the prefix sam- (together) and {is:loka} (a latch), like a shell that closes, and the word also means a clam. {is:ís} is both ice and ice cream, as Norwegian is is: {is:Tvo stóra ísa, takk} (two big ice creams, please). {is:flaska} is Norwegian flaske, and a can is a {is:dós}, Norwegian boks.",
+          "nb": "Islandsk staver lånord for mat på sin egen måte: {is:súkkulaði} kom via dansk chokolade, og pizza er {is:pitsa} i BÍN, Árni Magnússon-instituttets database over islandske bøyningsformer; Wiktionary har pítsa som en annen skrivemåte, og det andre eksemplet nedenfor skriver det slik. En sandwich er en {is:samloka}, av forstavelsen sam- (sammen) og {is:loka} (en slå), som et skjell som lukker seg, og ordet betyr også et skjell. {is:ís} er både is og iskrem, slik norsk is er: {is:Tvo stóra ísa, takk} (to store iser, takk). {is:flaska} er norsk flaske, og en boks er en {is:dós}."
+        },
+        "examples": [
+          "479467",
+          "4032141",
+          "479467-1",
+          "488539-1",
+          "1319432",
+          "1321809",
+          "468926-2"
+        ],
+        "tables": [
+          "samloka_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Thanks for the food: Takk fyrir matinn",
+          "nb": "Takk for maten: Takk fyrir matinn"
+        },
+        "text": {
+          "en": "After a meal, Icelanders say {is:Takk fyrir matinn}, as Norwegians say takk for maten, and the answer is {is:Verði þér að góðu} (you're welcome); said before a meal, the same words wish a good meal. How something tastes takes the -st form of {is:smakka}: {is:Hvernig smakkast súpan?} where Norwegian says Hvordan smaker suppen? Both verbs came from Low German. Full is {is:saddur}, which agrees like {is:seinn}: {is:Ég er saddur} from a man, {is:Ég er södd} from a woman; it began as the past participle of {is:seðja} (to fill with food). Healthy food is {is:hollur}, {is:Ávextir eru hollir}, and delicious {is:ljúffengur}, {is:Er það ekki ljúffengt?} To pour is {is:hella}, Norwegian helle: {is:Hún hellti mér bolla af tei}.",
+          "nb": "Etter et måltid sier islendinger {is:Takk fyrir matinn}, slik nordmenn sier takk for maten, og svaret er {is:Verði þér að góðu} (vel bekomme); sagt før et måltid ønsker de samme ordene et godt måltid. Hvordan noe smaker, sier -st-formen av {is:smakka}: {is:Hvernig smakkast súpan?} der norsk sier Hvordan smaker suppen? Begge verbene kom fra lavtysk. Mett er {is:saddur}, som samsvarer slik {is:seinn} gjør: {is:Ég er saddur} fra en mann, {is:Ég er södd} fra en kvinne; det var opprinnelig perfektum partisipp av {is:seðja} (å mette). Sunn mat er {is:hollur}, {is:Ávextir eru hollir}, og deilig {is:ljúffengur}, {is:Er það ekki ljúffengt?} Å helle er {is:hella}: {is:Hún hellti mér bolla af tei}."
+        },
+        "examples": [
+          "917595",
+          "482353",
+          "698232",
+          "905135",
+          "905137",
+          "3795532",
+          "475506"
+        ],
+        "tables": [
+          "saddur_lo"
+        ]
+      }
+    ]
+  }
+}
