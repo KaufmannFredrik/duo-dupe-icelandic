@@ -26,6 +26,10 @@
     "3799277": "\"You're very tall.\": a mistake, Þú er for Þú ert; GreynirCorrect does not flag it.",
     "10969602": "\"Look! A flying cockroach!\": Kakkalakki is a common noun written with a capital letter, so it would count as a name a learner need not know.",
     "744096": "\"I ate too much. Now I'm full.\": a mistake, Nú ég er for Nú er ég (the verb comes second); GreynirCorrect does not flag it.",
-    "879044": "\"Why did he do such a thing?\": the Icelandic says she (hún)."
+    "879044": "\"Why did he do such a thing?\": the Icelandic says she (hún).",
+    "10629489": "\"I look to him for help.\": a mistake, Ég leiti (the subjunctive) for Ég leita; GreynirCorrect does not flag it.",
+    "666955": "\"He looks nothing like a doctor.\": a mistake, sér út for lítur út (looks); GreynirCorrect does not flag it.",
+    "739158": "\"He stopped to smoke.\": the Icelandic says he stopped smoking (hætti að reykja), as Ég hætti að reykja does.",
+    "1356566": "\"He broke into a house.\": the Icelandic says only he broke in (Hann braust inn); Hann braust inn í hús says into a house."
   }
 }

@@ -13,6 +13,13 @@ import { CACHE, ROOT } from './bulk.mjs';
 // the sentence ends in an exclamation mark (E007), or a word is unknown, such as a foreign name (U001).
 export const INFO_CODES = new Set(['E001', 'E007', 'U001']);
 
+// Spelling suggestions checked by hand and found wrong, as "<code> <text>": the word is a correct
+// DMII Core form that means what the translation says. Each is explained in docs/DECISIONS.md.
+export const FALSE_POSITIVES = new Set([
+  // kvefið is kvef ("a cold") with the article, not a misspelling of kveðið (unit Líkaminn).
+  "W001/w Orðið 'kvefið' gæti átt að vera 'kveðið'",
+]);
+
 const CACHE_FILE = path.join(CACHE, 'greynir', 'lint.jsonl');
 const key = (text) => createHash('sha1').update(text).digest('hex');
 
@@ -67,4 +74,4 @@ export async function lintTexts(texts, { onProgress } = {}) {
 }
 
 /** Annotations that point at a real or likely error. */
-export const blocking = (annotations) => annotations.filter((a) => !INFO_CODES.has(a.code));
+export const blocking = (annotations) => annotations.filter((a) => !INFO_CODES.has(a.code) && !FALSE_POSITIVES.has(`${a.code} ${a.text}`));

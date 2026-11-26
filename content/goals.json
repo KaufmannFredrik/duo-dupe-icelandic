@@ -40,7 +40,7 @@
       "is": "Nemandi getur gert sig skiljanlegan um heilsu sína.",
       "en": "Make yourself understood about your health.",
       "nb": "Gjøre deg forstått om helsen din.",
-      "units": []
+      "units": ["body"]
     },
     {
       "id": "familiar",
@@ -58,7 +58,7 @@
       "is": "Nemandi getur tekið þátt í umræðum um dagleg málefni.",
       "en": "Take part in conversations about everyday matters.",
       "nb": "Delta i samtaler om hverdagslige ting.",
-      "units": ["cafe", "food", "home", "people", "weather", "study"]
+      "units": ["cafe", "food", "home", "people", "weather", "body", "study"]
     },
     {
       "id": "services",

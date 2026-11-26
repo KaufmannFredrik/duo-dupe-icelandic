@@ -1,0 +1,261 @@
+{
+  "id": "body",
+  "theme": "body",
+  "reviewed": true,
+  "title": {
+    "en": "The body",
+    "nb": "Kroppen"
+  },
+  "is": "Líkaminn",
+  "goal": {
+    "en": "Say how you feel and where it hurts, talk about a cold, and get help from the doctor and the pharmacy.",
+    "nb": "Si hvordan du har det og hvor det gjør vondt, snakk om en forkjølelse, og få hjelp hos legen og på apoteket."
+  },
+  "host": {
+    "character": "lundi",
+    "says": "466865"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Where does it hurt?",
+        "nb": "Hvor gjør det vondt?"
+      },
+      "focus": [
+        "höfuð_no",
+        "háls_no",
+        "eyra_no",
+        "magi_no",
+        "bak_no",
+        "illur_lo"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Getting hurt",
+        "nb": "Å skade seg"
+      },
+      "focus": [
+        "hönd_no",
+        "handleggur_no",
+        "andlit_no",
+        "munnur_no",
+        "meiða_so",
+        "brjóta_so"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "How are you feeling?",
+        "nb": "Hvordan har du det?"
+      },
+      "focus": [
+        "líða_so",
+        "illa_ao",
+        "veikur_lo",
+        "slæmur_lo",
+        "hraustur_lo"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "A cold",
+        "nb": "En forkjølelse"
+      },
+      "focus": [
+        "kvef_no",
+        "kvefaður_lo",
+        "hiti_no",
+        "hnerra_so",
+        "hósta_so",
+        "höfuðverkur_no"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "At the doctor's",
+        "nb": "Hos legen"
+      },
+      "focus": [
+        "læknir_no",
+        "hjúkrunarfræðingur_no",
+        "tannlæknir_no",
+        "sjúklingur_no",
+        "hjálp_no"
+      ]
+    },
+    {
+      "id": "6",
+      "title": {
+        "en": "Get well soon",
+        "nb": "God bedring"
+      },
+      "focus": [
+        "apótek_no",
+        "lyf_no",
+        "batna_so",
+        "vona_so",
+        "reykja_so"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "Where does it hurt? Mér er illt í",
+          "nb": "Hvor gjør det vondt? Mér er illt í"
+        },
+        "text": {
+          "en": "To say that something hurts, Icelandic says {is:Mér er illt í} with the body part and its article, in the dative after {is:í}: {is:Mér er illt í höfðinu} (my head hurts), {is:Mér er illt í maganum} (my stomach hurts), {is:Mér er illt í hálsinum} (I have a sore throat). The one it hurts is in the dative too: {is:mér}, {is:henni}, {is:Dóttur hennar er illt í eyranu}. Norwegian works the same way, with the definite form where English says my: jeg har vondt i hodet, vondt i magen. {is:illt} is the neuter of {is:illur} (bad, evil), as vondt is of Norwegian vond. To ask where it hurts: {is:Hvar meiðir það?} {is:háls} is both the neck and the throat, like Norwegian hals.",
+          "nb": "For å si at noe gjør vondt, sier islandsk {is:Mér er illt í} med kroppsdelen i bestemt form, i dativ etter {is:í}: {is:Mér er illt í höfðinu} (jeg har vondt i hodet), {is:Mér er illt í maganum} (jeg har vondt i magen), {is:Mér er illt í hálsinum} (jeg har vondt i halsen). Den det gjør vondt på, står også i dativ: {is:mér}, {is:henni}, {is:Dóttur hennar er illt í eyranu}. Norsk gjør det på samme måte, med bestemt form der engelsk sier my: jeg har vondt i hodet, vondt i magen. {is:illt} er intetkjønn av {is:illur} (vond, ond), slik vondt er av norsk vond. For å spørre hvor det gjør vondt: {is:Hvar meiðir það?} {is:háls} er både halsen utenpå og halsen innvendig, som norsk hals."
+        },
+        "examples": [
+          "882033",
+          "1316601",
+          "882033-1",
+          "882031",
+          "882031-3",
+          "690292",
+          "1329176"
+        ]
+      },
+      {
+        "title": {
+          "en": "The body in Norwegian: höfuð, hönd, bak",
+          "nb": "Kroppen på norsk: höfuð, hönd, bak"
+        },
+        "text": {
+          "en": "Many body words are Norwegian ones from the same Old Norse word: {is:höfuð} is hode (Old Norse hǫfuð), {is:munnur} is munn, {is:eyra} øre, {is:magi} mage, {is:háls} hals and {is:hönd} hånd. Watch {is:bak}: in Icelandic it is the back, Norwegian rygg, while Norwegian bak is the backside: {is:Hann lagðist á bakið} (he lay on his back). Norwegian rygg is Old Norse hryggr, Icelandic {is:hryggur}, the spine. {is:handleggur} (arm) is {is:hönd} and {is:leggur}, a leg or a bone, the word Norwegian keeps as legg, the lower leg. {is:andlit} (face) is the Old Norse word; Norwegian ansikt came from Low German. And {is:nef} (nose) has the same origin as Norwegian nebb (beak). {is:hönd} changes its vowel: {is:hönd}, {is:hendi}, {is:handar}, plural {is:hendur}: {is:Þvoðu þér um hendurnar} (wash your hands).",
+          "nb": "Mange ord for kroppen er norske ord fra det samme norrøne ordet: {is:höfuð} er hode (norrønt hǫfuð), {is:munnur} er munn, {is:eyra} øre, {is:magi} mage, {is:háls} hals og {is:hönd} hånd. Pass på {is:bak}: på islandsk er det ryggen, mens norsk bak er baken, rumpa: {is:Hann lagðist á bakið} (han la seg på ryggen). Norsk rygg er norrønt hryggr, islandsk {is:hryggur}, ryggraden. {is:handleggur} (arm) er {is:hönd} og {is:leggur}, et bein eller en legg, ordet norsk har beholdt som legg. {is:andlit} (ansikt) er det norrøne ordet; norsk ansikt kom fra lavtysk. Og {is:nef} (nese) har samme opprinnelse som norsk nebb. {is:hönd} skifter vokal: {is:hönd}, {is:hendi}, {is:handar}, flertall {is:hendur}: {is:Þvoðu þér um hendurnar} (vask hendene)."
+        },
+        "examples": [
+          "4007810",
+          "482948",
+          "513951",
+          "387258",
+          "1323648-1",
+          "1319432-3"
+        ],
+        "tables": [
+          "hönd_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "How are you? líða",
+          "nb": "Hvordan har du det? líða"
+        },
+        "text": {
+          "en": "{is:Hvernig líður þér?} (how are you feeling?) is answered with {is:Mér líður vel} or {is:Mér líður illa}. Like {is:illt}, {is:líða} puts the one who feels in the dative: {is:mér}, {is:þér}, {is:Fólki líður best þegar það er heima hjá sér} (people feel best at home). Norwegian says jeg har det bra, or jeg føler meg bra. {is:líða} is a strong verb: {is:Mér leið illa} (I felt bad). {is:illa} (badly) is Norwegian ille, from Old Norse illa. With time, {is:líða} means to pass: {is:Tíminn líður} (time goes by).",
+          "nb": "{is:Hvernig líður þér?} (hvordan har du det?) besvares med {is:Mér líður vel} eller {is:Mér líður illa}. Som {is:illt} setter {is:líða} den som føler, i dativ: {is:mér}, {is:þér}, {is:Fólki líður best þegar það er heima hjá sér} (folk har det best hjemme). Norsk sier jeg har det bra, eller jeg føler meg bra. {is:líða} er et sterkt verb: {is:Mér leið illa} (jeg følte meg dårlig). {is:illa} (dårlig) er norsk ille, fra norrønt illa. Om tid betyr {is:líða} å gå: {is:Tíminn líður} (tiden går)."
+        },
+        "examples": [
+          "466865",
+          "473067",
+          "1353669",
+          "944615",
+          "727701",
+          "1315576-1"
+        ]
+      },
+      {
+        "title": {
+          "en": "Sick and healthy: veikur, hraustur, slæmur",
+          "nb": "Syk og frisk: veikur, hraustur, slæmur"
+        },
+        "text": {
+          "en": "{is:veikur} is sick, and agrees: {is:Hann er veikur}, {is:Hún er veik}. It is Norwegian veik, from Old Norse veikr, which in Norwegian is weak or sickly; Icelandic has the sense weak too, but mostly means ill. Norwegian syk is Old Norse sjúkr, Icelandic {is:sjúkur}, found in {is:sjúkrahús} (hospital), Norwegian sykehus. A patient is {is:sjúklingur}. {is:hraustur} is healthy and strong: {is:Ég er hraustur}, {is:Ég er hraust}. {is:slæmur} (bad) was borrowed from Danish slem, a loan from Low German; Norwegian slem is the same loan: {is:Ég er með slæmt kvef} (I have a bad cold), {is:Ég er slæmur í bakinu} (I have a bad back).",
+          "nb": "{is:veikur} er syk, og bøyes: {is:Hann er veikur}, {is:Hún er veik}. Det er norsk veik, fra norrønt veikr, som på norsk er svak eller sykelig; islandsk har også betydningen svak, men betyr mest syk. Norsk syk er norrønt sjúkr, islandsk {is:sjúkur}, som finnes i {is:sjúkrahús} (sykehus). En pasient er {is:sjúklingur}. {is:hraustur} er frisk og sterk: {is:Ég er hraustur}, {is:Ég er hraust}. {is:slæmur} (dårlig) ble lånt fra dansk slem, et lån fra lavtysk; norsk slem er det samme lånet: {is:Ég er með slæmt kvef} (jeg har en slem forkjølelse), {is:Ég er slæmur í bakinu} (jeg har dårlig rygg)."
+        },
+        "examples": [
+          "7467834",
+          "488372",
+          "1316185",
+          "1316184",
+          "1323341",
+          "495489-1"
+        ],
+        "tables": [
+          "veikur_lo"
+        ]
+      },
+      {
+        "title": {
+          "en": "A cold and a fever: vera með",
+          "nb": "Forkjølelse og feber: vera með"
+        },
+        "text": {
+          "en": "An illness is something you are with, {is:vera með} and the accusative: {is:Ég er með hita} (I have a fever), {is:Ég er með höfuðverk} (I have a headache), {is:Ég er með slæmt kvef}. To catch one is {is:fá}: {is:Hann fékk kvef}. Or say {is:Ég er kvefaður}, which agrees: {is:Ég er kvefuð}. {is:hiti} is heat, a fever and a temperature; Norwegian says feber. {is:höfuðverkur} is {is:höfuð} and {is:verkur}, an ache, Norwegian verk, both from Old Norse verkr, and a toothache is {is:tannpína}, with {is:pína} (pain), Norwegian pine: tannpine. {is:hnerra} (sneeze) comes from the Old Norse verb hnjósa, the source of Norwegian nyse, and {is:hósta} (cough) is Norwegian hoste, from Old Norse hósta.",
+          "nb": "En sykdom er noe du er med, {is:vera með} og akkusativ: {is:Ég er með hita} (jeg har feber), {is:Ég er með höfuðverk} (jeg har hodepine), {is:Ég er með slæmt kvef}. Å få en er {is:fá}: {is:Hann fékk kvef} (han ble forkjølet). Eller si {is:Ég er kvefaður}, som bøyes: {is:Ég er kvefuð}. {is:hiti} er varme, feber og temperatur; norsk sier feber. {is:höfuðverkur} er {is:höfuð} og {is:verkur}, en verk, norsk verk, begge fra norrønt verkr, og tannpine er {is:tannpína}, med {is:pína} (smerte), norsk pine. {is:hnerra} (nyse) kommer av det norrøne verbet hnjósa, som norsk nyse kommer fra, og {is:hósta} er norsk hoste, fra norrønt hósta."
+        },
+        "examples": [
+          "472990-1",
+          "472990",
+          "1323341",
+          "387306",
+          "1316185-1",
+          "10288758",
+          "1364319",
+          "1317132-1"
+        ]
+      },
+      {
+        "title": {
+          "en": "At the doctor's: læknir",
+          "nb": "Hos legen: læknir"
+        },
+        "text": {
+          "en": "{is:læknir} (doctor) is the one who heals, from {is:lækna} (to heal); Norwegian lege came from Danish, and Bokmålsordboka compares it with Old Norse læknir. {is:tannlæknir} (dentist) is built like Norwegian tannlege. A nurse is {is:hjúkrunarfræðingur}, from {is:hjúkrun} (nursing) and {is:fræði} (science, study). To see a doctor is {is:fara til læknis}, with {is:til} and the genitive: {is:Í dag fór ég til læknisins}, {is:Þú ættir að fara til tannlæknis}. To call one: {is:Hringdu í lækni}, {is:Þú ættir að kalla á lækni}. The doctor may say {is:Opnaðu munninn} and ask {is:Hvernig líður sjúklingnum?} Help is {is:hjálp}, Norwegian hjelp, from Old Norse hjalp, hjǫlp: {is:Ég þarf hjálp}, {is:Einhver er að kalla á hjálp} (someone is calling for help).",
+          "nb": "{is:læknir} (lege) er den som leger, av {is:lækna} (å lege, helbrede); norsk lege kom fra dansk, og Bokmålsordboka sammenligner det med norrønt læknir. {is:tannlæknir} er laget som norsk tannlege. En sykepleier er {is:hjúkrunarfræðingur}, av {is:hjúkrun} (sykepleie) og {is:fræði} (vitenskap, studier). Å gå til legen er {is:fara til læknis}, med {is:til} og genitiv: {is:Í dag fór ég til læknisins}, {is:Þú ættir að fara til tannlæknis}. Å ringe etter en: {is:Hringdu í lækni}, {is:Þú ættir að kalla á lækni}. Legen kan si {is:Opnaðu munninn} og spørre {is:Hvernig líður sjúklingnum?} Hjelp er {is:hjálp}, norsk hjelp, fra norrønt hjalp, hjǫlp: {is:Ég þarf hjálp}, {is:Einhver er að kalla á hjálp} (noen roper om hjelp)."
+        },
+        "examples": [
+          "504913",
+          "496903",
+          "3994559",
+          "652971",
+          "1319432-3",
+          "1315576-1",
+          "583658",
+          "385231"
+        ],
+        "tables": [
+          "læknir_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Getting hurt, getting well: meiða, brjóta, batna",
+          "nb": "Å skade seg og bli frisk: meiða, brjóta, batna"
+        },
+        "text": {
+          "en": "{is:meiða sig} is to hurt yourself, Norwegian skade seg: {is:Hann meiddi sig í vinstri hendinni}; {is:Enginn meiddist} (nobody was hurt). {is:brjóta} (break) is a strong verb: {is:Hver braut þetta?}, {is:Ég braut handlegginn minn}. It is Norwegian bryte, from Old Norse brjóta, but Norwegian breaks an arm with brekke, from Low German. {is:batna} (get better) puts the one who gets better in the dative, like {is:líða}: {is:Ég vona að þér batni fljótt} (I hope you get better soon). {is:vona} (hope) comes from {is:von} (hope), Norwegian von, from Old Norse ván, and Norwegian has the verb vone too. Medicine is {is:lyf}, sold in an {is:apótek} or {is:lyfjabúð}, a medicine shop; Norwegian apotek comes from Greek apotheke, a store. And {is:reykja} is Norwegian røyke: {is:Þú verður að hætta að reykja} (you must stop smoking).",
+          "nb": "{is:meiða sig} er å skade seg: {is:Hann meiddi sig í vinstri hendinni}; {is:Enginn meiddist} (ingen ble skadet). {is:brjóta} er et sterkt verb: {is:Hver braut þetta?}, {is:Ég braut handlegginn minn} (jeg brakk armen). Det er norsk bryte, fra norrønt brjóta, men på norsk brekker man armen, med brekke, fra lavtysk. {is:batna} (bli bedre) setter den som blir bedre, i dativ, som {is:líða}: {is:Ég vona að þér batni fljótt} (jeg håper du blir frisk snart). {is:vona} (håpe) kommer av {is:von} (håp), norsk von, fra norrønt ván, og norsk har også verbet vone. Medisin er {is:lyf}, som selges på et {is:apótek} eller en {is:lyfjabúð}, en medisinbutikk; norsk apotek kommer fra gresk apotheke, et forråd. Og {is:reykja} er norsk røyke: {is:Þú verður að hætta að reykja} (du må slutte å røyke)."
+        },
+        "examples": [
+          "1364165-1",
+          "1324676",
+          "1318342",
+          "3994549-1",
+          "482953",
+          "4172215-1",
+          "888256-1",
+          "854224"
+        ]
+      }
+    ]
+  }
+}

@@ -1,25 +1,25 @@
 # Data report
 
-Generated 2026-11-26T07:42:58.030Z by `node scripts/build-data.mjs` from `content/vocab/core.json`. This file is generated.
+Generated 2026-11-26T22:06:08.379Z by `node scripts/build-data.mjs` from `content/vocab/core.json`. This file is generated.
 
 ## Coverage of the core vocabulary
 
-| Measure | Lemmas (of 517) |
+| Measure | Lemmas (of 550) |
 |---|---|
-| Found in the DMII Core | 494 (96%) |
+| Found in the DMII Core | 527 (96%) |
 | Indeclinable numerals confirmed in the full BÍN (not in the DMII Core) | 23 (4%) |
-| English gloss from Wiktionary | 516 (100%) |
-| Wiktionary gloss matches the intended meaning | 516 (100%) |
-| Norwegian Bokmål gloss | 517 (100%) |
-| IPA | 491 (95%) |
-| Human recording (Commons, Lingua Libre, Wiktionary) | 192 (37%) |
-| 1 or more Tatoeba sentences | 499 (97%) |
-| 3 or more Tatoeba sentences | 468 (91%) |
-| Frequency rank in the Icelandic Gigaword Corpus | 517 (100%) |
+| English gloss from Wiktionary | 549 (100%) |
+| Wiktionary gloss matches the intended meaning | 549 (100%) |
+| Norwegian Bokmål gloss | 550 (100%) |
+| IPA | 520 (95%) |
+| Human recording (Commons, Lingua Libre, Wiktionary) | 199 (36%) |
+| 1 or more Tatoeba sentences | 532 (97%) |
+| 3 or more Tatoeba sentences | 501 (91%) |
+| Frequency rank in the Icelandic Gigaword Corpus | 550 (100%) |
 
-Sentences kept: 2765 (125 made from a Tatoeba sentence by replacing one word), of which 2216 use only course vocabulary (names allowed) and have at most 10 words. Recordings linked: 194.
+Sentences kept: 2950 (171 made from a Tatoeba sentence by replacing one word), of which 2395 use only course vocabulary (names allowed) and have at most 10 words. Recordings linked: 201.
 
-GreynirCorrect checked 10727 Tatoeba sentences (with an English translation, at most 15 words) and excluded 852 that it flagged. Most frequent codes: S004 124, P_NT_ÍTölu 113, P_VeraAð 91, C002 73, W001/w 72, ASLBRODDVANTAR 60, P_NT_FsMeðFallstjórn 36, C003 28, S001 26, P_MOOD_PURP 23. Parse failures (E001), exclamation marks (E007) and unknown words (U001) do not exclude a sentence.
+GreynirCorrect checked 10773 Tatoeba sentences (with an English translation, at most 15 words) and excluded 848 that it flagged. Most frequent codes: S004 124, P_NT_ÍTölu 113, P_VeraAð 91, C002 73, W001/w 68, ASLBRODDVANTAR 60, P_NT_FsMeðFallstjórn 36, C003 28, S001 26, P_MOOD_PURP 23. Parse failures (E001), exclamation marks (E007) and unknown words (U001) do not exclude a sentence.
 
 ## By theme
 
@@ -38,6 +38,7 @@ GreynirCorrect checked 10727 Tatoeba sentences (with an English translation, at 
 | At home | 34 | 34 | 34 | 4 | 34 |
 | Clothes and people | 37 | 37 | 37 | 3 | 37 |
 | Weather and nature | 21 | 21 | 21 | 12 | 17 |
+| The body | 33 | 33 | 33 | 7 | 33 |
 | Study and work | 27 | 27 | 27 | 9 | 25 |
 | New words | 8 | 8 | 8 | 2 | 3 |
 | Grammar words | 34 | 34 | 34 | 8 | 34 |
@@ -46,9 +47,9 @@ GreynirCorrect checked 10727 Tatoeba sentences (with an English translation, at 
 
 | File | Bytes | Gzipped |
 |---|---|---|
-| `data/lexicon.json` | 253,726 | 74,589 |
-| `data/sentences.json` | 702,711 | 161,745 |
-| `data/audio.json` | 112,818 | 6,470 |
+| `data/lexicon.json` | 270,344 | 79,367 |
+| `data/sentences.json` | 753,695 | 173,078 |
+| `data/audio.json` | 117,139 | 6,677 |
 | `data/forms/hello.json` | 51,698 | 6,871 |
 | `data/forms/aboutme.json` | 51,086 | 6,640 |
 | `data/forms/cafe.json` | 63,218 | 8,626 |
@@ -62,10 +63,11 @@ GreynirCorrect checked 10727 Tatoeba sentences (with an English translation, at 
 | `data/forms/home.json` | 47,822 | 6,468 |
 | `data/forms/people.json` | 98,574 | 11,242 |
 | `data/forms/weather.json` | 26,196 | 3,790 |
+| `data/forms/body.json` | 62,227 | 7,813 |
 | `data/forms/study.json` | 58,053 | 7,093 |
 | `data/forms/newwords.json` | 5,385 | 1,186 |
 | `data/forms/core.json` | 60,572 | 7,853 |
-| Total | 1,848,758 | 345,782 |
+| Total | 1,982,908 | 369,913 |
 
 ## Entries to check (20)
 

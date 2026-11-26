@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-26T07:42:04.785Z",
+ "generated": "2026-11-26T22:08:08.657Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -19,8 +19,8 @@
  ],
  "counts": {
   "loan": 8,
-  "old-norse": 237,
-  "form": 21
+  "old-norse": 250,
+  "form": 23
  },
  "pairs": {
   "halló_uh": {
@@ -1873,6 +1873,126 @@
    "rules": [
     "ending-i"
    ]
+  },
+  "höfuð_no": {
+   "nb": "hode",
+   "article": 23964,
+   "oldNorse": "hǫfuð",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "háls_no": {
+   "nb": "hals",
+   "article": 21985,
+   "oldNorse": "hals",
+   "evidence": "old-norse",
+   "rules": [
+    "a-acute-a"
+   ]
+  },
+  "magi_no": {
+   "nb": "mage",
+   "article": 36512,
+   "oldNorse": "magi",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-i"
+   ]
+  },
+  "bak_no": {
+   "nb": "bak",
+   "article": 4081,
+   "oldNorse": "bak",
+   "evidence": "old-norse",
+   "rules": []
+  },
+  "illur_lo": {
+   "nb": "ill",
+   "article": 25807,
+   "oldNorse": "illr",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-ur"
+   ]
+  },
+  "hönd_no": {
+   "nb": "hånd",
+   "article": 25398,
+   "oldNorse": "hǫnd",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "munnur_no": {
+   "nb": "munn",
+   "article": 39485,
+   "oldNorse": "munnr",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-ur"
+   ]
+  },
+  "brjóta_so": {
+   "nb": "bryte",
+   "article": 7872,
+   "oldNorse": "brjóta",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "illa_ao": {
+   "nb": "ille",
+   "evidence": "form",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "veikur_lo": {
+   "nb": "veik",
+   "article": 67228,
+   "oldNorse": "veikr",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-ur"
+   ]
+  },
+  "hósta_so": {
+   "nb": "hoste",
+   "article": 24256,
+   "oldNorse": "hósta",
+   "evidence": "old-norse",
+   "rules": [
+    "o-acute",
+    "ending-a"
+   ]
+  },
+  "læknir_no": {
+   "nb": "lege",
+   "article": 34253,
+   "oldNorse": "læknir",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "apótek_no": {
+   "nb": "apotek",
+   "evidence": "form",
+   "rules": [
+    "o-acute"
+   ]
+  },
+  "vona_so": {
+   "nb": "vone",
+   "article": 69036,
+   "oldNorse": "vána",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "reykja_so": {
+   "nb": "røyke",
+   "article": 136672,
+   "oldNorse": "reykja",
+   "evidence": "old-norse",
+   "rules": null
   },
   "vinna_no": {
    "nb": "vinne",

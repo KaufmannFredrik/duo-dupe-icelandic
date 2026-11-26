@@ -88,8 +88,14 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | *svona* in *Ekki tala svona*, *Talið ekki svona*, *Það var ekki alltaf svona*, *Svona er hún bara*, *Ég kem aftur eftir svona klukkutíma* and *Ekki vera svona reiður* is the adverb ("like this, so; about"), not the indeclinable adjective ("such") the parser reads. | W svona (adverb: "thus, like this", "to this degree", "approximately, about"; adjective: "like this, such"); translations of T 1351311, 1351314, 3997427, 428538, 863109, 733997 | sourced |
 | In *Ekki vera reiður*, *Ekki vera reið*, *Ekki vera svona reiður* and *Ekki vera svona reið*, *vera* is the verb ("be"), not the noun *vera* ("a being"), and *reiður*, *reið* are the adjective *reiður*, not the noun *reiða* or the past of *ríða* ("ride") the parser reads. | translations of T 1316637, 1316636, 733997, 733998 ("Don't be (so) angry"); DMII (*reið*, KVK NF ET of *reiður*) | sourced |
 | In *Það er of langt* and *Það er of stutt* (made from T 1318211), *of* is the adverb ("too") and *langt*, *stutt* the adjectives *langur*, *stuttur*; the parser cannot analyze the two sentences, and reads the original *Það er of stórt* so. | the parser's output for T 1318211; W of ("too (excessive degree)") | checked |
+| *sé* in *Ég sé illa* is *sjá* ("see"), as in *Ég sé það*; *hef* in *Ég hef ekki tíma til að vera veikur* (and *veik*) is *hafa*, not *hefja* ("lift") the parser reads. | DMII (*sé*, *hef*: GM-FH-NT-1P-ET of *sjá*, *hafa*); translations of T 1321344 ("I can't see well"), 564514, 564515 ("I don't have time to be sick") | sourced |
+| *hreinar* in *Eru hendurnar þínar hreinar?* is the adjective *hreinn* ("clean"), feminine plural with *hendurnar*, which the parser reads as another word. | DMII (*hreinar*, KVK NF FT of *hreinn*); translation of T 482948 ("Are your hands clean?") | sourced |
+| *bak* in *Augu hans brostu bak við gleraugun* is not the noun *bak* ("back") the course teaches: *bak við* is "behind"; a fix with lemma null. | BÍN (*bak* also an adverb and a preposition); translation of T 386819 ("behind his glasses") | sourced |
+| *Dóttur* in *Dóttur hennar er illt í maganum* (and the four sentences made from it) is the dative, the case of the one it hurts, as *mér* in *Mér er illt í hendinni*; the parser gives the genitive, so these keep no parser case. | DMII (*dóttur*: ÞGF ET, also ÞF and EF); W hönd ("Mér er illt í hendinni. = My hand hurts.") | sourced |
+| *Fólki* in *Fólki líður best þegar það er heima hjá sér* is the dative, the case *líða* gives the one who feels; the parser gives the nominative, so the sentence keeps no parser case. | DMII (*fólki*: ÞGF ET; the nominative is *fólk*); W líða (impersonal: *Mér líður vel*) | sourced |
+| *hendurnar* in *Þvoðu þér um hendurnar* is the accusative after *um*; *hjálp* in *Einhver er að kalla á hjálp* is the accusative after *kalla á*. The parser gives the nominative and the dative; both sentences keep no parser case. | The *um* rule (above); T 736112 (*Kallaðu strax á lækninn*) and 666975, where the accusative *lækninn* differs from the dative *lækninum* (DMII) | sourced (*um*), attested (*kalla á*) |
 
-The parser itself is not checked case by case: `npm run build:tags` lists the 440 words it gives to another word than their spelling suggests.
+The parser itself is not checked case by case: `npm run build:tags` lists the 470 words it gives to another word than their spelling suggests.
 
 ## Unit guidebooks (`content/units/`)
 
@@ -370,6 +376,52 @@ Headings name the units rather than their numbers, because new units are inserte
 | *eldfjall* = *eldur* + *fjall*; *norðurljós* = *norður* + *ljós*. | W eldfjall, norðurljós | sourced |
 | Norwegian relatives (*vær*, *fjell*, *foss*, *jøkel*, *sky*, *sol*, *vind*). | `data/bridge.json` (BMO and W name the same Old Norse word) | sourced |
 
+### *Líkaminn*
+
+| Claim | Source | Status |
+|---|---|---|
+| Something hurts with *Mér er illt í* and the body part with its article, in the dative after *í*; the one it hurts is in the dative too. | W hönd ("Mér er illt í hendinni. = My hand hurts."); T 882033 ("My back hurts"), 1316601, 690292, 882031 ("Her daughter has a stomachache"); DMII (*höfðinu*, *hálsinum*, *maganum*: ÞGF ET with the article) | sourced |
+| Norwegian uses the definite form the same way: *ha vondt i hodet*, *vondt i magen*. | BMO hode ("ha vondt i hodet"), mage ("ha vondt i magen") | sourced |
+| *illt* is the neuter of *illur*, as *vondt* is of Norwegian *vond*. | DMII (*illt*: FSB HK NF ET of *illur*); BMO vond ("jf vondt"; "au, det gjør vondt") | sourced |
+| *Hvar meiðir það?* asks where it hurts. | T 1329176 ("Where does it hurt?") | attested |
+| *háls* is the neck and the throat; so is Norwegian *hals*. | W háls ("neck, throat"); BMO hals ("kroppsdel mellom hodet og resten av kroppen"; "svelg, strupe") | sourced |
+| *höfuð*, *munnur*, *eyra*, *magi*, *háls*, *hönd* and Norwegian *hode*, *munn*, *øre*, *mage*, *hals*, *hånd* come from the same Old Norse words. | BMO hode ("norr. hǫfuð"), munn ("norr. munnr"), øre ("norr. eyra"), mage ("norr. magi"), hals ("norr. hals"), hånd ("norr. hǫnd"); W höfuð, munnur, eyra, magi, háls, hönd ("From Old Norse") | sourced |
+| Icelandic *bak* is the back, Norwegian *rygg*; Norwegian *bak* is the backside. | W bak ("back"); BMO bak ("kroppsdel på baksiden mellom rygg og (bak)bein"; "bakende, rumpe"; "norr. bak"), rygg ("bakre del av overkroppen") | sourced |
+| Norwegian *rygg* is Old Norse *hryggr*, Icelandic *hryggur*, the spine. | BMO rygg ("norr. hryggr"); W hryggur ("the spine, the back"; "From Old Norse hryggr") | sourced |
+| *handleggur* is *hönd* + *leggur* ("leg, bone"); Norwegian *legg* (the lower leg) is Old Norse *leggr*. | W handleggur ("From hönd + leggur"), leggur ("leg, shank", "bone"; "From Old Norse leggr"); BMO legg ("norr. leggr"; "parti mellom kne og ankel") | sourced |
+| *andlit* is the Old Norse word for face; Norwegian *ansikt* came from Low German. | W andlit ("From Old Norse andlit ('face')"); BMO ansikt ("fra l.ty.") | sourced |
+| *nef* is nose (and beak); Norwegian *nebb* has the same origin. | W nef ("nose", "beak"); BMO nebb ("sm_o_s norr. nef 'nese, nebb'") | sourced |
+| *hönd* changes its vowel: *hönd*, *hendi*, *handar*, plural *hendur*. | DMII (hönd: ÞGF ET *hendi*, EF ET *handar*, NF FT *hendur*) | sourced |
+| *líða* is impersonal in the sense "feel", with the one who feels in the dative: *Hvernig líður þér?*, *Mér líður vel*, *Mér líður illa*. | W líða ("describing a specific feeling; to feel", impersonal; "Hvernig líður þér? - Mér líður ekki vel", "Okkur líður illa"); T 466865, 473067, 727701 | sourced |
+| *líða* is a strong verb (*leið*), and with time it means to pass: *Tíminn líður*. | DMII (*leið*, GM-FH-ÞT-3P-ET); W líða ("to pass, to go by"; "Tíminn líður. = Time goes by."); T 944615 | sourced |
+| *illa* is "badly", Norwegian *ille*, from Old Norse *illa*. | W illa ("badly, poorly"); BMO ille ("norr. illa") | sourced |
+| Norwegian asks *hvordan har du det?* and says *føle seg* for how one feels. | BMO ha ("hvordan har du det?"), føle ("føle seg syk") | sourced |
+| *veikur* is sick and agrees (*veikur*, *veik*); it is Norwegian *veik*, from Old Norse *veikr*, which in Norwegian is weak or sickly; Icelandic has the sense weak too. | W veikur ("weak, pliant"; "sick, ill"; "Hún er veik. = She's sick."); BMO veik ("norr. veikr"; "kraftløs, svak"; "sykelig") | sourced |
+| Norwegian *syk* is Old Norse *sjúkr*, Icelandic *sjúkur*, found in *sjúkrahús*, Norwegian *sykehus*. | BMO syk ("norr. sjúkr"), sykehus; W sjúkur ("From Old Norse sjúkr"), sjúkrahús ("From sjúkur + hús") | sourced |
+| *hraustur* is healthy and strong. | W hraustur ("healthy, well", "brave, valiant", "strong"); T 1316185, 1316184 | sourced |
+| *slæmur* was borrowed from Danish *slem*, a loan from Low German; Norwegian *slem* is the same Low German word. *Ég er slæmur í bakinu* is "I have a bad back". | W slæmur ("Borrowed from Danish slem, which borrowed it from Middle Low German slim"; "Ég er slæmur í bakinu. = I have a bad back."); BMO slem ("av l.ty. slim"; "dårlig") | sourced |
+| An illness goes with *vera með* and the accusative (*Ég er með hita*, *Ég er með höfuðverk*); catching one is *fá* (*Hann fékk kvef*). | T 1337035 ("I have a high fever"), 493912, 472990 ("I have a headache"), 1323341, 387306 ("He came down with a cold"); DMII (*hita*, *höfuðverk*: ÞF ET) | attested |
+| *kvefaður* is "having a cold" and agrees: *kvefaður*, *kvefuð*. | W kvefaður ("having a cold, suffering from a cold"; "From kvef + -aður"); T 1323343, 1323342; DMII | sourced |
+| *hiti* is heat, fever and temperature. | W hiti ("heat", "fever", "temperature") | sourced |
+| *höfuðverkur* is *höfuð* + *verkur* ("ache, pain"); *verkur* and Norwegian *verk* are Old Norse *verkr*. | W höfuðverkur ("From höfuð + verkur"), verkur ("pain, ache"; "From Old Norse verkr"); BMO verk ("norr. verkr"; "murrende smerte") | sourced |
+| *tannpína* is *tann-* + *pína* ("pain"), as Norwegian *tannpine* has *pine*, from Old Norse *pína*. | W tannpína ("From tann- + pína"), pína ("pain, torment"; "From Old Norse pína"); BMO tannpine ("smerter i tennene"), pine ("norr. pína") | sourced |
+| *hnerra* comes from the Old Norse verb *hnjósa*, the source of Norwegian *nyse*. | W hnerra ("From the noun hnerri, from Old Norse hnøri, hneri, from the past stem of the verb hnjósa"); BMO nyse ("norr. hnjósa") | sourced |
+| *hósta* and Norwegian *hoste* are Old Norse *hósta*. | W hósta ("Inherited from Old Norse hósta"); BMO hoste ("norr. hósta") | sourced |
+| *læknir* is the one who heals, from *lækna* ("to cure, to heal"); Norwegian *lege* came from Danish, and Bokmålsordboka compares it with Old Norse *læknir*. | W læknir ("From Old Norse læknir ('healer'). Equivalent to lækna + -ir"), lækna ("to cure, to heal"); BMO lege ("fra da. \| jf norr. læknir, læknari, av lækna 'helbrede'") | sourced |
+| *tannlæknir* is built like Norwegian *tannlege*. | W tannlæknir ("From tann- + læknir"); BMO tannlege | sourced |
+| *hjúkrunarfræðingur* is made from *hjúkrun* ("nursing") and *fræði* ("science, studies"). | W hjúkrunarfræðingur ("From hjúkrunarfræði ('nursing') + -ingur"), hjúkrun ("nursing"), fræði ("science, studies") | sourced |
+| To see a doctor is *fara til læknis*, with the genitive after *til*; to call one, *hringja í lækni* or *kalla á lækni*. | T 1322898 ("Tom saw a doctor"), 504913, 496903, 3994559 ("Call a doctor"), 652971; DMII (*læknis*: EF ET) | attested |
+| *hjálp* and Norwegian *hjelp* come from Old Norse *hjalp*, *hjǫlp*; *kalla á hjálp* is Norwegian *rope om hjelp*. | W hjálp ("From Old Norse hjalp, hjǫlp"); BMO hjelp ("norr. hjǫlp"; "rope om hjelp"); T 385231 | sourced |
+| *meiða sig* is "hurt yourself", Norwegian *skade seg*; *meiðast* is to be hurt. | W meiða ("to harm, hurt"); T 1321866 ("Tom hurt himself"), 1364165, 1324676 ("Nobody was injured"); BMO skade ("skade seg") | sourced |
+| *brjóta* is a strong verb (*braut*); it is Norwegian *bryte*, from Old Norse *brjóta*, but Norwegian breaks an arm with *brekke*, from Low German. | DMII (*braut*); W brjóta ("to break"); BMO bryte ("norr. brjóta"), brekke ("av l.ty. breken"; "få til å knekke"); T 1318342, 3994549 ("I broke my leg") | sourced |
+| *batna* is impersonal with the dative in the sense "recover": *Ég vona að þér batni fljótt*. | W batna ("to cause to recover (from a disease) [with preceding dative 'someone']"; "Mér batnaði fljótt. = I recovered quickly."); T 482953 ("I hope that you get better soon"); DMII (*batni*: OP-ÞGF-GM-VH-NT-3P-ET) | sourced |
+| *vona* comes from *von* ("hope"), Norwegian *von*, from Old Norse *ván*; Norwegian also has the verb *vone*. | W vona ("From Old Norse vána, from the noun ván ('hope') (Icelandic von)"), von ("hope"); BMO von ("norr. ván"; "håp"), vone ("håpe"; "norr. vána") | sourced |
+| *lyfjabúð* is *lyf* ("medicine") + *búð* ("shop"), another word for a pharmacy; Norwegian *apotek* comes from Greek *apotheke*, a store. | W lyf ("drug, medicine"), lyfjabúð ("apothecary, pharmacy"; "From lyf + búð"), apótek ("apothecary, pharmacy"); BMO apotek ("av gr. apotheke 'forråd'") | sourced |
+| *reykja* and Norwegian *røyke* are Old Norse *reykja*; *hætta að reykja* is to stop smoking. | W reykja ("From Old Norse reykja"); BMO røyke ("norr. reykja"); T 854224 ("You must stop smoking"), 1323353 | sourced |
+| *kvefið* is *kvef* with the article, not a misspelling of *kveðið* as GreynirCorrect suggests (W001/w); the suggestion is not counted (`scripts/lib/lint.mjs`). | DMII (*kvefið*: NF/ÞF ET with the article of *kvef*); W kvef ("cold (illness)"); T 383524 ("How's your cold?") | sourced |
+| *Líkaminn* leaves out *nef* ("nose"), *anda* ("breathe"), *líkami* ("body"), *hjarta* ("heart") and *fingur* ("finger"): Tatoeba has at most one readable sentence for each here, and no sentence to make more from with one word changed. | T (searched with the scratch picker, 2026-11-26) | checked |
+| *Líkaminn* leaves out *fljótur* ("quick"), which *Ég vona að þér batni fljótt* needs: *fljótt* is an adverb of its own in BÍN, and Wiktionary has no entry for it. | BÍN (*fljótt* ao); W (no entry, kaikki.org) | checked |
+
 ### *Vinna*
 
 | Claim | Source | Status |
@@ -549,10 +601,56 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | 10969608-4 | *Hvar get ég keypt skyrtu?* | T 10969608 | *sokka* → *skyrtu* | Where can I buy a shirt? |
 | 10969608-5 | *Hvar get ég keypt tösku?* | T 10969608 | *sokka* → *tösku* | Where can I buy a bag? |
 | 12340291-3 | *Þetta er grænn litur.* | T 12340291 | *fiskur* → *litur* | This is a green color. |
+| 882031-1 | *Dóttur hennar er illt í höfðinu.* | T 882031 | *maganum* → *höfðinu* | Her daughter has a headache. |
+| 882031-2 | *Dóttur hennar er illt í hálsinum.* | T 882031 | *maganum* → *hálsinum* | Her daughter has a sore throat. |
+| 882031-3 | *Dóttur hennar er illt í eyranu.* | T 882031 | *maganum* → *eyranu* | Her daughter has an earache. |
+| 882033-1 | *Mér er illt í hálsinum.* | T 882033 | *bakinu* → *hálsinum* | My throat hurts. |
+| 882033-2 | *Mér er illt í eyranu.* | T 882033 | *bakinu* → *eyranu* | My ear hurts. |
+| 882033-3 | *Mér er illt í maganum.* | T 882033 | *bakinu* → *maganum* | My stomach hurts. |
+| 882033-4 | *Mér er illt í hendinni.* | T 882033 | *bakinu* → *hendinni* | My hand hurts. |
+| 882033-5 | *Mér er illt í handleggnum.* | T 882033 | *bakinu* → *handleggnum* | My arm hurts. |
+| 511464-1 | *Þau hafa stór eyru.* | T 511464 | *Kanínur* → *Þau* | They have big ears. |
+| 513951-1 | *Hann lagðist á magann.* | T 513951 | *bakið* → *magann* | He lay on his stomach. |
+| 1364165-1 | *Hann meiddi sig í vinstri hendinni.* | T 1364165 | *höndinni* → *hendinni* | He hurt his left hand. |
+| 1364165-2 | *Hann meiddi sig í vinstri handleggnum.* | T 1364165 | *höndinni* → *handleggnum* | He hurt his left arm. |
+| 3994549-1 | *Ég braut handlegginn minn.* | T 3994549 | *fótlegginn* → *handlegginn* | I broke my arm. |
+| 1323648-1 | *Andlitið á honum er rautt.* | T 1323648 | *Tom* → *honum* | His face is red. |
+| 1319432-3 | *Opnaðu munninn.* | T 1319432 | *flöskuna* → *munninn* | Open your mouth. |
+| 3799221-1 | *Ég opnaði munninn.* | T 3799221 | *augun* → *munninn* | I opened my mouth. |
+| 828852-1 | *Lokaðu munninum.* | T 828852 | *dyrunum* → *munninum* | Close your mouth. |
+| 1321866-1 | *Hann meiddi sig.* | T 1321866 | *Tom* → *Hann* | He hurt himself. |
+| 537223-1 | *Veðrið er svo slæmt!* | T 537223 | *gott* → *slæmt* | The weather is so bad! |
+| 495489-1 | *Hann er í slæmu skapi í dag.* | T 495489 | *góðu* → *slæmu* | He's in a bad mood today. |
+| 10288758-1 | *Hann er ekki með kvef.* | T 10288758 | *hita* → *kvef* | He doesn't have a cold. |
+| 1316185-1 | *Ég er kvefaður.* | T 1316185 | *hraustur* → *kvefaður* | I have a cold. |
+| 1316184-1 | *Ég er kvefuð.* | T 1316184 | *hraust* → *kvefuð* | I have a cold. |
+| 472990-1 | *Ég er með hita.* | T 472990 | *höfuðverk* → *hita* | I have a fever. |
+| 882032-1 | *Sonur minn er með hita.* | T 882032 | *tannpínu* → *hita* | My son has a fever. |
+| 882032-2 | *Sonur minn er með höfuðverk.* | T 882032 | *tannpínu* → *höfuðverk* | My son has a headache. |
+| 882032-3 | *Sonur minn er með kvef.* | T 882032 | *tannpínu* → *kvef* | My son has a cold. |
+| 1317132-1 | *Ég hósta mikið.* | T 1317132 | *hnerra* → *hósta* | I cough a lot. |
+| 1317133-1 | *Ég hósta oft.* | T 1317133 | *hnerra* → *hósta* | I cough a lot. |
+| 1364319-1 | *Ég get ekki hætt að hósta.* | T 1364319 | *hnerra* → *hósta* | I can't stop coughing. |
+| 10973142-1 | *Ég hóstaði.* | T 10973142 | *hnerraði* → *hóstaði* | I coughed. |
+| 3795330-1 | *Ég er ekki hjúkrunarfræðingur.* | T 3795330 | *læknir* → *hjúkrunarfræðingur* | I'm not a nurse. |
+| 3994554-1 | *Við erum hjúkrunarfræðingar.* | T 3994554 | *læknar* → *hjúkrunarfræðingar* | We are nurses. |
+| 666974-1 | *Hann er sagður vera góður hjúkrunarfræðingur.* | T 666974 | *læknir* → *hjúkrunarfræðingur* | He's said to be a good nurse. |
+| 504913-1 | *Í dag fór ég til tannlæknisins.* | T 504913 | *læknisins* → *tannlæknisins* | Today, I went to the dentist's. |
+| 4048172-1 | *Ég er tannlæknir.* | T 4048172 | *hjúkrunarfræðingur* → *tannlæknir* | I'm a dentist. |
+| 1315576-1 | *Hvernig líður sjúklingnum?* | T 1315576 | *Mary* → *sjúklingnum* | How is the patient? |
+| 4172215-1 | *Hvar er apótekið?* | T 4172215 | *sjúkrahúsið* → *apótekið* | Where is the pharmacy? |
+| 483002-3 | *Hún er í apótekinu.* | T 483002 | *baðherberginu* → *apótekinu* | She is in the pharmacy. |
+| 386105-1 | *Hún hitti frænda sinn í apótekinu.* | T 386105 | *búðinni* → *apótekinu* | She met her uncle at the pharmacy. |
+| 888256-1 | *Hún sagði honum að taka lyfin.* | T 888256 | *ráðlagði* → *sagði* | She told him to take the medicine. |
+| 888244-1 | *Hún sagði honum að hætta að taka þessi lyf.* | T 888244 | *ráðlagði* → *sagði* | She told him to stop taking that medicine. |
+| 11516190-1 | *Læknirinn gaf henni lyf.* | T 11516190 | *verkjalyf* → *lyf* | The doctor gave her some medicine. |
+| 5030347-1 | *Er kvefið í þér að batna?* | T 5030347 | *Tom* → *þér* | How's your cold? |
+| 391731-1 | *Ég vil að mömmu minni batni strax.* | T 391731 | *skjótt* → *strax* | I want my mother to get well right away. |
+| 882031-4 | *Dóttur hennar er illt í bakinu.* | T 882031 | *maganum* → *bakinu* | Her daughter has a backache. |
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 30 of the 2,765 sentences. The other 2,710 (all but 25 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 125 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 30 of the 2,950 sentences. The other 2,891 (all but 29 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 171 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -565,7 +663,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 432 of the 517 course words. The other 85 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 85 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 456 of the 550 course words. The other 94 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 93 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -586,6 +684,7 @@ Wiktionary gives a Bokmål gloss for 432 of the 517 course words. The other 85 w
 | úlpa, taska, gleraugu, hávaxinn | parkas, anorakk, boblejakke; veske, bag; briller; høy, høyvokst | W "a thick winter coat ...; a parka; an anorak", "bag, case", "glasses, eyeglasses, spectacles", "tall"; BMO parkas ("varmt, fôret ytterplagg med hette"), veske, briller, høyvokst ("av høy/høg vekst") |
 | klár, svona | smart, flink, klar; slik, så | W "clever, sharp ...", second "prepared, ready" (*klar*, BMO "ferdig, i stand"); W "thus, like this", "to this degree"; BMO slik |
 | glaður, ánægður, leiður, hræddur, rólegur, hissa, áhyggja | glad; fornøyd, tilfreds; lei seg, lei; redd, skremt; rolig; overrasket, forbauset; bekymring | W "happy, glad", "content, satisfied", "sad" and "fed up (with)", "afraid; scared, frightened", "quiet, calm", "surprised", "worries"; BMO glad ("norr. glaðr"), lei ("være lei seg"; "norr. leiðr"), redd ("norr. hræddr"), rolig ("av ro"); *lei seg* is a phrase in the file |
+| brjóta, líða, illur, illa, veikur, hraustur, kvefaður, læknir, batna | brekke, knuse, bryte; føle seg, ha det, gå; vond, dårlig, ond; dårlig, ille; syk, svak; frisk, sunn, sterk; forkjølet; lege, doktor; bli bedre | W "to break", "describing a specific feeling; to feel" (*Mér líður vel*, *Jeg har det bra*; *ha det* is also *bless*, so *føle seg* comes first), "evil, ill" (in the course sentences *Mér er illt í*, *Jeg har vondt i*), "badly, poorly", "sick, ill", "healthy, well", "having a cold", "doctor", "to get better"; BMO brekke ("brekke armen" is how a bone breaks), vond ("det gjør vondt"), ille ("norr. illa"), syk, frisk ("som har god helse"), forkjølet, lege; *bli bedre*, *føle seg* are phrases in the file |
 
 ### Wiktionary glosses corrected (`"fixes"`)
 
@@ -644,12 +743,20 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | fyndinn | artig | morsom, artig | "funny": *morsom* (BMO "som morer ... lattervekkende") is the word the course sentences translate it with (*Dette er ikke morsomt!*); *gøy* removed |
 | skap | lag | humør, lune | "mood, temper"; BMO humør ("sinnsstemning, lune"), lune ("sinnsstemning, humør"); *í góðu skapi* is *i godt humør* |
 | hamingjusamur | glad | lykkelig | "happy"; *glad* is the gloss of *glaður* (the same unit), so the two never look alike as options |
+| höfuð | hode (second: leder, sjef) | hode | "a head"; *leder* and *sjef* are "head, chief" |
+| munnur | munn (second: kjeft) | munn | "mouth"; *kjeft* is first of all the mouth of an animal (BMO "munn på dyr eller menneske"; "hunden kom mot dem med fråden om kjeften") |
+| magi | mage (second: magesekk, mavesekk) | mage | "stomach", "tummy, belly": in the course sentences the belly (*Mér er illt í maganum*), not the organ |
+| meiða | gjøre vont | skade, gjøre vondt | "to harm, hurt"; the neuter is spelled *vondt* (BMO vond, "det gjør vondt"); *svida* is not in BMO |
+| hjúkrunarfræðingur | sykepleier (second: sykesøster, søster) | sykepleier | "nurse": *sykepleier* is the title for all; *søster* is a sister |
+| hjálp | hjelp (second: hjelper) | hjelp | "help"; *hjelper* is a helper, a person |
+| lyf | legemiddel | medisin, legemiddel | "drug, medicine": *medisin* is the everyday word (BMO "legemiddel, medikament"; "ta medisin") |
+| vona | håpe (second: håp) | håpe | "to hope"; *håp* is the noun (*von*) |
 
 Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *dós* kanne (BMO: a jug), *pylsa* kurv and korv (BMO's other word for a sausage, but *kurv* is mostly a basket), *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 480 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 510 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|

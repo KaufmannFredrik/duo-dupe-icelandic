@@ -1,0 +1,74 @@
+{
+  "id": "body",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "Not feeling well",
+    "nb": "Ikke i form"
+  },
+  "level": "A1",
+  "after": "body",
+  "dialogue": true,
+  "cast": {
+    "A": "elias",
+    "B": "katla"
+  },
+  "lines": [
+    {
+      "sentence": "466865",
+      "speaker": "A"
+    },
+    {
+      "sentence": "473067",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1323342",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1329176",
+      "speaker": "A"
+    },
+    {
+      "sentence": "1316601",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1364319",
+      "speaker": "B"
+    },
+    {
+      "sentence": "493912",
+      "speaker": "A"
+    },
+    {
+      "sentence": "488372",
+      "speaker": "A"
+    },
+    {
+      "sentence": "564515",
+      "speaker": "B"
+    },
+    {
+      "sentence": "870140",
+      "speaker": "A"
+    },
+    {
+      "sentence": "652971",
+      "speaker": "A"
+    },
+    {
+      "sentence": "504913",
+      "speaker": "B"
+    },
+    {
+      "sentence": "5722376",
+      "speaker": "A"
+    },
+    {
+      "sentence": "397461",
+      "speaker": "B"
+    }
+  ]
+}

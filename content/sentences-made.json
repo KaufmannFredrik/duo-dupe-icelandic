@@ -1126,6 +1126,420 @@
       ],
       "is": "Mér líkar enginn þessara lita.",
       "en": "I don't like any of these colors."
+    },
+    "882031-1": {
+      "from": "882031",
+      "swap": [
+        "maganum",
+        "höfðinu"
+      ],
+      "is": "Dóttur hennar er illt í höfðinu.",
+      "en": "Her daughter has a headache."
+    },
+    "882031-2": {
+      "from": "882031",
+      "swap": [
+        "maganum",
+        "hálsinum"
+      ],
+      "is": "Dóttur hennar er illt í hálsinum.",
+      "en": "Her daughter has a sore throat."
+    },
+    "882031-3": {
+      "from": "882031",
+      "swap": [
+        "maganum",
+        "eyranu"
+      ],
+      "is": "Dóttur hennar er illt í eyranu.",
+      "en": "Her daughter has an earache."
+    },
+    "882033-1": {
+      "from": "882033",
+      "swap": [
+        "bakinu",
+        "hálsinum"
+      ],
+      "is": "Mér er illt í hálsinum.",
+      "en": "My throat hurts."
+    },
+    "882033-2": {
+      "from": "882033",
+      "swap": [
+        "bakinu",
+        "eyranu"
+      ],
+      "is": "Mér er illt í eyranu.",
+      "en": "My ear hurts."
+    },
+    "882033-3": {
+      "from": "882033",
+      "swap": [
+        "bakinu",
+        "maganum"
+      ],
+      "is": "Mér er illt í maganum.",
+      "en": "My stomach hurts."
+    },
+    "882033-4": {
+      "from": "882033",
+      "swap": [
+        "bakinu",
+        "hendinni"
+      ],
+      "is": "Mér er illt í hendinni.",
+      "en": "My hand hurts."
+    },
+    "882033-5": {
+      "from": "882033",
+      "swap": [
+        "bakinu",
+        "handleggnum"
+      ],
+      "is": "Mér er illt í handleggnum.",
+      "en": "My arm hurts."
+    },
+    "511464-1": {
+      "from": "511464",
+      "swap": [
+        "Kanínur",
+        "Þau"
+      ],
+      "is": "Þau hafa stór eyru.",
+      "en": "They have big ears."
+    },
+    "513951-1": {
+      "from": "513951",
+      "swap": [
+        "bakið",
+        "magann"
+      ],
+      "is": "Hann lagðist á magann.",
+      "en": "He lay on his stomach."
+    },
+    "1364165-1": {
+      "from": "1364165",
+      "swap": [
+        "höndinni",
+        "hendinni"
+      ],
+      "is": "Hann meiddi sig í vinstri hendinni.",
+      "en": "He hurt his left hand."
+    },
+    "1364165-2": {
+      "from": "1364165",
+      "swap": [
+        "höndinni",
+        "handleggnum"
+      ],
+      "is": "Hann meiddi sig í vinstri handleggnum.",
+      "en": "He hurt his left arm."
+    },
+    "3994549-1": {
+      "from": "3994549",
+      "swap": [
+        "fótlegginn",
+        "handlegginn"
+      ],
+      "is": "Ég braut handlegginn minn.",
+      "en": "I broke my arm."
+    },
+    "1323648-1": {
+      "from": "1323648",
+      "swap": [
+        "Tom",
+        "honum"
+      ],
+      "is": "Andlitið á honum er rautt.",
+      "en": "His face is red."
+    },
+    "1319432-3": {
+      "from": "1319432",
+      "swap": [
+        "flöskuna",
+        "munninn"
+      ],
+      "is": "Opnaðu munninn.",
+      "en": "Open your mouth."
+    },
+    "3799221-1": {
+      "from": "3799221",
+      "swap": [
+        "augun",
+        "munninn"
+      ],
+      "is": "Ég opnaði munninn.",
+      "en": "I opened my mouth."
+    },
+    "828852-1": {
+      "from": "828852",
+      "swap": [
+        "dyrunum",
+        "munninum"
+      ],
+      "is": "Lokaðu munninum.",
+      "en": "Close your mouth."
+    },
+    "1321866-1": {
+      "from": "1321866",
+      "swap": [
+        "Tom",
+        "Hann"
+      ],
+      "is": "Hann meiddi sig.",
+      "en": "He hurt himself."
+    },
+    "537223-1": {
+      "from": "537223",
+      "swap": [
+        "gott",
+        "slæmt"
+      ],
+      "is": "Veðrið er svo slæmt!",
+      "en": "The weather is so bad!"
+    },
+    "495489-1": {
+      "from": "495489",
+      "swap": [
+        "góðu",
+        "slæmu"
+      ],
+      "is": "Hann er í slæmu skapi í dag.",
+      "en": "He's in a bad mood today."
+    },
+    "10288758-1": {
+      "from": "10288758",
+      "swap": [
+        "hita",
+        "kvef"
+      ],
+      "is": "Hann er ekki með kvef.",
+      "en": "He doesn't have a cold."
+    },
+    "1316185-1": {
+      "from": "1316185",
+      "swap": [
+        "hraustur",
+        "kvefaður"
+      ],
+      "is": "Ég er kvefaður.",
+      "en": "I have a cold."
+    },
+    "1316184-1": {
+      "from": "1316184",
+      "swap": [
+        "hraust",
+        "kvefuð"
+      ],
+      "is": "Ég er kvefuð.",
+      "en": "I have a cold."
+    },
+    "472990-1": {
+      "from": "472990",
+      "swap": [
+        "höfuðverk",
+        "hita"
+      ],
+      "is": "Ég er með hita.",
+      "en": "I have a fever."
+    },
+    "882032-1": {
+      "from": "882032",
+      "swap": [
+        "tannpínu",
+        "hita"
+      ],
+      "is": "Sonur minn er með hita.",
+      "en": "My son has a fever."
+    },
+    "882032-2": {
+      "from": "882032",
+      "swap": [
+        "tannpínu",
+        "höfuðverk"
+      ],
+      "is": "Sonur minn er með höfuðverk.",
+      "en": "My son has a headache."
+    },
+    "882032-3": {
+      "from": "882032",
+      "swap": [
+        "tannpínu",
+        "kvef"
+      ],
+      "is": "Sonur minn er með kvef.",
+      "en": "My son has a cold."
+    },
+    "1317132-1": {
+      "from": "1317132",
+      "swap": [
+        "hnerra",
+        "hósta"
+      ],
+      "is": "Ég hósta mikið.",
+      "en": "I cough a lot."
+    },
+    "1317133-1": {
+      "from": "1317133",
+      "swap": [
+        "hnerra",
+        "hósta"
+      ],
+      "is": "Ég hósta oft.",
+      "en": "I cough a lot."
+    },
+    "1364319-1": {
+      "from": "1364319",
+      "swap": [
+        "hnerra",
+        "hósta"
+      ],
+      "is": "Ég get ekki hætt að hósta.",
+      "en": "I can't stop coughing."
+    },
+    "10973142-1": {
+      "from": "10973142",
+      "swap": [
+        "hnerraði",
+        "hóstaði"
+      ],
+      "is": "Ég hóstaði.",
+      "en": "I coughed."
+    },
+    "3795330-1": {
+      "from": "3795330",
+      "swap": [
+        "læknir",
+        "hjúkrunarfræðingur"
+      ],
+      "is": "Ég er ekki hjúkrunarfræðingur.",
+      "en": "I'm not a nurse."
+    },
+    "3994554-1": {
+      "from": "3994554",
+      "swap": [
+        "læknar",
+        "hjúkrunarfræðingar"
+      ],
+      "is": "Við erum hjúkrunarfræðingar.",
+      "en": "We are nurses."
+    },
+    "666974-1": {
+      "from": "666974",
+      "swap": [
+        "læknir",
+        "hjúkrunarfræðingur"
+      ],
+      "is": "Hann er sagður vera góður hjúkrunarfræðingur.",
+      "en": "He's said to be a good nurse."
+    },
+    "504913-1": {
+      "from": "504913",
+      "swap": [
+        "læknisins",
+        "tannlæknisins"
+      ],
+      "is": "Í dag fór ég til tannlæknisins.",
+      "en": "Today, I went to the dentist's."
+    },
+    "4048172-1": {
+      "from": "4048172",
+      "swap": [
+        "hjúkrunarfræðingur",
+        "tannlæknir"
+      ],
+      "is": "Ég er tannlæknir.",
+      "en": "I'm a dentist."
+    },
+    "1315576-1": {
+      "from": "1315576",
+      "swap": [
+        "Mary",
+        "sjúklingnum"
+      ],
+      "is": "Hvernig líður sjúklingnum?",
+      "en": "How is the patient?"
+    },
+    "4172215-1": {
+      "from": "4172215",
+      "swap": [
+        "sjúkrahúsið",
+        "apótekið"
+      ],
+      "is": "Hvar er apótekið?",
+      "en": "Where is the pharmacy?"
+    },
+    "483002-3": {
+      "from": "483002",
+      "swap": [
+        "baðherberginu",
+        "apótekinu"
+      ],
+      "is": "Hún er í apótekinu.",
+      "en": "She is in the pharmacy."
+    },
+    "386105-1": {
+      "from": "386105",
+      "swap": [
+        "búðinni",
+        "apótekinu"
+      ],
+      "is": "Hún hitti frænda sinn í apótekinu.",
+      "en": "She met her uncle at the pharmacy."
+    },
+    "888256-1": {
+      "from": "888256",
+      "swap": [
+        "ráðlagði",
+        "sagði"
+      ],
+      "is": "Hún sagði honum að taka lyfin.",
+      "en": "She told him to take the medicine."
+    },
+    "888244-1": {
+      "from": "888244",
+      "swap": [
+        "ráðlagði",
+        "sagði"
+      ],
+      "is": "Hún sagði honum að hætta að taka þessi lyf.",
+      "en": "She told him to stop taking that medicine."
+    },
+    "11516190-1": {
+      "from": "11516190",
+      "swap": [
+        "verkjalyf",
+        "lyf"
+      ],
+      "is": "Læknirinn gaf henni lyf.",
+      "en": "The doctor gave her some medicine."
+    },
+    "5030347-1": {
+      "from": "5030347",
+      "swap": [
+        "Tom",
+        "þér"
+      ],
+      "is": "Er kvefið í þér að batna?",
+      "en": "How's your cold?"
+    },
+    "391731-1": {
+      "from": "391731",
+      "swap": [
+        "skjótt",
+        "strax"
+      ],
+      "is": "Ég vil að mömmu minni batni strax.",
+      "en": "I want my mother to get well right away."
+    },
+    "882031-4": {
+      "from": "882031",
+      "swap": [
+        "maganum",
+        "bakinu"
+      ],
+      "is": "Dóttur hennar er illt í bakinu.",
+      "en": "Her daughter has a backache."
     }
   }
 }

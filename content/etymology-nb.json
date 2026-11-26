@@ -1932,6 +1932,126 @@
     "trefill_no": {
       "nb": "Fra norrønt trefill («fille»), ved overflateanalyse traf («frynse, omslag») + -ill.",
       "of": "f6968ff9"
+    },
+    "höfuð_no": {
+      "nb": "Fra norrønt hǫfuð, fra urgermansk *hafudą eller *habudą, en nordlig form av *haubudą, fra urindoeuropeisk *káput («hode»). Mer under engelsk head.",
+      "of": "c0fe6288"
+    },
+    "háls_no": {
+      "nb": "Fra norrønt hals, fra urgermansk *halsaz.",
+      "of": "f1ec3b31"
+    },
+    "eyra_no": {
+      "nb": "Fra norrønt eyra, fra den stemte Verner-varianten av urgermansk *ausô, fra urindoeuropeisk *h₂ous-.",
+      "of": "cc8854cc"
+    },
+    "magi_no": {
+      "nb": "Fra norrønt magi, fra urgermansk *magô.",
+      "of": "bdbcbb2d"
+    },
+    "bak_no": {
+      "nb": "Fra norrønt bak, fra urgermansk *baką.",
+      "of": "fcd1654f"
+    },
+    "illur_lo": {
+      "nb": "Fra norrønt illr («ond, dårlig»).",
+      "of": "3519f569"
+    },
+    "hönd_no": {
+      "nb": "Fra norrønt hǫnd, fra urgermansk *handuz.",
+      "of": "bec0e615"
+    },
+    "handleggur_no": {
+      "nb": "Av hönd («hånd») + leggur («bein»).",
+      "of": "1b9a6855"
+    },
+    "andlit_no": {
+      "nb": "Fra norrønt andlit («ansikt»).",
+      "of": "dfe5616c"
+    },
+    "munnur_no": {
+      "nb": "Fra norrønt munnr, fra urgermansk *munþaz, fra urindoeuropeisk *ment-.",
+      "of": "a6b4e72f"
+    },
+    "meiða_so": {
+      "nb": "Fra norrønt meiða, fra urgermansk *maidijaną eller *maiþijaną.",
+      "of": "b5f54205"
+    },
+    "brjóta_so": {
+      "nb": "Fra norrønt brjóta, fra urgermansk *breutaną.",
+      "of": "cb7d8768"
+    },
+    "líða_so": {
+      "nb": "Fra norrønt líða, fra urgermansk *līþaną. Betydningene «lide, tåle» kan være lånt fra middelnedertysk, men kommer i alle fall fra den samme roten.",
+      "of": "32c3690a"
+    },
+    "veikur_lo": {
+      "nb": "Fra norrønt veikr, fra urgermansk *waikwaz.",
+      "of": "0d90c5ab"
+    },
+    "slæmur_lo": {
+      "nb": "Lånt fra dansk slem, som lånte det fra middelnedertysk slim («bøyd, skjev»), fra gammelsaksisk *slimb, fra vestgermansk urspråk *slimb, fra urgermansk *slimbaz («skrå, skjev»). Kanskje beslektet med litauisk slim̃pti («å snike seg, spasere»).",
+      "of": "01049280"
+    },
+    "hraustur_lo": {
+      "nb": "Fra norrønt hraustr, fra urgermansk *hraustaz («sterk, aktiv»). En eldre teori av Pokorny fører det norrøne ordet tilbake til urindoeuropeisk *kreu- («å riste, vifte»), og sammenligner tokarisk A kru («siv»), tokarisk B kärwats og litauisk krutéti («å bevege seg»), men den regnes nå som foreldet.",
+      "of": "b6e060b6"
+    },
+    "kvef_no": {
+      "nb": "Fra et eldre urgermansk *kwabją, ved overflateanalyse en substantivdannelse av kvefja («å kvele»), se der for mer.",
+      "of": "3621d7a6"
+    },
+    "kvefaður_lo": {
+      "nb": "Av kvef («forkjølelse») + -aður.",
+      "of": "05707e28"
+    },
+    "hiti_no": {
+      "nb": "Fra norrønt hiti.",
+      "of": "85715de9"
+    },
+    "hnerra_so": {
+      "nb": "Fra substantivet hnerri, fra norrønt hnøri, hneri, fra preteritumsstammen til verbet hnjósa («å nyse») (preteritum hnøri), til syvende og sist fra urgermansk *hneusaną.",
+      "of": "341809c2"
+    },
+    "hósta_so": {
+      "nb": "Arvet fra norrønt hósta, fra urgermansk *hwōstōną.",
+      "of": "73dfaecc"
+    },
+    "höfuðverkur_no": {
+      "nb": "Av höfuð («hode») + verkur («verk, smerte»).",
+      "of": "7207d2e7"
+    },
+    "læknir_no": {
+      "nb": "Fra norrønt læknir («en som helbreder»). Tilsvarer lækna + -ir.",
+      "of": "2075d90e"
+    },
+    "hjúkrunarfræðingur_no": {
+      "nb": "Av hjúkrunarfræði («sykepleie») + -ingur.",
+      "of": "aeaf48d0"
+    },
+    "tannlæknir_no": {
+      "nb": "Av tann- («tann-») + læknir («lege»).",
+      "of": "e5f90c63"
+    },
+    "hjálp_no": {
+      "nb": "Fra norrønt hjalp, hjǫlp.",
+      "of": "40b4f5b1"
+    },
+    "lyf_no": {
+      "nb": "Fra norrønt lyf, fra urgermansk *lubją.",
+      "of": "2fa39a81"
+    },
+    "batna_so": {
+      "nb": "Fra norrønt batna, fra urgermansk *batnaną.",
+      "of": "6dd1a1c1"
+    },
+    "vona_so": {
+      "nb": "Fra norrønt vána, fra substantivet ván («håp») (islandsk von).",
+      "of": "dd4cb931"
+    },
+    "reykja_so": {
+      "nb": "Fra norrønt reykja, fra urgermansk *raukijaną.",
+      "of": "fdea3348"
     }
   }
 }

@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-26T07:42:58.030Z",
+  "generated": "2026-11-26T22:06:08.379Z",
   "generator": "scripts/build-data.mjs",
   "licenseNote": "Files that contain DMII Core or Wiktionary data are CC BY-SA 4.0; see data/LICENSE.md.",
   "files": {
     "data/lexicon.json": {
-      "bytes": 253726,
-      "gzip": 74589,
+      "bytes": 270344,
+      "gzip": 79367,
       "sources": [
         "dmii-core",
         "wiktionary",
@@ -15,16 +15,16 @@
       ]
     },
     "data/sentences.json": {
-      "bytes": 702711,
-      "gzip": 161745,
+      "bytes": 753660,
+      "gzip": 173080,
       "sources": [
         "tatoeba",
         "tolva"
       ]
     },
     "data/audio.json": {
-      "bytes": 112818,
-      "gzip": 6470,
+      "bytes": 117139,
+      "gzip": 6677,
       "sources": [
         "commons"
       ]
@@ -120,6 +120,13 @@
         "dmii-core"
       ]
     },
+    "data/forms/body.json": {
+      "bytes": 62227,
+      "gzip": 7813,
+      "sources": [
+        "dmii-core"
+      ]
+    },
     "data/forms/study.json": {
       "bytes": 58053,
       "gzip": 7093,
@@ -149,8 +156,8 @@
       "attribution": "Beygingarlýsing íslensks nútímamáls. Stofnun Árna Magnússonar í íslenskum fræðum. Höfundur og ritstjóri Kristín Bjarnadóttir.",
       "url": "https://bin.arnastofnun.is/api/",
       "license": "CC BY-SA 4.0; may be published on the web unmodified with credit",
-      "retrieved": "2026-11-26T07:42:58.030Z",
-      "items": 517,
+      "retrieved": "2026-11-26T22:06:08.379Z",
+      "items": 550,
       "requestsThisRun": 0,
       "changes": "None. Each paradigm is the API response object for the word, unchanged. Files group the objects by theme."
     },
@@ -170,7 +177,7 @@
       "name": "Wiktionary (English entries, translation tables), via kaikki.org per-word pages",
       "url": "https://kaikki.org/dictionary/English/meaning/",
       "license": "CC BY-SA 4.0 and GFDL",
-      "retrieved": "2026-11-26T07:42:58.030Z",
+      "retrieved": "2026-11-26T22:06:08.379Z",
       "changes": "Norwegian Bokmål translations taken from the same translation sense that lists the Icelandic lemma."
     },
     {
@@ -233,7 +240,7 @@
       "name": "Ylhýra inflection API (wrapper over the full BÍN)",
       "url": "https://ylhyra.is/api/inflection",
       "license": "Data CC BY-SA 4.0 (BÍN); software MIT",
-      "retrieved": "2026-11-26T07:42:58.030Z",
+      "retrieved": "2026-11-26T22:06:08.379Z",
       "changes": "Used only to confirm that indeclinable numerals exist in BÍN; no data copied except the BÍN id."
     },
     {
@@ -241,7 +248,7 @@
       "name": "Wikimedia Commons and Lingua Libre recordings",
       "url": "https://commons.wikimedia.org/",
       "license": "Per file; see data/audio.json",
-      "retrieved": "2026-11-26T07:42:58.030Z",
+      "retrieved": "2026-11-26T22:06:08.379Z",
       "changes": "Links only; no audio files are copied."
     },
     {
@@ -254,6 +261,6 @@
   ],
   "vocabulary": {
     "file": "content/vocab/core.json",
-    "entries": 517
+    "entries": 550
   }
 }
