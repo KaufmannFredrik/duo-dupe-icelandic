@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-25T20:37:56.161Z",
+ "generated": "2026-11-26T07:42:04.785Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -18,9 +18,9 @@
   }
  ],
  "counts": {
-  "loan": 7,
-  "old-norse": 217,
-  "form": 20
+  "loan": 8,
+  "old-norse": 237,
+  "form": 21
  },
  "pairs": {
   "halló_uh": {
@@ -344,6 +344,13 @@
     "au"
    ]
   },
+  "smjör_no": {
+   "nb": "smør",
+   "article": 54895,
+   "oldNorse": "smjǫr",
+   "evidence": "old-norse",
+   "rules": null
+  },
   "ostur_no": {
    "nb": "ost",
    "article": 43443,
@@ -492,6 +499,13 @@
    "rules": [
     "ending-ur"
    ]
+  },
+  "einn_to": {
+   "nb": "en",
+   "article": 12570,
+   "oldNorse": "einn",
+   "evidence": "old-norse",
+   "rules": null
   },
   "fjórir_to": {
    "nb": "fire",
@@ -655,6 +669,20 @@
    "nb": "min",
    "article": 38448,
    "oldNorse": "mínn",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "þinn_fn": {
+   "nb": "din",
+   "article": 10171,
+   "oldNorse": "þínn",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "sinn_fn": {
+   "nb": "sin",
+   "article": 51589,
+   "oldNorse": "sínn",
    "evidence": "old-norse",
    "rules": null
   },
@@ -1175,6 +1203,13 @@
    "evidence": "old-norse",
    "rules": null
   },
+  "eftir_fs": {
+   "nb": "etter",
+   "article": 13250,
+   "oldNorse": "eptir",
+   "evidence": "old-norse",
+   "rules": null
+  },
   "fótur_no": {
    "nb": "fot",
    "article": 17343,
@@ -1506,6 +1541,15 @@
     "ending-i"
    ]
   },
+  "gluggi_no": {
+   "nb": "glugge",
+   "article": 20326,
+   "oldNorse": "gluggi",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-i"
+   ]
+  },
   "lykill_no": {
    "nb": "nøkkel",
    "article": 41604,
@@ -1607,10 +1651,140 @@
    "evidence": "old-norse",
    "rules": null
   },
+  "sokkur_no": {
+   "nb": "sokk",
+   "article": 55416,
+   "oldNorse": "sokkr",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-ur"
+   ]
+  },
+  "hattur_no": {
+   "nb": "hatt",
+   "article": 22524,
+   "oldNorse": "hǫttr",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-ur"
+   ]
+  },
+  "grár_lo": {
+   "nb": "grå",
+   "article": 21372,
+   "oldNorse": "grár",
+   "evidence": "old-norse",
+   "rules": [
+    "a-acute",
+    "ending-r"
+   ]
+  },
+  "bleikur_lo": {
+   "nb": "blek",
+   "article": 6340,
+   "oldNorse": "bleikr",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "taska_no": {
+   "nb": "taske",
+   "article": 59950,
+   "oldNorse": "taska",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "hár_no": {
+   "nb": "hår",
+   "article": 25500,
+   "oldNorse": "hár",
+   "evidence": "old-norse",
+   "rules": [
+    "a-acute"
+   ]
+  },
+  "langur_lo": {
+   "nb": "lang",
+   "article": 33770,
+   "oldNorse": "langr",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-ur"
+   ]
+  },
+  "stuttur_lo": {
+   "nb": "stutt",
+   "article": 57938,
+   "oldNorse": "stuttr",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-ur"
+   ]
+  },
+  "klár_lo": {
+   "nb": "klar",
+   "evidence": "loan",
+   "loan": {
+    "language": "Middle Low German",
+    "word": "klar"
+   },
+   "rules": [
+    "a-acute-a"
+   ]
+  },
+  "stoltur_lo": {
+   "nb": "stolt",
+   "evidence": "form",
+   "rules": [
+    "ending-ur"
+   ]
+  },
+  "glaður_lo": {
+   "nb": "glad",
+   "article": 20074,
+   "oldNorse": "glaðr",
+   "evidence": "old-norse",
+   "rules": [
+    "eth",
+    "ending-ur"
+   ]
+  },
+  "hlæja_so": {
+   "nb": "le",
+   "article": 34158,
+   "oldNorse": "hlæja",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "gráta_so": {
+   "nb": "gråte",
+   "article": 21407,
+   "oldNorse": "gráta",
+   "evidence": "old-norse",
+   "rules": [
+    "a-acute",
+    "ending-a"
+   ]
+  },
+  "skap_no": {
+   "nb": "skap",
+   "article": 52501,
+   "oldNorse": "skap",
+   "evidence": "old-norse",
+   "rules": []
+  },
   "veður_no": {
    "nb": "vær",
    "article": 69201,
    "oldNorse": "veðr",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "snjór_no": {
+   "nb": "snø",
+   "article": 55276,
+   "oldNorse": "snjór",
    "evidence": "old-norse",
    "rules": null
   },
@@ -1793,6 +1967,13 @@
    "nb": "ha",
    "article": 21804,
    "oldNorse": "hafa",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "gera_so": {
+   "nb": "gjøre",
+   "article": 20054,
+   "oldNorse": "gera",
    "evidence": "old-norse",
    "rules": null
   },

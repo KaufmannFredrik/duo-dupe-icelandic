@@ -80,8 +80,16 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | *með* in the sense "along with" takes the dative, so *Hrísgrjón eru góð með sósu* and *með fiski* (made from T 382243) keep no parser case (it gives the accusative), and *fiski* there is *fiskur*, not the noun *fiski* ("fishing"). | W með (as in the *Búð* rows); T 870309 (*brauð með smjöri*); DMII (*fiski* ÞGFET of *fiskur*) | sourced |
 | *á* in *Slökktu á honum*, *á henni*, *á því* and in *Slökktu á lampanum*, *á sjónvarpinu* (made from T 1329150) is the preposition of *slökkva á* ("turn off"), not the noun *á* ("river") the parser reads; the five sentences keep no parser case. | W slökkva (*Slökktu á perunum*, "Turn off the lights"); translations of T 1316200, 1316201, 1316202, 1329150 | sourced |
 | *læs* in *Hann er læs og skrifandi* is the adjective *læs* ("literate"), not a form of *læsa* ("to lock"); a fix with lemma null. | W læs ("literate (able to read)"); translation of T 1356570 ("He can read and write") | sourced |
+| *hrædd*, *hræddur* in *Ég var hræddur*, *Ég var hrædd*, *Ég er hrædd við að fara*, *Hann er hræddur við föður sinn* and five more are the adjective *hræddur* ("afraid"), not the past participle of *hræða* ("frighten") the parser reads; *Þau hræddust þig* stays the verb *hræðast*. | W hræddur (adjective, "scared, frightened; afraid"); DMII (*hræddur* lo); BMO redd ("norr. hræddr, av hræða"); translations of T 11353825, 11353827, 1322944, 690290 | sourced |
+| *stutt* in *Hún er með stutt hár* is the adjective *stuttur* ("short"), neuter with *hár*, not *studdur* ("supported") the parser reads. | translation of T 1324694 ("She has short hair"); DMII (*stutt*, HK ÞF ET of *stuttur*) | sourced |
+| *hatta* in *Mér líkar enginn þessara hatta* is the genitive plural of *hattur* ("hat"), not of *höttur* ("hood") the parser reads. | translation of T 647420 ("I don't like any of these hats"); DMII (*hatta*, EFFT of *hattur*) | sourced |
+| *klára* in *Hún verður að gera sig klára fyrir matinn* is the adjective *klár* in the sense "ready", feminine accusative, not an adverb. | W klár ("prepared, ready"); translation of T 908324 ("She's got to get ready for dinner"); DMII (*klára* of *klár*) | sourced |
+| *rólega* in *Taktu því rólega!* is the adverb *rólega* ("calmly"), a word of its own, not the adjective *rólegur* the parser reads there; a fix with lemma null. | W rólega (adverb, "calmly"); BÍN (*rólega* ao); T 795470, where the parser reads *rólega* as the adverb | sourced |
+| *svona* in *Ekki tala svona*, *Talið ekki svona*, *Það var ekki alltaf svona*, *Svona er hún bara*, *Ég kem aftur eftir svona klukkutíma* and *Ekki vera svona reiður* is the adverb ("like this, so; about"), not the indeclinable adjective ("such") the parser reads. | W svona (adverb: "thus, like this", "to this degree", "approximately, about"; adjective: "like this, such"); translations of T 1351311, 1351314, 3997427, 428538, 863109, 733997 | sourced |
+| In *Ekki vera reiður*, *Ekki vera reið*, *Ekki vera svona reiður* and *Ekki vera svona reið*, *vera* is the verb ("be"), not the noun *vera* ("a being"), and *reiður*, *reið* are the adjective *reiður*, not the noun *reiða* or the past of *ríða* ("ride") the parser reads. | translations of T 1316637, 1316636, 733997, 733998 ("Don't be (so) angry"); DMII (*reið*, KVK NF ET of *reiður*) | sourced |
+| In *Það er of langt* and *Það er of stutt* (made from T 1318211), *of* is the adverb ("too") and *langt*, *stutt* the adjectives *langur*, *stuttur*; the parser cannot analyze the two sentences, and reads the original *Það er of stórt* so. | the parser's output for T 1318211; W of ("too (excessive degree)") | checked |
 
-The parser itself is not checked case by case: `npm run build:tags` lists the 306 words it gives to another word than their spelling suggests.
+The parser itself is not checked case by case: `npm run build:tags` lists the 440 words it gives to another word than their spelling suggests.
 
 ## Unit guidebooks (`content/units/`)
 
@@ -302,6 +310,55 @@ Headings name the units rather than their numbers, because new units are inserte
 | *slökkva* and Norwegian *slokke* come from Old Norse *sløkkva*. | W slökkva ("From Old Norse sløkkva"); BMO slokke ("norr. sløkkva") | sourced |
 | Unit 11 drops *framan*: the parser reads *fyrir framan* as one preposition, and the only sentence where *framan* stands alone, *Þvoðu þér í framan* ("Wash your face"), is not "in front". | the parser's output (`npm run build:tags`); T 1318339 | checked |
 
+### *Föt og fólk*
+
+| Claim | Source | Status |
+|---|---|---|
+| *skyrta* and Norwegian *skjorte* both come from Old Norse *skyrta*. | W skyrta ("Cognate to Old Norse skyrta"); BMO skjorte ("norr. skyrta") | sourced |
+| *sokkur* and Norwegian *sokk* come from Old Norse *sokkr*, from Latin *soccus*, a slipper. | W sokkur ("From Old Norse sokkr, from Latin soccus ('slipper')"); BMO sokk ("norr. sokkr", "fra lat.") | sourced |
+| *hattur* is a hat with a brim, Norwegian *hatt*, from Old Norse *hǫttr*. | W hattur ("From Old Norse hǫttr"); BMO hatt ("norr. hǫttr, hattr"; "hodeplagg med pull og (vanligvis) brem") | sourced |
+| *húfa* is a soft cap without a brim, cognate with Norwegian *hue*. | W húfa ("cap (soft brimless hat)"; "Cognate with ... Norwegian Bokmål hue") | sourced |
+| *vettlingur* is *vöttur* ("a glove, a mitten") with the diminutive ending *-lingur*; Norwegian *vott* is the Old Norse *vǫttr*. | W vettlingur ("From vöttur + -lingur (diminutive suffix)"), vöttur ("glove"; "From Old Norse vǫttr"); BMO vott ("norr. vǫttr") | sourced |
+| *úlpa* is a thick winter coat, often with a hood: a parka or an anorak. | W úlpa ("a thick winter coat (often with a fur-lined cap); a parka; an anorak"); BMO parkas ("varmt, fôret ytterplagg med hette") | sourced |
+| *trefill* once meant a rag. | W trefill ("From Old Norse trefill ('tatter, rag')") | sourced |
+| *gleraugu* is *gler* ("glass") + *augu* ("eyes") and has only plural forms. | W gleraugu ("From gler + augu"; plural only); DMII | sourced |
+| *taska* and Norwegian *taske*, a small bag, come from Old Norse *taska*. | W taska ("From Old Norse taska"); BMO taske ("norr. taska"; "liten veske") | sourced |
+| Clothes go on with *fara í* and the accusative and come off with *fara úr* and the dative; *vera í* is to wear. | W fara í ("to put on [with accusative 'clothing']"), fara úr ("to take off [with dative 'clothing']"); T 1353642 ("I put on my trousers"), 664742, 499438, 389196 ("You are wearing your socks inside out"), 4000967 ("I do not like wearing anybody else's clothes") | sourced |
+| A hat or glasses go on with *setja á sig* and come off with *taka af sér*, and so can shoes. | T 387039 ("She put on her hat"), 1337006 ("He took off his hat"), 499437 ("You need not take off your shoes") | attested |
+| Norwegian *ta på seg* and *ta av seg* do the same. | BMO skjorte ("ta på seg skjorta"), hatt ("han tok hatten av da han kom inn") | sourced |
+| *litur* comes from a Proto-Germanic word for appearance, look. | W litur ("From Old Norse litr, from Proto-Germanic *wlitiz, *wlituz ('appearance, look, aspect')") | sourced |
+| Colors agree with what they describe; the neuter of *grár* is *grátt*, of *blár* *blátt*. | DMII; T 4010182, 1337019, 482640, 473520, 475024 | attested |
+| *brúnn* and *grár* are Norwegian *brun* and *grå*, from Old Norse *brúnn*, *grár*. | BMO brun ("norr. brúnn"), grå ("norr. grár"); W grár ("From Old Norse grár") | sourced |
+| *bleikur* is pink, and in an old sense pale; Norwegian *blek*, *bleik*, from the same Old Norse *bleikr*, is pale. | W bleikur ("pink"; "pale [archaic]"; "From Old Norse bleikr"); BMO blek, bleik ("norr. bleikr"; "med svak farge") | sourced |
+| *of* is "too", Norwegian *for* (*altfor*). | W of ("too (excessive degree)"); BMO for ("brukt som adverb: altfor, i overkant"; "kjøpe for mye mat"); T 653110, 473063, 482669 | sourced |
+| *síður* is long of hair or a dress: *sítt hár*. | W síður ("low-hanging, long, reaching far down (e.g. of a dress or long hair)"); DMII (*sítt* of *síður*) | sourced |
+| *líta út* is to look (a certain way), *líta á* to look at, *líta niður á* to look down on, *líta upp til* to look up to, *líta eftir* to look after. | T 385910 ("He looks well"), 1316654, 3799281, 489279, 908291, 504213 | attested |
+| *líta* is a strong verb (*leit*). | DMII (*leit*, GM-FH-ÞT-3P-ET); T 906667 | attested |
+| Eyes and hair are described with *vera með*. | T 473520 ("She has blue eyes"), 1324694 ("She has short hair"), 482640 ("He had grey hair") | attested |
+| *hár* is also an adjective, "high, tall". | W hár (adjective: "high", "tall"; "Þú ert orðinn svo hár! = You've gotten so tall!") | sourced |
+| *hávaxinn* is *há* (of *hár*, "high") + *vaxinn* ("grown"), like Norwegian *høyvokst*. | DMII (*há* of *hár*; *vaxinn* lo); BMO høyvokst ("av høy/høg vekst") | checked |
+| *klár* was borrowed from Middle Low German *klar*, as Norwegian *klar* was, and both can mean ready. | W klár ("Borrowed from Middle Low German klar"; "prepared, ready"); BMO klar ("gjennom l.ty."; the second article: "ferdig, i stand"); T 908324 | sourced |
+| *fyndinn* comes from *finna* ("find, feel"). | W fyndinn ("From finna ('to find; feel')") | sourced |
+| *leiðinlegur* is boring, and also sad or disappointing. | W leiðinlegur ("boring"; "sad, disappointing"); T 4007860 | sourced |
+| *rólegur* is *ró* ("calm, rest") + *-legur*; Norwegian *rolig* is from *ro*. | W rólegur ("From ró + -legur"), ró ("calm, rest, stillness"); BMO rolig ("av ro") | sourced |
+| *Taktu því rólega!* is "take it easy", with the adverb *rólega* ("calmly"). | T 609044 ("Take it easy!"); W rólega ("calmly") | sourced |
+| *stoltur af* is "proud of", Norwegian *stolt av*. | T 493082, 813376; BMO stolt ("hun er stolt av den nye bilen") | sourced |
+| *svona* is "like this, so". | W svona ("thus, like this"; "to this degree"); T 4171527, 733997 | sourced |
+| Adjectives of feeling agree with the speaker: a man says *Ég er glaður*, a woman *Ég er glöð*; so *leiður*, *leið* and *hræddur*, *hrædd*. | DMII (*glöð*, *leið*, *hrædd*: KVK NF ET); T 3795329, 905333, 1315606, 1315605, 11353825, 11353827 | sourced |
+| *glaður* and *leiður* are Norwegian *glad* and *lei*, from Old Norse *glaðr*, *leiðr*; *lei seg* is sad, *lei av* fed up with. | W glaður, leiður ("From Old Norse"; leiður: "fed up (with), tired (of)", "sad"); BMO glad ("norr. glaðr"), lei ("norr. leiðr"; "være lei av noe"; "være lei seg") | sourced |
+| *hræddur* is Norwegian *redd*, from Old Norse *hræddr*. | BMO redd ("norr. hræddr, av hræða 'skremme'") | sourced |
+| *ánægður* is pleased, satisfied; *ánægður með*, pleased with. | W ánægður ("content, satisfied"); T 3799207, 383487 ("He is pleased with his work") | sourced |
+| *hamingjusamur* is made from *hamingja* ("happiness, luck"), in Norse belief a spirit of luck that followed a person. | W hamingjusamur ("From the genitive of Old Norse hamingja ('luck') + -samur. In Nordic mythology, hamingja was a type of female guardian spirit that accompanied an individual and brought them luck and happiness"), hamingja ("happiness"; "luck, fortune") | sourced |
+| Afraid of is *hræddur við*; angry with is *reiður út í*, or *reiður* with the dative. | T 690290, 451942; T 1324568, 389325 ("Father is angry with me") | attested |
+| *hlæja* and *gráta* are strong verbs (*hló*, *grét*, *grætur*), Norwegian *le* and *gråte*, from Old Norse *hlæja*, *gráta*; *brosa* is weak (*brosti*). | DMII; W hlæja, gráta ("From Old Norse"); BMO le ("norr. hlæja"), gråte ("norr. gráta"); T 12360435, 4020755, 1316627, 673131 | sourced |
+| You laugh at someone with *að* and smile at someone with *til*. | T 489308 ("Everyone laughed at him"), 3799259, 512680 ("She smiled at her baby") | attested |
+| *hissa* does not inflect. | W hissa ("surprised [indeclinable]"); T 10963618, 3799404 | sourced |
+| *áhyggja* is used in the plural, *áhyggjur* ("worries"): *Hafðu ekki áhyggjur*, *Engar áhyggjur*, *hafa áhyggjur af*. | W áhyggja ("(in the plural) worries"; "Engar áhyggjur. = No worries."); T 494519, 542934, 384111 | sourced |
+| *skap* is mood: *í góðu skapi*, *ekki í skapi til að*. | W skap ("mood, temper"; "Hann er í þungu skapi. = He is in a bad mood."); T 495489, 852818 | sourced |
+| Norwegian *skap* in the sense shape, figure (*fin på skap*) is the same Old Norse word; the cupboard *skap* is *skápur*. | BMO skap ("norr. skap"; "form, figur"; "være fin på skap"); W skap ("form, shape"; "From Old Norse skap"); the *Heima* row on *skápur* | sourced |
+| *Föt og fólk* leaves out *uppáhald* ("favorite"): GreynirCorrect asks for *uppáhalds* and the noun after it to be written as one word (*uppáhaldsliturinn*, code C003), so the sentences with *uppáhalds* before a noun do not pass the lint. | GreynirCorrect, on the made *Hver er uppáhalds liturinn þinn?* (from T 398808) | checked |
+| *Föt og fólk* leaves out *lágvaxinn* ("short", of a person): Wiktionary has no entry for it, so the app would show no English gloss, and Tatoeba has no sentence with it. | W (no entry, kaikki.org); T (none) | checked |
+
 ### *Veður*
 
 | Claim | Source | Status |
@@ -450,10 +507,52 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | 11052105-2 | *Ég er niðri.* | T 11052105 | *hérna* → *niðri* | I'm downstairs. |
 | 11514512-1 | *Báturinn var skítugur.* | T 11514512 | *hreinn* → *skítugur* | The boat was dirty. |
 | 12701233-1 | *Teppið mitt er gamalt.* | T 12701233 | *Sjónvarpið* → *Teppið* | My carpet is old. |
+| 387039-1 | *Hún setti trefilinn sinn á sig.* | T 387039 | *hattinn* → *trefilinn* | She put on her scarf. |
+| 460455-1 | *Ég þvæ vettlingana mína.* | T 460455 | *sokkana* → *vettlingana* | I wash my mittens. |
+| 473520-1 | *Hún er með brún augu.* | T 473520 | *blá* → *brún* | She has brown eyes. |
+| 473521-1 | *Augun hennar eru brún.* | T 473521 | *blá* → *brún* | Her eyes are brown. |
+| 482640-1 | *Hann var með brúnt hár.* | T 482640 | *grátt* → *brúnt* | He had brown hair. |
+| 482640-2 | *Hann var með svart hár.* | T 482640 | *grátt* → *svart* | He had black hair. |
+| 515552-1 | *Þessir kjólar eru of langir.* | T 515552 | *stórir* → *langir* | These dresses are too long. |
+| 515552-2 | *Þessir kjólar eru of stuttir.* | T 515552 | *stórir* → *stuttir* | These dresses are too short. |
+| 583574-1 | *Ég þvoði úlpuna mína.* | T 583574 | *skyrtuna* → *úlpuna* | I washed my winter coat. |
+| 647420-1 | *Mér líkar enginn þessara lita.* | T 647420 | *hatta* → *lita* | I don't like any of these colors. |
+| 653110-1 | *Sokkarnir eru of litlir.* | T 653110 | *Skórnir* → *Sokkarnir* | The socks are too small. |
+| 653110-2 | *Vettlingarnir eru of litlir.* | T 653110 | *Skórnir* → *Vettlingarnir* | The mittens are too small. |
+| 906655-1 | *Hún fékk tösku frá pabba.* | T 906655 | *skó* → *tösku* | She got a bag from Father. |
+| 1315549-1 | *Hann er fyndinn.* | T 1315549 | *klár* → *fyndinn* | He's funny. |
+| 1315549-2 | *Hann er rólegur.* | T 1315549 | *klár* → *rólegur* | He's calm. |
+| 1315549-3 | *Hann er leiðinlegur.* | T 1315549 | *klár* → *leiðinlegur* | He's boring. |
+| 1315606-1 | *Ég er rólegur.* | T 1315606 | *leiður* → *rólegur* | I'm calm. |
+| 1318211-1 | *Það er of langt.* | T 1318211 | *stórt* → *langt* | It's too long. |
+| 1318211-2 | *Það er of stutt.* | T 1318211 | *stórt* → *stutt* | It's too short. |
+| 1323716-1 | *Hvar er taskan þín?* | T 1323716 | *húfan* → *taskan* | Where is your bag? |
+| 1323716-2 | *Hvar er úlpan þín?* | T 1323716 | *húfan* → *úlpan* | Where is your winter coat? |
+| 1323716-3 | *Hvar er skyrtan þín?* | T 1323716 | *húfan* → *skyrtan* | Where is your shirt? |
+| 1323734-1 | *Allir voru hissa.* | T 1323734 | *glaðir* → *hissa* | Everyone was surprised. |
+| 1324694-1 | *Hún er með grátt hár.* | T 1324694 | *stutt* → *grátt* | She has gray hair. |
+| 1337006-1 | *Hann tók af sér trefilinn.* | T 1337006 | *hattinn* → *trefilinn* | He took off his scarf. |
+| 1337006-2 | *Hann tók af sér vettlingana.* | T 1337006 | *hattinn* → *vettlingana* | He took off his mittens. |
+| 1337006-3 | *Hann tók af sér úlpuna.* | T 1337006 | *hattinn* → *úlpuna* | He took off his winter coat. |
+| 1337019-1 | *Skórnir hans eru gráir.* | T 1337019 | *brúnir* → *gráir* | His shoes are gray. |
+| 1337019-2 | *Skórnir hans eru bleikir.* | T 1337019 | *brúnir* → *bleikir* | His shoes are pink. |
+| 3795329-1 | *Ég er hissa.* | T 3795329 | *glaður* → *hissa* | I'm surprised. |
+| 3795642-1 | *Mér finnst það leiðinlegt.* | T 3795642 | *fyndið* → *leiðinlegt* | I find that boring. |
+| 4007860-1 | *Þessi mynd er fyndin.* | T 4007860 | *leiðinleg* → *fyndin* | This movie is funny. |
+| 4010182-1 | *Bíllinn minn er brúnn.* | T 4010182 | *rauður* → *brúnn* | My car is brown. |
+| 4010182-2 | *Bíllinn minn er grár.* | T 4010182 | *rauður* → *grár* | My car is gray. |
+| 4171677-1 | *Ég var hissa.* | T 4171677 | *leiður* → *hissa* | I was surprised. |
+| 10635094-1 | *Þú ert rólegur.* | T 10635094 | *klár* → *rólegur* | You're calm. |
+| 10969608-1 | *Hvar get ég keypt úlpu?* | T 10969608 | *sokka* → *úlpu* | Where can I buy a winter coat? |
+| 10969608-2 | *Hvar get ég keypt trefil?* | T 10969608 | *sokka* → *trefil* | Where can I buy a scarf? |
+| 10969608-3 | *Hvar get ég keypt vettlinga?* | T 10969608 | *sokka* → *vettlinga* | Where can I buy mittens? |
+| 10969608-4 | *Hvar get ég keypt skyrtu?* | T 10969608 | *sokka* → *skyrtu* | Where can I buy a shirt? |
+| 10969608-5 | *Hvar get ég keypt tösku?* | T 10969608 | *sokka* → *tösku* | Where can I buy a bag? |
+| 12340291-3 | *Þetta er grænn litur.* | T 12340291 | *fiskur* → *litur* | This is a green color. |
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 32 of the 2,497 sentences. The other 2,445 (all but 20 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 83 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 30 of the 2,765 sentences. The other 2,710 (all but 25 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 125 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -466,7 +565,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 408 of the 480 course words. The other 72 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 81 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 432 of the 517 course words. The other 85 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 85 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -484,6 +583,9 @@ Wiktionary gives a Bokmål gloss for 408 of the 480 course words. The other 72 w
 | upp, út, inn, uppi, niðri, hérna, leggja | opp; ut; inn; oppe, ovenpå; nede, nedenunder; her; legge | W "up", "out", "in, inside", "above, upstairs", "downstairs, below", "here", "to lay, to put"; BMO oppe ("norr. uppi"), nede ("norr. niðri"), legge; *hérna* shares *her* with *hér*, near-synonyms |
 | hreinn, skítugur | ren; skitten | W "clean", "dirty"; BMO ren ("norr. hreinn"), skitten ("som ikke er ren") |
 | kveikja, slökkva | tenne, slå på; slokke, slå av | W "to light ... turn on (a light)", "to extinguish, to put out"; BMO tenne ("skru på elektrisk lys"), slokke ("slokke lyset"; "norr. sløkkva"); *slå på* and *slå av* are phrases in the file |
+| úlpa, taska, gleraugu, hávaxinn | parkas, anorakk, boblejakke; veske, bag; briller; høy, høyvokst | W "a thick winter coat ...; a parka; an anorak", "bag, case", "glasses, eyeglasses, spectacles", "tall"; BMO parkas ("varmt, fôret ytterplagg med hette"), veske, briller, høyvokst ("av høy/høg vekst") |
+| klár, svona | smart, flink, klar; slik, så | W "clever, sharp ...", second "prepared, ready" (*klar*, BMO "ferdig, i stand"); W "thus, like this", "to this degree"; BMO slik |
+| glaður, ánægður, leiður, hræddur, rólegur, hissa, áhyggja | glad; fornøyd, tilfreds; lei seg, lei; redd, skremt; rolig; overrasket, forbauset; bekymring | W "happy, glad", "content, satisfied", "sad" and "fed up (with)", "afraid; scared, frightened", "quiet, calm", "surprised", "worries"; BMO glad ("norr. glaðr"), lei ("være lei seg"; "norr. leiðr"), redd ("norr. hræddr"), rolig ("av ro"); *lei seg* is a phrase in the file |
 
 ### Wiktionary glosses corrected (`"fixes"`)
 
@@ -538,12 +640,16 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | mynd | bilde (second: kino) | bilde, film | "image, picture", also "movie, film"; *kino* is a cinema (BMO), Icelandic *bíó* |
 | svefnherbergi, baðherbergi | soveværelse; bad | soverom, soveværelse; baderom, bad | "bedroom", "bathroom": *soverom* is the everyday word (BMO); *bad* is also *bað* ("bath"), so *baderom* comes first |
 | þarna | der | der borte, der | "over there, there (the place being pointed at)"; *der* alone is *þar* (the guidebook) |
+| hattur | hatt (second: lue) | hatt | "hat"; *lue* is a soft cap, the gloss of *húfa* (W húfa "cap (soft brimless hat)") |
+| fyndinn | artig | morsom, artig | "funny": *morsom* (BMO "som morer ... lattervekkende") is the word the course sentences translate it with (*Dette er ikke morsomt!*); *gøy* removed |
+| skap | lag | humør, lune | "mood, temper"; BMO humør ("sinnsstemning, lune"), lune ("sinnsstemning, humør"); *í góðu skapi* is *i godt humør* |
+| hamingjusamur | glad | lykkelig | "happy"; *glad* is the gloss of *glaður* (the same unit), so the two never look alike as options |
 
 Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *dós* kanne (BMO: a jug), *pylsa* kurv and korv (BMO's other word for a sausage, but *kurv* is mostly a basket), *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 446 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 480 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|
@@ -553,6 +659,7 @@ The 446 etymologies the dictionary shows come from English Wiktionary; for the N
 | *oldgutnisk* (Old Gutnish) | [Gutnisk](https://no.wikipedia.org/wiki/Gutnisk) ("oldgutnisk (forngutnisk)"; the article does not use "gammelgutnisk") | sourced |
 | *älvdalsk* (Elfdalian) | [Älvdalsk](https://no.wikipedia.org/wiki/%C3%84lvdalsk) | sourced |
 | *norn* (Norn) | [Norn](https://no.wikipedia.org/wiki/Norn) | sourced |
+| *Lilleasia* (Asia Minor) | Norwegian Wikipedia, [Anatolia](https://no.wikipedia.org/wiki/Anatolia) ("Anatolia, også kjent som Lilleasia"; the page *Lilleasia* redirects there) | sourced |
 | *vestgermansk urspråk* (Proto-West Germanic) | [Vestgermanske språk](https://no.wikipedia.org/wiki/Vestgermanske_spr%C3%A5k) ("et vestgermansk urspråk"; there is no article "urvestgermansk") | sourced |
 
 ## The cast (`js/characters.js`, `scripts/characters/`)
@@ -647,5 +754,5 @@ The four Piper voices sometimes mispronounce: *Ísland* comes out as [ˈisland],
 
 ## Norwegian bridge (`data/bridge.json`, `js/bridge-rules.js`)
 
-217 pairs are sourced (Bokmålsordboka and Wiktionary name the same Old Norse word), 7 are shared loans (Wiktionary names the source language). 20 pairs only look alike with the same meaning and are labeled in the app as "a shared origin is not confirmed". The spelling patterns describe spelling, not historical sound laws.
+237 pairs are sourced (Bokmålsordboka and Wiktionary name the same Old Norse word), 8 are shared loans (Wiktionary names the source language). 21 pairs only look alike with the same meaning and are labeled in the app as "a shared origin is not confirmed". The spelling patterns describe spelling, not historical sound laws.
 

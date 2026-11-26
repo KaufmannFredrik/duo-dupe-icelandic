@@ -1,0 +1,74 @@
+{
+  "id": "people",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "Too small",
+    "nb": "For små"
+  },
+  "level": "A1",
+  "after": "people",
+  "dialogue": true,
+  "cast": {
+    "A": "amma",
+    "B": "elias"
+  },
+  "lines": [
+    {
+      "sentence": "1315606",
+      "speaker": "B"
+    },
+    {
+      "sentence": "835321",
+      "speaker": "A"
+    },
+    {
+      "sentence": "473059",
+      "speaker": "B"
+    },
+    {
+      "sentence": "542934",
+      "speaker": "A"
+    },
+    {
+      "sentence": "3799254",
+      "speaker": "A"
+    },
+    {
+      "sentence": "653322",
+      "speaker": "B"
+    },
+    {
+      "sentence": "3799355",
+      "speaker": "A"
+    },
+    {
+      "sentence": "494226",
+      "speaker": "B"
+    },
+    {
+      "sentence": "479367",
+      "speaker": "A"
+    },
+    {
+      "sentence": "3799384",
+      "speaker": "A"
+    },
+    {
+      "sentence": "3795697",
+      "speaker": "B"
+    },
+    {
+      "sentence": "384111",
+      "speaker": "A"
+    },
+    {
+      "sentence": "3795329",
+      "speaker": "B"
+    },
+    {
+      "sentence": "397461",
+      "speaker": "B"
+    }
+  ]
+}

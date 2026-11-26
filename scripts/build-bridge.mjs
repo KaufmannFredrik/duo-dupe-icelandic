@@ -47,7 +47,8 @@ function oldNorseOf(art) {
       const it = items[i];
       if ((it.type_ === 'language' || it.type_ === 'entity') && it.id === 'norr.') {
         const next = items.slice(i + 1).find((x) => x.type_ === 'usage');
-        if (next?.text) out.push(next.text);
+        // Two spellings come as one text (hatt: "hǫttr, hattr").
+        if (next?.text) out.push(...next.text.split(/,\s*/));
       }
       if (it.items) walk(it.items);
     }
@@ -62,7 +63,8 @@ const fold = (s) => norm(s).normalize('NFD').replace(/\p{M}/gu, '');
 
 // The Old Norse etymon from the Wiktionary etymology of the Icelandic word.
 function loanSource(text) {
-  const m = /^Borrowed from ([A-Z][a-z]+(?: [A-Z][a-z]+)?) ([^\s,.;()]+)/.exec(text ?? '');
+  // A language name has up to three words (Middle Low German klar).
+  const m = /^Borrowed from ([A-Z][a-z]+(?: [A-Z][a-z]+){0,2}) ([^\s,.;()]+)/.exec(text ?? '');
   return m ? { language: m[1], word: m[2] } : null;
 }
 
@@ -107,7 +109,9 @@ for (const [id, l] of Object.entries(lexicon.lemmas)) {
       const ons = oldNorseOf(art);
       const rules = explain(l.lemma, nb);
       const exact = on && ons.some((x) => norm(x) === norm(on));
-      if (on && (exact || ons.some((x) => fold(x) === fold(on)))) {
+      // Without length marks, two Old Norse words can fall together (litr "color", lítr "time":
+      // Bokmål lit is the second), so such a match counts only for one of the word's glosses.
+      if (on && (exact || (glosses.includes(nb) && ons.some((x) => fold(x) === fold(on))))) {
         const pick = { nb, article: aid, oldNorse: on, evidence: 'old-norse', rules, gloss: glosses.includes(nb), exact };
         const better = !best || best.evidence !== 'old-norse' || (pick.gloss && !best.gloss) || (pick.gloss === best.gloss && exact && !best.exact);
         if (better) best = pick;

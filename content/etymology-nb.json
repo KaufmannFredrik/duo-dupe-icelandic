@@ -8,7 +8,8 @@
     "kasjubisk",
     "oldgutnisk",
     "älvdalsk",
-    "norn"
+    "norn",
+    "Lilleasia"
   ],
   "etymology": {
     "halló_uh": {
@@ -1795,6 +1796,142 @@
     "skítugur_lo": {
       "nb": "Av skítur («skitt, møkk») + -ugur.",
       "of": "d099b30e"
+    },
+    "svona_ao": {
+      "nb": "Fra norrønt svána. Satt sammen av svo («så, slik») + -na (suffiks for noe som er nær).",
+      "of": "e607bbc6"
+    },
+    "langur_lo": {
+      "nb": "Fra norrønt langr, fra urgermansk *langaz, fra urindoeuropeisk *dlongʰos.",
+      "of": "aeae08aa"
+    },
+    "líta_so": {
+      "nb": "Fra norrønt líta, fra urgermansk *wlītaną.",
+      "of": "37fa114e"
+    },
+    "of_ao": {
+      "nb": "Fra norrønt of-, fra urgermansk *uber. Den opprinnelige fulle formen ses i forstavelsen ofur- («altfor, super, svært»). Beslektet med yfir («over») og ofan («ovenfra»).",
+      "of": "e30ea219"
+    },
+    "stuttur_lo": {
+      "nb": "Fra norrønt stuttr, fra urgermansk *stuntaz.",
+      "of": "e573bc99"
+    },
+    "auga_no": {
+      "nb": "Fra norrønt auga, fra urgermansk *augô, fra urindoeuropeisk *h₃ekʷ- («øye; å se»). Beslektet med blant annet latin oculus, sanskrit अक्षि (ákṣi), gotisk 𐌰𐌿𐌲𐍉 (augō), gammelengelsk ēage, engelsk eye, skotsk ee, tysk Auge, svensk öga og dansk øje.",
+      "of": "7c7f2553"
+    },
+    "ánægður_lo": {
+      "nb": "Av ánægja («glede, tilfredshet») + -ður.",
+      "of": "034024f6"
+    },
+    "áhyggja_no": {
+      "nb": "Av á («på») + hyggja («(knyttet til) sinn»); sammenlign det lignende áhugi.",
+      "of": "9d783479"
+    },
+    "litur_no": {
+      "nb": "Fra norrønt litr, fra urgermansk *wlitiz, *wlituz («utseende, ytre, aspekt»), fra urindoeuropeisk *wel- («å se»).",
+      "of": "e8ca7a3e"
+    },
+    "leiðinlegur_lo": {
+      "nb": "leiðindi («kjedsomhet») + -legur (adjektivsuffiks).",
+      "of": "49addb56"
+    },
+    "hár_no": {
+      "nb": "Arvet fra norrønt hár, fra urgermansk *hērą.",
+      "of": "abd49c57"
+    },
+    "fyndinn_lo": {
+      "nb": "Av finna («å finne; å føle»), altså «funnet, følt» > «full av vett og vidd» > «morsom, vittig».",
+      "of": "3a39c3cd"
+    },
+    "hlæja_so": {
+      "nb": "Fra norrønt hlæja, fra urgermansk *hlahjaną.",
+      "of": "654de9ae"
+    },
+    "stoltur_lo": {
+      "nb": "Beslektet med dansk stolt («stolt») og færøysk stoltur.",
+      "of": "ec6684fd"
+    },
+    "klár_lo": {
+      "nb": "Lånt fra middelnedertysk klar, fra latin clarus («lys, klar»).",
+      "of": "2f36637d"
+    },
+    "gráta_so": {
+      "nb": "Fra norrønt gráta, fra urgermansk *grētaną.",
+      "of": "e7ad9cef"
+    },
+    "glaður_lo": {
+      "nb": "Fra norrønt glaðr, fra urgermansk *gladaz.",
+      "of": "49e90921"
+    },
+    "skap_no": {
+      "nb": "Fra norrønt skap, fra urgermansk *skapą («form, natur, tilstand»).",
+      "of": "b00651ba"
+    },
+    "rólegur_lo": {
+      "nb": "Av ró («ro, stillhet») + -legur (adjektivsuffiks).",
+      "of": "ee699ebc"
+    },
+    "reiður_lo": {
+      "nb": "Fra norrønt reiðr, fra eldre vreiðr, fra urgermansk *wraiþaz.",
+      "of": "e8193570"
+    },
+    "brosa_so": {
+      "nb": "Arvet fra norrønt brosa («å smile; et smil»).",
+      "of": "86008dfb"
+    },
+    "bleikur_lo": {
+      "nb": "Fra norrønt bleikr, fra urgermansk *blaikaz. Sammenlign gammelengelsk blāc («blek»). Se også bleikja. Mer under engelsk bleak.",
+      "of": "36266602"
+    },
+    "brúnn_lo": {
+      "nb": "Fra urgermansk *brūnaz.",
+      "of": "8ea2c612"
+    },
+    "taska_no": {
+      "nb": "Fra norrønt taska, fra urgermansk *taskǭ.",
+      "of": "5fe91762"
+    },
+    "grár_lo": {
+      "nb": "Fra norrønt grár, fra urgermansk *grēwaz.",
+      "of": "5f4595aa"
+    },
+    "leiður_lo": {
+      "nb": "Fra norrønt leiðr, fra urgermansk *laiþaz. Sammenlign tysk leid, der «einer Sache leid sein» («å være lei av noe») fortsatt har samme betydning som det islandske beslektede ordet.",
+      "of": "519d1edc"
+    },
+    "hamingjusamur_lo": {
+      "nb": "Av genitiv av norrønt hamingja («lykke») + -samur. I norrøn mytologi var hamingja en slags kvinnelig verneånd som fulgte et menneske og ga det lykke og hell (hamingja viste seg som regel i drømmer i skikkelse av et dyr) + samur («samme»).",
+      "of": "e84cfbc8"
+    },
+    "hattur_no": {
+      "nb": "Fra norrønt hǫttr, fra urgermansk *hattuz.",
+      "of": "207f4983"
+    },
+    "sokkur_no": {
+      "nb": "Fra norrønt sokkr, fra latin soccus («tøffel»), fra gammelgresk σύκχος (súkkhos, «en slags sko»), trolig fra frygisk eller et annet språk fra Lilleasia.",
+      "of": "3c60ab94"
+    },
+    "gleraugu_no": {
+      "nb": "Av gler («glass») + augu («øyne»).",
+      "of": "35703928"
+    },
+    "úlpa_no": {
+      "nb": "Fra eldre ólpa («vid frakk med hette»), av usikker opprinnelse, men trolig fra urgermansk *wulpǭ («vevd plagg»), fra urindoeuropeisk *welp- («å bøye, vikle rundt»), som ser ut til å være en p-utvidelse av *welH- («å rulle»), altså et «sammenrullet plagg». Se også mellomengelsk wlappen («å vikle inn») og samisk wuölppo («kvinneplagg»), som ser ut til å være lånt fra nordgermansk.",
+      "of": "8f39a04a"
+    },
+    "vettlingur_no": {
+      "nb": "Av vöttur («hanske, vott») + -lingur (diminutivsuffiks).",
+      "of": "1b061c5e"
+    },
+    "skyrta_no": {
+      "nb": "Ifølge Vladimir Orel fra *skurti. Beslektet med norrønt skyrta og middelnedertysk schorte («skjorte»). Fra samme kilde som albansk shkurt («kort») og shkurte («skjorte»), som trolig ble lånt fra et germansk språk, selv om det er lite sannsynlig.",
+      "of": "f28a4a1a"
+    },
+    "trefill_no": {
+      "nb": "Fra norrønt trefill («fille»), ved overflateanalyse traf («frynse, omslag») + -ill.",
+      "of": "f6968ff9"
     }
   }
 }

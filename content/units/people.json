@@ -1,0 +1,289 @@
+{
+  "id": "people",
+  "theme": "people",
+  "reviewed": true,
+  "title": {
+    "en": "Clothes and people",
+    "nb": "Klær og folk"
+  },
+  "is": "Föt og fólk",
+  "goal": {
+    "en": "Describe people: what they wear, the colors, what they look like, what they are like, and how they feel.",
+    "nb": "Beskriv folk: hva de har på seg, fargene, hvordan de ser ut, hvordan de er, og hvordan de har det."
+  },
+  "host": {
+    "character": "hekla",
+    "says": "494519"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "What to wear",
+        "nb": "Hva skal jeg ha på meg?"
+      },
+      "focus": [
+        "skyrta_no",
+        "sokkur_no",
+        "úlpa_no",
+        "trefill_no",
+        "vettlingur_no",
+        "hattur_no"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Colors and sizes",
+        "nb": "Farger og størrelser"
+      },
+      "focus": [
+        "litur_no",
+        "brúnn_lo",
+        "grár_lo",
+        "bleikur_lo",
+        "taska_no",
+        "of_ao"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "What do they look like?",
+        "nb": "Hvordan ser de ut?"
+      },
+      "focus": [
+        "líta_so",
+        "hár_no",
+        "auga_no",
+        "gleraugu_no",
+        "hávaxinn_lo",
+        "langur_lo",
+        "stuttur_lo"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "What are they like?",
+        "nb": "Hvordan er de?"
+      },
+      "focus": [
+        "klár_lo",
+        "fyndinn_lo",
+        "leiðinlegur_lo",
+        "rólegur_lo",
+        "stoltur_lo",
+        "svona_ao"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "Happy and sad",
+        "nb": "Glad og lei seg"
+      },
+      "focus": [
+        "glaður_lo",
+        "ánægður_lo",
+        "hamingjusamur_lo",
+        "leiður_lo",
+        "reiður_lo",
+        "hræddur_lo"
+      ]
+    },
+    {
+      "id": "6",
+      "title": {
+        "en": "Laughing and crying",
+        "nb": "Le og gråte"
+      },
+      "focus": [
+        "brosa_so",
+        "hlæja_so",
+        "gráta_so",
+        "hissa_lo",
+        "áhyggja_no",
+        "skap_no"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "Clothes: skyrta, sokkur, vettlingur",
+          "nb": "Klær: skyrta, sokkur, vettlingur"
+        },
+        "text": {
+          "en": "Many clothes have Norwegian names. {is:skyrta} (shirt) is Norwegian skjorte, both from Old Norse skyrta, and {is:sokkur} (sock) is sokk, from Old Norse sokkr and Latin soccus, a slipper. {is:hattur} is a hat with a brim, Norwegian hatt; {is:húfa} is a soft cap without one, Norwegian hue. {is:vettlingur} (mitten) is {is:vöttur}, an old word for a glove or mitten, with the ending -lingur; Norwegian keeps the old word as vott. {is:úlpa} is a thick winter coat, often with a hood: a parka or an anorak. {is:trefill} (scarf) once meant a rag. {is:gleraugu} (glasses) is {is:gler} (glass) and {is:augu} (eyes), and it is always plural: {is:Eru þetta gleraugun þín?} {is:taska} (bag) is Norwegian taske, a small bag.",
+          "nb": "Mange klesplagg har norske navn. {is:skyrta} (skjorte) er norsk skjorte, begge fra norrønt skyrta, og {is:sokkur} (sokk) er sokk, fra norrønt sokkr og latin soccus, en tøffel. {is:hattur} er en hatt med brem, norsk hatt; {is:húfa} er en myk lue uten brem, norsk hue. {is:vettlingur} (vott) er {is:vöttur}, et gammelt ord for hanske eller vott, med endelsen -lingur; norsk har beholdt det gamle ordet som vott. {is:úlpa} er en tykk vinterjakke, ofte med hette: en parkas eller anorakk. {is:trefill} (skjerf) betydde en gang en fille. {is:gleraugu} (briller) er {is:gler} (glass) og {is:augu} (øyne), og står alltid i flertall: {is:Eru þetta gleraugun þín?} {is:taska} (veske) er norsk taske, en liten veske."
+        },
+        "examples": [
+          "583574",
+          "460455",
+          "1323716-2",
+          "10969608-3",
+          "664666",
+          "470227"
+        ],
+        "tables": [
+          "vettlingur_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Putting on and taking off: fara í, fara úr",
+          "nb": "Å ta på og av seg: fara í, fara úr"
+        },
+        "text": {
+          "en": "To put clothes on, Icelandic says {is:fara í}, go into, with the accusative: {is:Ég fór í buxurnar} (I put on my trousers). To take them off is {is:fara úr}, go out of, with the dative: {is:Farðu úr skónum} (take your shoes off). To wear is {is:vera í}, be in: {is:Þú ert í sokkunum öfugum} (you are wearing your socks inside out). A hat or glasses you put on with {is:setja á sig}, put on yourself, and take off with {is:taka af sér}: {is:Hún setti hattinn sinn á sig}, {is:Hann tók af sér hattinn}, and shoes too: {is:Þú þarft ekki að taka af þér skóna}. Norwegian ta på seg and ta av seg do the same work.",
+          "nb": "For å ta på seg klær sier islandsk {is:fara í}, «gå inn i», med akkusativ: {is:Ég fór í buxurnar} (jeg tok på meg buksen). Å ta dem av er {is:fara úr}, «gå ut av», med dativ: {is:Farðu úr skónum} (ta av deg skoene). Å ha på seg er {is:vera í}, «være i»: {is:Þú ert í sokkunum öfugum} (du har sokkene på deg med vrangen ut). En hatt eller briller setter du på med {is:setja á sig}, «sette på seg», og tar av med {is:taka af sér}: {is:Hún setti hattinn sinn á sig}, {is:Hann tók af sér hattinn}, og skoene også: {is:Þú þarft ekki að taka af þér skóna}. Norsk ta på seg og ta av seg gjør den samme jobben."
+        },
+        "examples": [
+          "1353642",
+          "664742",
+          "499438",
+          "4000967",
+          "387039",
+          "1337006-1",
+          "499437"
+        ]
+      },
+      {
+        "title": {
+          "en": "Colors and sizes: litur, of",
+          "nb": "Farger og størrelser: litur, of"
+        },
+        "text": {
+          "en": "{is:litur} (color) comes from a Proto-Germanic word for appearance or look. Colors are adjectives and agree with what they describe: {is:Bíllinn minn er rauður}, {is:Skórnir hans eru brúnir}, {is:Hann var með grátt hár}, {is:Hún er með blá augu}. {is:brúnn} and {is:grár} are Norwegian brun and grå, from Old Norse brúnn and grár; the neuter of {is:grár} is {is:grátt}, as {is:blár} gives {is:blátt}: {is:Hjólið hans er blátt}. Watch {is:bleikur}: it is pink, but Norwegian blek or bleik, from the same Old Norse bleikr, is pale, an old sense of {is:bleikur} too. {is:of} is too, Norwegian for: {is:Skórnir eru of litlir} (the shoes are too small), {is:Það er of dýrt!}, {is:Of seint} (too late). {is:langur} (long) and {is:stuttur} (short) agree as well: {is:Þessir kjólar eru of stuttir}. For long hair or a long dress, Icelandic also has {is:síður}, reaching far down: {is:sítt hár}.",
+          "nb": "{is:litur} (farge) kommer av et urgermansk ord for utseende. Farger er adjektiv og bøyes etter det de beskriver: {is:Bíllinn minn er rauður}, {is:Skórnir hans eru brúnir}, {is:Hann var með grátt hár}, {is:Hún er með blá augu}. {is:brúnn} og {is:grár} er norsk brun og grå, fra norrønt brúnn og grár; intetkjønn av {is:grár} er {is:grátt}, slik {is:blár} gir {is:blátt}: {is:Hjólið hans er blátt}. Pass på {is:bleikur}: det er rosa, men norsk blek eller bleik, fra det samme norrøne bleikr, betyr svak i fargen, en gammel betydning av {is:bleikur} også. {is:of} er for, altfor: {is:Skórnir eru of litlir} (skoene er for små), {is:Það er of dýrt!}, {is:Of seint} (for sent). {is:langur} (lang) og {is:stuttur} (kort) bøyes også: {is:Þessir kjólar eru of stuttir}. Om langt hår eller en lang kjole har islandsk også {is:síður}, som når langt ned: {is:sítt hár}."
+        },
+        "examples": [
+          "494226",
+          "4010182-1",
+          "1337019",
+          "482640",
+          "475024",
+          "653110",
+          "385651",
+          "515552-2"
+        ],
+        "tables": [
+          "grár_lo"
+        ]
+      },
+      {
+        "title": {
+          "en": "What do they look like? líta út, vera með",
+          "nb": "Hvordan ser de ut? líta út, vera með"
+        },
+        "text": {
+          "en": "{is:líta út} is to look a certain way, Norwegian se ut: {is:Hann lítur vel út} (he looks well), {is:Hann lítur út fyrir að vera ungur} (he looks young). With other small words {is:líta} means more: {is:líta á} is to look at, Norwegian se på ({is:Líttu á klukkuna}), {is:líta niður á} to look down on, {is:líta upp til} to look up to, and {is:líta eftir} to look after ({is:Þú verður að líta eftir barninu}). It is a strong verb: {is:Hún leit um herbergið} (she looked around the room). For eyes and hair, Icelandic says {is:vera með}, be with: {is:Hún er með blá augu}, {is:Hún er með stutt hár}. {is:hár} (hair) is also an adjective, high or tall, and {is:hávaxinn} (tall) is {is:há} (high) and {is:vaxinn} (grown), as Norwegian høyvokst is: {is:Pabbi þinn er hávaxinn}.",
+          "nb": "{is:líta út} er å se ut: {is:Hann lítur vel út} (han ser bra ut), {is:Hann lítur út fyrir að vera ungur} (han ser ung ut). Med andre småord betyr {is:líta} mer: {is:líta á} er å se på ({is:Líttu á klukkuna}), {is:líta niður á} å se ned på, {is:líta upp til} å se opp til, og {is:líta eftir} å passe på ({is:Þú verður að líta eftir barninu}). Det er et sterkt verb: {is:Hún leit um herbergið} (hun så seg rundt i rommet). Om øyne og hår sier islandsk {is:vera með}, «være med»: {is:Hún er með blá augu}, {is:Hún er með stutt hár}. {is:hár} (hår) er også et adjektiv, høy, og {is:hávaxinn} (høy) er {is:há} (høy) og {is:vaxinn} (vokst), slik norsk høyvokst er: {is:Pabbi þinn er hávaxinn}."
+        },
+        "examples": [
+          "385910",
+          "1316654",
+          "3799281",
+          "908291",
+          "504213",
+          "906667",
+          "473520",
+          "1324694",
+          "1351286"
+        ],
+        "tables": [
+          {
+            "lemma": "líta_so",
+            "tense": "ÞT"
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "What are they like? klár, fyndinn, rólegur",
+          "nb": "Hvordan er de? klár, fyndinn, rólegur"
+        },
+        "text": {
+          "en": "{is:klár} (clever) came from Low German klar, as Norwegian klar did, and both can also mean ready: {is:Hún verður að gera sig klára fyrir matinn} (she's got to get ready for dinner). {is:fyndinn} (funny) comes from {is:finna} (find, feel). {is:leiðinlegur} is boring, {is:Þessi mynd er leiðinleg}, and also sad or disappointing. {is:rólegur} (calm) is {is:ró} (calm, rest) with -legur, as Norwegian rolig is ro with -lig: {is:Hann er rólegur}; {is:Taktu því rólega!} (take it easy) has the adverb {is:rólega} (calmly). {is:stoltur af} is proud of, Norwegian stolt av: {is:Ég er stolt af þér}. {is:svona} is like this, or so: {is:Ég gerði það svona}, {is:Ekki vera svona reiður} (don't be so angry).",
+          "nb": "{is:klár} (smart) kom fra nedertysk klar, slik norsk klar gjorde, og begge kan også bety ferdig: {is:Hún verður að gera sig klára fyrir matinn} (hun må gjøre seg klar til middag). {is:fyndinn} (morsom) kommer av {is:finna} (finne, føle). {is:leiðinlegur} er kjedelig, {is:Þessi mynd er leiðinleg}, og også trist eller skuffende. {is:rólegur} (rolig) er {is:ró} (ro) med -legur, slik norsk rolig er ro med -lig: {is:Hann er rólegur}; {is:Taktu því rólega!} (ta det med ro) har adverbet {is:rólega} (rolig). {is:stoltur af} er stolt av: {is:Ég er stolt af þér}. {is:svona} er slik, eller så: {is:Ég gerði það svona}, {is:Ekki vera svona reiður} (ikke vær så sint)."
+        },
+        "examples": [
+          "1315549",
+          "908324",
+          "4007860",
+          "1315549-2",
+          "609044",
+          "493082",
+          "4171527",
+          "733997"
+        ],
+        "tables": [
+          "klár_lo"
+        ]
+      },
+      {
+        "title": {
+          "en": "How do you feel? glaður, leiður, hræddur",
+          "nb": "Hvordan har du det? glaður, leiður, hræddur"
+        },
+        "text": {
+          "en": "Feelings are adjectives, so they agree with the one who has them: a man says {is:Ég er glaður} (I'm happy), a woman {is:Ég er glöð}; {is:Ég er leiður} or {is:Ég er leið} (I'm sad), {is:Ég var hræddur} or {is:Ég var hrædd} (I was afraid). Several are Norwegian words: {is:glaður} is glad, {is:leiður} is lei (sad is lei seg, fed up with is lei av), and {is:hræddur} is redd, which comes from Old Norse hræddr, frightened. {is:ánægður} is pleased or satisfied: {is:Ég er ánægður með það}. {is:hamingjusamur} (happy) is made from {is:hamingja} (happiness, luck), in Norse belief a spirit of luck that followed a person. Afraid of is {is:hræddur við}: {is:Hann er hræddur við föður sinn}. Angry with is {is:reiður út í}, or {is:reiður} with the dative: {is:Ég er reiður út í hana}, {is:Faðir minn er mér reiður}.",
+          "nb": "Følelser er adjektiv, så de bøyes etter den som har dem: en mann sier {is:Ég er glaður} (jeg er glad), en kvinne {is:Ég er glöð}; {is:Ég er leiður} eller {is:Ég er leið} (jeg er lei meg), {is:Ég var hræddur} eller {is:Ég var hrædd} (jeg var redd). Flere er norske ord: {is:glaður} er glad, {is:leiður} er lei (lei seg, og lei av), og {is:hræddur} er redd, som kommer av norrønt hræddr, skremt. {is:ánægður} er fornøyd: {is:Ég er ánægður með það}. {is:hamingjusamur} (lykkelig) er laget av {is:hamingja} (lykke), i norrøn tro en lykkeånd som fulgte et menneske. Redd for er {is:hræddur við}: {is:Hann er hræddur við föður sinn}. Sint på er {is:reiður út í}, eller {is:reiður} med dativ: {is:Ég er reiður út í hana}, {is:Faðir minn er mér reiður}."
+        },
+        "examples": [
+          "3795329",
+          "905333",
+          "1315606",
+          "1315605",
+          "11353827",
+          "3799207",
+          "690290",
+          "1324568",
+          "389325"
+        ],
+        "tables": [
+          "reiður_lo"
+        ]
+      },
+      {
+        "title": {
+          "en": "Laughing and crying: hlæja, gráta, brosa",
+          "nb": "Le og gråte: hlæja, gráta, brosa"
+        },
+        "text": {
+          "en": "{is:hlæja} (laugh) and {is:gráta} (cry) are strong verbs, Norwegian le and gråte, from the same Old Norse verbs hlæja and gráta: {is:Hún hló} (she laughed), {is:Barnið grét} (the baby cried), {is:Hún grætur} (she is crying). {is:brosa} (smile) is weak: {is:Hún brosti}. You laugh at someone with {is:að}, {is:Allir hlógu að honum}, and smile at someone with {is:til}, {is:Hún brosti til barnsins síns}. {is:hissa} (surprised) never changes its form: {is:Ég er hissa}, {is:Enginn var hissa}. {is:áhyggja} (worry) is used in the plural, {is:áhyggjur}: {is:Hafðu ekki áhyggjur} (don't worry), {is:Engar áhyggjur} (no worries), {is:hafa áhyggjur af} (worry about). {is:skap} is mood: {is:Hann er í góðu skapi í dag}, {is:Ég er ekki í skapi til að fara út} (I'm not in the mood to go out). Norwegian skap in the sense shape or figure (fin på skap) is the same Old Norse word; a cupboard is {is:skápur}.",
+          "nb": "{is:hlæja} (le) og {is:gráta} (gråte) er sterke verb, norsk le og gråte, fra de samme norrøne verbene hlæja og gráta: {is:Hún hló} (hun lo), {is:Barnið grét} (barnet gråt), {is:Hún grætur} (hun gråter). {is:brosa} (smile) er svakt: {is:Hún brosti}. Du ler av noen med {is:að}, {is:Allir hlógu að honum}, og smiler til noen med {is:til}, {is:Hún brosti til barnsins síns}. {is:hissa} (overrasket) skifter aldri form: {is:Ég er hissa}, {is:Enginn var hissa}. {is:áhyggja} (bekymring) brukes i flertall, {is:áhyggjur}: {is:Hafðu ekki áhyggjur} (ikke bekymre deg), {is:Engar áhyggjur} (ingen fare), {is:hafa áhyggjur af} (bekymre seg for). {is:skap} er humør: {is:Hann er í góðu skapi í dag}, {is:Ég er ekki í skapi til að fara út} (jeg er ikke i humør til å gå ut). Norsk skap i betydningen form eller figur (fin på skap) er det samme norrøne ordet; et skap til å ha ting i er {is:skápur}."
+        },
+        "examples": [
+          "12360435",
+          "4020755",
+          "1316627",
+          "673131",
+          "489308",
+          "512680",
+          "10963618",
+          "494519",
+          "542934",
+          "495489",
+          "852818"
+        ],
+        "tables": [
+          {
+            "lemma": "hlæja_so",
+            "tense": "ÞT"
+          }
+        ]
+      }
+    ]
+  }
+}

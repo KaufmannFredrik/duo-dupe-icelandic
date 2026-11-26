@@ -748,6 +748,384 @@
       ],
       "is": "Teppið mitt er gamalt.",
       "en": "My carpet is old."
+    },
+    "10969608-1": {
+      "from": "10969608",
+      "swap": [
+        "sokka",
+        "úlpu"
+      ],
+      "is": "Hvar get ég keypt úlpu?",
+      "en": "Where can I buy a winter coat?"
+    },
+    "10969608-2": {
+      "from": "10969608",
+      "swap": [
+        "sokka",
+        "trefil"
+      ],
+      "is": "Hvar get ég keypt trefil?",
+      "en": "Where can I buy a scarf?"
+    },
+    "10969608-3": {
+      "from": "10969608",
+      "swap": [
+        "sokka",
+        "vettlinga"
+      ],
+      "is": "Hvar get ég keypt vettlinga?",
+      "en": "Where can I buy mittens?"
+    },
+    "10969608-4": {
+      "from": "10969608",
+      "swap": [
+        "sokka",
+        "skyrtu"
+      ],
+      "is": "Hvar get ég keypt skyrtu?",
+      "en": "Where can I buy a shirt?"
+    },
+    "10969608-5": {
+      "from": "10969608",
+      "swap": [
+        "sokka",
+        "tösku"
+      ],
+      "is": "Hvar get ég keypt tösku?",
+      "en": "Where can I buy a bag?"
+    },
+    "1337006-1": {
+      "from": "1337006",
+      "swap": [
+        "hattinn",
+        "trefilinn"
+      ],
+      "is": "Hann tók af sér trefilinn.",
+      "en": "He took off his scarf."
+    },
+    "1337006-2": {
+      "from": "1337006",
+      "swap": [
+        "hattinn",
+        "vettlingana"
+      ],
+      "is": "Hann tók af sér vettlingana.",
+      "en": "He took off his mittens."
+    },
+    "1337006-3": {
+      "from": "1337006",
+      "swap": [
+        "hattinn",
+        "úlpuna"
+      ],
+      "is": "Hann tók af sér úlpuna.",
+      "en": "He took off his winter coat."
+    },
+    "387039-1": {
+      "from": "387039",
+      "swap": [
+        "hattinn",
+        "trefilinn"
+      ],
+      "is": "Hún setti trefilinn sinn á sig.",
+      "en": "She put on her scarf."
+    },
+    "583574-1": {
+      "from": "583574",
+      "swap": [
+        "skyrtuna",
+        "úlpuna"
+      ],
+      "is": "Ég þvoði úlpuna mína.",
+      "en": "I washed my winter coat."
+    },
+    "460455-1": {
+      "from": "460455",
+      "swap": [
+        "sokkana",
+        "vettlingana"
+      ],
+      "is": "Ég þvæ vettlingana mína.",
+      "en": "I wash my mittens."
+    },
+    "653110-1": {
+      "from": "653110",
+      "swap": [
+        "Skórnir",
+        "Sokkarnir"
+      ],
+      "is": "Sokkarnir eru of litlir.",
+      "en": "The socks are too small."
+    },
+    "653110-2": {
+      "from": "653110",
+      "swap": [
+        "Skórnir",
+        "Vettlingarnir"
+      ],
+      "is": "Vettlingarnir eru of litlir.",
+      "en": "The mittens are too small."
+    },
+    "1323716-1": {
+      "from": "1323716",
+      "swap": [
+        "húfan",
+        "taskan"
+      ],
+      "is": "Hvar er taskan þín?",
+      "en": "Where is your bag?"
+    },
+    "1323716-2": {
+      "from": "1323716",
+      "swap": [
+        "húfan",
+        "úlpan"
+      ],
+      "is": "Hvar er úlpan þín?",
+      "en": "Where is your winter coat?"
+    },
+    "1323716-3": {
+      "from": "1323716",
+      "swap": [
+        "húfan",
+        "skyrtan"
+      ],
+      "is": "Hvar er skyrtan þín?",
+      "en": "Where is your shirt?"
+    },
+    "906655-1": {
+      "from": "906655",
+      "swap": [
+        "skó",
+        "tösku"
+      ],
+      "is": "Hún fékk tösku frá pabba.",
+      "en": "She got a bag from Father."
+    },
+    "515552-1": {
+      "from": "515552",
+      "swap": [
+        "stórir",
+        "langir"
+      ],
+      "is": "Þessir kjólar eru of langir.",
+      "en": "These dresses are too long."
+    },
+    "515552-2": {
+      "from": "515552",
+      "swap": [
+        "stórir",
+        "stuttir"
+      ],
+      "is": "Þessir kjólar eru of stuttir.",
+      "en": "These dresses are too short."
+    },
+    "1318211-1": {
+      "from": "1318211",
+      "swap": [
+        "stórt",
+        "langt"
+      ],
+      "is": "Það er of langt.",
+      "en": "It's too long."
+    },
+    "1318211-2": {
+      "from": "1318211",
+      "swap": [
+        "stórt",
+        "stutt"
+      ],
+      "is": "Það er of stutt.",
+      "en": "It's too short."
+    },
+    "1337019-1": {
+      "from": "1337019",
+      "swap": [
+        "brúnir",
+        "gráir"
+      ],
+      "is": "Skórnir hans eru gráir.",
+      "en": "His shoes are gray."
+    },
+    "1337019-2": {
+      "from": "1337019",
+      "swap": [
+        "brúnir",
+        "bleikir"
+      ],
+      "is": "Skórnir hans eru bleikir.",
+      "en": "His shoes are pink."
+    },
+    "4010182-1": {
+      "from": "4010182",
+      "swap": [
+        "rauður",
+        "brúnn"
+      ],
+      "is": "Bíllinn minn er brúnn.",
+      "en": "My car is brown."
+    },
+    "4010182-2": {
+      "from": "4010182",
+      "swap": [
+        "rauður",
+        "grár"
+      ],
+      "is": "Bíllinn minn er grár.",
+      "en": "My car is gray."
+    },
+    "482640-1": {
+      "from": "482640",
+      "swap": [
+        "grátt",
+        "brúnt"
+      ],
+      "is": "Hann var með brúnt hár.",
+      "en": "He had brown hair."
+    },
+    "482640-2": {
+      "from": "482640",
+      "swap": [
+        "grátt",
+        "svart"
+      ],
+      "is": "Hann var með svart hár.",
+      "en": "He had black hair."
+    },
+    "1324694-1": {
+      "from": "1324694",
+      "swap": [
+        "stutt",
+        "grátt"
+      ],
+      "is": "Hún er með grátt hár.",
+      "en": "She has gray hair."
+    },
+    "473520-1": {
+      "from": "473520",
+      "swap": [
+        "blá",
+        "brún"
+      ],
+      "is": "Hún er með brún augu.",
+      "en": "She has brown eyes."
+    },
+    "473521-1": {
+      "from": "473521",
+      "swap": [
+        "blá",
+        "brún"
+      ],
+      "is": "Augun hennar eru brún.",
+      "en": "Her eyes are brown."
+    },
+    "12340291-3": {
+      "from": "12340291",
+      "swap": [
+        "fiskur",
+        "litur"
+      ],
+      "is": "Þetta er grænn litur.",
+      "en": "This is a green color."
+    },
+    "1315549-1": {
+      "from": "1315549",
+      "swap": [
+        "klár",
+        "fyndinn"
+      ],
+      "is": "Hann er fyndinn.",
+      "en": "He's funny."
+    },
+    "1315549-2": {
+      "from": "1315549",
+      "swap": [
+        "klár",
+        "rólegur"
+      ],
+      "is": "Hann er rólegur.",
+      "en": "He's calm."
+    },
+    "1315549-3": {
+      "from": "1315549",
+      "swap": [
+        "klár",
+        "leiðinlegur"
+      ],
+      "is": "Hann er leiðinlegur.",
+      "en": "He's boring."
+    },
+    "10635094-1": {
+      "from": "10635094",
+      "swap": [
+        "klár",
+        "rólegur"
+      ],
+      "is": "Þú ert rólegur.",
+      "en": "You're calm."
+    },
+    "1315606-1": {
+      "from": "1315606",
+      "swap": [
+        "leiður",
+        "rólegur"
+      ],
+      "is": "Ég er rólegur.",
+      "en": "I'm calm."
+    },
+    "4007860-1": {
+      "from": "4007860",
+      "swap": [
+        "leiðinleg",
+        "fyndin"
+      ],
+      "is": "Þessi mynd er fyndin.",
+      "en": "This movie is funny."
+    },
+    "3795642-1": {
+      "from": "3795642",
+      "swap": [
+        "fyndið",
+        "leiðinlegt"
+      ],
+      "is": "Mér finnst það leiðinlegt.",
+      "en": "I find that boring."
+    },
+    "1323734-1": {
+      "from": "1323734",
+      "swap": [
+        "glaðir",
+        "hissa"
+      ],
+      "is": "Allir voru hissa.",
+      "en": "Everyone was surprised."
+    },
+    "4171677-1": {
+      "from": "4171677",
+      "swap": [
+        "leiður",
+        "hissa"
+      ],
+      "is": "Ég var hissa.",
+      "en": "I was surprised."
+    },
+    "3795329-1": {
+      "from": "3795329",
+      "swap": [
+        "glaður",
+        "hissa"
+      ],
+      "is": "Ég er hissa.",
+      "en": "I'm surprised."
+    },
+    "647420-1": {
+      "from": "647420",
+      "swap": [
+        "hatta",
+        "lita"
+      ],
+      "is": "Mér líkar enginn þessara lita.",
+      "en": "I don't like any of these colors."
     }
   }
 }

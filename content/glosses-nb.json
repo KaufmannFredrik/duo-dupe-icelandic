@@ -1,7 +1,7 @@
 {
   "note": "Bokmål glosses written for TÖLVA. \"glosses\": for course words that Wiktionary gives none for. \"fixes\": in place of Wiktionary glosses that are wrong (another sense, another word class, two words run together, a Swedish or outdated spelling), or that two course words share; \"wiktionary\" repeats what Wiktionary gives, so npm run validate notices when it changes. The first gloss is the one exercises show (verbs get å in front); the rest show in the dictionary. Each was chosen from the word's English Wiktionary meaning and its uses in the course sentences, with the reasons and sources in content/CLAIMS.md. npm run validate checks every word of every gloss the app shows against Bokmålsordboka, and that a gloss of several words is listed in \"phrases\"; npm run build:translations puts them into data/lexicon.json.",
   "reviewed": true,
-  "phrases": ["av og til", "be om", "der borte", "en eller annen", "falle i søvn", "få lov til", "få tak i", "gjøre ferdig", "gjøre rent", "god dag", "ha det", "ha tenkt", "hele tiden", "høre på", "kan hende", "komme i hu", "lage mat", "lukke opp", "med en gang", "må hende", "på nytt", "se på", "skynde seg", "slå av", "slå på", "synes om", "til slutt", "ut av"],
+  "phrases": ["av og til", "be om", "der borte", "en eller annen", "falle i søvn", "få lov til", "få tak i", "gjøre ferdig", "gjøre rent", "god dag", "ha det", "ha tenkt", "hele tiden", "høre på", "kan hende", "komme i hu", "lage mat", "lei seg", "lukke opp", "med en gang", "må hende", "på nytt", "se på", "skynde seg", "slå av", "slå på", "synes om", "til slutt", "ut av"],
   "glosses": {
     "af_fs": ["av", "fra"],
     "bara_ao": ["bare"],
@@ -74,7 +74,20 @@
     "hreinn_lo": ["ren"],
     "skítugur_lo": ["skitten"],
     "kveikja_so": ["tenne", "slå på"],
-    "slökkva_so": ["slokke", "slå av"]
+    "slökkva_so": ["slokke", "slå av"],
+    "úlpa_no": ["parkas", "anorakk", "boblejakke"],
+    "taska_no": ["veske", "bag"],
+    "gleraugu_no": ["briller"],
+    "hávaxinn_lo": ["høy", "høyvokst"],
+    "klár_lo": ["smart", "flink", "klar"],
+    "svona_ao": ["slik", "så"],
+    "glaður_lo": ["glad"],
+    "ánægður_lo": ["fornøyd", "tilfreds"],
+    "leiður_lo": ["lei seg", "lei"],
+    "hræddur_lo": ["redd", "skremt"],
+    "rólegur_lo": ["rolig"],
+    "hissa_lo": ["overrasket", "forbauset"],
+    "áhyggja_no": ["bekymring"]
   },
   "fixes": {
     "barn_no": { "nb": ["barn"], "wiktionary": ["barn", "barn n mindreårig"] },
@@ -157,6 +170,10 @@
     "mynd_no": { "nb": ["bilde", "film"], "wiktionary": ["bilde", "kino"] },
     "svefnherbergi_no": { "nb": ["soverom", "soveværelse"], "wiktionary": ["soveværelse", "soverom"] },
     "baðherbergi_no": { "nb": ["baderom", "bad"], "wiktionary": ["bad", "baderom"] },
-    "þarna_ao": { "nb": ["der borte", "der"], "wiktionary": ["der"] }
+    "þarna_ao": { "nb": ["der borte", "der"], "wiktionary": ["der"] },
+    "hattur_no": { "nb": ["hatt"], "wiktionary": ["hatt", "lue"] },
+    "fyndinn_lo": { "nb": ["morsom", "artig"], "wiktionary": ["artig", "morsom", "gøy"] },
+    "skap_no": { "nb": ["humør", "lune"], "wiktionary": ["lag", "humør"] },
+    "hamingjusamur_lo": { "nb": ["lykkelig"], "wiktionary": ["glad", "lykkelig"] }
   }
 }

@@ -217,8 +217,10 @@ function wiktFor(list, { ofl, meaning }) {
   const all = list ?? [];
   const byPos = all.filter((w) => POS[ofl]?.includes(w.pos));
   const use = byPos.length ? byPos : all;
-  const matches = (g) => fold(g).includes(fold(meaning));
-  const exact = (g) => fold(g).replace(/^to /, '') === fold(meaning);
+  // Meanings are written in American spelling; Wiktionary often has the British (litur: "colour").
+  const spell = (s) => fold(s).replace(/colour/g, 'color');
+  const matches = (g) => spell(g).includes(spell(meaning));
+  const exact = (g) => spell(g).replace(/^to /, '') === spell(meaning);
   // Glosses that carry the intended meaning first, so exercises show it (bjór: "beer", not "beaver"),
   // and one that is just the meaning before one that says more (hrísgrjón: "rice", not "a grain of
   // rice"; sjóða: "to boil", not "to seethe, to boil").

@@ -42,6 +42,18 @@ for (const unit of data.course.units.filter((u, i) => i < 2 || u.id === 'numbers
     });
   }
 }
+// A phone number to type may only come in a later play of a lesson (a new unit's words shift the
+// draws): find it in plays #0 to #2, and the shot records that many plays before opening it.
+const phoneTyped = (() => {
+  for (const lesson of data.course.units.find((u) => u.id === 'numbers').lessons) {
+    for (const play of [0, 1, 2]) {
+      const specs = data.generator.lesson({ focus: lesson.focus, allowed: allowedFor(data.course, 'numbers', lesson.index), seed: hashSeed(`${lesson.key}#${play}`), practiced: Boolean(lesson.review) });
+      const i = specs.findIndex((s) => s.type === 'numtype' && s.phone);
+      if (i >= 0) return { key: lesson.key, play, href: `lesson.html?unit=numbers&lesson=${lesson.id}&step=${i + 1}&qa` };
+    }
+  }
+  throw new Error('no lesson has a phone number to type in its first three plays');
+})();
 
 // Each shot: page URL, optional actions to reach a state, full-page or viewport capture.
 const wrongOption = async (p) => {
@@ -96,6 +108,14 @@ async function seedLessons(p, keys) {
   }, keys);
 }
 
+// Records a lesson as played n times, so it opens with the seed "<key>#n".
+async function seedPlays(p, key, n) {
+  await p.evaluate(async ([k, times]) => {
+    const { put } = await import(new URL('js/db.js', location.href).href);
+    await put('kv', { lessons: { [k]: { done: true, at: Date.now(), best: 1, times } } }, 'progress');
+  }, [key, n]);
+}
+
 // Answers n exercises right; the sheet of the last one stays open.
 async function answerRight(p, n) {
   for (let i = 0; i < n; i++) {
@@ -143,6 +163,7 @@ const SHOTS = [
   { name: 'guide-myday', url: 'guide.html?unit=myday', full: true },
   { name: 'guide-food', url: 'guide.html?unit=food', full: true },
   { name: 'guide-home', url: 'guide.html?unit=home', full: true },
+  { name: 'guide-people', url: 'guide.html?unit=people', full: true },
   { name: 'guide-shopping', url: 'guide.html?unit=shopping', full: true },
   { name: 'guide-weather', url: 'guide.html?unit=weather', full: true },
   { name: 'guide-study', url: 'guide.html?unit=study', full: true },
@@ -151,7 +172,7 @@ const SHOTS = [
   ...[...firstOf].map(([type, url]) => ({ name: `ex-${type}`, url })),
   { name: 'ex-choice-selected', url: firstOf.get('choice'), act: async (p) => p.locator('.option').first().click() },
   { name: 'feedback-numlisten-wrong', url: firstOf.get('numlisten'), act: async (p) => { await wrongOption(p); await p.click('[data-action="check"]'); } },
-  { name: 'feedback-numtype-phone', url: firstOf.get('numtype-phone'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
+  { name: 'feedback-numtype-phone', url: phoneTyped.href, act: async (p) => { if (phoneTyped.play) { await seedPlays(p, phoneTyped.key, phoneTyped.play); await p.goto(base + phoneTyped.href); await settle(p); } await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'feedback-numbuild', url: firstOf.get('numbuild'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'feedback-correct', url: firstOf.get('choice'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'feedback-almost', url: specialTypeword ?? 'lesson.html?mode=letters&qa', act: async (p) => { await answer(p, 'almost'); await p.click('[data-action="check"]'); } },
@@ -171,6 +192,7 @@ const SHOTS = [
   { name: 'stories-myday', url: 'stories.html?story=myday', full: true },
   { name: 'stories-food', url: 'stories.html?story=food', full: true },
   { name: 'stories-home', url: 'stories.html?story=home', full: true },
+  { name: 'stories-people', url: 'stories.html?story=people', full: true },
   { name: 'stories-word', url: 'stories.html?story=cafe', act: async (p) => p.click('.word:text-is("te")') },
   { name: 'stories-speaking', url: 'stories.html?story=cafe', act: async (p) => p.evaluate(() => { document.querySelector('.reader__line').classList.add('is-current'); document.querySelectorAll('.word')[2].classList.add('is-speaking'); }) },
   { name: 'stories-translations', url: 'stories.html?story=family', act: async (p) => p.check('[data-show-translations]', { force: true }) },
@@ -212,9 +234,9 @@ const SHOTS = [
   { name: 'landing-calm', url: 'index.html', calm: true },
 ];
 const OVERFLOW_PAGES = [
-  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=aboutme', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=numbers', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=myday', 'guide.html?unit=shopping', 'guide.html?unit=food', 'guide.html?unit=home', 'guide.html?unit=weather', 'guide.html?unit=study', 'guide.html?unit=grammar', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
+  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=aboutme', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=numbers', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=myday', 'guide.html?unit=shopping', 'guide.html?unit=food', 'guide.html?unit=home', 'guide.html?unit=people', 'guide.html?unit=weather', 'guide.html?unit=study', 'guide.html?unit=grammar', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
   'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
-  'stories.html', 'stories.html?story=hello', 'stories.html?story=aboutme', 'stories.html?story=cafe', 'stories.html?story=numbers', 'stories.html?story=time', 'stories.html?story=myday', 'stories.html?story=shopping', 'stories.html?story=food', 'stories.html?story=home', 'stories.html?story=study', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'letters.html', 'lesson.html?mode=alphabet', 'voices.html', 'music.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
+  'stories.html', 'stories.html?story=hello', 'stories.html?story=aboutme', 'stories.html?story=cafe', 'stories.html?story=numbers', 'stories.html?story=time', 'stories.html?story=myday', 'stories.html?story=shopping', 'stories.html?story=food', 'stories.html?story=home', 'stories.html?story=people', 'stories.html?story=study', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'letters.html', 'lesson.html?mode=alphabet', 'voices.html', 'music.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
 ];
 
 async function settle(page) {

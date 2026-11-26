@@ -21,6 +21,11 @@
     "881772": "\"They can fish.\": sjóða niður is to can (preserve), but the English reads as being able to fish.",
     "881780": "\"They can fish.\": sjóða niður is to can (preserve), but the English reads as being able to fish.",
     "881784": "\"They can fish.\": sjóða niður is to can (preserve), but the English reads as being able to fish.",
-    "1339320": "\"The server was down.\": a computer server; the course teaches þjónn as a waiter, and niðri as downstairs."
+    "1339320": "\"The server was down.\": a computer server; the course teaches þjónn as a waiter, and niðri as downstairs.",
+    "3795790": "\"I'm glad we met.\": a mistake, Ég á ánægður (á, \"own\") for Ég er ánægður; GreynirCorrect does not flag it.",
+    "3799277": "\"You're very tall.\": a mistake, Þú er for Þú ert; GreynirCorrect does not flag it.",
+    "10969602": "\"Look! A flying cockroach!\": Kakkalakki is a common noun written with a capital letter, so it would count as a name a learner need not know.",
+    "744096": "\"I ate too much. Now I'm full.\": a mistake, Nú ég er for Nú er ég (the verb comes second); GreynirCorrect does not flag it.",
+    "879044": "\"Why did he do such a thing?\": the Icelandic says she (hún)."
   }
 }
