@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-26T22:08:08.657Z",
+ "generated": "2026-11-26T22:58:03.022Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -18,9 +18,9 @@
   }
  ],
  "counts": {
-  "loan": 8,
-  "old-norse": 250,
-  "form": 23
+  "loan": 10,
+  "old-norse": 260,
+  "form": 24
  },
  "pairs": {
   "halló_uh": {
@@ -1993,6 +1993,115 @@
    "oldNorse": "reykja",
    "evidence": "old-norse",
    "rules": null
+  },
+  "íþrótt_no": {
+   "nb": "idrett",
+   "article": 25637,
+   "oldNorse": "íþrótt",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "leikur_no": {
+   "nb": "lek",
+   "article": 34742,
+   "oldNorse": "leikr",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "spila_so": {
+   "nb": "spille",
+   "evidence": "loan",
+   "loan": {
+    "language": "Middle Low German",
+    "word": "spil"
+   },
+   "rules": [
+    "ending-a",
+    "double"
+   ]
+  },
+  "hlaupa_so": {
+   "nb": "løpe",
+   "article": 34484,
+   "oldNorse": "hlaupa",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "skíði_no": {
+   "nb": "ski",
+   "article": 52693,
+   "oldNorse": "skíð",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "dansa_so": {
+   "nb": "danse",
+   "article": 9266,
+   "oldNorse": "dansa",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "lag_no": {
+   "nb": "lag",
+   "article": 33492,
+   "oldNorse": "lag",
+   "evidence": "old-norse",
+   "rules": []
+  },
+  "gítar_no": {
+   "nb": "gitar",
+   "evidence": "form",
+   "rules": [
+    "i-acute"
+   ]
+  },
+  "píanó_no": {
+   "nb": "piano",
+   "evidence": "loan",
+   "loan": {
+    "language": "Italian",
+    "word": "piano"
+   },
+   "rules": [
+    "o-acute",
+    "i-acute"
+   ]
+  },
+  "leika_so": {
+   "nb": "leke",
+   "article": 34747,
+   "oldNorse": "leika",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "skák_no": {
+   "nb": "sjakk",
+   "article": 51811,
+   "oldNorse": "skák",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "mála_so": {
+   "nb": "male",
+   "article": 36721,
+   "oldNorse": "mála",
+   "evidence": "old-norse",
+   "rules": [
+    "a-acute-a",
+    "ending-a"
+   ]
+  },
+  "veiða_so": {
+   "nb": "veide",
+   "article": 67210,
+   "oldNorse": "veiða",
+   "evidence": "old-norse",
+   "rules": [
+    "eth",
+    "ending-a"
+   ]
   },
   "vinna_no": {
    "nb": "vinne",

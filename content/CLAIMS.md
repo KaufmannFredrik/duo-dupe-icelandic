@@ -94,8 +94,13 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | *Dóttur* in *Dóttur hennar er illt í maganum* (and the four sentences made from it) is the dative, the case of the one it hurts, as *mér* in *Mér er illt í hendinni*; the parser gives the genitive, so these keep no parser case. | DMII (*dóttur*: ÞGF ET, also ÞF and EF); W hönd ("Mér er illt í hendinni. = My hand hurts.") | sourced |
 | *Fólki* in *Fólki líður best þegar það er heima hjá sér* is the dative, the case *líða* gives the one who feels; the parser gives the nominative, so the sentence keeps no parser case. | DMII (*fólki*: ÞGF ET; the nominative is *fólk*); W líða (impersonal: *Mér líður vel*) | sourced |
 | *hendurnar* in *Þvoðu þér um hendurnar* is the accusative after *um*; *hjálp* in *Einhver er að kalla á hjálp* is the accusative after *kalla á*. The parser gives the nominative and the dative; both sentences keep no parser case. | The *um* rule (above); T 736112 (*Kallaðu strax á lækninn*) and 666975, where the accusative *lækninn* differs from the dative *lækninum* (DMII) | sourced (*um*), attested (*kalla á*) |
+| *hef* in *Ég hef ekki áhuga á íþróttum* and *Ég hef gaman af skíðum* is *hafa*, not *hefja* ("lift") the parser reads. | DMII (*hef*, GM-FH-NT-1P-ET of *hafa*); translations of T 385014 ("I don't care for sports"), 387930 ("I like skiing") | sourced |
+| *lagi* in *Allt er í lagi* and thirteen more is *lag* in the sense "order", in the idiom *í lagi* ("all right"), not *lag* "song" the course teaches: a loose fix, so the word counts as known but the sentence does not teach it. *lög* in *Hann braut lög* is *lög*, "law", a word of its own (lemma null). | W lag ("layer", "tune, song", "order"); BÍN (*lög*, hk, plural only, "law"); translations of T 677836, 1315607, 1320747 ("He broke the law") | sourced |
+| *tónleikarnir*, *tónleikunum*, *tónleikana* are *tónleikar* ("a concert", plural only, the DMII Core word); the parser names them by *tónleikur*, which BÍN also lists with the same plural forms (`PLURAL_ONLY` in `scripts/lib/tags.mjs`). | BÍN (*tónleikar* kk, id 91313; *tónleikur* kk, id 90912; both give *tónleikarnir*); W tónleikar ("concert") | sourced |
+| *fær* in *Ég er fær um að synda* is the adjective *fær* ("able"), not a form of *fá*; *á* in *Helgina sem ég fór á skíði* is the preposition of *fara á skíði*, not *eiga*. | BÍN (*fær* lo); translations of T 1321802 ("I'm able to swim"), 7319849 ("That weekend I went skiing") | sourced |
+| Wrong parser cases dropped: *betra* in *Liðið þitt er betra en okkar* (made from T 544571) is nominative, not genitive; *skák* after *leika* in T 387772 is accusative, not nominative; *gítar* after *leika á* in T 469359 is accusative, as in T 11514561 (*spilar á gítar*), not dative; in T 469363 (*góður á gítar*) no source decides it, so it keeps no case. | DMII (*betra*, comparative of *góður*); the parser's own reading of T 11514561 | sourced |
 
-The parser itself is not checked case by case: `npm run build:tags` lists the 470 words it gives to another word than their spelling suggests.
+The parser itself is not checked case by case: `npm run build:tags` lists the 454 words it gives to another word than their spelling suggests.
 
 ## Unit guidebooks (`content/units/`)
 
@@ -422,6 +427,41 @@ Headings name the units rather than their numbers, because new units are inserte
 | *Líkaminn* leaves out *nef* ("nose"), *anda* ("breathe"), *líkami* ("body"), *hjarta* ("heart") and *fingur* ("finger"): Tatoeba has at most one readable sentence for each here, and no sentence to make more from with one word changed. | T (searched with the scratch picker, 2026-11-26) | checked |
 | *Líkaminn* leaves out *fljótur* ("quick"), which *Ég vona að þér batni fljótt* needs: *fljótt* is an adverb of its own in BÍN, and Wiktionary has no entry for it. | BÍN (*fljótt* ao); W (no entry, kaikki.org) | checked |
 
+### *Frítími*
+
+| Claim | Source | Status |
+|---|---|---|
+| What you like doing is *mér finnst gaman að*: *finnst* is the middle voice of *finna*, impersonal with the dative. | BÍN (*finnst*: MM-FH-NT-3P-ET of *finna*, also OP-ÞGF-MM); W finnast ("to feel, to find, to think"; "Finnst þér fótbolti skemmtilegur?"), gaman ("fun, pleasure, enjoyment"); T 1321867 ("I like traveling"), 1318364, 1356548 | sourced |
+| *hafa gaman af* with the dative is to like something; *skemmta sér* is to have a good time. | T 387930 ("I like skiing"), 673167 ("We enjoy playing soccer"), 1315624 ("Have fun"), 3997312 ("Tom had a very good time") | attested |
+| *frítími* is *frí* + *tími*. | BÍN (*frítími* kk); W frí ("vacation, holiday"), tími | sourced |
+| *langa* takes the one who wants in the accusative, *að* (or *til að*) with an infinitive, and *í* with the accusative for a thing. | W langa ("to cause to want ... [with preceding accusative 'someone', along with í (+ accusative) 'something' or að (+ infinitive)]"); T 1368331, 3772755, 3994437 ("I want something sweet") | sourced |
+| Norwegian says *jeg har lyst til å* and *jeg har lyst på*. | BMO lyst ("få lyst på sjokolade", "ha lyst til å spille piano") | sourced |
+| *áhugi* is *á* ("on") + *hugi* ("mind"); *hafa áhuga á* takes the dative; *áhugamál* is a matter of interest, a hobby. | W áhugi ("á + hugi"), áhugamál ("Literally, matter of interest"; "hobby, interest"); T 385014, 386377 ("He had a great fancy for traveling"); DMII (*tónlist*, *íþróttum*: ÞGF) | sourced |
+| *íþrótt* and Norwegian *idrett* come from Old Norse *íþrótt*. | W íþrótt ("From Old Norse íþrótt"); BMO idrett ("norr. íþrótt") | sourced |
+| *fótbolti* is *fótur* + *bolti*. | W fótbolti ("From fótur + bolti") | sourced |
+| A team is *lið*; Norwegian *lag* is a team, while Icelandic *lag* is a song (and a layer). | W lið ("team (in sports, games, competitions, etc.)"), lag ("layer", "tune, song", "order"); BMO lag ("gruppe som deltar i konkurranser som en enhet"; "et tynt lag maling") | sourced |
+| *leikur* is a game or a match, Norwegian *lek*, from Old Norse *leikr*. | W leikur ("game", "match, game"; "From Old Norse leikr"); BMO lek (`data/bridge.json`, "norr. leikr") | sourced |
+| *spila* is to play a game, a sport, cards or an instrument; it and Norwegian *spille* were borrowed from Low German. | W spila ("to play", "to play an instrument"; "Ég spila fótbolta"; "Borrowed from Middle Low German spil"); BMO spille ("av l.ty. spelen, spillen") | sourced |
+| *æfa sig* is to practice, to train. | W æfa ("to practise"); T 502963, 908560 ("She always practices the piano") | sourced |
+| *hlaupa* is Norwegian *løpe*, from Old Norse *hlaupa*, and strong (*hleypur*, *hljóp*, *hlupum*). | BMO løpe ("norr. hlaupa"); W hlaupa; DMII; T 1315602, 1315590, 673912 | sourced |
+| *synda* is weak (*synti*) and made from *sund* ("swimming"); Norwegian *sund* is the same word, originally a place one can swim across. | DMII (*synti*, *syntum*); W synda ("From Old Norse sund ('swimming')"), sund ("swimming"; "channel, strait, sound"); BMO sund ("norr. sund \| besl med svømme, opprinnelig 'sted der en kan svømme over'") | sourced |
+| *skíði* is Norwegian *ski*, from Old Norse *skíð*; one goes skiing with *fara á skíði* and is *á skíðum*. | W skíði ("From Old Norse skíð"); BMO ski ("norr. skíð"); T 745360 ("I go skiing very often"), 387930, 3795579 | sourced |
+| *hjóla* is to ride a bike, from *hjól*. | W hjóla ("to bike, cycle"), hjól | sourced |
+| *dansa* came into Old Norse through Old French. | W dansa ("From Old Norse dansa, through Old French") | sourced |
+| *tónlist* is *tónn* + *list*; *list* is art. | W tónlist ("From tónn + list"), list ("art") | sourced |
+| *syngja* is strong (*syng*, *söng*), as Norwegian *synge* is. | DMII; BMO synge ("norr. syngja"; *sang*, *sunget*); T 11792677, 388893, 690303 | sourced |
+| An instrument is played with *spila á* and the accusative. | T 11514561 ("She plays the guitar very well"), 476777, 690303; the parser's accusative for *gítar* and *píanóið* there | attested |
+| *hljómsveit* is a band; *tónleikar* (a concert) is always plural, like *gleraugu*. | W hljómsveit ("band, orchestra"), tónleikar ("concert"); DMII (*tónleikar*: plural forms only) | sourced |
+| *leika* is Norwegian *leke*, from Old Norse *leika*; *leika sér* is to play; it is also to play a part or an instrument. | W leika ("to play"); BMO leke ("norr. leika"); T 469369, 545060, 742883, 1368365 ("She acted in the play"), 469359 | sourced |
+| *skák* and Norwegian *sjakk* come from Persian *šāh*, the king in the game; *tefla* is also to play chess. | W skák ("From Old Norse skák, from Classical Persian شاه (šāh)"), tefla ("to play a board game; specifically, to play chess"); BMO sjakk ("norr. skák f, oppr persisk \| sm_o_s sjah etter kongen i spillet") | sourced |
+| *mála* and *teikna* are Norwegian *male* and *tegne*, from Old Norse *mála* and *teikna*. | W mála ("From Old Norse mála"); BMO male ("norr. mála \| fra l.ty. malen"), tegne ("norr. teikna el tákna") | sourced |
+| *bíó* came from Danish *bio*, short for *biograf*; to the movies is *í bíó*. | W bíó ("Borrowed from Danish bio, shortened from biograf"); T 476827, 3994929, 388450 | sourced |
+| *leikhús* is *leikur* + *hús*. | W leikhús ("From leikur ('game, act, acting') + hús") | sourced |
+| One goes to a concert with *á*. | T 908293 ("She accompanied her friend to the concert"), 860057 | attested |
+| *ferðast* is Norwegian *ferdes*, from Old Norse *ferðask*. | W ferðast ("From Old Norse ferðask"); BMO ferdes ("norr. ferðast") | sourced |
+| *veiða* is to fish and to hunt, Norwegian *veide*, from Old Norse *veiða*. | W veiða ("to hunt", "to fish"; "From Old Norse veiða"); BMO veide ("norr. veiða"); T 468929 ("My father went fishing") | sourced |
+| *Frítími* leaves out *frítími* (no Wiktionary entry) and *hljómsveit* (one readable sentence, *Hljómsveitin mín heitir Red Hot*); the guidebook teaches both. Most sport sentences need *vinna* ("win"), which *Nám og vinna* brings, so the team sentences are made ones. | W (no entry for frítími, kaikki.org); T 388921 | checked |
+
 ### *Vinna*
 
 | Claim | Source | Status |
@@ -647,10 +687,34 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | 5030347-1 | *Er kvefið í þér að batna?* | T 5030347 | *Tom* → *þér* | How's your cold? |
 | 391731-1 | *Ég vil að mömmu minni batni strax.* | T 391731 | *skjótt* → *strax* | I want my mother to get well right away. |
 | 882031-4 | *Dóttur hennar er illt í bakinu.* | T 882031 | *maganum* → *bakinu* | Her daughter has a backache. |
+| 466872-1 | *Hvað er áhugamálið þitt?* | T 466872 | *símanúmerið* → *áhugamálið* | What's your hobby? |
+| 1329118-1 | *Þetta er áhugamálið mitt.* | T 1329118 | *hjólið* → *áhugamálið* | This is my hobby. |
+| 482417-1 | *Hún og vinir hennar elska íþróttir.* | T 482417 | *tónlist* → *íþróttir* | She and her friends love sports. |
+| 483014-1 | *Núna er fríið búið.* | T 483014 | *Nú* → *Núna* | Now the vacation is over. |
+| 388450-1 | *Ég var í fríi.* | T 388450 | *bíói* → *fríi* | I was on vacation. |
+| 11208765-2 | *Þetta er ekki leikur.* | T 11208765 | *salt* → *leikur* | This isn't a game. |
+| 3772549-1 | *Mér finnst gaman að spila leiki.* | T 3772549 | *fótbolta* → *leiki* | I like to play games. |
+| 544571-1 | *Liðið þitt er betra en okkar.* | T 544571 | *sterkara* → *betra* | Your team is better than ours. |
+| 675375-1 | *Liðið okkar var í rauðum peysum.* | T 675375 | *treyjum* → *peysum* | Our team were wearing red sweaters. |
+| 382513-1 | *Spilum spil.* | T 382513 | *fótbolta* → *spil* | Let's play cards. |
+| 12701220-1 | *Ég ætla að spila spil í kvöld.* | T 12701220 | *fótbolta* → *spil* | I am going to play cards tonight. |
+| 4032105-1 | *Mér finnst gaman að dansa.* | T 4032105 | *elda* → *dansa* | I like to dance. |
+| 4032105-2 | *Mér finnst gaman að hjóla.* | T 4032105 | *elda* → *hjóla* | I like to bike. |
+| 4032105-3 | *Mér finnst gaman að teikna.* | T 4032105 | *elda* → *teikna* | I like to draw. |
+| 1318364-1 | *Honum finnst gaman að dansa.* | T 1318364 | *hlaupa* → *dansa* | He likes to dance. |
+| 1318364-2 | *Honum finnst gaman að hjóla.* | T 1318364 | *hlaupa* → *hjóla* | He likes to bike. |
+| 1318364-3 | *Honum finnst gaman að synda.* | T 1318364 | *hlaupa* → *synda* | He likes to swim. |
+| 385969-1 | *Getur þú farið með mig í leikhús?* | T 385969 | *bíó* → *leikhús* | Could you take me to the theater? |
+| 476827-1 | *Af hverju fer fólk í leikhús?* | T 476827 | *bíó* → *leikhús* | Why do people go to the theater? |
+| 388450-2 | *Ég var í leikhúsi.* | T 388450 | *bíói* → *leikhúsi* | I was at a theater. |
+| 386377-1 | *Hann hafði mikinn áhuga á tónlist.* | T 386377 | *ferðalögum* → *tónlist* | He had a great interest in music. |
+| 386377-2 | *Hann hafði mikinn áhuga á íþróttum.* | T 386377 | *ferðalögum* → *íþróttum* | He had a great interest in sports. |
+| 386377-3 | *Hann hafði mikinn áhuga á fótbolta.* | T 386377 | *ferðalögum* → *fótbolta* | He had a great interest in soccer. |
+| 386377-4 | *Hann hafði mikinn áhuga á skák.* | T 386377 | *ferðalögum* → *skák* | He had a great interest in chess. |
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 30 of the 2,950 sentences. The other 2,891 (all but 29 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 171 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 32 of the 3,128 sentences. The other 3,066 (all but 30 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 195 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -663,7 +727,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 456 of the 550 course words. The other 94 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 93 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 481 of the 581 course words. The other 100 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 93 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -685,6 +749,7 @@ Wiktionary gives a Bokmål gloss for 456 of the 550 course words. The other 94 w
 | klár, svona | smart, flink, klar; slik, så | W "clever, sharp ...", second "prepared, ready" (*klar*, BMO "ferdig, i stand"); W "thus, like this", "to this degree"; BMO slik |
 | glaður, ánægður, leiður, hræddur, rólegur, hissa, áhyggja | glad; fornøyd, tilfreds; lei seg, lei; redd, skremt; rolig; overrasket, forbauset; bekymring | W "happy, glad", "content, satisfied", "sad" and "fed up (with)", "afraid; scared, frightened", "quiet, calm", "surprised", "worries"; BMO glad ("norr. glaðr"), lei ("være lei seg"; "norr. leiðr"), redd ("norr. hræddr"), rolig ("av ro"); *lei seg* is a phrase in the file |
 | brjóta, líða, illur, illa, veikur, hraustur, kvefaður, læknir, batna | brekke, knuse, bryte; føle seg, ha det, gå; vond, dårlig, ond; dårlig, ille; syk, svak; frisk, sunn, sterk; forkjølet; lege, doktor; bli bedre | W "to break", "describing a specific feeling; to feel" (*Mér líður vel*, *Jeg har det bra*; *ha det* is also *bless*, so *føle seg* comes first), "evil, ill" (in the course sentences *Mér er illt í*, *Jeg har vondt i*), "badly, poorly", "sick, ill", "healthy, well", "having a cold", "doctor", "to get better"; BMO brekke ("brekke armen" is how a bone breaks), vond ("det gjør vondt"), ille ("norr. illa"), syk, frisk ("som har god helse"), forkjølet, lege; *bli bedre*, *føle seg* are phrases in the file |
+| langa, skemmta, spila, æfa, hjóla, spil | ha lyst, lengte; underholde, more; spille; øve, trene; sykle; kort, spill | W "to cause to want", "to entertain, amuse", "to play", "to practise", "to bike, cycle", "game (with ... playing cards or a board)", "playing card"; BMO lyst ("få lyst på sjokolade"), underholde, more ("muntre, oppmuntre, underholde"), spille, øve, trene, sykle, kort; *ha lyst* is a phrase in the file |
 
 ### Wiktionary glosses corrected (`"fixes"`)
 
@@ -756,7 +821,7 @@ Later glosses (shown in the dictionary only) removed for the same reasons: anoth
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 510 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 538 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|

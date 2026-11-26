@@ -1,25 +1,25 @@
 # Data report
 
-Generated 2026-11-26T22:06:08.379Z by `node scripts/build-data.mjs` from `content/vocab/core.json`. This file is generated.
+Generated 2026-11-26T22:56:55.851Z by `node scripts/build-data.mjs` from `content/vocab/core.json`. This file is generated.
 
 ## Coverage of the core vocabulary
 
-| Measure | Lemmas (of 550) |
+| Measure | Lemmas (of 581) |
 |---|---|
-| Found in the DMII Core | 527 (96%) |
+| Found in the DMII Core | 558 (96%) |
 | Indeclinable numerals confirmed in the full BÍN (not in the DMII Core) | 23 (4%) |
-| English gloss from Wiktionary | 549 (100%) |
-| Wiktionary gloss matches the intended meaning | 549 (100%) |
-| Norwegian Bokmål gloss | 550 (100%) |
-| IPA | 520 (95%) |
-| Human recording (Commons, Lingua Libre, Wiktionary) | 199 (36%) |
-| 1 or more Tatoeba sentences | 532 (97%) |
-| 3 or more Tatoeba sentences | 501 (91%) |
-| Frequency rank in the Icelandic Gigaword Corpus | 550 (100%) |
+| English gloss from Wiktionary | 580 (100%) |
+| Wiktionary gloss matches the intended meaning | 580 (100%) |
+| Norwegian Bokmål gloss | 581 (100%) |
+| IPA | 550 (95%) |
+| Human recording (Commons, Lingua Libre, Wiktionary) | 203 (35%) |
+| 1 or more Tatoeba sentences | 563 (97%) |
+| 3 or more Tatoeba sentences | 533 (92%) |
+| Frequency rank in the Icelandic Gigaword Corpus | 581 (100%) |
 
-Sentences kept: 2950 (171 made from a Tatoeba sentence by replacing one word), of which 2395 use only course vocabulary (names allowed) and have at most 10 words. Recordings linked: 201.
+Sentences kept: 3128 (195 made from a Tatoeba sentence by replacing one word), of which 2558 use only course vocabulary (names allowed) and have at most 10 words. Recordings linked: 205.
 
-GreynirCorrect checked 10773 Tatoeba sentences (with an English translation, at most 15 words) and excluded 848 that it flagged. Most frequent codes: S004 124, P_NT_ÍTölu 113, P_VeraAð 91, C002 73, W001/w 68, ASLBRODDVANTAR 60, P_NT_FsMeðFallstjórn 36, C003 28, S001 26, P_MOOD_PURP 23. Parse failures (E001), exclamation marks (E007) and unknown words (U001) do not exclude a sentence.
+GreynirCorrect checked 10797 Tatoeba sentences (with an English translation, at most 15 words) and excluded 848 that it flagged. Most frequent codes: S004 124, P_NT_ÍTölu 113, P_VeraAð 91, C002 73, W001/w 68, ASLBRODDVANTAR 60, P_NT_FsMeðFallstjórn 36, C003 28, S001 26, P_MOOD_PURP 23. Parse failures (E001), exclamation marks (E007) and unknown words (U001) do not exclude a sentence.
 
 ## By theme
 
@@ -33,12 +33,13 @@ GreynirCorrect checked 10773 Tatoeba sentences (with an English translation, at 
 | Getting around | 49 | 49 | 49 | 21 | 43 |
 | Time | 35 | 35 | 35 | 18 | 31 |
 | My day | 24 | 24 | 24 | 4 | 24 |
-| Shopping | 35 | 35 | 35 | 17 | 30 |
+| Shopping | 35 | 35 | 35 | 17 | 31 |
 | Food | 28 | 28 | 28 | 10 | 28 |
 | At home | 34 | 34 | 34 | 4 | 34 |
 | Clothes and people | 37 | 37 | 37 | 3 | 37 |
 | Weather and nature | 21 | 21 | 21 | 12 | 17 |
 | The body | 33 | 33 | 33 | 7 | 33 |
+| Free time | 31 | 31 | 31 | 4 | 31 |
 | Study and work | 27 | 27 | 27 | 9 | 25 |
 | New words | 8 | 8 | 8 | 2 | 3 |
 | Grammar words | 34 | 34 | 34 | 8 | 34 |
@@ -47,9 +48,9 @@ GreynirCorrect checked 10773 Tatoeba sentences (with an English translation, at 
 
 | File | Bytes | Gzipped |
 |---|---|---|
-| `data/lexicon.json` | 270,344 | 79,367 |
-| `data/sentences.json` | 753,695 | 173,078 |
-| `data/audio.json` | 117,139 | 6,677 |
+| `data/lexicon.json` | 285,546 | 83,817 |
+| `data/sentences.json` | 802,017 | 184,143 |
+| `data/audio.json` | 119,434 | 6,813 |
 | `data/forms/hello.json` | 51,698 | 6,871 |
 | `data/forms/aboutme.json` | 51,086 | 6,640 |
 | `data/forms/cafe.json` | 63,218 | 8,626 |
@@ -64,10 +65,11 @@ GreynirCorrect checked 10773 Tatoeba sentences (with an English translation, at 
 | `data/forms/people.json` | 98,574 | 11,242 |
 | `data/forms/weather.json` | 26,196 | 3,790 |
 | `data/forms/body.json` | 62,227 | 7,813 |
+| `data/forms/freetime.json` | 48,932 | 6,735 |
 | `data/forms/study.json` | 58,053 | 7,093 |
 | `data/forms/newwords.json` | 5,385 | 1,186 |
 | `data/forms/core.json` | 60,572 | 7,853 |
-| Total | 1,982,908 | 369,913 |
+| Total | 2,097,659 | 392,299 |
 
 ## Entries to check (20)
 

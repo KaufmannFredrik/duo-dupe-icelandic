@@ -1,0 +1,54 @@
+{
+  "id": "freetime",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "What shall we do?",
+    "nb": "Hva skal vi gjøre?"
+  },
+  "level": "A1",
+  "after": "freetime",
+  "dialogue": true,
+  "cast": {
+    "A": "katla",
+    "B": "elias"
+  },
+  "lines": [
+    {
+      "sentence": "3772755",
+      "speaker": "A"
+    },
+    {
+      "sentence": "382513",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1364316",
+      "speaker": "A"
+    },
+    {
+      "sentence": "387772",
+      "speaker": "B"
+    },
+    {
+      "sentence": "479365",
+      "speaker": "A"
+    },
+    {
+      "sentence": "385969",
+      "speaker": "A"
+    },
+    {
+      "sentence": "479367",
+      "speaker": "B"
+    },
+    {
+      "sentence": "3994454",
+      "speaker": "B"
+    },
+    {
+      "sentence": "397461",
+      "speaker": "A"
+    }
+  ]
+}

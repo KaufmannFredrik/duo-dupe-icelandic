@@ -21,7 +21,9 @@
 //
 // content/tag-fixes.json corrects the parser by hand where it is wrong ("sé" in "Ég sé það" is
 // sjá, not vera; a fix with lemma null says the word is another word, not a course word: "satt"
-// in "Er það satt?" is sannur, not saddur); a fixed sentence keeps no cases.
+// in "Er það satt?" is sannur, not saddur; one with "loose": true says it is the course word in an
+// idiom, known but not taught from that sentence: "lagi" in "Allt er í lagi" is lag, "song", in
+// the sense "order"); a fixed sentence keeps no cases.
 //
 //   node scripts/build-tags.mjs            (needs .venv with reynir, see README)
 //   node scripts/build-tags.mjs --check    exit 1 if data/tags.json does not match data/sentences.json
@@ -122,7 +124,9 @@ async function main() {
     const stale = !tags?.cases ? ids : ids.filter((sid) => tags.sentences[sid]?.length !== n(sid) || (sid in tags.cases && tags.cases[sid].length !== n(sid)));
     for (const fix of tags?.cases ? fixes : []) {
       const got = tags.sentences[fix.sentence][fixAt(fix)];
-      if ((fix.lemma === null ? got !== -1 : tags.lemmas[got] !== fix.lemma) || fix.sentence in tags.cases) stale.push(fix.sentence);
+      const at = tags.lemmas.indexOf(fix.lemma);
+      const want = fix.lemma === null ? -1 : fix.loose ? -2 - at : at;
+      if (got !== want || fix.sentence in tags.cases) stale.push(fix.sentence);
     }
     if (stale.length) {
       console.log(`data/tags.json is out of date for ${stale.length} sentences (first: ${stale.slice(0, 3).join(', ')}). Run npm run build:tags.`);
@@ -171,7 +175,7 @@ async function main() {
     });
   }
   for (const fix of fixes) {
-    out[fix.sentence][fixAt(fix)] = fix.lemma === null ? -1 : index.get(fix.lemma);
+    out[fix.sentence][fixAt(fix)] = fix.lemma === null ? -1 : fix.loose ? -2 - index.get(fix.lemma) : index.get(fix.lemma);
     delete cases[fix.sentence];
   }
 

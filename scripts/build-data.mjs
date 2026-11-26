@@ -217,8 +217,9 @@ function wiktFor(list, { ofl, meaning }) {
   const all = list ?? [];
   const byPos = all.filter((w) => POS[ofl]?.includes(w.pos));
   const use = byPos.length ? byPos : all;
-  // Meanings are written in American spelling; Wiktionary often has the British (litur: "colour").
-  const spell = (s) => fold(s).replace(/colour/g, 'color');
+  // Meanings are written in American spelling; Wiktionary often has the British (litur: "colour",
+  // æfa: "to practise", leikhús: "theatre").
+  const spell = (s) => fold(s).replace(/colour/g, 'color').replace(/practis/g, 'practic').replace(/theatre/g, 'theater');
   const matches = (g) => spell(g).includes(spell(meaning));
   const exact = (g) => spell(g).replace(/^to /, '') === spell(meaning);
   // Glosses that carry the intended meaning first, so exercises show it (bjór: "beer", not "beaver"),

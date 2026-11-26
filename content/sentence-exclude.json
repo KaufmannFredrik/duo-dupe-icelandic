@@ -30,6 +30,7 @@
     "10629489": "\"I look to him for help.\": a mistake, Ég leiti (the subjunctive) for Ég leita; GreynirCorrect does not flag it.",
     "666955": "\"He looks nothing like a doctor.\": a mistake, sér út for lítur út (looks); GreynirCorrect does not flag it.",
     "739158": "\"He stopped to smoke.\": the Icelandic says he stopped smoking (hætti að reykja), as Ég hætti að reykja does.",
-    "1356566": "\"He broke into a house.\": the Icelandic says only he broke in (Hann braust inn); Hann braust inn í hús says into a house."
+    "1356566": "\"He broke into a house.\": the Icelandic says only he broke in (Hann braust inn); Hann braust inn í hús says into a house.",
+    "3799315": "\"We need exercise.\": a slip, fara æfa for fara að æfa, and the English says something else; GreynirCorrect does not flag it."
   }
 }

@@ -1,0 +1,265 @@
+{
+  "id": "freetime",
+  "theme": "freetime",
+  "reviewed": true,
+  "title": {
+    "en": "Free time",
+    "nb": "Fritid"
+  },
+  "is": "Frítími",
+  "goal": {
+    "en": "Say what you like doing and what you want to do: sport, music, games, going out and traveling.",
+    "nb": "Si hva du liker å gjøre og hva du har lyst til: sport, musikk, spill, å gå ut og å reise."
+  },
+  "host": {
+    "character": "jonas",
+    "says": "1321867"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "What do you like doing?",
+        "nb": "Hva liker du å gjøre?"
+      },
+      "focus": [
+        "langa_so",
+        "áhugi_no",
+        "áhugamál_no",
+        "skemmta_so",
+        "frí_no"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Sport",
+        "nb": "Sport"
+      },
+      "focus": [
+        "íþrótt_no",
+        "fótbolti_no",
+        "leikur_no",
+        "lið_no",
+        "spila_so",
+        "æfa_so"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "Running and swimming",
+        "nb": "Løpe og svømme"
+      },
+      "focus": [
+        "hlaupa_so",
+        "synda_so",
+        "hjóla_so",
+        "skíði_no",
+        "dansa_so"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "Music",
+        "nb": "Musikk"
+      },
+      "focus": [
+        "tónlist_no",
+        "lag_no",
+        "syngja_so",
+        "gítar_no",
+        "píanó_no"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "Games and pictures",
+        "nb": "Spill og bilder"
+      },
+      "focus": [
+        "leika_so",
+        "spil_no",
+        "skák_no",
+        "mála_so",
+        "teikna_so"
+      ]
+    },
+    {
+      "id": "6",
+      "title": {
+        "en": "Going out",
+        "nb": "Ut på byen"
+      },
+      "focus": [
+        "bíó_no",
+        "leikhús_no",
+        "tónleikar_no",
+        "ferðast_so",
+        "veiða_so"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "I like it: mér finnst gaman að",
+          "nb": "Jeg liker det: mér finnst gaman að"
+        },
+        "text": {
+          "en": "To say what you like doing, Icelandic says it is fun to you: {is:Mér finnst gaman að ferðast} (I like traveling), {is:Honum finnst gaman að hlaupa} (he likes to run), {is:Finnst þér gaman að ferðast?} {is:finnst} is the middle voice of {is:finna} (find), so it means seems or feels, and the one it seems so to is in the dative: {is:mér}, {is:honum}, {is:okkur}. {is:gaman} is fun. Norwegian says jeg synes det er gøy å, or jeg liker å. With a noun, Icelandic says {is:hafa gaman af} and the dative: {is:Ég hef gaman af skíðum} (I like skiing), {is:Við höfum gaman af því að spila fótbolta}. To have a good time is {is:skemmta sér}: {is:Skemmtu þér vel} (have fun). The name of the unit, {is:frítími}, is {is:frí} (time off) and {is:tími} (time).",
+          "nb": "For å si hva du liker å gjøre, sier islandsk at det er gøy for deg: {is:Mér finnst gaman að ferðast} (jeg liker å reise), {is:Honum finnst gaman að hlaupa} (han liker å løpe), {is:Finnst þér gaman að ferðast?} {is:finnst} er mediumformen av {is:finna} (finne), så det betyr synes eller føles, og den det synes for, står i dativ: {is:mér}, {is:honum}, {is:okkur}. {is:gaman} er moro. Norsk sier jeg synes det er gøy å, eller jeg liker å. Med et substantiv sier islandsk {is:hafa gaman af} og dativ: {is:Ég hef gaman af skíðum} (jeg liker å gå på ski), {is:Við höfum gaman af því að spila fótbolta}. Å kose seg er {is:skemmta sér}: {is:Skemmtu þér vel} (ha det gøy). Navnet på enheten, {is:frítími}, er {is:frí} (fri, ferie) og {is:tími} (tid)."
+        },
+        "examples": [
+          "1321867",
+          "1318364",
+          "1356548",
+          "387930",
+          "673167",
+          "1315624"
+        ]
+      },
+      {
+        "title": {
+          "en": "I want to: mig langar",
+          "nb": "Jeg har lyst: mig langar"
+        },
+        "text": {
+          "en": "{is:langa} is to want, to long for, and the one who wants is in the accusative: {is:Mig langar að syngja lag} (I want to sing a song), {is:Hann langar að hitta þig}, {is:Hvað langar þig til að gera?} (what would you like to do?). A thing you want takes {is:í} and the accusative: {is:Mig langar í eitthvað sætt} (I want something sweet), {is:Langar þig í eitthvað?} Norwegian says jeg har lyst til å and jeg har lyst på. Interest is {is:áhugi}, {is:á} (on) and {is:hugi} (mind): {is:hafa áhuga á} is to be interested in, with the dative, {is:Hann hafði mikinn áhuga á tónlist}, {is:Ég hef ekki áhuga á íþróttum}. A hobby is {is:áhugamál}, a matter of interest: {is:Hvað er áhugamálið þitt?}",
+          "nb": "{is:langa} er å ville ha, å lengte etter, og den som har lyst, står i akkusativ: {is:Mig langar að syngja lag} (jeg har lyst til å synge en sang), {is:Hann langar að hitta þig}, {is:Hvað langar þig til að gera?} (hva har du lyst til å gjøre?). Noe du har lyst på, tar {is:í} og akkusativ: {is:Mig langar í eitthvað sætt} (jeg har lyst på noe søtt), {is:Langar þig í eitthvað?} Norsk sier jeg har lyst til å og jeg har lyst på. Interesse er {is:áhugi}, {is:á} (på) og {is:hugi} (sinn): {is:hafa áhuga á} er å være interessert i, med dativ, {is:Hann hafði mikinn áhuga á tónlist}, {is:Ég hef ekki áhuga á íþróttum}. En hobby er {is:áhugamál}, en interessesak: {is:Hvað er áhugamálið þitt?}"
+        },
+        "examples": [
+          "1368331",
+          "3772755",
+          "3994437",
+          "502984",
+          "386377-1",
+          "385014",
+          "466872-1"
+        ]
+      },
+      {
+        "title": {
+          "en": "Sport: íþrótt, lið, spila",
+          "nb": "Sport: íþrótt, lið, spila"
+        },
+        "text": {
+          "en": "{is:íþrótt} (sport) is Norwegian idrett: both come from Old Norse íþrótt. {is:fótbolti} is {is:fótur} (foot) and {is:bolti} (ball). A team is {is:lið}: {is:Liðið okkar var í rauðum peysum}. Watch {is:lag}: it is a song in Icelandic, but a team in Norwegian, which Icelandic calls {is:lið}. A game or a match is {is:leikur}, Norwegian lek. You play a game, a sport with a ball, cards or an instrument with {is:spila}: {is:Ég spila oft fótbolta eftir skóla}, {is:Mér finnst gaman að spila fótbolta}. {is:spila} and Norwegian spille were borrowed from Low German. To practice or train is {is:æfa sig}: {is:Þú verður að æfa þig meira}, {is:Hún æfir sig alltaf á píanóið}.",
+          "nb": "{is:íþrótt} (sport) er norsk idrett: begge kommer fra norrønt íþrótt. {is:fótbolti} er {is:fótur} (fot) og {is:bolti} (ball). Et lag er {is:lið}: {is:Liðið okkar var í rauðum peysum}. Pass på {is:lag}: det er en sang på islandsk, men et lag på norsk, som islandsk kaller {is:lið}. Et spill eller en kamp er {is:leikur}, norsk lek. Spill, ballsport, kort og instrumenter spiller man med {is:spila}: {is:Ég spila oft fótbolta eftir skóla}, {is:Mér finnst gaman að spila fótbolta}. {is:spila} og norsk spille ble lånt fra lavtysk. Å øve eller trene er {is:æfa sig}: {is:Þú verður að æfa þig meira}, {is:Hún æfir sig alltaf á píanóið}."
+        },
+        "examples": [
+          "482417-1",
+          "675375-1",
+          "544571-1",
+          "387318",
+          "3772549",
+          "502963",
+          "908560"
+        ],
+        "tables": [
+          "fótbolti_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Run, swim, ski: hlaupa, synda",
+          "nb": "Løpe, svømme, gå på ski: hlaupa, synda"
+        },
+        "text": {
+          "en": "{is:hlaupa} (run) is Norwegian løpe, from Old Norse hlaupa, and a strong verb: {is:Hann hleypur}, {is:Hann hljóp}, {is:Við hlupum}. {is:synda} (swim) is weak, {is:synti}: {is:Við syntum í sjónum}. It is made from the noun {is:sund}, swimming, which Norwegian keeps as sund, a strait, originally a place you can swim across. {is:sundlaug} is a swimming pool. {is:skíði} is Norwegian ski, from Old Norse skíð; you go skiing with {is:fara á skíði} and are on skis, {is:á skíðum}: {is:Ég fer mjög oft á skíði}. {is:hjóla} is to ride a bike, from {is:hjól}: {is:Mér finnst gaman að hjóla}. {is:dansa} came into Old Norse through Old French.",
+          "nb": "{is:hlaupa} (løpe) er norsk løpe, fra norrønt hlaupa, og et sterkt verb: {is:Hann hleypur}, {is:Hann hljóp}, {is:Við hlupum}. {is:synda} (svømme) er svakt, {is:synti}: {is:Við syntum í sjónum}. Det er laget av substantivet {is:sund}, svømming, som norsk har beholdt som sund, opprinnelig et sted man kan svømme over. {is:sundlaug} er et svømmebasseng. {is:skíði} er norsk ski, fra norrønt skíð; man går på ski med {is:fara á skíði} og er på ski, {is:á skíðum}: {is:Ég fer mjög oft á skíði}. {is:hjóla} er å sykle, av {is:hjól}: {is:Mér finnst gaman að hjóla}. {is:dansa} kom inn i norrønt gjennom gammelfransk."
+        },
+        "examples": [
+          "1315602",
+          "1315590",
+          "673912",
+          "1329170",
+          "745360",
+          "387930",
+          "4032105-2"
+        ],
+        "tables": [
+          "hlaupa_so"
+        ]
+      },
+      {
+        "title": {
+          "en": "Music: tónlist, lag, syngja",
+          "nb": "Musikk: tónlist, lag, syngja"
+        },
+        "text": {
+          "en": "{is:tónlist} (music) is {is:tónn} (tone) and {is:list} (art). A song or a tune is {is:lag}; the same word means order in {is:allt í lagi} (all right). {is:syngja} (sing) is a strong verb, as Norwegian synge is: {is:Ég syng}, {is:Hún söng vel sem barn}, {is:Hann spilaði á píanóið og hún söng}. An instrument is played with {is:spila á} and the accusative: {is:Hún spilar mjög vel á gítar}, {is:Hann spilar mjög vel á píanóið}. A band is {is:hljómsveit}. A concert is {is:tónleikar}, always plural, like Icelandic {is:gleraugu}: {is:Tónleikarnir hans voru mjög góðir}, {is:Hún fór með vini sínum á tónleikana}.",
+          "nb": "{is:tónlist} (musikk) er {is:tónn} (tone) og {is:list} (kunst). En sang eller melodi er {is:lag}; det samme ordet betyr orden i {is:allt í lagi} (i orden, greit). {is:syngja} (synge) er et sterkt verb, som norsk synge: {is:Ég syng}, {is:Hún söng vel sem barn}, {is:Hann spilaði á píanóið og hún söng}. Et instrument spiller man med {is:spila á} og akkusativ: {is:Hún spilar mjög vel á gítar}, {is:Hann spilar mjög vel á píanóið}. Et band er {is:hljómsveit}. En konsert er {is:tónleikar}, alltid i flertall, som islandsk {is:gleraugu}: {is:Tónleikarnir hans voru mjög góðir}, {is:Hún fór með vini sínum á tónleikana}."
+        },
+        "examples": [
+          "1368331",
+          "6812858",
+          "388893",
+          "690303",
+          "11514561",
+          "476777",
+          "466053",
+          "908293"
+        ],
+        "tables": [
+          "syngja_so"
+        ]
+      },
+      {
+        "title": {
+          "en": "Games and pictures: leika, skák, mála",
+          "nb": "Spill og bilder: leika, skák, mála"
+        },
+        "text": {
+          "en": "{is:leika} is to play the way children play, Norwegian leke, from Old Norse leika: {is:Hann á enga vini til að leika við}, {is:Hann lék við köttinn sinn}; {is:leika sér} is to play, have fun: {is:barnið sem leikur sér þarna}. It is also to play a part or an instrument. Cards are {is:spil}: {is:Það er gaman að spila á spil}, {is:Spilum spil}. Chess is {is:skák}, Norwegian sjakk, both from Persian šāh, the king in the game: {is:Hvað með að leika skák í kvöld?} The verb for playing chess is also {is:tefla}. {is:mála} (paint) is Norwegian male and {is:teikna} (draw) is tegne, from Old Norse mála and teikna: {is:Hver teiknaði þetta?}, {is:Þetta er myndin sem hann málaði}.",
+          "nb": "{is:leika} er å leke, norsk leke, fra norrønt leika: {is:Hann á enga vini til að leika við}, {is:Hann lék við köttinn sinn}; {is:leika sér} er å leke, kose seg: {is:barnið sem leikur sér þarna}. Det er også å spille en rolle eller et instrument. Kort er {is:spil}: {is:Það er gaman að spila á spil}, {is:Spilum spil}. Sjakk er {is:skák}, norsk sjakk, begge fra persisk šāh, kongen i spillet: {is:Hvað með að leika skák í kvöld?} Verbet for å spille sjakk er også {is:tefla}. {is:mála} er norsk male og {is:teikna} er tegne, fra norrønt mála og teikna: {is:Hver teiknaði þetta?}, {is:Þetta er myndin sem hann málaði}."
+        },
+        "examples": [
+          "469369",
+          "545060",
+          "742883",
+          "1355119",
+          "382513-1",
+          "387772",
+          "673403",
+          "746635"
+        ],
+        "tables": [
+          "leika_so"
+        ]
+      },
+      {
+        "title": {
+          "en": "Going out: bíó, leikhús, ferðast",
+          "nb": "Ut på byen: bíó, leikhús, ferðast"
+        },
+        "text": {
+          "en": "To the movies is {is:í bíó}: {is:Af hverju fer fólk í bíó?}, {is:Ég var í bíói}. {is:bíó} came from Danish bio, short for biograf; Norwegian says kino. A theater is {is:leikhús}, a house of plays, from {is:leikur} and {is:hús}. You go to a concert with {is:á}: {is:á tónleikana}. Vacation is {is:frí}: {is:Ég var í fríi}, {is:Núna er fríið búið}. {is:ferðast} (travel) ends in -st, like {is:finnast}, and is Norwegian ferdes, from Old Norse ferðask: {is:Ég ferðast oft}, {is:Ferðastu mikið?} And {is:veiða} is to fish or hunt, Norwegian veide: {is:Pabbi minn fór að veiða} (my father went fishing).",
+          "nb": "På kino er {is:í bíó}: {is:Af hverju fer fólk í bíó?}, {is:Ég var í bíói}. {is:bíó} kom fra dansk bio, kort for biograf; norsk sier kino. Et teater er {is:leikhús}, et lekehus, av {is:leikur} og {is:hús}. På konsert går man med {is:á}: {is:á tónleikana}. Ferie er {is:frí}: {is:Ég var í fríi}, {is:Núna er fríið búið}. {is:ferðast} (reise) ender på -st, som {is:finnast}, og er norsk ferdes, fra norrønt ferðask: {is:Ég ferðast oft}, {is:Ferðastu mikið?} Og {is:veiða} er å fiske eller jakte, norsk veide: {is:Pabbi minn fór að veiða} (faren min dro for å fiske)."
+        },
+        "examples": [
+          "476827",
+          "388450",
+          "476827-1",
+          "908293",
+          "388450-1",
+          "483014-1",
+          "466092",
+          "868579",
+          "468929"
+        ]
+      }
+    ]
+  }
+}

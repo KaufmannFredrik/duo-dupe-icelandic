@@ -2052,6 +2052,118 @@
     "reykja_so": {
       "nb": "Fra norrønt reykja, fra urgermansk *raukijaną.",
       "of": "fdea3348"
+    },
+    "langa_so": {
+      "nb": "Fra norrønt langa («lengte etter; ønske»), fra urgermansk *langōną («ønske; lengte etter»), beslektet med engelsk long og tysk verlangen. Mer under long.",
+      "of": "af8c00f7"
+    },
+    "áhugi_no": {
+      "nb": "Av á («på») + hugi («sinn, tanke»).",
+      "of": "5e08bdd4"
+    },
+    "áhugamál_no": {
+      "nb": "Ordrett «interessesak». Av áhugi («interesse») + mál («sak»).",
+      "of": "bd5c8f26"
+    },
+    "skemmta_so": {
+      "nb": "Fra enten urgermansk *skammatjaną eller urgermansk *skammitōną, begge av *skammaz («kort, butt»); betydningen skal ha gått fra «å korte ned (timene)» via «å få tiden til å fly (når man har det gøy)» til «å underholde, more». Beslektet med færøysk skemta, nynorsk skjemta, svensk skämta og dansk skæmte.",
+      "of": "77fccd2a"
+    },
+    "frí_no": {
+      "nb": "Fra norrønt frjá, fra urgermansk *frijōną, *frijaz, *frijô.",
+      "of": "ccbc591d"
+    },
+    "íþrótt_no": {
+      "nb": "Fra norrønt íþrótt, av ið + þróttr («styrke»).",
+      "of": "5a6a171b"
+    },
+    "fótbolti_no": {
+      "nb": "Av fótur («fot») + bolti («ball»).",
+      "of": "c3b9b1db"
+    },
+    "leikur_no": {
+      "nb": "Fra norrønt leikr.",
+      "of": "30e52eba"
+    },
+    "lið_no": {
+      "nb": "Fra norrønt lið, fra urgermansk *lidą («flokk, mengde, gruppe»).",
+      "of": "85832bd2"
+    },
+    "spila_so": {
+      "nb": "Lånt fra middelnedertysk spil, fra gammelsaksisk spil, fra vestgermansk urspråk *spil («spill, dans»).",
+      "of": "999933af"
+    },
+    "æfa_so": {
+      "nb": "Trolig til syvende og sist fra eller beslektet med urgermansk *ōbijaną («å gjøre, øve»); sammenlign mellomhøytysk uop («jordbruk, gjennomføring»).",
+      "of": "81eda1ca"
+    },
+    "hlaupa_so": {
+      "nb": "Fra norrønt hlaupa, fra urgermansk *hlaupaną, fra urindoeuropeisk *klewb- («å hoppe, snuble»).",
+      "of": "61b5cf82"
+    },
+    "synda_so": {
+      "nb": "Fra norrønt sund («svømming»), fra urgermansk *sundą.",
+      "of": "1af3769e"
+    },
+    "skíði_no": {
+      "nb": "Fra norrønt skíð, fra urgermansk *skīdą.",
+      "of": "23c11f01"
+    },
+    "dansa_so": {
+      "nb": "Fra norrønt dansa, gjennom gammelfransk.",
+      "of": "b8787e76"
+    },
+    "tónlist_no": {
+      "nb": "Av tónn + list.",
+      "of": "98a70ffd"
+    },
+    "lag_no": {
+      "nb": "Fra norrønt lag.",
+      "of": "245d3b53"
+    },
+    "syngja_so": {
+      "nb": "Fra norrønt syngva, syngja, fra urgermansk *singwaną, fra urindoeuropeisk *sengʷʰ-.",
+      "of": "426901d2"
+    },
+    "gítar_no": {
+      "nb": "Til syvende og sist fra gammelgresk κῐθᾰ́ρᾱ (kĭthắrā).",
+      "of": "eb2f9c8b"
+    },
+    "píanó_no": {
+      "nb": "Lånt fra italiensk piano.",
+      "of": "c8757cec"
+    },
+    "leika_so": {
+      "nb": "Fra norrønt leika, fra urgermansk *laikaną, fra urindoeuropeisk *leyg-.",
+      "of": "0cf452d4"
+    },
+    "spil_no": {
+      "nb": "Arvet fra norrønt spil (gammelvestnordisk og gammelislandsk), funnet i Skáld-Helga rímur (1400-tallet), lånt fra middelnedertysk spil, til syvende og sist fra vestgermansk urspråk *spil («spill»).",
+      "of": "c098e7e1"
+    },
+    "skák_no": {
+      "nb": "Fra norrønt skák, fra klassisk persisk شاه (šāh), fra mellompersisk 𐭬𐭫𐭪𐭠 (mlkʾ /⁠šāh⁠/), fra gammelpersisk 𐏋 (XŠ /⁠xšāyaθiya⁠/, «konge»).",
+      "of": "5aceece2"
+    },
+    "mála_so": {
+      "nb": "Fra norrønt mála, fra urgermansk *mēlōną, som kan være beslektet med *mailą («flekk, merke»). Beslektet med finsk maalata, dansk male, tysk malen («å male») og svensk måla, fra middelnedertysk mâlen («å tegne, male»).",
+      "of": "9f9b223f"
+    },
+    "bíó_no": {
+      "nb": "Lånt fra dansk bio, forkortet fra biograf.",
+      "of": "02773bc4"
+    },
+    "leikhús_no": {
+      "nb": "Av leikur («lek, spill, skuespill») + hús («hus»).",
+      "of": "f0cde65f"
+    },
+    "ferðast_so": {
+      "nb": "Fra norrønt ferðask, fra urgermansk *fardijōną.",
+      "of": "2c90aae8"
+    },
+    "veiða_so": {
+      "nb": "Fra norrønt veiða, fra urgermansk *waiþijaną.",
+      "of": "20dcb4dd"
     }
   }
 }

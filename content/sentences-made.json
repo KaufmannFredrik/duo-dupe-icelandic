@@ -1540,6 +1540,222 @@
       ],
       "is": "Dóttur hennar er illt í bakinu.",
       "en": "Her daughter has a backache."
+    },
+    "466872-1": {
+      "from": "466872",
+      "swap": [
+        "símanúmerið",
+        "áhugamálið"
+      ],
+      "is": "Hvað er áhugamálið þitt?",
+      "en": "What's your hobby?"
+    },
+    "1329118-1": {
+      "from": "1329118",
+      "swap": [
+        "hjólið",
+        "áhugamálið"
+      ],
+      "is": "Þetta er áhugamálið mitt.",
+      "en": "This is my hobby."
+    },
+    "482417-1": {
+      "from": "482417",
+      "swap": [
+        "tónlist",
+        "íþróttir"
+      ],
+      "is": "Hún og vinir hennar elska íþróttir.",
+      "en": "She and her friends love sports."
+    },
+    "483014-1": {
+      "from": "483014",
+      "swap": [
+        "Nú",
+        "Núna"
+      ],
+      "is": "Núna er fríið búið.",
+      "en": "Now the vacation is over."
+    },
+    "388450-1": {
+      "from": "388450",
+      "swap": [
+        "bíói",
+        "fríi"
+      ],
+      "is": "Ég var í fríi.",
+      "en": "I was on vacation."
+    },
+    "11208765-2": {
+      "from": "11208765",
+      "swap": [
+        "salt",
+        "leikur"
+      ],
+      "is": "Þetta er ekki leikur.",
+      "en": "This isn't a game."
+    },
+    "3772549-1": {
+      "from": "3772549",
+      "swap": [
+        "fótbolta",
+        "leiki"
+      ],
+      "is": "Mér finnst gaman að spila leiki.",
+      "en": "I like to play games."
+    },
+    "544571-1": {
+      "from": "544571",
+      "swap": [
+        "sterkara",
+        "betra"
+      ],
+      "is": "Liðið þitt er betra en okkar.",
+      "en": "Your team is better than ours."
+    },
+    "675375-1": {
+      "from": "675375",
+      "swap": [
+        "treyjum",
+        "peysum"
+      ],
+      "is": "Liðið okkar var í rauðum peysum.",
+      "en": "Our team were wearing red sweaters."
+    },
+    "382513-1": {
+      "from": "382513",
+      "swap": [
+        "fótbolta",
+        "spil"
+      ],
+      "is": "Spilum spil.",
+      "en": "Let's play cards."
+    },
+    "12701220-1": {
+      "from": "12701220",
+      "swap": [
+        "fótbolta",
+        "spil"
+      ],
+      "is": "Ég ætla að spila spil í kvöld.",
+      "en": "I am going to play cards tonight."
+    },
+    "4032105-1": {
+      "from": "4032105",
+      "swap": [
+        "elda",
+        "dansa"
+      ],
+      "is": "Mér finnst gaman að dansa.",
+      "en": "I like to dance."
+    },
+    "4032105-2": {
+      "from": "4032105",
+      "swap": [
+        "elda",
+        "hjóla"
+      ],
+      "is": "Mér finnst gaman að hjóla.",
+      "en": "I like to bike."
+    },
+    "4032105-3": {
+      "from": "4032105",
+      "swap": [
+        "elda",
+        "teikna"
+      ],
+      "is": "Mér finnst gaman að teikna.",
+      "en": "I like to draw."
+    },
+    "1318364-1": {
+      "from": "1318364",
+      "swap": [
+        "hlaupa",
+        "dansa"
+      ],
+      "is": "Honum finnst gaman að dansa.",
+      "en": "He likes to dance."
+    },
+    "1318364-2": {
+      "from": "1318364",
+      "swap": [
+        "hlaupa",
+        "hjóla"
+      ],
+      "is": "Honum finnst gaman að hjóla.",
+      "en": "He likes to bike."
+    },
+    "1318364-3": {
+      "from": "1318364",
+      "swap": [
+        "hlaupa",
+        "synda"
+      ],
+      "is": "Honum finnst gaman að synda.",
+      "en": "He likes to swim."
+    },
+    "385969-1": {
+      "from": "385969",
+      "swap": [
+        "bíó",
+        "leikhús"
+      ],
+      "is": "Getur þú farið með mig í leikhús?",
+      "en": "Could you take me to the theater?"
+    },
+    "476827-1": {
+      "from": "476827",
+      "swap": [
+        "bíó",
+        "leikhús"
+      ],
+      "is": "Af hverju fer fólk í leikhús?",
+      "en": "Why do people go to the theater?"
+    },
+    "388450-2": {
+      "from": "388450",
+      "swap": [
+        "bíói",
+        "leikhúsi"
+      ],
+      "is": "Ég var í leikhúsi.",
+      "en": "I was at a theater."
+    },
+    "386377-1": {
+      "from": "386377",
+      "swap": [
+        "ferðalögum",
+        "tónlist"
+      ],
+      "is": "Hann hafði mikinn áhuga á tónlist.",
+      "en": "He had a great interest in music."
+    },
+    "386377-2": {
+      "from": "386377",
+      "swap": [
+        "ferðalögum",
+        "íþróttum"
+      ],
+      "is": "Hann hafði mikinn áhuga á íþróttum.",
+      "en": "He had a great interest in sports."
+    },
+    "386377-3": {
+      "from": "386377",
+      "swap": [
+        "ferðalögum",
+        "fótbolta"
+      ],
+      "is": "Hann hafði mikinn áhuga á fótbolta.",
+      "en": "He had a great interest in soccer."
+    },
+    "386377-4": {
+      "from": "386377",
+      "swap": [
+        "ferðalögum",
+        "skák"
+      ],
+      "is": "Hann hafði mikinn áhuga á skák.",
+      "en": "He had a great interest in chess."
     }
   }
 }
