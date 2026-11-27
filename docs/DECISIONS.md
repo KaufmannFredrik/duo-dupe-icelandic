@@ -2,6 +2,22 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A1: guided writing (2026-11-27)
+
+The plan's guided writing for A1 ([PLAN.md](PLAN.md), "New exercise types": "fill in a form about yourself, write a short message or email from a model, graded in the browser by slot patterns"), for the curriculum's "forms and short messages" (stage 2) and the goal "ask for and give general information" (`content/goals.json`).
+
+- **The exercise** (`write`, `js/exercises/write.js`): a short model text with gaps in its lines, each line with its meaning in the interface language. The learner fills every gap and checks once. Under the text, the words the course knows for each kind of gap, in their dictionary form (*Noregur*, *íslenska*), so the learner still writes the form the frame needs. The feedback marks each gap and says what was wrong: a name with a small letter, another case of a listed word (*frá Noregur*: "after frá comes the dative: Noregi"), a town with the other preposition, a word the course does not know (with an example), or a missing accent (almost, as elsewhere). No spaced-repetition card and no audio: the answers are the learner's own.
+- **Grading by slots** (`js/engine/writing.js`, pure functions with tests): a name gap takes any name of one to three words of letters; a word gap takes one of its listed words in the form the frame needs. The forms come from the DMII Core (`scripts/build-writing.mjs` writes `data/writing.json` from `content/writing.json`: course words from `data/forms`, countries, towns and languages from the DMII Core API) and every model, filled in with each word of each gap, passes GreynirCorrect. `npm run check` fails when `data/writing.json` is out of date.
+- **Towns take their own preposition.** *Ég bý í {town}* would have accepted *í Akureyri*, which is wrong: Icelandic says *á Akureyri*, *á Selfossi*, *á Ísafirði*, *á Egilsstöðum*, but *í Reykjavík*, *í Kópavogi* and *í* with foreign cities. No grammar source found online settles it town by town (Málfarsbankinn and Málið.is did not load as text), so each town's article on Icelandic Wikipedia was counted, and Tatoeba's sentences for the foreign cities. The gap takes the town with its preposition (*Ég bý {where}*), and a learner who writes the other one is told which (`content/CLAIMS.md`).
+- **Three tasks:** *About you* (name, country after *frá*, where you live) ends the *Gata* review, the first unit with *frá*, *í*, *á* and *búa*; *Calling in sick* (*Ég er veik/veikur í dag og kem ekki í vinnuna. Ég kem aftur á {day}. Kveðja, {name}*) ends the *Nám og vinna* review; *A form about you*, with a language after *tala* and a job, is for the A1 check. A test checks that every fixed word of a review's task is a word the learner knows there.
+- **Left out of the lists:** *Bandaríkin*, *Bergen* and *Stafangur*, which are not in the DMII Core; *Litáen* is its spelling (not *Litháen*).
+- **Keyboard:** a writing task is taller than a phone screen, and under the feedback sheet the exercise is inert, so the lesson body scrolled with nothing to focus (axe: scrollable region without focusable content). While the sheet is open and the body overflows, the body itself takes keyboard focus (`js/pages/lesson.js`).
+
+### Tests
+
+- `node --test`: the writing tests (gaps graded by kind: names, case, prepositions, agreement; a task right, almost and wrong; every fixed word known at its review; `data/writing.json` matches its content file).
+- `node tests/smoke.mjs --unit=around` and `--unit=study`: the reviews end with the writing task, answered and graded right. Visual QA has the form and its feedback (`ex-write`, `feedback-write-wrong`). `npm run smoke` and `npm run qa`: see the commit.
+
 ## Section A1, unit 16: jobs, shifts and calling in sick in *Nám og vinna* (2026-11-27)
 
 The second of the plan's extra lessons in existing units ([PLAN.md](PLAN.md): unit 16, "school, languages, jobs, hours, calling in sick"), for the curriculum's "work" and "working and school hours" (stage 1) and the goal "follow a short, simple conversation about work" (`content/goals.json`). *Nám og vinna* gets two lessons before its review and two guidebook sections; its goal line now names jobs, hours and calling in sick.

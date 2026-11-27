@@ -1,0 +1,84 @@
+{
+  "note": "Guided writing (docs/PLAN.md, New exercise types): short model texts written for the course, with gaps the learner fills about themselves. A gap takes any name (kind name) or one word of a list in the form the frame needs (kind forms: case, the DMII Core case of the indefinite form, or tags, DMII Core tags). Words with an id (x_no) are course words, read from data/forms; the others are looked up in the DMII Core by scripts/build-writing.mjs, which writes data/writing.json and checks each model, filled in, with GreynirCorrect. A task with a unit is the last exercise of that unit's review; the A1 check uses its own. Sources in content/CLAIMS.md.",
+  "slots": {
+    "name": {
+      "kind": "name",
+      "label": { "en": "your name", "nb": "navnet ditt" }
+    },
+    "country": {
+      "kind": "forms",
+      "case": "ÞGF",
+      "proper": true,
+      "label": { "en": "your country", "nb": "landet ditt" },
+      "words": ["Noregur", "Ísland", "Svíþjóð", "Danmörk", "Finnland", "Færeyjar", "Grænland", "Þýskaland", "Pólland", "Litáen", "Lettland", "Eistland", "Úkraína", "Rússland", "Bretland", "Írland", "Holland", "Belgía", "Frakkland", "Spánn", "Portúgal", "Ítalía", "Grikkland", "Tyrkland", "Rúmenía", "Kanada", "Mexíkó", "Brasilía", "Kína", "Japan", "Indland", "Filippseyjar", "Taíland", "Víetnam", "Ástralía"]
+    },
+    "where": {
+      "kind": "forms",
+      "case": "ÞGF",
+      "proper": true,
+      "label": { "en": "where you live", "nb": "hvor du bor" },
+      "words": [["í", "Reykjavík"], ["í", "Kópavogur"], ["í", "Hafnarfjörður"], ["í", "Garðabær"], ["í", "Mosfellsbær"], ["í", "Keflavík"], ["á", "Akureyri"], ["á", "Selfoss"], ["á", "Ísafjörður"], ["á", "Egilsstaðir"], ["í", "Ósló"], ["í", "Þrándheimur"], ["í", "Stokkhólmur"], ["í", "Kaupmannahöfn"], ["í", "Helsinki"], ["í", "London"], ["í", "París"], ["í", "Berlín"], ["í", "Varsjá"]]
+    },
+    "language": {
+      "kind": "forms",
+      "case": "ÞF",
+      "label": { "en": "a language you speak", "nb": "et språk du snakker" },
+      "words": ["íslenska_no", "norska_no", "enska_no", "danska", "sænska", "finnska", "þýska", "pólska", "franska", "spænska", "ítalska", "portúgalska", "rússneska", "úkraínska", "litháíska", "kínverska", "japanska", "arabíska"]
+    },
+    "job": {
+      "kind": "forms",
+      "case": "NF",
+      "label": { "en": "your job", "nb": "yrket ditt" },
+      "words": ["kennari_no", "nemandi_no", "læknir_no", "hjúkrunarfræðingur_no", "tannlæknir_no", "kokkur_no", "þjónn_no", "lögreglumaður_no", "verkfræðingur_no", "lögfræðingur_no"]
+    },
+    "ill": {
+      "kind": "forms",
+      "tags": ["FSB-KK-NFET", "FSB-KVK-NFET"],
+      "label": { "en": "ill (for a man or a woman)", "nb": "syk (for en mann eller en kvinne)" },
+      "words": ["veikur_lo"]
+    },
+    "day": {
+      "kind": "forms",
+      "tags": ["ÞFETgr"],
+      "label": { "en": "a day of the week", "nb": "en ukedag" },
+      "words": ["mánudagur_no", "þriðjudagur_no", "miðvikudagur_no", "fimmtudagur_no", "föstudagur_no", "laugardagur_no", "sunnudagur_no"]
+    }
+  },
+  "tasks": [
+    {
+      "id": "about-me",
+      "unit": "around",
+      "title": { "en": "About you", "nb": "Om deg" },
+      "intro": { "en": "Write about yourself: your name, where you are from and where you live.", "nb": "Skriv om deg selv: navnet ditt, hvor du er fra og hvor du bor." },
+      "lines": [
+        { "is": "Ég heiti {name}.", "en": "My name is …", "nb": "Jeg heter …" },
+        { "is": "Ég er frá {country}.", "en": "I am from …", "nb": "Jeg er fra …" },
+        { "is": "Ég bý {where}.", "en": "I live in …", "nb": "Jeg bor i …" }
+      ]
+    },
+    {
+      "id": "sick-day",
+      "unit": "study",
+      "title": { "en": "Calling in sick", "nb": "Å melde seg syk" },
+      "intro": { "en": "Write to your boss: you are ill today, and say which day you will be back.", "nb": "Skriv til sjefen din: du er syk i dag, og si hvilken dag du kommer tilbake." },
+      "lines": [
+        { "is": "Góðan daginn.", "en": "Hello.", "nb": "God dag." },
+        { "is": "Ég er {ill} í dag og kem ekki í vinnuna.", "en": "I am … today and I am not coming to work.", "nb": "Jeg er … i dag og kommer ikke på jobb." },
+        { "is": "Ég kem aftur á {day}.", "en": "I will be back on …", "nb": "Jeg kommer tilbake på …" },
+        { "is": "Kveðja, {name}", "en": "Regards, …", "nb": "Hilsen …" }
+      ]
+    },
+    {
+      "id": "a1-form",
+      "title": { "en": "A form about you", "nb": "Et skjema om deg" },
+      "intro": { "en": "Fill in the form about yourself: your name, country, where you live, a language you speak and your job.", "nb": "Fyll ut skjemaet om deg selv: navnet ditt, landet, hvor du bor, et språk du snakker og yrket ditt." },
+      "lines": [
+        { "is": "Ég heiti {name}.", "en": "My name is …", "nb": "Jeg heter …" },
+        { "is": "Ég er frá {country}.", "en": "I am from …", "nb": "Jeg er fra …" },
+        { "is": "Ég bý {where}.", "en": "I live in …", "nb": "Jeg bor i …" },
+        { "is": "Ég tala {language}.", "en": "I speak …", "nb": "Jeg snakker …" },
+        { "is": "Ég er {job}.", "en": "I am a …", "nb": "Jeg er …" }
+      ]
+    }
+  ]
+}

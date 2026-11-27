@@ -178,6 +178,9 @@ const SHOTS = [
   { name: 'feedback-numlisten-wrong', url: firstOf.get('numlisten'), act: async (p) => { await wrongOption(p); await p.click('[data-action="check"]'); } },
   { name: 'feedback-numtype-phone', url: phoneTyped.href, act: async (p) => { if (phoneTyped.play) { await seedPlays(p, phoneTyped.key, phoneTyped.play); await p.goto(base + phoneTyped.href); await settle(p); } await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'feedback-numbuild', url: firstOf.get('numbuild'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
+  // Guided writing ends the Gata review (data/writing.json): the form, and its feedback on three kinds of mistake.
+  { name: 'ex-write', url: 'lesson.html?unit=around&lesson=review&step=99&qa' },
+  { name: 'feedback-write-wrong', url: 'lesson.html?unit=around&lesson=review&step=99&qa', full: true, act: async (p) => { await p.fill('[data-gap="0"]', 'anna'); await p.fill('[data-gap="1"]', 'Noregur'); await p.fill('[data-gap="2"]', 'í Akureyri'); await p.click('[data-action="check"]'); } },
   { name: 'feedback-correct', url: firstOf.get('choice'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'feedback-almost', url: specialTypeword ?? 'lesson.html?mode=letters&qa', act: async (p) => { await answer(p, 'almost'); await p.click('[data-action="check"]'); } },
   { name: 'feedback-wrong', url: firstOf.get('meaning'), act: async (p) => { await wrongOption(p); await p.click('[data-action="check"]'); } },

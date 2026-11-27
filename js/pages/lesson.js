@@ -17,7 +17,7 @@
 
 import { loadJSON, ready } from '../app.js';
 import { pick, t } from '../i18n.js';
-import { caseRules, changedNote, getGenerator, gloss, glossLang, isName, lemma, loadAll, paradigm, recordings, sameGloss, sentence, tatoebaLink, translation } from '../data.js';
+import { caseRules, changedNote, getGenerator, gloss, glossLang, isName, lemma, loadAll, loadWriting, paradigm, recordings, sameGloss, sentence, tatoebaLink, translation, writing, writingFor } from '../data.js';
 import { speechSupport } from '../speech.js';
 import { loadBridge } from '../bridge.js';
 import { allowedFor, findLesson, loadCourse, nextLesson, unitDone, unitLabel } from '../course.js';
@@ -36,6 +36,7 @@ import { celebrationLines } from '../ui/celebrate.js';
 import { befriendedBy, hostOf } from '../characters.js';
 import { characterImg } from '../ui/character.js';
 import { CONTRAST_ITEM, isLetterKey, letterDrill, letterKey, letterReview } from '../engine/letters.js';
+import { sampleAnswers } from '../engine/writing.js';
 import { itemLabel, loadLetters, lettersModel } from '../letters.js';
 
 await ready;
@@ -65,16 +66,22 @@ const letterData = ['alphabet', 'review', 'mistakes', 'sounds'].includes(mode) ?
 
 // --- Plans: what to practice ----------------------------------------------------------------------
 
-function lessonPlan() {
+// A guided-writing task (data/writing.json): the gaps' sample answers are for the test hook.
+const writeSpec = (task) => ({ type: 'write', task: task.id, sample: sampleAnswers({ lines: task.lines.map((l) => l.is) }, writing(task.id).slots) });
+
+async function lessonPlan() {
   const found = params.get('unit') ? findLesson(course, params.get('unit'), params.get('lesson') ?? '1') : position;
   const { unit, lesson } = found.lesson ? found : position;
   const times = progress.lessons[lesson.key]?.times ?? 0;
   const allowed = allowedFor(course, unit.id, lesson.index);
+  // A unit's review ends with its writing task, if it has one.
+  const task = lesson.review ? (await loadWriting(), writingFor(unit.id)) : null;
+  const writingTasks = task ? [writeSpec(task)] : [];
   return {
     key: lesson.key,
     unit,
     title: `${pick(unit.title)}: ${lesson.title ? pick(lesson.title) : lesson.review ? t('learn.review') : t('learn.lessonN', { n: lesson.index + 1 })}`,
-    specs: gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`), practiced: Boolean(lesson.review) }),
+    specs: [...gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`), practiced: Boolean(lesson.review) }), ...writingTasks],
   };
 }
 
@@ -98,7 +105,7 @@ function interleave(a, b) {
   return out;
 }
 
-const data = { lemma, sentence, translation, gloss, sameGloss, paradigm, recordings, caseRules, isName };
+const data = { lemma, sentence, translation, gloss, sameGloss, paradigm, recordings, caseRules, isName, writing };
 
 // A stored exercise can name a sentence or a word that is gone: a sentence excluded since
 // (content/sentence-exclude.json), or an old or imported progress file. Such a mistake cannot be
@@ -182,7 +189,7 @@ const plan =
   : mode === 'speak' ? await speakPlan()
   : mode === 'bridge' ? await bridgePlan()
   : mode === 'placement' ? placementPlan()
-  : lessonPlan();
+  : await lessonPlan();
 $('[data-lesson-title]').textContent = plan.title;
 const host = hostOf(plan.unit);
 
@@ -292,6 +299,9 @@ function openSheet(r, skipped, combo = 0) {
   sheet.classList.add('is-open');
   stage.inert = true;
   actions.inert = true;
+  // The exercise is inert under the sheet; if it is taller than the screen (a writing task), the
+  // lesson body itself takes keyboard focus so it can still be scrolled to see the marked answers.
+  if (main.scrollHeight > main.clientHeight) main.tabIndex = 0;
   live.textContent = `${title}. ${comboText ? `${comboText} ` : ''}${sheet.querySelector('.sheet__answer').textContent}`;
   sheet.querySelector('[data-action="continue"]').focus();
 }
@@ -300,6 +310,7 @@ function closeSheet() {
   sheet.classList.remove('is-open');
   stage.inert = false;
   actions.inert = false;
+  main.tabIndex = -1;
 }
 
 async function doCheck(skipped = false) {

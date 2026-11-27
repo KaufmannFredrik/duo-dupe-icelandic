@@ -1082,6 +1082,23 @@ The drill asks "which spelling do you hear?" only with a word whose Wiktionary I
 | The course's phone numbers have no 1 to 4 said alone or at the end of a pair, no 0 said alone and no pair starting with 0. | elon writes 34 in a phone number as *þrjátíu og fjögur* (neuter), while HÞ gives the masculine for counting; no source here says how 0 or 05 is said. So the course avoids them and makes no claim. | design choice |
 | Options that sound or look alike: 17 *sautján*, 70 *sjötíu*, 7 *sjö*; 47 and 74; a phone number with its pairs swapped. | the spellings above | design choice |
 
+## Guided writing (`content/writing.json`, `js/engine/writing.js`)
+
+Three short model texts written for the course (decision 3), with gaps the learner fills about themselves: a form about you at the end of the *Gata* review, a message calling in sick at the end of the *Nám og vinna* review, and a longer form for the A1 check. Every model is checked by GreynirCorrect with each word of each gap filled in (`scripts/build-writing.mjs`; a flag stops the build).
+
+| Claim | Source | Status |
+|---|---|---|
+| The forms a gap accepts are DMII Core forms: course words from `data/forms`, countries, towns and languages from the DMII Core API. *Litáen* is the DMII Core's spelling; *Bandaríkin*, *Bergen* and *Stafangur* are not in it and are left out. | DMII (hluti *landaheiti og landsvæði*, *Erlend landfræðileg heiti*, *Þéttbýli*, *Tungumál*) | checked |
+| *Ég er frá* takes a country in the dative: *frá Noregi*. | `content/case-rules.json` (*frá*, dative); W frá ("[with dative]") | sourced |
+| A town takes *í* or *á*: *í Reykjavík*, *í Kópavogi*, *í Hafnarfirði*, *í Garðabæ*, *í Mosfellsbæ*, *í Keflavík*, but *á Akureyri*, *á Selfossi*, *á Ísafirði*, *á Egilsstöðum*; foreign cities take *í*. So the gap takes the town with its preposition. | Icelandic Wikipedia, each town's own article, counted *í* and *á* before the town in the dative (Reykjavík 29 and 0, Kópavogur 32 and 0, Hafnarfjörður 15 and 0, Garðabær 5 and 0, Mosfellsbær 2 and 0, Keflavík 8 and 0; Akureyri 0 and 17, Selfoss 0 and 4, Ísafjörður 0 and 4, Egilsstaðir 0 and 3; Ósló 3, Stokkhólmur 4, Kaupmannahöfn 5, Þrándheimur 8, Varsjá 19, Berlín 10, París 5, London 21 with *í*, the *á* hits being *frá* or "on"); T 1307219 (*í London*), 564482 (*í París*), 738505 (*í Kaupmannahöfn*), 11271357 (*í Berlín*), 13668210 (*í Helsinki*), 10677115 (*í Moskvu*) | sourced |
+| *Ég tala* takes the language in the accusative: *Ég tala íslensku*. | As in the *Vinna* rows (Ritreglur; DMII *íslensku* ÞFET); T 1322938 | sourced |
+| *Ég er kennari*: a job with no word for "a". | As in the *Vinna* rows (WP; T 390420) | sourced |
+| *Ég er veik* (a woman) or *veikur* (a man) *í dag og kem ekki í vinnuna*: *í vinnuna* with the accusative of motion. | DMII (*veik*, *veikur*); T 497120 ("My father drives to work", *í vinnuna*), 516219, 861954 (*Ég kem ekki í dag*) | sourced |
+| *Ég kem aftur á mánudaginn*: a weekday after *á* in the accusative with the article. | elon (*á föstudaginn*); `content/case-rules.json` (*á-tími*); DMII (ÞFETgr) | sourced |
+| A message ends *Kveðja,* and the name. | W kveðja (*Kveðja, Gunna*), as in the *Um mig* rows | sourced |
+| A name is graded only as a name (letters, a capital letter), and a missing accent counts as almost, as in the other typed exercises. | `js/engine/writing.js`, `js/normalize.js` | design choice |
+| The meaning shown under each line (English, Bokmål) says what the line says, with the gap as "…". | the line and its gap | checked |
+
 ## Generated audio (`data/audio/`)
 
 The four Piper voices sometimes mispronounce: *Ísland* comes out as [ˈisland], without the t that Wiktionary gives for the single-word pronunciation. Word highlighting uses estimated timings.

@@ -11,7 +11,7 @@
   "scripts": {
     "serve": "node scripts/serve.mjs 8080",
     "test": "node --test tests/",
-    "check": "node scripts/check-contrast.mjs && node scripts/check-i18n.mjs && node scripts/validate-content.mjs && node scripts/build-tags.mjs --check && node scripts/build-translations.mjs --check && node scripts/build-sw.mjs --check && node --test tests/",
+    "check": "node scripts/check-contrast.mjs && node scripts/check-i18n.mjs && node scripts/validate-content.mjs && node scripts/build-tags.mjs --check && node scripts/build-translations.mjs --check && node scripts/build-writing.mjs --check && node scripts/build-sw.mjs --check && node --test tests/",
     "qa": "node scripts/visual-qa.mjs",
     "probe": "node scripts/probe-apis.mjs",
     "probe:coverage": "node scripts/probe-apis.mjs --coverage",
@@ -26,6 +26,7 @@
     "build:sw": "node scripts/build-sw.mjs",
     "smoke": "node tests/smoke.mjs --all",
     "build:translations": "node scripts/build-translations.mjs",
+    "build:writing": "node scripts/build-writing.mjs",
     "hooks": "git config core.hooksPath .githooks",
     "pick-words": "node -e \"process.exit(require('child_process').spawnSync(process.platform === 'win32' ? '.venv/Scripts/python' : '.venv/bin/python', ['-I', 'scripts/pick-words.py', ...process.argv.slice(1)], { stdio: 'inherit' }).status)\" --"
   },

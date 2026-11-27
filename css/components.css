@@ -596,6 +596,20 @@ html[data-calm="on"] .word.is-speaking { text-shadow: none; }
   .decl__cell:hover { background: var(--fill-selected); }
 }
 
+/* Guided writing: a model text with gaps in the line (js/exercises/write.js) */
+.write__lines { display: grid; gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+.write__is { margin: 0; font-size: var(--text-learn); line-height: 2.4; }
+.write__meaning { margin: var(--space-1) 0 0; font-size: var(--text-sm); }
+.write__input.input { display: inline-block; width: auto; min-width: 7ch; max-width: 100%; min-height: var(--touch); padding: var(--space-1) var(--space-3); vertical-align: baseline; }
+.write__input[data-state="correct"] { border-color: var(--color-correct); }
+.write__input[data-state="almost"] { border-color: var(--color-almost); }
+.write__input[data-state="wrong"] { border-color: var(--color-wrong-fill); }
+.write__help { margin-block: var(--space-3); }
+.write__help summary { cursor: pointer; color: var(--rf-cyan); font-weight: 700; min-height: var(--touch); display: flex; align-items: center; }
+.write__help dl { display: grid; gap: var(--space-1) var(--space-3); margin: var(--space-2) 0 0; }
+.write__help dt { color: var(--rf-muted); font-size: var(--text-sm); }
+.write__help dd { margin: 0 0 var(--space-2); }
+
 /* Mascot ------------------------------------------------------------------------------------ */
 
 .tala { display: block; width: var(--tala-size, 120px); height: auto; overflow: visible; }

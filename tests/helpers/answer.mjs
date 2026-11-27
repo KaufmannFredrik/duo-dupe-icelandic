@@ -72,6 +72,10 @@ export async function answer(page, mode = 'correct') {
     case 'numbuild':
       for (const w of spec.words) await page.locator('[data-bank] .chip:not(:disabled)', { hasText: new RegExp(`^${w}$`, 'u') }).first().click();
       break;
+    case 'write':
+      // Guided writing: each gap gets the sample answer the spec carries (a name, the first word).
+      for (const [i, value] of spec.sample.entries()) await page.fill(`[data-gap="${i}"]`, mode === 'almost' ? fold(value) : value);
+      break;
     case 'table': {
       const forms = await page.evaluate((id) => window.__tolva.paradigm(id), spec.lemma);
       for (const tag of spec.blanks) await page.fill(`.decl__input[data-tag="${tag}"]`, forms.find((f) => f.g === tag).b);

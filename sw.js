@@ -5,7 +5,7 @@
 // from Settings) and survives updates: each file name is a hash of its text, and its URL carries a
 // hash of its bytes (?v=), so a file rendered again is fetched again.
 
-const VERSION = 'f32fb9ea996c';
+const VERSION = '60c8961eaeca';
 const CORE = `tolva-core-${VERSION}`;
 const AUDIO = 'tolva-audio-v1';
 const PRECACHE = [
@@ -81,6 +81,7 @@ const PRECACHE = [
   "content/units/people.json",
   "content/units/services.json",
   "content/vocab/core.json",
+  "content/writing.json",
   "credits.html",
   "css/base.css",
   "css/components.css",
@@ -113,6 +114,7 @@ const PRECACHE = [
   "data/lexicon.json",
   "data/sentences.json",
   "data/tags.json",
+  "data/writing.json",
   "declension.html",
   "dictionary.html",
   "guide.html",
@@ -131,6 +133,7 @@ const PRECACHE = [
   "js/engine/letters.js",
   "js/engine/numbers.js",
   "js/engine/rng.js",
+  "js/engine/writing.js",
   "js/exercises/bridge.js",
   "js/exercises/case.js",
   "js/exercises/choice.js",
@@ -153,6 +156,7 @@ const PRECACHE = [
   "js/exercises/typeform.js",
   "js/exercises/typeword.js",
   "js/exercises/wordbank.js",
+  "js/exercises/write.js",
   "js/grammar.js",
   "js/i18n.js",
   "js/i18n/en.json",

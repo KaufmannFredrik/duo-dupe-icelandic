@@ -63,6 +63,20 @@ export async function loadAll() {
 }
 
 export const lemma = (id) => lexicon?.lemmas[id];
+
+// Guided writing (data/writing.json, scripts/build-writing.mjs): loaded when a lesson has a task.
+let writingFile = null;
+export async function loadWriting() {
+  writingFile ??= await loadJSON('data/writing.json');
+  return writingFile;
+}
+/** A writing task by id, with the gaps it uses, or null. */
+export function writing(id) {
+  const task = writingFile?.tasks.find((x) => x.id === id);
+  return task ? { task, slots: writingFile.slots } : null;
+}
+/** The writing task a unit's review ends with, if any (loadWriting first). */
+export const writingFor = (unitId) => writingFile?.tasks.find((x) => x.unit === unitId) ?? null;
 export const entry = (id) => shards.get(lexicon.lemmas[id]?.theme)?.[id] ?? null;
 export const sentence = (sid) => (excluded.has(sid) ? undefined : sentencesFile?.sentences[sid]);
 /** The ids of every sentence that may be shown. */
