@@ -1873,6 +1873,33 @@
       ],
       "is": "Við getum greitt.",
       "en": "We can pay."
+    },
+    "1329173-1": {
+      "from": "1329173",
+      "swap": [
+        "byrjar",
+        "endar"
+      ],
+      "is": "Hvenær endar það?",
+      "en": "When does it end?"
+    },
+    "4022330-1": {
+      "from": "4022330",
+      "swap": [
+        "byrjar",
+        "endar"
+      ],
+      "is": "Skólinn endar á morgun.",
+      "en": "School ends tomorrow."
+    },
+    "798532-1": {
+      "from": "798532",
+      "swap": [
+        "Brúðurin",
+        "Konan"
+      ],
+      "is": "Konan hló skyndilega.",
+      "en": "The woman suddenly laughed."
     }
   }
 }

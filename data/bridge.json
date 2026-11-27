@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-26T23:41:59.039Z",
+ "generated": "2026-11-27T00:22:57.436Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -19,8 +19,8 @@
  ],
  "counts": {
   "loan": 11,
-  "old-norse": 269,
-  "form": 27
+  "old-norse": 278,
+  "form": 28
  },
  "pairs": {
   "halló_uh": {
@@ -2303,6 +2303,80 @@
    "evidence": "old-norse",
    "rules": [
     "y-acute",
+    "ending-a"
+   ]
+  },
+  "nú_ao": {
+   "nb": "nå",
+   "article": 41676,
+   "oldNorse": "nú",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "þá_ao": {
+   "nb": "da",
+   "article": 9056,
+   "oldNorse": "þá",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "enn_ao": {
+   "nb": "enn",
+   "article": 12807,
+   "oldNorse": "enn",
+   "evidence": "old-norse",
+   "rules": []
+  },
+  "hingað_ao": {
+   "nb": "hit",
+   "article": 23680,
+   "oldNorse": "hingat",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "trúa_so": {
+   "nb": "tro",
+   "article": 62342,
+   "oldNorse": "trúa",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "halda_so": {
+   "nb": "holde",
+   "article": 24045,
+   "oldNorse": "halda",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "missa_so": {
+   "nb": "misse",
+   "article": 38675,
+   "oldNorse": "missa",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "ná_so": {
+   "nb": "nå",
+   "article": 41678,
+   "oldNorse": "ná",
+   "evidence": "old-norse",
+   "rules": [
+    "a-acute"
+   ]
+  },
+  "deyja_so": {
+   "nb": "dø",
+   "article": 11447,
+   "oldNorse": "deyja",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "enda_so": {
+   "nb": "ende",
+   "evidence": "form",
+   "rules": [
     "ending-a"
    ]
   },

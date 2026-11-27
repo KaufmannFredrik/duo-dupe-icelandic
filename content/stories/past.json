@@ -1,0 +1,42 @@
+{
+  "id": "past",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "Yesterday",
+    "nb": "I går"
+  },
+  "level": "A1",
+  "after": "past",
+  "narrator": "jonas",
+  "dialogue": false,
+  "lines": [
+    {
+      "sentence": "832901"
+    },
+    {
+      "sentence": "1353691"
+    },
+    {
+      "sentence": "832916"
+    },
+    {
+      "sentence": "833304"
+    },
+    {
+      "sentence": "880162"
+    },
+    {
+      "sentence": "833325"
+    },
+    {
+      "sentence": "466906"
+    },
+    {
+      "sentence": "833320"
+    },
+    {
+      "sentence": "833336"
+    }
+  ]
+}

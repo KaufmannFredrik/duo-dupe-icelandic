@@ -59,6 +59,9 @@ const PLURAL_ONLY = new Map([['tónleikur', 'tónleikar']]);
 // ("please") is the superlative of the adverb vinsamlega in BÍN, and the parser reads it as the
 // neuter superlative of vinsamlegur.
 const ADVERB_OF = new Map([['vinsamlegur', 'vinsamlega']]);
+// Time phrases the parser reads as one adverb -> the course word inside them (BÍN: gær is an
+// adverb used only in í gær; fyrradag is the accusative of fyrradagur).
+const TIME_PHRASES = new Map([['í gær', 'gær'], ['í fyrradag', 'fyrradagur']]);
 
 /** @returns {boolean|'loose'} */
 export function sameWord(id, word, tok, forms, lexicon) {
@@ -125,6 +128,15 @@ export function resolve(word, tok, forms, lexicon) {
   if (!tok) return null;
   if ('l' in tok) {
     if (words(tok.t ?? '').length > 1) {
+      // A time phrase the parser reads as one adverb: its own word is the course word, and the
+      // preposition is known but not taught ("í gær": gær; í loosely).
+      const inner = TIME_PHRASES.get(low(tok.l ?? ''));
+      if (inner) {
+        const own = candidates.filter((id) => low(lexicon.lemmas[id].lemma) === inner);
+        if (own.length === 1) return own[0];
+        const prep = candidates.filter((id) => lexicon.lemmas[id].ofl === 'fs');
+        return prep.length === 1 ? `~${prep[0]}` : null;
+      }
       if (IDIOM.has(tok.c)) return null;
       return candidates.length === 1 ? candidates[0] : null; // "klukkan sjö", "fimm hundruð"
     }

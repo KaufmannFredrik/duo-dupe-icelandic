@@ -2256,6 +2256,86 @@
     "skila_so": {
       "nb": "Fra norrønt skila.",
       "of": "6612f915"
+    },
+    "gær_ao": {
+      "nb": "Fra norrønt gær, gjár.",
+      "of": "07a7e74e"
+    },
+    "áður_ao": {
+      "nb": "Fra norrønt áðr.",
+      "of": "0ee678e8"
+    },
+    "síðan_st": {
+      "nb": "Fra norrønt síðan.",
+      "of": "09997652"
+    },
+    "nú_ao": {
+      "nb": "Fra norrønt nú, fra urgermansk *nu («nå»), fra urindoeuropeisk *nū («nå»).",
+      "of": "77e77cbd"
+    },
+    "þá_ao": {
+      "nb": "Fra norrønt þá («da»). Slutt-n-en har falt bort i de skandinaviske dialektene allerede i de eldste tekstene.",
+      "of": "ab28ab23"
+    },
+    "enn_ao": {
+      "nb": "Fra norrønt enn, fra urgermansk *andi, fra urindoeuropeisk *h₂entí.",
+      "of": "ad3acec0"
+    },
+    "skyndilega_ao": {
+      "nb": "Av skyndilegur («plutselig»).",
+      "of": "4d981e89"
+    },
+    "hingað_ao": {
+      "nb": "Fra norrønt hingat, av *hinn veg at.",
+      "of": "45d0f0aa"
+    },
+    "frétt_no": {
+      "nb": "Fra norrønt frétt, fra urgermansk *frihtiz.",
+      "of": "9a3bcfaf"
+    },
+    "saga_no": {
+      "nb": "Fra norrønt saga, fra urgermansk *sagǭ. Beslektet med gammelengelsk sagu (engelsk saw), gammelfrisisk sege, gammelhøytysk saga (tysk Sage), gammeldansk saghæ, gammelsvensk sagha, færøysk søga, nynorsk soge, jysk save («en fortelling, en beretning, en rapport») og svensk saga. Kanskje i slekt med litauisk pasaka. Sammenlign segja («å si, fortelle») og sögn («en historie»).",
+      "of": "7e0160de"
+    },
+    "trúa_so": {
+      "nb": "Fra norrønt trúa.",
+      "of": "8cd99c64"
+    },
+    "breyta_so": {
+      "nb": "Arvet fra norrønt breyta, kausativ av brjóta («å bryte»), fra urgermansk *breutaną, fra urindoeuropeisk *bʰrewd-. Beslektet med bokmål brøyte («å måke snø (av veien)») og gammelengelsk ābrīetan («å bryte»).",
+      "of": "bc04cbc6"
+    },
+    "eyða_so": {
+      "nb": "Fra norrønt eyða, fra urgermansk *auþijaną. I slekt med adjektivet auðr («tom, øde») (islandsk auður).",
+      "of": "5f9dd9df"
+    },
+    "heimsækja_so": {
+      "nb": "Av sækja einhvern heim («å besøke noen»), fra norrønt sœkja heim («å besøke; å angripe noen»). Sammenlign dansk hjemsøge.",
+      "of": "6ea4cd9a"
+    },
+    "halda_so": {
+      "nb": "Fra norrønt halda, fra urgermansk *haldaną.",
+      "of": "3a6973e5"
+    },
+    "áfram_ao": {
+      "nb": "Av á («på, i») + fram («fram»).",
+      "of": "aece7dde"
+    },
+    "missa_so": {
+      "nb": "Fra norrønt missa.",
+      "of": "2dfd806e"
+    },
+    "ná_so": {
+      "nb": "Fra norrønt ná, fra urgermansk *nēhwāną, i slekt med (eller avledet av) urgermansk *nēhwaz («nær»). Til syvende og sist fra urindoeuropeisk *h₂neḱ- («å nå»).",
+      "of": "ae24d498"
+    },
+    "deyja_so": {
+      "nb": "Fra norrønt deyja, fra urgermansk *dawjaną.",
+      "of": "4180cd97"
+    },
+    "enda_so": {
+      "nb": "Av endi.",
+      "of": "4fc2ec1c"
     }
   }
 }

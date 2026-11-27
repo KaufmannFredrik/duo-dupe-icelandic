@@ -133,6 +133,12 @@
     {"sentence": "734849", "word": "mánuði", "lemma": "mánuður_no", "reason": "Bókin hans kemur út í næsta mánuði (his book comes out next month): mánuði is the dative, the only case of that form; the parser gives the accusative."},
     {"sentence": "734850", "word": "mánuði", "lemma": "mánuður_no", "reason": "Bókin hennar kemur út í næsta mánuði (her book comes out next month): mánuði is the dative, the only case of that form; the parser gives the accusative."},
     {"sentence": "477938", "word": "Skilið", "lemma": "skilja_so", "reason": "Skilið (understood): skilið is the supine of skilja (understand), not a form of skila (give back), which the parser reads."},
-    {"sentence": "10635331", "word": "Skilið", "lemma": "skilja_so", "reason": "Skilið (understood): skilið is the supine of skilja (understand), not a form of skila (give back), which the parser reads."}
+    {"sentence": "10635331", "word": "Skilið", "lemma": "skilja_so", "reason": "Skilið (understood): skilið is the supine of skilja (understand), not a form of skila (give back), which the parser reads."},
+    {"sentence": "675558", "word": "þá", "lemma": "hann_pfn", "reason": "Hann elskar þá (he loves them): þá is the accusative plural of þeir (they), not the adverb þá (then)."},
+    {"sentence": "881349", "word": "þá", "lemma": "hann_pfn", "reason": "Við elskum þá (we love them): þá is the accusative plural of þeir (they), not the adverb þá (then)."},
+    {"sentence": "9509432", "word": "þá", "lemma": "hann_pfn", "reason": "Ég held að ég aldrei hafi séð þá fyrr (I don't think I've ever seen them before): þá is the accusative plural of þeir (they), not the adverb þá (then)."},
+    {"sentence": "643321", "word": "heldur", "lemma": null, "reason": "Ég vil heldur vera heima en fara út (I'd rather stay home than go out): heldur is the adverb (rather), not a form of halda."},
+    {"sentence": "10628605", "word": "nú", "lemma": "nú_ao", "loose": true, "reason": "Komdu nú sæll (hello): nú is a particle in the greeting, not the adverb now the course teaches; known, but not taught from this sentence."},
+    {"sentence": "10976725", "word": "nú", "lemma": "nú_ao", "loose": true, "reason": "Komdu nú sæl (hello): nú is a particle in the greeting, not the adverb now the course teaches; known, but not taught from this sentence."}
   ]
 }

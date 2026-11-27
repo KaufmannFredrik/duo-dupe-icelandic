@@ -63,8 +63,8 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key), practiced: Boolean(lesson.review) }) };
 }
 
-test('course: nineteen units in order, all hand-made', () => {
-  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'grammar', 'newwords']);
+test('course: twenty units in order, all hand-made', () => {
+  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'newwords']);
   for (const u of d.course.units) assert.equal(u.auto, false, `${u.id} has hand-made lessons`);
   for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
 });
@@ -157,6 +157,9 @@ test('generator: homographs are told apart by the sentence tags', () => {
     ['Ég er fær um að synda.', 'fá_so', 'synda_so'], // fær = able, not fá: a fix with lemma null
     ['Skilið.', 'skila_so', 'skilja_so'], // skilið = understood, the supine of skilja; content/tag-fixes.json
     ['Ég ætti að fara að pakka.', 'pakki_no', 'fara_so'], // pakka = to pack, a verb: a fix with lemma null
+    ['Hann elskar þá.', 'þá_ao', 'hann_pfn'], // þá = them, not then; content/tag-fixes.json
+    ['Ég vil heldur vera heima en fara út.', 'halda_so', 'vilja_so'], // heldur = rather: a fix with lemma null
+    ['Komdu nú sæl.', 'nú_ao', 'koma_so'], // nú in a greeting: a loose fix
     ['Ég sé illa.', 'vera_so', 'sjá_so'], // the parser reads sé as vera; content/tag-fixes.json
   ];
   for (const [text, not, yes] of cases) {
@@ -219,6 +222,15 @@ test('data: Þjónusta: vinsamlegast is the adverb vinsamlega, parsed or not', (
   for (const text of ['Gæti ég vinsamlegast fengið reikninginn?', 'Vinsamlegast komdu.', 'Hringdu vinsamlegast í hann.']) {
     assert.equal(d.generator.hasLemma(sid(text), 'vinsamlega_ao'), true, `"${text}" has vinsamlega`);
   }
+});
+
+test('data: Í gær: a time phrase the parser reads as one adverb teaches its own word', () => {
+  // scripts/lib/tags.mjs TIME_PHRASES: í gær -> gær, í fyrradag -> fyrradagur; í is known, not taught.
+  const sid = (text) => Object.keys(d.sentences).find((k) => d.sentences[k].is === text);
+  assert.equal(d.generator.hasLemma(sid('Ég var veikur í gær.'), 'gær_ao'), true);
+  assert.equal(d.generator.hasLemma(sid('Ég var veikur í gær.'), 'í_fs'), false);
+  assert.equal(d.generator.hasLemma(sid('Hún fór til Ameríku í fyrradag.'), 'fyrradagur_no'), true);
+  assert.equal(d.generator.hasLemma(sid('Ég hef búið hér síðan ég var barn.'), 'síðan_st'), true);
 });
 
 test('data: a made sentence is a Tatoeba sentence with one word replaced, and teaches that word', () => {
@@ -285,7 +297,7 @@ test('generator: a sentence built from word chips has no digits, in the lessons 
   }
 });
 
-for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'grammar', 'newwords']) {
+for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);

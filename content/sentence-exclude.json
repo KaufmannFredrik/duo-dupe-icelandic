@@ -31,6 +31,12 @@
     "666955": "\"He looks nothing like a doctor.\": a mistake, sér út for lítur út (looks); GreynirCorrect does not flag it.",
     "739158": "\"He stopped to smoke.\": the Icelandic says he stopped smoking (hætti að reykja), as Ég hætti að reykja does.",
     "1356566": "\"He broke into a house.\": the Icelandic says only he broke in (Hann braust inn); Hann braust inn í hús says into a house.",
-    "3799315": "\"We need exercise.\": a slip, fara æfa for fara að æfa, and the English says something else; GreynirCorrect does not flag it."
+    "3799315": "\"We need exercise.\": a slip, fara æfa for fara að æfa, and the English says something else; GreynirCorrect does not flag it.",
+    "385863": "\"He set out on a trip yesterday.\": a typo, af staði for af stað; GreynirCorrect does not flag it.",
+    "386111": "\"I managed to catch the last train.\": a mistake, Ég tókst for Mér tókst; GreynirCorrect does not flag it.",
+    "5002528": "\"Die!\": a command to die, not suitable for a course.",
+    "7319185": "\"She is dead.\": a mistake, Hún er dáinn for Hún er dáin; GreynirCorrect does not flag it.",
+    "736321": "\"This is my new news.\": the English is garbled; the Icelandic says this is news to me.",
+    "5698130": "\"I've got good news.\": the Icelandic says only \"I have news\" (Ég er með fréttir)."
   }
 }

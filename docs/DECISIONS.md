@@ -2,6 +2,37 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A1, unit 18: *Í gær* (2026-11-27)
+
+The tenth and last new unit of section A1 in [PLAN.md](PLAN.md), after *Þjónusta*: the past told simply, the curriculum's "today and yesterday" (stage 1) and "talking simply about the past" (stage 2), for the goal "talk fairly freely about things you know well" (`content/goals.json`). The plan names it by *var*, *fór*, *kom*, *keypti*; those verbs are taught in earlier units, and a unit teaches only its own words (a test checks it), so this unit teaches the words that tell when (*í gær*, *áður*, *síðan*, *enn*) and verbs with common past forms, and its sentences bring the past of the verbs learned before: of its 52 *í gær* sentences, most have a past tense.
+
+- **Words** (22, theme `past`): *gær*, *fyrradagur*, *nýlega*, *áður*, *síðan*; *nú*, *þá*, *enn*, *skyndilega*, *hingað*; *frétt*, *saga*, *trúa*, *breyta*, *eyða*, *heimsækja*; *halda*, *áfram*, *missa*, *ná*, *deyja*, *enda*. Counted with the scratch word picker limited to the words a learner has after *Þjónusta*: *í gær* (57 Tatoeba sentences) and *halda* (44) bring the most.
+- **Meanings as Wiktionary words them:** *gær* "yesterday", *síðan* "since" (Wiktionary has it as a conjunction, and so does the parser, so the course word is *síðan* st), *þá* "then", *enn* "still", *áfram* "forward", *halda* "hold" (the guidebook adds "think").
+- **Left out:** *áðan* ("a while ago", no sentence), *gerast* ("happen"; the middle voice of *gera*, already taught), *fyrri* (*í fyrra*, "last year", one sentence; no Wiktionary entry under that lemma), *detta* (one sentence).
+
+### Sentences
+
+- **Time phrases:** the parser reads *í gær* and *í fyrradag* as one adverb each, so the words in them stayed undetermined and no sentence taught *gær*. `scripts/lib/tags.mjs` now names the course word inside such a phrase (`TIME_PHRASES`), with *í* known but not taught; a general rule for every multiword adverb would have read *baka* in *til baka* as "bake", so the list is explicit. *gær* now has 52 readable sentences.
+- **3 made sentences** (decision 3): *Hvenær byrjar það?* and *Skólinn byrjar á morgun* gave *endar*; *Brúðurin hló skyndilega* gave *Konan*. Every word has at least two readable sentences but *nýlega* (one) and *enda* (three with the made ones).
+- **Tag fixes** (6): *þá* as "them" (the accusative of *þeir*), not "then", in three sentences; *heldur* ("rather") as another word, not *halda*; *nú* in the greetings *Komdu nú sæll* and *Komdu nú sæl* as a loose fix (a particle there, not "now").
+- **Excluded** (six): three mistakes GreynirCorrect does not flag (*Hann lagði af staði* for *af stað*, *Hún er dáinn* for *dáin*, *Ég tókst* for *Mér tókst*), *Deyðu!* ("Die!"), and two whose English says something else (*Þetta eru mér nýjar fréttir*, "This is my new news"; *Ég er með fréttir*, "I've got good news").
+
+### The unit
+
+- **Lessons** (grouped by hand, every exercise read over three plays): Yesterday; Now and then; News and stories; Carrying on; and a review. Each has 12 exercises of six to eight kinds; the verb lessons are mostly past-tense forms (*heimsótti*, *hélt*, *missti*, *dó*).
+- **Guidebook**, five sections, every claim in `content/CLAIMS.md`: *í gær* and *í fyrradag* (Norwegian *i går*, *i forgårs*), word order after it, *fyrir* with the dative for "ago", *síðan*, *nýlega*; the past of strong verbs by a vowel change and of weak verbs with -aði, -ði, -di, -ti, as Norwegian *dro*, *kom* against *ringte*, *kjøpte*, with a table of *fara* in the past; *nú* and *nå*, *þá* and *da* (and *þá* "them"), *enn* and *ennå*, *áður* and *áður en*, *skyndilega*, *hingað*; *fréttir*, *Hvað er að frétta?*, *saga*, *trúa* with the dative and *trúa á*; *halda* (hold, think, *halda áfram að*), *missa af*, *ná* and the other Norwegian *nå*, *deyja* and *dø*, *enda*. Sources: Wiktionary, Bokmålsordboka, BÍN, Wikipedia, Tatoeba.
+- **Host and story:** Hekla hosts with *Ég fór í bíó í gær* ("I went to the cinema yesterday"); the story *Yesterday* is a reading in which Jónas tells his day, nine unchanged Tatoeba sentences with *í gær*, from getting up early and catching a big fish to catching a cold.
+
+### Data
+
+- 629 words; 3,536 sentences (265 new, 3 of them made; 17 dropped because better ones were found for their words); 256 new Bokmål translations by hand, with *Hokkaido* and *Tokyo* added to the names; 6 hand glosses (*gær* i går, *frétt* nyhet, *eyða* bruke, *áfram* videre, *missa* miste, *ná* nå) and 6 corrections (*deyja* without *dævve*; *breyta*, *nýlega*, *skyndilega*, *þá* without glosses of several words; *halda* with *tro* and *mene*); one new phrase (*i går*).
+- 20 Bokmål etymologies (*fyrradagur* and *nýlega* have none in Wiktionary); audio for 287 new texts in each of the four voices; the Norwegian bridge has 317 words (10 more: *nå* twice, *da*, *enn*, *hit*, *tro*, *holde*, *misse*, *dø*, *ende*).
+
+### Tests
+
+- `node --test`: 237 tests (twenty units; the five new lessons produce valid exercises; *í gær* teaches *gær* and not *í*, *í fyrradag* teaches *fyrradagur*, *síðan* is the conjunction; *þá* "them", *heldur* "rather" and *nú* in a greeting do not teach *þá*, *halda* or *nú*).
+- `node tests/smoke.mjs --unit=past`: every lesson of the unit played in the browser. `npm run smoke` and `npm run qa`: see the commit.
+
 ## Section A1, unit 17: *Þjónusta* (2026-11-27)
 
 The ninth new unit of section A1 in [PLAN.md](PLAN.md), after *Nám og vinna*: services, the curriculum's "the bank, sending and fetching, tickets" (stage 2) and the plan's polite *vinsamlegast*, for the goal "make yourself understood in a shop, a bank and a post office" (`content/goals.json`, now also trained by this unit).

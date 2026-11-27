@@ -1,0 +1,195 @@
+{
+  "id": "past",
+  "theme": "past",
+  "reviewed": true,
+  "title": {
+    "en": "Yesterday",
+    "nb": "I går"
+  },
+  "is": "Í gær",
+  "goal": {
+    "en": "Tell simply what happened: yesterday, before and since, the news, and what changed.",
+    "nb": "Fortell enkelt hva som skjedde: i går, før og siden, nyhetene, og hva som endret seg."
+  },
+  "host": {
+    "character": "hekla",
+    "says": "3994929"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Yesterday",
+        "nb": "I går"
+      },
+      "focus": [
+        "gær_ao",
+        "fyrradagur_no",
+        "nýlega_ao",
+        "áður_ao",
+        "síðan_st"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Now and then",
+        "nb": "Nå og da"
+      },
+      "focus": [
+        "nú_ao",
+        "þá_ao",
+        "enn_ao",
+        "skyndilega_ao",
+        "hingað_ao"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "News and stories",
+        "nb": "Nyheter og historier"
+      },
+      "focus": [
+        "frétt_no",
+        "saga_no",
+        "trúa_so",
+        "breyta_so",
+        "eyða_so",
+        "heimsækja_so"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "Carrying on",
+        "nb": "Å fortsette"
+      },
+      "focus": [
+        "halda_so",
+        "áfram_ao",
+        "missa_so",
+        "ná_so",
+        "deyja_so",
+        "enda_so"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "Yesterday: í gær, í fyrradag",
+          "nb": "I går: í gær, í fyrradag"
+        },
+        "text": {
+          "en": "Yesterday is {is:í gær}, as Norwegian i går, and the day before yesterday {is:í fyrradag}, Norwegian i forgårs. {is:gær} is only used in this phrase. It usually comes last, or first with the verb right after it: {is:Ég var veikur í gær}, {is:Í gær keypti ég bók} (yesterday I bought a book). A time ago is {is:fyrir} with the dative: {is:Hann dó fyrir ári} (he died a year ago). Since is {is:síðan}: {is:Ég hef búið hér síðan ég var barn}. Recently is {is:nýlega}.",
+          "nb": "I går er {is:í gær}, som norsk i går, og i forgårs er {is:í fyrradag}. {is:gær} brukes bare i dette uttrykket. Det står som regel sist, eller først med verbet rett etter: {is:Ég var veikur í gær}, {is:Í gær keypti ég bók} (i går kjøpte jeg en bok). For en tid siden er {is:fyrir} med dativ: {is:Hann dó fyrir ári} (han døde for et år siden). Siden er {is:síðan}: {is:Ég hef búið hér síðan ég var barn}. Nylig er {is:nýlega}."
+        },
+        "examples": [
+          "833306",
+          "466906",
+          "483021",
+          "1351378",
+          "669486",
+          "389570"
+        ]
+      },
+      {
+        "title": {
+          "en": "The past: var, fór, kom, keypti",
+          "nb": "Fortid: var, fór, kom, keypti"
+        },
+        "text": {
+          "en": "Strong verbs make their past by changing the vowel: {is:vera} gives {is:var}, {is:fara} {is:fór}, {is:koma} {is:kom}, {is:sjá} {is:sá}: {is:Ég fór í garðinn í gær}, {is:Ég kom hingað í gær}, {is:Ég sá vini mína í gær}. Weak verbs add an ending with a d or t sound, -aði, -ði, -di or -ti: {is:hjálpa}, {is:hjálpaði}; {is:hringja}, {is:hringdi}; {is:kaupa}, {is:keypti}: {is:Ég hjálpaði pabba mínum í gær}, {is:Ég hringdi í hann í gær}. Norwegian works the same way: var, dro, kom, så, but hjalp, ringte, kjøpte. The past of {is:deyja} is {is:dó}, of {is:halda} {is:hélt}, of {is:missa} {is:missti}: {is:Hann dó}, {is:Ég hélt það}.",
+          "nb": "Sterke verb lager fortid ved å skifte vokal: {is:vera} gir {is:var}, {is:fara} {is:fór}, {is:koma} {is:kom}, {is:sjá} {is:sá}: {is:Ég fór í garðinn í gær}, {is:Ég kom hingað í gær}, {is:Ég sá vini mína í gær}. Svake verb får en endelse med en d- eller t-lyd, -aði, -ði, -di eller -ti: {is:hjálpa}, {is:hjálpaði}; {is:hringja}, {is:hringdi}; {is:kaupa}, {is:keypti}: {is:Ég hjálpaði pabba mínum í gær}, {is:Ég hringdi í hann í gær}. Norsk gjør det samme: var, dro, kom, så, men hjalp, ringte, kjøpte. Fortid av {is:deyja} er {is:dó}, av {is:halda} {is:hélt}, av {is:missa} {is:missti}: {is:Hann dó}, {is:Ég hélt það}."
+        },
+        "examples": [
+          "833338",
+          "494498",
+          "880163",
+          "833304",
+          "833325",
+          "673841",
+          "733929"
+        ],
+        "tables": [
+          {
+            "lemma": "fara_so",
+            "tense": "ÞT"
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Now and then: nú, þá, enn, áður",
+          "nb": "Nå og da: nú, þá, enn, áður"
+        },
+        "text": {
+          "en": "Now is {is:nú} or {is:núna}, Norwegian nå, from Old Norse nú: {is:Nú man ég}, {is:Nú eða aldrei}. Then is {is:þá}, Norwegian da, from Old Norse þá: {is:Ég var átján þá}. Watch out: {is:þá} is also them, the accusative of {is:þeir}: {is:Hann elskar þá}. Still and yet are {is:enn}, or {is:enn þá}, Norwegian ennå (enn and nå): {is:Hann er enn ungur}, {is:Ég er ekki tilbúinn enn}. Before is {is:áður}, and before something happens is {is:áður en}: {is:Ég hef verið hér áður}, {is:Þú ættir að borða eitthvað áður en þú ferð}. Suddenly is {is:skyndilega}, and here, to this place, is {is:hingað}: {is:Komdu hingað}.",
+          "nb": "Nå er {is:nú} eller {is:núna}, norsk nå, fra norrønt nú: {is:Nú man ég}, {is:Nú eða aldrei}. Da er {is:þá}, norsk da, fra norrønt þá: {is:Ég var átján þá}. Pass på: {is:þá} er også dem, akkusativ av {is:þeir}: {is:Hann elskar þá}. Fortsatt og ennå er {is:enn}, eller {is:enn þá}, norsk ennå (enn og nå): {is:Hann er enn ungur}, {is:Ég er ekki tilbúinn enn}. Før er {is:áður}, og før noe skjer er {is:áður en}: {is:Ég hef verið hér áður}, {is:Þú ættir að borða eitthvað áður en þú ferð}. Plutselig er {is:skyndilega}, og hit er {is:hingað}: {is:Komdu hingað}."
+        },
+        "examples": [
+          "439905",
+          "666991",
+          "428545",
+          "675558",
+          "1322931",
+          "664703",
+          "385847",
+          "845923"
+        ]
+      },
+      {
+        "title": {
+          "en": "News and stories: frétt, saga, trúa",
+          "nb": "Nyheter og historier: frétt, saga, trúa"
+        },
+        "text": {
+          "en": "News is {is:frétt}, mostly in the plural, {is:fréttir}: {is:Það eru slæmar fréttir}, {is:Engar fréttir eru góðar fréttir}. To ask what is new, say {is:Hvað er að frétta?} A story is {is:saga}, Norwegian saga, from Old Norse saga: {is:Það er löng saga}. To believe is {is:trúa}, Norwegian tro, from Old Norse trúa; the one you believe is in the dative, and to believe in is {is:trúa á}: {is:Hún trúir mér alltaf}, {is:Hún trúir ekki á Guð}. {is:breyta} is to change something, and {is:heimsækja} to visit: {is:Ég heimsótti hann í gær}.",
+          "nb": "Nyheter er {is:frétt}, mest i flertall, {is:fréttir}: {is:Það eru slæmar fréttir}, {is:Engar fréttir eru góðar fréttir}. For å spørre hva som er nytt, sier man {is:Hvað er að frétta?} En historie er {is:saga}, norsk saga, fra norrønt saga: {is:Það er löng saga}. Å tro er {is:trúa}, norsk tro, fra norrønt trúa; den man tror på, står i dativ, og å tro på er {is:trúa á}: {is:Hún trúir mér alltaf}, {is:Hún trúir ekki á Guð}. {is:breyta} er å endre noe, og {is:heimsækja} å besøke: {is:Ég heimsótti hann í gær}."
+        },
+        "examples": [
+          "3799215",
+          "5003409",
+          "3994916",
+          "1324663",
+          "791730",
+          "790341",
+          "833322"
+        ]
+      },
+      {
+        "title": {
+          "en": "Carrying on: halda, missa, ná",
+          "nb": "Å fortsette: halda, missa, ná"
+        },
+        "text": {
+          "en": "{is:halda} is Norwegian holde, from Old Norse halda, and a strong verb ({is:held}, {is:hélt}): {is:Haltu dyrunum opnum}. It also means to think: {is:Ég held það} (I think so), {is:Ég hélt að Tom væri ekki upptekinn}. To go on doing something is {is:halda áfram að}: {is:Hann hélt áfram að gera það}, {is:Vinsamlegast haltu áfram}. To lose is {is:missa}, and to miss a bus or a train is {is:missa af}: {is:Ég missti af seinasta strætónum í gær}. {is:ná} is to reach or to catch, Norwegian nå, from Old Norse ná, while now, nå, is Old Norse nú: {is:Ég næ ekki að sofa vel}. To die is {is:deyja}, Norwegian dø: {is:Hann dó fyrir ári}. To end is {is:enda}: {is:Allt er gott sem endar vel}.",
+          "nb": "{is:halda} er norsk holde, fra norrønt halda, og et sterkt verb ({is:held}, {is:hélt}): {is:Haltu dyrunum opnum}. Det betyr også å tro: {is:Ég held það} (jeg tror det), {is:Ég hélt að Tom væri ekki upptekinn}. Å fortsette med noe er {is:halda áfram að}: {is:Hann hélt áfram að gera það}, {is:Vinsamlegast haltu áfram}. Å miste er {is:missa}, og å ikke rekke en buss eller et tog er {is:missa af}: {is:Ég missti af seinasta strætónum í gær}. {is:ná} er å nå eller rekke, norsk nå, fra norrønt ná, mens nå om tid er norrønt nú: {is:Ég næ ekki að sofa vel}. Å dø er {is:deyja}, norsk dø: {is:Hann dó fyrir ári}. Å slutte er {is:enda}: {is:Allt er gott sem endar vel}."
+        },
+        "examples": [
+          "831720",
+          "385938",
+          "3994441",
+          "388956",
+          "870839",
+          "389001",
+          "1323761",
+          "862264"
+        ],
+        "tables": [
+          "halda_so"
+        ]
+      }
+    ]
+  }
+}
