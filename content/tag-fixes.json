@@ -139,6 +139,7 @@
     {"sentence": "9509432", "word": "þá", "lemma": "hann_pfn", "reason": "Ég held að ég aldrei hafi séð þá fyrr (I don't think I've ever seen them before): þá is the accusative plural of þeir (they), not the adverb þá (then)."},
     {"sentence": "643321", "word": "heldur", "lemma": null, "reason": "Ég vil heldur vera heima en fara út (I'd rather stay home than go out): heldur is the adverb (rather), not a form of halda."},
     {"sentence": "10628605", "word": "nú", "lemma": "nú_ao", "loose": true, "reason": "Komdu nú sæll (hello): nú is a particle in the greeting, not the adverb now the course teaches; known, but not taught from this sentence."},
-    {"sentence": "10976725", "word": "nú", "lemma": "nú_ao", "loose": true, "reason": "Komdu nú sæl (hello): nú is a particle in the greeting, not the adverb now the course teaches; known, but not taught from this sentence."}
+    {"sentence": "10976725", "word": "nú", "lemma": "nú_ao", "loose": true, "reason": "Komdu nú sæl (hello): nú is a particle in the greeting, not the adverb now the course teaches; known, but not taught from this sentence."},
+    {"sentence": "385892", "word": "Mars", "lemma": null, "reason": "Einhvern daginn munum við geta farið í ferð til Mars (someday we will be able to go on a voyage to Mars): Mars is the planet, a name, not the month mars."}
   ]
 }

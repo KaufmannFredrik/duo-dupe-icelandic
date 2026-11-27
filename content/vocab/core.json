@@ -1,6 +1,6 @@
 {
   "reviewed": true,
-  "note": "Core vocabulary by theme. Each entry: [lemma, BÍN word class, intended English meaning, optional hint]. The hint picks between DMII Core words with the same lemma: a gender (kk, kvk, hk) for nouns, otherwise a form the paradigm must contain. \"indeclinable\" marks numerals that do not inflect and are missing from the DMII Core; they are verified in the full BÍN through ylhyra.is instead. The pronouns við and þið are forms of ég and þú, so they are not separate entries. scripts/build-data.mjs checks every lemma against the DMII Core (exists, word class), checks that a Wiktionary gloss contains the intended meaning, and orders by Icelandic Gigaword Corpus frequency. The selection itself needs native review.",
+  "note": "Core vocabulary by theme. Each entry: [lemma, BÍN word class, intended English meaning, optional hint]. The hint picks between DMII Core words with the same lemma: a gender (kk, kvk, hk) for nouns, otherwise a form the paradigm must contain; \"ET\" keeps only the indefinite singular of the paradigm (mars, the month, whose DMII Core paradigm is also mars, a march, with an article and a plural). \"indeclinable\" marks numerals that do not inflect and are missing from the DMII Core; they are verified in the full BÍN through ylhyra.is instead. The pronouns við and þið are forms of ég and þú, so they are not separate entries. scripts/build-data.mjs checks every lemma against the DMII Core (exists, word class), checks that a Wiktionary gloss contains the intended meaning, and orders by Icelandic Gigaword Corpus frequency. The selection itself needs native review.",
   "classes": {
     "no": "noun",
     "so": "verb",
@@ -1450,6 +1450,67 @@
           "þegar",
           "st",
           "when"
+        ],
+        [
+          "janúar",
+          "no",
+          "January"
+        ],
+        [
+          "febrúar",
+          "no",
+          "February"
+        ],
+        [
+          "mars",
+          "no",
+          "March",
+          "ET"
+        ],
+        [
+          "apríl",
+          "no",
+          "April"
+        ],
+        [
+          "maí",
+          "no",
+          "May"
+        ],
+        [
+          "júní",
+          "no",
+          "June"
+        ],
+        [
+          "júlí",
+          "no",
+          "July"
+        ],
+        [
+          "ágúst",
+          "no",
+          "August"
+        ],
+        [
+          "september",
+          "no",
+          "September"
+        ],
+        [
+          "október",
+          "no",
+          "October"
+        ],
+        [
+          "nóvember",
+          "no",
+          "November"
+        ],
+        [
+          "desember",
+          "no",
+          "December"
         ]
       ]
     },

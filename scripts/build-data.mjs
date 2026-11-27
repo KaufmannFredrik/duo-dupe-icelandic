@@ -123,8 +123,15 @@ async function indeclinable({ lemma, ofl }) {
   return { entry: { ord: lemma, ofl, indeclinable: true, binId: hit.BIN_id, source: `BÍN via ylhyra.is (id ${hit.BIN_id})` }, problems: [] };
 }
 
+// "ET": only the indefinite singular of the DMII Core paradigm, for a word whose paradigm also
+// serves another sense (mars, the month, has no article and no plural; marsinn, marsar are mars, a march).
+const SINGULAR = /^(NF|ÞF|ÞGF|EF)ET$/;
 async function paradigm({ lemma, ofl, hint }) {
   if (hint === 'indeclinable') return indeclinable({ lemma, ofl });
+  if (hint === 'ET') {
+    const r = await paradigm({ lemma, ofl, hint: null });
+    return r.entry ? { ...r, entry: { ...r.entry, bmyndir: r.entry.bmyndir.filter((f) => SINGULAR.test(f.g)) } } : r;
+  }
   const problems = [];
   // The API answers {"0": ""} when nothing matches.
   const asList = (d) => (Array.isArray(d) ? d : d?.ord ? [d] : []);

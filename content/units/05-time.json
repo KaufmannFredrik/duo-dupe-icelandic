@@ -14,6 +14,8 @@
     { "id": "4", "title": { "en": "Always and never", "nb": "Alltid og aldri" }, "focus": ["alltaf_ao", "oft_ao", "stundum_ao", "aldrei_ao", "snemma_ao", "seint_ao"] },
     { "id": "5", "title": { "en": "Seasons and years", "nb": "Årstider og år" }, "focus": ["ár_no", "mánuður_no", "sumar_no", "vetur_no", "vor_no", "haust_no"] },
     { "id": "6", "title": { "en": "Before and after", "nb": "Før og etter" }, "focus": ["fyrir_fs", "eftir_fs", "þegar_st", "byrja_so", "hætta_so"] },
+    { "id": "7", "title": { "en": "January to June", "nb": "Januar til juni" }, "focus": ["janúar_no", "febrúar_no", "mars_no", "apríl_no", "maí_no", "júní_no"] },
+    { "id": "8", "title": { "en": "July to December", "nb": "Juli til desember" }, "focus": ["júlí_no", "ágúst_no", "september_no", "október_no", "nóvember_no", "desember_no"] },
     { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
   ],
   "guide": {
@@ -60,6 +62,14 @@
           "nb": "Ord for hvor ofte står rett etter verbet, som på norsk: {is:Hann borðar oft fisk} (han spiser ofte fisk), {is:Hann er alltaf hjá mér} (han er alltid hos meg), {is:Hann kemur stundum} (han kommer av og til). {is:aldrei} (aldri) står der {is:ekki} ellers står: {is:Ég vinn aldrei um helgar}. {is:snemma} (tidlig) og {is:seint} (sent) gradbøyes som adjektiver: {is:snemma}, {is:fyrr}, {is:fyrst} (tidlig, tidligere, først) og {is:seint}, {is:seinna}, {is:seinast} (sent, senere, sist). {is:Betra er seint en aldrei} er «bedre sent enn aldri»."
         },
         "examples": ["470238", "1351410", "386008", "5003451", "502946", "4020611"]
+      },
+      {
+        "title": { "en": "Months and dates: í janúar, þann 13. febrúar", "nb": "Måneder og datoer: í janúar, þann 13. febrúar" },
+        "text": {
+          "en": "The months are {is:janúar}, {is:febrúar}, {is:mars}, {is:apríl}, {is:maí}, {is:júní}, {is:júlí}, {is:ágúst}, {is:september}, {is:október}, {is:nóvember} and {is:desember}. They come from Latin, as the Norwegian names do, and like them they are written with a small letter. In a month is {is:í}: {is:Hann fæddist í janúar} (he was born in January), {is:Í ágúst er engin kennsla} (there is no school in August), {is:Hún verður sautján í febrúar}. A date is the ordinal before the month, written as a number with a full stop, and on a date is {is:þann}: {is:Þann 13. febrúar get ég sagt að ég sé 35 ára}, read {is:þann þrettánda febrúar}. Norwegian writes the date the same way, den 13. februar.",
+          "nb": "Månedene er {is:janúar}, {is:febrúar}, {is:mars}, {is:apríl}, {is:maí}, {is:júní}, {is:júlí}, {is:ágúst}, {is:september}, {is:október}, {is:nóvember} og {is:desember}. De kommer fra latin, som de norske navnene, og som dem skrives de med liten bokstav. I en måned er {is:í}: {is:Hann fæddist í janúar} (han ble født i januar), {is:Í ágúst er engin kennsla} (i august er det ingen undervisning), {is:Hún verður sautján í febrúar}. En dato er ordenstallet foran måneden, skrevet som et tall med punktum, og på en dato er {is:þann}: {is:Þann 13. febrúar get ég sagt að ég sé 35 ára}, lest {is:þann þrettánda febrúar}. Norsk skriver datoen på samme måte, den 13. februar."
+        },
+        "examples": ["10629511-1", "677850", "487079", "740803", "10674012", "3997499"]
       }
     ]
   }

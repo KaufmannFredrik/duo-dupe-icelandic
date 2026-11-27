@@ -5,7 +5,8 @@ const low = (s) => s.toLocaleLowerCase('is');
 export const words = (text) => [...text.matchAll(/\p{L}+/gu)].map((m) => m[0]);
 
 // Greynir and BÍN word classes, mapped to the DMII Core classes used in content/vocab/core.json.
-export const CLASS = { no: 'no', kk: 'no', kvk: 'no', hk: 'no', so: 'so', lo: 'lo', ao: 'ao', eo: 'ao', fs: 'fs', pfn: 'pfn', abfn: 'afn', afn: 'afn', fn: 'fn', st: 'st', stt: 'st', nhm: 'st', to: 'to', töl: 'to', rt: 'rt', uh: 'uh' };
+// dagsafs, dagsföst: the parser's date tokens, a month name alone (janúar) or with a day (20. maí).
+export const CLASS = { no: 'no', kk: 'no', kvk: 'no', hk: 'no', dagsafs: 'no', dagsföst: 'no', so: 'so', lo: 'lo', ao: 'ao', eo: 'ao', fs: 'fs', pfn: 'pfn', abfn: 'afn', afn: 'afn', fn: 'fn', st: 'st', stt: 'st', nhm: 'st', to: 'to', töl: 'to', rt: 'rt', uh: 'uh' };
 
 // A multiword token of these classes is an idiom ("einu sinni" once, "á morgun" tomorrow,
 // "undir eins" at once): its words are not taught as the course words they look like.

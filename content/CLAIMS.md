@@ -105,8 +105,9 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | The parser reads *í gær* ("yesterday") and *í fyrradag* ("the day before yesterday") as one adverb each; in them *gær* and *fyrradag* are the course words and *í* is known but not taught (`TIME_PHRASES` in `scripts/lib/tags.mjs`). | BÍN (*gær* ao, used only in *í gær*; *fyrradag*, ÞF ET of *fyrradagur*); W gær ("yesterday"), fyrradagur; translations of T 833306, 483021 | sourced |
 | *síðan* in *síðan ég var barn* is the conjunction "since", the class the parser gives it, so the course word is *síðan* st. | W síðan ("[conj] since"); BÍN (*síðan* ao, fs, st); T 669486, 387248 | sourced |
 | *þá* in *Hann elskar þá*, *Við elskum þá* and *Ég held að ég aldrei hafi séð þá fyrr* is "them", the accusative of *þeir*, not the adverb "then"; *heldur* in *Ég vil heldur vera heima* is the adverb "rather", not *halda* (lemma null); *nú* in *Komdu nú sæll* and *Komdu nú sæl* is a particle in a greeting, a loose fix. | DMII (*þá*, ÞF FT of *hann*); BÍN (*heldur* ao); translations of T 675558 ("He loves them"), 643321 ("I'd rather stay home"), 10628605 ("Hello") | sourced |
+| The parser reads a month alone (*janúar*) or with a day (*20. maí*) as a date token (`dagsafs`, `dagsföst`); a month alone is the course noun (`CLASS` in `scripts/lib/tags.mjs`), a date with digits is left open. *Mars* in *ferð til Mars* is the planet, a name (lemma null). | BÍN (the month nouns, kk); translation of T 385892 ("a voyage to Mars") | sourced |
 
-The parser itself is not checked case by case: `npm run build:tags` lists the 531 words it gives to another word than their spelling suggests.
+The parser itself is not checked case by case: `npm run build:tags` lists the 542 words it gives to another word than their spelling suggests.
 
 ## Unit guidebooks (`content/units/`)
 
@@ -212,6 +213,13 @@ Headings name the units rather than their numbers, because new units are inserte
 | *snemma, fyrr, fyrst*; *seint, seinna, seinast*. | W snemma (comparative *fyrr*, superlative *fyrst*); DMII (MST, EST of *seint*) | sourced |
 | Frequency adverbs right after the finite verb; *aldrei* in the place of *ekki*. | V2 (sentence adverbs before the verb phrase, after the finite verb) | sourced |
 | *hvenær* asks; *þegar* joins two clauses. | elon (temporal conjunctions) | sourced |
+| The months are *janúar*, *febrúar*, *mars*, *apríl*, *maí*, *júní*, *júlí*, *ágúst*, *september*, *október*, *nóvember*, *desember*, written with a small letter, as in Norwegian. | W (each month's entry, "January" to "December"); DMII; Ritreglur §1.3.3.3 ("Heiti einstakra daga, mánaða … eru rituð með litlum staf"); elon dates (the month "stays lowercase"); BMO januar to desember (nouns with a small letter: "være født 10. januar 1999") | sourced |
+| The month names come from Latin, as the Norwegian ones do. | W (etymologies: "From Latin Iānuārius", "Ultimately from Latin Februarius", and so on); BMO januar, mai, august (each "fra lat.") | sourced |
+| *mars*, the month, has no article and no plural: its forms are *mars* in every case, as for the other months. The DMII Core paradigm with *marsinn* and *marsar* is *mars*, a march, so the course keeps only its indefinite singular (`"ET"` in `content/vocab/core.json`). | W mars (the month: "no plural", four singular forms; the musical march: plural *marsar*); DMII (*janúar* … *desember*: four singular forms each) | sourced |
+| In a month is *í*: *í janúar*, *í ágúst*. | elon time prepositions ("í janúar"); T 677850, 740803, 754495 | sourced |
+| A date is the ordinal before the month, written as a number with a full stop; on a date is *þann* with the ordinal in the accusative: *þann 13. febrúar*, read *þann þrettánda febrúar*. | elon dates ("4. júní" read *fjórði júní*, "never fjórir júní"; "Við komum heim þann fimmta júní"); T 384673 (*þann fimmtánda febrúar*), 10674012; DMII (*þrettánda*, the accusative of *þrettándi*) | sourced |
+| Norwegian writes the date the same way: *den 13. februar*. | Språkrådet, [Tall, tid og dato](https://www.sprakradet.no/sprakhjelp/Skriveregler/Dato/) ("den 5. juni 2026"; "Det skal være punktum ved ordenstall") | sourced |
+| The course's Tatoeba sentences have none to three per month (none for *janúar*, *október*, *nóvember*), and at the end of *Tími* only *Í Sviss kemur vorið í maí* and *Hún verður sautján í febrúar* are readable (the others need later words, such as *kennsla*, *hefjast*, *hlakka*, *síðan*); the month lessons drill made sentences and the guidebook shows the real ones. | T 740803, 487079, 677850, 754495, 862215, 673884; the readable count at the end of the unit (`allowedFor`) | checked |
 
 ### *Dagurinn minn*
 
@@ -572,6 +580,7 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | The sentence is the Tatoeba sentence with exactly one word replaced (the word occurs once; the rest is unchanged) | `scripts/build-data.mjs` (`swapWord`), `tests/engine.test.mjs` | checked |
 | The word put in is a DMII Core form, and the one the sentence needs: the same case as the word it replaces, and agreement kept (*Saltið er búið* → *Skyrið er búið*, both neuter; *Ávextir eru hollir* → *Bananar eru hollir*, both masculine plural) | DMII; the parser's reading of each made sentence (`data/tags.json`; *sósu*, *fiski* and *ísa* corrected in the tag rows above) | checked |
 | GreynirCorrect finds no error (a flagged made sentence stops the build) | `scripts/build-data.mjs` | checked |
+| A month after *í* has the same form in the accusative (time: *í dag* → *í janúar*) and the dative (place: *í Afríku* → *í janúar*), so the months fit both frames; in the made sentence it is a time | DMII (*janúar* … *desember*: NF, ÞF, ÞGF the same form); elon time prepositions (*í* + month) | checked |
 | The word put in is the course word the sentence is for, in the parser's reading | `tests/engine.test.mjs` | checked |
 | The English is the original's English with the same word changed; the Bokmål is written like the other hand translations (below) | T (the original's English); BMO | checked |
 
@@ -788,10 +797,45 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | 1329173-1 | *Hvenær endar það?* | T 1329173 | *byrjar* → *endar* | When does it end? |
 | 4022330-1 | *Skólinn endar á morgun.* | T 4022330 | *byrjar* → *endar* | School ends tomorrow. |
 | 798532-1 | *Konan hló skyndilega.* | T 798532 | *Brúðurin* → *Konan* | The woman suddenly laughed. |
+| 10629511-1 | *Hann fæddist í janúar.* | T 10629511 | *Afríku* → *janúar* | He was born in January. |
+| 487079-1 | *Hún verður sautján í janúar.* | T 487079 | *febrúar* → *janúar* | She will be seventeen in January. |
+| 10629511-2 | *Hann fæddist í febrúar.* | T 10629511 | *Afríku* → *febrúar* | He was born in February. |
+| 10629511-3 | *Hann fæddist í mars.* | T 10629511 | *Afríku* → *mars* | He was born in March. |
+| 487079-2 | *Hún verður sautján í mars.* | T 487079 | *febrúar* → *mars* | She will be seventeen in March. |
+| 10629511-4 | *Hann fæddist í apríl.* | T 10629511 | *Afríku* → *apríl* | He was born in April. |
+| 487079-3 | *Hún verður sautján í apríl.* | T 487079 | *febrúar* → *apríl* | She will be seventeen in April. |
+| 10629511-5 | *Hann fæddist í maí.* | T 10629511 | *Afríku* → *maí* | He was born in May. |
+| 487079-4 | *Hún verður sautján í maí.* | T 487079 | *febrúar* → *maí* | She will be seventeen in May. |
+| 10629511-6 | *Hann fæddist í júní.* | T 10629511 | *Afríku* → *júní* | He was born in June. |
+| 487079-5 | *Hún verður sautján í júní.* | T 487079 | *febrúar* → *júní* | She will be seventeen in June. |
+| 10629511-7 | *Hann fæddist í júlí.* | T 10629511 | *Afríku* → *júlí* | He was born in July. |
+| 487079-6 | *Hún verður sautján í júlí.* | T 487079 | *febrúar* → *júlí* | She will be seventeen in July. |
+| 10629511-8 | *Hann fæddist í ágúst.* | T 10629511 | *Afríku* → *ágúst* | He was born in August. |
+| 487079-7 | *Hún verður sautján í ágúst.* | T 487079 | *febrúar* → *ágúst* | She will be seventeen in August. |
+| 10629511-9 | *Hann fæddist í september.* | T 10629511 | *Afríku* → *september* | He was born in September. |
+| 487079-8 | *Hún verður sautján í september.* | T 487079 | *febrúar* → *september* | She will be seventeen in September. |
+| 10629511-10 | *Hann fæddist í október.* | T 10629511 | *Afríku* → *október* | He was born in October. |
+| 487079-9 | *Hún verður sautján í október.* | T 487079 | *febrúar* → *október* | She will be seventeen in October. |
+| 10629511-11 | *Hann fæddist í nóvember.* | T 10629511 | *Afríku* → *nóvember* | He was born in November. |
+| 487079-10 | *Hún verður sautján í nóvember.* | T 487079 | *febrúar* → *nóvember* | She will be seventeen in November. |
+| 10629511-12 | *Hann fæddist í desember.* | T 10629511 | *Afríku* → *desember* | He was born in December. |
+| 487079-11 | *Hún verður sautján í desember.* | T 487079 | *febrúar* → *desember* | She will be seventeen in December. |
+| 698303-1 | *Ég verð heima í janúar.* | T 698303 | *dag* → *janúar* | I'll stay home in January. |
+| 698303-2 | *Ég verð heima í febrúar.* | T 698303 | *dag* → *febrúar* | I'll stay home in February. |
+| 698303-3 | *Ég verð heima í mars.* | T 698303 | *dag* → *mars* | I'll stay home in March. |
+| 698303-4 | *Ég verð heima í apríl.* | T 698303 | *dag* → *apríl* | I'll stay home in April. |
+| 698303-5 | *Ég verð heima í maí.* | T 698303 | *dag* → *maí* | I'll stay home in May. |
+| 698303-6 | *Ég verð heima í júní.* | T 698303 | *dag* → *júní* | I'll stay home in June. |
+| 698303-7 | *Ég verð heima í júlí.* | T 698303 | *dag* → *júlí* | I'll stay home in July. |
+| 698303-8 | *Ég verð heima í ágúst.* | T 698303 | *dag* → *ágúst* | I'll stay home in August. |
+| 698303-9 | *Ég verð heima í september.* | T 698303 | *dag* → *september* | I'll stay home in September. |
+| 698303-10 | *Ég verð heima í október.* | T 698303 | *dag* → *október* | I'll stay home in October. |
+| 698303-11 | *Ég verð heima í nóvember.* | T 698303 | *dag* → *nóvember* | I'll stay home in November. |
+| 698303-12 | *Ég verð heima í desember.* | T 698303 | *dag* → *desember* | I'll stay home in December. |
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 36 of the 3,536 sentences. The other 3,465 (all but 35 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 211 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 36 of the 3,583 sentences. The other 3,512 (all but 35 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 246 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -804,7 +848,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 517 of the 629 course words. The other 112 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 100 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 528 of the 641 course words. The other 113 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 100 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -828,6 +872,7 @@ Wiktionary gives a Bokmål gloss for 517 of the 629 course words. The other 112 
 | brjóta, líða, illur, illa, veikur, hraustur, kvefaður, læknir, batna | brekke, knuse, bryte; føle seg, ha det, gå; vond, dårlig, ond; dårlig, ille; syk, svak; frisk, sunn, sterk; forkjølet; lege, doktor; bli bedre | W "to break", "describing a specific feeling; to feel" (*Mér líður vel*, *Jeg har det bra*; *ha det* is also *bless*, so *føle seg* comes first), "evil, ill" (in the course sentences *Mér er illt í*, *Jeg har vondt i*), "badly, poorly", "sick, ill", "healthy, well", "having a cold", "doctor", "to get better"; BMO brekke ("brekke armen" is how a bone breaks), vond ("det gjør vondt"), ille ("norr. illa"), syk, frisk ("som har god helse"), forkjølet, lege; *bli bedre*, *føle seg* are phrases in the file |
 | langa, skemmta, spila, æfa, hjóla, spil | ha lyst, lengte; underholde, more; spille; øve, trene; sykle; kort, spill | W "to cause to want", "to entertain, amuse", "to play", "to practise", "to bike, cycle", "game (with ... playing cards or a board)", "playing card"; BMO lyst ("få lyst på sjokolade"), underholde, more ("muntre, oppmuntre, underholde"), spille, øve, trene, sykle, kort; *ha lyst* is a phrase in the file |
 | röð, frímerki, sækja, skipta, bóka, upplýsing | kø, rekke; frimerke; hente; bytte, veksle, dele; bestille, booke; opplysning, informasjon | W "a row, a line", "postage stamp", "to fetch", "to change, exchange", "to book", "information"; BMO kø, rekke, frimerke, hente, bytte, veksle, bestille, booke, opplysning |
+| maí | mai | W "May"; BMO mai ("årets femte måned"); Wiktionary gave no Bokmål gloss for *maí*; the other months have one |
 | gær, frétt, eyða, áfram, missa, ná | i går; nyhet; bruke, ødelegge; videre, fremover; miste; nå, rekke | W "yesterday", "news", "to spend, waste", "forward, forth, on", "to lose", "to reach"; BMO nyhet, bruke, ødelegge, videre, fremover, miste, nå, rekke; *i går* is a phrase in the file |
 
 ### Wiktionary glosses corrected (`"fixes"`)
@@ -903,7 +948,7 @@ Later glosses (shown in the dictionary only) removed for the same reasons: anoth
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 581 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 593 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|

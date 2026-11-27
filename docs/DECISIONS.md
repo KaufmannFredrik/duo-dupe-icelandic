@@ -2,6 +2,38 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A1, unit 7: the months in *Tími* (2026-11-27)
+
+The first of the plan's extra lessons in existing units ([PLAN.md](PLAN.md): unit 7, "the clock, days, seasons, and now months and dates"), for the curriculum's "days and months" (stage 1). *Tími* gets two lessons before its review and a seventh guidebook section; nothing else in the unit changes.
+
+- **Words** (12, theme `time`): the twelve months, in two lessons, *January to June* and *July to December*. *Tími* now has 47 words in eight lessons and a review.
+- **A learner who finished *Tími*** keeps it finished (finished units are recorded in progress): the two lessons show as new and open, and the path goes on as before.
+- ***mars*:** the DMII Core has one *mars*, which is also *mars*, a march, with an article and a plural (*marsinn*, *marsar*); Wiktionary separates the two and gives the month "no plural". A new vocabulary hint, `"ET"`, keeps only the indefinite singular (`scripts/build-data.mjs`), the four forms the DMII Core gives every other month.
+
+### Sentences
+
+- **Thin topic:** the course's Tatoeba sentences have none to three per month (none for *janúar*, *október*, *nóvember*), and at the end of *Tími* only two are readable (*Í Sviss kemur vorið í maí*, *Hún verður sautján í febrúar*); the others need later words (*kennsla*, *hefjast*, *hlakka*, *síðan*). So **35 made sentences** (decision 3), from three frames: *Hann fæddist í Afríku* (T 10629511) and *Ég verð heima í dag* (T 698303) give each month, *Hún verður sautján í febrúar* (T 487079) the other eleven. A month has the same form after *í* of place (dative, *í Afríku*) and of time (accusative, *í dag*), so both frames take it.
+- The real month sentences (*Í ágúst er engin kennsla*, *Kennslan hefst í apríl*, *Þann 13. febrúar get ég sagt að ég sé 35 ára*) are in the guidebook and come into lessons of later units as their words are learned; 13 Tatoeba sentences are new.
+- **Parser:** a month alone is a date token for the parser (`dagsafs`; `dagsföst` with a day), now read as a noun (`CLASS` in `scripts/lib/tags.mjs`), so it teaches the course word; a date in digits (*20. maí*) stays open, as digits do. **Tag fix** (1): *Mars* in *ferð til Mars* is the planet (lemma null).
+
+### Words with one form
+
+The months, *hvaða* and *hissa* have the same form in every case. The lesson generator gave them a table to fill (four cells of *janúar*) and ran them through the case cycle, whose form steps they all skip, so the month lessons had four kinds of exercise. Now a word with one form gets no table and goes through the cycle of words without forms (listen, meaning, choice, dictation, sentence building, typing): seven kinds in each month lesson. This also changes the lessons that teach *hissa* (*Föt og fólk*) and *hvaða* (*Orð*).
+
+### The unit
+
+- **Lessons** (grouped by hand, every exercise read over three plays): 12 exercises of seven kinds each; the review now brings the months with the unit's other words.
+- **Guidebook**, a seventh section, *Months and dates*, every claim in `content/CLAIMS.md`: the twelve names, from Latin as the Norwegian ones are, written with a small letter; *í janúar*; a date as the ordinal written with a full stop; *þann* with the accusative ordinal (*þann þrettánda febrúar*); Norwegian *den 13. februar*. Sources: Wiktionary, Ritreglur, elon.io, Bokmålsordboka, Språkrådet's *Tall, tid og dato*, Tatoeba.
+
+### Data
+
+- 641 words; 3,583 sentences (48 new, 35 of them made; one dropped, *Hún giftist sautján ára*, for which a better one was found); 48 new Bokmål translations by hand; a hand gloss for *maí* (*mai*; Wiktionary gave none); 12 Bokmål etymologies; audio for 60 new texts in each of the four voices; the Norwegian bridge has 328 words (11 months; *ágúst* and *august* differ by more than the bridge's rules).
+
+### Tests
+
+- `node --test`: 240 tests (the two new lessons produce valid exercises; every month has one form and its lessons have no form exercises and at least five kinds; *Mars* the planet is not the month).
+- `node tests/smoke.mjs --unit=time` (and `people`, `grammar`, whose draws changed): every lesson played in the browser. `npm run smoke` and `npm run qa`: see the commit.
+
 ## Section A1, unit 18: *Í gær* (2026-11-27)
 
 The tenth and last new unit of section A1 in [PLAN.md](PLAN.md), after *Þjónusta*: the past told simply, the curriculum's "today and yesterday" (stage 1) and "talking simply about the past" (stage 2), for the goal "talk fairly freely about things you know well" (`content/goals.json`). The plan names it by *var*, *fór*, *kom*, *keypti*; those verbs are taught in earlier units, and a unit teaches only its own words (a test checks it), so this unit teaches the words that tell when (*í gær*, *áður*, *síðan*, *enn*) and verbs with common past forms, and its sentences bring the past of the verbs learned before: of its 52 *í gær* sentences, most have a past tense.

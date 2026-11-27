@@ -2336,6 +2336,54 @@
     "enda_so": {
       "nb": "Av endi.",
       "of": "4fc2ec1c"
+    },
+    "janúar_no": {
+      "nb": "Lånt fra latin Iānuārius.",
+      "of": "94f99444"
+    },
+    "febrúar_no": {
+      "nb": "Til syvende og sist fra latin Februarius.",
+      "of": "3fd690cd"
+    },
+    "mars_no": {
+      "nb": "Lånt fra latin mārtiī, genitiv entall av mārtius («som gjelder Mars»), av Mārs (Mars, den romerske guden for krig og jordbruk).",
+      "of": "2e1e20ef"
+    },
+    "apríl_no": {
+      "nb": "Til syvende og sist fra latin Aprilis.",
+      "of": "712cbcbd"
+    },
+    "maí_no": {
+      "nb": "Til syvende og sist fra latin Maius.",
+      "of": "5d30c9fa"
+    },
+    "júní_no": {
+      "nb": "Til syvende og sist fra latin Iunius.",
+      "of": "cfc6cbb6"
+    },
+    "júlí_no": {
+      "nb": "Til syvende og sist fra latin Iulius.",
+      "of": "5af1fde0"
+    },
+    "ágúst_no": {
+      "nb": "Til syvende og sist fra latin Augustus.",
+      "of": "e260b330"
+    },
+    "september_no": {
+      "nb": "Til syvende og sist fra latin September.",
+      "of": "c9a05544"
+    },
+    "október_no": {
+      "nb": "Til syvende og sist fra latin October.",
+      "of": "9473b2e5"
+    },
+    "nóvember_no": {
+      "nb": "Til syvende og sist fra latin November.",
+      "of": "6473bb39"
+    },
+    "desember_no": {
+      "nb": "Til syvende og sist fra latin December.",
+      "of": "f79cca26"
     }
   }
 }

@@ -1,25 +1,25 @@
 # Data report
 
-Generated 2026-11-27T00:21:39.608Z by `node scripts/build-data.mjs` from `content/vocab/core.json`. This file is generated.
+Generated 2026-11-27T03:39:04.078Z by `node scripts/build-data.mjs` from `content/vocab/core.json`. This file is generated.
 
 ## Coverage of the core vocabulary
 
-| Measure | Lemmas (of 629) |
+| Measure | Lemmas (of 641) |
 |---|---|
-| Found in the DMII Core | 606 (96%) |
+| Found in the DMII Core | 618 (96%) |
 | Indeclinable numerals confirmed in the full BÍN (not in the DMII Core) | 23 (4%) |
-| English gloss from Wiktionary | 628 (100%) |
-| Wiktionary gloss matches the intended meaning | 628 (100%) |
-| Norwegian Bokmål gloss | 629 (100%) |
-| IPA | 592 (94%) |
-| Human recording (Commons, Lingua Libre, Wiktionary) | 205 (33%) |
-| 1 or more Tatoeba sentences | 611 (97%) |
-| 3 or more Tatoeba sentences | 579 (92%) |
-| Frequency rank in the Icelandic Gigaword Corpus | 629 (100%) |
+| English gloss from Wiktionary | 640 (100%) |
+| Wiktionary gloss matches the intended meaning | 640 (100%) |
+| Norwegian Bokmål gloss | 641 (100%) |
+| IPA | 604 (94%) |
+| Human recording (Commons, Lingua Libre, Wiktionary) | 217 (34%) |
+| 1 or more Tatoeba sentences | 623 (97%) |
+| 3 or more Tatoeba sentences | 591 (92%) |
+| Frequency rank in the Icelandic Gigaword Corpus | 641 (100%) |
 
-Sentences kept: 3536 (211 made from a Tatoeba sentence by replacing one word), of which 2974 use only course vocabulary (names allowed) and have at most 10 words. Recordings linked: 207.
+Sentences kept: 3583 (246 made from a Tatoeba sentence by replacing one word), of which 3015 use only course vocabulary (names allowed) and have at most 10 words. Recordings linked: 219.
 
-GreynirCorrect checked 10813 Tatoeba sentences (with an English translation, at most 15 words) and excluded 848 that it flagged. Most frequent codes: S004 124, P_NT_ÍTölu 113, P_VeraAð 91, C002 73, W001/w 68, ASLBRODDVANTAR 60, P_NT_FsMeðFallstjórn 36, C003 28, S001 26, P_MOOD_PURP 23. Parse failures (E001), exclamation marks (E007) and unknown words (U001) do not exclude a sentence.
+GreynirCorrect checked 10848 Tatoeba sentences (with an English translation, at most 15 words) and excluded 848 that it flagged. Most frequent codes: S004 124, P_NT_ÍTölu 113, P_VeraAð 91, C002 73, W001/w 68, ASLBRODDVANTAR 60, P_NT_FsMeðFallstjórn 36, C003 28, S001 26, P_MOOD_PURP 23. Parse failures (E001), exclamation marks (E007) and unknown words (U001) do not exclude a sentence.
 
 ## By theme
 
@@ -31,7 +31,7 @@ GreynirCorrect checked 10813 Tatoeba sentences (with an English translation, at 
 | Family | 42 | 36 | 42 | 24 | 41 |
 | Numbers | 35 | 19 | 35 | 13 | 24 |
 | Getting around | 49 | 49 | 49 | 21 | 43 |
-| Time | 35 | 35 | 35 | 18 | 31 |
+| Time | 47 | 47 | 47 | 30 | 43 |
 | My day | 24 | 24 | 24 | 4 | 24 |
 | Shopping | 35 | 35 | 35 | 17 | 31 |
 | Food | 28 | 28 | 28 | 10 | 28 |
@@ -50,16 +50,16 @@ GreynirCorrect checked 10813 Tatoeba sentences (with an English translation, at 
 
 | File | Bytes | Gzipped |
 |---|---|---|
-| `data/lexicon.json` | 308,928 | 90,838 |
-| `data/sentences.json` | 916,139 | 209,459 |
-| `data/audio.json` | 120,619 | 6,870 |
+| `data/lexicon.json` | 313,993 | 92,196 |
+| `data/sentences.json` | 930,396 | 211,963 |
+| `data/audio.json` | 128,165 | 7,229 |
 | `data/forms/hello.json` | 51,698 | 6,871 |
 | `data/forms/aboutme.json` | 51,086 | 6,640 |
 | `data/forms/cafe.json` | 63,218 | 8,626 |
 | `data/forms/family.json` | 38,502 | 5,854 |
 | `data/forms/numbers.json` | 32,601 | 4,566 |
 | `data/forms/around.json` | 41,971 | 6,277 |
-| `data/forms/time.json` | 28,618 | 4,433 |
+| `data/forms/time.json` | 32,304 | 5,028 |
 | `data/forms/myday.json` | 55,735 | 7,005 |
 | `data/forms/shopping.json` | 76,553 | 9,115 |
 | `data/forms/food.json` | 42,919 | 5,959 |
@@ -73,7 +73,7 @@ GreynirCorrect checked 10813 Tatoeba sentences (with an English translation, at 
 | `data/forms/past.json` | 30,476 | 4,291 |
 | `data/forms/newwords.json` | 5,385 | 1,186 |
 | `data/forms/core.json` | 60,572 | 7,853 |
-| Total | 2,312,690 | 435,120 |
+| Total | 2,343,244 | 439,936 |
 
 ## Entries to check (20)
 

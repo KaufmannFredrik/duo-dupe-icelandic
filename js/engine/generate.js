@@ -366,10 +366,11 @@ export function createGenerator(data) {
   function table(id, r, want = null) {
     if (want) return tableFor(id, want, r);
     if (lexicon.lemmas[id].ofl !== 'no') return null;
-    const tags = paradigm(id)
-      .filter((f) => f.b && /^(NF|ÞF|ÞGF|EF)ET(gr)?$/.test(f.g) && f.g !== 'NFET')
-      .map((f) => f.g);
-    if (tags.length < 3) return null;
+    const cells = paradigm(id).filter((f) => f.b && /^(NF|ÞF|ÞGF|EF)ET(gr)?$/.test(f.g));
+    const shown = cells.find((f) => f.g === 'NFET')?.b;
+    const tags = cells.filter((f) => f.g !== 'NFET').map((f) => f.g);
+    // A word whose singular is one form (janúar in every case) has nothing to fill in.
+    if (tags.length < 3 || cells.every((f) => f.b === shown)) return null;
     return { type: 'table', lemma: id, blanks: shuffle(tags, r).slice(0, 3), key: `${id}|table` };
   }
 
@@ -462,16 +463,19 @@ export function createGenerator(data) {
   const NUMBER_CYCLE = ['numlisten', 'meaning', 'numbuild', 'phone', 'numtype', 'typeword', 'choice', 'wordbank'];
   const ORDINAL_CYCLE = ['numlisten', 'meaning', 'numbuild', 'ending', 'numtype', 'typeword', 'choice'];
   const isVerb = (id) => lexicon.lemmas[id].ofl === 'so';
+  // A word with one form in every case (janúar, hissa, hvaða) has no case to learn: it goes
+  // through meaning and sentence work like a word without forms.
+  const hasCases = (id) => CASE_CLASSES.has(lexicon.lemmas[id].ofl) && new Set(paradigm(id).map((f) => f.b)).size !== 1;
   const cycleFor = (id) =>
     drill(id) === 'cardinal' ? NUMBER_CYCLE
     : drill(id) === 'ordinal' ? ORDINAL_CYCLE
-    : CASE_CLASSES.has(lexicon.lemmas[id].ofl) ? CASE_CYCLE
+    : hasCases(id) ? CASE_CYCLE
     : isVerb(id) ? VERB_CYCLE
     : WORD_CYCLE;
   function startFor(id, i, practiced) {
     const typed = practiced && i % 2 === 1;
     if (drill(id)) return typed ? cycleFor(id).indexOf('numtype') : (i * 2) % cycleFor(id).length;
-    if (CASE_CLASSES.has(lexicon.lemmas[id].ofl)) return typed ? CASE_CYCLE.indexOf('typeform') : i % 2 ? CASE_CYCLE.indexOf('case') : 0;
+    if (hasCases(id)) return typed ? CASE_CYCLE.indexOf('typeform') : i % 2 ? CASE_CYCLE.indexOf('case') : 0;
     if (isVerb(id)) return typed ? VERB_CYCLE.indexOf('typeform') : (i % 2) * 5;
     return i % WORD_CYCLE.length;
   }

@@ -1900,6 +1900,321 @@
       ],
       "is": "Konan hló skyndilega.",
       "en": "The woman suddenly laughed."
+    },
+    "10629511-1": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "janúar"
+      ],
+      "is": "Hann fæddist í janúar.",
+      "en": "He was born in January."
+    },
+    "487079-1": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "janúar"
+      ],
+      "is": "Hún verður sautján í janúar.",
+      "en": "She will be seventeen in January."
+    },
+    "10629511-2": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "febrúar"
+      ],
+      "is": "Hann fæddist í febrúar.",
+      "en": "He was born in February."
+    },
+    "10629511-3": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "mars"
+      ],
+      "is": "Hann fæddist í mars.",
+      "en": "He was born in March."
+    },
+    "487079-2": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "mars"
+      ],
+      "is": "Hún verður sautján í mars.",
+      "en": "She will be seventeen in March."
+    },
+    "10629511-4": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "apríl"
+      ],
+      "is": "Hann fæddist í apríl.",
+      "en": "He was born in April."
+    },
+    "487079-3": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "apríl"
+      ],
+      "is": "Hún verður sautján í apríl.",
+      "en": "She will be seventeen in April."
+    },
+    "10629511-5": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "maí"
+      ],
+      "is": "Hann fæddist í maí.",
+      "en": "He was born in May."
+    },
+    "487079-4": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "maí"
+      ],
+      "is": "Hún verður sautján í maí.",
+      "en": "She will be seventeen in May."
+    },
+    "10629511-6": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "júní"
+      ],
+      "is": "Hann fæddist í júní.",
+      "en": "He was born in June."
+    },
+    "487079-5": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "júní"
+      ],
+      "is": "Hún verður sautján í júní.",
+      "en": "She will be seventeen in June."
+    },
+    "10629511-7": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "júlí"
+      ],
+      "is": "Hann fæddist í júlí.",
+      "en": "He was born in July."
+    },
+    "487079-6": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "júlí"
+      ],
+      "is": "Hún verður sautján í júlí.",
+      "en": "She will be seventeen in July."
+    },
+    "10629511-8": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "ágúst"
+      ],
+      "is": "Hann fæddist í ágúst.",
+      "en": "He was born in August."
+    },
+    "487079-7": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "ágúst"
+      ],
+      "is": "Hún verður sautján í ágúst.",
+      "en": "She will be seventeen in August."
+    },
+    "10629511-9": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "september"
+      ],
+      "is": "Hann fæddist í september.",
+      "en": "He was born in September."
+    },
+    "487079-8": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "september"
+      ],
+      "is": "Hún verður sautján í september.",
+      "en": "She will be seventeen in September."
+    },
+    "10629511-10": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "október"
+      ],
+      "is": "Hann fæddist í október.",
+      "en": "He was born in October."
+    },
+    "487079-9": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "október"
+      ],
+      "is": "Hún verður sautján í október.",
+      "en": "She will be seventeen in October."
+    },
+    "10629511-11": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "nóvember"
+      ],
+      "is": "Hann fæddist í nóvember.",
+      "en": "He was born in November."
+    },
+    "487079-10": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "nóvember"
+      ],
+      "is": "Hún verður sautján í nóvember.",
+      "en": "She will be seventeen in November."
+    },
+    "10629511-12": {
+      "from": "10629511",
+      "swap": [
+        "Afríku",
+        "desember"
+      ],
+      "is": "Hann fæddist í desember.",
+      "en": "He was born in December."
+    },
+    "487079-11": {
+      "from": "487079",
+      "swap": [
+        "febrúar",
+        "desember"
+      ],
+      "is": "Hún verður sautján í desember.",
+      "en": "She will be seventeen in December."
+    },
+    "698303-1": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "janúar"
+      ],
+      "is": "Ég verð heima í janúar.",
+      "en": "I'll stay home in January."
+    },
+    "698303-2": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "febrúar"
+      ],
+      "is": "Ég verð heima í febrúar.",
+      "en": "I'll stay home in February."
+    },
+    "698303-3": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "mars"
+      ],
+      "is": "Ég verð heima í mars.",
+      "en": "I'll stay home in March."
+    },
+    "698303-4": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "apríl"
+      ],
+      "is": "Ég verð heima í apríl.",
+      "en": "I'll stay home in April."
+    },
+    "698303-5": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "maí"
+      ],
+      "is": "Ég verð heima í maí.",
+      "en": "I'll stay home in May."
+    },
+    "698303-6": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "júní"
+      ],
+      "is": "Ég verð heima í júní.",
+      "en": "I'll stay home in June."
+    },
+    "698303-7": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "júlí"
+      ],
+      "is": "Ég verð heima í júlí.",
+      "en": "I'll stay home in July."
+    },
+    "698303-8": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "ágúst"
+      ],
+      "is": "Ég verð heima í ágúst.",
+      "en": "I'll stay home in August."
+    },
+    "698303-9": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "september"
+      ],
+      "is": "Ég verð heima í september.",
+      "en": "I'll stay home in September."
+    },
+    "698303-10": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "október"
+      ],
+      "is": "Ég verð heima í október.",
+      "en": "I'll stay home in October."
+    },
+    "698303-11": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "nóvember"
+      ],
+      "is": "Ég verð heima í nóvember.",
+      "en": "I'll stay home in November."
+    },
+    "698303-12": {
+      "from": "698303",
+      "swap": [
+        "dag",
+        "desember"
+      ],
+      "is": "Ég verð heima í desember.",
+      "en": "I'll stay home in December."
     }
   }
 }

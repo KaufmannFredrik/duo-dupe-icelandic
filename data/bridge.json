@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-27T00:22:57.436Z",
+ "generated": "2026-11-27T03:33:57.205Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -18,9 +18,9 @@
   }
  ],
  "counts": {
-  "loan": 11,
+  "loan": 13,
   "old-norse": 278,
-  "form": 28
+  "form": 37
  },
  "pairs": {
   "halló_uh": {
@@ -1209,6 +1209,87 @@
    "oldNorse": "eptir",
    "evidence": "old-norse",
    "rules": null
+  },
+  "janúar_no": {
+   "nb": "januar",
+   "evidence": "loan",
+   "loan": {
+    "language": "Latin",
+    "word": "Iānuārius"
+   },
+   "rules": [
+    "u-acute"
+   ]
+  },
+  "febrúar_no": {
+   "nb": "februar",
+   "evidence": "form",
+   "rules": [
+    "u-acute"
+   ]
+  },
+  "mars_no": {
+   "nb": "mars",
+   "evidence": "loan",
+   "loan": {
+    "language": "Latin",
+    "word": "mārtiī"
+   },
+   "rules": []
+  },
+  "apríl_no": {
+   "nb": "april",
+   "evidence": "form",
+   "rules": [
+    "i-acute"
+   ]
+  },
+  "maí_no": {
+   "nb": "mai",
+   "evidence": "form",
+   "rules": [
+    "i-acute"
+   ]
+  },
+  "júní_no": {
+   "nb": "juni",
+   "evidence": "form",
+   "rules": [
+    "u-acute",
+    "i-acute"
+   ]
+  },
+  "júlí_no": {
+   "nb": "juli",
+   "evidence": "form",
+   "rules": [
+    "u-acute",
+    "i-acute"
+   ]
+  },
+  "september_no": {
+   "nb": "september",
+   "evidence": "form",
+   "rules": []
+  },
+  "október_no": {
+   "nb": "oktober",
+   "evidence": "form",
+   "rules": [
+    "o-acute"
+   ]
+  },
+  "nóvember_no": {
+   "nb": "november",
+   "evidence": "form",
+   "rules": [
+    "o-acute"
+   ]
+  },
+  "desember_no": {
+   "nb": "desember",
+   "evidence": "form",
+   "rules": []
   },
   "fótur_no": {
    "nb": "fot",

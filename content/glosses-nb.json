@@ -114,7 +114,8 @@
     "eyða_so": ["bruke", "ødelegge"],
     "áfram_ao": ["videre", "fremover"],
     "missa_so": ["miste"],
-    "ná_so": ["nå", "rekke"]
+    "ná_so": ["nå", "rekke"],
+    "maí_no": ["mai"]
   },
   "fixes": {
     "barn_no": { "nb": ["barn"], "wiktionary": ["barn", "barn n mindreårig"] },

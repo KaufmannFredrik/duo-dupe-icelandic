@@ -160,6 +160,7 @@ test('generator: homographs are told apart by the sentence tags', () => {
     ['Hann elskar þá.', 'þá_ao', 'hann_pfn'], // þá = them, not then; content/tag-fixes.json
     ['Ég vil heldur vera heima en fara út.', 'halda_so', 'vilja_so'], // heldur = rather: a fix with lemma null
     ['Komdu nú sæl.', 'nú_ao', 'koma_so'], // nú in a greeting: a loose fix
+    ['Einhvern daginn munum við geta farið í ferð til Mars.', 'mars_no', 'fara_so'], // Mars the planet: a fix with lemma null
     ['Ég sé illa.', 'vera_so', 'sjá_so'], // the parser reads sé as vera; content/tag-fixes.json
   ];
   for (const [text, not, yes] of cases) {
@@ -231,6 +232,23 @@ test('data: Í gær: a time phrase the parser reads as one adverb teaches its ow
   assert.equal(d.generator.hasLemma(sid('Ég var veikur í gær.'), 'í_fs'), false);
   assert.equal(d.generator.hasLemma(sid('Hún fór til Ameríku í fyrradag.'), 'fyrradagur_no'), true);
   assert.equal(d.generator.hasLemma(sid('Ég hef búið hér síðan ég var barn.'), 'síðan_st'), true);
+});
+
+test('Tími: the months have one form, no table, and are drilled as words', () => {
+  // content/vocab/core.json "ET": mars keeps only the indefinite singular (marsinn, marsar are mars, a march).
+  const months = ['janúar', 'febrúar', 'mars', 'apríl', 'maí', 'júní', 'júlí', 'ágúst', 'september', 'október', 'nóvember', 'desember'].map((m) => `${m}_no`);
+  for (const id of months) assert.deepEqual([...new Set(d.paradigm(id).map((f) => f.b))], [d.lexicon.lemmas[id].lemma], `${id}: one form`);
+  const sid = (text) => Object.keys(d.sentences).find((k) => d.sentences[k].is === text);
+  assert.equal(d.generator.hasLemma(sid('Hann fæddist í janúar.'), 'janúar_no'), true);
+  assert.equal(d.generator.hasLemma(sid('Í Sviss kemur vorið í maí.'), 'maí_no'), true);
+  for (const lesson of lessonsOf('time').filter((l) => l.focus?.some((x) => months.includes(x)))) {
+    for (const n of [0, 1, 2]) {
+      const specs = d.generator.lesson({ focus: lesson.focus, allowed: allowedFor(d.course, 'time', lesson.index), seed: hashSeed(`${lesson.key}#${n}`), practiced: Boolean(lesson.review) });
+      const formWork = specs.filter((s) => months.includes(s.lemma) && ['table', 'ending', 'case', 'typeform'].includes(s.type));
+      assert.deepEqual(formWork.map((s) => s.type), [], `${lesson.key}#${n}: no form exercises for words with one form`);
+      assert.ok(new Set(specs.map((s) => s.type)).size >= 5, `${lesson.key}#${n}: at least five kinds`);
+    }
+  }
 });
 
 test('data: a made sentence is a Tatoeba sentence with one word replaced, and teaches that word', () => {
