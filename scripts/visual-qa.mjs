@@ -31,9 +31,11 @@ const VIEWPORTS = {
 const data = loadData();
 const firstOf = new Map();
 let specialTypeword = null;
-for (const unit of data.course.units.filter((u, i) => i < 2 || u.id === 'numbers')) {
+// Húsnæði (section A2) brings the principal parts.
+for (const unit of data.course.units.filter((u, i) => i < 2 || u.id === 'numbers' || u.id === 'housing')) {
+  const level = data.course.sections.find((s) => s.id === unit.section)?.level ?? null;
   for (const lesson of unit.lessons) {
-    const specs = data.generator.lesson({ focus: lesson.focus, allowed: allowedFor(data.course, unit.id, lesson.index), seed: hashSeed(`${lesson.key}#0`), practiced: Boolean(lesson.review) });
+    const specs = data.generator.lesson({ focus: lesson.focus, allowed: allowedFor(data.course, unit.id, lesson.index), seed: hashSeed(`${lesson.key}#0`), practiced: Boolean(lesson.review), level });
     specs.forEach((spec, i) => {
       const href = `lesson.html?unit=${unit.id}&lesson=${lesson.id}&step=${i + 1}&qa`;
       if (!firstOf.has(spec.type)) firstOf.set(spec.type, href);
@@ -179,6 +181,7 @@ const SHOTS = [
   { name: 'feedback-numlisten-wrong', url: firstOf.get('numlisten'), act: async (p) => { await wrongOption(p); await p.click('[data-action="check"]'); } },
   { name: 'feedback-numtype-phone', url: phoneTyped.href, act: async (p) => { if (phoneTyped.play) { await seedPlays(p, phoneTyped.key, phoneTyped.play); await p.goto(base + phoneTyped.href); await settle(p); } await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'feedback-numbuild', url: firstOf.get('numbuild'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
+  { name: 'feedback-parts', url: firstOf.get('parts'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   // Guided writing ends the Gata review (data/writing.json): the form, and its feedback on three kinds of mistake.
   { name: 'ex-write', url: 'lesson.html?unit=around&lesson=review&step=99&qa' },
   // The A1 check: its first task, the result when every task is skipped (each goal missed, with its

@@ -28,5 +28,6 @@ export function describe(tagOrParsed, { withCase = true, ofl } = {}) {
   if (p.case && ofl === 'no') text += `, ${t(p.definite ? 'form.definite' : 'form.indefinite')}`;
   if (p.tense) text += `, ${t(p.tense === 'NT' ? 'tense.present' : 'tense.past')}`;
   if (p.mood === 'NH') text = t('mood.infinitive');
+  if (p.mood === 'SAGNB') text = t('mood.supine');
   return text;
 }

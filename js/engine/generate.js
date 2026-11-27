@@ -306,13 +306,18 @@ export function createGenerator(data) {
   // "Spurðu Alex", where spurðu is "ask!" and not "they asked"). Where persons share a form
   // ("drekkur": 2nd and 3rd singular), the subject pronoun decides, else the 3rd person (a noun
   // subject). Options: the other forms of the same tense, so the choice is about person and number.
-  // tag: only this form (a review).
-  function verbTarget(id, sid, { tag = null } = {}) {
+  // tag: only this form (a review). perfect (section A2): the supine after hafa may be the target too.
+  function verbTarget(id, sid, { tag = null, perfect = false } = {}) {
     const bm = paradigm(id);
     for (const [i, tok] of toks(sid).entries()) {
       const ids = idsAt(sid, i);
       if (ids.length !== 1 || ids[0] !== id) continue;
       const all = analysesIn(bm, tok.raw).filter((a) => a.parsed.variant === 1);
+      if ((perfect || tag === SUPINE) && (!tag || tag === SUPINE)) {
+        const sup = supineTarget(id, sid, i, tok, all);
+        if (sup) return sup;
+      }
+      if (tag === SUPINE) continue;
       let an = all.filter((a) => finite(a.parsed));
       if (!an.length || all.some((a) => a.parsed.mood === 'NH' || a.parsed.mood === 'SAGNB')) continue;
       const tense = an[0].parsed.tense;
@@ -343,15 +348,37 @@ export function createGenerator(data) {
     return null;
   }
 
-  // "conjugate": pick the verb's form for the blank; "typeform": type it.
-  function verbSpec(type, id, allowed, used, r, { tag = null } = {}) {
+  // The perfect (section A2): the supine after a form of hafa a few words before it ("Ég hef
+  // drukkið", "Hefur þú nokkurn tíma farið"), the only form that fits there. A supine spelled like
+  // a finite form ("farið": you go, plural) counts as the supine after hafa. The options are the
+  // supine and the verb's infinitive, past and present (3rd person singular), so the choice is
+  // about which form follows hafa.
+  const SUPINE = 'GM-SAGNB';
+  const VERB_KINDS = [SUPINE, 'GM-NH', 'GM-FH-ÞT-3P-ET', 'GM-FH-NT-3P-ET'];
+  function supineTarget(id, sid, i, tok, all) {
+    const sup = all.find((a) => a.tag === SUPINE);
+    if (!sup) return null;
+    const hafa = toks(sid).some((_, j) => j < i && j >= i - 4 && idsAt(sid, j).length === 1 && idsAt(sid, j)[0] === 'hafa_so');
+    if (!hafa) return null;
+    const bm = paradigm(id);
+    const forms = [...new Set(VERB_KINDS.map((g) => bm.find((f) => f.g === g)?.b).filter(Boolean))];
+    const answer = forms.find((f) => f.toLocaleLowerCase('is') === tok.low);
+    if (!answer || forms.length < 3) return null;
+    return { tok, index: i, tag: SUPINE, parsed: sup.parsed, answer, forms };
+  }
+
+  // "conjugate": pick the verb's form for the blank; "typeform": type it. With perfect (section A2),
+  // half of them look for the supine after hafa first, in any of the verb's sentences.
+  function verbSpec(type, id, allowed, used, r, { tag = null, perfect = false } = {}) {
     if (lexicon.lemmas[id].ofl !== 'so') return null;
     const cands = sentencesFor(id, allowed, used, 9, true);
-    for (const sid of tag ? cands : cands.slice(0, 16)) {
-      const t = verbTarget(id, sid, { tag });
+    const want = tag ?? (perfect && r() < 0.5 && cands.some((sid) => verbTarget(id, sid, { tag: SUPINE })) ? SUPINE : null);
+    for (const sid of want ? cands : cands.slice(0, 16)) {
+      const t = verbTarget(id, sid, { tag: want, perfect });
       if (!t) continue;
       used.add(sid);
-      const base = { lemma: id, sentence: sid, target: t.tok.raw, tag: t.tag, key: `${id}|${t.tag}`, meta: { person: t.parsed.person, number: t.parsed.number, tense: t.parsed.tense } };
+      const meta = t.tag === SUPINE ? { mood: 'SAGNB' } : { person: t.parsed.person, number: t.parsed.number, tense: t.parsed.tense };
+      const base = { lemma: id, sentence: sid, target: t.tok.raw, tag: t.tag, key: `${id}|${t.tag}`, meta };
       if (type === 'typeform') return { type, ...base };
       const others = shuffle(t.forms.filter((f) => f !== t.answer), r).slice(0, 3);
       return { type: 'conjugate', ...base, options: shuffle([t.answer, ...others], r) };
@@ -363,15 +390,30 @@ export function createGenerator(data) {
   // want: a review of one form (a card such as "bjór_no|ÞFFTgr" or "drekka_so|GM-FH-ÞT-1P-ET"):
   // the part of the word's table that has that cell (as the case trainer shows it, so any word
   // class), with that cell and up to two more to fill.
-  function table(id, r, want = null) {
+  // plural (section A2): the plural instead, with the indefinite nominative plural shown.
+  function table(id, r, want = null, { plural = false } = {}) {
     if (want) return tableFor(id, want, r);
     if (lexicon.lemmas[id].ofl !== 'no') return null;
-    const cells = paradigm(id).filter((f) => f.b && /^(NF|ÞF|ÞGF|EF)ET(gr)?$/.test(f.g));
-    const shown = cells.find((f) => f.g === 'NFET')?.b;
-    const tags = cells.filter((f) => f.g !== 'NFET').map((f) => f.g);
+    const num = plural ? 'FT' : 'ET';
+    const cells = paradigm(id).filter((f) => f.b && new RegExp(`^(NF|ÞF|ÞGF|EF)${num}(gr)?$`).test(f.g));
+    const shown = cells.find((f) => f.g === `NF${num}`)?.b;
+    const tags = cells.filter((f) => f.g !== `NF${num}`).map((f) => f.g);
     // A word whose singular is one form (janúar in every case) has nothing to fill in.
     if (tags.length < 3 || cells.every((f) => f.b === shown)) return null;
     return { type: 'table', lemma: id, blanks: shuffle(tags, r).slice(0, 3), key: `${id}|table` };
+  }
+
+  // Principal parts (section A2): a strong verb's past singular and plural and its supine, written
+  // from the infinitive (drekka: drakk, drukku, drukkið). Strong here: the past singular is not made
+  // with -ði, -di or -ti, as a weak verb's is (kallaði, sagði, keypti); this takes in the strong
+  // verbs and the few others whose past changes the stem (vissi, kunni).
+  const PARTS = ['GM-FH-ÞT-3P-ET', 'GM-FH-ÞT-3P-FT', SUPINE];
+  function parts(id) {
+    if (!isVerb(id)) return null;
+    const bm = paradigm(id);
+    const got = PARTS.map((g) => bm.find((f) => f.g === g)?.b);
+    if (got.some((x) => !x) || /[ðdt]i$/.test(got[0])) return null;
+    return { type: 'parts', lemma: id, blanks: PARTS, key: `${id}|parts` };
   }
 
   // The table options under which a tag has a cell: a verb's tense, an adjective's strength.
@@ -483,12 +525,17 @@ export function createGenerator(data) {
   const formSpec = (type, id, allow, used, r, tag) =>
     lexicon.lemmas[id].ofl === 'so' ? verbSpec(type === 'ending' ? 'conjugate' : type, id, allow, used, r, { tag }) : caseSpec(type, id, allow, used, r, { tag });
 
+  // Section A2 adds forms to the lessons: the supine after hafa in the verb exercises, a strong
+  // verb's principal parts, and the plural in the table (half the time).
+
   /**
-   * @param {{ focus: string[], allowed: Iterable<string>, seed: number, count?: number, practiced?: boolean }} options
+   * @param {{ focus: string[], allowed: Iterable<string>, seed: number, count?: number, practiced?: boolean, level?: string|null }} options
    *   focus: the lesson's new words; allowed: every word the learner may meet (includes focus);
-   *   practiced: the focus words were taught before (a unit's review), so some start with production.
+   *   practiced: the focus words were taught before (a unit's review), so some start with production;
+   *   level: the level of the lesson's section ("A1", "A2"); A2 adds the forms above.
    */
-  function lesson({ focus, allowed, seed, count = 12, practiced = false }) {
+  function lesson({ focus, allowed, seed, count = 12, practiced = false, level = null }) {
+    const a2 = level === 'A2';
     const r = rng(seed);
     const allow = new Set([...allowed, ...focus]);
     const used = new Set();
@@ -498,11 +545,18 @@ export function createGenerator(data) {
     const step = new Map(focus.map((id, i) => [id, startFor(id, i, practiced)]));
     const lessonWords = new Set(focus);
     let tableDone = false;
+    let partsDone = false;
     for (let round = 0; out.length < count && round < 8; round++) {
+      // Section A2: the second round opens with a strong verb's principal parts, if the lesson has one.
+      if (a2 && !partsDone && round === 1) {
+        const verb = shuffle(focus.filter((id) => parts(id)), r)[0];
+        if (verb) out.push(parts(verb));
+        partsDone = true;
+      }
       for (const id of shuffle(focus, r)) {
         if (out.length >= count) break;
         if (!tableDone && round === 1) {
-          const tb = table(id, r);
+          const tb = (a2 && r() < 0.5 ? table(id, r, null, { plural: true }) : null) ?? table(id, r);
           if (tb) {
             out.push(tb);
             tableDone = true;
@@ -522,7 +576,7 @@ export function createGenerator(data) {
             : type === 'typeword' ? typeword(id)
             : type === 'numlisten' || type === 'numtype' || type === 'numbuild' ? numberSpec(type, id, allow, r)
             : type === 'phone' ? numberSpec(r() < 0.5 ? 'numlisten' : 'numtype', id, allow, r, { phone: true })
-            : type === 'conjugate' || (type === 'typeform' && isVerb(id)) ? verbSpec(type, id, allow, used, r)
+            : type === 'conjugate' || (type === 'typeform' && isVerb(id)) ? verbSpec(type, id, allow, used, r, { perfect: a2 })
             : caseSpec(type, id, allow, used, r);
           if (spec) {
             out.push(spec);
@@ -559,6 +613,7 @@ export function createGenerator(data) {
         asNumber ? asNumber
         : part === 'meaning' ? choice(id, allow, used, r) ?? meaning(id, allow, r) ?? typeword(id)
         : part === 'table' ? table(id, r)
+        : part === 'parts' ? parts(id)
         : ((card.box ?? 0) >= TYPE_FROM_BOX ? formSpec('typeform', id, allow, used, r, part) : null) ?? formSpec('ending', id, allow, used, r, part) ?? table(id, r, part);
       if (spec) out.push(spec);
     }
@@ -571,6 +626,7 @@ export function createGenerator(data) {
     if (!lexicon.lemmas[id]) return false;
     if (part === 'meaning') return true;
     if (part === 'table') return Boolean(table(id, rng(1)));
+    if (part === 'parts') return Boolean(parts(id));
     return Boolean(formSpec('ending', id, everyWord, new Set(), rng(1), part) ?? table(id, rng(1), part));
   }
 

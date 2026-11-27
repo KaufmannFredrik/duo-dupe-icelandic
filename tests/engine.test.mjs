@@ -16,6 +16,7 @@ const lessonsOf = (unitId) => d.course.units.find((u) => u.id === unitId).lesson
 // A pronoun the parser reads in another case than the nominative is an object (þau in Hávaðinn vakti þau).
 const PRONOUN = { 'ég_pfn': 1, 'þú_pfn': 2, 'hann_pfn': 3, 'hún_pfn': 3, 'það_pfn': 3 };
 function checkVerbForm(s) {
+  if (s.tag === 'GM-SAGNB') return checkSupine(s);
   const text = d.sentences[s.sentence].is;
   const bm = d.paradigm(s.lemma);
   const p = parseTag(s.tag);
@@ -60,9 +61,30 @@ function checkNumber(s, allowed) {
   }
 }
 
-function generate(unitId, lesson) {
+// The level of a unit's section, as the lesson page passes it (A2 lessons add forms).
+const levelOf = (unitId) => d.course.sections.find((s) => s.id === d.course.units.find((u) => u.id === unitId).section)?.level ?? null;
+// The perfect (section A2): the supine of the verb, after a form of hafa a few words before it; the
+// options are the supine, the infinitive and a past and a present form, each once.
+function checkSupine(s) {
+  const bm = d.paradigm(s.lemma);
+  const low = (x) => x.toLocaleLowerCase('is');
+  assert.ok(analysesIn(bm, s.target).some((a) => a.tag === 'GM-SAGNB'), `"${s.target}" is the supine of ${s.lemma}`);
+  const toks = tokens(d.sentences[s.sentence].is);
+  const at = toks.findIndex((x) => x.raw === s.target);
+  const tags = d.tagsOf(s.sentence);
+  assert.ok(toks.some((_, j) => j < at && j >= at - 4 && tags?.[j] === 'hafa_so'), `"${d.sentences[s.sentence].is}": hafa before ${s.target}`);
+  if (s.options) {
+    assert.equal(s.options.filter((o) => low(o) === low(s.target)).length, 1, `the answer once among ${s.options}`);
+    assert.equal(new Set(s.options).size, s.options.length, 'distinct options');
+    for (const o of s.options) assert.ok(['GM-SAGNB', 'GM-NH', 'GM-FH-ÞT-3P-ET', 'GM-FH-NT-3P-ET'].some((g) => bm.some((f) => f.g === g && f.b === o)), `option "${o}" is a part of ${s.lemma}`);
+  }
+  assert.deepEqual(s.meta, { mood: 'SAGNB' });
+}
+
+function generate(unitId, lesson, n = null) {
   const allowed = allowedFor(d.course, unitId, lesson.index);
-  return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key), practiced: Boolean(lesson.review) }) };
+  const seed = hashSeed(n === null ? lesson.key : `${lesson.key}#${n}`);
+  return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed, practiced: Boolean(lesson.review), level: levelOf(unitId) }) };
 }
 
 test('course: twenty-two units in order, all hand-made, the A1 check twentieth', () => {
@@ -334,7 +356,7 @@ test('generator: a sentence built from word chips has no digits, in the lessons 
   for (const unit of d.course.units) {
     for (const lesson of unit.lessons) {
       for (const n of [0, 1, 2]) {
-        const specs = d.generator.lesson({ focus: lesson.focus, allowed: allowedFor(d.course, unit.id, lesson.index), seed: hashSeed(`${lesson.key}#${n}`), practiced: Boolean(lesson.review) });
+        const { specs } = generate(unit.id, lesson, n);
         for (const s of specs.filter((x) => x.type === 'wordbank' || x.type === 'dictation')) {
           assert.ok(!/\d/.test(d.sentences[s.sentence].is), `${lesson.key}#${n} ${s.type}: "${d.sentences[s.sentence].is}" has digits`);
         }
@@ -411,11 +433,41 @@ for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around',
         if (s.type === 'typeform') assert.notEqual(s.target.toLocaleLowerCase('is'), d.lexicon.lemmas[s.lemma].lemma.toLocaleLowerCase('is'), `typeform asks for the dictionary form ${s.target}`);
         if (s.type === 'case') assert.equal(s.cases.length, 1, 'case questions only for unambiguous forms');
         if (s.type === 'table') for (const tag of s.blanks) assert.ok(d.paradigm(s.lemma).some((f) => f.g === tag), `${tag} in ${s.lemma}`);
+        if (s.type === 'parts') {
+          assert.equal(levelOf(unitId), 'A2', 'principal parts only in section A2');
+          assert.ok(verb && s.blanks.every((tag) => d.paradigm(s.lemma).some((f) => f.g === tag)), `the parts of ${s.lemma}`);
+        }
+        if (s.tag === 'GM-SAGNB') assert.equal(levelOf(unitId), 'A2', 'the supine only in section A2');
+        if (s.type === 'table' && s.blanks.some((tag) => /FT/.test(tag))) assert.equal(levelOf(unitId), 'A2', 'plural tables only in section A2');
         if (s.type === 'numlisten' || s.type === 'numtype' || s.type === 'numbuild') checkNumber(s, allowed);
       }
     });
   }
 }
+
+test('generator: section A2 adds the perfect, principal parts and plural tables', () => {
+  const every = new Set(Object.keys(d.lexicon.lemmas));
+  // The perfect: búið after hef in Ég hef búið hér síðan ég var barn.
+  const [sup] = d.generator.review({ cards: [{ key: 'búa_so|GM-SAGNB' }], allowed: every, seed: 3 });
+  assert.equal(sup.type, 'conjugate');
+  assert.equal(sup.tag, 'GM-SAGNB');
+  checkSupine(sup);
+  assert.ok(d.generator.reviewable('búa_so|GM-SAGNB'));
+  // Principal parts: a strong verb has them, a weak one does not.
+  const [p] = d.generator.review({ cards: [{ key: 'drekka_so|parts' }], allowed: every, seed: 3 });
+  assert.deepEqual([p.type, p.lemma, p.blanks], ['parts', 'drekka_so', ['GM-FH-ÞT-3P-ET', 'GM-FH-ÞT-3P-FT', 'GM-SAGNB']]);
+  assert.deepEqual(p.blanks.map((g) => d.paradigm('drekka_so').find((f) => f.g === g).b), ['drakk', 'drukku', 'drukkið']);
+  assert.equal(d.generator.reviewable('kalla_so|parts'), false, 'kallaði is weak');
+  assert.equal(d.generator.reviewable('bera_so|parts'), true);
+  // In Húsnæði (A2) bera gets its parts and some table is plural; A1 lessons have neither.
+  const housing = d.course.units.find((u) => u.id === 'housing');
+  const a2 = housing.lessons.flatMap((l) => [0, 1, 2].flatMap((n) => generate('housing', l, n).specs));
+  assert.ok(a2.some((s) => s.type === 'parts' && s.lemma === 'bera_so'), 'bera has its parts');
+  assert.ok(a2.some((s) => s.type === 'table' && s.blanks.some((g) => /FT/.test(g))), 'a plural table');
+  for (const u of d.course.units.filter((x) => x.section === 'a1')) {
+    for (const l of u.lessons) for (const s of generate(u.id, l, 0).specs) assert.ok(s.type !== 'parts' && s.tag !== 'GM-SAGNB', `${l.key}: an A2 form`);
+  }
+});
 
 test('generator: placement has a step per unit with words (not the A1 check), with case questions from unit 2', () => {
   const steps = d.generator.placement({ units: d.course.units, seed: 7 });

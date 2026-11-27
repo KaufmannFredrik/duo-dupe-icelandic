@@ -1162,6 +1162,8 @@ The drill asks "which spelling do you hear?" only with a word whose Wiktionary I
 | `landing.soundsExample` | *sl* is often said with a t in between. | W Ísland ([ˈistlant] as one word, [ˈiːs.lant] as a compound) | corrected: was "is said"; now "is often said" |
 | `landing.bridgeExample` | *hestur* and Norwegian *hest*. | `data/bridge.json` | sourced |
 | `landing.say`, `brand.mascot.meaning` | *tölva* from *tala* and *völva*; *tala* is speech and number. | W tölva, tala | sourced |
+| `ex.partsWhy` | A strong verb changes its vowel in the past (*drekka*, *drakk*). | DMII (*drekka*: GM-FH-ÞT-3P-ET *drakk*); WP (Icelandic grammar: strong and weak verbs); the *Í gær* rows above | sourced |
+| `ex.supineWhy` | After *hafa* the verb takes its supine: the perfect, as in *Ég hef búið hér*. | elon A2 path ("the perfect"); DMII (*búið*, GM-SAGNB of *búa*); T 669486 ("I have lived here since I was a child") | sourced |
 | `feedback.reason.*` | Accents change words. | W dýr ("animal", "expensive") and dyr ("door") | sourced (the old example *ar*/*ár* in this file was wrong: *ar* is not an Icelandic word) |
 
 ## Numbers by ear (`js/engine/numbers.js`)

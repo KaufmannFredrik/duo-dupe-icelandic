@@ -592,6 +592,9 @@ html[data-calm="on"] .word.is-speaking { text-shadow: none; }
 .decl__input[data-state="correct"] { box-shadow: inset 0 0 0 2px var(--color-correct); }
 .decl__input[data-state="wrong"] { box-shadow: inset 0 0 0 2px var(--color-wrong-fill); }
 .decl__input[data-state="almost"] { box-shadow: inset 0 0 0 2px var(--color-almost); }
+/* Principal parts (js/exercises/parts.js): the words a part goes with, beside its box. */
+.parts__cell { display: flex; align-items: center; gap: var(--space-2); padding-left: var(--space-2); }
+.parts__cell .decl__input { flex: 1; min-width: 0; }
 @media (hover: hover) {
   .decl__cell:hover { background: var(--fill-selected); }
 }

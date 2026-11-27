@@ -76,7 +76,8 @@ export async function answer(page, mode = 'correct') {
       // Guided writing: each gap gets the sample answer the spec carries (a name, the first word).
       for (const [i, value] of spec.sample.entries()) await page.fill(`[data-gap="${i}"]`, mode === 'almost' ? fold(value) : value);
       break;
-    case 'table': {
+    case 'table':
+    case 'parts': {
       const forms = await page.evaluate((id) => window.__tolva.paradigm(id), spec.lemma);
       for (const tag of spec.blanks) await page.fill(`.decl__input[data-tag="${tag}"]`, forms.find((f) => f.g === tag).b);
       break;

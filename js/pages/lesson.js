@@ -70,6 +70,9 @@ const letterData = ['alphabet', 'review', 'mistakes', 'sounds'].includes(mode) ?
 // A guided-writing task (data/writing.json): the gaps' sample answers are for the test hook.
 const writeSpec = (task) => ({ type: 'write', task: task.id, sample: sampleAnswers({ lines: task.lines.map((l) => l.is) }, writing(task.id).slots) });
 
+// The level of a unit's section (A1, A2; a bonus unit has none): A2 lessons add forms (generate.js).
+const levelOf = (unit) => course.sections.find((s) => s.id === unit.section)?.level ?? null;
+
 async function lessonPlan() {
   const found = params.get('unit') ? findLesson(course, params.get('unit'), params.get('lesson') ?? '1') : position;
   const { unit, lesson } = found.lesson ? found : position;
@@ -83,7 +86,7 @@ async function lessonPlan() {
     key: lesson.key,
     unit,
     title: `${pick(unit.title)}: ${lesson.title ? pick(lesson.title) : lesson.review ? t('learn.review') : t('learn.lessonN', { n: lesson.index + 1 })}`,
-    specs: [...gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`), practiced: Boolean(lesson.review) }), ...writingTasks],
+    specs: [...gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`), practiced: Boolean(lesson.review), level: levelOf(unit) }), ...writingTasks],
   };
 }
 
@@ -246,7 +249,7 @@ let bonus = 0;
 let bestRun = 0;
 const counted = { listen: 0, type: 0 };
 const LISTENING = new Set(['listen', 'dictation', 'pair', 'letter', 'lettername', 'numlisten', 'numtype']);
-const TYPED = new Set(['typeword', 'typeform', 'spell']);
+const TYPED = new Set(['typeword', 'typeform', 'spell', 'parts']);
 
 // Hearts (Settings, off by default): five per lesson, one lost per wrong answer. Not in placement.
 const HEARTS = 5;

@@ -2,6 +2,22 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A2: the perfect, principal parts and plural tables (2026-11-27)
+
+The first of the A2 exercise types in [PLAN.md](PLAN.md) ("Past and perfect (A2): the verb-form exercises extended to the supine and the perfect; principal parts of strong verbs as a table (*drekka, drakk, drukku, drukkið*)"; "Plural and full tables in lessons (A2)"), before units 22 (*Að segja frá*, the past and principal parts) and 23 (*Hef gert*, the perfect), which need them.
+
+- **Only in section A2:** the lesson page passes the level of the unit's section to the generator (`lesson({ level })`), and these forms come only with "A2", so section A1's lessons are what they were (a test checks every A1 lesson). Reviews bring back any card a learner has, whatever its section.
+- **The past** was already there: the verb-form exercises (`conjugate`, `typeform`) take a verb in the form its sentence has, present or past, with the other forms of that tense as options.
+- **The perfect:** a verb's supine after a form of *hafa* up to four words before it (*Ég hef búið hér*, *Hefur þú nokkurn tíma farið*, *Takk fyrir að hafa komið*) can be the target. A supine spelled like a finite form (*farið*, also "you go", plural) counts as the supine after *hafa*. The options are the supine, the infinitive and the past and present 3rd person singular (*búið*, *búa*, *bjó*, *býr*), so the choice is which form follows *hafa*; the feedback says that this is the perfect. Half of the A2 verb-form exercises look for such a sentence first, since the shortest sentences, which the exercises otherwise take, seldom have one.
+- **Principal parts** (`parts`, a new exercise, `js/exercises/parts.js`): the infinitive is given, and the learner writes the past singular and plural and the supine, each beside the words it goes with (*hann bar*, *þeir báru*, *ég hef borið*), graded box by box like the table. A verb has them when its past singular is not made with -ði, -di or -ti, as a weak verb's is (*kallaði*, *sagði*, *keypti*): this takes in the 36 strong verbs of the course and two whose past changes the stem (*vissi*, *kunni*). An A2 lesson with such a verb opens its second round with them; the answers count as one card (`<verb>|parts`), which reviews bring back as the same exercise, and as typed answers for the daily quest.
+- **Plural tables:** the lesson table, a noun's singular so far, shows the plural half the time in section A2 (the indefinite nominative plural given, three cells to fill), so a plural-only noun such as *svalir* gets a table too.
+- **Not yet:** reading and listening questions, the next A2 exercise type.
+
+### Tests
+
+- `node --test`: 264 tests. The exercise check of every lesson now runs each lesson at its own level: a supine target is the verb's supine with *hafa* before it and its four options parts of the verb; principal parts and plural tables only in A2. A new test: *búið* in *Ég hef búið hér síðan ég var barn* is reviewed as the perfect, *drekka* has the parts *drakk*, *drukku*, *drukkið* and *kalla* none, *bera* gets its parts and a table is plural in *Húsnæði*, and no A1 lesson has any of them.
+- `node tests/smoke.mjs --unit=housing`: the unit played in the browser with its principal parts. Visual QA: the exercise and its feedback (`ex-parts`, `feedback-parts`). `npm run smoke` and `npm run qa`: see the commit.
+
 ## Section A2, unit 21: *Húsnæði* (2026-11-27)
 
 The first unit of section A2 in [PLAN.md](PLAN.md): housing, "renting, moving, neighbors, keys, ads", with the grammar "two-case prepositions: motion and place", for the goal "understand and use everyday words about housing" (`content/goals.json`, ÍFÚ 3). The plan puts the A2 exercise types first; this unit needs none of them (its grammar is drilled by the case and form exercises that exist), so it was built first, and the exercise types come before units 22 and 23, which need the past and the perfect.
