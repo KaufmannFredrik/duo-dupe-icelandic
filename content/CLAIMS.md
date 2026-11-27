@@ -103,15 +103,18 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | *fær* in *Ég er fær um að synda* is the adjective *fær* ("able"), not a form of *fá*; *á* in *Helgina sem ég fór á skíði* is the preposition of *fara á skíði*, not *eiga*. | BÍN (*fær* lo); translations of T 1321802 ("I'm able to swim"), 7319849 ("That weekend I went skiing") | sourced |
 | Wrong parser cases dropped: *betra* in *Liðið þitt er betra en okkar* (made from T 544571) is nominative, not genitive; *skák* after *leika* in T 387772 is accusative, not nominative; *gítar* after *leika á* in T 469359 is accusative, as in T 11514561 (*spilar á gítar*), not dative; in T 469363 (*góður á gítar*) no source decides it, so it keeps no case. | DMII (*betra*, comparative of *góður*); the parser's own reading of T 11514561 | sourced |
 | *vinsamlegast* ("please") is the superlative of the adverb *vinsamlega*; the parser reads it as the neuter superlative of the adjective *vinsamlegur*, and where it cannot parse the sentence leaves it open between the two (`ADVERB_OF` in `scripts/lib/tags.mjs`). | BÍN (*vinsamlegast*: EST of *vinsamlega* ao, and ESB-HK of *vinsamlegur*); W vinsamlega ("please"); translations of T 1316194 ("Please come"), 624010 | sourced |
-| *sæti* in *Vinsamlegast taktu þetta sæti* and *Vinsamlegast fáið ykkur sæti* is the noun "seat", not a form of *sætur*; *Skilið* ("understood") is the supine of *skilja*, not *skila*; *pakka* in *Ég ætti að fara að pakka* is the verb "to pack" (lemma null). | DMII (*sæti* hk; *skilið*, GM-SAGNB of *skilja*); translations of T 388910, 1324686, 477938 ("Understood"), 3799284 ("I should go pack") | sourced |
+| *sæti* in *Vinsamlegast taktu þetta sæti* and *Vinsamlegast fáið ykkur sæti* is the noun "seat", not a form of *sætur*; *Skilið* ("understood") is the supine of *skilja*, not *skila*; *pakka* in *Ég ætti að fara að pakka* is the verb "to pack" (lemma null until *Húsnæði* taught the verb; now *pakka*). | DMII (*sæti* hk; *skilið*, GM-SAGNB of *skilja*); translations of T 388910, 1324686, 477938 ("Understood"), 3799284 ("I should go pack") | sourced |
 | Wrong parser cases dropped: *upplýsingar* after *þarf* (made from T 583658, 4000851) is accusative, not genitive; *dyrnar* in T 828869 is accusative; *ferð* after *fara í* (T 1323378, 1355189) is accusative; *mánuði* in *í næsta mánuði* (T 734849, 734850) is dative, the only case of that form. | DMII (*mánuði*: ÞGF ET only; *upplýsingar*: NF/ÞF FT, EF is *upplýsinga*); the accusative of motion after *í* (`content/case-rules.json`, *í-hreyfing*) | sourced |
 | The parser reads *í gær* ("yesterday") and *í fyrradag* ("the day before yesterday") as one adverb each; in them *gær* and *fyrradag* are the course words and *í* is known but not taught (`TIME_PHRASES` in `scripts/lib/tags.mjs`). | BÍN (*gær* ao, used only in *í gær*; *fyrradag*, ÞF ET of *fyrradagur*); W gær ("yesterday"), fyrradagur; translations of T 833306, 483021 | sourced |
 | *síðan* in *síðan ég var barn* is the conjunction "since", the class the parser gives it, so the course word is *síðan* st. | W síðan ("[conj] since"); BÍN (*síðan* ao, fs, st); T 669486, 387248 | sourced |
 | *þá* in *Hann elskar þá*, *Við elskum þá* and *Ég held að ég aldrei hafi séð þá fyrr* is "them", the accusative of *þeir*, not the adverb "then"; *heldur* in *Ég vil heldur vera heima* is the adverb "rather", not *halda* (lemma null); *nú* in *Komdu nú sæll* and *Komdu nú sæl* is a particle in a greeting, a loose fix. | DMII (*þá*, ÞF FT of *hann*); BÍN (*heldur* ao); translations of T 675558 ("He loves them"), 643321 ("I'd rather stay home"), 10628605 ("Hello") | sourced |
 | The parser reads a month alone (*janúar*) or with a day (*20. maí*) as a date token (`dagsafs`, `dagsföst`); a month alone is the course noun (`CLASS` in `scripts/lib/tags.mjs`), a date with digits is left open. *Mars* in *ferð til Mars* is the planet, a name (lemma null). | BÍN (the month nouns, kk); translation of T 385892 ("a voyage to Mars") | sourced |
 | *mætt* in *Ég get ekki mætt á fundinn í dag* (made from T 10635142) is the supine of *mæta* after *geta*, as *farið* is of *fara* in the original; *hlé* in *draga sig í hlé* ("retire") is an idiom, a loose fix. | DMII (*mætt*, GM-SAGNB of *mæta*); translations of T 3799408, 3799409 ("Tom retired", "I've retired") | sourced |
+| *nálægt* in *Það er kirkja nálægt húsinu mínu* and *Húsið hennar er nálægt garðinum* is the preposition "near" with the dative; the parser reads it as the neuter of the adjective *nálægur*, the same word (`sameWord` in `scripts/lib/tags.mjs`, as for adverbs like *seint*). In *Er klósett nálægt?* it is the adverb "nearby" (a loose fix), not the verb *nálægja* the parser reads. | W nálægt ("[adv] near"); BÍN (*nálægt* ao, fs; *nálægur* lo); translations of T 791899, 905337, 827645 ("Is there a toilet nearby?") | sourced |
+| *svölunum* is *svalir* ("a balcony", plural only, the DMII Core word); the parser names it by the masculine *svalur*, which BÍN lists with the same plural forms (`PLURAL_ONLY`, as *tónleikar*). | BÍN (*svölunum*: ÞGFFTgr of *svalir* kvk and of *svalur* kk) | sourced |
+| *stigum* in *Liðið okkar er tveimur stigum yfir*, *Liðið okkar er fimm stigum yfir* and *Risarnir töpuðu leiknum með tuttugu stigum* is *stig* ("a point"), not *stigi* ("stairs"), which has the same dative plural (lemma null); *hæð* in *Ég er einn og níutíu á hæð* is "in height", not the floor of a building (a loose fix); *í lyftu* in *Við fórum upp og niður í lyftu* keeps no parser case, since the accusative and the dative have the same form there. | DMII (*stigum*: ÞGFFT of *stig* and *stigi*; *lyftu*: ÞFET, ÞGFET, EFET); translations of T 675384 ("Our team is two points ahead"), 675388, 751176, 495026 ("I'm 1.9 meters tall"), 673256 | sourced |
 
-The parser itself is not checked case by case: `npm run build:tags` lists the 539 words it gives to another word than their spelling suggests.
+The parser itself is not checked case by case: `npm run build:tags` lists the 554 words it gives to another word than their spelling suggests.
 
 ## Unit guidebooks (`content/units/`)
 
@@ -570,6 +573,37 @@ Headings name the units rather than their numbers, because new units are inserte
 | *að* is "that" and the infinitive marker; *sem*, *ef*. | WP (complementizer *að*); W (infinitives *að heita*) | sourced |
 | *líka* the adverb and the verb. | W líka | sourced |
 
+### *Húsnæði*
+
+| Claim | Source | Status |
+|---|---|---|
+| To rent is *leigja* (also to rent out), the rent *leiga*; Norwegian *leie* is both, the verb and the noun, from Old Norse *leiga*. | W leigja ("to rent", "to rent out"), leiga ("rent"); BMO leie (verb and noun, "norr. leiga"); T 664737 ("I want to rent a car") | sourced |
+| *eigandi* is *eiga* + *-andi*, the ending that makes agent nouns; *leigjandi* (a tenant) is *leigja* + *-andi*. | W eigandi ("From eiga + -andi"), leigjandi ("renter, tenant"; "From leigja + -andi"), -andi ("forms agent nouns from verbs") | sourced |
+| A contract is *samningur*; to sign it is *skrifa undir*. | W samningur ("contract, deal"); T 4000912 ("Tom signed the contract"), 743240 | sourced |
+| *laus* is free, available, Norwegian *ledig*. | W laus ("free to go", "available", "vacant"); T 664620 ("I am free this evening"); BMO ledig | sourced |
+| *í* and *á* take the accusative for a movement into or onto a place and the dative for being there; *undir* works the same way, *yfir* takes either case. | W í ("in; to (direction) [with accusative]", "in (location) [with dative]"), undir ("(motion) under [with accusative]", "(location) under [with dative]"), yfir ("[with dative or accusative]"); elon ("í húsið … í húsinu"); T 833338, 706643 (*í garðinn*, *í garðinum*, the originals of 833338-1 and 706643-1) | sourced |
+| It is the same split as *inn* and *inni*, *upp* and *uppi*, and Norwegian *inn* and *inne*. | the *Heima* rows above (elon, adverbs of place; BMO inne "norr. inni", oppe "norr. uppi") | sourced |
+| *hæð* is a floor of a building, a height and a hill; Norwegian *høyde* is a height and a hill. | W hæð ("hill, hillock", "height", "storey, floor"); BMO høyde ("terrengformasjon som hever seg over omgivelsene"; "utstrekning oppover"); T 386817 ("This elevator does not go above the sixth floor") | sourced |
+| The elevator, *lyfta*, is spelled like the verb *lyfta* ("to lift"). | W lyfta (verb "to lift, to raise"; noun "elevator, lift") | sourced |
+| *stigi* is the stairs and a ladder. | W stigi ("stairs, staircase, ladder") | sourced |
+| *kjallari* and Norwegian *kjeller* both come from Latin *cellarium*. | W kjallari ("Ultimately from Late Latin cellārium … Norwegian kjeller"); BMO kjeller ("norr. kellari \| av lat. cellarium") | sourced |
+| *þak* is Norwegian *tak*, from Old Norse *þak*. | W þak ("From Old Norse þak"); BMO tak ("norr. þak") | sourced |
+| *svalir* has only plural forms, like *dyr*. | DMII (*svalir* and *dyr*: FT forms only) | sourced |
+| *flytja* is Norwegian *flytte*. | W flytja ("to move (between homes)"; "From Old Norse flytja"); BMO flytte ("norr. flytja") | sourced |
+| *kassi* is borrowed from Danish *kasse*. | W kassi ("Borrowed from Danish kasse") | sourced |
+| *bera* is Norwegian *bære*, from Old Norse *bera*, and strong: *ber*, *bar*, *borið*. | W bera ("From Old Norse bera"); BMO bære ("norr. bera"); DMII (GM-FH-NT-1P-ET *ber*, GM-FH-ÞT-1P-ET *bar*, GM-SAGNB *borið*) | sourced |
+| Furniture is *húsgögn*, the plural of *húsgagn*, Norwegian *møbler*. | W húsgagn ("furniture"); DMII (*húsgögn*, NFFT of *húsgagn*); T 382469 ("The furniture belongs to my mother") | sourced |
+| *veggur* and *gólf* are Norwegian *vegg* and *gulv*, from Old Norse *veggr* and *golf*. | W veggur ("From Old Norse veggr"), gólf ("From Old Norse golf"); BMO vegg ("norr. veggr"), gulv ("norr. golf") | sourced |
+| *tómur* is Norwegian *tom*. | W tómur ("From Old Norse tómr"); BMO tom (`data/bridge.json`, "norr. tómr") | sourced |
+| *nágranni* is *ná-* ("near") + *granni*, an old word for a neighbor; Norwegian *nabo* is from Danish, compare Old Norse *nábúi* ("one who lives near"). | W nágranni ("From ná- (“close, near”) + granni (“neighbour”)"), granni ("neighbour"); BMO nabo ("fra da. \| jf norr. nábúi ‘en som bor nær’") | sourced |
+| *miðbær* is downtown, *mið* + *bær*. | W miðbær ("downtown, inner city, town centre"; "mið (“middle”) + bær (“town”)") | sourced |
+| *nálægt* takes the dative. | W nálægt ("near"); BÍN (*nálægt* fs); T 791899 ("There is a church near my house"), 905337 | sourced |
+| *auglýsing* is from *auglýsa*, to advertise. | W auglýsing ("From auglýsa + -ing"), auglýsa ("to advertise") | sourced |
+| *pláss* is Norwegian *plass*, from Old Norse *plaz*. | W pláss ("room, space"; "From Old Norse plaz"); BMO plass ("norr. plaz") | sourced |
+| A square meter is *fermetri*. | W fermetri ("square metre") | sourced |
+| *Húsnæði* leaves out *fermetri* (no sentence; taught in the guidebook) and *leigjandi* (no sentence). | T | checked |
+| Elias's greeting, *Hann hjálpaði mér að flytja*, is "He helped me move". | T 1322924 | attested |
+
 ### *Nýyrði* (bonus)
 
 | Claim | Source | Status |
@@ -868,10 +902,62 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | 4000851-3 | *Hann þarf hlé.* | T 4000851 | *hjálp* → *hlé* | He needs a break. |
 | 795543-1 | *Hann þarf ekki að mæta á fundinn.* | T 795543 | *Peter* → *Hann* | He doesn't need to attend the meeting. |
 | 10635142-1 | *Ég get ekki mætt á fundinn í dag.* | T 10635142 | *farið* → *mætt* | I can't make it to the meeting today. |
+| 479468-1 | *Ég týndi samningnum mínum.* | T 479468 | *lyklinum* → *samningnum* | I lost my contract. |
+| 479465-1 | *Hér er samningurinn minn.* | T 479465 | *lykillinn* → *samningurinn* | Here is my contract. |
+| 624010-2 | *Gæti ég vinsamlegast fengið samninginn?* | T 624010 | *reikninginn* → *samninginn* | May I have the contract, please? |
+| 736112-1 | *Kallaðu strax á eigandann.* | T 736112 | *lækninn* → *eigandann* | Call the owner right away. |
+| 666974-2 | *Hann er sagður vera góður eigandi.* | T 666974 | *læknir* → *eigandi* | He's said to be a good owner. |
+| 504913-2 | *Í dag fór ég til eigandans.* | T 504913 | *læknisins* → *eigandans* | Today I went to the owner's. |
+| 478959-1 | *Ég vil ekki fara í kjallarann.* | T 478959 | *skólann* → *kjallarann* | I don't want to go into the basement. |
+| 385146-1 | *Vinsamlegast setjið stólana við vegginn.* | T 385146 | *gluggann* → *vegginn* | Please set the chairs by the wall. |
+| 469047-3 | *Litli veggurinn er skítugur.* | T 469047 | *ísskápurinn* → *veggurinn* | The little wall is dirty. |
+| 386105-2 | *Hún hitti nágranna sinn í búðinni.* | T 386105 | *frænda* → *nágranna* | She met her neighbor at the store. |
+| 465359-1 | *Hann er nágranni hennar.* | T 465359 | *vinur* → *nágranni* | He's her neighbor. |
+| 384623-1 | *Hann fékk bíl nágranna síns lánaðan í nokkra daga.* | T 384623 | *vinar* → *nágranna* | He borrowed his neighbor's car for a few days. |
+| 3799246-1 | *Ég ætla í miðbæinn.* | T 3799246 | *bæinn* → *miðbæinn* | I'm going downtown. |
+| 727408-1 | *Það eru mörg hótel niðri í miðbæ.* | T 727408 | *bæ* → *miðbæ* | There are many hotels downtown. |
+| 389203-1 | *Ég leit á hann sem besta lækninn í miðbænum.* | T 389203 | *bænum* → *miðbænum* | I regarded him as the best doctor downtown. |
+| 383188-2 | *Það er gestur kominn til að hitta þig.* | T 383188 | *maður* → *gestur* | There is a guest here to see you. |
+| 673259-1 | *Við fengum stóran kassa.* | T 673259 | *pakka* → *kassa* | We got a big box. |
+| 883984-1 | *Ég þarf kassa til að bera það í.* | T 883984 | *poka* → *kassa* | I need a box to carry it in. |
+| 908949-1 | *Hún stóð upp og gekk að stiganum.* | T 908949 | *glugganum* → *stiganum* | She stood up and walked to the stairs. |
+| 624014-1 | *Það verður að borga leiguna í dag.* | T 624014 | *reikninginn* → *leiguna* | The rent must be paid today. |
+| 624013-1 | *Leigan verður að greiðast í dag.* | T 624013 | *Reikningurinn* → *Leigan* | The rent has to be paid today. |
+| 624016-1 | *Ég sé um leiguna.* | T 624016 | *reikninginn* → *leiguna* | I'll take care of the rent. |
+| 751296-1 | *Ég sá auglýsinguna fyrir löngu.* | T 751296 | *myndina* → *auglýsinguna* | I saw the advertisement long ago. |
+| 12360408-1 | *Hún las auglýsinguna.* | T 12360408 | *bókina* → *auglýsinguna* | She read the advertisement. |
+| 465330-1 | *Mér líkar engin þessara auglýsinga.* | T 465330 | *mynda* → *auglýsinga* | I don't like any of these advertisements. |
+| 657272-2 | *Kötturinn sefur á svölunum.* | T 657272 | *sófanum* → *svölunum* | The cat sleeps on the balcony. |
+| 865353-1 | *Hann sat á svölunum.* | T 865353 | *rúminu* → *svölunum* | He sat on the balcony. |
+| 860057-1 | *Það voru of margir á svölunum.* | T 860057 | *tónleikunum* → *svölunum* | There were too many people on the balcony. |
+| 865353-2 | *Hann sat á gólfinu.* | T 865353 | *rúminu* → *gólfinu* | He sat on the floor. |
+| 2345950-1 | *Bókin liggur á gólfinu.* | T 2345950 | *borðinu* → *gólfinu* | The book is on the floor. |
+| 468938-1 | *Það eru nokkrar bækur á gólfinu.* | T 468938 | *borðinu* → *gólfinu* | There are some books on the floor. |
+| 754485-1 | *Kötturinn svaf á þakinu.* | T 754485 | *borðinu* → *þakinu* | The cat slept on the roof. |
+| 475707-1 | *Það situr köttur á þakinu.* | T 475707 | *stólnum* → *þakinu* | There is a cat sitting on the roof. |
+| 11792674-1 | *Við elskum hverfið okkar.* | T 11792674 | *landið* → *hverfið* | We love our neighborhood. |
+| 390407-1 | *Þetta hverfi er ekki mjög stórt.* | T 390407 | *hús* → *hverfi* | This neighborhood is not very large. |
+| 468923-3 | *Það er ekki til meira pláss.* | T 468923 | *salt* → *pláss* | There's no more space. |
+| 391475-1 | *Hann hafði ekkert pláss.* | T 391475 | *svar* → *pláss* | He had no space. |
+| 653128-1 | *Hún keypti húsgögn í gær.* | T 653128 | *grænmeti* → *húsgögn* | She bought furniture yesterday. |
+| 652996-1 | *Ég þarf að kaupa nokkur húsgögn.* | T 652996 | *frímerki* → *húsgögn* | I need to buy a few pieces of furniture. |
+| 388938-1 | *Hann er búinn að leigja nýjan bíl.* | T 388938 | *kaupa* → *leigja* | He has rented a new car. |
+| 888066-1 | *Hún leigði honum bílinn sinn.* | T 888066 | *seldi* → *leigði* | She rented him her car. |
+| 469047-4 | *Litli ísskápurinn er tómur.* | T 469047 | *skítugur* → *tómur* | The little fridge is empty. |
+| 11514512-2 | *Báturinn var tómur.* | T 11514512 | *hreinn* → *tómur* | The boat was empty. |
+| 390407-2 | *Þetta hús er ekki mjög bjart.* | T 390407 | *stórt* → *bjart* | This house is not very bright. |
+| 385151-1 | *Það er mjög bjart í dag.* | T 385151 | *kalt* → *bjart* | It is very bright today. |
+| 1320713-3 | *Herbergið er bjart.* | T 1320713 | *heitt* → *bjart* | The room is bright. |
+| 386817-1 | *Þessi lyfta fer ekki ofar en fimmta hæð.* | T 386817 | *sjötta* → *fimmta* | This elevator does not go above the fifth floor. |
+| 791899-1 | *Það er sundlaug nálægt húsinu mínu.* | T 791899 | *kirkja* → *sundlaug* | There is a swimming pool near my house. |
+| 833338-1 | *Ég fór í kjallarann í gær.* | T 833338 | *garðinn* → *kjallarann* | I went into the basement yesterday. |
+| 706643-1 | *Ég lék mér áður fyrr með systur minni í kjallaranum.* | T 706643 | *garðinum* → *kjallaranum* | I used to play with my sister in the basement. |
+| 511382-1 | *Má ég fá stigann þinn lánaðan í dag?* | T 511382 | *bílinn* → *stigann* | Can I borrow your ladder today? |
+| 384623-2 | *Hann fékk stiga vinar síns lánaðan í nokkra daga.* | T 384623 | *bíl* → *stiga* | He borrowed his friend's ladder for a few days. |
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 36 of the 3,636 sentences. The other 3,564 (all but 36 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 265 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 35 of the 3,749 sentences. The other 3,677 (all but 37 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 317 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -884,7 +970,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 537 of the 652 course words. The other 115 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 102 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 558 of the 680 course words. The other 122 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 108 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -911,6 +997,7 @@ Wiktionary gives a Bokmål gloss for 537 of the 652 course words. The other 115 
 | maí | mai | W "May"; BMO mai ("årets femte måned"); Wiktionary gave no Bokmål gloss for *maí*; the other months have one |
 | hlé, mæta | pause; møte opp, møte | W "break, rest", "to turn up, to show up"; BMO pause ("ta seg en pause"), møte ("komme til et møte til avtalt tid og sted"); *møte opp* is a phrase in the file |
 | gær, frétt, eyða, áfram, missa, ná | i går; nyhet; bruke, ødelegge; videre, fremover; miste; nå, rekke | W "yesterday", "news", "to spend, waste", "forward, forth, on", "to lose", "to reach"; BMO nyhet, bruke, ødelegge, videre, fremover, miste, nå, rekke; *i går* is a phrase in the file |
+| leigja, hæð, pakka, nágranni, hverfi, nálægt, pláss | leie; etasje, høyde; pakke; nabo; nabolag, bydel; nær; plass | W "to rent", "storey, floor", "height", "to pack", "neighbour", "neighbourhood", "near", "room, space"; BMO leie, etasje, høyde, pakke, nabo, nabolag, bydel, nær, plass |
 
 ### Wiktionary glosses corrected (`"fixes"`)
 
@@ -981,12 +1068,14 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | deyja, breyta, nýlega, skyndilega, þá | dø (second: dævve); gjøre om; nylig (second: i det siste); plutselig (second: med ett); da (second: den gang) | dø; endre, forandre; nylig, nettopp; plutselig; da, så | *dævve* is dialect; *gjøre om*, *i det siste*, *med ett* and *den gang* are several words, not listed as phrases |
 | vakt, fyrirtæki | skift; selskap | vakt, skift; firma, bedrift, selskap | "shift, watch": Norwegian says *vakt* too (BMO vakt: "tidsrom da det holdes vakt", "jeg går på vakt klokka åtte"); "company, firm": *firma* and *bedrift* are the everyday words (BMO firma, bedrift) |
 | halda | holde | holde, tro, mene | "to hold", second "to think (have an opinion)": *Ég held það*, *Jeg tror det* |
+| laus, stigi, samningur | tilgjengelig; trapp; kontrakt (second: traktat, overenskomst) | ledig, tilgjengelig; trapp, stige; kontrakt, avtale | "available", "vacant": *ledig* is the word for a free room, seat or person; "stairs, staircase, ladder"; *traktat* is a treaty between states |
+| veggur, miðbær, bjartur | vegg (second: voll); bykjerne; lys (second: knall-, livlig) | vegg; sentrum, bykjerne; lys, klar | *voll* is a rampart, not a wall of a house; "downtown": *sentrum* is the usual word; *knall-* is a prefix, not a word |
 
 Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *dós* kanne (BMO: a jug), *pylsa* kurv and korv (BMO's other word for a sausage, but *kurv* is mostly a basket), *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 603 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 625 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|
@@ -1108,5 +1197,5 @@ The four Piper voices sometimes mispronounce: *Ísland* comes out as [ˈisland],
 
 ## Norwegian bridge (`data/bridge.json`, `js/bridge-rules.js`)
 
-237 pairs are sourced (Bokmålsordboka and Wiktionary name the same Old Norse word), 8 are shared loans (Wiktionary names the source language). 21 pairs only look alike with the same meaning and are labeled in the app as "a shared origin is not confirmed". The spelling patterns describe spelling, not historical sound laws.
+287 pairs are sourced (Bokmålsordboka and Wiktionary name the same Old Norse word), 14 are shared loans (Wiktionary names the source language). 40 pairs only look alike with the same meaning and are labeled in the app as "a shared origin is not confirmed". The spelling patterns describe spelling, not historical sound laws.
 

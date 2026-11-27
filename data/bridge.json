@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-27T04:26:34.437Z",
+ "generated": "2026-11-27T09:07:26.194Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -18,9 +18,9 @@
   }
  ],
  "counts": {
-  "loan": 13,
-  "old-norse": 279,
-  "form": 38
+  "loan": 14,
+  "old-norse": 287,
+  "form": 40
  },
  "pairs": {
   "halló_uh": {
@@ -2471,6 +2471,98 @@
    "evidence": "form",
    "rules": [
     "ending-a"
+   ]
+  },
+  "laus_lo": {
+   "nb": "løs",
+   "article": 34516,
+   "oldNorse": "lauss",
+   "evidence": "old-norse",
+   "rules": [
+    "au"
+   ]
+  },
+  "stigi_no": {
+   "nb": "stige",
+   "evidence": "form",
+   "rules": [
+    "ending-i"
+   ]
+  },
+  "þak_no": {
+   "nb": "tak",
+   "article": 59568,
+   "oldNorse": "þak",
+   "evidence": "old-norse",
+   "rules": [
+    "thorn"
+   ]
+  },
+  "kassi_no": {
+   "nb": "kasse",
+   "evidence": "loan",
+   "loan": {
+    "language": "Danish",
+    "word": "kasse"
+   },
+   "rules": [
+    "ending-i"
+   ]
+  },
+  "pakka_so": {
+   "nb": "pakke",
+   "evidence": "form",
+   "rules": [
+    "ending-a"
+   ]
+  },
+  "bera_so": {
+   "nb": "bære",
+   "article": 8439,
+   "oldNorse": "bera",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "tómur_lo": {
+   "nb": "tom",
+   "article": 61416,
+   "oldNorse": "tómr",
+   "evidence": "old-norse",
+   "rules": [
+    "o-acute",
+    "ending-ur"
+   ]
+  },
+  "veggur_no": {
+   "nb": "vegg",
+   "article": 67134,
+   "oldNorse": "veggr",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-ur"
+   ]
+  },
+  "gólf_no": {
+   "nb": "gulv",
+   "article": 20517,
+   "oldNorse": "golf",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "gestur_no": {
+   "nb": "gjest",
+   "article": 19949,
+   "oldNorse": "gestr",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "pláss_no": {
+   "nb": "plass",
+   "article": 45167,
+   "oldNorse": "plaz",
+   "evidence": "old-norse",
+   "rules": [
+    "a-acute-a"
    ]
   },
   "hafa_so": {

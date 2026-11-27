@@ -117,7 +117,14 @@
     "ná_so": ["nå", "rekke"],
     "maí_no": ["mai"],
     "hlé_no": ["pause"],
-    "mæta_so": ["møte opp", "møte"]
+    "mæta_so": ["møte opp", "møte"],
+    "leigja_so": ["leie"],
+    "hæð_no": ["etasje", "høyde"],
+    "pakka_so": ["pakke"],
+    "nágranni_no": ["nabo"],
+    "hverfi_no": ["nabolag", "bydel"],
+    "nálægt_fs": ["nær"],
+    "pláss_no": ["plass"]
   },
   "fixes": {
     "barn_no": { "nb": ["barn"], "wiktionary": ["barn", "barn n mindreårig"] },
@@ -221,6 +228,12 @@
     "þá_ao": { "nb": ["da", "så"], "wiktionary": ["da", "den gang"] },
     "halda_so": { "nb": ["holde", "tro", "mene"], "wiktionary": ["holde"] },
     "vakt_no": { "nb": ["vakt", "skift"], "wiktionary": ["skift"] },
-    "fyrirtæki_no": { "nb": ["firma", "bedrift", "selskap"], "wiktionary": ["selskap"] }
+    "fyrirtæki_no": { "nb": ["firma", "bedrift", "selskap"], "wiktionary": ["selskap"] },
+    "laus_lo": { "nb": ["ledig", "tilgjengelig"], "wiktionary": ["tilgjengelig"] },
+    "stigi_no": { "nb": ["trapp", "stige"], "wiktionary": ["trapp"] },
+    "samningur_no": { "nb": ["kontrakt", "avtale"], "wiktionary": ["kontrakt", "traktat", "overenskomst"] },
+    "veggur_no": { "nb": ["vegg"], "wiktionary": ["vegg", "voll"] },
+    "miðbær_no": { "nb": ["sentrum", "bykjerne"], "wiktionary": ["bykjerne"] },
+    "bjartur_lo": { "nb": ["lys", "klar"], "wiktionary": ["lys", "knall-", "livlig"] }
   }
 }

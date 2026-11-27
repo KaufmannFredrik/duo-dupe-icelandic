@@ -1,0 +1,199 @@
+{
+  "id": "housing",
+  "theme": "housing",
+  "reviewed": true,
+  "title": {
+    "en": "Housing",
+    "nb": "Bolig"
+  },
+  "is": "Húsnæði",
+  "goal": {
+    "en": "Rent an apartment, move in, and get to know the building, the neighborhood and the neighbors.",
+    "nb": "Lei en leilighet, flytt inn, og bli kjent med huset, nabolaget og naboene."
+  },
+  "host": {
+    "character": "elias",
+    "says": "1322924"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Renting",
+        "nb": "Å leie"
+      },
+      "focus": [
+        "leigja_so",
+        "leiga_no",
+        "eigandi_no",
+        "samningur_no",
+        "laus_lo"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "The building",
+        "nb": "Bygningen"
+      },
+      "focus": [
+        "hæð_no",
+        "lyfta_no",
+        "stigi_no",
+        "kjallari_no",
+        "svalir_no",
+        "þak_no"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "Moving in",
+        "nb": "Å flytte inn"
+      },
+      "focus": [
+        "kassi_no",
+        "pakka_so",
+        "bera_so",
+        "tómur_lo",
+        "húsgagn_no",
+        "veggur_no",
+        "gólf_no"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "Neighbors",
+        "nb": "Naboer"
+      },
+      "focus": [
+        "nágranni_no",
+        "hávaði_no",
+        "hverfi_no",
+        "miðbær_no",
+        "nálægt_fs",
+        "gestur_no"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "Ads",
+        "nb": "Annonser"
+      },
+      "focus": [
+        "auglýsing_no",
+        "bjartur_lo",
+        "dimmur_lo",
+        "pláss_no"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "Renting: leigja, leiga, laus",
+          "nb": "Å leie: leigja, leiga, laus"
+        },
+        "text": {
+          "en": "To rent is {is:leigja} and the rent is {is:leiga}; Norwegian has leie for both, and both come from Old Norse leiga: {is:Mig langar að leigja bíl}, {is:Það verður að borga leiguna í dag}. {is:leigja} also means to rent out: {is:Hún leigði honum bílinn sinn} (she rented him her car). The owner is {is:eigandi}, from {is:eiga} and the ending -andi, which makes a noun for the one who does something: the tenant is {is:leigjandi}, from {is:leigja}. A contract is {is:samningur}, and to sign it is {is:skrifa undir}: {is:Tom skrifaði undir samninginn}. Free or available is {is:laus}, Norwegian ledig: {is:Ég er laus í kvöld}.",
+          "nb": "Å leie er {is:leigja}, og leien er {is:leiga}; norsk har leie for begge, og begge kommer fra norrønt leiga: {is:Mig langar að leigja bíl}, {is:Það verður að borga leiguna í dag}. {is:leigja} betyr også å leie ut: {is:Hún leigði honum bílinn sinn} (hun leide ut bilen sin til ham). Eieren er {is:eigandi}, av {is:eiga} og endelsen -andi, som lager et substantiv for den som gjør noe: leietakeren er {is:leigjandi}, av {is:leigja}. En kontrakt er {is:samningur}, og å skrive under er {is:skrifa undir}: {is:Tom skrifaði undir samninginn}. Ledig er {is:laus}: {is:Ég er laus í kvöld}."
+        },
+        "examples": [
+          "664737",
+          "624014-1",
+          "888066-1",
+          "466042",
+          "4000912",
+          "664620"
+        ]
+      },
+      {
+        "title": {
+          "en": "Into or in: í and á with two cases",
+          "nb": "Inn i eller i: í og á med to kasus"
+        },
+        "text": {
+          "en": "{is:í} and {is:á} take the accusative for a movement into or onto a place and the dative for being there: {is:Ég fór í kjallarann í gær} (I went into the basement yesterday), but {is:Ég lék mér áður fyrr með systur minni í kjallaranum} (I used to play in the basement). In the same way {is:Ég ætla í miðbæinn} (I am going downtown), but {is:Það eru mörg hótel niðri í miðbæ}, and {is:Kötturinn svaf á þakinu} (the cat slept on the roof). {is:undir} works the same way, and {is:yfir} takes either case. It is the same split as {is:inn} and {is:inni}, {is:upp} and {is:uppi} in the unit Heima, and as Norwegian inn and inne: the -i form is for being somewhere, and so is the dative.",
+          "nb": "{is:í} og {is:á} tar akkusativ for en bevegelse inn i eller opp på et sted, og dativ for å være der: {is:Ég fór í kjallarann í gær} (jeg gikk ned i kjelleren i går), men {is:Ég lék mér áður fyrr með systur minni í kjallaranum} (før lekte jeg i kjelleren). På samme måte {is:Ég ætla í miðbæinn} (jeg skal til sentrum), men {is:Það eru mörg hótel niðri í miðbæ}, og {is:Kötturinn svaf á þakinu} (katten sov på taket). {is:undir} virker på samme måte, og {is:yfir} kan ta begge kasus. Det er det samme skillet som {is:inn} og {is:inni}, {is:upp} og {is:uppi} i enheten Heima, og som norsk inn og inne: formen på -i er for å være et sted, og det er dativ også."
+        },
+        "examples": [
+          "833338-1",
+          "706643-1",
+          "3799246-1",
+          "727408-1",
+          "754485-1",
+          "478959-1"
+        ]
+      },
+      {
+        "title": {
+          "en": "The building: hæð, lyfta, stigi, svalir",
+          "nb": "Huset: hæð, lyfta, stigi, svalir"
+        },
+        "text": {
+          "en": "A floor of a building is {is:hæð}, which is also a height and a hill, like Norwegian høyde: {is:Þessi lyfta fer ekki ofar en sjötta hæð}. The elevator is {is:lyfta}, spelled like the verb {is:lyfta}, to lift: {is:Tökum lyftuna}, {is:Í húsinu okkar er engin lyfta}. {is:stigi} is the stairs, and a ladder too: {is:Má ég fá stigann þinn lánaðan í dag?} The basement is {is:kjallari}, Norwegian kjeller, both from Latin cellarium, and the roof {is:þak}, Norwegian tak, from Old Norse þak. A balcony is {is:svalir}, a word with only plural forms, like {is:dyr}: {is:Kötturinn sefur á svölunum}.",
+          "nb": "En etasje er {is:hæð}, som også er en høyde og en bakke, som norsk høyde: {is:Þessi lyfta fer ekki ofar en sjötta hæð}. Heisen er {is:lyfta}, skrevet som verbet {is:lyfta}, å løfte: {is:Tökum lyftuna}, {is:Í húsinu okkar er engin lyfta}. {is:stigi} er trappen, og en stige også: {is:Má ég fá stigann þinn lánaðan í dag?} Kjelleren er {is:kjallari}, norsk kjeller, begge fra latin cellarium, og taket er {is:þak}, norsk tak, fra norrønt þak. En balkong er {is:svalir}, et ord med bare flertallsformer, som {is:dyr}: {is:Kötturinn sefur á svölunum}."
+        },
+        "examples": [
+          "386817",
+          "4171431",
+          "690302",
+          "511382-1",
+          "478959-1",
+          "502879",
+          "657272-2"
+        ]
+      },
+      {
+        "title": {
+          "en": "Moving in: flytja, kassi, bera, húsgögn",
+          "nb": "Å flytte inn: flytja, kassi, bera, húsgögn"
+        },
+        "text": {
+          "en": "To move is {is:flytja}, Norwegian flytte: {is:Hann hjálpaði mér að flytja}. You pack, {is:pakka}, into boxes, {is:kassi}, a word borrowed from Danish kasse, and you carry, {is:bera}, Norwegian bære, from Old Norse bera: {is:Ég þarf kassa til að bera það í}. {is:bera} is a strong verb: {is:ber}, {is:bar}, {is:borið}. Furniture is {is:húsgögn}, the plural of {is:húsgagn}, a piece of furniture, as Norwegian møbler: {is:Hún keypti húsgögn í gær}. The wall is {is:veggur} and the floor {is:gólf}, Norwegian vegg and gulv, from Old Norse veggr and golf: {is:Bókin liggur á gólfinu}. Empty is {is:tómur}, Norwegian tom: {is:Kassinn var tómur}.",
+          "nb": "Å flytte er {is:flytja}: {is:Hann hjálpaði mér að flytja}. Man pakker, {is:pakka}, i esker, {is:kassi}, et ord lånt fra dansk kasse, og man bærer, {is:bera}, norsk bære, fra norrønt bera: {is:Ég þarf kassa til að bera það í}. {is:bera} er et sterkt verb: {is:ber}, {is:bar}, {is:borið}. Møbler er {is:húsgögn}, flertall av {is:húsgagn}, et møbel: {is:Hún keypti húsgögn í gær}. Veggen er {is:veggur} og gulvet {is:gólf}, norsk vegg og gulv, fra norrønt veggr og golf: {is:Bókin liggur á gólfinu}. Tom er {is:tómur}: {is:Kassinn var tómur}."
+        },
+        "examples": [
+          "1322924",
+          "3799283",
+          "883984-1",
+          "653128-1",
+          "385146-1",
+          "2345950-1",
+          "3795628"
+        ]
+      },
+      {
+        "title": {
+          "en": "Neighbors and ads: nágranni, hverfi, auglýsing",
+          "nb": "Naboer og annonser: nágranni, hverfi, auglýsing"
+        },
+        "text": {
+          "en": "A neighbor is {is:nágranni}, from {is:ná-}, near, and {is:granni}, the old word for a neighbor; Norwegian nabo is from Danish, compare Old Norse nábúi, one who lives near: {is:Hann er nágranni hennar}, {is:Hingað til hafa þau verið góðir nágrannar}. The neighborhood is {is:hverfi}, and downtown is {is:miðbær}, the middle of the town: {is:Við elskum hverfið okkar}. Near is {is:nálægt}, with the dative: {is:Það er kirkja nálægt húsinu mínu}. Noise is {is:hávaði}: {is:Við getum ekki sofið út af hávaðanum}. An ad is {is:auglýsing}, from {is:auglýsa}, to advertise: bright is {is:bjartur}, dark {is:dimmur}, and space {is:pláss}, Norwegian plass: {is:Þetta hús er ekki mjög bjart}, {is:Það er nóg pláss fyrir okkur öll}. A square meter is {is:fermetri}.",
+          "nb": "En nabo er {is:nágranni}, av {is:ná-}, nær, og {is:granni}, det gamle ordet for nabo; norsk nabo er fra dansk, jamfør norrønt nábúi, en som bor nær: {is:Hann er nágranni hennar}, {is:Hingað til hafa þau verið góðir nágrannar}. Nabolaget er {is:hverfi}, og sentrum er {is:miðbær}, midten av byen: {is:Við elskum hverfið okkar}. Nær er {is:nálægt}, med dativ: {is:Það er kirkja nálægt húsinu mínu}. Støy er {is:hávaði}: {is:Við getum ekki sofið út af hávaðanum}. En annonse er {is:auglýsing}, av {is:auglýsa}, å annonsere: lys er {is:bjartur}, mørk {is:dimmur}, og plass {is:pláss}: {is:Þetta hús er ekki mjög bjart}, {is:Það er nóg pláss fyrir okkur öll}. En kvadratmeter er {is:fermetri}."
+        },
+        "examples": [
+          "465359-1",
+          "486952",
+          "11792674-1",
+          "791899",
+          "4000883",
+          "751296-1",
+          "390407-2",
+          "11482812"
+        ]
+      }
+    ]
+  }
+}

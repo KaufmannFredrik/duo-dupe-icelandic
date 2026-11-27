@@ -85,7 +85,7 @@
       "is": "Nemandi getur skilið og beitt almennum orðaforða tengdum húsnæði.",
       "en": "Understand and use everyday words about housing.",
       "nb": "Forstå og bruke vanlige ord om bolig.",
-      "units": []
+      "units": ["housing"]
     },
     {
       "id": "emergency",

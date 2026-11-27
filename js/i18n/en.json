@@ -135,7 +135,7 @@
   "learn.unitInline": "unit {n}",
   "learn.bonusUnitInline": "the bonus unit",
   "learn.section": "Section {n}: {title}",
-  "learn.sectionProgress": "{done} of {total} units finished",
+  "learn.sectionProgress": "Units finished: {done} of {total}",
   "learn.start": "Start",
   "learn.guidebook": "Guidebook",
   "learn.guideSoon": "Guidebooks with the grammar for each unit arrive in Phase 3.",

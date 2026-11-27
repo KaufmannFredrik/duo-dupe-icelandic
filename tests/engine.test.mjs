@@ -13,6 +13,7 @@ const lessonsOf = (unitId) => d.course.units.find((u) => u.id === unitId).lesson
 
 // A verb-form exercise: the verb is in the sentence in a finite form of the tag, the options are
 // forms of the same tense with the answer once, and the person agrees with a subject pronoun.
+// A pronoun the parser reads in another case than the nominative is an object (þau in Hávaðinn vakti þau).
 const PRONOUN = { 'ég_pfn': 1, 'þú_pfn': 2, 'hann_pfn': 3, 'hún_pfn': 3, 'það_pfn': 3 };
 function checkVerbForm(s) {
   const text = d.sentences[s.sentence].is;
@@ -28,8 +29,9 @@ function checkVerbForm(s) {
   for (const o of options) assert.ok(analysesIn(bm, o).some((a) => a.parsed.mood === 'FH' && a.parsed.tense === p.tense), `option "${o}" is a ${p.tense} form`);
   const toks = tokens(text);
   const tags = d.tagsOf(s.sentence);
+  const cases = d.casesOf(s.sentence);
   const subjects = toks
-    .map((t, i) => (typeof tags?.[i] === 'string' && PRONOUN[tags[i]] ? analysesIn(d.paradigm(tags[i]), t.raw).filter((a) => a.parsed.case === 'NF').map((a) => [PRONOUN[tags[i]], a.parsed.number]) : []))
+    .map((t, i) => (typeof tags?.[i] === 'string' && PRONOUN[tags[i]] && (cases?.[i] ?? 'NF') === 'NF' ? analysesIn(d.paradigm(tags[i]), t.raw).filter((a) => a.parsed.case === 'NF').map((a) => [PRONOUN[tags[i]], a.parsed.number]) : []))
     .flat();
   if (subjects.length && analysesIn(bm, s.target).filter((a) => a.parsed.mood === 'FH').length > 1) {
     assert.ok(subjects.some(([person, number]) => person === p.person && number === p.number), `"${text}": ${s.target} as ${s.tag} does not agree with its subject`);
@@ -63,8 +65,8 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key), practiced: Boolean(lesson.review) }) };
 }
 
-test('course: twenty-one units in order, all hand-made, the A1 check twentieth', () => {
-  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'a1check', 'newwords']);
+test('course: twenty-two units in order, all hand-made, the A1 check twentieth', () => {
+  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'a1check', 'housing', 'newwords']);
   for (const u of d.course.units) assert.equal(u.auto, false, `${u.id} has hand-made lessons`);
   for (const u of d.course.units.filter((x) => !x.check)) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
   const check = d.course.units.find((u) => u.check);
@@ -158,7 +160,9 @@ test('generator: homographs are told apart by the sentence tags', () => {
     ['Hann braut lög.', 'lag_no', 'brjóta_so'], // lög = law, a word of its own: a fix with lemma null
     ['Ég er fær um að synda.', 'fá_so', 'synda_so'], // fær = able, not fá: a fix with lemma null
     ['Skilið.', 'skila_so', 'skilja_so'], // skilið = understood, the supine of skilja; content/tag-fixes.json
-    ['Ég ætti að fara að pakka.', 'pakki_no', 'fara_so'], // pakka = to pack, a verb: a fix with lemma null
+    ['Ég ætti að fara að pakka.', 'pakki_no', 'pakka_so'], // pakka = to pack, the verb of Húsnæði; content/tag-fixes.json
+    ['Liðið okkar er fimm stigum yfir.', 'stigi_no', 'lið_no'], // stigum = points, of stig: a fix with lemma null
+    ['Hann sat á svölunum.', 'svalur_lo', 'svalir_no'], // the parser's masculine svalur has the plural forms of svalir
     ['Hann elskar þá.', 'þá_ao', 'hann_pfn'], // þá = them, not then; content/tag-fixes.json
     ['Ég vil heldur vera heima en fara út.', 'halda_so', 'vilja_so'], // heldur = rather: a fix with lemma null
     ['Komdu nú sæl.', 'nú_ao', 'koma_so'], // nú in a greeting: a loose fix
@@ -236,6 +240,17 @@ test('data: Í gær: a time phrase the parser reads as one adverb teaches its ow
   assert.equal(d.generator.hasLemma(sid('Ég var veikur í gær.'), 'í_fs'), false);
   assert.equal(d.generator.hasLemma(sid('Hún fór til Ameríku í fyrradag.'), 'fyrradagur_no'), true);
   assert.equal(d.generator.hasLemma(sid('Ég hef búið hér síðan ég var barn.'), 'síðan_st'), true);
+});
+
+test('data: Húsnæði: nálægt is the preposition, and á hæð (in height) does not teach hæð', () => {
+  // scripts/lib/tags.mjs reads the parser's nálægt (the neuter of nálægur) as the preposition nálægt.
+  const sid = (text) => Object.keys(d.sentences).find((k) => d.sentences[k].is === text);
+  assert.equal(d.generator.hasLemma(sid('Það er kirkja nálægt húsinu mínu.'), 'nálægt_fs'), true);
+  assert.equal(d.generator.hasLemma(sid('Húsið hennar er nálægt garðinum.'), 'nálægt_fs'), true);
+  assert.equal(d.generator.hasLemma(sid('Ég er einn og níutíu á hæð.'), 'hæð_no'), false, 'á hæð is a loose fix');
+  assert.equal(d.generator.hasLemma(sid('Þessi lyfta fer ekki ofar en sjötta hæð.'), 'hæð_no'), true);
+  assert.equal(d.generator.hasLemma(sid('Við fórum upp og niður í lyftu.'), 'lyfta_no'), true);
+  assert.equal(d.casesOf(sid('Við fórum upp og niður í lyftu.'))?.[6] ?? null, null, 'í lyftu keeps no parser case');
 });
 
 test('data: Nám og vinna: mætt after geta is mæta, and a job word teaches itself', () => {
@@ -328,7 +343,7 @@ test('generator: a sentence built from word chips has no digits, in the lessons 
   }
 });
 
-for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'newwords']) {
+for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'housing', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);
@@ -496,7 +511,8 @@ test('course: words learned per section, and goals practiced when their units ar
   assert.equal(goalState(self, d.course, { ...p, units: { hello: '2026-11-24' } }), 'open');
   assert.equal(goalState(self, d.course, { ...p, units: { hello: '2026-11-24', aboutme: '2026-11-24' } }), 'practiced');
   assert.equal(goalState(goals.goals.find((g) => g.id === 'health'), d.course, p), 'open'); // trained by Líkaminn
-  assert.equal(goalState(goals.goals.find((g) => g.id === 'housing'), d.course, p), 'coming');
+  assert.equal(goalState(goals.goals.find((g) => g.id === 'housing'), d.course, p), 'open'); // trained by Húsnæði
+  assert.equal(goalState(goals.goals.find((g) => g.id === 'emergency'), d.course, p), 'coming');
   assert.equal(goals.goals.filter((g) => g.section === 'a1').length, 8);
   assert.equal(goals.goals.filter((g) => g.section === 'a2').length, 8);
 });

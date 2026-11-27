@@ -65,10 +65,11 @@ test('check: it is the next lesson after unit 19, and a unit finished before it 
   // A learner who finished the bonus before the check was added keeps it.
   const recorded = { ...p, units: { newwords: 1 } };
   assert.notEqual(lessonStates(d.course, recorded).get('newwords/1'), 'locked');
-  // Passing the check finishes the unit and opens what comes after.
+  // Passing the check finishes the unit and opens section A2; the bonus comes after it.
   const passed = { ...p, lessons: { ...done, 'a1check/check': { done: true } } };
   assert.ok(unitDone(check, passed));
-  assert.equal(lessonStates(d.course, passed).get('newwords/1'), 'current');
+  assert.equal(lessonStates(d.course, passed).get('housing/1'), 'current');
+  assert.equal(lessonStates(d.course, passed).get('newwords/1'), 'locked');
 });
 
 test('check: the placement test has no step for the check', () => {

@@ -40,7 +40,8 @@ export function align(appWords, parserTokens) {
  * match, a few differences are conventions, not different words:
  *  - the parser's lemma is itself a DMII Core form of the word (þér for þú, hvað for hver),
  *  - a past participle used as an adjective (farinn, lokaður) belongs to its verb,
- *  - an adverb that is the neuter of an adjective (seint, beint),
+ *  - an adverb or a preposition that is the neuter of an adjective (seint, beint; nálægt, "near",
+ *    which the parser reads as the neuter of nálægur even before a dative: nálægt húsinu),
  *  - interjections in any class (já, bless), compass directions and sides as nouns (norður, vinstri),
  *  - ordinals, which BÍN classes on their own (rt) and the parser as adjectives (þriðji),
  *  - a plural-only course noun the parser names by a singular lemma that BÍN also lists with the
@@ -54,8 +55,9 @@ export function align(appWords, parserTokens) {
  * Different words with the same spelling stay apart: mun (munu "will", not muna), myndir
  * (mynd), ferð (a trip, not fara), dýr (an animal, not "expensive"), þegar ("already").
  */
-// The parser's singular lemma -> the plural-only course noun with the same plural forms (BÍN).
-const PLURAL_ONLY = new Map([['tónleikur', 'tónleikar']]);
+// The parser's singular lemma -> the plural-only course noun with the same plural forms (BÍN):
+// tónleikar ("a concert") and the masculine tónleikur; svalir ("a balcony") and the masculine svalur.
+const PLURAL_ONLY = new Map([['tónleikur', 'tónleikar'], ['svalur', 'svalir']]);
 // The parser's adjective -> the course adverb whose form it reads as the adjective's: vinsamlegast
 // ("please") is the superlative of the adverb vinsamlega in BÍN, and the parser reads it as the
 // neuter superlative of vinsamlegur.
@@ -84,7 +86,7 @@ export function sameWord(id, word, tok, forms, lexicon) {
   }
   if (cls === L.ofl && lemmaIsForm) return true;
   if (L.ofl === 'so' && cls === 'lo' && lemmaIsForm) return true;
-  if (L.ofl === 'ao' && cls === 'lo' && low(word) === low(L.lemma)) return true;
+  if ((L.ofl === 'ao' || L.ofl === 'fs') && cls === 'lo' && low(word) === low(L.lemma)) return true;
   return false;
 }
 

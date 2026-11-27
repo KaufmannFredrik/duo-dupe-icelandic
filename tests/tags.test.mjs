@@ -15,6 +15,7 @@ const lexicon = {
     til_fs: { lemma: 'til', ofl: 'fs' },
     muna_so: { lemma: 'muna', ofl: 'so' },
     seint_ao: { lemma: 'seint', ofl: 'ao' },
+    nálægt_fs: { lemma: 'nálægt', ofl: 'fs' },
     já_uh: { lemma: 'já', ofl: 'uh' },
     dýr_lo: { lemma: 'dýr', ofl: 'lo' },
     klukka_no: { lemma: 'klukka', ofl: 'no' },
@@ -25,7 +26,7 @@ const lexicon = {
 const forms = new Map(
   Object.entries({
     afar: ['afi_no'], sinni: ['sinn_fn'], einu: ['einn_to'], einn: ['einn_to'], sér: ['sig_afn', 'sjá_so'], þér: ['þú_pfn'],
-    farinn: ['fara_so'], til: ['til_fs'], mun: ['muna_so'], seint: ['seint_ao'], já: ['já_uh'], dýr: ['dýr_lo'],
+    farinn: ['fara_so'], til: ['til_fs'], mun: ['muna_so'], seint: ['seint_ao'], nálægt: ['nálægt_fs'], já: ['já_uh'], dýr: ['dýr_lo'],
     klukkan: ['klukka_no'], sjö: ['sjö_to'], þriðju: ['þriðji_rt'],
   }).map(([k, v]) => [k, new Set(v)]),
 );
@@ -54,6 +55,7 @@ test('tags: conventions that name the same word are accepted', () => {
   assert.equal(resolve('þér', { t: 'þér', l: 'þér', c: 'pfn' }, withoutForm, lexicon), -1, 'a lemma that is not a form of the word');
   assert.equal(r('til', { t: 'til', l: 'til', c: 'ao' }), '~til_fs', 'a preposition as a particle is loose');
   assert.equal(r('seint', { t: 'seint', l: 'seinn', c: 'lo' }), 'seint_ao');
+  assert.equal(r('nálægt', { t: 'nálægt', l: 'nálægur', c: 'lo' }), 'nálægt_fs', 'a preposition that is the neuter of an adjective');
   assert.equal(r('já', { t: 'já', l: 'já', c: 'no' }), 'já_uh');
   assert.equal(r('einn', { t: 'einn', l: 'einn', c: 'fn' }), '~einn_to', 'einn as a pronoun (alone) is loose');
 });

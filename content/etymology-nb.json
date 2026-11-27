@@ -2424,6 +2424,94 @@
     "mæta_so": {
       "nb": "Fra norrønt mǿta, fra urgermansk *mōtijaną. Sammenlign norsk møte, dansk møde, svensk möta.",
       "of": "126166fb"
+    },
+    "leigja_so": {
+      "nb": "Arvet fra urgermansk *laigijaną.",
+      "of": "e374dd64"
+    },
+    "eigandi_no": {
+      "nb": "Av eiga + -andi.",
+      "of": "1bed25d3"
+    },
+    "laus_lo": {
+      "nb": "Fra norrønt lauss.",
+      "of": "c7750ed7"
+    },
+    "hæð_no": {
+      "nb": "Fra norrønt hæð, fra urgermansk *hauhiþō. Sammenlign norsk høgd, nynorsk hædd, færøysk hædd, svensk höjd, nederlandsk hoogte, gammelhøytysk hohida, gotisk 𐌷𐌰𐌿𐌷𐌹𐌸𐌰 (hauhiþa) og engelsk height.",
+      "of": "2adc9986"
+    },
+    "kjallari_no": {
+      "nb": "Til syvende og sist fra senlatin cellārium, gjennom sent norrønt kellari (og middelnedertysk keller). Sammenlign færøysk kjallari, svensk källare og norsk kjeller.",
+      "of": "879a85af"
+    },
+    "svalir_no": {
+      "nb": "Fra norrønt svalar (hunkjønn flertall, «galleri»). Beslektet med norsk sval, nynorsk sval eller svaler (flertall), svensk svale («forstue») og dansk svale. I slekt med syll («svill, grunnbjelke av tre»).",
+      "of": "236c743f"
+    },
+    "þak_no": {
+      "nb": "Fra norrønt þak, fra urgermansk *þaką, til syvende og sist fra urindoeuropeisk *teg-. Beslektet med engelsk thatch.",
+      "of": "29d51e8e"
+    },
+    "kassi_no": {
+      "nb": "Lånt fra dansk kasse, fra gammelfransk casse, fra latin capsa.",
+      "of": "86e1e223"
+    },
+    "pakka_so": {
+      "nb": "Av pakki («pakke») + -a (et suffiks som lager verb av substantiv).",
+      "of": "dc370284"
+    },
+    "bera_so": {
+      "nb": "Fra norrønt bera («å bære»), fra urgermansk *beraną, fra urindoeuropeisk *bʰer-.",
+      "of": "2f9f432d"
+    },
+    "tómur_lo": {
+      "nb": "Fra norrønt tómr («tom»).",
+      "of": "9b0e885a"
+    },
+    "veggur_no": {
+      "nb": "Fra norrønt veggr, fra urgermansk *wajjuz.",
+      "of": "6b647f24"
+    },
+    "gólf_no": {
+      "nb": "Fra norrønt golf, fra urgermansk *gulbą.",
+      "of": "0073882f"
+    },
+    "nágranni_no": {
+      "nb": "Av ná- («nær») + granni («nabo»).",
+      "of": "b0fbe09c"
+    },
+    "hávaði_no": {
+      "nb": "Fra norrønt hávaði.",
+      "of": "5a8797c2"
+    },
+    "hverfi_no": {
+      "nb": "Fra norrønt hverfi («klynge av gårder»), av norrønt hvarf («sirkel, innhegning») + -i (en substantivendelse). Beslektet med nynorsk kverve («tettbygd område»).",
+      "of": "097b27e8"
+    },
+    "miðbær_no": {
+      "nb": "mið («midt») + bær («by»).",
+      "of": "f6319837"
+    },
+    "gestur_no": {
+      "nb": "Fra norrønt gestr, fra urnordisk *ᚷᚨᛊᛏᛁᛉ (gastiz), fra urgermansk *gastiz, fra urindoeuropeisk *gʰóstis.",
+      "of": "3260911e"
+    },
+    "auglýsing_no": {
+      "nb": "Av auglýsa + -ing.",
+      "of": "c5cd1bc9"
+    },
+    "bjartur_lo": {
+      "nb": "Fra norrønt bjartr, fra urgermansk *berhtaz. Dublett av bræt.",
+      "of": "494b8d67"
+    },
+    "dimmur_lo": {
+      "nb": "Fra norrønt dimmr, fra urgermansk *dimmaz. Beslektet med gammelengelsk dimm (som engelsk dim kommer fra).",
+      "of": "9b88c45b"
+    },
+    "pláss_no": {
+      "nb": "Fra norrønt plaz, et lån fra middelnedertysk.",
+      "of": "5965a6d9"
     }
   }
 }

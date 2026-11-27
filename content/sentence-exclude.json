@@ -38,6 +38,7 @@
     "7319185": "\"She is dead.\": a mistake, Hún er dáinn for Hún er dáin; GreynirCorrect does not flag it.",
     "736321": "\"This is my new news.\": the English is garbled; the Icelandic says this is news to me.",
     "5698130": "\"I've got good news.\": the Icelandic says only \"I have news\" (Ég er með fréttir).",
-    "482646": "\"He is at his office.\": the Icelandic says she (Hún er á skrifstofunni sinni)."
+    "482646": "\"He is at his office.\": the Icelandic says she (Hún er á skrifstofunni sinni).",
+    "482684": "Gleraugum þín duttu í gólfið (Your glasses fell on the floor): a mistake GreynirCorrect does not flag; the subject is nominative, Gleraugun þín."
   }
 }

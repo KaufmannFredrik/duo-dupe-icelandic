@@ -2,6 +2,39 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A2, unit 21: *Húsnæði* (2026-11-27)
+
+The first unit of section A2 in [PLAN.md](PLAN.md): housing, "renting, moving, neighbors, keys, ads", with the grammar "two-case prepositions: motion and place", for the goal "understand and use everyday words about housing" (`content/goals.json`, ÍFÚ 3). The plan puts the A2 exercise types first; this unit needs none of them (its grammar is drilled by the case and form exercises that exist), so it was built first, and the exercise types come before units 22 and 23, which need the past and the perfect.
+
+- **Words** (28, theme `housing`): renting (*leigja*, *leiga*, *eigandi*, *samningur*, *laus*); the building (*hæð*, *lyfta*, *stigi*, *kjallari*, *svalir*, *þak*); moving in (*kassi*, *pakka*, *bera*, *tómur*, *húsgagn*, *veggur*, *gólf*); neighbors (*nágranni*, *hávaði*, *hverfi*, *miðbær*, *nálægt*, *gestur*); ads (*auglýsing*, *bjartur*, *dimmur*, *pláss*). Keys (*lykill*), the apartment (*íbúð*) and moving (*flytja*) are taught in earlier units, so their sentences come back here.
+- **Meanings as Wiktionary words them**, with two British spellings read as American in `build-data.mjs` (*nágranni* "neighbour", *hverfi* "neighbourhood"). *nálægt* is a preposition in the DMII Core (BÍN also has it as an adverb), so the course word is *nálægt* fs.
+- **Left out:** *fermetri* ("square meter", no sentence; the guidebook names it) and *leigjandi* ("tenant", no sentence).
+- **Sentence length:** the plan allows A2 sentences of up to 14 words. For these words it adds almost nothing (the scratch picker over Tatoeba: *nágranni* 1 sentence a learner can read at 10 words, 2 at 14; *leigja*, *kassi*, *hverfi* none more), so the unit keeps the 10-word limit, and the longer sentences come with the A2 reading exercises.
+
+### Sentences
+
+- **A thin topic:** Tatoeba has almost no housing sentences a learner can read (16 of the 29 words first chosen had none or one), so the unit has **52 made sentences** (decision 3), two or three for each thin word, each from a real sentence with one noun, verb or adjective swapped in its DMII form (*Ég fór í garðinn í gær* → *í kjallarann*; *Hún keypti grænmeti í gær* → *húsgögn*; *Má ég fá bílinn þinn lánaðan í dag?* → *stigann*). All pass GreynirCorrect. One was dropped because its frame has words a learner does not know (*Ef við bara ættum kjallara!*). Every word has at least two readable sentences, most three to six.
+- **The parser:** it reads *nálægt* as the neuter of the adjective *nálægur*, even before a dative (*nálægt húsinu*): `scripts/lib/tags.mjs` now treats a preposition that is an adjective's neuter as it treated adverbs (*seint*). It names *svölunum* by the masculine *svalur*, which BÍN lists with the plural forms of *svalir*: added to `PLURAL_ONLY` beside *tónleikar*.
+- **Tag fixes** (6, and one replaced): *stigum* in three sentences about points is *stig*, not *stigi*; *á hæð* ("in height", *Ég er einn og níutíu á hæð*) is a loose fix, so it does not teach *hæð* the floor; *í lyftu* keeps no case (accusative or dative, the same form); *Er klósett nálægt?* is the adverb, a loose fix; *pakka* in *Ég ætti að fara að pakka*, a fix with lemma null while the verb was not a course word, is now the verb.
+- **Excluded:** *Gleraugum þín duttu í gólfið*, a mistake GreynirCorrect does not flag (the subject is *Gleraugun þín*).
+
+### The unit
+
+- **Lessons** (grouped by hand, every exercise read over three plays): Renting; The building; Moving in; Neighbors; Ads; and a review, 12 exercises each, of six to nine kinds. The motion and place pairs are in the case exercises (*í kjallarann*, *í kjallaranum*; *í miðbæinn*, *í miðbæ*).
+- **Guidebook**, five sections, every claim in `content/CLAIMS.md`: *leigja* and *leiga* (Norwegian *leie* for both), *eigandi* and *leigjandi* with -andi, *skrifa undir*, *laus* (*ledig*); *í* and *á* with the accusative for a movement and the dative for a place, *undir* and *yfir*, and the same split as *inn* and *inni* in *Heima*; the building (*hæð*, also height and hill, like *høyde*; *lyfta*; *stigi*, also a ladder; *kjallari* and *kjeller* from Latin; *þak* and *tak*; *svalir*, plural only); moving in (*flytja*, *kassi* from Danish, *bera* strong, *húsgögn*, *veggur* and *gólf* as *vegg* and *gulv*); neighbors and ads (*nágranni* from *ná-* and *granni*, Norwegian *nabo* from Danish; *nálægt* with the dative; *auglýsing* from *auglýsa*; *fermetri*). Sources: Wiktionary, Bokmålsordboka, BÍN, elon.io, Tatoeba.
+- **Host and story:** Elias hosts with *Hann hjálpaði mér að flytja* ("He helped me move"); the story *The house with the red roof* is a reading in which Elias tells of the new house, eight unchanged Tatoeba sentences, from the red roof and the missing elevator to good neighbors, noise and water all over the apartment.
+- **Section A2:** its banner had no units ("Units coming"); it now has *Húsnæði*. Passing the A1 check opens it; the bonus unit comes after it. The banner's progress line now reads "Units finished: 0 of 1" (Bokmål *Enheter fullført: 0 av 1*), which reads right for one unit too.
+
+### Data
+
+- 680 words; 3,749 sentences (52 made); 127 new Bokmål translations by hand, with *Yamada*, *Sue*, *Ziri* and *Tyskland* added to the names; 7 hand glosses (*leigja* leie, *hæð* etasje, *pakka* pakke, *nágranni* nabo, *hverfi* nabolag, *nálægt* nær, *pláss* plass) and 6 corrections (*laus* ledig before tilgjengelig; *stigi* also stige; *samningur* without traktat; *veggur* without voll; *miðbær* sentrum; *bjartur* without the prefix knall-).
+- 22 Bokmål etymologies (*leiga*, *samningur*, *lyfta*, *stigi*, *húsgagn* and *nálægt* have none in Wiktionary); audio for 155 new texts in each of the four voices; the Norwegian bridge has 341 words (11 more: *løs*, *stige*, *tak*, *kasse*, *pakke*, *bære*, *tom*, *vegg*, *gulv*, *gjest*, *plass*).
+
+### Tests
+
+- `node --test`: 263 tests (twenty-two units; the six lessons produce valid exercises; *nálægt* read as the adjective's neuter is the preposition; *stigum* of points and *á hæð* do not teach *stigi* and *hæð*; *svölunum* is *svalir*; *í lyftu* has no case; after the A1 check the next lesson is *Húsnæði*, and the bonus after it). The verb-form check now skips a pronoun the parser reads as an object (*þau* in *Hávaðinn vakti þau*, a sentence that came into the data with *hávaði*).
+- `node tests/smoke.mjs --unit=housing`: every lesson of the unit played in the browser. `npm run smoke` and `npm run qa`: see the commit.
+
 ## Section A1, unit 20: the A1 check (2026-11-27)
 
 The checkpoint that ends section A1 ([PLAN.md](PLAN.md): "the A1 check (unit 20) ... scored per goal. Finishing it opens the next section ... A learner who misses goals is shown which units train them"; "Jump to a section: at the top of section A2, 'Already know A1? Take the A1 check' skips section A1 when passed").

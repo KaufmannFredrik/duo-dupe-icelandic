@@ -1,0 +1,39 @@
+{
+  "id": "housing",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "The house with the red roof",
+    "nb": "Huset med det røde taket"
+  },
+  "level": "A2",
+  "after": "housing",
+  "narrator": "elias",
+  "dialogue": false,
+  "lines": [
+    {
+      "sentence": "502879"
+    },
+    {
+      "sentence": "690302"
+    },
+    {
+      "sentence": "3795628"
+    },
+    {
+      "sentence": "791899"
+    },
+    {
+      "sentence": "486952"
+    },
+    {
+      "sentence": "4000883"
+    },
+    {
+      "sentence": "482328"
+    },
+    {
+      "sentence": "727701"
+    }
+  ]
+}

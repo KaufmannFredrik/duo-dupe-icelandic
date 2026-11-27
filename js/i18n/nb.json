@@ -135,7 +135,7 @@
   "learn.unitInline": "enhet {n}",
   "learn.bonusUnitInline": "bonusenheten",
   "learn.section": "Del {n}: {title}",
-  "learn.sectionProgress": "{done} av {total} enheter fullført",
+  "learn.sectionProgress": "Enheter fullført: {done} av {total}",
   "learn.start": "Start",
   "learn.guidebook": "Veiledning",
   "learn.guideSoon": "Veiledninger med grammatikken for hver enhet kommer i fase 3.",

@@ -2386,6 +2386,474 @@
       ],
       "is": "Ég get ekki mætt á fundinn í dag.",
       "en": "I can't make it to the meeting today."
+    },
+    "479468-1": {
+      "from": "479468",
+      "swap": [
+        "lyklinum",
+        "samningnum"
+      ],
+      "is": "Ég týndi samningnum mínum.",
+      "en": "I lost my contract."
+    },
+    "479465-1": {
+      "from": "479465",
+      "swap": [
+        "lykillinn",
+        "samningurinn"
+      ],
+      "is": "Hér er samningurinn minn.",
+      "en": "Here is my contract."
+    },
+    "624010-2": {
+      "from": "624010",
+      "swap": [
+        "reikninginn",
+        "samninginn"
+      ],
+      "is": "Gæti ég vinsamlegast fengið samninginn?",
+      "en": "May I have the contract, please?"
+    },
+    "736112-1": {
+      "from": "736112",
+      "swap": [
+        "lækninn",
+        "eigandann"
+      ],
+      "is": "Kallaðu strax á eigandann.",
+      "en": "Call the owner right away."
+    },
+    "666974-2": {
+      "from": "666974",
+      "swap": [
+        "læknir",
+        "eigandi"
+      ],
+      "is": "Hann er sagður vera góður eigandi.",
+      "en": "He's said to be a good owner."
+    },
+    "504913-2": {
+      "from": "504913",
+      "swap": [
+        "læknisins",
+        "eigandans"
+      ],
+      "is": "Í dag fór ég til eigandans.",
+      "en": "Today I went to the owner's."
+    },
+    "478959-1": {
+      "from": "478959",
+      "swap": [
+        "skólann",
+        "kjallarann"
+      ],
+      "is": "Ég vil ekki fara í kjallarann.",
+      "en": "I don't want to go into the basement."
+    },
+    "385146-1": {
+      "from": "385146",
+      "swap": [
+        "gluggann",
+        "vegginn"
+      ],
+      "is": "Vinsamlegast setjið stólana við vegginn.",
+      "en": "Please set the chairs by the wall."
+    },
+    "469047-3": {
+      "from": "469047",
+      "swap": [
+        "ísskápurinn",
+        "veggurinn"
+      ],
+      "is": "Litli veggurinn er skítugur.",
+      "en": "The little wall is dirty."
+    },
+    "386105-2": {
+      "from": "386105",
+      "swap": [
+        "frænda",
+        "nágranna"
+      ],
+      "is": "Hún hitti nágranna sinn í búðinni.",
+      "en": "She met her neighbor at the store."
+    },
+    "465359-1": {
+      "from": "465359",
+      "swap": [
+        "vinur",
+        "nágranni"
+      ],
+      "is": "Hann er nágranni hennar.",
+      "en": "He's her neighbor."
+    },
+    "384623-1": {
+      "from": "384623",
+      "swap": [
+        "vinar",
+        "nágranna"
+      ],
+      "is": "Hann fékk bíl nágranna síns lánaðan í nokkra daga.",
+      "en": "He borrowed his neighbor's car for a few days."
+    },
+    "3799246-1": {
+      "from": "3799246",
+      "swap": [
+        "bæinn",
+        "miðbæinn"
+      ],
+      "is": "Ég ætla í miðbæinn.",
+      "en": "I'm going downtown."
+    },
+    "727408-1": {
+      "from": "727408",
+      "swap": [
+        "bæ",
+        "miðbæ"
+      ],
+      "is": "Það eru mörg hótel niðri í miðbæ.",
+      "en": "There are many hotels downtown."
+    },
+    "389203-1": {
+      "from": "389203",
+      "swap": [
+        "bænum",
+        "miðbænum"
+      ],
+      "is": "Ég leit á hann sem besta lækninn í miðbænum.",
+      "en": "I regarded him as the best doctor downtown."
+    },
+    "383188-2": {
+      "from": "383188",
+      "swap": [
+        "maður",
+        "gestur"
+      ],
+      "is": "Það er gestur kominn til að hitta þig.",
+      "en": "There is a guest here to see you."
+    },
+    "673259-1": {
+      "from": "673259",
+      "swap": [
+        "pakka",
+        "kassa"
+      ],
+      "is": "Við fengum stóran kassa.",
+      "en": "We got a big box."
+    },
+    "883984-1": {
+      "from": "883984",
+      "swap": [
+        "poka",
+        "kassa"
+      ],
+      "is": "Ég þarf kassa til að bera það í.",
+      "en": "I need a box to carry it in."
+    },
+    "908949-1": {
+      "from": "908949",
+      "swap": [
+        "glugganum",
+        "stiganum"
+      ],
+      "is": "Hún stóð upp og gekk að stiganum.",
+      "en": "She stood up and walked to the stairs."
+    },
+    "624014-1": {
+      "from": "624014",
+      "swap": [
+        "reikninginn",
+        "leiguna"
+      ],
+      "is": "Það verður að borga leiguna í dag.",
+      "en": "The rent must be paid today."
+    },
+    "624013-1": {
+      "from": "624013",
+      "swap": [
+        "Reikningurinn",
+        "Leigan"
+      ],
+      "is": "Leigan verður að greiðast í dag.",
+      "en": "The rent has to be paid today."
+    },
+    "624016-1": {
+      "from": "624016",
+      "swap": [
+        "reikninginn",
+        "leiguna"
+      ],
+      "is": "Ég sé um leiguna.",
+      "en": "I'll take care of the rent."
+    },
+    "751296-1": {
+      "from": "751296",
+      "swap": [
+        "myndina",
+        "auglýsinguna"
+      ],
+      "is": "Ég sá auglýsinguna fyrir löngu.",
+      "en": "I saw the advertisement long ago."
+    },
+    "12360408-1": {
+      "from": "12360408",
+      "swap": [
+        "bókina",
+        "auglýsinguna"
+      ],
+      "is": "Hún las auglýsinguna.",
+      "en": "She read the advertisement."
+    },
+    "465330-1": {
+      "from": "465330",
+      "swap": [
+        "mynda",
+        "auglýsinga"
+      ],
+      "is": "Mér líkar engin þessara auglýsinga.",
+      "en": "I don't like any of these advertisements."
+    },
+    "657272-2": {
+      "from": "657272",
+      "swap": [
+        "sófanum",
+        "svölunum"
+      ],
+      "is": "Kötturinn sefur á svölunum.",
+      "en": "The cat sleeps on the balcony."
+    },
+    "865353-1": {
+      "from": "865353",
+      "swap": [
+        "rúminu",
+        "svölunum"
+      ],
+      "is": "Hann sat á svölunum.",
+      "en": "He sat on the balcony."
+    },
+    "860057-1": {
+      "from": "860057",
+      "swap": [
+        "tónleikunum",
+        "svölunum"
+      ],
+      "is": "Það voru of margir á svölunum.",
+      "en": "There were too many people on the balcony."
+    },
+    "865353-2": {
+      "from": "865353",
+      "swap": [
+        "rúminu",
+        "gólfinu"
+      ],
+      "is": "Hann sat á gólfinu.",
+      "en": "He sat on the floor."
+    },
+    "2345950-1": {
+      "from": "2345950",
+      "swap": [
+        "borðinu",
+        "gólfinu"
+      ],
+      "is": "Bókin liggur á gólfinu.",
+      "en": "The book is on the floor."
+    },
+    "468938-1": {
+      "from": "468938",
+      "swap": [
+        "borðinu",
+        "gólfinu"
+      ],
+      "is": "Það eru nokkrar bækur á gólfinu.",
+      "en": "There are some books on the floor."
+    },
+    "754485-1": {
+      "from": "754485",
+      "swap": [
+        "borðinu",
+        "þakinu"
+      ],
+      "is": "Kötturinn svaf á þakinu.",
+      "en": "The cat slept on the roof."
+    },
+    "475707-1": {
+      "from": "475707",
+      "swap": [
+        "stólnum",
+        "þakinu"
+      ],
+      "is": "Það situr köttur á þakinu.",
+      "en": "There is a cat sitting on the roof."
+    },
+    "11792674-1": {
+      "from": "11792674",
+      "swap": [
+        "landið",
+        "hverfið"
+      ],
+      "is": "Við elskum hverfið okkar.",
+      "en": "We love our neighborhood."
+    },
+    "390407-1": {
+      "from": "390407",
+      "swap": [
+        "hús",
+        "hverfi"
+      ],
+      "is": "Þetta hverfi er ekki mjög stórt.",
+      "en": "This neighborhood is not very large."
+    },
+    "468923-3": {
+      "from": "468923",
+      "swap": [
+        "salt",
+        "pláss"
+      ],
+      "is": "Það er ekki til meira pláss.",
+      "en": "There's no more space."
+    },
+    "391475-1": {
+      "from": "391475",
+      "swap": [
+        "svar",
+        "pláss"
+      ],
+      "is": "Hann hafði ekkert pláss.",
+      "en": "He had no space."
+    },
+    "653128-1": {
+      "from": "653128",
+      "swap": [
+        "grænmeti",
+        "húsgögn"
+      ],
+      "is": "Hún keypti húsgögn í gær.",
+      "en": "She bought furniture yesterday."
+    },
+    "652996-1": {
+      "from": "652996",
+      "swap": [
+        "frímerki",
+        "húsgögn"
+      ],
+      "is": "Ég þarf að kaupa nokkur húsgögn.",
+      "en": "I need to buy a few pieces of furniture."
+    },
+    "388938-1": {
+      "from": "388938",
+      "swap": [
+        "kaupa",
+        "leigja"
+      ],
+      "is": "Hann er búinn að leigja nýjan bíl.",
+      "en": "He has rented a new car."
+    },
+    "888066-1": {
+      "from": "888066",
+      "swap": [
+        "seldi",
+        "leigði"
+      ],
+      "is": "Hún leigði honum bílinn sinn.",
+      "en": "She rented him her car."
+    },
+    "469047-4": {
+      "from": "469047",
+      "swap": [
+        "skítugur",
+        "tómur"
+      ],
+      "is": "Litli ísskápurinn er tómur.",
+      "en": "The little fridge is empty."
+    },
+    "11514512-2": {
+      "from": "11514512",
+      "swap": [
+        "hreinn",
+        "tómur"
+      ],
+      "is": "Báturinn var tómur.",
+      "en": "The boat was empty."
+    },
+    "390407-2": {
+      "from": "390407",
+      "swap": [
+        "stórt",
+        "bjart"
+      ],
+      "is": "Þetta hús er ekki mjög bjart.",
+      "en": "This house is not very bright."
+    },
+    "385151-1": {
+      "from": "385151",
+      "swap": [
+        "kalt",
+        "bjart"
+      ],
+      "is": "Það er mjög bjart í dag.",
+      "en": "It is very bright today."
+    },
+    "1320713-3": {
+      "from": "1320713",
+      "swap": [
+        "heitt",
+        "bjart"
+      ],
+      "is": "Herbergið er bjart.",
+      "en": "The room is bright."
+    },
+    "386817-1": {
+      "from": "386817",
+      "swap": [
+        "sjötta",
+        "fimmta"
+      ],
+      "is": "Þessi lyfta fer ekki ofar en fimmta hæð.",
+      "en": "This elevator does not go above the fifth floor."
+    },
+    "791899-1": {
+      "from": "791899",
+      "swap": [
+        "kirkja",
+        "sundlaug"
+      ],
+      "is": "Það er sundlaug nálægt húsinu mínu.",
+      "en": "There is a swimming pool near my house."
+    },
+    "833338-1": {
+      "from": "833338",
+      "swap": [
+        "garðinn",
+        "kjallarann"
+      ],
+      "is": "Ég fór í kjallarann í gær.",
+      "en": "I went into the basement yesterday."
+    },
+    "706643-1": {
+      "from": "706643",
+      "swap": [
+        "garðinum",
+        "kjallaranum"
+      ],
+      "is": "Ég lék mér áður fyrr með systur minni í kjallaranum.",
+      "en": "I used to play with my sister in the basement."
+    },
+    "511382-1": {
+      "from": "511382",
+      "swap": [
+        "bílinn",
+        "stigann"
+      ],
+      "is": "Má ég fá stigann þinn lánaðan í dag?",
+      "en": "Can I borrow your ladder today?"
+    },
+    "384623-2": {
+      "from": "384623",
+      "swap": [
+        "bíl",
+        "stiga"
+      ],
+      "is": "Hann fékk stiga vinar síns lánaðan í nokkra daga.",
+      "en": "He borrowed his friend's ladder for a few days."
     }
   }
 }

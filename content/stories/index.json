@@ -19,6 +19,7 @@
     "services.json",
     "past.json",
     "grammar.json",
+    "housing.json",
     "newwords.json"
   ]
 }
