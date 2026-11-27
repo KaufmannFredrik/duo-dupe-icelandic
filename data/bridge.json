@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-26T22:58:03.022Z",
+ "generated": "2026-11-26T23:41:59.039Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -18,9 +18,9 @@
   }
  ],
  "counts": {
-  "loan": 10,
-  "old-norse": 260,
-  "form": 24
+  "loan": 11,
+  "old-norse": 269,
+  "form": 27
  },
  "pairs": {
   "halló_uh": {
@@ -2190,6 +2190,120 @@
    "evidence": "form",
    "rules": [
     "ending-ur"
+   ]
+  },
+  "opinn_lo": {
+   "nb": "åpen",
+   "article": 1033,
+   "oldNorse": "opinn",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "næstur_lo": {
+   "nb": "neste",
+   "article": 40705,
+   "oldNorse": "næstr",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "sæti_no": {
+   "nb": "sete",
+   "article": 51134,
+   "oldNorse": "sæti",
+   "evidence": "old-norse",
+   "rules": [
+    "ae",
+    "ending-i"
+   ]
+  },
+  "pósthús_no": {
+   "nb": "posthus",
+   "evidence": "form",
+   "rules": [
+    "o-acute",
+    "u-acute"
+   ]
+  },
+  "póstur_no": {
+   "nb": "post",
+   "evidence": "loan",
+   "loan": {
+    "language": "Danish",
+    "word": "post"
+   },
+   "rules": [
+    "o-acute",
+    "ending-ur"
+   ]
+  },
+  "frímerki_no": {
+   "nb": "frimerke",
+   "evidence": "form",
+   "rules": [
+    "i-acute",
+    "ending-i"
+   ]
+  },
+  "pakki_no": {
+   "nb": "pakke",
+   "article": 43889,
+   "oldNorse": "pakki",
+   "evidence": "old-norse",
+   "rules": [
+    "ending-i"
+   ]
+  },
+  "greiða_so": {
+   "nb": "greie",
+   "article": 20831,
+   "oldNorse": "greiða",
+   "evidence": "old-norse",
+   "rules": [
+    "eth-drop",
+    "ending-a"
+   ]
+  },
+  "lán_no": {
+   "nb": "lån",
+   "article": 34686,
+   "oldNorse": "lán",
+   "evidence": "old-norse",
+   "rules": [
+    "a-acute"
+   ]
+  },
+  "lána_so": {
+   "nb": "låne",
+   "evidence": "form",
+   "rules": [
+    "a-acute",
+    "ending-a"
+   ]
+  },
+  "ferð_no": {
+   "nb": "ferd",
+   "article": 14360,
+   "oldNorse": "ferð",
+   "evidence": "old-norse",
+   "rules": [
+    "eth"
+   ]
+  },
+  "gleyma_so": {
+   "nb": "glemme",
+   "article": 20222,
+   "oldNorse": "gleyma",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "týna_so": {
+   "nb": "tyne",
+   "article": 63219,
+   "oldNorse": "týna",
+   "evidence": "old-norse",
+   "rules": [
+    "y-acute",
+    "ending-a"
    ]
   },
   "hafa_so": {

@@ -1,0 +1,62 @@
+{
+  "id": "services",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "Stamps and a train",
+    "nb": "Frimerker og et tog"
+  },
+  "level": "A1",
+  "after": "services",
+  "dialogue": true,
+  "cast": {
+    "A": "elias",
+    "B": "katla"
+  },
+  "lines": [
+    {
+      "sentence": "652996",
+      "speaker": "A"
+    },
+    {
+      "sentence": "11514566",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1355112",
+      "speaker": "A"
+    },
+    {
+      "sentence": "479367",
+      "speaker": "B"
+    },
+    {
+      "sentence": "1364302",
+      "speaker": "A"
+    },
+    {
+      "sentence": "10717440",
+      "speaker": "B"
+    },
+    {
+      "sentence": "512723",
+      "speaker": "A"
+    },
+    {
+      "sentence": "543815",
+      "speaker": "B"
+    },
+    {
+      "sentence": "725635",
+      "speaker": "B"
+    },
+    {
+      "sentence": "725642",
+      "speaker": "B"
+    },
+    {
+      "sentence": "397461",
+      "speaker": "A"
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "id": "services",
+  "theme": "services",
+  "reviewed": true,
+  "title": {
+    "en": "Services",
+    "nb": "Tjenester"
+  },
+  "is": "Þjónusta",
+  "goal": {
+    "en": "Get things done at the post office, the bank, the ticket office and the station, and ask politely.",
+    "nb": "Få ting gjort på postkontoret, i banken, i billettluka og på stasjonen, og spør høflig."
+  },
+  "host": {
+    "character": "amma",
+    "says": "388910"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Please",
+        "nb": "Vær så snill"
+      },
+      "focus": [
+        "vinsamlega_ao",
+        "opinn_lo",
+        "röð_no",
+        "næstur_lo",
+        "sæti_no"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "At the post office",
+        "nb": "På postkontoret"
+      },
+      "focus": [
+        "pósthús_no",
+        "póstur_no",
+        "frímerki_no",
+        "pakki_no",
+        "sækja_so"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "At the bank",
+        "nb": "I banken"
+      },
+      "focus": [
+        "skipta_so",
+        "greiða_so",
+        "lán_no",
+        "lána_so",
+        "kvittun_no"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "Tickets",
+        "nb": "Billetter"
+      },
+      "focus": [
+        "miði_no",
+        "bóka_so",
+        "ferð_no",
+        "farangur_no"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "Bus, train and taxi",
+        "nb": "Buss, tog og taxi"
+      },
+      "focus": [
+        "lest_no",
+        "stöð_no",
+        "leigubíll_no",
+        "upplýsing_no"
+      ]
+    },
+    {
+      "id": "6",
+      "title": {
+        "en": "Forgotten and lost",
+        "nb": "Glemt og mistet"
+      },
+      "focus": [
+        "gleyma_so",
+        "týna_so",
+        "skila_so"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "Please: vinsamlegast",
+          "nb": "Vær så snill: vinsamlegast"
+        },
+        "text": {
+          "en": "Please is {is:vinsamlegast}, the superlative of the adverb {is:vinsamlega} (kindly), from {is:vinsamlegur} (friendly): most kindly. It usually comes first, with a command: {is:Vinsamlegast komdu} (please come), {is:Vinsamlegast opnaðu dyrnar}, {is:Vinsamlegast taktu þetta sæti}, but it can also follow the verb: {is:Hringdu vinsamlegast í hann}. To ask for something politely, say {is:Gæti ég fengið}, could I have: {is:Gæti ég fengið annan bjór?}, {is:Gæti ég vinsamlegast fengið reikninginn?} Norwegian has vær så snill and vennligst.",
+          "nb": "Vær så snill er {is:vinsamlegast}, superlativ av adverbet {is:vinsamlega} (vennlig), av {is:vinsamlegur} (vennlig): aller vennligst. Det kommer som regel først, med en oppfordring: {is:Vinsamlegast komdu} (vær så snill å komme), {is:Vinsamlegast opnaðu dyrnar}, {is:Vinsamlegast taktu þetta sæti}, men det kan også stå etter verbet: {is:Hringdu vinsamlegast í hann}. For å be høflig om noe sier man {is:Gæti ég fengið}, kunne jeg få: {is:Gæti ég fengið annan bjór?}, {is:Gæti ég vinsamlegast fengið reikninginn?} Norsk har vær så snill og vennligst."
+        },
+        "examples": [
+          "1316194",
+          "831722",
+          "388910",
+          "905343",
+          "795478",
+          "624010"
+        ]
+      },
+      {
+        "title": {
+          "en": "Open, in line, next: opinn, röð, næstur",
+          "nb": "Åpen, i kø, neste: opinn, röð, næstur"
+        },
+        "text": {
+          "en": "{is:opinn} (open) agrees: {is:Dyrnar eru stundum opnar}, {is:Við erum alltaf opin}, {is:Hvað er opið lengi?} (how late are you open?). It is Norwegian åpen, from Old Norse opinn, related to {is:upp}. Closed is {is:lokaður}, the past participle of {is:loka}: {is:Hafðu dyrnar lokaðar}. A line or a row is {is:röð}, Norwegian rad, from Old Norse rǫð: {is:Þú verður að bíða í röð} (you have to wait in line). Next is {is:næstur}, Norwegian neste, from Old Norse næstr: {is:á næsta ári} (next year), {is:í næstu viku} (next week). A seat is {is:sæti}, Norwegian sete, related to sitja: {is:Farðu aftur í sætið þitt}.",
+          "nb": "{is:opinn} (åpen) bøyes: {is:Dyrnar eru stundum opnar}, {is:Við erum alltaf opin}, {is:Hvað er opið lengi?} (hvor lenge har dere åpent?). Det er norsk åpen, fra norrønt opinn, i slekt med {is:upp}. Stengt er {is:lokaður}, perfektum partisipp av {is:loka}: {is:Hafðu dyrnar lokaðar}. En kø eller en rad er {is:röð}, norsk rad, fra norrønt rǫð: {is:Þú verður að bíða í röð} (du må stå i kø). Neste er {is:næstur}, norsk neste, fra norrønt næstr: {is:á næsta ári} (neste år), {is:í næstu viku} (neste uke). Et sete er {is:sæti}, norsk sete, i slekt med sitja: {is:Farðu aftur í sætið þitt}."
+        },
+        "examples": [
+          "863098",
+          "10717440",
+          "1364302",
+          "11514566",
+          "908795",
+          "908815",
+          "1351342"
+        ],
+        "tables": [
+          "opinn_lo"
+        ]
+      },
+      {
+        "title": {
+          "en": "At the post office: póstur, frímerki, sækja",
+          "nb": "På postkontoret: póstur, frímerki, sækja"
+        },
+        "text": {
+          "en": "Mail is {is:póstur}, borrowed from Danish post, and the post office is {is:pósthús}, the post house: {is:Hvar er pósthúsið?}, {is:Ég ætla bara rétt að koma við á pósthúsinu} (I am just going to drop by the post office). A stamp is {is:frímerki}, Norwegian frimerke, which Bokmålsordboka explains as a mark that makes the mail free: {is:Ég þarf að kaupa nokkur frímerki}. A package is {is:pakki}, Norwegian pakke. To fetch or pick up is {is:sækja}: {is:Ég kem að sækja þig á sunnudaginn}. It is Norwegian søke, from Old Norse sǿkja, and like søke om, {is:sækja um} is to apply for: {is:Þú ættir að sækja um þessa stöðu}.",
+          "nb": "Post er {is:póstur}, lånt fra dansk post, og postkontoret er {is:pósthús}, posthuset: {is:Hvar er pósthúsið?}, {is:Ég ætla bara rétt að koma við á pósthúsinu} (jeg skal bare innom postkontoret). Et frimerke er {is:frímerki}, norsk frimerke, som Bokmålsordboka forklarer som et merke som gjør postsendingen fri: {is:Ég þarf að kaupa nokkur frímerki}. En pakke er {is:pakki}, norsk pakke. Å hente er {is:sækja}: {is:Ég kem að sækja þig á sunnudaginn}. Det er norsk søke, fra norrønt sǿkja, og som søke om er {is:sækja um} å søke på: {is:Þú ættir að sækja um þessa stöðu}."
+        },
+        "examples": [
+          "4172215-2",
+          "846406",
+          "652996",
+          "673259",
+          "382464-1",
+          "504853"
+        ]
+      },
+      {
+        "title": {
+          "en": "At the bank: skipta, greiða, lána",
+          "nb": "I banken: skipta, greiða, lána"
+        },
+        "text": {
+          "en": "To change is {is:skipta}, Norwegian skifte, from Old Norse skipta: {is:Þarf ég að skipta um lest?} (do I have to change trains?). It also means to matter: {is:Það skiptir ekki máli} (it does not matter). To pay is {is:borga} or {is:greiða}: {is:Reikningurinn verður að greiðast í dag}. {is:greiða} is Norwegian greie, from Old Norse greiða, and also means to comb. A loan is {is:lán}, Norwegian lån; {is:lán} is also luck. {is:lána} is to lend: {is:Hann lánaði mér tvær bækur}. Watch the direction: Norwegian låne is mostly to borrow, which Icelandic says with {is:fá lánað}, get lent: {is:Get ég fengið bílinn þinn lánaðan?} (may I borrow your car?). A receipt is {is:kvittun}: {is:Get ég fengið kvittun?}",
+          "nb": "Å bytte er {is:skipta}, norsk skifte, fra norrønt skipta: {is:Þarf ég að skipta um lest?} (må jeg bytte tog?). Det betyr også å bety noe: {is:Það skiptir ekki máli} (det spiller ingen rolle). Å betale er {is:borga} eller {is:greiða}: {is:Reikningurinn verður að greiðast í dag}. {is:greiða} er norsk greie, fra norrønt greiða, og betyr også å gre. Et lån er {is:lán}, norsk lån; {is:lán} er også lykke. {is:lána} er å låne bort: {is:Hann lánaði mér tvær bækur}. Pass på retningen: norsk låne er mest å låne av noen, som islandsk sier med {is:fá lánað}, få lånt: {is:Get ég fengið bílinn þinn lánaðan?} (kan jeg låne bilen din?). En kvittering er {is:kvittun}: {is:Get ég fengið kvittun?}"
+        },
+        "examples": [
+          "1356547",
+          "856004",
+          "624013",
+          "583658-1",
+          "1353526",
+          "1368359",
+          "1355112"
+        ]
+      },
+      {
+        "title": {
+          "en": "Tickets and trips: miði, ferð, farangur",
+          "nb": "Billetter og reiser: miði, ferð, farangur"
+        },
+        "text": {
+          "en": "A ticket is {is:miði}, which is also a note, a slip of paper: {is:Ég er ekki með miða} (I do not have a ticket), {is:Tom las miðann} (Tom read the note). A trip is {is:ferð}, Norwegian ferd, from Old Norse ferð: {is:Góða ferð!} (have a good trip), {is:Var ferðin góð?} Luggage is {is:farangur}, from {is:fara} (go): the things one takes along. To book is {is:bóka}: {is:Mig langar að bóka eins manns herbergi} (I would like to book a single room).",
+          "nb": "En billett er {is:miði}, som også er en lapp: {is:Ég er ekki með miða} (jeg har ikke billett), {is:Tom las miðann} (Tom leste lappen). En reise er {is:ferð}, norsk ferd, fra norrønt ferð: {is:Góða ferð!} (god tur), {is:Var ferðin góð?} Bagasje er {is:farangur}, av {is:fara} (dra): det man tar med seg. Å bestille er {is:bóka}: {is:Mig langar að bóka eins manns herbergi} (jeg vil gjerne bestille et enkeltrom)."
+        },
+        "examples": [
+          "1364325",
+          "3799342",
+          "706968",
+          "473069",
+          "545428",
+          "740812"
+        ]
+      },
+      {
+        "title": {
+          "en": "Train, station, taxi: lest, stöð, leigubíll",
+          "nb": "Tog, stasjon, taxi: lest, stöð, leigubíll"
+        },
+        "text": {
+          "en": "A train is {is:lest}, borrowed from Low German last, a load; Norwegian last is still a cargo: {is:Lestin fer klukkan níu}, {is:Lestin var að fara} (the train has just left). A station is {is:stöð}, from Old Norse stǫð, related to {is:standa}. You go to the station with {is:á} and the accusative, and are at it with {is:á} and the dative: {is:Við komum á stöðina klukkan sex}, {is:Ég þarf að vera á stöðinni klukkan þrjú}. A taxi is {is:leigubíll}, a hired car, from {is:leiga} (rent) and {is:bíll}: {is:Tökum leigubíl}. Information is {is:upplýsingar}, usually plural, from {is:upp} and {is:lýsing} (lighting): {is:Ég þarf upplýsingar}.",
+          "nb": "Et tog er {is:lest}, lånt fra lavtysk last, en last; norsk last er fortsatt last om bord: {is:Lestin fer klukkan níu}, {is:Lestin var að fara} (toget gikk akkurat). En stasjon er {is:stöð}, fra norrønt stǫð, i slekt med {is:standa}. Man drar til stasjonen med {is:á} og akkusativ, og er på den med {is:á} og dativ: {is:Við komum á stöðina klukkan sex}, {is:Ég þarf að vera á stöðinni klukkan þrjú}. En drosje er {is:leigubíll}, en leiebil, av {is:leiga} (leie) og {is:bíll}: {is:Tökum leigubíl}. Opplysninger er {is:upplýsingar}, som regel i flertall, av {is:upp} og {is:lýsing} (lys, belysning): {is:Ég þarf upplýsingar}."
+        },
+        "examples": [
+          "385551",
+          "543815",
+          "673368",
+          "512723",
+          "725635",
+          "725642",
+          "583658-2"
+        ],
+        "tables": [
+          "stöð_no"
+        ]
+      },
+      {
+        "title": {
+          "en": "Forgotten and lost: gleyma, týna, skila",
+          "nb": "Glemt og mistet: gleyma, týna, skila"
+        },
+        "text": {
+          "en": "To forget is {is:gleyma}, Norwegian glemme, from Old Norse gleyma, from glaumr, merriment: to be so merry that one forgets. {is:gleyma} is weak: {is:Hann gleymdi mér}, {is:Gleymdu ekki!} To lose a thing is {is:týna}: {is:Ég týndi lyklinum mínum}, and lost is {is:týndur}: {is:Afsakaðu mig, ég er týndur} (excuse me, I am lost). Watch out: Norwegian tyne, from the same Old Norse týna, is to destroy or kill. To give back is {is:skila}, with the dative: {is:Þú verður að skila bókinni til hans}. {is:skila kveðju} is to give someone your regards: {is:Vinsamlegast skilaðu kveðju til hans}.",
+          "nb": "Å glemme er {is:gleyma}, norsk glemme, fra norrønt gleyma, av glaumr, lystighet: å være så lystig at man glemmer. {is:gleyma} er svakt: {is:Hann gleymdi mér}, {is:Gleymdu ekki!} Å miste noe er {is:týna}: {is:Ég týndi lyklinum mínum}, og mistet er {is:týndur}: {is:Afsakaðu mig, ég er týndur} (unnskyld, jeg har gått meg vill). Pass på: norsk tyne, fra det samme norrøne týna, er å ødelegge eller drepe. Å levere tilbake er {is:skila}, med dativ: {is:Þú verður að skila bókinni til hans}. {is:skila kveðju} er å hilse fra noen: {is:Vinsamlegast skilaðu kveðju til hans}."
+        },
+        "examples": [
+          "736940",
+          "10547664",
+          "479468",
+          "427992",
+          "504864",
+          "387054"
+        ]
+      }
+    ]
+  }
+}

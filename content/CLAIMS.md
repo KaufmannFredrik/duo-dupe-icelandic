@@ -99,8 +99,11 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | *tónleikarnir*, *tónleikunum*, *tónleikana* are *tónleikar* ("a concert", plural only, the DMII Core word); the parser names them by *tónleikur*, which BÍN also lists with the same plural forms (`PLURAL_ONLY` in `scripts/lib/tags.mjs`). | BÍN (*tónleikar* kk, id 91313; *tónleikur* kk, id 90912; both give *tónleikarnir*); W tónleikar ("concert") | sourced |
 | *fær* in *Ég er fær um að synda* is the adjective *fær* ("able"), not a form of *fá*; *á* in *Helgina sem ég fór á skíði* is the preposition of *fara á skíði*, not *eiga*. | BÍN (*fær* lo); translations of T 1321802 ("I'm able to swim"), 7319849 ("That weekend I went skiing") | sourced |
 | Wrong parser cases dropped: *betra* in *Liðið þitt er betra en okkar* (made from T 544571) is nominative, not genitive; *skák* after *leika* in T 387772 is accusative, not nominative; *gítar* after *leika á* in T 469359 is accusative, as in T 11514561 (*spilar á gítar*), not dative; in T 469363 (*góður á gítar*) no source decides it, so it keeps no case. | DMII (*betra*, comparative of *góður*); the parser's own reading of T 11514561 | sourced |
+| *vinsamlegast* ("please") is the superlative of the adverb *vinsamlega*; the parser reads it as the neuter superlative of the adjective *vinsamlegur*, and where it cannot parse the sentence leaves it open between the two (`ADVERB_OF` in `scripts/lib/tags.mjs`). | BÍN (*vinsamlegast*: EST of *vinsamlega* ao, and ESB-HK of *vinsamlegur*); W vinsamlega ("please"); translations of T 1316194 ("Please come"), 624010 | sourced |
+| *sæti* in *Vinsamlegast taktu þetta sæti* and *Vinsamlegast fáið ykkur sæti* is the noun "seat", not a form of *sætur*; *Skilið* ("understood") is the supine of *skilja*, not *skila*; *pakka* in *Ég ætti að fara að pakka* is the verb "to pack" (lemma null). | DMII (*sæti* hk; *skilið*, GM-SAGNB of *skilja*); translations of T 388910, 1324686, 477938 ("Understood"), 3799284 ("I should go pack") | sourced |
+| Wrong parser cases dropped: *upplýsingar* after *þarf* (made from T 583658, 4000851) is accusative, not genitive; *dyrnar* in T 828869 is accusative; *ferð* after *fara í* (T 1323378, 1355189) is accusative; *mánuði* in *í næsta mánuði* (T 734849, 734850) is dative, the only case of that form. | DMII (*mánuði*: ÞGF ET only; *upplýsingar*: NF/ÞF FT, EF is *upplýsinga*); the accusative of motion after *í* (`content/case-rules.json`, *í-hreyfing*) | sourced |
 
-The parser itself is not checked case by case: `npm run build:tags` lists the 454 words it gives to another word than their spelling suggests.
+The parser itself is not checked case by case: `npm run build:tags` lists the 482 words it gives to another word than their spelling suggests.
 
 ## Unit guidebooks (`content/units/`)
 
@@ -462,6 +465,39 @@ Headings name the units rather than their numbers, because new units are inserte
 | *veiða* is to fish and to hunt, Norwegian *veide*, from Old Norse *veiða*. | W veiða ("to hunt", "to fish"; "From Old Norse veiða"); BMO veide ("norr. veiða"); T 468929 ("My father went fishing") | sourced |
 | *Frítími* leaves out *frítími* (no Wiktionary entry) and *hljómsveit* (one readable sentence, *Hljómsveitin mín heitir Red Hot*); the guidebook teaches both. Most sport sentences need *vinna* ("win"), which *Nám og vinna* brings, so the team sentences are made ones. | W (no entry for frítími, kaikki.org); T 388921 | checked |
 
+### *Þjónusta*
+
+| Claim | Source | Status |
+|---|---|---|
+| *vinsamlegast* ("please") is the superlative of the adverb *vinsamlega*, from *vinsamlegur* ("friendly"); it comes first with a command or after the verb. | BÍN (EST of *vinsamlega*); W vinsamlega ("please"); T 1316194, 831722, 388910, 905343 ("Please phone him") | sourced |
+| *Gæti ég fengið* asks politely for something. | T 795478 ("Could I have another glass of beer?"), 624010 | attested |
+| *opinn* is Norwegian *åpen*, from Old Norse *opinn*, related to *upp*; it agrees. | BMO åpen ("norr. opinn 'vendt oppover' \| besl med opp"); W opinn; DMII; T 863098, 10717440, 1364302 | sourced |
+| *lokaður* (closed) is the past participle of *loka*. | DMII (*lokaður*, LHÞT of *loka*); T 828854 ("Keep the door closed"), 382249 ("The road to Nagano is closed to traffic"); W loka | sourced |
+| *röð* is a row or a line, Norwegian *rad*, from Old Norse *rǫð*; *bíða í röð* is to wait in line. | W röð ("a row, a line"); BMO rad ("norr. rǫð"); T 11514566 ("You have to wait in line") | sourced |
+| *næstur* is next, Norwegian *neste*, from Old Norse *næstr*: *á næsta ári*, *í næstu viku*. | W næstur ("nearest, closest", "next"); BMO neste ("norr. næstr \| av nær"); T 908795, 908815 | sourced |
+| *sæti* is Norwegian *sete*, from Old Norse *sæti*, related to *sitja* (Norwegian *sitte*). | W sæti; BMO sete ("norr. sæti \| besl med sitte") | sourced |
+| *póstur* was borrowed from Danish *post*; *pósthús* is *póstur* + *hús*. | W póstur ("Borrowed from Danish post"), pósthús ("From póstur + hús") | sourced |
+| *frímerki* is Norwegian *frimerke*, which Bokmålsordboka explains as a mark that makes the mail free. | W frímerki ("postage stamp"); BMO frimerke ("opprinnelig 'merke som gjør postsendingen fri'") | sourced |
+| *pakki* is Norwegian *pakke*, from Old Norse *pakki*. | W pakki ("From Old Norse pakki"); BMO pakke (`data/bridge.json`, "norr. pakki") | sourced |
+| *sækja* is to fetch or pick up; it is Norwegian *søke*, from Old Norse *sǿkja*, and *sækja um*, like *søke om*, is to apply for. | W sækja ("to fetch", "to pick up"; "From Old Norse sǿkja"); BMO søke ("norr. sǿkja"; "henvende seg til for å få studieplass, arbeid eller lignende"); T 382464 (made), 504853 ("You should apply for that post") | sourced |
+| *skipta* is Norwegian *skifte*, from Old Norse *skipta*; *skipta um* is to change (trains); it also means to matter. | W skipta ("to change", "to matter"); BMO skifte ("norr. skipta"; "han skiftet skjorte"); T 1356547 ("Do I have to change trains?"), 856004 ("It doesn't matter") | sourced |
+| *greiða* is to pay and also to comb; Norwegian *greie* is from the same Old Norse *greiða*. | W greiða ("to comb", "to pay"); BMO greie ("norr. greiða"); T 624013 | sourced |
+| *lán* is a loan and luck, Norwegian *lån*, from Old Norse *lán*; *lána* is to lend, and to borrow is *fá lánað*; Norwegian *låne* is mostly to borrow. | W lán ("loan", "luck"), lána ("to lend"); BMO lån ("norr. lán"), låne ("norr. lána"; "få noe til bruk en viss tid"); T 1353526 ("He lent me two books"), 1368359 ("May I borrow your car?"), 844949 ("Fortune has turned in my favor") | sourced |
+| *kvittun* is a receipt. | W kvittun ("receipt"); T 1355112 ("May I have a receipt?") | sourced |
+| *miði* is a ticket and a note. | W miði ("note, slip of paper", "transportation ticket"); T 1364325, 3799342 ("Tom read the note") | sourced |
+| *ferð* is Norwegian *ferd*, from Old Norse *ferð*; *Góða ferð!* | W ferð ("trip, tour, journey"); BMO ferd ("norr. ferð"); T 706968 ("Have a safe trip") | sourced |
+| *farangur* is *fara* + *-angur*, the things one takes along. | W farangur ("From fara ('to go') + -angur, i.e. 'the things that one takes with oneself when going somewhere'") | sourced |
+| *bóka* is to book. | W bóka ("to book (register an order for a hotel room ...)"); T 740812 ("I'd like to reserve a single room") | sourced |
+| *lest* was borrowed from Low German *last* ("load"); Norwegian *last* is cargo. | W lest ("train"; "From Middle Low German last"); BMO last ("gods som fraktes med et transportmiddel"; "fra l.ty. \| jf norr. lest") | sourced |
+| *Lestin var að fara* is "the train has just left": *var að* with an infinitive can mean "had just". | T 543815 ("The train just left") | attested |
+| *stöð* is from Old Norse *stǫð*, from *standa*; to the station is *á* with the accusative, at it *á* with the dative. | W stöð ("From Old Norse stǫð, from standa"); T 673368, 512723; the *á* rules (`content/case-rules.json`) | sourced |
+| *leigubíll* is *leiga* ("rent") + *bíll*. | W leigubíll ("From leiga + bíll") | sourced |
+| *upplýsing* is *upp* + *lýsing* ("lighting"), and information is usually plural, *upplýsingar*. | W upplýsing ("upp + lýsing"; "information"); T 10615789, 564511, 545669 (all plural) | sourced |
+| *gleyma* is Norwegian *glemme*, from Old Norse *gleyma*, from *glaumr* ("merriment"): to be so merry that one neglects; it is weak (*gleymdi*). | W gleyma ("From Old Norse gleyma ('to be merry; to forget'), from glaumr"); BMO glemme ("norr. gleyma, av glaumr 'overstadig glede', opprinnelig 'være overstadig lystig (og derfor forsømme)'"); DMII | sourced |
+| *týna* is to lose a thing; Norwegian *tyne*, from the same Old Norse *týna*, is to destroy or kill. | W týna ("to lose (objects)"; "From Old Norse týna"); BMO tyne ("norr. týna, av tjón 'skade'"; "gjøre ende på", "drepe"); T 479468, 427992 | sourced |
+| *skila* is to give back, with the dative of the thing; *skila kveðju* is to give someone's regards. | W skila ("to give back, to return"); T 504864 ("You must return the book to him"), 387054 ("Please say hello to him for me") | sourced |
+| *Þjónusta* leaves out *lokaður* and *hraðbanki* (no Wiktionary entry; *lokaður* is read as *loka*), and *eyðublað*, *afsláttur*, *skilríki* (no sentence). | W (no entries, kaikki.org); T | checked |
+
 ### *Vinna*
 
 | Claim | Source | Status |
@@ -711,10 +747,23 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | 386377-2 | *Hann hafði mikinn áhuga á íþróttum.* | T 386377 | *ferðalögum* → *íþróttum* | He had a great interest in sports. |
 | 386377-3 | *Hann hafði mikinn áhuga á fótbolta.* | T 386377 | *ferðalögum* → *fótbolta* | He had a great interest in soccer. |
 | 386377-4 | *Hann hafði mikinn áhuga á skák.* | T 386377 | *ferðalögum* → *skák* | He had a great interest in chess. |
+| 583658-1 | *Ég þarf lán.* | T 583658 | *hjálp* → *lán* | I need a loan. |
+| 4000851-1 | *Hann þarf lán.* | T 4000851 | *hjálp* → *lán* | He needs a loan. |
+| 583658-2 | *Ég þarf upplýsingar.* | T 583658 | *hjálp* → *upplýsingar* | I need information. |
+| 4000851-2 | *Hann þarf upplýsingar.* | T 4000851 | *hjálp* → *upplýsingar* | He needs information. |
+| 382464-1 | *Ég kem að sækja þig á sunnudaginn.* | T 382464 | *hitta* → *sækja* | I will come to pick you up next Sunday. |
+| 383188-1 | *Það er maður kominn til að sækja þig.* | T 383188 | *hitta* → *sækja* | There is a gentleman to pick you up. |
+| 387306-1 | *Hann fékk póst.* | T 387306 | *kvef* → *póst* | He got mail. |
+| 624010-1 | *Gæti ég vinsamlegast fengið kvittunina?* | T 624010 | *reikninginn* → *kvittunina* | May I have the receipt, please? |
+| 4172215-2 | *Hvar er pósthúsið?* | T 4172215 | *sjúkrahúsið* → *pósthúsið* | Where is the post office? |
+| 1324689-8 | *Hún keypti frímerki.* | T 1324689 | *kjúkling* → *frímerki* | She bought stamps. |
+| 1324689-9 | *Hún keypti miða.* | T 1324689 | *kjúkling* → *miða* | She bought a ticket. |
+| 3795505-1 | *Af hverju ætti ég að greiða?* | T 3795505 | *borga* → *greiða* | Why should I pay? |
+| 10969598-1 | *Við getum greitt.* | T 10969598 | *borgað* → *greitt* | We can pay. |
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 32 of the 3,128 sentences. The other 3,066 (all but 30 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 195 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 33 of the 3,288 sentences. The other 3,226 (all but 29 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 208 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -727,7 +776,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 481 of the 581 course words. The other 100 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 93 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 501 of the 607 course words. The other 106 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 94 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -750,6 +799,7 @@ Wiktionary gives a Bokmål gloss for 481 of the 581 course words. The other 100 
 | glaður, ánægður, leiður, hræddur, rólegur, hissa, áhyggja | glad; fornøyd, tilfreds; lei seg, lei; redd, skremt; rolig; overrasket, forbauset; bekymring | W "happy, glad", "content, satisfied", "sad" and "fed up (with)", "afraid; scared, frightened", "quiet, calm", "surprised", "worries"; BMO glad ("norr. glaðr"), lei ("være lei seg"; "norr. leiðr"), redd ("norr. hræddr"), rolig ("av ro"); *lei seg* is a phrase in the file |
 | brjóta, líða, illur, illa, veikur, hraustur, kvefaður, læknir, batna | brekke, knuse, bryte; føle seg, ha det, gå; vond, dårlig, ond; dårlig, ille; syk, svak; frisk, sunn, sterk; forkjølet; lege, doktor; bli bedre | W "to break", "describing a specific feeling; to feel" (*Mér líður vel*, *Jeg har det bra*; *ha det* is also *bless*, so *føle seg* comes first), "evil, ill" (in the course sentences *Mér er illt í*, *Jeg har vondt i*), "badly, poorly", "sick, ill", "healthy, well", "having a cold", "doctor", "to get better"; BMO brekke ("brekke armen" is how a bone breaks), vond ("det gjør vondt"), ille ("norr. illa"), syk, frisk ("som har god helse"), forkjølet, lege; *bli bedre*, *føle seg* are phrases in the file |
 | langa, skemmta, spila, æfa, hjóla, spil | ha lyst, lengte; underholde, more; spille; øve, trene; sykle; kort, spill | W "to cause to want", "to entertain, amuse", "to play", "to practise", "to bike, cycle", "game (with ... playing cards or a board)", "playing card"; BMO lyst ("få lyst på sjokolade"), underholde, more ("muntre, oppmuntre, underholde"), spille, øve, trene, sykle, kort; *ha lyst* is a phrase in the file |
+| röð, frímerki, sækja, skipta, bóka, upplýsing | kø, rekke; frimerke; hente; bytte, veksle, dele; bestille, booke; opplysning, informasjon | W "a row, a line", "postage stamp", "to fetch", "to change, exchange", "to book", "information"; BMO kø, rekke, frimerke, hente, bytte, veksle, bestille, booke, opplysning |
 
 ### Wiktionary glosses corrected (`"fixes"`)
 
@@ -816,12 +866,13 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | hjálp | hjelp (second: hjelper) | hjelp | "help"; *hjelper* is a helper, a person |
 | lyf | legemiddel | medisin, legemiddel | "drug, medicine": *medisin* is the everyday word (BMO "legemiddel, medikament"; "ta medisin") |
 | vona | håpe (second: håp) | håpe | "to hope"; *håp* is the noun (*von*) |
+| skila | returnere (second: komme tilbake) | levere tilbake, returnere | "to give back, to return": a thing given back; *komme tilbake* is "come back" |
 
 Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *dós* kanne (BMO: a jug), *pylsa* kurv and korv (BMO's other word for a sausage, but *kurv* is mostly a basket), *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 538 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 561 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|

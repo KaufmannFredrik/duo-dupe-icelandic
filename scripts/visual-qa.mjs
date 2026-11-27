@@ -166,6 +166,7 @@ const SHOTS = [
   { name: 'guide-people', url: 'guide.html?unit=people', full: true },
   { name: 'guide-body', url: 'guide.html?unit=body', full: true },
   { name: 'guide-freetime', url: 'guide.html?unit=freetime', full: true },
+  { name: 'guide-services', url: 'guide.html?unit=services', full: true },
   { name: 'guide-shopping', url: 'guide.html?unit=shopping', full: true },
   { name: 'guide-weather', url: 'guide.html?unit=weather', full: true },
   { name: 'guide-study', url: 'guide.html?unit=study', full: true },
@@ -197,6 +198,7 @@ const SHOTS = [
   { name: 'stories-people', url: 'stories.html?story=people', full: true },
   { name: 'stories-body', url: 'stories.html?story=body', full: true },
   { name: 'stories-freetime', url: 'stories.html?story=freetime', full: true },
+  { name: 'stories-services', url: 'stories.html?story=services', full: true },
   { name: 'stories-word', url: 'stories.html?story=cafe', act: async (p) => p.click('.word:text-is("te")') },
   { name: 'stories-speaking', url: 'stories.html?story=cafe', act: async (p) => p.evaluate(() => { document.querySelector('.reader__line').classList.add('is-current'); document.querySelectorAll('.word')[2].classList.add('is-speaking'); }) },
   { name: 'stories-translations', url: 'stories.html?story=family', act: async (p) => p.check('[data-show-translations]', { force: true }) },
@@ -238,9 +240,9 @@ const SHOTS = [
   { name: 'landing-calm', url: 'index.html', calm: true },
 ];
 const OVERFLOW_PAGES = [
-  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=aboutme', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=numbers', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=myday', 'guide.html?unit=shopping', 'guide.html?unit=food', 'guide.html?unit=home', 'guide.html?unit=people', 'guide.html?unit=weather', 'guide.html?unit=body', 'guide.html?unit=freetime', 'guide.html?unit=study', 'guide.html?unit=grammar', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
+  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=aboutme', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=numbers', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=myday', 'guide.html?unit=shopping', 'guide.html?unit=food', 'guide.html?unit=home', 'guide.html?unit=people', 'guide.html?unit=weather', 'guide.html?unit=body', 'guide.html?unit=freetime', 'guide.html?unit=study', 'guide.html?unit=services', 'guide.html?unit=grammar', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
   'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
-  'stories.html', 'stories.html?story=hello', 'stories.html?story=aboutme', 'stories.html?story=cafe', 'stories.html?story=numbers', 'stories.html?story=time', 'stories.html?story=myday', 'stories.html?story=shopping', 'stories.html?story=food', 'stories.html?story=home', 'stories.html?story=people', 'stories.html?story=body', 'stories.html?story=freetime', 'stories.html?story=study', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'letters.html', 'lesson.html?mode=alphabet', 'voices.html', 'music.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
+  'stories.html', 'stories.html?story=hello', 'stories.html?story=aboutme', 'stories.html?story=cafe', 'stories.html?story=numbers', 'stories.html?story=time', 'stories.html?story=myday', 'stories.html?story=shopping', 'stories.html?story=food', 'stories.html?story=home', 'stories.html?story=people', 'stories.html?story=body', 'stories.html?story=freetime', 'stories.html?story=study', 'stories.html?story=services', 'stories.html?story=grammar', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'letters.html', 'lesson.html?mode=alphabet', 'voices.html', 'music.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
 ];
 
 async function settle(page) {

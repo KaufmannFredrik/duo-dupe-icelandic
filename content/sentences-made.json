@@ -1756,6 +1756,123 @@
       ],
       "is": "Hann hafði mikinn áhuga á skák.",
       "en": "He had a great interest in chess."
+    },
+    "583658-1": {
+      "from": "583658",
+      "swap": [
+        "hjálp",
+        "lán"
+      ],
+      "is": "Ég þarf lán.",
+      "en": "I need a loan."
+    },
+    "4000851-1": {
+      "from": "4000851",
+      "swap": [
+        "hjálp",
+        "lán"
+      ],
+      "is": "Hann þarf lán.",
+      "en": "He needs a loan."
+    },
+    "583658-2": {
+      "from": "583658",
+      "swap": [
+        "hjálp",
+        "upplýsingar"
+      ],
+      "is": "Ég þarf upplýsingar.",
+      "en": "I need information."
+    },
+    "4000851-2": {
+      "from": "4000851",
+      "swap": [
+        "hjálp",
+        "upplýsingar"
+      ],
+      "is": "Hann þarf upplýsingar.",
+      "en": "He needs information."
+    },
+    "382464-1": {
+      "from": "382464",
+      "swap": [
+        "hitta",
+        "sækja"
+      ],
+      "is": "Ég kem að sækja þig á sunnudaginn.",
+      "en": "I will come to pick you up next Sunday."
+    },
+    "383188-1": {
+      "from": "383188",
+      "swap": [
+        "hitta",
+        "sækja"
+      ],
+      "is": "Það er maður kominn til að sækja þig.",
+      "en": "There is a gentleman to pick you up."
+    },
+    "387306-1": {
+      "from": "387306",
+      "swap": [
+        "kvef",
+        "póst"
+      ],
+      "is": "Hann fékk póst.",
+      "en": "He got mail."
+    },
+    "624010-1": {
+      "from": "624010",
+      "swap": [
+        "reikninginn",
+        "kvittunina"
+      ],
+      "is": "Gæti ég vinsamlegast fengið kvittunina?",
+      "en": "May I have the receipt, please?"
+    },
+    "4172215-2": {
+      "from": "4172215",
+      "swap": [
+        "sjúkrahúsið",
+        "pósthúsið"
+      ],
+      "is": "Hvar er pósthúsið?",
+      "en": "Where is the post office?"
+    },
+    "1324689-8": {
+      "from": "1324689",
+      "swap": [
+        "kjúkling",
+        "frímerki"
+      ],
+      "is": "Hún keypti frímerki.",
+      "en": "She bought stamps."
+    },
+    "1324689-9": {
+      "from": "1324689",
+      "swap": [
+        "kjúkling",
+        "miða"
+      ],
+      "is": "Hún keypti miða.",
+      "en": "She bought a ticket."
+    },
+    "3795505-1": {
+      "from": "3795505",
+      "swap": [
+        "borga",
+        "greiða"
+      ],
+      "is": "Af hverju ætti ég að greiða?",
+      "en": "Why should I pay?"
+    },
+    "10969598-1": {
+      "from": "10969598",
+      "swap": [
+        "borgað",
+        "greitt"
+      ],
+      "is": "Við getum greitt.",
+      "en": "We can pay."
     }
   }
 }

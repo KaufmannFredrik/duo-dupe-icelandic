@@ -1,7 +1,7 @@
 {
   "note": "Bokmål glosses written for TÖLVA. \"glosses\": for course words that Wiktionary gives none for. \"fixes\": in place of Wiktionary glosses that are wrong (another sense, another word class, two words run together, a Swedish or outdated spelling), or that two course words share; \"wiktionary\" repeats what Wiktionary gives, so npm run validate notices when it changes. The first gloss is the one exercises show (verbs get å in front); the rest show in the dictionary. Each was chosen from the word's English Wiktionary meaning and its uses in the course sentences, with the reasons and sources in content/CLAIMS.md. npm run validate checks every word of every gloss the app shows against Bokmålsordboka, and that a gloss of several words is listed in \"phrases\"; npm run build:translations puts them into data/lexicon.json.",
   "reviewed": true,
-  "phrases": ["av og til", "be om", "bli bedre", "der borte", "en eller annen", "falle i søvn", "føle seg", "få lov til", "få tak i", "gjøre ferdig", "gjøre rent", "gjøre vondt", "god dag", "ha det", "ha lyst", "ha tenkt", "hele tiden", "høre på", "kan hende", "komme i hu", "lage mat", "lei seg", "lukke opp", "med en gang", "må hende", "på nytt", "se på", "skynde seg", "slå av", "slå på", "synes om", "til slutt", "ut av"],
+  "phrases": ["av og til", "be om", "bli bedre", "der borte", "en eller annen", "falle i søvn", "føle seg", "få lov til", "få tak i", "gjøre ferdig", "gjøre rent", "gjøre vondt", "god dag", "ha det", "ha lyst", "ha tenkt", "hele tiden", "høre på", "kan hende", "komme i hu", "lage mat", "lei seg", "levere tilbake", "lukke opp", "med en gang", "må hende", "på nytt", "se på", "skynde seg", "slå av", "slå på", "synes om", "til slutt", "ut av", "vær så snill"],
   "glosses": {
     "af_fs": ["av", "fra"],
     "bara_ao": ["bare"],
@@ -102,7 +102,13 @@
     "spila_so": ["spille"],
     "æfa_so": ["øve", "trene"],
     "hjóla_so": ["sykle"],
-    "spil_no": ["kort", "spill"]
+    "spil_no": ["kort", "spill"],
+    "röð_no": ["kø", "rekke"],
+    "frímerki_no": ["frimerke"],
+    "sækja_so": ["hente"],
+    "skipta_so": ["bytte", "veksle", "dele"],
+    "bóka_so": ["bestille", "booke"],
+    "upplýsing_no": ["opplysning", "informasjon"]
   },
   "fixes": {
     "barn_no": { "nb": ["barn"], "wiktionary": ["barn", "barn n mindreårig"] },
@@ -197,6 +203,7 @@
     "hjúkrunarfræðingur_no": { "nb": ["sykepleier"], "wiktionary": ["sykepleier", "sykesøster", "søster"] },
     "hjálp_no": { "nb": ["hjelp"], "wiktionary": ["hjelp", "hjelper"] },
     "lyf_no": { "nb": ["medisin", "legemiddel"], "wiktionary": ["legemiddel", "medikament", "medisin"] },
-    "vona_so": { "nb": ["håpe"], "wiktionary": ["håpe", "håp"] }
+    "vona_so": { "nb": ["håpe"], "wiktionary": ["håpe", "håp"] },
+    "skila_so": { "nb": ["levere tilbake", "returnere"], "wiktionary": ["returnere", "komme tilbake", "tilbakelevere"] }
   }
 }

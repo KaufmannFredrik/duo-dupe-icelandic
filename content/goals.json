@@ -67,7 +67,7 @@
       "is": "Nemandi getur gert sig skiljanlegan í verslun, banka og pósthúsi.",
       "en": "Make yourself understood in a shop, a bank and a post office.",
       "nb": "Gjøre deg forstått i butikken, i banken og på postkontoret.",
-      "units": ["cafe", "shopping"]
+      "units": ["cafe", "shopping", "services"]
     },
     {
       "id": "information",

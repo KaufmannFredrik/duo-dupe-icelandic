@@ -44,7 +44,8 @@ export function align(appWords, parserTokens) {
  *  - ordinals, which BÍN classes on their own (rt) and the parser as adjectives (þriðji),
  *  - a plural-only course noun the parser names by a singular lemma that BÍN also lists with the
  *    same plural forms (PLURAL_ONLY: tónleikarnir is tónleikar, "a concert", to the course and
- *    the plural of tónleikur to the parser).
+ *    the plural of tónleikur to the parser),
+ *  - an adverb form the parser reads as an adjective's (ADVERB_OF: vinsamlegast, "please").
  * Others are the same word used in another way, and are "loose": prepositions as adverbs or
  * particles ("Við erum öll til", we are all ready; "búa til", to make), að as a preposition, and
  * einn or annar as pronoun or adjective ("Hann býr einn", he lives alone). A loose word counts as
@@ -54,12 +55,17 @@ export function align(appWords, parserTokens) {
  */
 // The parser's singular lemma -> the plural-only course noun with the same plural forms (BÍN).
 const PLURAL_ONLY = new Map([['tónleikur', 'tónleikar']]);
+// The parser's adjective -> the course adverb whose form it reads as the adjective's: vinsamlegast
+// ("please") is the superlative of the adverb vinsamlega in BÍN, and the parser reads it as the
+// neuter superlative of vinsamlegur.
+const ADVERB_OF = new Map([['vinsamlegur', 'vinsamlega']]);
 
 /** @returns {boolean|'loose'} */
 export function sameWord(id, word, tok, forms, lexicon) {
   const L = lexicon.lemmas[id];
   const cls = CLASS[tok.c];
   if (cls === 'no' && L.ofl === 'no' && PLURAL_ONLY.get(low(tok.l ?? '')) === low(L.lemma) && forms.get(low(word))?.has(id)) return true;
+  if (cls === 'lo' && L.ofl === 'ao' && ADVERB_OF.get(low(tok.l ?? '')) === low(L.lemma) && forms.get(low(word))?.has(id)) return true;
   const lemmaIsForm = forms.get(low(tok.l ?? ''))?.has(id) ?? false;
   if (low(tok.l) === low(L.lemma)) {
     if (cls === L.ofl) return true;

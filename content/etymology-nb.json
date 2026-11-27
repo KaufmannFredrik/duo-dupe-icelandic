@@ -2164,6 +2164,98 @@
     "veiða_so": {
       "nb": "Fra norrønt veiða, fra urgermansk *waiþijaną.",
       "of": "20dcb4dd"
+    },
+    "opinn_lo": {
+      "nb": "Fra norrønt opinn, fra urgermansk *upanaz. Sammenlign færøysk opin, nynorsk open, bokmål åpen, dansk åben, svensk öppen, nederlandsk open, nedertysk apen, open, tysk offen, vestfrisisk iepen og engelsk open.",
+      "of": "e68c7ca0"
+    },
+    "röð_no": {
+      "nb": "Fra norrønt rǫð, fra urgermansk *radō.",
+      "of": "33eab871"
+    },
+    "næstur_lo": {
+      "nb": "Fra norrønt næstr, fra urgermansk *nēhwistaz, superlativ av *nēhwaz, fra førgermansk *h₂nḗḱwos, fra urindoeuropeisk *h₂neḱ- («å nå»).",
+      "of": "b501545b"
+    },
+    "sæti_no": {
+      "nb": "Fra norrønt sæti, fra urgermansk *sētiją. Sammenlign engelsk seat.",
+      "of": "52fc5247"
+    },
+    "pósthús_no": {
+      "nb": "Av póstur («post») + hús («hus»).",
+      "of": "947bfb88"
+    },
+    "póstur_no": {
+      "nb": "Lånt fra dansk post.",
+      "of": "152db16c"
+    },
+    "pakki_no": {
+      "nb": "Fra norrønt pakki, kanskje lånt gjennom middelnedertysk packe fra gammelsaksisk *pakko, alle fra urgermansk *pakkô.",
+      "of": "4ae2483f"
+    },
+    "sækja_so": {
+      "nb": "Fra norrønt sǿkja, fra urgermansk *sōkijaną, fra urindoeuropeisk *seh₂g- («å oppsøke»).",
+      "of": "f9baa2b2"
+    },
+    "skipta_so": {
+      "nb": "Fra norrønt skipta, fra urgermansk *skiftijaną.",
+      "of": "251e087e"
+    },
+    "greiða_so": {
+      "nb": "Fra norrønt greiða («å ordne; utruste; gre»), fra urgermansk *garaidijaną.",
+      "of": "7517913e"
+    },
+    "lán_no": {
+      "nb": "Fra norrønt lán, fra urgermansk *laihną, fra urindoeuropeisk *leykʷ-.",
+      "of": "f790ae46"
+    },
+    "lána_so": {
+      "nb": "Se substantivet lán («lån»).",
+      "of": "498042b0"
+    },
+    "kvittun_no": {
+      "nb": "Av kvitta + -un.",
+      "of": "3d5d6789"
+    },
+    "miði_no": {
+      "nb": "Fra den samme roten som mið («midte, merke»); se der for mer.",
+      "of": "c6266002"
+    },
+    "ferð_no": {
+      "nb": "Fra norrønt ferð, fra urgermansk *fardiz.",
+      "of": "cc7247ff"
+    },
+    "farangur_no": {
+      "nb": "Av fara («å dra») + -angur, altså «det man tar med seg når man drar et sted», etter mønster av fargagn («transportmiddel»).",
+      "of": "cea3d220"
+    },
+    "lest_no": {
+      "nb": "Fra middelnedertysk last, fra gammelsaksisk *hlast, fra vestgermansk urspråk *hlasti («byrde, last»).",
+      "of": "50d73445"
+    },
+    "stöð_no": {
+      "nb": "Fra norrønt stǫð, av standa.",
+      "of": "3a994846"
+    },
+    "leigubíll_no": {
+      "nb": "Av leiga («leie») + bíll («bil»).",
+      "of": "61933084"
+    },
+    "upplýsing_no": {
+      "nb": "Av upp («opp») + lýsing («belysning, beskrivelse»).",
+      "of": "88adb8fc"
+    },
+    "gleyma_so": {
+      "nb": "Fra norrønt gleyma («å være lystig; å glemme»), av glaumr (som islandsk glaumur kommer fra).",
+      "of": "b52f987e"
+    },
+    "týna_so": {
+      "nb": "Fra norrønt týna, fra roten i tjón («tap, skade»).",
+      "of": "17afd906"
+    },
+    "skila_so": {
+      "nb": "Fra norrønt skila.",
+      "of": "6612f915"
     }
   }
 }

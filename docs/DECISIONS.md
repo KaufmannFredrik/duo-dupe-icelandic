@@ -2,6 +2,38 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A1, unit 17: *Þjónusta* (2026-11-27)
+
+The ninth new unit of section A1 in [PLAN.md](PLAN.md), after *Nám og vinna*: services, the curriculum's "the bank, sending and fetching, tickets" (stage 2) and the plan's polite *vinsamlegast*, for the goal "make yourself understood in a shop, a bank and a post office" (`content/goals.json`, now also trained by this unit).
+
+- **Words** (26, theme `services`): *vinsamlega*, *opinn*, *röð*, *næstur*, *sæti*; *pósthús*, *póstur*, *frímerki*, *pakki*, *sækja*; *skipta*, *greiða*, *lán*, *lána*, *kvittun*; *miði*, *bóka*, *ferð*, *farangur*; *lest*, *stöð*, *leigubíll*, *upplýsing*; *gleyma*, *týna*, *skila*. *banki*, *strætó*, *kort*, *reikningur*, *borga*, *senda*, *bréf*, *panta*, *bíða* and *hjálpa* were already taught. Chosen by topic, then counted with the scratch word picker limited to the words a learner has after *Nám og vinna*: *vinsamlegast* alone opens 42 Tatoeba sentences; *næstur*, *opinn*, *skipta*, *gleyma*, *lest* and *ferð* bring the most after it.
+- **Meanings as Wiktionary words them:** *vinsamlega* "please" (its superlative *vinsamlegast* is the word in use), *röð* "line", *frímerki* "stamp", *skila* "return", *upplýsing* "information".
+- **Left out:** *lokaður* ("closed"; no Wiktionary entry, and the sentences read it as the past participle of *loka*, a course word, so the guidebook teaches it), *hraðbanki* (no entry), *eyðublað*, *afsláttur*, *skilríki*, *undirskrift* (no sentence), *biðröð* (one; the guidebook uses *röð*).
+
+### Sentences
+
+- **The word "please":** the parser reads *vinsamlegast* as the neuter superlative of the adjective *vinsamlegur*, and where it cannot parse a sentence (most that start with *Vinsamlegast*), it leaves the word open between that and the adverb; either way no *vinsamlegast* sentence counted. In BÍN it is the superlative of the adverb *vinsamlega*, the course word. `scripts/lib/tags.mjs` now maps the parser's adjective to the course adverb for that form (`ADVERB_OF`), as `PLURAL_ONLY` does for *tónleikar*; 26 sentences now teach it.
+- **13 made sentences** (decision 3), from 10 originals: *Ég þarf hjálp* and *Hann þarf hjálp* gave *lán* and *upplýsingar*; *Ég kem að hitta þig á sunnudaginn* and *Það er maður kominn til að hitta þig* gave *sækja*; *Hann fékk kvef* gave *póst*; *Gæti ég vinsamlegast fengið reikninginn?* gave *kvittunina*; *Hvar er sjúkrahúsið?* gave *pósthúsið*; *Hún keypti kjúkling* gave *frímerki* and *miða*; *Af hverju ætti ég að borga?* and *Við getum borgað* gave *greiða*. All passed GreynirCorrect and the parser. Every word has at least two readable sentences.
+- **The host's line:** *Vinsamlegast fáðu þér sæti* ("Please have a seat") was the first choice, but GreynirCorrect flags it with a wrong suggestion (*fékk* for the imperative *fáðu*); the suggestion could be right in another sentence, so it was not listed as a false positive, and Amma Sigga says *Vinsamlegast taktu þetta sæti* ("Take this seat, please") instead.
+- **Tag fixes** (12): *sæti* as the noun in two unparsed *Vinsamlegast* sentences; *Skilið* ("understood") as *skilja*, not *skila* (two); *pakka* ("to pack") as another word; wrong cases dropped for *upplýsingar* after *þarf* (two), *dyrnar* in *Ekki skilja dyrnar eftir opnar*, *ferð* after *fara í* (two) and *mánuði* in *í næsta mánuði* (two).
+- **A translation corrected while reading the lessons:** *Lestin var að fara* is "the train has just left" (*var að* with an infinitive can mean "had just"), as its English says.
+
+### The unit
+
+- **Lessons** (grouped by hand, every exercise read over three plays): Please; At the post office; At the bank; Tickets; Bus, train and taxi; Forgotten and lost; and a review. Each has 12 exercises of seven to ten kinds.
+- **Guidebook**, seven sections, every claim in `content/CLAIMS.md`: *vinsamlegast* as a superlative and *Gæti ég fengið*; *opinn* and *åpen*, *lokaður*, *röð* and *rad*, *næstur* and *neste*, *sæti* and *sete*; *póstur* from Danish, *frímerki* and *frimerke* (a mark that makes the mail free), *pakki*, *sækja* and *søke* (and *sækja um*, *søke om*); *skipta* and *skifte*, *skipta um lest*, *Það skiptir ekki máli*, *greiða* and *greie*, *lán* (also luck), *lána* to lend against Norwegian *låne* to borrow (*fá lánað*), *kvittun*; *miði* a ticket and a note, *ferð* and *ferd*, *farangur*, *bóka*; *lest* from Low German *last* (Norwegian *last*, cargo), *var að* for "has just", *stöð* with *á* and two cases, *leigubíll*, *upplýsingar*; *gleyma* and *glemme* from *glaumr* (merriment), *týna* against Norwegian *tyne* (to destroy), *skila* with the dative and *skila kveðju*. Sources: Wiktionary, Bokmålsordboka, BÍN, Tatoeba.
+- **Host and story:** Amma Sigga hosts with *Vinsamlegast taktu þetta sæti*; the story *Stamps and a train* is a dialogue in which Elias buys stamps from Katla, asks for a receipt, and learns that his train has just left; eleven unchanged Tatoeba sentences readable after this unit.
+
+### Data
+
+- 607 words; 3,288 sentences (177 new, 13 of them made; 17 dropped because better ones were found for their words, and their hand translations removed); 176 new Bokmål translations by hand (163 for Tatoeba sentences, 13 for made ones), with *Niigata* added to the names; 6 hand glosses (*röð* kø, *frímerki* frimerke, *sækja* hente, *skipta* bytte, *bóka* bestille, *upplýsing* opplysning) and one correction (*skila*: *levere tilbake*, not *komme tilbake*); two new phrases (*levere tilbake*, *vær så snill*).
+- 23 Bokmål etymologies (*vinsamlega*, *frímerki* and *bóka* have none in Wiktionary); audio for 203 new texts in each of the four voices; the Norwegian bridge has 307 words (13 more, among them *åpen*, *neste*, *sete*, *greie*, *lån*, *ferd*, *glemme*, and *tyne*, the same Old Norse word with another meaning, as the guidebook warns).
+
+### Tests
+
+- `node --test`: 231 tests (nineteen units; the seven new lessons produce valid exercises; *vinsamlegast* is *vinsamlega* in parsed and unparsed sentences; *Skilið* is *skilja*, *pakka* is not *pakki*).
+- `node tests/smoke.mjs --unit=services`: every lesson of the unit played in the browser. `npm run smoke` and `npm run qa`: see the commit.
+
 ## Section A1, unit 15: *Frítími* (2026-11-27)
 
 The eighth new unit of section A1 in [PLAN.md](PLAN.md), between *Líkaminn* and *Nám og vinna*: free time, the curriculum's "hobbies" (stage 2) and the plan's *mér finnst gaman að* and *mig langar*, for the goals "talk fairly freely about things you know well" and "take part in conversations about everyday matters" (`content/goals.json`, now also trained by this unit). Built after the owner said to keep building units one after another.
