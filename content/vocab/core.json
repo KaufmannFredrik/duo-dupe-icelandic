@@ -2957,6 +2957,61 @@
           "norskur",
           "lo",
           "Norwegian"
+        ],
+        [
+          "starf",
+          "no",
+          "job"
+        ],
+        [
+          "fyrirtæki",
+          "no",
+          "company"
+        ],
+        [
+          "skrifstofa",
+          "no",
+          "office"
+        ],
+        [
+          "lögreglumaður",
+          "no",
+          "police officer"
+        ],
+        [
+          "verkfræðingur",
+          "no",
+          "engineer"
+        ],
+        [
+          "lögfræðingur",
+          "no",
+          "lawyer"
+        ],
+        [
+          "yfirmaður",
+          "no",
+          "boss"
+        ],
+        [
+          "vakt",
+          "no",
+          "shift"
+        ],
+        [
+          "fundur",
+          "no",
+          "meeting"
+        ],
+        [
+          "hlé",
+          "no",
+          "break"
+        ],
+        [
+          "mæta",
+          "so",
+          "show up"
         ]
       ]
     },

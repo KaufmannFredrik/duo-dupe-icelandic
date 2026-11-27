@@ -2215,6 +2215,177 @@
       ],
       "is": "Ég verð heima í desember.",
       "en": "I'll stay home in December."
+    },
+    "390420-1": {
+      "from": "390420",
+      "swap": [
+        "kennari",
+        "lögreglumaður"
+      ],
+      "is": "Hann er lögreglumaður.",
+      "en": "He is a police officer."
+    },
+    "390420-2": {
+      "from": "390420",
+      "swap": [
+        "kennari",
+        "verkfræðingur"
+      ],
+      "is": "Hann er verkfræðingur.",
+      "en": "He is an engineer."
+    },
+    "390420-3": {
+      "from": "390420",
+      "swap": [
+        "kennari",
+        "lögfræðingur"
+      ],
+      "is": "Hann er lögfræðingur.",
+      "en": "He is a lawyer."
+    },
+    "723360-1": {
+      "from": "723360",
+      "swap": [
+        "kennari",
+        "lögreglumaður"
+      ],
+      "is": "Er hann lögreglumaður?",
+      "en": "Is he a police officer?"
+    },
+    "723360-2": {
+      "from": "723360",
+      "swap": [
+        "kennari",
+        "verkfræðingur"
+      ],
+      "is": "Er hann verkfræðingur?",
+      "en": "Is he an engineer?"
+    },
+    "723360-3": {
+      "from": "723360",
+      "swap": [
+        "kennari",
+        "lögfræðingur"
+      ],
+      "is": "Er hann lögfræðingur?",
+      "en": "Is he a lawyer?"
+    },
+    "1323758-1": {
+      "from": "1323758",
+      "swap": [
+        "kennari",
+        "verkfræðingur"
+      ],
+      "is": "Ég er ekki verkfræðingur.",
+      "en": "I am not an engineer."
+    },
+    "1323758-2": {
+      "from": "1323758",
+      "swap": [
+        "kennari",
+        "lögreglumaður"
+      ],
+      "is": "Ég er ekki lögreglumaður.",
+      "en": "I am not a police officer."
+    },
+    "1337017-1": {
+      "from": "1337017",
+      "swap": [
+        "banka",
+        "fyrirtæki"
+      ],
+      "is": "Hann vinnur fyrir fyrirtæki.",
+      "en": "He works for a company."
+    },
+    "513948-1": {
+      "from": "513948",
+      "swap": [
+        "bíl",
+        "fyrirtæki"
+      ],
+      "is": "Hann á fyrirtæki.",
+      "en": "He has a company."
+    },
+    "544576-1": {
+      "from": "544576",
+      "swap": [
+        "kennarinn",
+        "yfirmaðurinn"
+      ],
+      "is": "Hver er yfirmaðurinn þinn?",
+      "en": "Who is your boss?"
+    },
+    "905126-1": {
+      "from": "905126",
+      "swap": [
+        "Kennarinn",
+        "Yfirmaðurinn"
+      ],
+      "is": "Yfirmaðurinn þinn verður ekki ánægður.",
+      "en": "Your boss won't be pleased."
+    },
+    "1329173-2": {
+      "from": "1329173",
+      "swap": [
+        "það",
+        "vaktin"
+      ],
+      "is": "Hvenær byrjar vaktin?",
+      "en": "When does the shift begin?"
+    },
+    "4022330-2": {
+      "from": "4022330",
+      "swap": [
+        "Skólinn",
+        "Vaktin"
+      ],
+      "is": "Vaktin byrjar á morgun.",
+      "en": "The shift starts tomorrow."
+    },
+    "1329173-3": {
+      "from": "1329173",
+      "swap": [
+        "það",
+        "fundurinn"
+      ],
+      "is": "Hvenær byrjar fundurinn?",
+      "en": "When does the meeting begin?"
+    },
+    "583658-3": {
+      "from": "583658",
+      "swap": [
+        "hjálp",
+        "hlé"
+      ],
+      "is": "Ég þarf hlé.",
+      "en": "I need a break."
+    },
+    "4000851-3": {
+      "from": "4000851",
+      "swap": [
+        "hjálp",
+        "hlé"
+      ],
+      "is": "Hann þarf hlé.",
+      "en": "He needs a break."
+    },
+    "795543-1": {
+      "from": "795543",
+      "swap": [
+        "Peter",
+        "Hann"
+      ],
+      "is": "Hann þarf ekki að mæta á fundinn.",
+      "en": "He doesn't need to attend the meeting."
+    },
+    "10635142-1": {
+      "from": "10635142",
+      "swap": [
+        "farið",
+        "mætt"
+      ],
+      "is": "Ég get ekki mætt á fundinn í dag.",
+      "en": "I can't make it to the meeting today."
     }
   }
 }

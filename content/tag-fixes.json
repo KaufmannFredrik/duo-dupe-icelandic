@@ -140,6 +140,9 @@
     {"sentence": "643321", "word": "heldur", "lemma": null, "reason": "Ég vil heldur vera heima en fara út (I'd rather stay home than go out): heldur is the adverb (rather), not a form of halda."},
     {"sentence": "10628605", "word": "nú", "lemma": "nú_ao", "loose": true, "reason": "Komdu nú sæll (hello): nú is a particle in the greeting, not the adverb now the course teaches; known, but not taught from this sentence."},
     {"sentence": "10976725", "word": "nú", "lemma": "nú_ao", "loose": true, "reason": "Komdu nú sæl (hello): nú is a particle in the greeting, not the adverb now the course teaches; known, but not taught from this sentence."},
-    {"sentence": "385892", "word": "Mars", "lemma": null, "reason": "Einhvern daginn munum við geta farið í ferð til Mars (someday we will be able to go on a voyage to Mars): Mars is the planet, a name, not the month mars."}
+    {"sentence": "385892", "word": "Mars", "lemma": null, "reason": "Einhvern daginn munum við geta farið í ferð til Mars (someday we will be able to go on a voyage to Mars): Mars is the planet, a name, not the month mars."},
+    {"sentence": "10635142-1", "word": "mætt", "lemma": "mæta_so", "reason": "Ég get ekki mætt á fundinn í dag (I can't make it to the meeting today; made from T 10635142): mætt is the supine of mæta after geta, as farið is of fara in the original; the parser leaves it open."},
+    {"sentence": "3799408", "word": "hlé", "lemma": "hlé_no", "loose": true, "reason": "Tom dró sig í hlé (Tom retired): draga sig í hlé is an idiom, to withdraw, not hlé the break the course teaches; known, but not taught from this sentence."},
+    {"sentence": "3799409", "word": "hlé", "lemma": "hlé_no", "loose": true, "reason": "Ég hef dregið mig í hlé (I've retired): draga sig í hlé is an idiom, to withdraw, not hlé the break the course teaches; known, but not taught from this sentence."}
   ]
 }

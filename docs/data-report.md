@@ -1,25 +1,25 @@
 # Data report
 
-Generated 2026-11-27T03:39:04.078Z by `node scripts/build-data.mjs` from `content/vocab/core.json`. This file is generated.
+Generated 2026-11-27T04:24:05.723Z by `node scripts/build-data.mjs` from `content/vocab/core.json`. This file is generated.
 
 ## Coverage of the core vocabulary
 
-| Measure | Lemmas (of 641) |
+| Measure | Lemmas (of 652) |
 |---|---|
-| Found in the DMII Core | 618 (96%) |
+| Found in the DMII Core | 629 (96%) |
 | Indeclinable numerals confirmed in the full BÍN (not in the DMII Core) | 23 (4%) |
-| English gloss from Wiktionary | 640 (100%) |
-| Wiktionary gloss matches the intended meaning | 640 (100%) |
-| Norwegian Bokmål gloss | 641 (100%) |
-| IPA | 604 (94%) |
-| Human recording (Commons, Lingua Libre, Wiktionary) | 217 (34%) |
-| 1 or more Tatoeba sentences | 623 (97%) |
-| 3 or more Tatoeba sentences | 591 (92%) |
-| Frequency rank in the Icelandic Gigaword Corpus | 641 (100%) |
+| English gloss from Wiktionary | 651 (100%) |
+| Wiktionary gloss matches the intended meaning | 651 (100%) |
+| Norwegian Bokmål gloss | 652 (100%) |
+| IPA | 613 (94%) |
+| Human recording (Commons, Lingua Libre, Wiktionary) | 217 (33%) |
+| 1 or more Tatoeba sentences | 634 (97%) |
+| 3 or more Tatoeba sentences | 602 (92%) |
+| Frequency rank in the Icelandic Gigaword Corpus | 652 (100%) |
 
-Sentences kept: 3583 (246 made from a Tatoeba sentence by replacing one word), of which 3015 use only course vocabulary (names allowed) and have at most 10 words. Recordings linked: 219.
+Sentences kept: 3636 (265 made from a Tatoeba sentence by replacing one word), of which 3051 use only course vocabulary (names allowed) and have at most 10 words. Recordings linked: 219.
 
-GreynirCorrect checked 10848 Tatoeba sentences (with an English translation, at most 15 words) and excluded 848 that it flagged. Most frequent codes: S004 124, P_NT_ÍTölu 113, P_VeraAð 91, C002 73, W001/w 68, ASLBRODDVANTAR 60, P_NT_FsMeðFallstjórn 36, C003 28, S001 26, P_MOOD_PURP 23. Parse failures (E001), exclamation marks (E007) and unknown words (U001) do not exclude a sentence.
+GreynirCorrect checked 10867 Tatoeba sentences (with an English translation, at most 15 words) and excluded 848 that it flagged. Most frequent codes: S004 124, P_NT_ÍTölu 113, P_VeraAð 91, C002 73, W001/w 68, ASLBRODDVANTAR 60, P_NT_FsMeðFallstjórn 36, C003 28, S001 26, P_MOOD_PURP 23. Parse failures (E001), exclamation marks (E007) and unknown words (U001) do not exclude a sentence.
 
 ## By theme
 
@@ -40,7 +40,7 @@ GreynirCorrect checked 10848 Tatoeba sentences (with an English translation, at 
 | Weather and nature | 21 | 21 | 21 | 12 | 17 |
 | The body | 33 | 33 | 33 | 7 | 33 |
 | Free time | 31 | 31 | 31 | 4 | 31 |
-| Study and work | 27 | 27 | 27 | 9 | 25 |
+| Study and work | 38 | 38 | 38 | 9 | 36 |
 | Services | 26 | 26 | 26 | 0 | 24 |
 | Yesterday | 22 | 22 | 22 | 2 | 22 |
 | New words | 8 | 8 | 8 | 2 | 3 |
@@ -50,9 +50,9 @@ GreynirCorrect checked 10848 Tatoeba sentences (with an English translation, at 
 
 | File | Bytes | Gzipped |
 |---|---|---|
-| `data/lexicon.json` | 313,993 | 92,196 |
-| `data/sentences.json` | 930,396 | 211,963 |
-| `data/audio.json` | 128,165 | 7,229 |
+| `data/lexicon.json` | 319,178 | 93,715 |
+| `data/sentences.json` | 945,019 | 215,310 |
+| `data/audio.json` | 128,165 | 7,230 |
 | `data/forms/hello.json` | 51,698 | 6,871 |
 | `data/forms/aboutme.json` | 51,086 | 6,640 |
 | `data/forms/cafe.json` | 63,218 | 8,626 |
@@ -68,12 +68,12 @@ GreynirCorrect checked 10848 Tatoeba sentences (with an English translation, at 
 | `data/forms/weather.json` | 26,196 | 3,790 |
 | `data/forms/body.json` | 62,227 | 7,813 |
 | `data/forms/freetime.json` | 48,932 | 6,735 |
-| `data/forms/study.json` | 58,053 | 7,093 |
+| `data/forms/study.json` | 68,465 | 8,674 |
 | `data/forms/services.json` | 45,866 | 6,136 |
 | `data/forms/past.json` | 30,476 | 4,291 |
 | `data/forms/newwords.json` | 5,385 | 1,186 |
 | `data/forms/core.json` | 60,572 | 7,853 |
-| Total | 2,343,244 | 439,936 |
+| Total | 2,373,464 | 446,384 |
 
 ## Entries to check (20)
 

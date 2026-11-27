@@ -5,7 +5,7 @@
   "reviewed": true,
   "title": { "en": "Study and work", "nb": "Studier og arbeid" },
   "is": "Vinna",
-  "goal": { "en": "Talk about school, work and languages, say what you know and can do, and tell what happened.", "nb": "Snakk om skole, jobb og språk, si hva du vet og kan, og fortell hva som skjedde." },
+  "goal": { "en": "Talk about school, work and languages, say what you do for a living and when you work, call in sick, say what you know and can do, and tell what happened.", "nb": "Snakk om skole, jobb og språk, si hva du jobber med og når du jobber, meld deg syk, si hva du vet og kan, og fortell hva som skjedde." },
   "host": { "character": "katla", "says": "10557419" },
   "lessons": [
     { "id": "1", "title": { "en": "At school", "nb": "På skolen" }, "focus": ["kennari_no", "nemandi_no", "bók_no", "læra_so", "lesa_so", "skrifa_so"] },
@@ -13,6 +13,8 @@
     { "id": "3", "title": { "en": "Questions and answers", "nb": "Spørsmål og svar" }, "focus": ["spurning_no", "svar_no", "orð_no", "hlusta_so", "muna_so"] },
     { "id": "4", "title": { "en": "Easy or difficult?", "nb": "Lett eller vanskelig?" }, "focus": ["erfiður_lo", "auðveldur_lo", "skemmtilegur_lo", "kunna_so", "hugsa_so"] },
     { "id": "5", "title": { "en": "At work", "nb": "På jobben" }, "focus": ["vinna_no", "vinna_so", "hjálpa_so", "tölva_no", "sími_no"] },
+    { "id": "6", "title": { "en": "Jobs", "nb": "Yrker" }, "focus": ["starf_no", "fyrirtæki_no", "skrifstofa_no", "lögreglumaður_no", "verkfræðingur_no", "lögfræðingur_no"] },
+    { "id": "7", "title": { "en": "Shifts and meetings", "nb": "Vakter og møter" }, "focus": ["yfirmaður_no", "vakt_no", "fundur_no", "hlé_no", "mæta_so"] },
     { "id": "review", "title": { "en": "Unit review", "nb": "Repetisjon" }, "review": true }
   ],
   "guide": {
@@ -50,6 +52,22 @@
         },
         "examples": ["10613946", "10629590", "1329168", "12360408", "4022079"],
         "tables": [{ "lemma": "vinna_so", "tense": "ÞT" }]
+      },
+      {
+        "title": { "en": "Jobs: Ég er kennari", "nb": "Yrker: Ég er kennari" },
+        "text": {
+          "en": "A job is said with no word for \"a\": {is:Ég er kennari} (I am a teacher), {is:Hann er lögreglumaður}, as in Norwegian, jeg er lærer; Icelandic has no word for \"a\" at all. To become is {is:verða}: {is:Hún varð lögreglumaður}. {is:starf} and {is:vinna} are both a job: {is:Hann tók starfinu} (he accepted the job), {is:Mér líkar mjög vel við vinnuna mína}. An office is {is:skrifstofa}, and at the office is {is:á skrifstofunni}: {is:Hringdu í mig á skrifstofuna} (call me at the office). Some job words are built of words you know: {is:lögreglumaður} is {is:lögregla} (police) and {is:maður}, {is:yfirmaður} (boss) is {is:yfir} (over) and {is:maður}.",
+          "nb": "Et yrke sies uten noe ord for «en»: {is:Ég er kennari} (jeg er lærer), {is:Hann er lögreglumaður}, som på norsk; islandsk har ikke noe ord for «en» i det hele tatt. Å bli er {is:verða}: {is:Hún varð lögreglumaður} (hun ble politi). {is:starf} og {is:vinna} er begge en jobb: {is:Hann tók starfinu} (han tok jobben), {is:Mér líkar mjög vel við vinnuna mína}. Et kontor er {is:skrifstofa}, og på kontoret er {is:á skrifstofunni}: {is:Hringdu í mig á skrifstofuna} (ring meg på kontoret). Noen yrkesord er satt sammen av ord du kan: {is:lögreglumaður} er {is:lögregla} (politi) og {is:maður}, {is:yfirmaður} (sjef) er {is:yfir} (over) og {is:maður}."
+        },
+        "examples": ["390420", "10963975", "1329209", "482274", "1356526", "385001"]
+      },
+      {
+        "title": { "en": "Hours, shifts and calling in sick: frá níu til fimm", "nb": "Arbeidstid, vakter og å melde seg syk: frá níu til fimm" },
+        "text": {
+          "en": "Working hours take {is:frá} and {is:til}: {is:Ég vinn frá níu til fimm hvern dag} (I work from nine to five every day), {is:Ég vinn aldrei um helgar}. A shift is {is:vakt}, as in Norwegian: {is:Hvenær byrjar vaktin?} To show up is {is:mæta}, Norwegian møte, which is also to come to a meeting: {is:Hann þarf ekki að mæta á fundinn}. A break is {is:hlé}, the same Old Norse word as Norwegian le (i le, out of the wind): {is:Tökum okkur stutt hlé}. To call in sick, say that you are ill, {is:Ég er veik} for a woman and {is:Ég er veikur} for a man, and that you are not coming: {is:Ég kem ekki í dag}, {is:Ég get ekki farið á fundinn í dag} (I can't make it to the meeting today). A day off is {is:frídagur}: {is:Hann tók sér frídag}.",
+          "nb": "Arbeidstiden sies med {is:frá} og {is:til}: {is:Ég vinn frá níu til fimm hvern dag} (jeg jobber fra ni til fem hver dag), {is:Ég vinn aldrei um helgar}. En vakt er {is:vakt}, som på norsk: {is:Hvenær byrjar vaktin?} Å møte opp er {is:mæta}, norsk møte, som også er å komme til et møte: {is:Hann þarf ekki að mæta á fundinn}. En pause er {is:hlé}, det samme norrøne ordet som norsk le (i le for vinden): {is:Tökum okkur stutt hlé}. Når du melder deg syk, sier du at du er syk, {is:Ég er veik} om du er kvinne og {is:Ég er veikur} om du er mann, og at du ikke kommer: {is:Ég kem ekki í dag}, {is:Ég get ekki farið á fundinn í dag} (jeg kan ikke komme på møtet i dag). En fridag er {is:frídagur}: {is:Hann tók sér frídag}."
+        },
+        "examples": ["387400", "1329173-2", "795543-1", "473553", "861954", "10635142", "387261"]
       }
     ]
   }

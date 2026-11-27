@@ -161,6 +161,8 @@ test('generator: homographs are told apart by the sentence tags', () => {
     ['Ég vil heldur vera heima en fara út.', 'halda_so', 'vilja_so'], // heldur = rather: a fix with lemma null
     ['Komdu nú sæl.', 'nú_ao', 'koma_so'], // nú in a greeting: a loose fix
     ['Einhvern daginn munum við geta farið í ferð til Mars.', 'mars_no', 'fara_so'], // Mars the planet: a fix with lemma null
+    ['Tom dró sig í hlé.', 'hlé_no', 'sig_afn'], // draga sig í hlé = retire: hlé in an idiom, a loose fix
+    ['Mætti ég fá meira kaffi?', 'mæta_so', 'mega_so'], // mætti = might, the past subjunctive of mega
     ['Ég sé illa.', 'vera_so', 'sjá_so'], // the parser reads sé as vera; content/tag-fixes.json
   ];
   for (const [text, not, yes] of cases) {
@@ -232,6 +234,15 @@ test('data: Í gær: a time phrase the parser reads as one adverb teaches its ow
   assert.equal(d.generator.hasLemma(sid('Ég var veikur í gær.'), 'í_fs'), false);
   assert.equal(d.generator.hasLemma(sid('Hún fór til Ameríku í fyrradag.'), 'fyrradagur_no'), true);
   assert.equal(d.generator.hasLemma(sid('Ég hef búið hér síðan ég var barn.'), 'síðan_st'), true);
+});
+
+test('data: Nám og vinna: mætt after geta is mæta, and a job word teaches itself', () => {
+  const sid = (text) => Object.keys(d.sentences).find((k) => d.sentences[k].is === text);
+  assert.equal(d.generator.hasLemma(sid('Ég get ekki mætt á fundinn í dag.'), 'mæta_so'), true, 'content/tag-fixes.json: mætt is the supine of mæta');
+  assert.equal(d.generator.hasLemma(sid('Ég get ekki mætt á fundinn í dag.'), 'fundur_no'), true);
+  assert.equal(d.generator.hasLemma(sid('Hann er lögreglumaður.'), 'lögreglumaður_no'), true);
+  assert.equal(d.generator.hasLemma(sid('Hvenær byrjar vaktin?'), 'vakt_no'), true);
+  assert.ok(d.excluded.has('482646'), 'Hún er á skrifstofunni sinni: the English says he');
 });
 
 test('Tími: the months have one form, no table, and are drilled as words', () => {

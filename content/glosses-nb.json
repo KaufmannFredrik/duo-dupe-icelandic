@@ -1,7 +1,7 @@
 {
   "note": "Bokmål glosses written for TÖLVA. \"glosses\": for course words that Wiktionary gives none for. \"fixes\": in place of Wiktionary glosses that are wrong (another sense, another word class, two words run together, a Swedish or outdated spelling), or that two course words share; \"wiktionary\" repeats what Wiktionary gives, so npm run validate notices when it changes. The first gloss is the one exercises show (verbs get å in front); the rest show in the dictionary. Each was chosen from the word's English Wiktionary meaning and its uses in the course sentences, with the reasons and sources in content/CLAIMS.md. npm run validate checks every word of every gloss the app shows against Bokmålsordboka, and that a gloss of several words is listed in \"phrases\"; npm run build:translations puts them into data/lexicon.json.",
   "reviewed": true,
-  "phrases": ["av og til", "be om", "bli bedre", "der borte", "en eller annen", "falle i søvn", "føle seg", "få lov til", "få tak i", "gjøre ferdig", "gjøre rent", "gjøre vondt", "god dag", "ha det", "ha lyst", "ha tenkt", "hele tiden", "høre på", "i går", "kan hende", "komme i hu", "lage mat", "lei seg", "levere tilbake", "lukke opp", "med en gang", "må hende", "på nytt", "se på", "skynde seg", "slå av", "slå på", "synes om", "til slutt", "ut av", "vær så snill"],
+  "phrases": ["av og til", "be om", "bli bedre", "der borte", "en eller annen", "falle i søvn", "føle seg", "få lov til", "få tak i", "gjøre ferdig", "gjøre rent", "gjøre vondt", "god dag", "ha det", "ha lyst", "ha tenkt", "hele tiden", "høre på", "i går", "kan hende", "komme i hu", "lage mat", "lei seg", "levere tilbake", "lukke opp", "med en gang", "møte opp", "må hende", "på nytt", "se på", "skynde seg", "slå av", "slå på", "synes om", "til slutt", "ut av", "vær så snill"],
   "glosses": {
     "af_fs": ["av", "fra"],
     "bara_ao": ["bare"],
@@ -115,7 +115,9 @@
     "áfram_ao": ["videre", "fremover"],
     "missa_so": ["miste"],
     "ná_so": ["nå", "rekke"],
-    "maí_no": ["mai"]
+    "maí_no": ["mai"],
+    "hlé_no": ["pause"],
+    "mæta_so": ["møte opp", "møte"]
   },
   "fixes": {
     "barn_no": { "nb": ["barn"], "wiktionary": ["barn", "barn n mindreårig"] },
@@ -217,6 +219,8 @@
     "nýlega_ao": { "nb": ["nylig", "nettopp"], "wiktionary": ["nylig", "i det siste", "nettopp"] },
     "skyndilega_ao": { "nb": ["plutselig"], "wiktionary": ["plutselig", "med ett"] },
     "þá_ao": { "nb": ["da", "så"], "wiktionary": ["da", "den gang"] },
-    "halda_so": { "nb": ["holde", "tro", "mene"], "wiktionary": ["holde"] }
+    "halda_so": { "nb": ["holde", "tro", "mene"], "wiktionary": ["holde"] },
+    "vakt_no": { "nb": ["vakt", "skift"], "wiktionary": ["skift"] },
+    "fyrirtæki_no": { "nb": ["firma", "bedrift", "selskap"], "wiktionary": ["selskap"] }
   }
 }

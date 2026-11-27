@@ -2384,6 +2384,46 @@
     "desember_no": {
       "nb": "Til syvende og sist fra latin December.",
       "of": "f79cca26"
+    },
+    "starf_no": {
+      "nb": "Fra norrønt starf, fra starfa («å arbeide, slite»), fra urgermansk *starfą («arbeid»), beslektet med engelsk starve.",
+      "of": "da352e7d"
+    },
+    "skrifstofa_no": {
+      "nb": "Av skrif («skriving») + stofa («rom»).",
+      "of": "724a0221"
+    },
+    "lögreglumaður_no": {
+      "nb": "Av lögregla («politi») + maður («mann»).",
+      "of": "46867db3"
+    },
+    "verkfræðingur_no": {
+      "nb": "Av verkfræði + -ingur.",
+      "of": "a816a14f"
+    },
+    "lögfræðingur_no": {
+      "nb": "Av lögfræði + -ingur.",
+      "of": "0e4f116a"
+    },
+    "yfirmaður_no": {
+      "nb": "Arvet fra norrønt yfirmaðr. Av yfir («over») + maður («person»).",
+      "of": "8fd3abe6"
+    },
+    "vakt_no": {
+      "nb": "Fra middelnedertysk wachte, fra gammelsaksisk wahta, fra urgermansk *wahtwō.",
+      "of": "7f1aca4c"
+    },
+    "fundur_no": {
+      "nb": "Fra norrønt fundr.",
+      "of": "eaeed852"
+    },
+    "hlé_no": {
+      "nb": "Fra norrønt hlé.",
+      "of": "db318f0e"
+    },
+    "mæta_so": {
+      "nb": "Fra norrønt mǿta, fra urgermansk *mōtijaną. Sammenlign norsk møte, dansk møde, svensk möta.",
+      "of": "126166fb"
     }
   }
 }

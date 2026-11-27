@@ -106,8 +106,9 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | *síðan* in *síðan ég var barn* is the conjunction "since", the class the parser gives it, so the course word is *síðan* st. | W síðan ("[conj] since"); BÍN (*síðan* ao, fs, st); T 669486, 387248 | sourced |
 | *þá* in *Hann elskar þá*, *Við elskum þá* and *Ég held að ég aldrei hafi séð þá fyrr* is "them", the accusative of *þeir*, not the adverb "then"; *heldur* in *Ég vil heldur vera heima* is the adverb "rather", not *halda* (lemma null); *nú* in *Komdu nú sæll* and *Komdu nú sæl* is a particle in a greeting, a loose fix. | DMII (*þá*, ÞF FT of *hann*); BÍN (*heldur* ao); translations of T 675558 ("He loves them"), 643321 ("I'd rather stay home"), 10628605 ("Hello") | sourced |
 | The parser reads a month alone (*janúar*) or with a day (*20. maí*) as a date token (`dagsafs`, `dagsföst`); a month alone is the course noun (`CLASS` in `scripts/lib/tags.mjs`), a date with digits is left open. *Mars* in *ferð til Mars* is the planet, a name (lemma null). | BÍN (the month nouns, kk); translation of T 385892 ("a voyage to Mars") | sourced |
+| *mætt* in *Ég get ekki mætt á fundinn í dag* (made from T 10635142) is the supine of *mæta* after *geta*, as *farið* is of *fara* in the original; *hlé* in *draga sig í hlé* ("retire") is an idiom, a loose fix. | DMII (*mætt*, GM-SAGNB of *mæta*); translations of T 3799408, 3799409 ("Tom retired", "I've retired") | sourced |
 
-The parser itself is not checked case by case: `npm run build:tags` lists the 542 words it gives to another word than their spelling suggests.
+The parser itself is not checked case by case: `npm run build:tags` lists the 539 words it gives to another word than their spelling suggests.
 
 ## Unit guidebooks (`content/units/`)
 
@@ -541,6 +542,18 @@ Headings name the units rather than their numbers, because new units are inserte
 | *hjálpa*, *svara*, *loka* take a dative object; *opna* the accusative. | W hjálpa; T 763491, 828852, 828861 | sourced (hjálpa), attested (svara, loka, opna) |
 | The past in -aði, -ði, -di, -ti; strong verbs change their vowel. | DMII | attested |
 | *vinna* is "work" and "win". | W vinna (*Ég vann!* "I won!") | sourced |
+| A job is said with no word for "a" (*Ég er kennari*), as in Norwegian (*være lærer*); Icelandic has no indefinite article. | WP ("Icelandic does not have an indefinite article (a/an in English)"); T 390420, 3799233; BMO lærer ("være lærer i historie") | sourced |
+| *verða* is to become. | W verða ("to become"); T 10963975 ("She became a police officer"), 385001 | sourced |
+| *starf* and *vinna* are both a job. | W starf ("work, job"), vinna ("a job, an occupation"); T 1329209 ("He accepted the job"), 482274 ("I like my job very much") | sourced |
+| At the office is *á skrifstofunni*; *Hringdu í mig á skrifstofuna* is "call me at the office". | T 748906 ("Is Mr Jones in the office?"), 1356526 ("Call me at the office") | attested |
+| *lögreglumaður* is *lögregla* (police) and *maður*; *yfirmaður* (boss) is *yfir* (over) and *maður*. | W lögreglumaður ("From lögregla (“police”) + maður (“man”)"), yfirmaður ("From yfir (“over”) + maður (“person”)"; "boss, superior (at work)") | sourced |
+| Working hours take *frá* and *til*: *Ég vinn frá níu til fimm hvern dag*. | T 387400 ("I work from nine to five every day"), 385016 | attested |
+| *vakt* (a shift) is Norwegian *vakt*, both from Middle Low German. | W vakt ("shift, watch"; "From Middle Low German wachte"); BMO vakt ("fra l.ty.") | sourced |
+| *mæta* is to show up, Norwegian *møte*, from Old Norse *mǿta*; Norwegian *møte* is also to come to a meeting. | W mæta ("to turn up, to show up, to come"; "From Old Norse mǿta … Compare Norwegian møte"); BMO møte ("norr. mǿta"; "komme til et møte til avtalt tid og sted") | sourced |
+| *hlé* (a break) is the same Old Norse word as Norwegian *le* (*i le*, out of the wind). | W hlé ("break, rest"; "shelter"; "From Old Norse hlé"); BMO le ("norr. hlé"; "side … som vender fra vinden", "i le") | sourced |
+| Ill is *veik* for a woman and *veikur* for a man: *Ég er veik*, *Ég er veikur*; *Ég kem ekki í dag* is "I am not coming today". | DMII (*veik* KVK NFET, *veikur* KK NFET); T 564515, 564514 (the same sentence for a woman and a man), 861954 | sourced |
+| A day off is *frídagur*: *Hann tók sér frídag*. | BÍN (*frídagur* kk, ÞFET *frídag*); T 387261 ("He took a day off"), 1344426 | sourced |
+| The extra lessons leave out *frídagur* and *veikindi* ("illness"; no Wiktionary entry, as for *frítími* in *Frítími*) and *tilkynna* (no readable sentence); the guidebook teaches *frídagur*. | W (no entries, kaikki.org); T 742882 | checked |
 
 ### *Orð*
 
@@ -580,6 +593,7 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | The sentence is the Tatoeba sentence with exactly one word replaced (the word occurs once; the rest is unchanged) | `scripts/build-data.mjs` (`swapWord`), `tests/engine.test.mjs` | checked |
 | The word put in is a DMII Core form, and the one the sentence needs: the same case as the word it replaces, and agreement kept (*Saltið er búið* → *Skyrið er búið*, both neuter; *Ávextir eru hollir* → *Bananar eru hollir*, both masculine plural) | DMII; the parser's reading of each made sentence (`data/tags.json`; *sósu*, *fiski* and *ísa* corrected in the tag rows above) | checked |
 | GreynirCorrect finds no error (a flagged made sentence stops the build) | `scripts/build-data.mjs` | checked |
+| A name at the start is replaced by *Hann* (*Peter þarf ekki að mæta á fundinn* → *Hann þarf …*), the English name by "He"; the supine *farið* by the supine *mætt* (*Ég get ekki farið á fundinn í dag*), and the English stays, since "make it to" says both | DMII (*mætt*, GM-SAGNB of *mæta*); W mæta ("to turn up, to show up, to come") | checked |
 | A month after *í* has the same form in the accusative (time: *í dag* → *í janúar*) and the dative (place: *í Afríku* → *í janúar*), so the months fit both frames; in the made sentence it is a time | DMII (*janúar* … *desember*: NF, ÞF, ÞGF the same form); elon time prepositions (*í* + month) | checked |
 | The word put in is the course word the sentence is for, in the parser's reading | `tests/engine.test.mjs` | checked |
 | The English is the original's English with the same word changed; the Bokmål is written like the other hand translations (below) | T (the original's English); BMO | checked |
@@ -832,10 +846,29 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | 698303-10 | *Ég verð heima í október.* | T 698303 | *dag* → *október* | I'll stay home in October. |
 | 698303-11 | *Ég verð heima í nóvember.* | T 698303 | *dag* → *nóvember* | I'll stay home in November. |
 | 698303-12 | *Ég verð heima í desember.* | T 698303 | *dag* → *desember* | I'll stay home in December. |
+| 390420-1 | *Hann er lögreglumaður.* | T 390420 | *kennari* → *lögreglumaður* | He is a police officer. |
+| 390420-2 | *Hann er verkfræðingur.* | T 390420 | *kennari* → *verkfræðingur* | He is an engineer. |
+| 390420-3 | *Hann er lögfræðingur.* | T 390420 | *kennari* → *lögfræðingur* | He is a lawyer. |
+| 723360-1 | *Er hann lögreglumaður?* | T 723360 | *kennari* → *lögreglumaður* | Is he a police officer? |
+| 723360-2 | *Er hann verkfræðingur?* | T 723360 | *kennari* → *verkfræðingur* | Is he an engineer? |
+| 723360-3 | *Er hann lögfræðingur?* | T 723360 | *kennari* → *lögfræðingur* | Is he a lawyer? |
+| 1323758-1 | *Ég er ekki verkfræðingur.* | T 1323758 | *kennari* → *verkfræðingur* | I am not an engineer. |
+| 1323758-2 | *Ég er ekki lögreglumaður.* | T 1323758 | *kennari* → *lögreglumaður* | I am not a police officer. |
+| 1337017-1 | *Hann vinnur fyrir fyrirtæki.* | T 1337017 | *banka* → *fyrirtæki* | He works for a company. |
+| 513948-1 | *Hann á fyrirtæki.* | T 513948 | *bíl* → *fyrirtæki* | He has a company. |
+| 544576-1 | *Hver er yfirmaðurinn þinn?* | T 544576 | *kennarinn* → *yfirmaðurinn* | Who is your boss? |
+| 905126-1 | *Yfirmaðurinn þinn verður ekki ánægður.* | T 905126 | *Kennarinn* → *Yfirmaðurinn* | Your boss won't be pleased. |
+| 1329173-2 | *Hvenær byrjar vaktin?* | T 1329173 | *það* → *vaktin* | When does the shift begin? |
+| 4022330-2 | *Vaktin byrjar á morgun.* | T 4022330 | *Skólinn* → *Vaktin* | The shift starts tomorrow. |
+| 1329173-3 | *Hvenær byrjar fundurinn?* | T 1329173 | *það* → *fundurinn* | When does the meeting begin? |
+| 583658-3 | *Ég þarf hlé.* | T 583658 | *hjálp* → *hlé* | I need a break. |
+| 4000851-3 | *Hann þarf hlé.* | T 4000851 | *hjálp* → *hlé* | He needs a break. |
+| 795543-1 | *Hann þarf ekki að mæta á fundinn.* | T 795543 | *Peter* → *Hann* | He doesn't need to attend the meeting. |
+| 10635142-1 | *Ég get ekki mætt á fundinn í dag.* | T 10635142 | *farið* → *mætt* | I can't make it to the meeting today. |
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 36 of the 3,583 sentences. The other 3,512 (all but 35 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 246 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 36 of the 3,636 sentences. The other 3,564 (all but 36 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 265 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -848,7 +881,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 528 of the 641 course words. The other 113 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 100 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 537 of the 652 course words. The other 115 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 102 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -873,6 +906,7 @@ Wiktionary gives a Bokmål gloss for 528 of the 641 course words. The other 113 
 | langa, skemmta, spila, æfa, hjóla, spil | ha lyst, lengte; underholde, more; spille; øve, trene; sykle; kort, spill | W "to cause to want", "to entertain, amuse", "to play", "to practise", "to bike, cycle", "game (with ... playing cards or a board)", "playing card"; BMO lyst ("få lyst på sjokolade"), underholde, more ("muntre, oppmuntre, underholde"), spille, øve, trene, sykle, kort; *ha lyst* is a phrase in the file |
 | röð, frímerki, sækja, skipta, bóka, upplýsing | kø, rekke; frimerke; hente; bytte, veksle, dele; bestille, booke; opplysning, informasjon | W "a row, a line", "postage stamp", "to fetch", "to change, exchange", "to book", "information"; BMO kø, rekke, frimerke, hente, bytte, veksle, bestille, booke, opplysning |
 | maí | mai | W "May"; BMO mai ("årets femte måned"); Wiktionary gave no Bokmål gloss for *maí*; the other months have one |
+| hlé, mæta | pause; møte opp, møte | W "break, rest", "to turn up, to show up"; BMO pause ("ta seg en pause"), møte ("komme til et møte til avtalt tid og sted"); *møte opp* is a phrase in the file |
 | gær, frétt, eyða, áfram, missa, ná | i går; nyhet; bruke, ødelegge; videre, fremover; miste; nå, rekke | W "yesterday", "news", "to spend, waste", "forward, forth, on", "to lose", "to reach"; BMO nyhet, bruke, ødelegge, videre, fremover, miste, nå, rekke; *i går* is a phrase in the file |
 
 ### Wiktionary glosses corrected (`"fixes"`)
@@ -942,13 +976,14 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | vona | håpe (second: håp) | håpe | "to hope"; *håp* is the noun (*von*) |
 | skila | returnere (second: komme tilbake) | levere tilbake, returnere | "to give back, to return": a thing given back; *komme tilbake* is "come back" |
 | deyja, breyta, nýlega, skyndilega, þá | dø (second: dævve); gjøre om; nylig (second: i det siste); plutselig (second: med ett); da (second: den gang) | dø; endre, forandre; nylig, nettopp; plutselig; da, så | *dævve* is dialect; *gjøre om*, *i det siste*, *med ett* and *den gang* are several words, not listed as phrases |
+| vakt, fyrirtæki | skift; selskap | vakt, skift; firma, bedrift, selskap | "shift, watch": Norwegian says *vakt* too (BMO vakt: "tidsrom da det holdes vakt", "jeg går på vakt klokka åtte"); "company, firm": *firma* and *bedrift* are the everyday words (BMO firma, bedrift) |
 | halda | holde | holde, tro, mene | "to hold", second "to think (have an opinion)": *Ég held það*, *Jeg tror det* |
 
 Later glosses (shown in the dictionary only) removed for the same reasons: another sense (*frá* mot "toward", *tala* preke "preach", *skilja* kunne, *nótt* kveld and aften "evening", *dagur* døgn "24 hours", *kirkja* gudstjeneste "church service", *tími* tempo and klokkeslett, *mínúta* øyeblikk "moment", *nýr* nåværende "current", *eða* ellers "otherwise", *fólk* lyd (old "people", today "sound"), *strákur* kamerat and kompis "buddy", *ský* støvsky "dust cloud", *systir* storesøster and lillesøster, *hnífur* knivblad, *veira* datavirus, *sætur* sukkertilsatt, *dós* kanne (BMO: a jug), *pylsa* kurv and korv (BMO's other word for a sausage, but *kurv* is mostly a basket), *þú* De and I, the polite and the old plural "you"), a noun for a verb (*svara* svar, *ganga* gåtur, *taka* opptak), a parsing remnant (*barn* "barn n mindreårig"), and words BMO does not list (*byrja* børje, *kaffihús* café, *garður* have, *hæ* heisan, *snjór* sne, *tuttugu* tyve). Added from W's senses: *skilja* skille ("to separate"), *tími* time ("hour"), *tala* prate.
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 593 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 603 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|

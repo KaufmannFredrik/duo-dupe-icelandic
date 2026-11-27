@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-27T03:33:57.205Z",
+ "generated": "2026-11-27T04:26:34.437Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -19,8 +19,8 @@
  ],
  "counts": {
   "loan": 13,
-  "old-norse": 278,
-  "form": 37
+  "old-norse": 279,
+  "form": 38
  },
  "pairs": {
   "halló_uh": {
@@ -2272,6 +2272,18 @@
    "rules": [
     "ending-ur"
    ]
+  },
+  "vakt_no": {
+   "nb": "vakt",
+   "evidence": "form",
+   "rules": []
+  },
+  "mæta_so": {
+   "nb": "møte",
+   "article": 39910,
+   "oldNorse": "mǿta",
+   "evidence": "old-norse",
+   "rules": null
   },
   "opinn_lo": {
    "nb": "åpen",

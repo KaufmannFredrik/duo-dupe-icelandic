@@ -2,6 +2,34 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A1, unit 16: jobs, shifts and calling in sick in *Nám og vinna* (2026-11-27)
+
+The second of the plan's extra lessons in existing units ([PLAN.md](PLAN.md): unit 16, "school, languages, jobs, hours, calling in sick"), for the curriculum's "work" and "working and school hours" (stage 1) and the goal "follow a short, simple conversation about work" (`content/goals.json`). *Nám og vinna* gets two lessons before its review and two guidebook sections; its goal line now names jobs, hours and calling in sick.
+
+- **Words** (11, theme `study`): *starf*, *fyrirtæki*, *skrifstofa*, *lögreglumaður*, *verkfræðingur*, *lögfræðingur* (lesson *Jobs*); *yfirmaður*, *vakt*, *fundur*, *hlé*, *mæta* (lesson *Shifts and meetings*). Counted with the scratch word picker limited to the words a learner has at unit 16: Tatoeba has few work sentences a beginner can read (about six for *skrifstofa*, four for *starf* and *fundur*, one for *yfirmaður*, none for *vakt*).
+- **Meanings as Wiktionary words them:** *starf* "job", *yfirmaður* "boss", *vakt* "shift", *hlé* "break", *mæta* "show up" (Wiktionary's third sense; its first is "meet").
+- **Left out:** *frídagur* (a day off) and *veikindi* (illness), which have no Wiktionary entry (as *frítími* in *Frítími*); *tilkynna* (to notify, *tilkynna veikindi*), with no sentence a learner can read and no frame for a made one; *laun* (pay), whose only readable sentence has a typo (*lá laun*) and which belongs to A2's payslips. The guidebook teaches *frídagur*, and calling in sick with words already known (*Ég er veik*, *Ég kem ekki í dag*).
+
+### Sentences
+
+- **19 made sentences** (decision 3): the jobs from *Hann er kennari*, *Er hann kennari?* and *Ég er ekki kennari*; the boss from *Hver er kennarinn þinn?* and *Kennarinn þinn verður ekki ánægður*; the company from *Hann vinnur fyrir banka* and *Hann á bíl*; the shift and the meeting from *Hvenær byrjar það?* and *Skólinn byrjar á morgun*; a break from *Ég þarf hjálp* and *Hann þarf hjálp*; *mæta* from *Peter þarf ekki að mæta á fundinn* (the name at the start replaced by *Hann*, since a name there makes a sentence unreadable) and *Ég get ekki farið á fundinn í dag* (*farið* → *mætt*, the English unchanged). Every word has at least two readable sentences (*vakt* two, the rest three to six).
+- **Tag fixes** (3): *mætt* after *geta* is the supine of *mæta*, which the parser left open; *hlé* in *draga sig í hlé* ("retire", two sentences) is an idiom, a loose fix.
+- **Excluded** (1): *Hún er á skrifstofunni sinni*, whose English says "He is at his office".
+
+### The unit
+
+- **Lessons** (grouped by hand, every exercise read over three plays): *Jobs*, 12 exercises of six kinds, mostly case forms since all six words are nouns; *Shifts and meetings*, nine kinds.
+- **Guidebook**, two new sections, every claim in `content/CLAIMS.md`: *Jobs* (no word for "a" before a job, as in Norwegian *jeg er lærer*; *verða*; *starf* and *vinna*; *á skrifstofunni*; *lögreglumaður* and *yfirmaður* built of known words) and *Hours, shifts and calling in sick* (*frá níu til fimm*; *vakt* as in Norwegian; *mæta* and Norwegian *møte*; *hlé* and Norwegian *le*; *Ég er veik* or *veikur*, *Ég kem ekki í dag*; *frídagur*). Sources: Wiktionary, Wikipedia, Bokmålsordboka, BÍN, Tatoeba.
+
+### Data
+
+- 652 words; 3,636 sentences (53 new, 19 of them made); 52 new Bokmål translations by hand; 2 hand glosses (*hlé* pause, *mæta* møte opp, with *møte opp* a new phrase) and 2 corrections (*vakt* with *vakt* before *skift*; *fyrirtæki* with *firma* and *bedrift* before *selskap*); 10 Bokmål etymologies (*fyrirtæki* has none in Wiktionary); audio for 64 new texts in each of the four voices; the Norwegian bridge has 330 words (*vakt*, *mæta* and *møte*).
+
+### Tests
+
+- `node --test`: 243 tests (the two new lessons produce valid exercises; *mætt* teaches *mæta*; *draga sig í hlé* does not teach *hlé*; *Mætti ég* is *mega*; the job and shift sentences teach their words).
+- `node tests/smoke.mjs --unit=study`: every lesson of the unit played in the browser. `npm run smoke` and `npm run qa`: see the commit.
+
 ## Section A1, unit 7: the months in *Tími* (2026-11-27)
 
 The first of the plan's extra lessons in existing units ([PLAN.md](PLAN.md): unit 7, "the clock, days, seasons, and now months and dates"), for the curriculum's "days and months" (stage 1). *Tími* gets two lessons before its review and a seventh guidebook section; nothing else in the unit changes.
