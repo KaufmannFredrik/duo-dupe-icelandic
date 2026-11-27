@@ -608,6 +608,15 @@ input[type="range"] { width: min(20rem, 100%); accent-color: var(--rf-cyan); }
 
 .complete__news { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
 .complete__news li { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); color: var(--rf-gold); }
+/* A section check's result, goal by goal (js/pages/lesson.js completeCheck) */
+.check-goals { display: grid; gap: var(--space-3); width: 100%; max-width: 36rem; margin: 0 auto; padding: 0; list-style: none; text-align: left; }
+.check-goal { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3); align-items: start; padding: var(--space-3); border: var(--border) solid var(--rf-blue); border-radius: var(--radius-input); }
+.check-goal > .icon { width: 1.5rem; height: 1.5rem; color: var(--color-correct); }
+.check-goal[data-passed="false"] { border-color: var(--rf-pink); }
+.check-goal[data-passed="false"] > .icon { color: var(--rf-pink-text); }
+.check-goal p { margin: 0; }
+.check-goal__text { color: var(--rf-chrome); }
+.check-goal__units { margin-top: var(--space-1); font-size: var(--text-sm); }
 .complete__friend { display: flex; align-items: center; gap: var(--space-3); margin: 0; padding: var(--space-2) var(--space-4); border: var(--border) solid var(--rf-cyan); box-shadow: var(--glow-cyan); color: #FFFFFF; text-align: start; }
 .complete__friend .char { flex: none; }
 
@@ -735,6 +744,7 @@ input[type="range"] { width: min(20rem, 100%); accent-color: var(--rf-cyan); }
 .letters-offer .icon { flex: none; color: var(--rf-magenta); }
 
 .placement-hint + .letters-offer { margin-top: calc(-1 * var(--space-4)); }
+.jump-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); margin-block: var(--space-4) var(--space-6); color: var(--rf-chrome); }
 
 /* Music lab: the chords of the current section as a row of cells, the current bar lit. */
 .music-now { margin-bottom: var(--space-5); }

@@ -180,6 +180,11 @@ const SHOTS = [
   { name: 'feedback-numbuild', url: firstOf.get('numbuild'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   // Guided writing ends the Gata review (data/writing.json): the form, and its feedback on three kinds of mistake.
   { name: 'ex-write', url: 'lesson.html?unit=around&lesson=review&step=99&qa' },
+  // The A1 check: its first task, the result when every task is skipped (each goal missed, with its
+  // units), and the offer at the top of section A2 to take it.
+  { name: 'ex-check', url: 'lesson.html?unit=a1check&lesson=check&qa' },
+  { name: 'check-not-yet', url: 'lesson.html?unit=a1check&lesson=check&qa', full: true, act: async (p) => { for (let i = 0; i < 30 && !(await p.locator('.complete__title').count()); i++) { await p.click('[data-action="skip"]'); await p.click('[data-action="continue"]'); await p.waitForFunction(() => document.querySelector('.complete__title') || !document.querySelector('.lesson__actions').hidden); } await p.locator('.complete__title').waitFor(); } },
+  { name: 'learn-jump', url: 'learn.html', act: async (p) => { await p.locator('.jump-card').scrollIntoViewIfNeeded(); } },
   { name: 'feedback-write-wrong', url: 'lesson.html?unit=around&lesson=review&step=99&qa', full: true, act: async (p) => { await p.fill('[data-gap="0"]', 'anna'); await p.fill('[data-gap="1"]', 'Noregur'); await p.fill('[data-gap="2"]', 'í Akureyri'); await p.click('[data-action="check"]'); } },
   { name: 'feedback-correct', url: firstOf.get('choice'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   { name: 'feedback-almost', url: specialTypeword ?? 'lesson.html?mode=letters&qa', act: async (p) => { await answer(p, 'almost'); await p.click('[data-action="check"]'); } },

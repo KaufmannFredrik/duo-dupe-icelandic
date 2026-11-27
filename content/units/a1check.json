@@ -1,0 +1,13 @@
+{
+  "id": "a1check",
+  "order": 20,
+  "check": "a1",
+  "reviewed": true,
+  "title": { "en": "The A1 check", "nb": "A1-prøven" },
+  "is": "Próf",
+  "host": { "character": "lundi", "says": "392163" },
+  "goal": { "en": "Show what you can do at A1: two tasks for each goal of the section, and a form about yourself. Pass it to finish section A1.", "nb": "Vis hva du kan på A1: to oppgaver for hvert mål i delen, og et skjema om deg selv. Bestå den for å fullføre del A1." },
+  "lessons": [
+    { "id": "check", "title": { "en": "The A1 check", "nb": "A1-prøven" }, "check": true }
+  ]
+}

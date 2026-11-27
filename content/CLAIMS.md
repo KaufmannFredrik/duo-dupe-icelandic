@@ -38,6 +38,9 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | Stages 1–2 are A1, stages 3–4 are A2. | the course's reading of ÍFÚ, which does not split the stages by level ([docs/PLAN.md](../docs/PLAN.md)) | design choice |
 | The 16 goals are the stages' final goals (*lokamarkmið*, printed in bold), quoted in `is` with stage and page, translated to English and Bokmål for the app. | ÍFÚ pp. 7–13 | sourced (translations by the course) |
 | A level is about 800 words. | Duolingo's blog, "How are Duolingo courses evolving?" (2019): "about 800 words introduced at each level"; no Icelandic source gives a count | sourced (for Duolingo's courses) |
+| The A1 check (unit 20, `content/units/a1check.json`) tests each A1 goal with two tasks on words of the units that train it (a word task and a sentence task), and the goal *self* also with the A1 form of guided writing; it is passed with at least 75% right and half of each goal, and a goal missed names its units. | [docs/PLAN.md](../docs/PLAN.md) ("scored per goal"; "shown which units train them"); the share and the number of tasks are the course's (`js/engine/check.js`) | design choice |
+| *Próf* (the check's Icelandic name) is a test, an exam. | W próf ("test, examination") | sourced |
+| Lundi's greeting before the check, *Gerðu þitt besta*, is "Do your best". | T 392163 | attested |
 
 ## Case rules (`content/case-rules.json`)
 

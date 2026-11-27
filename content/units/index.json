@@ -20,6 +20,7 @@
     "services.json",
     "past.json",
     "09-grammar.json",
+    "a1check.json",
     "10-newwords.json"
   ],
   "sections": [
@@ -28,7 +29,7 @@
       "level": "A1",
       "title": { "en": "Beginner", "nb": "Nybegynner" },
       "goal": { "en": "Introduce yourself and the people around you, and get by in everyday situations: the café, numbers, getting around, time, shopping, food, the home, clothes and people, the weather, the body and health, free time, school and work, services, and what happened yesterday.", "nb": "Presenter deg selv og folkene rundt deg, og klar deg i hverdagen: kafeen, tall, å finne fram, tid, handling, mat, hjemmet, klær og folk, været, kroppen og helse, fritid, skole og jobb, tjenester, og hva som skjedde i går." },
-      "units": ["hello", "aboutme", "cafe", "family", "numbers", "around", "time", "myday", "shopping", "food", "home", "people", "weather", "body", "freetime", "study", "services", "past", "grammar"]
+      "units": ["hello", "aboutme", "cafe", "family", "numbers", "around", "time", "myday", "shopping", "food", "home", "people", "weather", "body", "freetime", "study", "services", "past", "grammar", "a1check"]
     },
     {
       "id": "a2",

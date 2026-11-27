@@ -37,6 +37,7 @@ import { befriendedBy, hostOf } from '../characters.js';
 import { characterImg } from '../ui/character.js';
 import { CONTRAST_ITEM, isLetterKey, letterDrill, letterKey, letterReview } from '../engine/letters.js';
 import { sampleAnswers } from '../engine/writing.js';
+import { PASS_SHARE, checkGoals, checkScore } from '../engine/check.js';
 import { itemLabel, loadLetters, lettersModel } from '../letters.js';
 
 await ready;
@@ -72,6 +73,7 @@ const writeSpec = (task) => ({ type: 'write', task: task.id, sample: sampleAnswe
 async function lessonPlan() {
   const found = params.get('unit') ? findLesson(course, params.get('unit'), params.get('lesson') ?? '1') : position;
   const { unit, lesson } = found.lesson ? found : position;
+  if (lesson.check) return checkPlan(unit, lesson);
   const times = progress.lessons[lesson.key]?.times ?? 0;
   const allowed = allowedFor(course, unit.id, lesson.index);
   // A unit's review ends with its writing task, if it has one.
@@ -83,6 +85,25 @@ async function lessonPlan() {
     title: `${pick(unit.title)}: ${lesson.title ? pick(lesson.title) : lesson.review ? t('learn.review') : t('learn.lessonN', { n: lesson.index + 1 })}`,
     specs: [...gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`), practiced: Boolean(lesson.review) }), ...writingTasks],
   };
+}
+
+// A section check (js/engine/check.js): two tasks for each of the section's goals, drawn from the
+// words of the units that train it, and the section's writing form (for the goal "self"). New
+// tasks each time it is taken.
+const CHECK_FORM = { a1: { task: 'a1-form', goal: 'self' } };
+async function checkPlan(unit, lesson) {
+  const { goals } = await loadJSON('content/goals.json');
+  const tested = checkGoals(course, goals, unit.check);
+  const allowed = new Set([...course.always, ...tested.flatMap((g) => g.words)]);
+  const times = progress.lessons[lesson.key]?.times ?? 0;
+  const specs = gen.check({ goals: tested, allowed, seed: hashSeed(`${lesson.key}#${times}#${Date.now() % 1e6}`) });
+  const form = CHECK_FORM[unit.check];
+  if (form) {
+    await loadWriting();
+    const task = writing(form.task)?.task;
+    if (task) specs.push({ ...writeSpec(task), goal: form.goal });
+  }
+  return { key: lesson.key, unit, title: pick(lesson.title), specs, check: { section: unit.check, goals: tested } };
 }
 
 // Every due card, most overdue first; the generator makes up to twelve exercises from them, each
@@ -229,7 +250,7 @@ const TYPED = new Set(['typeword', 'typeform', 'spell']);
 
 // Hearts (Settings, off by default): five per lesson, one lost per wrong answer. Not in placement.
 const HEARTS = 5;
-let hearts = getSettings().hearts && !plan.placement && specs.length ? HEARTS : null;
+let hearts = getSettings().hearts && !plan.placement && !plan.check && specs.length ? HEARTS : null;
 const heartsEl = document.createElement('span');
 heartsEl.className = 'hearts';
 function renderHearts() {
@@ -365,6 +386,7 @@ async function complete() {
   renderProgress();
   actions.hidden = true;
   if (plan.placement) return completePlacement();
+  if (plan.check) return completeCheck();
   const events = {
     combo: bestRun,
     ...counted,
@@ -393,6 +415,36 @@ async function complete() {
       <div class="cluster complete__actions"><a class="button button-primary" href="${mode === 'lesson' ? nextHref : mode === 'alphabet' ? 'letters.html' : 'practice.html'}">${t('lesson.continue')}</a><a class="button" href="learn.html">${t('nav.learn')}</a></div></div>`;
   sfx('complete');
   live.textContent = t('lesson.complete');
+  stage.querySelector('.button-primary').focus();
+}
+
+// A check passed finishes its unit; taken before the section's units are done ("Already know A1?"),
+// it also skips them, as the placement test does. Not passed, it counts as practice, and each goal
+// missed names the units that train it.
+async function completeCheck() {
+  const score = checkScore(specs, results);
+  await saving;
+  const skip = score.passed ? course.units.filter((u) => u.section === plan.check.section && !u.check && !unitDone(u, progress)).map((u) => u.id) : [];
+  const done = await completeLesson(score.passed ? plan.key : `practice/${plan.unit.id}`, results, { bonus, events: { lessons: 1 } });
+  if (skip.length) await skipUnits(skip, { at: Date.now(), start: plan.unit.id, check: plan.check.section });
+  await recordUnits(course);
+  keepStorage();
+  const goalOf = new Map(plan.check.goals.map((g) => [g.id, g]));
+  const rows = score.goals.map((g) => {
+    const info = goalOf.get(g.id);
+    const units = g.passed ? '' : `<p class="check-goal__units">${t('check.practice')} ${info.units.map((u) => `<a href="learn.html#unit-${u.id}">${esc(pick(u.title))}</a>`).join(', ')}</p>`;
+    return `<li class="check-goal" data-passed="${g.passed}">${icon(g.passed ? 'check' : 'wrong')}<div><p class="check-goal__text">${esc(pick(info.goal))}</p><p class="muted">${t('check.goalScore', { right: g.right, total: g.total })}</p>${units}</div></li>`;
+  }).join('');
+  const title = score.passed ? t('check.passed', { level: esc(plan.unit.check.toUpperCase()) }) : t('check.notYet');
+  stage.innerHTML = `<div class="complete">${score.passed ? burst() : ''}
+      ${closingPicture(score.passed ? 'cheer' : 'sorry')}
+      <h2 class="complete__title">${title}</h2>
+      <div class="cluster complete__stats"><span class="stat">${icon('xp')}<span>+${done.xp} XP</span></span><span class="stat">${icon('check')}<span>${t('check.total', { right: score.right, total: score.total })}</span></span></div>
+      <p>${t(score.passed ? 'check.passedText' : 'check.notYetText', { pct: Math.round(100 * PASS_SHARE) })}</p>
+      <ul class="check-goals" role="list">${rows}</ul>
+      <div class="cluster complete__actions"><a class="button button-primary" href="learn.html">${t('lesson.continue')}</a>${score.passed ? '' : `<a class="button" href="${esc(location.href.replace(/[?&]step=d+/, ''))}">${t('lesson.again')}</a>`}</div></div>`;
+  sfx(score.passed ? 'complete' : 'wrong');
+  live.textContent = title;
   stage.querySelector('.button-primary').focus();
 }
 

@@ -28,14 +28,17 @@ export function courseModel({ index, units, lexicon }) {
     const list = s.units.map((id) => {
       const u = byId.get(id);
       if (!u) throw new Error(`content/units/index.json: section ${s.id} names unknown unit ${id}`);
-      const theme = lexicon.themes.find((t) => t.id === u.theme);
-      const lessons = (u.lessons === 'auto' ? autoLessons(theme.lemmas) : u.lessons).map((l, i) => ({
+      // A section check (u.check, the A1 check) has no words of its own: its one lesson draws
+      // tasks from the section's goals (js/engine/check.js).
+      const theme = u.theme ? lexicon.themes.find((t) => t.id === u.theme) : null;
+      const lemmas = theme?.lemmas ?? [];
+      const lessons = (u.lessons === 'auto' ? autoLessons(lemmas) : u.lessons).map((l, i) => ({
         ...l,
         key: `${u.id}/${l.id}`,
         index: i,
-        focus: l.review ? theme.lemmas : l.focus,
+        focus: l.review ? lemmas : l.focus ?? [],
       }));
-      return { ...u, lemmas: theme.lemmas, lessons, auto: u.lessons === 'auto', section: s.id, number: s.bonus ? null : ++number };
+      return { ...u, lemmas, lessons, auto: u.lessons === 'auto', section: s.id, number: s.bonus ? null : ++number };
     });
     return { ...s, units: list };
   });
@@ -83,6 +86,8 @@ export const unitsToRecord = (course, progress) => course.units.filter((u) => !p
  * (placement test). Inside an open unit, done lessons are "done", the first open lesson is
  * "current", the review is "review" once the other lessons are done, and the rest are "locked".
  * In a unit recorded as finished, a lesson added since is "new": open, but not where Start goes.
+ * A unit recorded as finished stays open even when a unit inserted before it is not (the A1 check
+ * before the bonus unit), so a new unit in the path never locks a learner out.
  * @returns {Map<string, 'done'|'current'|'review'|'new'|'locked'>} keyed by lesson key
  */
 export function lessonStates(course, progress) {
@@ -92,10 +97,11 @@ export function lessonStates(course, progress) {
   for (const unit of course.units) {
     const skipped = progress.skippedUnits?.includes(unit.id);
     const finished = unitDone(unit, progress);
+    const recorded = Boolean(progress.units?.[unit.id]);
     for (const l of unit.lessons) {
       let state;
       if (skipped) state = 'done';
-      else if (!open) state = 'locked';
+      else if (!open && !recorded) state = 'locked';
       else if (progress.lessons[l.key]?.done) state = l.review ? 'review' : 'done';
       else if (l.review) state = finished ? 'review' : 'locked';
       else if (finished) state = 'new';

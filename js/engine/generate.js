@@ -580,6 +580,7 @@ export function createGenerator(data) {
     const steps = [];
     const allowed = new Set();
     for (const [i, unit] of units.entries()) {
+      if (!unit.lemmas.length) continue; // a section check has no words of its own
       for (const id of unit.lemmas) allowed.add(id);
       const words = unit.lemmas.slice(0, 12);
       const items = [];
@@ -599,5 +600,42 @@ export function createGenerator(data) {
     return steps;
   }
 
-  return { lesson, review, reviewable, placement, sentenceOk, caseTarget, ruleFor, toks, hasLemma };
+  /**
+   * A section check (js/engine/check.js): for each goal, perGoal tasks on different words of the
+   * units that train it, first knowing the word (meaning or listening), then using it in a sentence
+   * (choosing, building or the form it takes). Each task carries its goal; the order is mixed.
+   * @param {{ goals: { id: string, words: string[] }[], allowed: Iterable<string>, seed: number, perGoal?: number }} options
+   */
+  function check({ goals, allowed, seed, perGoal = 2 }) {
+    const r = rng(seed);
+    const allow = new Set(allowed);
+    const used = new Set();
+    const taken = new Set();
+    const KINDS = [['meaning', 'listen'], ['choice', 'wordbank', 'dictation', 'ending']];
+    const make = (type, id) =>
+      type === 'meaning' ? meaning(id, allow, r)
+      : type === 'listen' ? listen(id, allow, r)
+      : type === 'choice' ? choice(id, allow, used, r)
+      : type === 'wordbank' ? wordbank(id, allow, used, r)
+      : type === 'dictation' ? dictation(id, allow, used, r)
+      : isVerb(id) ? verbSpec('conjugate', id, allow, used, r)
+      : hasCases(id) ? caseSpec('ending', id, allow, used, r)
+      : null;
+    const out = [];
+    for (const goal of goals) {
+      let n = 0;
+      for (const id of shuffle(goal.words.filter((x) => lexicon.lemmas[x] && !taken.has(x)), r)) {
+        if (n >= perGoal) break;
+        let spec = null;
+        for (const type of shuffle(KINDS[n % KINDS.length], r)) if ((spec = make(type, id))) break;
+        if (!spec) continue;
+        taken.add(id);
+        out.push({ ...spec, goal: goal.id });
+        n++;
+      }
+    }
+    return shuffle(out, r);
+  }
+
+  return { lesson, review, reviewable, placement, check, sentenceOk, caseTarget, ruleFor, toks, hasLemma };
 }

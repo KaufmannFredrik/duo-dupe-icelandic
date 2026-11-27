@@ -2,6 +2,21 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A1, unit 20: the A1 check (2026-11-27)
+
+The checkpoint that ends section A1 ([PLAN.md](PLAN.md): "the A1 check (unit 20) ... scored per goal. Finishing it opens the next section ... A learner who misses goals is shown which units train them"; "Jump to a section: at the top of section A2, 'Already know A1? Take the A1 check' skips section A1 when passed").
+
+- **The unit** (`content/units/a1check.json`, *Próf*, hosted by Lundi with *Gerðu þitt besta*, "Do your best"): one lesson, the check, after unit 19 *Orð*. It has no words of its own (no theme): the course model now allows a unit without one, the placement test leaves it out, and Tala's tip falls back to the unit before it.
+- **The tasks** (`check()` in `js/engine/generate.js`): for each of the eight A1 goals of `content/goals.json`, two tasks on two different words of the units that train it, first knowing the word (meaning or listening), then using it (choosing a sentence, building one, or its form), and at the end the A1 form of guided writing for the goal "Understand and answer simple questions about yourself": 17 tasks, mixed, new ones each time. The answers count for the words' cards, as in a review.
+- **Scoring** (`js/engine/check.js`): passed with at least 75% of the tasks right (almost counts) and at least half of each goal's. The result lists every goal with its score; a missed goal names the units that train it, with links to them on the path. Passed, the unit is finished; not passed, it counts as practice (XP, no unit), and "Do it again" draws new tasks. No hearts in a check, as in the placement test. Two tasks per goal is little to judge a goal by; more would make the check long (a unit's lessons have 12 exercises). The share and the number are the course's choice (`content/CLAIMS.md`).
+- **The jump:** section A2 has no units yet, so its banner is shown with "Units coming" and, until the check is passed, the offer "Already know A1? Take the A1 check". Passing it before the section's units are done skips them, as the placement test does; the bonus unit then opens.
+- **Nobody is locked out:** a unit recorded as finished now stays open even when a unit inserted before it is not finished, so a learner who finished the bonus before the check existed keeps it (`lessonStates` in `js/engine/course-model.js`).
+
+### Tests
+
+- `node --test`: 256 tests (every A1 goal tested with words of its units; two tasks per goal on different words, valid over five seeds; scoring and the pass rule; the check is the next lesson after unit 19 and the bonus opens after it, while a recorded bonus stays open; no placement step for it; the course's 21 units).
+- `node tests/smoke.mjs --unit=a1check`: the check played in the browser, 17 tasks, passed. Visual QA: the first task, the result with every goal missed, the offer on the A2 banner (`ex-check`, `check-not-yet`, `learn-jump`). `npm run smoke` and `npm run qa`: see the commit.
+
 ## Section A1: guided writing (2026-11-27)
 
 The plan's guided writing for A1 ([PLAN.md](PLAN.md), "New exercise types": "fill in a form about yourself, write a short message or email from a model, graded in the browser by slot patterns"), for the curriculum's "forms and short messages" (stage 2) and the goal "ask for and give general information" (`content/goals.json`).

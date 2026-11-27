@@ -63,10 +63,12 @@ function generate(unitId, lesson) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed: hashSeed(lesson.key), practiced: Boolean(lesson.review) }) };
 }
 
-test('course: twenty units in order, all hand-made', () => {
-  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'newwords']);
+test('course: twenty-one units in order, all hand-made, the A1 check twentieth', () => {
+  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'a1check', 'newwords']);
   for (const u of d.course.units) assert.equal(u.auto, false, `${u.id} has hand-made lessons`);
-  for (const u of d.course.units) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
+  for (const u of d.course.units.filter((x) => !x.check)) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
+  const check = d.course.units.find((u) => u.check);
+  assert.deepEqual([check.id, check.number, check.lessons.length, check.lemmas.length], ['a1check', 20, 1, 0]);
 });
 
 test('course: a hand-made unit teaches every word of its theme exactly once', () => {
@@ -400,9 +402,9 @@ for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around',
   }
 }
 
-test('generator: placement has a step per unit, with case questions from unit 2', () => {
+test('generator: placement has a step per unit with words (not the A1 check), with case questions from unit 2', () => {
   const steps = d.generator.placement({ units: d.course.units, seed: 7 });
-  assert.equal(steps.length, d.course.units.length);
+  assert.equal(steps.length, d.course.units.filter((u) => u.lemmas.length).length);
   assert.ok(steps[0].items.length >= 1);
   assert.ok(steps.slice(1).some((s) => s.items.some((i) => i.type === 'case')));
 });

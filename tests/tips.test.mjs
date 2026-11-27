@@ -12,7 +12,10 @@ const index = json('content/units/index.json');
 const course = courseModel({ index, units: index.units.map((f) => json(`content/units/${f}`)), lexicon: json('data/lexicon.json') });
 
 test('tips: a section of the current unit, the same all day, and over a month most of them', () => {
-  for (const unit of course.units) {
+  // A unit without a guidebook (the A1 check) gives the tip of the nearest unit before it that has one.
+  const check = course.units.find((u) => u.check);
+  assert.equal(dailyTip(course, check.id, '2026-11-24').unit.id, course.units[course.units.indexOf(check) - 1].id);
+  for (const unit of course.units.filter((u) => u.guide)) {
     const tip = dailyTip(course, unit.id, '2026-11-24');
     assert.equal(tip.unit.id, unit.id, `${unit.id} has a guidebook, so its own tip`);
     assert.equal(tip.section, unit.guide.sections[tip.index]);
@@ -26,7 +29,7 @@ test('tips: the first sentence, not cut inside Icelandic', () => {
   assert.equal(firstSentence('{is:Hvað er klukkan?} asks the time. More here.'), '{is:Hvað er klukkan?} asks the time.');
   assert.equal(firstSentence('Say {is:Það rignir.} for rain. Then more.'), 'Say {is:Það rignir.} for rain.');
   assert.equal(firstSentence('No full stop'), 'No full stop');
-  for (const unit of course.units) {
+  for (const unit of course.units.filter((u) => u.guide)) {
     for (const s of unit.guide.sections) for (const lang of ['en', 'nb']) assert.ok(firstSentence(s.text[lang]).length <= 400, `${unit.id}: a first sentence over 400 characters`);
   }
 });

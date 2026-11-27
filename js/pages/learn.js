@@ -107,8 +107,19 @@ const unitHTML = (u) => `<section class="unit" aria-labelledby="unit-${u.id}">
     </section>`;
 
 // The path in sections (A1, A2, a bonus), each with its level, goal and progress; a section with
-// no units yet is not shown.
-const shown = course.sections.filter((s) => s.units.length);
+// no units yet is not shown, unless the section before it ends with a check: its banner offers
+// that check ("Already know A1?", the jump of docs/PLAN.md) until the check is passed.
+const checkBefore = (s) => {
+  const prev = course.sections[course.sections.indexOf(s) - 1];
+  return !s.bonus && prev ? prev.units.find((u) => u.check) ?? null : null;
+};
+const shown = course.sections.filter((s) => s.units.length || checkBefore(s));
+function jumpHTML(s) {
+  const check = checkBefore(s);
+  if (!check || unitDone(check, progress)) return '';
+  const level = check.check.toUpperCase();
+  return `<p class="card card--gold jump-card"><span>${t('learn.jump', { level })}</span> <a class="button button--sm" href="lesson.html?unit=${check.id}&lesson=${check.lessons[0].id}">${t('learn.jumpButton', { level })}</a></p>`;
+}
 const sectionHTML = (s, n) => {
   const done = s.units.filter((u) => unitDone(u, progress)).length;
   const title = s.bonus ? pick(s.title) : t('learn.section', { n, title: pick(s.title) });
@@ -117,8 +128,9 @@ const sectionHTML = (s, n) => {
         <span class="section-banner__level" aria-hidden="true">${esc(s.level ?? '+')}</span>
         <div><h2 class="section-banner__title" id="section-${s.id}">${esc(title)}${s.level ? ` <span class="visually-hidden">(${esc(s.level)})</span>` : ''}</h2>
           ${s.goal ? `<p class="muted">${esc(pick(s.goal))}</p>` : ''}
-          <p class="section-banner__progress">${t('learn.sectionProgress', { done, total: s.units.length })}</p></div>
+          <p class="section-banner__progress">${s.units.length ? t('learn.sectionProgress', { done, total: s.units.length }) : t('learn.sectionComing')}</p></div>
       </header>
+      ${jumpHTML(s)}
       ${s.units.map(unitHTML).join('')}
     </section>`;
 };
