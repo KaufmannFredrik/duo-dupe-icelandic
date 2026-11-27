@@ -22,6 +22,7 @@ import * as numtype from './numtype.js';
 import * as numbuild from './numbuild.js';
 import * as write from './write.js';
 import * as parts from './parts.js';
+import * as reading from './reading.js';
 
 // conjugate: the form of a verb (person and number), on the same screen as a case ending.
 // typeform: the same form, typed.
@@ -29,7 +30,8 @@ import * as parts from './parts.js';
 // numlisten, numtype, numbuild: numbers by ear and in words (js/engine/numbers.js).
 // write: guided writing, a model text with gaps about the learner (js/engine/writing.js).
 // parts: a strong verb's principal parts (section A2).
-export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, typeform, match, ending, conjugate: ending, case: caseEx, table, pair, speak, bridge, letter, lettername, likenb, spell, numlisten, numtype, numbuild, write, parts };
+// reading: questions about a story, read or heard (section A2; js/engine/reading.js).
+export const EXERCISES = { choice, meaning, listen, wordbank, dictation: wordbank, typeword, typeform, match, ending, conjugate: ending, case: caseEx, table, pair, speak, bridge, letter, lettername, likenb, spell, numlisten, numtype, numbuild, write, parts, reading };
 
 export function buildExercise(spec, ctx) {
   const mod = EXERCISES[spec.type];

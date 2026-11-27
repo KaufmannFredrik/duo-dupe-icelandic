@@ -9,6 +9,8 @@
 //  - an excluded sentence (content/sentence-exclude.json) is used in a guidebook or a story,
 //  - a unit's host or a story's cast names a character not in js/characters.js, or a host's
 //    greeting is missing or excluded,
+//  - a story's reading and listening questions are too few, name a line it does not have, lack
+//    English or Norwegian, repeat an option, or have a Norwegian word not in Bokmålsordboka,
 //  - a hand-written Bokmål translation (content/translations-nb.json) belongs to no sentence, to an
 //    excluded one or to one Tatoeba already translates, ends with other punctuation than the
 //    Icelandic, or has a word that is not a Bokmålsordboka form (or a compound of two, or a name
@@ -35,6 +37,7 @@ import { CACHE, ROOT } from './lib/bulk.mjs';
 import { blocking, lintTexts, pythonPath, SETUP_HELP } from './lib/lint.mjs';
 import { character } from '../js/characters.js';
 import { hashSeed } from '../js/engine/rng.js';
+import { QUESTIONS } from '../js/engine/reading.js';
 import { HAND_GLOSSES, HAND_NB, applyHandNb, wiktionaryNb } from './lib/translations.mjs';
 import { bokmalCompound, bokmalForm, bokmalGenitive, eachLimited } from './lib/bokmal.mjs';
 
@@ -192,6 +195,7 @@ async function checkStories() {
   const unitIds = new Set();
   for (const f of (await readJson('content/units/index.json')).units) unitIds.add((await readJson(`content/units/${f}`)).id);
   const ids = new Set();
+  const nbWords = new Map();
   for (const file of files) {
     const rel = `content/stories/${file}`;
     const story = await readJson(rel);
@@ -212,6 +216,28 @@ async function checkStories() {
       if (!text) err(`${rel} line ${i + 1}`, `sentence ${line.sentence} not found`);
       else await checkText(`${rel} line ${i + 1}`, text);
     }
+    if (story.questions) checkQuestions(rel, story, nbWords);
+  }
+  await checkBokmalWords(nbWords);
+}
+
+// Reading and listening questions (js/engine/reading.js): at least QUESTIONS, each answered by a
+// line of the story, in English and Norwegian, with at least two wrong options, all different.
+function checkQuestions(rel, story, nbWords) {
+  if (story.questions.length < QUESTIONS) err(rel, `at least ${QUESTIONS} questions, or none`);
+  const both = (x) => typeof x?.en === 'string' && x.en.trim() && typeof x?.nb === 'string' && x.nb.trim();
+  for (const [i, q] of story.questions.entries()) {
+    const where = `${rel} question ${i + 1}`;
+    if (!Number.isInteger(q.line) || !story.lines[q.line]) err(where, `line ${q.line} is not a line of the story (counted from 0)`);
+    if (!both(q) || !q.en.endsWith('?') || !q.nb.endsWith('?')) err(where, 'needs a question in "en" and "nb", each ending with "?"');
+    const options = [q.answer, ...(q.wrong ?? [])];
+    if ((q.wrong?.length ?? 0) < 2 || !options.every(both)) err(where, 'needs an "answer" and at least two "wrong" options, each with "en" and "nb"');
+    for (const lang of ['en', 'nb']) {
+      const seen = options.map((o) => o?.[lang]?.toLocaleLowerCase(lang));
+      if (new Set(seen).size !== seen.length) err(where, `two options are the same in "${lang}"`);
+    }
+    const names = new Set([character(story.narrator)?.name].filter(Boolean));
+    for (const text of [q.nb, ...options.map((o) => o?.nb)].filter(Boolean)) addWords(nbWords, where, text, names);
   }
 }
 

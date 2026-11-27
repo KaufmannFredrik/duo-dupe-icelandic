@@ -365,10 +365,12 @@ if (process.argv.includes('--all')) {
     failed = true;
     console.log(`FAIL letters: ${e.message}`);
   }
-  for (const href of ['lesson.html?mode=alphabet', 'lesson.html?mode=sounds', 'lesson.html?mode=letters', 'lesson.html?mode=bridge']) {
+  for (const href of ['lesson.html?mode=alphabet', 'lesson.html?mode=sounds', 'lesson.html?mode=letters', 'lesson.html?mode=bridge', 'lesson.html?mode=story&story=housing&listen']) {
     try {
       const types = await playLesson(page, href);
       for (const t of types) seen.set(t, (seen.get(t) ?? 0) + 1);
+      // Questions about a story lead back to it.
+      if (href.includes('mode=story') && !(await page.locator('.complete__actions a[href="stories.html?story=housing"]').count())) throw new Error('the story questions do not lead back to the story');
       console.log(`PASS ${href}: ${types.length} exercises`);
     } catch (e) {
       failed = true;

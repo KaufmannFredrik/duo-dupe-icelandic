@@ -82,6 +82,14 @@ function renderReader() {
         <p><span lang="is">${tokens.join('')}</span><span class="reader__en muted" lang="${tr.lang}" hidden><br>${esc(tr.text)}</span></p></div>`;
     })
     .join('');
+  // Reading and listening questions (section A2; js/engine/reading.js), in the lesson player.
+  const questions = document.querySelector('[data-story-questions]');
+  questions.hidden = !story.questions?.length;
+  if (story.questions?.length) {
+    const href = (listen) => `lesson.html?mode=story&story=${encodeURIComponent(story.id)}${listen ? '&listen' : ''}`;
+    questions.innerHTML = `<h3 id="questions-title">${t('reading.questions')}</h3><p>${t('reading.questionsText')}</p>
+      <div class="cluster"><a class="button button-primary" href="${href(false)}">${icon('stories')}<span>${t('reading.read')}</span></a><a class="button" href="${href(true)}">${icon('sound-on')}<span>${t('reading.listen')}</span></a></div>`;
+  }
   document.querySelector('[data-reader-credits]').innerHTML = t('stories.credit', {
     list: story.lines.map(({ sentence: sid }) => `${tatoebaLink(sid)} (${esc(sentence(sid).author ?? t('credit.unknownAuthor'))}${changedNote(sid)})`).join(', '),
   });

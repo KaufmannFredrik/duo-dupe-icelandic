@@ -10,6 +10,7 @@
 //   speak       say short sentences you have met (experimental; Settings turns it on)
 //   bridge      see a Norwegian relative, type the Icelandic word
 //   placement   adaptive test: one step per unit, stops at the first unit with a miss
+//   story       questions about a story (&story=<id>), read or, with &listen, heard
 // Every answer is recorded per item (word meaning or single form) for spaced repetition.
 // Every fifth right answer in a row earns a combo bonus. In a course lesson the unit's host reacts to
 // each answer in the feedback sheet (happy, thinking when almost, sorry when wrong, cheering on a
@@ -37,6 +38,7 @@ import { befriendedBy, hostOf } from '../characters.js';
 import { characterImg } from '../ui/character.js';
 import { CONTRAST_ITEM, isLetterKey, letterDrill, letterKey, letterReview } from '../engine/letters.js';
 import { sampleAnswers } from '../engine/writing.js';
+import { readingSpec, storyFor } from '../engine/reading.js';
 import { PASS_SHARE, checkGoals, checkScore } from '../engine/check.js';
 import { itemLabel, loadLetters, lettersModel } from '../letters.js';
 
@@ -73,6 +75,12 @@ const writeSpec = (task) => ({ type: 'write', task: task.id, sample: sampleAnswe
 // The level of a unit's section (A1, A2; a bonus unit has none): A2 lessons add forms (generate.js).
 const levelOf = (unit) => course.sections.find((s) => s.id === unit.section)?.level ?? null;
 
+// The stories (content/stories/), for their reading and listening questions.
+async function loadStories() {
+  const index = await loadJSON('content/stories/index.json');
+  return Promise.all(index.stories.map((f) => loadJSON(`content/stories/${f}`)));
+}
+
 async function lessonPlan() {
   const found = params.get('unit') ? findLesson(course, params.get('unit'), params.get('lesson') ?? '1') : position;
   const { unit, lesson } = found.lesson ? found : position;
@@ -82,11 +90,15 @@ async function lessonPlan() {
   // A unit's review ends with its writing task, if it has one.
   const task = lesson.review ? (await loadWriting(), writingFor(unit.id)) : null;
   const writingTasks = task ? [writeSpec(task)] : [];
+  // An A2 unit's review ends with questions about its story: read the first time, then heard and
+  // read in turn.
+  const story = lesson.review && levelOf(unit) === 'A2' ? storyFor(await loadStories(), unit.id) : null;
+  const readingTasks = story ? [readingSpec(story, { seed: hashSeed(`${lesson.key}#${times}#reading`), listen: times % 2 === 1 })] : [];
   return {
     key: lesson.key,
     unit,
     title: `${pick(unit.title)}: ${lesson.title ? pick(lesson.title) : lesson.review ? t('learn.review') : t('learn.lessonN', { n: lesson.index + 1 })}`,
-    specs: [...gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`), practiced: Boolean(lesson.review), level: levelOf(unit) }), ...writingTasks],
+    specs: [...gen.lesson({ focus: lesson.focus, allowed, seed: hashSeed(`${lesson.key}#${times}`), practiced: Boolean(lesson.review), level: levelOf(unit) }), ...writingTasks, ...readingTasks],
   };
 }
 
@@ -129,7 +141,7 @@ function interleave(a, b) {
   return out;
 }
 
-const data = { lemma, sentence, translation, gloss, sameGloss, paradigm, recordings, caseRules, isName, writing };
+const data = { lemma, sentence, translation, gloss, sameGloss, paradigm, recordings, caseRules, isName, writing, tatoebaLink, changedNote };
 
 // A stored exercise can name a sentence or a word that is gone: a sentence excluded since
 // (content/sentence-exclude.json), or an old or imported progress file. Such a mistake cannot be
@@ -199,6 +211,14 @@ async function bridgePlan() {
   return { key: 'practice/bridge', title: t('title.bridge'), specs: shuffle(picked, r).map(([id, pair]) => ({ type: 'bridge', lemma: id, pair, key: `${id}|meaning` })) };
 }
 
+// Questions about one story, from its page on Stories.
+async function storyPlan() {
+  const story = (await loadStories()).find((s) => s.id === params.get('story') && s.questions?.length);
+  const listen = params.has('listen');
+  const title = `${t(listen ? 'reading.listen' : 'reading.read')}${story ? `: ${pick(story.title)}` : ''}`;
+  return { key: 'practice/story', title, specs: story ? [readingSpec(story, { seed: Date.now() % 1e9, listen })] : [], empty: t('stories.notFound') };
+}
+
 function placementPlan() {
   const steps = gen.placement({ units: course.units, seed: Date.now() % 1e9 });
   return { key: 'placement', title: t('placement.title'), specs: steps.flatMap((s) => s.items.map((item) => ({ ...item, step: s.unit }))), steps, placement: true };
@@ -213,6 +233,7 @@ const plan =
   : mode === 'speak' ? await speakPlan()
   : mode === 'bridge' ? await bridgePlan()
   : mode === 'placement' ? placementPlan()
+  : mode === 'story' ? await storyPlan()
   : await lessonPlan();
 $('[data-lesson-title]').textContent = plan.title;
 const host = hostOf(plan.unit);
@@ -347,7 +368,7 @@ async function doCheck(skipped = false) {
   const combo = !plan.placement && run > 0 && run % COMBO === 0 ? run : 0;
   bonus += combo ? COMBO_XP : 0;
   bestRun = Math.max(bestRun, run);
-  if (r.result === 'correct' && LISTENING.has(spec.type)) counted.listen++;
+  if (r.result === 'correct' && (LISTENING.has(spec.type) || (spec.type === 'reading' && spec.listen))) counted.listen++;
   if (r.result === 'correct' && TYPED.has(spec.type)) counted.type++;
   if (hearts !== null && r.result === 'wrong') {
     hearts--;
@@ -415,7 +436,7 @@ async function complete() {
       <div class="cluster complete__stats"><span class="stat">${icon('xp')}<span>+${xp} XP</span></span><span class="stat">${icon('check')}<span>${t('lesson.accuracy', { pct: Math.round(score * 100) })}</span></span></div>
       ${news.length ? `<ul class="complete__news" role="list">${news.map(([ic, text]) => `<li>${icon(ic)}<span>${esc(text)}</span></li>`).join('')}</ul>` : ''}
       ${friend ? `<p class="complete__friend">${characterImg(friend.id, { size: 56, still: true, label: '' })}<span>${t('friends.new', { name: esc(friend.name) })} <a href="profile.html#friends-title">${t('friends.see')}</a></span></p>` : ''}
-      <div class="cluster complete__actions"><a class="button button-primary" href="${mode === 'lesson' ? nextHref : mode === 'alphabet' ? 'letters.html' : 'practice.html'}">${t('lesson.continue')}</a><a class="button" href="learn.html">${t('nav.learn')}</a></div></div>`;
+      <div class="cluster complete__actions"><a class="button button-primary" href="${mode === 'lesson' ? nextHref : mode === 'alphabet' ? 'letters.html' : mode === 'story' ? `stories.html?story=${encodeURIComponent(params.get('story'))}` : 'practice.html'}">${t('lesson.continue')}</a><a class="button" href="learn.html">${t('nav.learn')}</a></div></div>`;
   sfx('complete');
   live.textContent = t('lesson.complete');
   stage.querySelector('.button-primary').focus();
@@ -524,6 +545,8 @@ document.addEventListener('keydown', (e) => {
     const scope = sheet.classList.contains('is-open') ? sheet : stage;
     const b = scope.querySelector(k === 's' ? '[data-play][data-slow]' : '[data-play]:not([data-slow])') ?? scope.querySelector('[data-play]');
     if (b) play({ text: b.dataset.play, url: b.dataset.url, slow: k === 's' });
+    // A story to listen to (js/exercises/reading.js) plays from its own buttons.
+    else scope.querySelector(k === 's' ? '[data-story-play][data-slow]' : '[data-story-play]:not([data-slow])')?.click();
   }
 });
 

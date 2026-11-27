@@ -35,5 +35,121 @@
     {
       "sentence": "727701"
     }
+  ],
+  "questions": [
+    {
+      "line": 0,
+      "en": "What color was the roof of the house Elias saw?",
+      "nb": "Hvilken farge hadde taket på huset Elias så?",
+      "answer": {
+        "en": "Red",
+        "nb": "Rødt"
+      },
+      "wrong": [
+        {
+          "en": "Green",
+          "nb": "Grønt"
+        },
+        {
+          "en": "White",
+          "nb": "Hvitt"
+        }
+      ]
+    },
+    {
+      "line": 1,
+      "en": "What does Elias's house not have?",
+      "nb": "Hva mangler huset til Elias?",
+      "answer": {
+        "en": "An elevator",
+        "nb": "En heis"
+      },
+      "wrong": [
+        {
+          "en": "A basement",
+          "nb": "En kjeller"
+        },
+        {
+          "en": "A balcony",
+          "nb": "En balkong"
+        }
+      ]
+    },
+    {
+      "line": 2,
+      "en": "What was in the box?",
+      "nb": "Hva var det i esken?",
+      "answer": {
+        "en": "Nothing",
+        "nb": "Ingenting"
+      },
+      "wrong": [
+        {
+          "en": "Books",
+          "nb": "Bøker"
+        },
+        {
+          "en": "Clothes",
+          "nb": "Klær"
+        }
+      ]
+    },
+    {
+      "line": 3,
+      "en": "What is near Elias's house?",
+      "nb": "Hva ligger nær huset til Elias?",
+      "answer": {
+        "en": "A church",
+        "nb": "En kirke"
+      },
+      "wrong": [
+        {
+          "en": "A school",
+          "nb": "En skole"
+        },
+        {
+          "en": "A store",
+          "nb": "En butikk"
+        }
+      ]
+    },
+    {
+      "line": 5,
+      "en": "Why can't they sleep?",
+      "nb": "Hvorfor kan de ikke sove?",
+      "answer": {
+        "en": "Because of the noise",
+        "nb": "På grunn av bråket"
+      },
+      "wrong": [
+        {
+          "en": "Because of the cold",
+          "nb": "På grunn av kulden"
+        },
+        {
+          "en": "Because of the light",
+          "nb": "På grunn av lyset"
+        }
+      ]
+    },
+    {
+      "line": 6,
+      "en": "What is all over the apartment?",
+      "nb": "Hva er det over hele leiligheten?",
+      "answer": {
+        "en": "Water",
+        "nb": "Vann"
+      },
+      "wrong": [
+        {
+          "en": "Snow",
+          "nb": "Snø"
+        },
+        {
+          "en": "Boxes",
+          "nb": "Esker"
+        }
+      ]
+    }
   ]
 }

@@ -613,6 +613,20 @@ html[data-calm="on"] .word.is-speaking { text-shadow: none; }
 .write__help dt { color: var(--rf-muted); font-size: var(--text-sm); }
 .write__help dd { margin: 0 0 var(--space-2); }
 
+/* Reading and listening questions: a story, then questions about it (js/exercises/reading.js) */
+.reading__card { display: grid; gap: var(--space-3); }
+.reading__by { display: flex; align-items: center; gap: var(--space-2); margin: 0; color: var(--rf-muted); font-size: var(--text-sm); }
+.reading__text { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.reading__line { display: flex; align-items: center; gap: var(--space-2); }
+.reading__line .icon-button { width: var(--touch); height: var(--touch); flex: none; }
+.reading__line p { margin: 0; min-width: 0; font-size: var(--text-learn); }
+.reading__lines { gap: var(--space-2); }
+.reading__lines .button { min-width: var(--touch); justify-content: center; }
+.reading__card .credit { margin: 0; }
+.reading__questions { display: grid; gap: var(--space-5); margin: var(--space-4) 0 0; padding: 0; list-style: none; }
+.reading__q { margin: 0 0 var(--space-2); font-weight: 700; }
+.reading__note + .reading__note { margin-top: var(--space-3); }
+
 /* Mascot ------------------------------------------------------------------------------------ */
 
 .tala { display: block; width: var(--tala-size, 120px); height: auto; overflow: visible; }

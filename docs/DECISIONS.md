@@ -2,6 +2,21 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A2: reading and listening questions (2026-11-27)
+
+The last of the A2 exercise types in [PLAN.md](PLAN.md) ("Reading and listening questions (A2): a story or dialogue with questions about it (questions in English and Norwegian)").
+
+- **The questions** are in the story file (`"questions"` in `content/stories/<id>.json`): each names the line that answers it, and has the question, the answer and at least two wrong options in English and Norwegian. The answer is what that line's Tatoeba English says, so each question is listed in `content/CLAIMS.md` with its line; `scripts/validate-content.mjs` checks that a story has at least three, that each names a line it has, that no two options are the same, and that every Norwegian word is a Bokmålsordboka form. The story of *Húsnæði* has six, one for each of six of its eight lines. A reading is told by its narrator, so its questions use the narrator's name for its "I" (*What does Elias's house not have?*).
+- **The exercise** (`reading`, `js/exercises/reading.js`; the spec from `js/engine/reading.js`): three of the story's questions, in the order of the story, each with its options shuffled. **Reading:** the text is shown, and each line can be played. **Listening:** the text is hidden; the story plays from the start, all of it or one line at a time, at normal speed or slowly, and the text shows once the answers are checked. Every question must be right for the exercise to be right; the feedback gives the answers and, for each question missed, quotes the line that answers it with its translation. The spec carries the text and the questions, so a stored exercise needs no story file. No spaced-repetition card: the questions are about a text, not one word to learn. A heard story answered right counts for the listening quest.
+- **Where:** an A2 unit's review ends with questions about its story: read the first time the review is played, then heard and read in turn. A story with questions also offers them on its page on Stories ("Read and answer", "Listen and answer"), as a short practice that leads back to the story (`lesson.html?mode=story&story=<id>`, with `&listen` to hear it).
+- **A1 stories** have no questions: the plan has them for A2, and section A1's lessons stay as they were.
+- **The lesson frame on a desktop** is now `overflow: clip` (after `hidden`, for older browsers): the closed feedback sheet waits below the frame, so a frame that was only `hidden` could still be scrolled by a script, and the screenshots of these tall exercises showed the frame scrolled past its top bar and sheet. A learner scrolls the exercise, not the frame, so nothing else changes.
+
+### Tests
+
+- `node --test`: `tests/reading.test.mjs` (every A2 unit with a story has questions about it; an exercise asks three questions in story order with the answer among the options, the same each time for a seed, and every question comes up across seeds; each line a question rests on has a translation).
+- `npm run smoke`: the *Húsnæði* review answered with its reading questions, and the story heard from its page, leading back to it. Visual QA: `ex-reading`, `feedback-reading-wrong`, `ex-listening`, `feedback-listening`, and the questions on `stories-housing`.
+
 ## Section A2: the perfect, principal parts and plural tables (2026-11-27)
 
 The first of the A2 exercise types in [PLAN.md](PLAN.md) ("Past and perfect (A2): the verb-form exercises extended to the supine and the perfect; principal parts of strong verbs as a table (*drekka, drakk, drukku, drukkið*)"; "Plural and full tables in lessons (A2)"), before units 22 (*Að segja frá*, the past and principal parts) and 23 (*Hef gert*, the perfect), which need them.

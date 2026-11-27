@@ -203,7 +203,9 @@
   .lesson-wrap { display: grid; gap: var(--space-4); width: min(720px, 100%); }
   .lesson.monitor {
     height: min(860px, calc(100dvh - 2 * var(--space-6) - 3rem));
+    /* clip, not only hidden: the closed sheet below the frame must not let a script scroll it */
     overflow: hidden;
+    overflow: clip;
     padding: 0;
     border: 4px solid var(--rf-cyan);
     box-shadow:

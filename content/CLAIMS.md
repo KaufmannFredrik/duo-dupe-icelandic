@@ -621,6 +621,20 @@ Headings name the units rather than their numbers, because new units are inserte
 
 The sentences are unchanged Tatoeba sentences, each readable after the unit the story follows (only words from that unit and earlier ones). Their choice, order and speaker labels are design choices, not claims. Which cast member speaks a dialogue (`"cast"`) or tells a reading (`"narrator"`) is a design choice too; so is each unit host's greeting (`"host"` in the unit files), an unchanged Tatoeba sentence shown with its Tatoeba translation.
 
+### Reading and listening questions (`"questions"`)
+
+Each question about a story is answered by one line (`"line"`, counted from 0), and its answer is what that line's Tatoeba English says; the wrong options are not what it says. A reading is told by its narrator, so its questions use the narrator's name (Elias) for its "I". The Norwegian questions and options are checked word by word against Bokmålsordboka (`scripts/validate-content.mjs`).
+
+| Story | Question | Answer | Source | Status |
+|---|---|---|---|---|
+| *Húsnæði* | What color was the roof of the house Elias saw? | Red | T 502879 ("I saw a house with a red roof.") | sourced |
+| *Húsnæði* | What does Elias's house not have? | An elevator | T 690302 ("There is no elevator in our house.") | sourced |
+| *Húsnæði* | What was in the box? | Nothing | T 3795628 ("The box was empty.") | sourced |
+| *Húsnæði* | What is near Elias's house? | A church | T 791899 ("There is a church near my house.") | sourced |
+| *Húsnæði* | Why can't they sleep? | Because of the noise | T 4000883 ("We can't sleep because of the noise.") | sourced |
+| *Húsnæði* | What is all over the apartment? | Water | T 482328 ("What happened? There's water all over the apartment.") | sourced |
+| *Húsnæði*, Norwegian | *heis*, *kjeller*, *balkong*, *eske*, *bråk*, *kulde*, *leilighet*, *mangle*, *kirke* in the senses used | | BMO (*heis*: "innretning til å frakte varer eller personer opp eller ned"; *bråk*: «høre bråket fra gata»; *eske*: «pakke ut av eskene»; *mangle*: "ikke ha, være uten") | sourced |
+
 ## Made sentences (`content/sentences-made.json`)
 
 Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA from a Tatoeba sentence by putting another word in place of one word, in the DMII Core form the sentence needs (`docs/PLAN.md`, decision 3). The app names the original's author, links to the original and says that a word was changed (CC BY 2.0 FR). Each is a claim that the result is correct Icelandic and says what its English says; they are checked as follows.

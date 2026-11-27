@@ -57,6 +57,9 @@ const phoneTyped = (() => {
   throw new Error('no lesson has a phone number to type in its first three plays');
 })();
 
+const READING = 'lesson.html?unit=housing&lesson=review&step=99&qa';
+const LISTENING_URL = 'lesson.html?mode=story&story=housing&listen&qa';
+
 // Each shot: page URL, optional actions to reach a state, full-page or viewport capture.
 const wrongOption = async (p) => {
   const spec = await p.evaluate(() => window.__tolva.spec());
@@ -184,6 +187,12 @@ const SHOTS = [
   { name: 'feedback-parts', url: firstOf.get('parts'), act: async (p) => { await answer(p); await p.click('[data-action="check"]'); } },
   // Guided writing ends the Gata review (data/writing.json): the form, and its feedback on three kinds of mistake.
   { name: 'ex-write', url: 'lesson.html?unit=around&lesson=review&step=99&qa' },
+  // Reading and listening questions: the Húsnæði review ends with its story (read the first time),
+  // its feedback when every question is missed, and the story heard from its page on Stories.
+  { name: 'ex-reading', url: READING },
+  { name: 'feedback-reading-wrong', url: READING, act: async (p) => { const spec = await p.evaluate(() => window.__tolva.spec()); for (const [i, q] of spec.questions.entries()) await p.click(`.option[data-q="${i}"][data-value="${(q.answer + 1) % q.options.length}"]`); await p.click('[data-action="check"]'); } },
+  { name: 'ex-listening', url: LISTENING_URL },
+  { name: 'feedback-listening', url: LISTENING_URL, act: async (p) => { await answer(p); await p.click('[data-action="check"]'); await p.evaluate(() => document.querySelector('[data-reading-text]').scrollIntoView({ block: 'start' })); } },
   // The A1 check: its first task, the result when every task is skipped (each goal missed, with its
   // units), and the offer at the top of section A2 to take it.
   { name: 'ex-check', url: 'lesson.html?unit=a1check&lesson=check&qa' },
@@ -255,7 +264,7 @@ const SHOTS = [
   { name: 'landing-calm', url: 'index.html', calm: true },
 ];
 const OVERFLOW_PAGES = [
-  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=aboutme', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=numbers', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=myday', 'guide.html?unit=shopping', 'guide.html?unit=food', 'guide.html?unit=home', 'guide.html?unit=people', 'guide.html?unit=weather', 'guide.html?unit=body', 'guide.html?unit=freetime', 'guide.html?unit=study', 'guide.html?unit=services', 'guide.html?unit=past', 'guide.html?unit=grammar', 'guide.html?unit=housing', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement',
+  'index.html', 'learn.html', 'guide.html?unit=hello', 'guide.html?unit=aboutme', 'guide.html?unit=cafe', 'guide.html?unit=family', 'guide.html?unit=numbers', 'guide.html?unit=around', 'guide.html?unit=time', 'guide.html?unit=myday', 'guide.html?unit=shopping', 'guide.html?unit=food', 'guide.html?unit=home', 'guide.html?unit=people', 'guide.html?unit=weather', 'guide.html?unit=body', 'guide.html?unit=freetime', 'guide.html?unit=study', 'guide.html?unit=services', 'guide.html?unit=past', 'guide.html?unit=grammar', 'guide.html?unit=housing', 'guide.html?unit=newwords', ...firstOf.values(), 'lesson.html?mode=placement', READING, LISTENING_URL,
   'declension.html?lemma=kaffi', 'declension.html?lemma=vera', 'declension.html?lemma=góður', 'declension.html?lemma=tveir',
   'stories.html', 'stories.html?story=hello', 'stories.html?story=aboutme', 'stories.html?story=cafe', 'stories.html?story=numbers', 'stories.html?story=time', 'stories.html?story=myday', 'stories.html?story=shopping', 'stories.html?story=food', 'stories.html?story=home', 'stories.html?story=people', 'stories.html?story=body', 'stories.html?story=freetime', 'stories.html?story=study', 'stories.html?story=services', 'stories.html?story=past', 'stories.html?story=grammar', 'stories.html?story=housing', 'stories.html?story=newwords', 'lesson.html?mode=sounds', 'letters.html', 'lesson.html?mode=alphabet', 'voices.html', 'music.html', 'bridge.html', 'lesson.html?mode=bridge', 'dictionary.html', 'practice.html', 'profile.html', 'settings.html', 'credits.html', 'styleguide.html',
 ];
