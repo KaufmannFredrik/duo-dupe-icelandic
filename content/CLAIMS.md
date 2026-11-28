@@ -15,7 +15,7 @@ Not listed: sentences in exercises, examples and stories are unchanged Tatoeba s
 | WP | Wikipedia: [Icelandic grammar](https://en.wikipedia.org/wiki/Icelandic_grammar), [Icelandic phonology](https://en.wikipedia.org/wiki/Icelandic_phonology) |
 | WP-IO | Wikipedia, [Icelandic orthography](https://en.wikipedia.org/wiki/Icelandic_orthography) (the table of letters, names and sounds) |
 | WP-NO | Wikipedia, [Norwegian orthography](https://en.wikipedia.org/wiki/Norwegian_orthography) and [Norwegian phonology](https://en.wikipedia.org/wiki/Norwegian_phonology) (Urban East Norwegian) |
-| elon | elon.io Icelandic grammar: [time prepositions](https://elon.io/grammar/icelandic/prepositions/time-prepositions), [dates and time](https://elon.io/grammar/icelandic/numbers/dates-and-time), [possessive placement](https://elon.io/grammar/icelandic/pronouns/possessive-placement), [temporal conjunctions](https://elon.io/grammar/icelandic/conjunctions/temporal), [dummy það](https://elon.io/grammar/icelandic/syntax/dummy-thad); numbers: [1 to 4](https://elon.io/grammar/icelandic/numbers/overview), [cardinals 5 and up](https://elon.io/grammar/icelandic/numbers/cardinals-5-plus), [ordinals](https://elon.io/grammar/icelandic/numbers/ordinals), [ordinals in use](https://elon.io/grammar/icelandic/numbers/ordinals-in-use), [numbers in use](https://elon.io/grammar/icelandic/expressions/numbers-in-use) |
+| elon | elon.io Icelandic grammar: [time prepositions](https://elon.io/grammar/icelandic/prepositions/time-prepositions), [dates and time](https://elon.io/grammar/icelandic/numbers/dates-and-time), [possessive placement](https://elon.io/grammar/icelandic/pronouns/possessive-placement), [temporal conjunctions](https://elon.io/grammar/icelandic/conjunctions/temporal), [dummy það](https://elon.io/grammar/icelandic/syntax/dummy-thad); numbers: [1 to 4](https://elon.io/grammar/icelandic/numbers/overview), [cardinals 5 and up](https://elon.io/grammar/icelandic/numbers/cardinals-5-plus), [ordinals](https://elon.io/grammar/icelandic/numbers/ordinals), [ordinals in use](https://elon.io/grammar/icelandic/numbers/ordinals-in-use), [numbers in use](https://elon.io/grammar/icelandic/expressions/numbers-in-use), [the weak preterite](https://elon.io/grammar/icelandic/verbs/weak-preterite), [strong verbs](https://elon.io/grammar/icelandic/verbs/strong-verbs-overview) |
 | islenzka | [islenzka.net, telling time](https://islenzka.net/telling-time/) |
 | HÞ | Höskuldur Þráinsson (University of Iceland), *Kynhlutlaust mál* (2025), [PDF](https://uni.hi.is/hoski/files/2025/02/Kynhlutlaust-mal.pdf); page numbers as printed |
 | WP-Tel | Wikipedia, [Telephone numbers in Iceland](https://en.wikipedia.org/wiki/Telephone_numbers_in_Iceland) |
@@ -113,8 +113,9 @@ In the content files, `"reviewed": true` means that every hand-written claim in 
 | *nálægt* in *Það er kirkja nálægt húsinu mínu* and *Húsið hennar er nálægt garðinum* is the preposition "near" with the dative; the parser reads it as the neuter of the adjective *nálægur*, the same word (`sameWord` in `scripts/lib/tags.mjs`, as for adverbs like *seint*). In *Er klósett nálægt?* it is the adverb "nearby" (a loose fix), not the verb *nálægja* the parser reads. | W nálægt ("[adv] near"); BÍN (*nálægt* ao, fs; *nálægur* lo); translations of T 791899, 905337, 827645 ("Is there a toilet nearby?") | sourced |
 | *svölunum* is *svalir* ("a balcony", plural only, the DMII Core word); the parser names it by the masculine *svalur*, which BÍN lists with the same plural forms (`PLURAL_ONLY`, as *tónleikar*). | BÍN (*svölunum*: ÞGFFTgr of *svalir* kvk and of *svalur* kk) | sourced |
 | *stigum* in *Liðið okkar er tveimur stigum yfir*, *Liðið okkar er fimm stigum yfir* and *Risarnir töpuðu leiknum með tuttugu stigum* is *stig* ("a point"), not *stigi* ("stairs"), which has the same dative plural (lemma null); *hæð* in *Ég er einn og níutíu á hæð* is "in height", not the floor of a building (a loose fix); *í lyftu* in *Við fórum upp og niður í lyftu* keeps no parser case, since the accusative and the dative have the same form there. | DMII (*stigum*: ÞGFFT of *stig* and *stigi*; *lyftu*: ÞFET, ÞGFET, EFET); translations of T 675384 ("Our team is two points ahead"), 675388, 751176, 495026 ("I'm 1.9 meters tall"), 673256 | sourced |
+| *beðið* in *Ég get beðið eftir þér* and *Ég get beðið* is the supine of *bíða* ("wait"), not of *biðja* ("ask"), which has the same supine; *Reyndar* in *Reyndar, það er það sem ég hélt* is the adverb *reyndar* ("actually"), a word of its own, not a form of *reyna* (lemma null). | DMII (*beðið*: GM-SAGNB of *bíða* and of *biðja*); BÍN (*reyndar* ao); translations of T 382509 ("I can wait for you"), 3995045 ("I can wait"), 854365 ("Actually, that's what I thought") | sourced |
 
-The parser itself is not checked case by case: `npm run build:tags` lists the 554 words it gives to another word than their spelling suggests.
+The parser itself is not checked case by case: `npm run build:tags` lists the 580 words it gives to another word than their spelling suggests.
 
 ## Unit guidebooks (`content/units/`)
 
@@ -604,6 +605,43 @@ Headings name the units rather than their numbers, because new units are inserte
 | *Húsnæði* leaves out *fermetri* (no sentence; taught in the guidebook) and *leigjandi* (no sentence). | T | checked |
 | Elias's greeting, *Hann hjálpaði mér að flytja*, is "He helped me move". | T 1322924 | attested |
 
+### *Að segja frá*
+
+| Claim | Source | Status |
+|---|---|---|
+| *fyrst* is "first" as an adverb. | BÍN (*fyrst* ao); T 384068 ("the day when we first met"), 1322902 ("We arrived first") | attested |
+| *svo* and *síðan* are "then", *síðar* and *seinna* "later", *loksins* "finally". | W svo ("then"), síðar ("later"), loksins ("finally"); T 386821 ("A few minutes later the telephone rang"), 4020611 ("I'll talk to her later"), 12265237 ("We finally did it") | sourced |
+| When a time word comes first, the verb comes right after it, before the subject, as in Norwegian. | V2; T 386821 (*Nokkrum mínútum síðar hringdi síminn*), 469375 | sourced |
+| *fyrr eða síðar* is "sooner or later"; *meðan* is "while"; *næstum* (or *næstum því*) is "almost". | W meðan ("[conj] while"), næstum ("almost"); T 911517 ("sooner or later"), 487134 ("I read a book while eating"), 385142, 482645 (*næstum því*, "nearly") | sourced |
+| Weak verbs make the past with an ending with a d or t sound; if the form for *ég* ends in -a, the past ends in -aði; if it ends in -i, the past ends in -di after l, m and n, -ði after a vowel, r and g, and -ti after p, t, k and s. | elon, the weak preterite ("Class-1 -a verbs add the long suffix -aði"; "-di after l, m, n"; "-ði after a vowel or other voiced consonant (r, g)"; "-ti after a voiceless consonant (p, t, k, s)"); DMII (*lofaði*, *reyndi*, *sýndi*, *útskýrði*, *missti*) | sourced |
+| -ði also after f: *lifði*, *leyfði*. | DMII (GM-FH-ÞT-3P-ET of *lifa*, *leyfa*); elon gives the rule for voiced consonants, and f between vowels is voiced (WP, Icelandic phonology) | attested |
+| The person endings are the same for every weak verb (*lofaði*, *lofaðir*, *lofaði*, *lofuðum*, *lofuðuð*, *lofuðu*); in the plural an a in the stem becomes ö (*kölluðum*). | elon, the weak preterite ("-i / -ir / -i / -um / -uð / -u", "the same for every weak verb"; "rounds the stem a to ö: töluðum, kölluðum"); DMII (*lofa*, *kalla*) | sourced |
+| A few weak verbs also change their vowel: *velja*, *valdi*; *kaupa*, *keypti*. | elon, the weak preterite (*velja* → *valdi*, *kaupa* → *keypti*); DMII | sourced |
+| Norwegian weak pasts: *lovet*, *prøvde*, *levde*. | BMO love (*lova*, *lovet*), prøve (*prøvde*), leve (*levde*) | sourced |
+| Strong verbs change their vowel and have no past ending; four principal parts (infinitive, past for *hann*, past for *þeir*, supine) give the rest. | elon, strong verbs ("no past ending at all"; "four principal parts"; "taka – tók – tóku – tekið") | sourced |
+| *biðja*, *bað*, *báðu*, *beðið*; *láta*, *lét*, *létu*, *látið*; *ákveða*, *ákvað*, *ákváðu*, *ákveðið*; *þú baðst*, *við báðum*; *snúa*, *sneri*, *sneru*, *snúið*. | DMII (GM-NH, GM-FH-ÞT-3P-ET, GM-FH-ÞT-3P-FT, GM-SAGNB; GM-FH-ÞT-2P-ET, GM-FH-ÞT-1P-FT) | sourced |
+| The strong past plural has the endings of a weak verb (-um, -uð, -u). | DMII (*báðum*, *báðuð*, *báðu*; *létum*, *létuð*, *létu*); elon, the weak preterite (the weak endings) | attested |
+| BÍN also lists the spelling *snéri*, which the sentences use. | BÍN (*snéri*: GM-FH-ÞT-3P-ET2 of *snúa*); T 1321339, 1317136 | sourced |
+| Norwegian *be*, *ba*, *bedt* and *la*, *lot*, *latt* are strong; *snu* is weak, *snudde*. | BMO be (*ba*, *bad*, *bedt*), la (*lot*, *latt*), snu (*snudde*) | sourced |
+| *biðja* is to ask someone (accusative) for something (*um*); to ask a question is *spyrja*. | W biðja ("to ask, to request [with accusative ‘someone’ and um …]"); T 888324 ("She asked him for some money"), 385720, 793198 (*Hún spurði mig spurningar*, "She asked me a question") | sourced |
+| To apologize is *biðja afsökunar* or *biðjast afsökunar*. | W afsökun ("excuse"); T 489163 ("you ought to apologize to her"), 495572 ("You should apologize"), 482961 | sourced |
+| *lofa* is "promise", Norwegian *love*, with the person in the dative. | W lofa ("to promise"); BMO love; T 478538 (*Ég lofa þér*, "I give you my word"), 385912 (*lofaði mér*) | sourced |
+| *leyfa* is "allow", with the dative. | W leyfa ("to allow, to permit, to give (someone) permission for [with dative ‘someone’ …]"); T 1315561 ("Let me see") | sourced |
+| *láta* is "let" and "have something done". | W láta ("to let, to make, to have"); T 827466 ("Please leave me alone"), 832899 ("I had my bicycle fixed yesterday") | sourced |
+| *segja frá* is "tell about", with the dative. | W frá ("from, away from, about"); T 861142 ("This is the city I told you about"), 453023 (*frá slysinu*, dative: "He told me about the accident") | sourced |
+| *sannleiki* is from *sannur*, "true"; to tell the truth is *segja sannleikann*. | W sannleiki ("truth"; "From sannur (“true”)"); T 643249 ("You should tell the truth"), 475237 | sourced |
+| To explain something to someone is *útskýra* with *fyrir* and the dative. | W útskýra ("to explain"); T 10618568 ("He explained the matter to me"), 495559 ("She explained her reasons to us") | sourced |
+| *sýna* is "show", Norwegian *vise*. | W sýna ("to show"); BMO vise; T 873711 ("Show it to me on the map") | sourced |
+| *hugmynd* is *hugur* ("mind") + *mynd* ("image, picture"); to have no idea is *hafa enga hugmynd*. | W hugmynd ("idea"; "From hugur (“mind”) + mynd (“image”)"); T 739157, 871337 ("I had no idea what to do") | sourced |
+| *líf* and *lifa* are Norwegian *liv* and *leve*; alive is *á lífi*. | W líf ("From Old Norse líf"), lifa ("cognate with … Norwegian leve"); BMO liv ("norr. líf"), leve ("norr. lifa"); T 1322927 ("He is still alive") | sourced |
+| *draumur* is Norwegian *drøm*; *dreyma* has the dreamer in the accusative, as *langa* has. | W draumur ("From Old Norse draumr"), dreyma ("with preceding accusative ‘experiencer’"); BMO drøm ("norr. draumr"); T 833949 (*Mig dreymdi góðan draum í nótt*) | sourced |
+| *heppinn* is "lucky", Norwegian *heldig*. | W heppinn ("lucky, fortunate"); BMO heldig; T 382256 ("I was lucky to be there on time") | sourced |
+| *óvart* is "by accident"; *koma á óvart* is "to surprise". | W óvart ("accidentally"); T 3799311 ("It was a surprise"), 4032159 ("I did surprise him") | sourced |
+| *fylgja* is "follow", with the dative; *snúa aftur* is "go back". | W fylgja ("to accompany, follow"); T 888058 (*Hún fylgdi honum til Japan*), 1351343 ("Go back to your seat") | sourced |
+| *myrkur* is "darkness", Norwegian *mørke*. | W myrkur ("darkness, the dark"; "From Old Norse myrkr"); BMO mørke ("norr. myrkr"); T 706945 ("Come home before dark") | sourced |
+| *Að segja frá* leaves out *fyrst* (Wiktionary gives only the conjunction "since") and *dreyma* (Wiktionary's only gloss is "to cause to dream", with grammar notes); both are taught in the guidebook. | W fyrst, dreyma | checked |
+| Katla's greeting, *Ég er með góða hugmynd*, is "I've got a good idea". | T 1353684 | attested |
+
 ### *Nýyrði* (bonus)
 
 | Claim | Source | Status |
@@ -623,7 +661,7 @@ The sentences are unchanged Tatoeba sentences, each readable after the unit the 
 
 ### Reading and listening questions (`"questions"`)
 
-Each question about a story is answered by one line (`"line"`, counted from 0), and its answer is what that line's Tatoeba English says; the wrong options are not what it says. A reading is told by its narrator, so its questions use the narrator's name (Elias) for its "I". The Norwegian questions and options are checked word by word against Bokmålsordboka (`scripts/validate-content.mjs`).
+Each question about a story is answered by one line (`"line"`, counted from 0), and its answer is what that line's Tatoeba English says; the wrong options are not what it says. A reading is told by its narrator, so its questions use the narrator's name (Elias, Amma Sigga) for its "I". The Norwegian questions and options are checked word by word against Bokmålsordboka (`scripts/validate-content.mjs`).
 
 | Story | Question | Answer | Source | Status |
 |---|---|---|---|---|
@@ -634,6 +672,13 @@ Each question about a story is answered by one line (`"line"`, counted from 0), 
 | *Húsnæði* | Why can't they sleep? | Because of the noise | T 4000883 ("We can't sleep because of the noise.") | sourced |
 | *Húsnæði* | What is all over the apartment? | Water | T 482328 ("What happened? There's water all over the apartment.") | sourced |
 | *Húsnæði*, Norwegian | *heis*, *kjeller*, *balkong*, *eske*, *bråk*, *kulde*, *leilighet*, *mangle*, *kirke* in the senses used | | BMO (*heis*: "innretning til å frakte varer eller personer opp eller ned"; *bråk*: «høre bråket fra gata»; *eske*: «pakke ut av eskene»; *mangle*: "ikke ha, være uten") | sourced |
+| *Að segja frá* | How old was Amma Sigga then? | Eighteen | T 428545 ("I was eighteen then.") | sourced |
+| *Að segja frá* | When did he promise to come? | At five | T 385912 ("He gave me a promise to come here at five.") | sourced |
+| *Að segja frá* | How long did Amma Sigga wait? | More than two hours | T 385318 ("I waited more than two hours.") | sourced |
+| *Að segja frá* | What was Amma Sigga doing when he came in? | Reading a letter | T 385240 ("I had been reading a letter when he came in.") | sourced |
+| *Að segja frá* | What did he give her? | A book | T 4007822 ("He gave me this book.") | sourced |
+| *Að segja frá* | How does Amma Sigga remember that day? | As the best day of her life | T 478529 ("That was the best day of my life.") | sourced |
+| *Að segja frá*, Norwegian | *holde på med*, *blomster*, *trist*, *huske* in the senses used | | BMO (*holde på med*: "være opptatt med"; *huske*: "hente fram fra hukommelsen noe en har sett, hørt, opplevd eller følt"; «hva holder du på med?») | sourced |
 
 ## Made sentences (`content/sentences-made.json`)
 
@@ -968,10 +1013,30 @@ Where Tatoeba has too few sentences for a topic, a sentence is made for TÖLVA f
 | 706643-1 | *Ég lék mér áður fyrr með systur minni í kjallaranum.* | T 706643 | *garðinum* → *kjallaranum* | I used to play with my sister in the basement. |
 | 511382-1 | *Má ég fá stigann þinn lánaðan í dag?* | T 511382 | *bílinn* → *stigann* | Can I borrow your ladder today? |
 | 384623-2 | *Hann fékk stiga vinar síns lánaðan í nokkra daga.* | T 384623 | *bíl* → *stiga* | He borrowed his friend's ladder for a few days. |
+| 428012-1 | *Hann sýndi mér herbergið sitt.* | T 428012 | *ljósmyndaalbúmið* → *herbergið* | He showed me his room. |
+| 834442-1 | *Ég sýndi konunni miðann minn og fór inn í leikhúsið.* | T 834442 | *dyraverðinum* → *konunni* | I showed the woman my ticket and went into the theater. |
+| 5314492-1 | *Í dag sýna þau góða mynd.* | T 5314492 | *bíómynd* → *mynd* | Today they're showing a good movie. |
+| 1320752-1 | *Hann sýndi mér það.* | T 1320752 | *gaf* → *sýndi* | He showed it to me. |
+| 888066-2 | *Hún sýndi honum bílinn sinn.* | T 888066 | *seldi* → *sýndi* | She showed him her car. |
+| 10618568-1 | *Hann útskýrði hugmyndina fyrir mér.* | T 10618568 | *málið* → *hugmyndina* | He explained the idea to me. |
+| 10618568-2 | *Hann útskýrði leikinn fyrir mér.* | T 10618568 | *málið* → *leikinn* | He explained the game to me. |
+| 495559-1 | *Hún útskýrði hugmyndir sínar fyrir okkur.* | T 495559 | *ástæður* → *hugmyndir* | She explained her ideas to us. |
+| 398799-1 | *Þú hefðir átt að útskýra það þá.* | T 398799 | *segja* → *útskýra* | You should have explained it then. |
+| 833306-1 | *Ég var heppinn í gær.* | T 833306 | *veikur* → *heppinn* | I was lucky yesterday. |
+| 473497-1 | *Ég er heppinn.* | T 473497 | *svangur* → *heppinn* | I'm lucky. |
+| 383487-1 | *Hann er heppinn með vinnuna sína.* | T 383487 | *ánægður* → *heppinn* | He is lucky with his job. |
+| 505483-1 | *Ég heyri að þú hafir verið heppinn.* | T 505483 | *veikur* → *heppinn* | I hear that you've been lucky. |
+| 888356-1 | *Hún bað hann um að hringja í sig síðar.* | T 888356 | *seinna* → *síðar* | She asked him to call her later. |
+| 4020611-1 | *Ég tala við hana síðar.* | T 4020611 | *seinna* → *síðar* | I'll talk to her later. |
+| 453023-1 | *Hann sagði mér frá draumnum.* | T 453023 | *slysinu* → *draumnum* | He told me about the dream. |
+| 453023-2 | *Hann sagði mér frá ferðinni.* | T 453023 | *slysinu* → *ferðinni* | He told me about the trip. |
+| 514738-1 | *Segðu mér frá hugmyndinni þinni.* | T 514738 | *áætluninni* → *hugmyndinni* | Tell me about your idea. |
+| 514738-2 | *Segðu mér frá ferðinni þinni.* | T 514738 | *áætluninni* → *ferðinni* | Tell me about your trip. |
+| 478607-1 | *Þú gerðir þetta óvart.* | T 478607 | *viljandi* → *óvart* | You did this by accident. |
 
 ## Bokmål translations (`content/translations-nb.json`)
 
-Tatoeba has a Bokmål translation for 35 of the 3,749 sentences. The other 3,677 (all but 37 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 317 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
+Tatoeba has a Bokmål translation for 36 of the 3,943 sentences. The other 3,864 (all but 43 excluded ones) were translated by hand for TÖLVA, from the Icelandic, with Tatoeba's English translation as a check; the 337 made sentences (above) from their own English. A translation is a claim about meaning; these are checked as follows.
 
 | Check | Source | Status |
 |---|---|---|
@@ -984,7 +1049,7 @@ Conventions: common-gender forms for feminine nouns (*boken*, *klokken*, *døren
 
 ## Bokmål glosses (`content/glosses-nb.json`)
 
-Wiktionary gives a Bokmål gloss for 558 of the 680 course words. The other 122 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 108 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
+Wiktionary gives a Bokmål gloss for 576 of the 703 course words. The other 127 were glossed by hand from the word's English Wiktionary meaning (W) and its use in the course sentences, and 110 of Wiktionary's were corrected (below). Every word of every gloss the app shows, from Wiktionary or by hand, is a Bokmålsordboka form (BMO, checked by `npm run validate`), and a gloss of several words is one of the file's `phrases` (Bokmål expressions such as *av og til*, *se på*, *få lov til*). The first gloss is the one exercises show.
 
 | Words | Glosses | Note |
 |---|---|---|
@@ -1012,6 +1077,7 @@ Wiktionary gives a Bokmål gloss for 558 of the 680 course words. The other 122 
 | hlé, mæta | pause; møte opp, møte | W "break, rest", "to turn up, to show up"; BMO pause ("ta seg en pause"), møte ("komme til et møte til avtalt tid og sted"); *møte opp* is a phrase in the file |
 | gær, frétt, eyða, áfram, missa, ná | i går; nyhet; bruke, ødelegge; videre, fremover; miste; nå, rekke | W "yesterday", "news", "to spend, waste", "forward, forth, on", "to lose", "to reach"; BMO nyhet, bruke, ødelegge, videre, fremover, miste, nå, rekke; *i går* is a phrase in the file |
 | leigja, hæð, pakka, nágranni, hverfi, nálægt, pláss | leie; etasje, høyde; pakke; nabo; nabolag, bydel; nær; plass | W "to rent", "storey, floor", "height", "to pack", "neighbour", "neighbourhood", "near", "room, space"; BMO leie, etasje, høyde, pakke, nabo, nabolag, bydel, nær, plass |
+| síðar, meðan, óvart, láta, sannleiki | senere; mens; ved et uhell; la; sannhet | W "later", "[conj] while", "accidentally", "to let, to make, to have", "truth"; BMO senere, mens, uhell (*ved et uhell*), la, sannhet |
 
 ### Wiktionary glosses corrected (`"fixes"`)
 
@@ -1082,6 +1148,7 @@ The Bokmål glosses from Wiktionary are copied from the translation table of the
 | deyja, breyta, nýlega, skyndilega, þá | dø (second: dævve); gjøre om; nylig (second: i det siste); plutselig (second: med ett); da (second: den gang) | dø; endre, forandre; nylig, nettopp; plutselig; da, så | *dævve* is dialect; *gjøre om*, *i det siste*, *med ett* and *den gang* are several words, not listed as phrases |
 | vakt, fyrirtæki | skift; selskap | vakt, skift; firma, bedrift, selskap | "shift, watch": Norwegian says *vakt* too (BMO vakt: "tidsrom da det holdes vakt", "jeg går på vakt klokka åtte"); "company, firm": *firma* and *bedrift* are the everyday words (BMO firma, bedrift) |
 | halda | holde | holde, tro, mene | "to hold", second "to think (have an opinion)": *Ég held það*, *Jeg tror det* |
+| hugmynd, ákveða | begrep (second: idé); beslutte | idé; bestemme, beslutte | "idea": *begrep* is a concept; "to decide": *bestemme seg* is the everyday word (BMO bestemme: "treffe avgjørelse om, avgjøre") |
 | laus, stigi, samningur | tilgjengelig; trapp; kontrakt (second: traktat, overenskomst) | ledig, tilgjengelig; trapp, stige; kontrakt, avtale | "available", "vacant": *ledig* is the word for a free room, seat or person; "stairs, staircase, ladder"; *traktat* is a treaty between states |
 | veggur, miðbær, bjartur | vegg (second: voll); bykjerne; lys (second: knall-, livlig) | vegg; sentrum, bykjerne; lys, klar | *voll* is a rampart, not a wall of a house; "downtown": *sentrum* is the usual word; *knall-* is a prefix, not a word |
 
@@ -1089,7 +1156,7 @@ Later glosses (shown in the dictionary only) removed for the same reasons: anoth
 
 ## Bokmål etymologies (`content/etymology-nb.json`)
 
-The 625 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
+The 645 etymologies the dictionary shows come from English Wiktionary; for the Norwegian interface they were translated by hand. A translation adds no claim of its own: it says what the English says. Conventions: language names in Bokmål (Old Norse *norrønt*, Proto-Norse *urnordisk*, Proto-Germanic *urgermansk*, Proto-Indo-European *urindoeuropeisk*, Old English *gammelengelsk*, Middle Low German *middelnedertysk*, Ancient Greek *gammelgresk*, Middle English *mellomengelsk*, Old Armenian *gammelarmensk*), glosses in «», cited forms unchanged. Left out: Wiktionary's "Etymology tree" lists, which repeat the text after them, and slips in the English (the typo "Frin", a "[Term?]" placeholder). *loka* has no translation: its English only says "See Etymology 1." Every word of the translations is a form in Bokmålsordboka (`npm run validate`), except cited forms and these names:
 
 | Name | Source | Status |
 |---|---|---|
@@ -1213,5 +1280,5 @@ The four Piper voices sometimes mispronounce: *Ísland* comes out as [ˈisland],
 
 ## Norwegian bridge (`data/bridge.json`, `js/bridge-rules.js`)
 
-287 pairs are sourced (Bokmålsordboka and Wiktionary name the same Old Norse word), 14 are shared loans (Wiktionary names the source language). 40 pairs only look alike with the same meaning and are labeled in the app as "a shared origin is not confirmed". The spelling patterns describe spelling, not historical sound laws.
+297 pairs are sourced (Bokmålsordboka and Wiktionary name the same Old Norse word), 14 are shared loans (Wiktionary names the source language). 40 pairs only look alike with the same meaning and are labeled in the app as "a shared origin is not confirmed". The spelling patterns describe spelling, not historical sound laws.
 

@@ -149,6 +149,9 @@
     {"sentence": "675388", "word": "stigum", "lemma": null, "reason": "Liðið okkar er fimm stigum yfir (Our team is five points ahead): stigum is the dative plural of stig (a point, in a game), not of stigi (stairs, a ladder), which has the same form."},
     {"sentence": "751176", "word": "stigum", "lemma": null, "reason": "Risarnir töpuðu leiknum með tuttugu stigum (The Giants lost the game by 20 points): stigum is the dative plural of stig (a point, in a game), not of stigi (stairs, a ladder), which has the same form."},
     {"sentence": "495026", "word": "hæð", "lemma": "hæð_no", "loose": true, "reason": "Ég er einn og níutíu á hæð (I'm 1.9 meters tall): á hæð is \"in height\", not hæð the floor of a building the course teaches; known, but not taught from this sentence."},
-    {"sentence": "673256", "word": "lyftu", "lemma": "lyfta_no", "reason": "Við fórum upp og niður í lyftu (We went up and down by elevator): the parser reads í lyftu as accusative, but with this verb it may as well be the dative (in an elevator), and the form is the same; the fix keeps the word without the case."}
+    {"sentence": "673256", "word": "lyftu", "lemma": "lyfta_no", "reason": "Við fórum upp og niður í lyftu (We went up and down by elevator): the parser reads í lyftu as accusative, but with this verb it may as well be the dative (in an elevator), and the form is the same; the fix keeps the word without the case."},
+    {"sentence": "382509", "word": "beðið", "lemma": "bíða_so", "reason": "Ég get beðið eftir þér (I can wait for you): beðið is the supine of bíða (wait), as the English says, not of biðja (ask), which has the same form."},
+    {"sentence": "3995045", "word": "beðið", "lemma": "bíða_so", "reason": "Ég get beðið (I can wait): beðið is the supine of bíða (wait), as the English says, not of biðja (ask), which has the same form."},
+    {"sentence": "854365", "word": "Reyndar", "lemma": null, "reason": "Reyndar, það er það sem ég hélt (Actually, that's what I thought): reyndar is the adverb actually, a word of its own in BÍN, not a form of reyna (try). reyndar is not a course word."}
   ]
 }

@@ -22,6 +22,7 @@
     "09-grammar.json",
     "a1check.json",
     "housing.json",
+    "telling.json",
     "10-newwords.json"
   ],
   "sections": [
@@ -37,7 +38,7 @@
       "level": "A2",
       "title": { "en": "Elementary", "nb": "Grunnleggende" },
       "goal": { "en": "Tell what happened and what you plan, give your opinion, and handle housing, work, travel and the news in simple terms.", "nb": "Fortell hva som skjedde og hva du planlegger, si hva du mener, og klar deg med bolig, jobb, reiser og nyheter på en enkel måte." },
-      "units": ["housing"]
+      "units": ["housing", "telling"]
     },
     {
       "id": "bonus",

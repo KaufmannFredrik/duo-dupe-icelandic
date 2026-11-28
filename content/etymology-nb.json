@@ -2512,6 +2512,86 @@
     "pláss_no": {
       "nb": "Fra norrønt plaz, et lån fra middelnedertysk.",
       "of": "5965a6d9"
+    },
+    "meðan_st": {
+      "nb": "Fra norrønt meðan.",
+      "of": "56f07624"
+    },
+    "óvart_ao": {
+      "nb": "Avledet av, og lik, sterk nøytrum nominativ og akkusativ entall av óvar.",
+      "of": "6cd094bf"
+    },
+    "myrkur_no": {
+      "nb": "Fra norrønt myrkr, fra urgermansk *merkuz. Beslektet med engelsk murk.",
+      "of": "7fc6c3a0"
+    },
+    "reyna_so": {
+      "nb": "Fra norrønt reyna.",
+      "of": "cead4ea0"
+    },
+    "ákveða_so": {
+      "nb": "Av á- («på, mot») + kveða («å si, dikte»).",
+      "of": "53f3a4f8"
+    },
+    "velja_so": {
+      "nb": "Fra norrønt velja, fra urgermansk *waljaną, til syvende og sist fra urindoeuropeisk *welh₁-.",
+      "of": "f0fdd65d"
+    },
+    "hugmynd_no": {
+      "nb": "Av hugur («sinn») + mynd («bilde»).",
+      "of": "2ad3670a"
+    },
+    "heppinn_lo": {
+      "nb": "Kanskje opprinnelig et utrop, fra stammen *hi- som finnes i andre ledd av dansk forhippet («ivrig etter å oppnå noe»), hige («å ønske sterkt»), nynorsk heppen, forhippen, hike. Også beslektet med svensk häpen.",
+      "of": "39507b58"
+    },
+    "biðja_so": {
+      "nb": "Fra norrønt biðja, fra urgermansk *bidjaną. Beslektet med tysk bitten, færøysk biðja, dansk bede, svensk bedja og engelsk bid.",
+      "of": "4608f730"
+    },
+    "afsökun_no": {
+      "nb": "Av afsaka («å unnskylde») + -un.",
+      "of": "7f6bad75"
+    },
+    "leyfa_so": {
+      "nb": "Fra norrønt leyfa, fra urgermansk *(uz)laubijaną.",
+      "of": "42d6b388"
+    },
+    "láta_so": {
+      "nb": "Fra norrønt láta.",
+      "of": "2445b525"
+    },
+    "sannleiki_no": {
+      "nb": "Av sannur («sann»).",
+      "of": "cf3b674c"
+    },
+    "útskýra_so": {
+      "nb": "Av út + skýra.",
+      "of": "07aadf8a"
+    },
+    "sýna_so": {
+      "nb": "Fra norrønt sýna.",
+      "of": "e7a6ea6e"
+    },
+    "draumur_no": {
+      "nb": "Fra norrønt draumr, fra urgermansk *draumaz.",
+      "of": "4c05ff5d"
+    },
+    "líf_no": {
+      "nb": "Fra norrønt líf, fra urgermansk *lībą.",
+      "of": "5c72fead"
+    },
+    "lifa_so": {
+      "nb": "Fra norrønt lifa, fra urgermansk *libjaną, fra urindoeuropeisk *leyp- («forlate, klamre seg, dvele») (beslektet med færøysk liva, svensk leva, dansk og norsk leve, nederlandsk leven, tysk leben og engelsk live).",
+      "of": "2b68513e"
+    },
+    "snúa_so": {
+      "nb": "Fra norrønt snúa, fra urgermansk *snōwaną, *snewaną, fra urindoeuropeisk *sneh₁- («å vinde; tvinne; flette»).",
+      "of": "bece4486"
+    },
+    "fylgja_so": {
+      "nb": "Fra norrønt fylgja, fra urgermansk *fulgijaną.",
+      "of": "3226ce26"
     }
   }
 }

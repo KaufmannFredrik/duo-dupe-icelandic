@@ -2,6 +2,39 @@
 
 What was chosen, why, and what failed. Newest phase first. Evidence for every data-source claim is in [api-report.md](api-report.md), which `scripts/probe-apis.mjs` regenerates.
 
+## Section A2, unit 22: *Að segja frá* (2026-11-27)
+
+Unit 22 in [PLAN.md](PLAN.md): "telling what happened", with the grammar "the past of weak verbs; strong verbs and their principal parts". The plan's goal column says "past events", which is no goal of `content/goals.json`; the unit trains *opinions* ("express your own ideas and opinions so that others understand", ÍFÚ 3, p. 11: *tjá eigin hugmyndir og skoðanir á skiljanlegu máli*), since telling what happened, explaining and giving an idea are what it teaches. Unit 25, *Skoðanir*, will train it too.
+
+- **Words** (23, theme `telling`): later and meanwhile (*síðar*, *meðan*, *næstum*, *óvart*, *myrkur*); trying and deciding (*reyna*, *ákveða*, *velja*, *hugmynd*, *heppinn*); asking and promising (*biðja*, *afsökun*, *lofa*, *leyfa*, *láta*); the truth (*sannleiki*, *útskýra*, *sýna*, *draumur*); a life (*líf*, *lifa*, *snúa*, *fylgja*). Most everyday verbs of a story (*fara*, *koma*, *finna*, *gleyma*, *týna*, *hitta*, *byrja*, *hætta*) are already course words, so their past forms come back in the sentences. Four strong verbs (*biðja*, *láta*, *ákveða*, *snúa*) join the principal-parts exercise; the others are weak verbs of each kind (-aði, -di, -ði).
+- **Kept for later units:** *detta*, *bjarga*, *stela* and *slys* for *Hjálp* (accidents and rescue), *fljúga* for *Á ferðinni*, *sakna* for *Skoðanir*, *bjóða* and *hlakka* for *Áform*.
+- **Left out:** *fyrst*, whose only Wiktionary sense is the conjunction "since" (and the parser reads it as *fyrstur* or *snemma*, see the *Dagurinn minn* decision), and *dreyma*, whose only Wiktionary gloss is "to cause to dream" with grammar notes, which the dictionary would show as its meaning. Both are taught in the guidebook (*fyrst*, *Mig dreymdi góðan draum í nótt*).
+- **Sentence length:** 10 words, as in *Húsnæði*.
+
+### Sentences
+
+- **Made sentences** (20): *útskýra* had no sentence a learner can read, and *sýna*, *heppinn*, *síðar* and *draumur* had two to four. Each is made from a real sentence with one word swapped (*Hann útskýrði málið fyrir mér* → *hugmyndina*, *leikinn*; *Hann gaf mér það* → *sýndi*; *Ég var veikur í gær* → *heppinn*; *Ég tala við hana seinna* → *síðar*; *Hann sagði mér frá slysinu* → *draumnum*, *ferðinni*; *Þú gerðir þetta viljandi* → *óvart*). All pass GreynirCorrect. One was dropped: in *Hann setti hana óvart í hættu* the parser reads *hættu* as the noun "danger", not a course word.
+- **Tag fixes** (3): *beðið* in *Ég get beðið eftir þér* and *Ég get beðið* is the supine of *bíða* ("wait"), not of *biðja*, which has the same supine; *Reyndar* ("actually") is an adverb of its own, not *reyna*.
+- **Excluded** (7): *Bað hann þín?* ("Did he propose to you?"), a use of *biðja* the course does not teach where it teaches "ask"; *Við leyfum því ekki*, where the dative does not say what the English says (Wiktionary: *leyfa* takes the accusative for the thing allowed); three sentences about wanting to die or suicide; a political slogan (*Lengi lifi Sovétríkin!*); and *Mér finnst hljómur hörpunnar afar fallegur*, whose English says the harpsichord where the Icelandic says the harp.
+- **The past forms** are what the parser reads: *lést* (*látast*, "pass away"), *biðst* (*biðjast afsökunar*), *sýnist* (*sýnast*, "seem") and *lifandi* ("alive") count as forms of *láta*, *biðja*, *sýna* and *lifa*, as the middle voice and the participles do in the other units.
+
+### The unit
+
+- **Lessons** (grouped by hand, every exercise read over three plays): Later and meanwhile; Trying and deciding; Asking and promising; The truth; A life; and a review, 12 exercises each, of five to ten kinds. In section A2 the verb exercises take the supine after *hafa*, and *ákveða*, *láta*, *biðja* and *snúa* come as principal parts (*bað*, *báðu*, *beðið*).
+- **Guidebook**, six sections, every claim in `content/CLAIMS.md`: telling in order (*fyrst*, *svo*, *síðar*, *loksins*, the verb second after a time word, *meðan*, *næstum*); the past of weak verbs by the form for *ég* (-aði; -di after l, m, n; -ði after a vowel, r, f, g; -ti after p, t, k, s; the person endings and the ö of the plural; *velja*, *valdi*), from elon.io's page on the weak preterite and the DMII forms; strong verbs and their four principal parts (elon.io: *taka – tók – tóku – tekið*), *biðja*, *láta*, *ákveða*, *snúa* (BÍN also lists *snéri*, the spelling of the sentences), and Norwegian *be*, *ba*, *bedt*; asking, apologizing, promising and allowing, with their cases; *segja frá*, *sannleiki*, *útskýra fyrir*, *sýna*, *hugmynd*; life, dreams (*dreyma* with the accusative), luck, *óvart* and *koma á óvart*, *fylgja*, *myrkur*. The principal parts are given for *hann* and *þeir*, as the exercise asks for them.
+- **Host and story:** Katla hosts with *Ég er með góða hugmynd* ("I've got a good idea"). The story *The best day* is a reading told by Amma Sigga, nine unchanged Tatoeba sentences in the past: she was eighteen, he promised to come at five, she waited more than two hours, she was reading a letter when he came in, he gave her a book, and it was the best day of her life. It has six questions, three of which end the unit's review.
+- **Validation:** a story's Norwegian questions may name the narrator; `scripts/validate-content.mjs` now skips the narrator's name word by word, so *Amma Sigga* passes as *Elias* did.
+
+### Data
+
+- 703 words; 3,943 sentences (337 made); 199 new Bokmål translations by hand; 5 hand glosses (*síðar* senere, *meðan* mens, *óvart* ved et uhell, *láta* la, *sannleiki* sannhet) and 2 corrections (*hugmynd* idé, not begrep; *ákveða* bestemme before beslutte).
+- 20 Bokmål etymologies (*síðar*, *næstum* and *lofa* have none in Wiktionary); audio for 229 new texts in each of the four voices; the Norwegian bridge has 351 words (10 more: *mens*, *mørke*, *velge*, *låte*, *syne*, *drøm*, *liv*, *leve*, *snu*, *følge*).
+
+### Tests
+
+- `node --test`: 274 tests (twenty-three units; the six lessons produce valid exercises; *beðið* after *geta* is *bíða* and *Reyndar* is not *reyna*; the *opinions* goal is open; the unit's story has questions).
+- `node tests/smoke.mjs --unit=telling`: every lesson of the unit played in the browser. `npm run smoke` and `npm run qa`: see the commit.
+
 ## Section A2: reading and listening questions (2026-11-27)
 
 The last of the A2 exercise types in [PLAN.md](PLAN.md) ("Reading and listening questions (A2): a story or dialogue with questions about it (questions in English and Norwegian)").

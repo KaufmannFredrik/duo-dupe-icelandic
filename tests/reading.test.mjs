@@ -19,6 +19,7 @@ test('reading: every section A2 unit with a story has questions about it', () =>
     if (story) assert.ok(hasQuestions(story), `${story.id}: at least ${QUESTIONS} questions`);
   }
   assert.equal(storyFor(stories, 'housing')?.id, 'housing');
+  assert.equal(storyFor(stories, 'telling')?.id, 'telling');
   assert.equal(storyFor(stories, 'hello'), null, 'an A1 story has no questions');
 });
 

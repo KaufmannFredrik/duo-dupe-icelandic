@@ -39,6 +39,13 @@
     "736321": "\"This is my new news.\": the English is garbled; the Icelandic says this is news to me.",
     "5698130": "\"I've got good news.\": the Icelandic says only \"I have news\" (Ég er með fréttir).",
     "482646": "\"He is at his office.\": the Icelandic says she (Hún er á skrifstofunni sinni).",
-    "482684": "Gleraugum þín duttu í gólfið (Your glasses fell on the floor): a mistake GreynirCorrect does not flag; the subject is nominative, Gleraugun þín."
+    "482684": "Gleraugum þín duttu í gólfið (Your glasses fell on the floor): a mistake GreynirCorrect does not flag; the subject is nominative, Gleraugun þín.",
+    "385015": "\"She took her own life.\": suicide.",
+    "488311": "\"Never try to die.\": reads as being about suicide.",
+    "880426": "\"Long live the Soviet Union!\": a political slogan.",
+    "1356544": "\"Did he propose to you?\": biðja here is to propose marriage (with the genitive), a use the course does not teach where it teaches biðja as to ask.",
+    "11046343": "\"I'm tired of living.\": reads as wanting to die.",
+    "11514529": "\"We won't allow it.\": Wiktionary gives leyfa the accusative for the thing allowed and the dative for the one allowed, so því does not say what the English says.",
+    "863068": "\"I like the sound of the harpsichord very much.\": the Icelandic says the harp (harpa), not the harpsichord."
   }
 }

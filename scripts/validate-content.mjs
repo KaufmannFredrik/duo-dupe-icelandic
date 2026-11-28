@@ -236,7 +236,8 @@ function checkQuestions(rel, story, nbWords) {
       const seen = options.map((o) => o?.[lang]?.toLocaleLowerCase(lang));
       if (new Set(seen).size !== seen.length) err(where, `two options are the same in "${lang}"`);
     }
-    const names = new Set([character(story.narrator)?.name].filter(Boolean));
+    // The narrator's name, word by word (Amma Sigga).
+    const names = new Set([character(story.narrator)?.name].filter(Boolean).flatMap((n) => n.split(' ')));
     for (const text of [q.nb, ...options.map((o) => o?.nb)].filter(Boolean)) addWords(nbWords, where, text, names);
   }
 }

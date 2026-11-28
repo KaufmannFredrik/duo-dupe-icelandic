@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-11-27T09:07:26.194Z",
+ "generated": "2026-11-27T21:18:47.128Z",
  "reviewed": false,
  "note": "Bokmål relatives of the course words. old-norse: Bokmålsordboka and Wiktionary name the same Old Norse word. loan: both borrowed the word (Wiktionary names the source). form: a Bokmål gloss whose spelling the rules in js/bridge-rules.js explain, without a shared etymon in the sources. Needs native review.",
  "sources": [
@@ -19,7 +19,7 @@
  ],
  "counts": {
   "loan": 14,
-  "old-norse": 287,
+  "old-norse": 297,
   "form": 40
  },
  "pairs": {
@@ -2564,6 +2564,85 @@
    "rules": [
     "a-acute-a"
    ]
+  },
+  "meðan_st": {
+   "nb": "mens",
+   "article": 37946,
+   "oldNorse": "meðan",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "myrkur_no": {
+   "nb": "mørke",
+   "article": 39870,
+   "oldNorse": "myrkr",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "velja_so": {
+   "nb": "velge",
+   "article": 67447,
+   "oldNorse": "velja",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "láta_so": {
+   "nb": "låte",
+   "article": 34725,
+   "oldNorse": "láta",
+   "evidence": "old-norse",
+   "rules": [
+    "a-acute",
+    "ending-a"
+   ]
+  },
+  "sýna_so": {
+   "nb": "syne",
+   "article": 59058,
+   "oldNorse": "sýna",
+   "evidence": "old-norse",
+   "rules": [
+    "y-acute",
+    "ending-a"
+   ]
+  },
+  "draumur_no": {
+   "nb": "drøm",
+   "article": 11025,
+   "oldNorse": "draumr",
+   "evidence": "old-norse",
+   "rules": [
+    "au",
+    "ending-ur"
+   ]
+  },
+  "líf_no": {
+   "nb": "liv",
+   "article": 35438,
+   "oldNorse": "líf",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "lifa_so": {
+   "nb": "leve",
+   "article": 35002,
+   "oldNorse": "lifa",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "snúa_so": {
+   "nb": "snu",
+   "article": 55210,
+   "oldNorse": "snúa",
+   "evidence": "old-norse",
+   "rules": null
+  },
+  "fylgja_so": {
+   "nb": "følge",
+   "article": 18673,
+   "oldNorse": "fylgja",
+   "evidence": "old-norse",
+   "rules": null
   },
   "hafa_so": {
    "nb": "ha",

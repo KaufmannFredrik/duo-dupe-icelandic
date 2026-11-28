@@ -2854,6 +2854,186 @@
       ],
       "is": "Hann fékk stiga vinar síns lánaðan í nokkra daga.",
       "en": "He borrowed his friend's ladder for a few days."
+    },
+    "428012-1": {
+      "from": "428012",
+      "swap": [
+        "ljósmyndaalbúmið",
+        "herbergið"
+      ],
+      "is": "Hann sýndi mér herbergið sitt.",
+      "en": "He showed me his room."
+    },
+    "834442-1": {
+      "from": "834442",
+      "swap": [
+        "dyraverðinum",
+        "konunni"
+      ],
+      "is": "Ég sýndi konunni miðann minn og fór inn í leikhúsið.",
+      "en": "I showed the woman my ticket and went into the theater."
+    },
+    "5314492-1": {
+      "from": "5314492",
+      "swap": [
+        "bíómynd",
+        "mynd"
+      ],
+      "is": "Í dag sýna þau góða mynd.",
+      "en": "Today they're showing a good movie."
+    },
+    "1320752-1": {
+      "from": "1320752",
+      "swap": [
+        "gaf",
+        "sýndi"
+      ],
+      "is": "Hann sýndi mér það.",
+      "en": "He showed it to me."
+    },
+    "888066-2": {
+      "from": "888066",
+      "swap": [
+        "seldi",
+        "sýndi"
+      ],
+      "is": "Hún sýndi honum bílinn sinn.",
+      "en": "She showed him her car."
+    },
+    "10618568-1": {
+      "from": "10618568",
+      "swap": [
+        "málið",
+        "hugmyndina"
+      ],
+      "is": "Hann útskýrði hugmyndina fyrir mér.",
+      "en": "He explained the idea to me."
+    },
+    "10618568-2": {
+      "from": "10618568",
+      "swap": [
+        "málið",
+        "leikinn"
+      ],
+      "is": "Hann útskýrði leikinn fyrir mér.",
+      "en": "He explained the game to me."
+    },
+    "495559-1": {
+      "from": "495559",
+      "swap": [
+        "ástæður",
+        "hugmyndir"
+      ],
+      "is": "Hún útskýrði hugmyndir sínar fyrir okkur.",
+      "en": "She explained her ideas to us."
+    },
+    "398799-1": {
+      "from": "398799",
+      "swap": [
+        "segja",
+        "útskýra"
+      ],
+      "is": "Þú hefðir átt að útskýra það þá.",
+      "en": "You should have explained it then."
+    },
+    "833306-1": {
+      "from": "833306",
+      "swap": [
+        "veikur",
+        "heppinn"
+      ],
+      "is": "Ég var heppinn í gær.",
+      "en": "I was lucky yesterday."
+    },
+    "473497-1": {
+      "from": "473497",
+      "swap": [
+        "svangur",
+        "heppinn"
+      ],
+      "is": "Ég er heppinn.",
+      "en": "I'm lucky."
+    },
+    "383487-1": {
+      "from": "383487",
+      "swap": [
+        "ánægður",
+        "heppinn"
+      ],
+      "is": "Hann er heppinn með vinnuna sína.",
+      "en": "He is lucky with his job."
+    },
+    "505483-1": {
+      "from": "505483",
+      "swap": [
+        "veikur",
+        "heppinn"
+      ],
+      "is": "Ég heyri að þú hafir verið heppinn.",
+      "en": "I hear that you've been lucky."
+    },
+    "888356-1": {
+      "from": "888356",
+      "swap": [
+        "seinna",
+        "síðar"
+      ],
+      "is": "Hún bað hann um að hringja í sig síðar.",
+      "en": "She asked him to call her later."
+    },
+    "4020611-1": {
+      "from": "4020611",
+      "swap": [
+        "seinna",
+        "síðar"
+      ],
+      "is": "Ég tala við hana síðar.",
+      "en": "I'll talk to her later."
+    },
+    "453023-1": {
+      "from": "453023",
+      "swap": [
+        "slysinu",
+        "draumnum"
+      ],
+      "is": "Hann sagði mér frá draumnum.",
+      "en": "He told me about the dream."
+    },
+    "453023-2": {
+      "from": "453023",
+      "swap": [
+        "slysinu",
+        "ferðinni"
+      ],
+      "is": "Hann sagði mér frá ferðinni.",
+      "en": "He told me about the trip."
+    },
+    "514738-1": {
+      "from": "514738",
+      "swap": [
+        "áætluninni",
+        "hugmyndinni"
+      ],
+      "is": "Segðu mér frá hugmyndinni þinni.",
+      "en": "Tell me about your idea."
+    },
+    "514738-2": {
+      "from": "514738",
+      "swap": [
+        "áætluninni",
+        "ferðinni"
+      ],
+      "is": "Segðu mér frá ferðinni þinni.",
+      "en": "Tell me about your trip."
+    },
+    "478607-1": {
+      "from": "478607",
+      "swap": [
+        "viljandi",
+        "óvart"
+      ],
+      "is": "Þú gerðir þetta óvart.",
+      "en": "You did this by accident."
     }
   }
 }

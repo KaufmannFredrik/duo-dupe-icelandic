@@ -1,0 +1,224 @@
+{
+  "id": "telling",
+  "theme": "telling",
+  "reviewed": true,
+  "title": {
+    "en": "Telling what happened",
+    "nb": "Å fortelle hva som skjedde"
+  },
+  "is": "Að segja frá",
+  "goal": {
+    "en": "Tell what happened, in order: what you tried, decided and asked for, and how it turned out.",
+    "nb": "Fortell hva som skjedde, i rekkefølge: hva du prøvde, bestemte og ba om, og hvordan det gikk."
+  },
+  "host": {
+    "character": "katla",
+    "says": "1353684"
+  },
+  "lessons": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Later and meanwhile",
+        "nb": "Senere og imens"
+      },
+      "focus": [
+        "síðar_ao",
+        "meðan_st",
+        "næstum_ao",
+        "óvart_ao",
+        "myrkur_no"
+      ]
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Trying and deciding",
+        "nb": "Å prøve og bestemme seg"
+      },
+      "focus": [
+        "reyna_so",
+        "ákveða_so",
+        "velja_so",
+        "hugmynd_no",
+        "heppinn_lo"
+      ]
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "Asking and promising",
+        "nb": "Å be og love"
+      },
+      "focus": [
+        "biðja_so",
+        "afsökun_no",
+        "lofa_so",
+        "leyfa_so",
+        "láta_so"
+      ]
+    },
+    {
+      "id": "4",
+      "title": {
+        "en": "The truth",
+        "nb": "Sannheten"
+      },
+      "focus": [
+        "sannleiki_no",
+        "útskýra_so",
+        "sýna_so",
+        "draumur_no"
+      ]
+    },
+    {
+      "id": "5",
+      "title": {
+        "en": "A life",
+        "nb": "Et liv"
+      },
+      "focus": [
+        "líf_no",
+        "lifa_so",
+        "snúa_so",
+        "fylgja_so"
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Unit review",
+        "nb": "Repetisjon"
+      },
+      "review": true
+    }
+  ],
+  "guide": {
+    "sections": [
+      {
+        "title": {
+          "en": "In order: síðar, meðan, næstum",
+          "nb": "I rekkefølge: síðar, meðan, næstum"
+        },
+        "text": {
+          "en": "To tell what happened in order, start with {is:fyrst} (first), go on with {is:svo} or {is:síðan} (then) and {is:síðar} or {is:seinna} (later), and end with {is:loksins} (finally). When a time word comes first, the verb comes right after it, before the subject, as in Norwegian: {is:Nokkrum mínútum síðar hringdi síminn} (noen minutter senere ringte telefonen), {is:Hann kom aftur heim þremur dögum síðar}. Sooner or later is {is:fyrr eða síðar}: {is:Hann kemur fyrr eða síðar}. While is {is:meðan}: {is:Ég las bók meðan ég borðaði}. Almost is {is:næstum}, or {is:næstum því}: {is:Ég var næstum búinn með vinnuna mína þegar hún kom} (I had almost finished my work when she came).",
+          "nb": "For å fortelle hva som skjedde i rekkefølge, begynner man med {is:fyrst} (først), fortsetter med {is:svo} eller {is:síðan} (så) og {is:síðar} eller {is:seinna} (senere), og slutter med {is:loksins} (endelig). Når et tidsord står først, kommer verbet rett etter, før subjektet, som på norsk: {is:Nokkrum mínútum síðar hringdi síminn} (noen minutter senere ringte telefonen), {is:Hann kom aftur heim þremur dögum síðar}. Før eller siden er {is:fyrr eða síðar}: {is:Hann kemur fyrr eða síðar}. Mens er {is:meðan}: {is:Ég las bók meðan ég borðaði}. Nesten er {is:næstum}, eller {is:næstum því}: {is:Ég var næstum búinn með vinnuna mína þegar hún kom} (jeg var nesten ferdig med arbeidet da hun kom)."
+        },
+        "examples": [
+          "386821",
+          "469375",
+          "911517",
+          "487134",
+          "385142",
+          "4020611-1"
+        ]
+      },
+      {
+        "title": {
+          "en": "The past of weak verbs: -aði, -di, -ði, -ti",
+          "nb": "Fortid av svake verb: -aði, -di, -ði, -ti"
+        },
+        "text": {
+          "en": "Weak verbs make their past with an ending that has a d or t sound, as in Norwegian (lovet, prøvde, levde). The form for {is:ég} shows which ending. If it ends in -a, the past ends in -aði: {is:ég lofa}, {is:ég lofaði}: {is:Hann lofaði mér að koma hingað klukkan fimm}. If it ends in -i, the past ends in -di after l, m and n ({is:ég reyni}, {is:ég reyndi}; {is:sýna}, {is:sýndi}), in -ði after a vowel, r, f and g ({is:útskýra}, {is:útskýrði}; {is:lifa}, {is:lifði}; {is:leyfa}, {is:leyfði}), and in -ti after p, t, k and s ({is:missa}, {is:missti}). The endings for the persons are the same for every weak verb: {is:ég lofaði}, {is:þú lofaðir}, {is:hann lofaði}, {is:við lofuðum}, {is:þið lofuðuð}, {is:þeir lofuðu}. In the plural an a in the stem becomes ö: {is:kalla}, {is:kölluðum}. A few weak verbs also change their vowel: {is:velja}, {is:valdi}, like {is:kaupa}, {is:keypti}.",
+          "nb": "Svake verb lager fortid med en endelse med en d- eller t-lyd, som på norsk (lovet, prøvde, levde). Formen for {is:ég} viser hvilken endelse. Ender den på -a, ender fortid på -aði: {is:ég lofa}, {is:ég lofaði}: {is:Hann lofaði mér að koma hingað klukkan fimm}. Ender den på -i, ender fortid på -di etter l, m og n ({is:ég reyni}, {is:ég reyndi}; {is:sýna}, {is:sýndi}), på -ði etter en vokal, r, f og g ({is:útskýra}, {is:útskýrði}; {is:lifa}, {is:lifði}; {is:leyfa}, {is:leyfði}), og på -ti etter p, t, k og s ({is:missa}, {is:missti}). Personendelsene er de samme for alle svake verb: {is:ég lofaði}, {is:þú lofaðir}, {is:hann lofaði}, {is:við lofuðum}, {is:þið lofuðuð}, {is:þeir lofuðu}. I flertall blir en a i stammen til ö: {is:kalla}, {is:kölluðum}. Noen få svake verb skifter også vokal: {is:velja}, {is:valdi}, som {is:kaupa}, {is:keypti}."
+        },
+        "examples": [
+          "385912",
+          "10360025",
+          "1320752-1",
+          "10618568-1",
+          "389001",
+          "11541572"
+        ],
+        "tables": [
+          {
+            "lemma": "lofa_so",
+            "tense": "ÞT"
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Strong verbs: the principal parts",
+          "nb": "Sterke verb: hovedformene"
+        },
+        "text": {
+          "en": "Strong verbs change their vowel instead, and four forms, the principal parts, give you the rest: the infinitive, the past for {is:hann}, the past for {is:þeir} and the supine, the form after {is:hafa}. {is:biðja}, {is:bað}, {is:báðu}, {is:beðið}; {is:láta}, {is:lét}, {is:létu}, {is:látið}; {is:ákveða}, {is:ákvað}, {is:ákváðu}, {is:ákveðið}: {is:Hún bað hann um pening}, {is:Ég lét laga hjólið mitt í gær}, {is:Hann ákvað að reyna aftur}. The past singular has no ending for {is:ég} and {is:hann}, and the plural has the endings of a weak verb: {is:ég bað}, {is:þú baðst}, {is:við báðum}, {is:þeir báðu}. {is:snúa} has an r in the past: {is:sneri}, {is:sneru}, {is:snúið}; BÍN also lists the spelling snéri, which the sentences use. Norwegian has the same kind of verbs: be, ba, bedt and la, lot, latt; but snu is weak in Norwegian, snudde.",
+          "nb": "Sterke verb skifter vokal i stedet, og fire former, hovedformene, gir deg resten: infinitiv, fortid for {is:hann}, fortid for {is:þeir} og supinum, formen etter {is:hafa}. {is:biðja}, {is:bað}, {is:báðu}, {is:beðið}; {is:láta}, {is:lét}, {is:létu}, {is:látið}; {is:ákveða}, {is:ákvað}, {is:ákváðu}, {is:ákveðið}: {is:Hún bað hann um pening}, {is:Ég lét laga hjólið mitt í gær}, {is:Hann ákvað að reyna aftur}. Fortid entall har ingen endelse for {is:ég} og {is:hann}, og flertall har endelsene til et svakt verb: {is:ég bað}, {is:þú baðst}, {is:við báðum}, {is:þeir báðu}. {is:snúa} har en r i fortid: {is:sneri}, {is:sneru}, {is:snúið}; BÍN har også skrivemåten snéri, som setningene bruker. Norsk har samme slags verb: be, ba, bedt og la, lot, latt; men snu er svakt på norsk, snudde."
+        },
+        "examples": [
+          "888324",
+          "832899",
+          "10616774",
+          "11792683",
+          "905151",
+          "1321339"
+        ],
+        "tables": [
+          {
+            "lemma": "biðja_so",
+            "tense": "ÞT"
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Asking and promising: biðja, afsökun, lofa, leyfa",
+          "nb": "Å be og love: biðja, afsökun, lofa, leyfa"
+        },
+        "text": {
+          "en": "To ask someone for something is {is:biðja}, with the person in the accusative and the thing after {is:um}: {is:Hún bað hann um pening}, {is:Má ég biðja þig um saltið?} To ask a question is {is:spyrja}. To apologize is {is:biðja afsökunar}, to ask for an excuse, or {is:biðjast afsökunar}: {is:Ég biðst afsökunar}, {is:Þú ættir að biðja hana afsökunar}. To promise is {is:lofa}, Norwegian love, with the person in the dative: {is:Ég lofa þér}. To allow is {is:leyfa}, also with the dative: {is:Leyfðu mér að sjá}. {is:láta} is to let, and to have something done: {is:Vinsamlegast láttu mig vera}, {is:Ég lét laga hjólið mitt í gær} (I had my bike fixed yesterday).",
+          "nb": "Å be noen om noe er {is:biðja}, med personen i akkusativ og saken etter {is:um}: {is:Hún bað hann um pening}, {is:Má ég biðja þig um saltið?} Å stille et spørsmål er {is:spyrja}. Å be om unnskyldning er {is:biðja afsökunar}, eller {is:biðjast afsökunar}: {is:Ég biðst afsökunar}, {is:Þú ættir að biðja hana afsökunar}. Å love er {is:lofa}, med personen i dativ: {is:Ég lofa þér}. Å tillate er {is:leyfa}, også med dativ: {is:Leyfðu mér að sjá}. {is:láta} er å la, og å få noe gjort: {is:Vinsamlegast láttu mig vera}, {is:Ég lét laga hjólið mitt í gær} (jeg fikk reparert sykkelen min i går)."
+        },
+        "examples": [
+          "385720",
+          "482961",
+          "489163",
+          "478538",
+          "1315561",
+          "827466"
+        ]
+      },
+      {
+        "title": {
+          "en": "Telling and explaining: segja frá, útskýra, sýna, hugmynd",
+          "nb": "Å fortelle og forklare: segja frá, útskýra, sýna, hugmynd"
+        },
+        "text": {
+          "en": "To tell about something is {is:segja frá}, with the dative, the phrase in the name of the unit: {is:Hann sagði mér frá draumnum}, {is:Segðu mér frá ferðinni þinni}. The truth is {is:sannleiki}, from {is:sannur}, true, and to tell the truth is {is:segja sannleikann}: {is:Þú ættir að segja sannleikann}, {is:Loksins fékk ég að vita sannleikann}. To explain something to someone is {is:útskýra}, with {is:fyrir} and the dative: {is:Hann útskýrði hugmyndina fyrir mér}. To show is {is:sýna}, Norwegian vise: {is:Sýndu mér það á kortinu}. An idea is {is:hugmynd}, from {is:hugur}, mind, and {is:mynd}, picture: {is:Það er góð hugmynd}. To have no idea is {is:hafa enga hugmynd}: {is:Ég hafði enga hugmynd um hvað ég ætti að gera}.",
+          "nb": "Å fortelle om noe er {is:segja frá}, med dativ, uttrykket i navnet på enheten: {is:Hann sagði mér frá draumnum}, {is:Segðu mér frá ferðinni þinni}. Sannheten er {is:sannleiki}, av {is:sannur}, sann, og å si sannheten er {is:segja sannleikann}: {is:Þú ættir að segja sannleikann}, {is:Loksins fékk ég að vita sannleikann}. Å forklare noe for noen er {is:útskýra}, med {is:fyrir} og dativ: {is:Hann útskýrði hugmyndina fyrir mér}. Å vise er {is:sýna}: {is:Sýndu mér það á kortinu}. En idé er {is:hugmynd}, av {is:hugur}, sinn, og {is:mynd}, bilde: {is:Það er góð hugmynd}. Å ikke ane noe er {is:hafa enga hugmynd}: {is:Ég hafði enga hugmynd um hvað ég ætti að gera}."
+        },
+        "examples": [
+          "453023-1",
+          "514738-2",
+          "643249",
+          "475237",
+          "10618568-1",
+          "873711",
+          "739157",
+          "871337"
+        ]
+      },
+      {
+        "title": {
+          "en": "Life, dreams and luck: líf, draumur, heppinn, óvart",
+          "nb": "Liv, drømmer og hell: líf, draumur, heppinn, óvart"
+        },
+        "text": {
+          "en": "Life is {is:líf} and to live {is:lifa}, Norwegian liv and leve: {is:Lífið er fallegt}, {is:Hann lifir enn}. Alive is {is:á lífi}: {is:Hann er enn á lífi}. A dream is {is:draumur}, Norwegian drøm; to dream is {is:dreyma}, with the dreamer in the accusative, as with {is:langa}: {is:Mig dreymdi góðan draum í nótt}. Lucky is {is:heppinn}, Norwegian heldig: {is:Ég var heppinn í gær}. {is:óvart} is by accident: {is:Þú gerðir þetta óvart}, and to surprise is {is:koma á óvart}: {is:Þetta kom á óvart}, {is:Ég kom honum á óvart}. To follow is {is:fylgja}, with the dative: {is:Hún fylgdi honum til Japan}, and to turn is {is:snúa}: {is:Snúðu aftur í sætið þitt} (go back to your seat). Darkness is {is:myrkur}, Norwegian mørke: {is:Komdu heim fyrir myrkur}.",
+          "nb": "Liv er {is:líf} og å leve {is:lifa}: {is:Lífið er fallegt}, {is:Hann lifir enn}. I live er {is:á lífi}: {is:Hann er enn á lífi}. En drøm er {is:draumur}; å drømme er {is:dreyma}, med den som drømmer i akkusativ, som med {is:langa}: {is:Mig dreymdi góðan draum í nótt}. Heldig er {is:heppinn}: {is:Ég var heppinn í gær}. {is:óvart} er ved et uhell: {is:Þú gerðir þetta óvart}, og å overraske er {is:koma á óvart}: {is:Þetta kom á óvart}, {is:Ég kom honum á óvart}. Å følge er {is:fylgja}, med dativ: {is:Hún fylgdi honum til Japan}, og å snu er {is:snúa}: {is:Snúðu aftur í sætið þitt} (gå tilbake til plassen din). Mørke er {is:myrkur}: {is:Komdu heim fyrir myrkur}."
+        },
+        "examples": [
+          "478602",
+          "1322927",
+          "833949",
+          "833306-1",
+          "478607-1",
+          "4032159",
+          "888058",
+          "706945"
+        ]
+      }
+    ]
+  }
+}

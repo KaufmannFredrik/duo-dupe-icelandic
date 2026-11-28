@@ -87,8 +87,8 @@ function generate(unitId, lesson, n = null) {
   return { allowed, specs: d.generator.lesson({ focus: lesson.focus, allowed, seed, practiced: Boolean(lesson.review), level: levelOf(unitId) }) };
 }
 
-test('course: twenty-two units in order, all hand-made, the A1 check twentieth', () => {
-  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'a1check', 'housing', 'newwords']);
+test('course: twenty-three units in order, all hand-made, the A1 check twentieth', () => {
+  assert.deepEqual(d.course.units.map((u) => u.id), ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'a1check', 'housing', 'telling', 'newwords']);
   for (const u of d.course.units) assert.equal(u.auto, false, `${u.id} has hand-made lessons`);
   for (const u of d.course.units.filter((x) => !x.check)) assert.ok(u.lessons.at(-1).review, `${u.id} ends with a review`);
   const check = d.course.units.find((u) => u.check);
@@ -264,6 +264,16 @@ test('data: Í gær: a time phrase the parser reads as one adverb teaches its ow
   assert.equal(d.generator.hasLemma(sid('Ég hef búið hér síðan ég var barn.'), 'síðan_st'), true);
 });
 
+test('data: Að segja frá: beðið after geta is bíða, and reyndar is not reyna', () => {
+  // content/tag-fixes.json: beðið is the supine of both bíða (wait) and biðja (ask); reyndar is its own adverb.
+  const sid = (text) => Object.keys(d.sentences).find((k) => d.sentences[k].is === text);
+  assert.equal(d.generator.hasLemma(sid('Ég get beðið eftir þér.'), 'bíða_so'), true);
+  assert.equal(d.generator.hasLemma(sid('Ég get beðið eftir þér.'), 'biðja_so'), false);
+  assert.equal(d.generator.hasLemma(sid('Hún bað hann um pening.'), 'biðja_so'), true);
+  assert.equal(d.generator.hasLemma(sid('Reyndar, það er það sem ég hélt.'), 'reyna_so'), false);
+  assert.equal(d.generator.hasLemma(sid('Hann ákvað að reyna aftur.'), 'reyna_so'), true);
+});
+
 test('data: Húsnæði: nálægt is the preposition, and á hæð (in height) does not teach hæð', () => {
   // scripts/lib/tags.mjs reads the parser's nálægt (the neuter of nálægur) as the preposition nálægt.
   const sid = (text) => Object.keys(d.sentences).find((k) => d.sentences[k].is === text);
@@ -365,7 +375,7 @@ test('generator: a sentence built from word chips has no digits, in the lessons 
   }
 });
 
-for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'housing', 'newwords']) {
+for (const unitId of ['hello', 'aboutme', 'cafe', 'family', 'numbers', 'around', 'time', 'myday', 'shopping', 'food', 'home', 'people', 'weather', 'body', 'freetime', 'study', 'services', 'past', 'grammar', 'housing', 'telling', 'newwords']) {
   for (const lesson of lessonsOf(unitId)) {
     test(`generator: ${lesson.key} produces valid exercises`, () => {
       const { allowed, specs } = generate(unitId, lesson);
@@ -564,6 +574,7 @@ test('course: words learned per section, and goals practiced when their units ar
   assert.equal(goalState(self, d.course, { ...p, units: { hello: '2026-11-24', aboutme: '2026-11-24' } }), 'practiced');
   assert.equal(goalState(goals.goals.find((g) => g.id === 'health'), d.course, p), 'open'); // trained by Líkaminn
   assert.equal(goalState(goals.goals.find((g) => g.id === 'housing'), d.course, p), 'open'); // trained by Húsnæði
+  assert.equal(goalState(goals.goals.find((g) => g.id === 'opinions'), d.course, p), 'open'); // trained by Að segja frá
   assert.equal(goalState(goals.goals.find((g) => g.id === 'emergency'), d.course, p), 'coming');
   assert.equal(goals.goals.filter((g) => g.section === 'a1').length, 8);
   assert.equal(goals.goals.filter((g) => g.section === 'a2').length, 8);

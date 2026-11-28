@@ -1,0 +1,158 @@
+{
+  "id": "telling",
+  "reviewed": true,
+  "note": "A reading made of real Tatoeba sentences (CC BY 2.0 FR), checked with GreynirCorrect. The sentences are unchanged; they were chosen and ordered for this course.",
+  "title": {
+    "en": "The best day",
+    "nb": "Den beste dagen"
+  },
+  "level": "A2",
+  "after": "telling",
+  "narrator": "amma",
+  "dialogue": false,
+  "lines": [
+    {
+      "sentence": "428545"
+    },
+    {
+      "sentence": "385912"
+    },
+    {
+      "sentence": "385318"
+    },
+    {
+      "sentence": "871337"
+    },
+    {
+      "sentence": "385240"
+    },
+    {
+      "sentence": "391475"
+    },
+    {
+      "sentence": "4007822"
+    },
+    {
+      "sentence": "3799311"
+    },
+    {
+      "sentence": "478529"
+    }
+  ],
+  "questions": [
+    {
+      "line": 0,
+      "en": "How old was Amma Sigga then?",
+      "nb": "Hvor gammel var Amma Sigga da?",
+      "answer": {
+        "en": "Eighteen",
+        "nb": "Atten"
+      },
+      "wrong": [
+        {
+          "en": "Sixteen",
+          "nb": "Seksten"
+        },
+        {
+          "en": "Twenty",
+          "nb": "Tjue"
+        }
+      ]
+    },
+    {
+      "line": 1,
+      "en": "When did he promise to come?",
+      "nb": "Når lovet han å komme?",
+      "answer": {
+        "en": "At five",
+        "nb": "Klokka fem"
+      },
+      "wrong": [
+        {
+          "en": "At two",
+          "nb": "Klokka to"
+        },
+        {
+          "en": "At nine",
+          "nb": "Klokka ni"
+        }
+      ]
+    },
+    {
+      "line": 2,
+      "en": "How long did Amma Sigga wait?",
+      "nb": "Hvor lenge ventet Amma Sigga?",
+      "answer": {
+        "en": "More than two hours",
+        "nb": "Mer enn to timer"
+      },
+      "wrong": [
+        {
+          "en": "Five minutes",
+          "nb": "Fem minutter"
+        },
+        {
+          "en": "All day",
+          "nb": "Hele dagen"
+        }
+      ]
+    },
+    {
+      "line": 4,
+      "en": "What was Amma Sigga doing when he came in?",
+      "nb": "Hva holdt Amma Sigga på med da han kom inn?",
+      "answer": {
+        "en": "Reading a letter",
+        "nb": "Hun leste et brev"
+      },
+      "wrong": [
+        {
+          "en": "Writing a letter",
+          "nb": "Hun skrev et brev"
+        },
+        {
+          "en": "Sleeping",
+          "nb": "Hun sov"
+        }
+      ]
+    },
+    {
+      "line": 6,
+      "en": "What did he give her?",
+      "nb": "Hva ga han henne?",
+      "answer": {
+        "en": "A book",
+        "nb": "En bok"
+      },
+      "wrong": [
+        {
+          "en": "Flowers",
+          "nb": "Blomster"
+        },
+        {
+          "en": "A letter",
+          "nb": "Et brev"
+        }
+      ]
+    },
+    {
+      "line": 8,
+      "en": "How does Amma Sigga remember that day?",
+      "nb": "Hvordan husker Amma Sigga den dagen?",
+      "answer": {
+        "en": "As the best day of her life",
+        "nb": "Som den beste dagen i livet hennes"
+      },
+      "wrong": [
+        {
+          "en": "As a sad day",
+          "nb": "Som en trist dag"
+        },
+        {
+          "en": "As a long day",
+          "nb": "Som en lang dag"
+        }
+      ]
+    }
+  ]
+}
